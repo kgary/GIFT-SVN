@@ -1,0 +1,32 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractRuntimeParametersProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message is the base message for the runtime parameters. */
+message AbstractRuntimeParameters {
+	oneof type {
+		/*  Lti runtime parameters that are specialized for the user. */ 
+		LtiRuntimeParameters lti_runtime_parameters = 1;
+	}
+}
+
+message LtiRuntimeParameters {
+	/* The consumer key of the parameters. */
+	google.protobuf.StringValue consumer_key = 1;
+	
+	/* The service url for the parameters. */
+	google.protobuf.StringValue service_url = 2;
+	
+	/* The lis sourced id for the parameters. */
+	google.protobuf.StringValue lis_sourcedid = 3;
+}
+	

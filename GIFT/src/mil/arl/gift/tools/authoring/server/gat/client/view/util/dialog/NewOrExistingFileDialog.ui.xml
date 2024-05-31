@@ -1,0 +1,58 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.button {
+			height: 55px;
+			width: 215px;
+			font-size: 16px;
+		}
+		.text {
+			margin: 10px;
+		}
+		.message {
+			text-align: left;
+		}
+		.center {
+			text-align: center;
+		}
+		.color {
+    		background: rgb(93, 92, 184);
+    		color: white;
+    		border-color: #5C45B9;
+		}
+		.color:hover {
+			background: rgb(69, 68, 165);
+			border-color: #443190;
+		}
+		.color {
+    		background: rgb(93, 92, 184);
+    		color: white;
+    		border-color: #5C45B9;
+		}
+		.color:hover {
+			background: rgb(69, 68, 165);
+			border-color: #443190;
+		}
+		@external footerButtonColor;
+		.footerButtonColor {
+			margin: 0px 10px;
+    		background: #BF654A;
+			color: white;
+    		border-color: #A55A45;
+		}
+		.footerButtonColor:hover {
+			background: #A05139;
+			color: white;
+    		border-color: #8E452F;
+		}
+	</ui:style>
+	<g:HTMLPanel addStyleNames="{style.center}">
+	    <g:HTML addStyleNames="{style.message}" ui:field="optionalMessage" visible='false'/> 
+		<b:Button addStyleNames="{style.text} {style.button}" ui:field="createNewButton" type="SUCCESS">Create New</b:Button>
+		<b:Button addStyleNames="{style.text} {style.button}" ui:field="selectExistingButton" type="PRIMARY">Select Existing</b:Button>
+		<b:Button addStyleNames="{style.text} {style.button} {style.color}" ui:field="editButton" type="SUCCESS" visible="false">Edit</b:Button>
+		<b:Button addStyleNames="{style.text} {style.button} {style.color}" ui:field="importXTSPButton" type="SUCCESS" visible="false">Import from xTSP</b:Button>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,32 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ProtobufLogMessageProto";
+
+import "ProtobufMessage.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message is a container for the protobuf message types, containing both 
+   the write time and the elapsed DS time. */
+message ProtobufLogMessage {
+
+	/*  The amount of time that has passed in the current domain session*/
+	google.protobuf.DoubleValue elapsed_ds_time = 1;
+	
+	/* The time that the message was written to the logger. */
+	google.protobuf.DoubleValue elapsed_write_time = 2;
+
+	oneof payload {
+	   /* The protobuf content message */
+	   ProtobufMessage message = 3;
+
+	   /* A custom string to write to the log file */
+       google.protobuf.StringValue custom_string = 4;
+	}
+}

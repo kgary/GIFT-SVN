@@ -1,0 +1,320 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.mainContainer{
+			overflow: auto;
+		}
+		.alignLeft{
+			float: left;
+		}
+		.alignRight{
+			float: right;
+		}
+		.labelText{
+			font-size: 14pt;
+			font-family: Segoe Print, inherit;
+		}
+		.statusText{
+			font-size: 16pt;
+			color: white;
+			text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+			padding: 5px;
+			font-family: Segoe Print, inherit;
+		}
+		.statusPanel{			
+			padding: 20px 50px;
+			
+			background-image: url("images/post-it-note.png");
+			background-size: 100% 103%;
+		}
+		.panelDivider{
+
+		}
+		.biggerButton{
+			font-size: 18pt;
+			padding: 10px 50px;
+		}
+		.bigButton{
+			padding: 10px 30px;
+		}
+		.gwt-MenuBar-vertical {
+			background: none repeat scroll 0 0 white;
+		    height: 70px;
+		    margin-left: 0;
+		    margin-top: 0;
+		    overflow-y: scroll;
+		}
+		.whiteText{
+			font-size: 16pt;
+			color: white;
+			text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+			font-family: Segoe Print, inherit;
+		}
+		.padLeft{
+			padding-left: 20px;
+		}
+		.marginLeft{
+			margin-left: 20px;
+		}
+		.faqAnchor{
+			background: none;
+			cursor: pointer;
+		}
+		.faqAnchor:hover{
+			background: radial-gradient(rgba(255,255,255,0.75) 33%, rgba(255,255,255,0) 66%);
+		}
+		.noBorder{
+			border: none;
+		}
+		.instructionsPanel{
+			border-style: solid;
+			border-color: white;
+			border-width: 2px;
+			border-radius: 8px;
+
+		}	
+		.bold{
+			font-weight: bold;
+		}
+		.continueButton{
+			font-size: 22px;
+			visibility: hidden;
+			width: 59%;
+			min-width: 160px;
+		}
+		.stepColumn{
+			display: inline-block;
+			vertical-align: top;
+			min-width: 310px;
+			text-align: left;			
+		}
+		.header{
+		    color: rgb(100, 100, 100);
+		    font-weight: bold;
+		    font-size: 28pt;
+		    padding: 5px 30px;
+		    background-image: linear-gradient(white, rgb(170,170,170));
+		    border-bottom-style: solid;
+		    border-bottom-width: 1px;
+		    text-shadow: 0px 2px rgba(255,255,255,0.25);
+		    box-shadow: 0px 3px 5px rgba(0,0,0,0.25);
+		}
+		.openingText{
+		    padding: 0px 20px;
+		    color: white;
+		    font-size: 18pt;
+		    text-shadow: 0px 2px rgba(0,0,0,0.25);
+		    background-image: url("images/backgrounds/blank_blackboard.jpg");
+			background-size: 100% 100%;
+		    border: 6px solid white;
+		    border-radius: 3px;
+		    box-shadow: 5px 5px 3px rgba(0,0,0,0.15);		
+		    box-sizing: border-box;
+		    padding: 10px;	
+		    min-height: 200px;	
+		}		
+		.stepContainer{
+			background-image: url("images/backgrounds/blank_blackboard.jpg");
+			background-size: 100% 100%;
+		    border: 6px solid white;
+		    border-radius: 3px;
+		    box-shadow: 5px 5px 3px rgba(0,0,0,0.15);		
+		    box-sizing: border-box;
+		    padding: 10px;		
+		    text-align: center;    
+		}
+		.padSides{
+			padding: 10px;
+		}
+		.padSidesLarge{
+			padding: 20px;
+		}
+		.downloadAnchor{
+			color: rgb(230,230,255) !important;
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		.setupStatusContainer{
+			background-image: url("images/backgrounds/blank_blackboard.jpg");
+			background-size: 100% 100%;
+		    border: 6px solid white;
+		    border-radius: 3px;
+		    box-shadow: 5px 5px 3px rgba(0,0,0,0.15);		
+		    box-sizing: border-box;
+		    padding: 10px;		
+		    color: white;   
+		    font-size: 14pt;
+		    text-shadow: 0px 2px rgba(0,0,0,0.25);
+		}
+		.openingTextColumn{
+			display: inline-block;
+			vertical-align: top;
+			text-align: left;
+			min-width: 270px;
+		}
+		.statusColumn{
+			display: inline-block;
+			vertical-align: top;
+			text-align: left;
+			min-width: 270px;
+		}
+		.imageBackground{
+			background-color: white;
+			padding: 3px;
+			border-radius: 50%;
+		}
+		.center{
+			text-align: center;
+		}
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.mainContainer}' ui:field='containerPanel'>
+		<g:FlowPanel addStyleNames='{style.header}'>
+			<g:Label>
+				GIFT Gateway Module Setup
+			</g:Label>
+		</g:FlowPanel>
+		<g:FlowPanel addStyleNames='{style.center}'>
+			<g:FlowPanel width='66%' addStyleNames='{style.openingTextColumn}'>
+				<g:FlowPanel addStyleNames='{style.padSides}'>
+					<g:FlowPanel addStyleNames='{style.openingText}'>
+						<g:HTML>
+							<div style='margin-bottom: 20px;'>
+								To continue, you will first need to run a Java component to allow GIFT to communicate with course-relevant applications on your computer.
+							</div>
+							<div style='text-align: center; text-decoration: underline; margin-bottom: 10px;'>
+								<a href='faqResources/course_initialization_faq.html' target="_blank" style='color: rgb(230,230,255);'>
+									Help &amp; Frequently Asked Questions
+								</a>
+							</div>
+						</g:HTML>
+					</g:FlowPanel>	
+				</g:FlowPanel>	
+			</g:FlowPanel>
+			<g:FlowPanel width='33%' addStyleNames='{style.statusColumn}'>
+				<g:FlowPanel addStyleNames='{style.padSides}'>
+					<g:FlowPanel addStyleNames='{style.setupStatusContainer}'>
+						<g:HTMLPanel>
+							<div style='font-size: 16pt; font-weight: bold;'>
+								Setup Status
+							</div>			
+							<div>
+								<div style='margin-bottom: 3px; margin-left: 30px;'>
+									<table style='width: 100%'>
+										<tbody style='width: 100%'>
+											<tr style='width: 100%'>
+												<td style='width: 100%; font-size: 14pt;'>
+													<g:InlineLabel ui:field='connectionStatusLabel'/>
+												</td>
+												<td>
+													<g:Image width='32px' height='32px' addStyleNames="{style.imageBackground}" altText='An image indicating the connection state' ui:field='connectionStatusImage'/>
+												</td>
+											</tr>
+										</tbody>								
+									</table>
+								</div>
+							</div>		
+							<div>
+								<div style='margin-left: 30px;'>
+									<table style='width: 100%'>
+										<tbody style='width: 100%'>
+											<tr style='width: 100%'>
+												<td style='width: 100%; font-size: 14pt;'>
+													<g:InlineLabel ui:field='configurationStatusLabel'/>
+												</td>
+												<td>
+													<g:Image width='32px' height='32px' addStyleNames="{style.imageBackground}" altText='An image indicating the configuration state' ui:field='configurationStatusImage'/>
+												</td>
+											</tr>
+										</tbody>								
+									</table>									
+								</div>
+							</div>			
+							<g:VerticalPanel width='100%' horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
+								<b:Button addStyleNames='continueButton {style.continueButton}' type="PRIMARY" title='Continue to your course' ui:field='continueButton'>
+									Continue
+								</b:Button>	
+							</g:VerticalPanel>		
+						</g:HTMLPanel>
+					</g:FlowPanel>
+				</g:FlowPanel>
+			</g:FlowPanel>
+		</g:FlowPanel>
+		<g:FlowPanel addStyleNames='{style.padSides}'>
+			<g:FlowPanel addStyleNames='{style.stepContainer}'>
+				<g:FlowPanel width='33%' addStyleNames='{style.stepColumn}'>					
+					<g:HTMLPanel addStyleNames='{style.padSidesLarge}'>				
+						<g:Image url='images/extractZip.PNG' width='600px' height='300px'/>		
+						<table style='width:100%; color: white; text-shadow: 0px 2px rgba(0,0,0,0.25); padding: 10px;'>
+							<tr>
+								<td style='vertical-align: top;'>
+									<div style='background-color: white; color: rgb(100,100,100); border-radius: 50%; padding: 0px 13px;
+											font-weight: bold; font-size: 24pt; box-shadow: 0px 2px rgba(0,0,0,0.25);'>
+										1
+									</div>
+								</td>
+								<td style='width: 100%;'>
+									<div style='padding-left: 10px; font-weight: bold; font-size: 24pt;'>Find &amp; Extract the GIFT Gateway Module Zip File</div>
+									<div style='padding-left: 30px; font-size: 14pt;'>
+										If the file does not download automatically, <g:Anchor addStyleNames='{style.downloadAnchor}' ui:field='downloadButton'>click here</g:Anchor>.
+									</div>
+								</td>
+							</tr>
+						</table>
+					</g:HTMLPanel>
+				</g:FlowPanel>
+				<g:FlowPanel width='33%' addStyleNames='{style.stepColumn}'>
+					<g:HTMLPanel addStyleNames='{style.padSidesLarge}'>
+						<g:Image url='images/startGIFTGateway.PNG' width='600px' height='300px'/>
+						<table style='width:100%; color: white; text-shadow: 0px 2px rgba(0,0,0,0.25); padding: 10px;'>
+							<tr>
+								<td style='vertical-align: top;'>
+									<div style='background-color: white; color: rgb(100,100,100); border-radius: 50%; padding: 0px 13px;
+											font-weight: bold; font-size: 24pt; box-shadow: 0px 2px rgba(0,0,0,0.25);'> 
+										2 
+									</div>
+								</td>
+								<td style='width: 100%;'>
+									<div style='padding-left: 10px; font-weight: bold; font-size: 24pt;'>Run "StartGIFTGateway"</div>
+									<div style='padding-left: 30px; font-size: 14pt;'>
+										<div style='margin-bottom: 10px;'>
+											Within the extracted folder, double-click on "StartGIFTGateway". 
+										</div>
+										<div>
+											If prompted, click "More Info" and then "Run anyway" in the security dialog.
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</g:HTMLPanel>
+				</g:FlowPanel>
+				<g:FlowPanel width='33%' addStyleNames='{style.stepColumn}'>
+					<g:HTMLPanel addStyleNames='{style.padSidesLarge}'>
+						<g:Image url='images/setupDialog.png' width='600px' height='300px'/>
+						<table style='width:100%; color: white; text-shadow: 0px 2px rgba(0,0,0,0.25); padding: 10px;'>
+							<tr>
+								<td style='vertical-align: top;'>
+									<div style='background-color: white; color: rgb(100,100,100); border-radius: 50%; padding: 0px 13px;
+											font-weight: bold; font-size: 24pt; box-shadow: 0px 2px rgba(0,0,0,0.25);'> 
+										3 
+									</div>
+								</td>
+								<td style='width: 100%;'>
+									<div style='padding-left: 10px; font-weight: bold; font-size: 24pt;'>Follow the Remaining Steps</div>
+									<div style='padding-left: 30px; font-size: 14pt;'> 
+										Follow the steps presented by the application to finish setup.
+										<div>
+											If prompted, click "Allow Access" in the security dialog.
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</g:HTMLPanel>
+				</g:FlowPanel>
+			</g:FlowPanel>
+		</g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,33 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:b='urn:import:org.gwtbootstrap3.client.ui'
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+        .continueButton {
+            margin-top: 4px;
+        }
+	</ui:style>
+	<g:FlowPanel>
+	    <g:HorizontalPanel addStyleNames="conversationWidget-chatPanelHeader" ui:field="header">
+		    <g:cell verticalAlignment="ALIGN_MIDDLE">
+		      	<b:Icon type="CLOCK_O" addStyleNames="conversationWidget-headerIcon, conversationWidget-button" ui:field="headerIcon"></b:Icon>
+		    </g:cell>
+			<g:cell width="100%" verticalAlignment="ALIGN_MIDDLE">
+				<g:Label addStyleNames="conversationWidget-chatTitle" ui:field="chatName"></g:Label>
+			</g:cell>
+			<g:cell verticalAlignment="ALIGN_MIDDLE">
+				<b:Button type="PRIMARY" icon="INFO" ui:field="infoButton" addStyleNames="conversationWidget-infoIcon, conversationWidget-button"></b:Button>
+			</g:cell>
+	    </g:HorizontalPanel>
+	    <g:FlowPanel addStyleNames="conversationWidget-contentPanel" ui:field="contentPanel">
+	        <g:ScrollPanel height="315px">
+	    		<g:FlowPanel addStyleNames="conversationWidget-chatPanel" ui:field="chatPanel"></g:FlowPanel>
+	    	</g:ScrollPanel>
+	    	<g:FlowPanel addStyleNames="conversationWidget-footerPanel" ui:field="footerPanel" visible="false">
+    	        <g:HTML ui:field="completedHtml">You have completed this conversation.</g:HTML>
+	    	</g:FlowPanel>
+	    </g:FlowPanel>
+        <b:Button ui:field="continueButton" text="Continue" type="PRIMARY" addStyleNames="{style.continueButton}" />
+	</g:FlowPanel>
+	
+</ui:UiBinder>

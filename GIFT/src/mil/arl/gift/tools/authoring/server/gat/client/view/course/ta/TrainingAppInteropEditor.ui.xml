@@ -1,0 +1,1472 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:p1="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.ta"
+	xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util"
+	xmlns:uw="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.widgets"
+	xmlns:c="urn:import:mil.arl.gift.common.gwt.client.widgets" 
+    xmlns:cell='urn:import:com.google.gwt.user.cellview.client'
+	xmlns:d="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.dialog"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:lm="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.lm"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style>
+	.pad {
+		padding: 10px;
+	}
+	.padTop {
+		padding-top: 5px;
+	}
+	.padRight {
+	    padding-right: 5px;
+	}
+	
+	.smallPadBottom {
+		margin-bottom: 5px;
+	}
+	
+	.padBottom {
+		margin-bottom: 10px;
+	}
+	
+	.largePadBottom {
+		margin-bottom: 20px;
+	}
+	
+	.fileLabel {
+		margin-top: 3px;
+	}
+	
+	.tabbed {
+		padding: 0px 30px;
+	}
+	
+	.cellTableBorder {
+		border-style: solid;
+		border-Width: 1px;
+		border-color: rgb(185, 185, 185);
+		border-radius: 3px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+		background-color: rgb(250, 250, 250);
+	}
+	
+	.inline {
+		display: inline;
+	}
+	
+	.inlineBlock {
+		display: inline-block;
+	}
+	
+	.aresRadioButton {
+		padding-top: 2px;
+		display: block;
+	}
+	
+	.smallPad {
+		margin: 5px;
+	}
+	
+	.buttonContainer {
+		text-align: center;
+	}
+	
+	.leftButton {
+		margin-right: 5px;
+	}
+	
+	.rightButton {
+		margin-left: 5px;
+	}
+	
+	.middleButton {
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	
+	.middleButton {
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	
+	.cellTableScroller {
+		overflow: auto;
+		min-height: 50px;
+		max-height: 400px;
+	}
+	
+	.panelBorder {
+		border-style: solid !important;
+		border-Width: 1px !important;
+		border-color: rgb(185, 185, 185) !important;
+		border-radius: 3px !important;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+	}
+	
+	.disclosurePanelInner {
+		margin-right: 5px
+	}
+	
+	.guidancePanel {
+		margin-top: 5px;
+		border: solid 1px #AAAAAA;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+		border-radius: 5px;
+	}
+	
+	.addButton {
+		margin: 5px 0px 2px 10px;
+		z-index: 2; /* Needed to make tooltip show */
+	}
+	
+	.addButton:active {
+		margin: 7px 0px 0px 10px;
+	}
+	
+	.cellTableFix {
+		border-collapse: separate;
+		padding: 0px 0px 10px;
+	}
+	
+	.helpLink {
+		padding-left: 5px;
+		color: rgb(100, 100, 200);
+		font-weight: normal;
+	}
+	
+	.notBold {
+		font-weight: normal;
+	}
+	
+	.selectButton {
+		border-style: dashed;
+		border-radius: 6px;
+		padding: 6px 30px;
+		border-color: rgb(138, 153, 169);
+		color: #3E4F63;
+	}
+	
+	.bold {
+		font-weight: bold;
+	}
+	
+	.label {
+		text-decoration: underline;
+		font-size: 14px;
+	}
+	
+	.largeIndent {
+		padding-left: 40px;
+	}
+	
+	.pointer {
+		cursor: pointer;
+	}
+	
+	.thumbnailStyle {
+		text-align: center;
+		height: 100px;
+		position: relative;
+		box-shadow: 5px 5px 5px #888888;
+		margin-bottom: 0px;
+		background:#d5fdff;		
+	}
+	
+	.thumbnailPanel {
+		display: inline-block;
+		width: 125px;
+		margin: 5px 5px;
+		vertical-align: middle;
+	}
+	
+	.thumbnailContainer {
+		text-align: center;
+		background-color: rgba(0, 0, 0, 0.25);
+		padding: 5px;
+		border: inset 2px rgba(0, 0, 0, 0.25);
+		border-radius: 5px;
+		white-space: nowrap;
+	}
+	
+	.vbsThumbnailContainer{
+		white-space:normal;
+	}
+	
+	.iconBorder {
+		padding: 10px;
+		border: 1px solid rgb(200, 200, 200);
+		box-shadow: 2px 2px 3px rgb(150, 150, 150);
+		border-radius: 50%;
+		display: inline-block;
+	}
+	
+	.caption {
+		margin: 0px;
+		font-size: 18px !important;
+		padding-right:0px;
+		padding-left:0px;
+	}
+
+        .unselectedPanel {
+            cursor: pointer;
+            padding: 20px 15px;
+            border-radius: 5px;
+        }
+        .unselectedHeader {
+            font-weight: bold;
+            color: white;
+        }
+        .selectedHeader {
+            font-weight: bold;
+            font-size: larger;
+            word-break: break-all;
+            color: #2b2b2b;
+            min-width: 100px;
+            width: 100%;
+            margin-right: -59px;
+            display: inline-block;
+            padding: 5px 0px 0px 0px;
+        }
+        .selectedPanel {
+            padding: 3px 13px 13px 13px;
+            background-color: #f1f1f1;
+            background-image: none;
+            border: 1px solid;
+            border-color: #c1c1c1;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+        }
+        .domainSessionLogPanel {
+	        display: flex;
+	        flex-direction: column;
+	    }
+	    .sessionLogContentPanel {
+			display: flex;
+			flex-flow: row nowrap;
+			padding-bottom: 4px;
+			align-items: center;
+	    }
+	    .logAssessmentLabel {
+			padding-top: 5px;
+			padding-bottom: 4px;
+			font-weight: bold;
+	    }
+	    .audioDeckPanel {
+	        display: flex;
+	    }
+	    .sessionLogLabel {
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			width: auto !important;
+			margin-right: 0px !important;
+	    }
+	    .sessionLogButton {
+			margin: 0px 5px;
+			height: 25px;
+	    }
+        .buttons {
+            padding: 0px 5px;
+        }
+        .largePadTop{
+			padding-top: 10px;
+		}		
+		.spaceRight{
+			padding-right: 10px;
+		}
+		.warningPanel{
+			padding: 7px;
+			margin: 10px;
+			border: 1px solid rgb(150, 150, 150);
+			border-radius: 5px;
+			background: repeating-linear-gradient(
+			  45deg,
+			  rgb(50,50,50),
+			  rgb(50,50,50) 5px,
+			  rgb(255,255,150) 5px,
+			  rgb(255,255,150) 10px
+			);
+		}
+		.warningInner{
+			padding: 7px 5px;
+			background: rgb(255,255,150);
+		}
+		.tileCaption{
+			padding:4px !important;;
+		}
+		.addButtonWidth{
+			width:100px;
+			left: literal("calc(50% - 50px)");
+		}
+		.changeVBSChoiceButton{
+			margin-top: 5px;
+		}
+		.capturedAudioButton{
+	        white-space: normal;
+	        word-break: break-all;
+        }
+        .assessmentSelectionPanel{
+	        padding: 8px 0px 4px;
+        }
+        
+        .unityDesktopPanel {
+			border: 1px solid #c8c8c8;
+			border-radius: 2px;
+			padding: 7px;
+			width: auto;
+		}
+         .wrapThumbnailText{
+			white-space: normal;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+
+		<g:DeckPanel ui:field='choiceDeck'>
+
+			<g:FlowPanel addStyleNames='{style.thumbnailContainer}'
+				ui:field='choicePanel'>
+
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+					<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+						<g:FlowPanel addStyleNames='{style.iconBorder}'>
+							<g:Image height='24px' width='24px' url='images/PowerPoint.png' />
+						</g:FlowPanel>
+						<b:Caption addStyleNames='{style.tileCaption}'>
+							<b:Heading addStyleNames='{style.caption}' size="H3"
+								text='PowerPoint' />
+						</b:Caption>
+						<b:Tooltip title="Select this configuration type to use PowerPoint."
+							placement="BOTTOM" container='body'>
+							<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+								<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+									ui:field="powerPointButton" text="Add" />
+							</b:Container>
+						</b:Tooltip>
+					</b:ThumbnailPanel>
+				</g:FlowPanel>
+
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+					<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle} {style.wrapThumbnailText}">
+						<g:FlowPanel addStyleNames='{style.iconBorder}'>
+							<g:Image height='24px' width='24px' url='images/VBS3.png' />
+						</g:FlowPanel>
+						<b:Caption addStyleNames='{style.tileCaption}'>
+							<b:Heading addStyleNames='{style.caption}' size="H3"
+								text='Virtual Battle Space' />
+						</b:Caption>
+						<b:Tooltip
+							title="Select this configuration type to use Virtual Battle Space."
+							placement="BOTTOM" container='body'>
+							<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+								<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+									ui:field="vbsButton" text="Add" />
+							</b:Container>
+						</b:Tooltip>
+					</b:ThumbnailPanel>
+				</g:FlowPanel>
+
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+					<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+						<g:FlowPanel addStyleNames='{style.iconBorder}'>
+							<g:Image height='24px' width='24px' url='images/vmedic_icon.png' />
+						</g:FlowPanel>
+						<b:Caption addStyleNames='{style.tileCaption}'>
+							<b:Heading addStyleNames='{style.caption}' size="H3"
+								text='TC3' />
+						</b:Caption>
+						<b:Tooltip title="Select this configuration type to use TC3."
+							placement="BOTTOM" container='body'>
+							<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+								<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+									ui:field="tc3Button" text="Add" />
+							</b:Container>
+						</b:Tooltip>
+					</b:ThumbnailPanel>
+				</g:FlowPanel>
+
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+					<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+						<g:FlowPanel addStyleNames='{style.iconBorder}'>
+							<g:Image height='24px' width='24px' url='images/Excavator.png' />
+						</g:FlowPanel>
+						<b:Caption addStyleNames='{style.tileCaption}'>
+							<b:Heading addStyleNames='{style.caption}' size="H3"
+								text='DE Testbed' />
+						</b:Caption>
+						<b:Tooltip
+							title="Select this configuration type to use the Dynamic Environment Testbed."
+							placement="BOTTOM" container='body'>
+							<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+								<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+									ui:field="testbedButton" text="Add" />
+							</b:Container>
+						</b:Tooltip>
+					</b:ThumbnailPanel>
+				</g:FlowPanel>
+
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+					<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+						<g:FlowPanel addStyleNames='{style.iconBorder}'>
+							<g:Image height='24px' width='24px' url='images/ARES.png' />
+						</g:FlowPanel>
+						<b:Caption addStyleNames='{style.tileCaption}'>
+							<b:Heading addStyleNames='{style.caption}' size="H3"
+								text='ARES' />
+						</b:Caption>
+						<b:Tooltip
+							title="Select this configuration type to use the Augmented REality Sandtable."
+							placement="BOTTOM" container='body'>
+							<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+								<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+									ui:field="aresButton" text="Add" />
+							</b:Container>
+						</b:Tooltip>
+					</b:ThumbnailPanel>
+				</g:FlowPanel>
+				
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+                    <b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+                        <g:FlowPanel addStyleNames='{style.iconBorder}'>
+                            <g:Image height='24px' width='24px' url='images/Engage.png' />
+                        </g:FlowPanel>
+                        <b:Caption addStyleNames='{style.tileCaption}'>
+                            <b:Heading addStyleNames='{style.caption}' size="H3"
+                                text='VR-Engage' />
+                        </b:Caption>
+                        <b:Tooltip
+                            title="Select this configuration type to use VR-Engage."
+                            placement="BOTTOM" container='body'>
+                            <b:Container addStyleNames="surveySelectHover surveySelectStyle">
+                                <b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+                                    ui:field="vrEngageButton" text="Add" />
+                            </b:Container>
+                        </b:Tooltip>
+                    </b:ThumbnailPanel>
+                </g:FlowPanel>
+				
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+                    <b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+                        <g:FlowPanel addStyleNames='{style.iconBorder}'>
+                            <g:Image height='24px' width='24px' url='images/seSandbox_Logo.png' />
+                        </g:FlowPanel>
+                        <b:Caption addStyleNames='{style.tileCaption}'>
+                            <b:Heading addStyleNames='{style.caption}' size="H3"
+                                text='SE Sandbox' />
+                        </b:Caption>
+                        <b:Tooltip
+                            title="Select this configuration type to use SE Sandbox."
+                            placement="BOTTOM" container='body'>
+                            <b:Container addStyleNames="surveySelectHover surveySelectStyle">
+                                <b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+                                    ui:field="havenButton" text="Add" />
+                            </b:Container>
+                        </b:Tooltip>
+                    </b:ThumbnailPanel>
+                </g:FlowPanel>
+				
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+                    <b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+                        <g:FlowPanel addStyleNames='{style.iconBorder}'>
+                            <g:Image height='24px' width='24px' url='images/RIDE_Logo.png' />
+                        </g:FlowPanel>
+                        <b:Caption addStyleNames='{style.tileCaption}'>
+                            <b:Heading addStyleNames='{style.caption}' size="H3"
+                                text='RIDE' />
+                        </b:Caption>
+                        <b:Tooltip
+                            title="Select this configuration type to use RIDE."
+                            placement="BOTTOM" container='body'>
+                            <b:Container addStyleNames="surveySelectHover surveySelectStyle">
+                                <b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+                                    ui:field="rideButton" text="Add" />
+                            </b:Container>
+                        </b:Tooltip>
+                    </b:ThumbnailPanel>
+                </g:FlowPanel>
+				
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}' ui:field="unityChoicePanel">
+					<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+						<g:FlowPanel addStyleNames='{style.iconBorder}'>
+							<g:Image height='24px' width='24px' url='images/Unity.png' />
+						</g:FlowPanel>
+						<b:Caption addStyleNames='{style.tileCaption}'>
+							<b:Heading addStyleNames='{style.caption}' size="H3"
+								text='Unity' />
+						</b:Caption>
+						<b:Tooltip
+							title="Select this configuration type to use a Unity application installed on the learner's computer."
+							placement="BOTTOM" container='body'>
+                            <b:Container addStyleNames="surveySelectHover surveySelectStyle">
+                                <b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+                                    ui:field="unityDesktopButton" text="Add" />
+                            </b:Container>
+                        </b:Tooltip>
+                    </b:ThumbnailPanel>
+                </g:FlowPanel>
+				
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+					<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+						<g:FlowPanel addStyleNames='{style.iconBorder}'>
+							<g:Image height='24px' width='24px' url='images/Unity.png' />
+						</g:FlowPanel>
+						<b:Caption addStyleNames='{style.tileCaption}'>
+							<b:Heading addStyleNames='{style.caption}' size="H3"
+								text='Unity WebGL' />
+						</b:Caption>
+						<b:Tooltip
+							title="Select this configuration type to use Unity WebGL player in a web browser."
+							placement="BOTTOM">
+							<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+								<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+									ui:field="unityButton" text="Add" />
+							</b:Container>
+						</b:Tooltip>
+					</b:ThumbnailPanel>
+				</g:FlowPanel>
+				
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}' ui:field="mobileAppChoicePanel">
+                    <b:ThumbnailPanel addStyleNames="{style.thumbnailStyle} {style.wrapThumbnailText}">
+                        <g:FlowPanel addStyleNames='{style.iconBorder}'>
+                            <g:Image height='24px' width='24px' url='images/mobile-app.png' />
+                        </g:FlowPanel>
+                        <b:Caption addStyleNames='{style.tileCaption}'>
+                            <b:Heading addStyleNames='{style.caption}' size="H3"
+                                text='Mobile Events' />
+                        </b:Caption>
+                        <b:Tooltip
+                            title="Select this configuration type to use Mobile Events."
+                            placement="BOTTOM" container='body'>
+                            <b:Container addStyleNames="surveySelectHover surveySelectStyle">
+                                <b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+                                    ui:field="mobileAppButton" text="Add" />
+                            </b:Container>
+                        </b:Tooltip>
+                    </b:ThumbnailPanel>
+                </g:FlowPanel>
+
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}' ui:field="demoAppChoicePanel">
+					<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle} {style.wrapThumbnailText}">
+						<g:FlowPanel addStyleNames='{style.iconBorder}'>
+							<g:Image height='24px' width='24px' url='images/transitions/ta.png' />
+						</g:FlowPanel>
+						<b:Caption addStyleNames='{style.tileCaption}'>
+							<b:Heading addStyleNames='{style.caption}' size="H3"
+								text='Demo Application' />
+						</b:Caption>
+						<b:Tooltip
+							title="Select this configuration type to use the simple example demo training application."
+							placement="BOTTOM" container='body'>
+							<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+								<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+									ui:field="exampleAppButton" text="Add" />
+							</b:Container>
+						</b:Tooltip>
+					</b:ThumbnailPanel>
+				</g:FlowPanel>
+
+				<g:FlowPanel addStyleNames='{style.thumbnailPanel}' ui:field="ltiChoicePanel">
+					<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle} {style.wrapThumbnailText}">
+						<g:FlowPanel addStyleNames='{style.iconBorder}'>
+							<g:Image height='24px' width='24px' url='images/transitions/lti.png' />
+						</g:FlowPanel>
+						<b:Caption addStyleNames='{style.tileCaption}'>
+							<b:Heading addStyleNames='{style.caption}' size="H3"
+								text='LTI Provider' />
+						</b:Caption>
+						<b:Tooltip
+							title="Present a remote system using Learning Tools Interoperability (LTI) standard (returned score allowed)."
+							placement="BOTTOM" container='body'>
+							<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+								<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+									ui:field="ltiProviderButton" text="Add" />
+							</b:Container>
+						</b:Tooltip>
+					</b:ThumbnailPanel>
+				</g:FlowPanel>
+
+			</g:FlowPanel>
+
+			<g:FlowPanel ui:field='editorPanel'>
+			
+				<g:FlowPanel visible='false' ui:field="titlePanel">
+				     <g:InlineHTML ui:field="titleLabel" addStyleNames='{style.largePadTop} {style.spaceRight}'> 
+			   			Application Title:<span style='color: red'>*</span>
+			   		</g:InlineHTML>
+			   		<wb:HelpLink helpCaption='Media Title'>
+			   			
+			   			<wb:helpBody>
+			   				<g:HTML>				   				
+				   				Modifying this text box will change the text of the title that is presented with this application 
+								in the Gift Authoring Tool when authoring adaptive courseflow objects.
+								<br/>
+								This is used to help distinguish between different practice applications of the same type in the
+								list of practice applications.
+			   				</g:HTML>
+			   			</wb:helpBody>
+			   			
+			   		</wb:HelpLink>
+			   		<g:TextBox width='100%' addStyleNames='{style.padBottom}' ui:field='titleTextBox'/>
+	   		   	</g:FlowPanel>	
+
+				<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+					<g:HTMLPanel width='100%'>
+						<g:DeckPanel width='100%' ui:field='applicationArgsDeckPanel'>
+
+							<!-- Empty panel. Used to hide components. -->
+							<g:SimplePanel ui:field='noTaPanel' />
+
+							<!-- elements for editing Simple TA load args -->
+							<g:FlowPanel width='auto' ui:field='simpleTaPanel'>
+								<g:Label addStyleNames='{style.smallPadBottom}'>
+									Scenario Name:
+								</g:Label>
+								<g:FlowPanel>
+									<g:TextBox width='100%' ui:field='simpleTAScenarioNameBox' />
+								</g:FlowPanel>
+							</g:FlowPanel>
+
+							<!-- elements for editing DE Testbed load args -->
+							<g:FlowPanel width='auto' ui:field='testbedPanel'>
+								<g:Label addStyleNames='{style.smallPadBottom}'>
+									Testbed Scenario Name:
+								</g:Label>
+								<g:FlowPanel>
+									<g:TextBox width='100%' ui:field='testbedScenarioNameBox' />
+								</g:FlowPanel>
+							</g:FlowPanel>
+
+							<!-- elements for editing VBS load args -->
+							<g:FlowPanel width='auto' ui:field='vbsPanel'>
+							
+								<g:DeckPanel ui:field='vbsChoiceDeck'>
+								
+									<g:FlowPanel addStyleNames='{style.thumbnailContainer} {style.vbsThumbnailContainer}'
+										ui:field='vbsChoicePanel'>
+					
+										<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+											<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+												<g:FlowPanel addStyleNames='{style.iconBorder}'>
+													<g:Image height='24px' width='24px' url='images/VBS3.png' />
+												</g:FlowPanel>
+												<b:Caption addStyleNames='{style.tileCaption}'>
+													<b:Heading addStyleNames='{style.caption}' size="H3"
+														text='Scenario' />
+												</b:Caption>
+												<b:Tooltip title="The VBS menu/window is manipulated (e.g. load the scenario)"
+													placement="BOTTOM">
+													<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+														<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+															ui:field="vbsScenarioButton" text="Add" />
+													</b:Container>
+												</b:Tooltip>
+											</b:ThumbnailPanel>
+										</g:FlowPanel>
+					
+										<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+											<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+												<g:FlowPanel addStyleNames='{style.iconBorder}'>
+													<g:Image height='24px' width='24px' url='images/file.png' />
+												</g:FlowPanel>
+												<b:Caption addStyleNames='{style.tileCaption}'>
+													<b:Heading addStyleNames='{style.caption}' size="H3"
+														text='Log playback' />
+												</b:Caption>
+												<b:Tooltip
+													title="A real time assessment log is played, the VBS application is not used."
+													placement="BOTTOM">
+													<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+														<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+															ui:field="vbsLogFileButton" text="Add" />
+													</b:Container>
+												</b:Tooltip>
+											</b:ThumbnailPanel>
+										</g:FlowPanel>
+										
+										<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+											<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+												<g:FlowPanel addStyleNames='{style.iconBorder}'>
+													<b:Icon height='24px' width='24px' type='GLOBE' />
+												</g:FlowPanel>
+												<b:Caption addStyleNames='{style.tileCaption}'>
+													<b:Heading addStyleNames='{style.caption}' size="H3"
+														text='Not specified' />
+												</b:Caption>
+												<b:Tooltip
+													title="The VBS menu/window is NOT manipulated"
+													placement="BOTTOM">
+													<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+														<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+															ui:field="vbsNotSpecifiedButton" text="Add" />
+													</b:Container>
+												</b:Tooltip>
+											</b:ThumbnailPanel>
+										</g:FlowPanel>
+									</g:FlowPanel>
+									
+									<g:FlowPanel ui:field='vbsChoiceEditorPanel'>
+									
+										<g:DeckPanel width='100%' ui:field='vbsChoiceEditorDeckPanel'>
+										
+											<g:FlowPanel width='auto' ui:field='vbsScenarioNamePanel'>
+												<g:FlowPanel width='100%'>
+													<g:Label addStyleNames='{style.smallPadBottom} {style.inlineBlock}'>
+														VBS Scenario Name:
+													</g:Label>
+													<wb:HelpLink helpCaption='VBS Scenario Name'>
+													   <wb:linkWidget>
+															<b:Icon title="What's this?" addStyleNames='{style.inline} {style.helpLink}' type='QUESTION_CIRCLE'/>
+														</wb:linkWidget>
+													   <wb:helpBody>
+														   <g:HTML>
+														   The VBS scenario name is used by GIFT to help automatically start the VBS scenario for this part of the course.
+														   <br /><br />
+														   The scenario name must match the name of the VBS scenario as show in the various VBS menus such as the Mission Editor's Load Mission and the Networking Host Server setup.
+														   <br /><br />
+														   If VBS can't find a match to the scenario name, the GIFT course will end prematurely.
+														   </g:HTML>
+													   </wb:helpBody>
+												   </wb:HelpLink>
+												</g:FlowPanel>
+												<g:FlowPanel>
+													<g:TextBox width='100%' ui:field='vbsScenarioNameBox' />
+												</g:FlowPanel>
+											</g:FlowPanel>
+									
+											<g:FlowPanel width='auto' ui:field='vbsDomainSessionLogPanel'>
+											
+												<g:DeckPanel addStyleNames='{style.padBottom}' ui:field='vbsDomainSessionLogdeckPanel'>
+													<g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectDomainSessionLogPanel'>
+								                        <g:FlowPanel>
+								                            <g:Label ui:field='selectDomainSessionLogLabel' addStyleNames='{style.unselectedHeader}'>
+								                                Select Domain Session Message Log
+								                            </g:Label>
+								                        </g:FlowPanel>
+								                    </g:FocusPanel>
+								                    <g:FlowPanel ui:field='domainSessionLogSelectedPanel' addStyleNames='{style.selectedPanel} {style.domainSessionLogPanel}'>
+                                                        <g:HTML addStyleNames='{style.logAssessmentLabel}'>
+                                                            Log File Assessment:
+                                                        </g:HTML>
+                                                        <g:FlowPanel addStyleNames='{style.sessionLogContentPanel}'>
+                                                            <b:Icon type='FILE_TEXT_O' addStyleNames='{style.padRight}' />
+                                                            <wb:ManagedTooltip ui:field='domainSessionLogFileLabelTooltip' >
+				                                        	   <g:Label ui:field='domainSessionLogFileLabel' addStyleNames='{style.sessionLogLabel}' />
+                                                            </wb:ManagedTooltip>
+                                                            <wb:ManagedTooltip title="Click to remove the selected domain session log file">
+                                                                <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons} {style.sessionLogButton}' ui:field='removeDomainSessionLogButton' >
+                                                                     Remove
+                                                                </b:Button>
+                                                            </wb:ManagedTooltip>
+                                                        </g:FlowPanel>
+                                                        <g:FlowPanel>
+                                                            <g:DeckPanel ui:field='logAssessmentDeckPanel'>
+                                                                <g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='chooseAssessmentPanel'>
+                                                                    <g:Label addStyleNames='{style.unselectedHeader}'>
+                                                                        Select Assessment
+                                                                    </g:Label>
+                                                                </g:FocusPanel>
+                                                                <g:FlowPanel ui:field='selectedAssessmentPanel' addStyleNames='{style.sessionLogContentPanel}'>
+                                                                    <b:Icon type='PLAY' addStyleNames='{style.padRight}' />
+                                                                    <wb:ManagedTooltip ui:field='selectedAssessmentLabelTooltip' >
+                                                                        <g:Label ui:field="selectedAssessmentLabel" addStyleNames='{style.sessionLogLabel}' />
+                                                                    </wb:ManagedTooltip>
+                                                                    <wb:ManagedTooltip title="Click to change the selected scenario from the log file">
+                                                                        <b:Button type='DEFAULT' icon='REFRESH' addStyleNames='{style.buttons} {style.sessionLogButton}' ui:field='changeSelectedAssessmentBtn' visible="false">
+                                                                             Change
+                                                                        </b:Button>
+                                                                    </wb:ManagedTooltip>
+                                                                </g:FlowPanel>
+                                                            </g:DeckPanel>
+                                                        </g:FlowPanel>
+                                                        <g:HTMLPanel>
+                                                            <hr style='border-color: rgb(200,200,200); margin: 10px 0px 5px;'/>
+                                                        </g:HTMLPanel>
+                                                        <g:FlowPanel ui:field='capturedAudioPanel' addStyleNames='{style.sessionLogContentPanel} {style.padTop}'>
+                                                            <g:InlineHTML>
+                                                                Play audio file when the log playback starts 
+                                                                <i style='color: gray'>(Optional)</i>
+                                                            </g:InlineHTML>
+                                                            <wb:HelpLink helpCaption='Log Session Captured Audio' addStyleNames='{style.notBold}'>
+                                                                <wb:linkWidget>
+                                                                    <b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+                                                                </wb:linkWidget>
+                                                                <wb:helpBody>
+                                                                    <g:HTML>
+                                                                        When a domain session log is played back during course
+                                                                        execution, an audio file can optionally be played 
+                                                                        alongside it.
+                                                                        <br/><br/>
+                                                                        This can be useful for providing a playback of the sounds 
+                                                                        heard while the log was captured.
+                                                                    </g:HTML>
+                                                                </wb:helpBody>
+                                                            </wb:HelpLink>
+                                                        </g:FlowPanel>
+                                                        <g:DeckPanel ui:field='capturedAudioDeckPanel' addStyleNames='{style.audioDeckPanel}'>
+                                                            <b:Button type='PRIMARY' icon='PLUS' ui:field='selectCapturedAudioButton' addStyleNames='{style.sessionLogLabel}'>
+                                                                Select Captured Audio
+                                                            </b:Button>
+                                                            <g:FlowPanel ui:field='capturedAudioSelectedPanel' addStyleNames='{style.sessionLogContentPanel}'>
+                                                                <b:Icon type='FILE_AUDIO_O' title='Selected Audio File' addStyleNames='{style.padRight}' />
+                                                                <wb:ManagedTooltip ui:field='capturedAudioFileLabelTooltip' >
+                                                                    <g:Label ui:field='capturedAudioFileLabel' addStyleNames='{style.sessionLogLabel}'></g:Label>
+                                                                </wb:ManagedTooltip>
+                                                                <wb:ManagedTooltip title="Click to remove the selected audio file">
+                                                                    <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons} {style.sessionLogButton}' ui:field='removeCapturedAudioButton' >
+                                                                         Remove
+                                                                    </b:Button>
+                                                                </wb:ManagedTooltip>
+                                                            </g:FlowPanel>
+                                                        </g:DeckPanel>
+								                    </g:FlowPanel>
+								                  </g:DeckPanel>
+											</g:FlowPanel>
+											
+											<!-- for when GIFT will not manage loading a scenario or playback file -->
+											<g:FlowPanel width='auto' ui:field='vbsNotSpecifiedPanel'>
+												<g:Label addStyleNames='{style.smallPadBottom}'>
+													VBS not managed by GIFT.
+												</g:Label>
+											</g:FlowPanel>
+										</g:DeckPanel>
+										
+										<wb:ManagedTooltip title="Change how GIFT manages the Gateway connection(s) and any logic related to managing a VBS scenario."
+											placement="BOTTOM">
+												<b:Button ui:field='changeVBSChoiceTypeButton' addStyleNames='{style.changeVBSChoiceButton}' type='PRIMARY' icon='REFRESH' text='Change Type' />
+										</wb:ManagedTooltip>
+									</g:FlowPanel>
+									
+								</g:DeckPanel>
+							</g:FlowPanel>
+
+							<!-- elements for editing TC3 load args -->
+							<g:FlowPanel width='auto' ui:field='tc3Panel'>
+								<g:Label addStyleNames='{style.smallPadBottom}'>
+									TC3 Scenario Name:
+								</g:Label>
+								<g:FlowPanel>
+									<g:TextBox width='100%' ui:field='tc3ScenarioNameBox' />
+								</g:FlowPanel>
+							</g:FlowPanel>
+
+							<!-- elements for editing Sudoku load args -->
+							<g:FlowPanel width='auto' ui:field='sudokuPanel'>
+								<g:Label addStyleNames='{style.smallPadBottom}'>
+									Sudoku Scenario Name:
+								</g:Label>
+								<g:FlowPanel>
+									<g:TextBox width='100%' ui:field='sudokuScenarioNameBox' />
+								</g:FlowPanel>
+							</g:FlowPanel>
+
+							<!-- elements for editing PowerPoint load args -->
+							<g:FlowPanel width='auto' ui:field='powerPointPanel'>
+								<g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectPPTFilePanel'>
+	                                <g:FlowPanel>
+	                                    <g:Label ui:field='selectFileLabel' addStyleNames='{style.unselectedHeader}'>
+	                                        Select PowerPoint File
+	                                    </g:Label>
+	                                </g:FlowPanel>
+	                            </g:FocusPanel>
+	                            <g:FlowPanel ui:field='pptSelectedPanel'>
+	                                <g:HTMLPanel addStyleNames='{style.selectedPanel}'>
+                                        <table style='width: 100%'>
+                                            <tr>
+                                                <td>
+                                                    <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons}' ui:field='removePptButton' >
+                                                         Remove
+                                                    </b:Button>
+                                                </td>
+                                             </tr>
+                                            <tr style='width: 100%'>
+                                                <td style='width: 100%'>
+                                                    <g:Label ui:field='pptFileLabel' addStyleNames='{style.selectedHeader}'></g:Label>
+                                                </td>
+                                             </tr>  
+	                                    </table>
+	                                </g:HTMLPanel>                        
+	                            </g:FlowPanel> 
+                            </g:FlowPanel> 
+
+							<!-- elements for editing ARES load args -->
+							<g:FormPanel width='auto' ui:field='aresPanel'>
+								<g:FlowPanel width='100%'>
+									<g:FlowPanel>
+										<g:RadioButton name="ares_choice" ui:field="aresIdButton"
+											height="30px" addStyleNames="{style.aresRadioButton}">
+											Use ARES scenario ID
+										</g:RadioButton>
+										<g:RadioButton name="ares_choice" ui:field="aresFileButton">
+											Use ARES scenario file
+										</g:RadioButton>
+									</g:FlowPanel>
+									<g:DeckPanel addStyleNames='{style.padTop} {style.smallPadBottom}'
+										ui:field="aresDeckPanel">
+										<g:TextBox width="280px" height="28px" ui:field="aresIdTextbox"></g:TextBox>
+										<g:DeckPanel ui:field="aresSelectFilePanel"
+											height="32px">
+											<b:Button width="140px" addStyleNames='{style.selectButton} '
+												ui:field='selectAresFileButton'>
+												Select a File
+											</b:Button>
+											<g:FlowPanel addStyleNames='{style.padTop}'>
+												<g:Label addStyleNames='{style.label} {style.inline}'
+													ui:field='aresFileLabel'>
+													No file selected.
+												</g:Label>
+												<g:Image
+													addStyleNames='{style.inline} {style.pointer} {style.rightButton}'
+													ui:field="removeAresFileButton" />
+											</g:FlowPanel>
+										</g:DeckPanel>
+									</g:DeckPanel>
+								</g:FlowPanel>
+							</g:FormPanel>
+							
+							<!-- elements for editing VR-engage load args -->
+                            <g:FlowPanel width='auto' ui:field='vrEngagePanel'>
+                            </g:FlowPanel>
+							
+                            <!-- elements for editing Unity desktop load args -->    
+                            <g:FlowPanel ui:field='unityDesktopPanel' addStyleNames="{style.unityDesktopPanel}">
+                                <g:Label>The information given to Unity before starting the assessment (SIMAN Load message).</g:Label>
+                                <uw:NameValuePairEditor ui:field='unityDesktopArgsTable'/>
+                            </g:FlowPanel>
+							
+							<!-- elements for editing HAVEN load args -->
+                            <g:FlowPanel width='auto' ui:field='havenPanel'>
+							
+							<g:DeckPanel ui:field='havenChoiceDeck'>
+								
+									<g:FlowPanel addStyleNames='{style.thumbnailContainer} {style.vbsThumbnailContainer}'
+										ui:field='havenChoicePanel'>
+					
+										<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+											<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+												<g:FlowPanel addStyleNames='{style.iconBorder}'>
+                                                    <b:Icon height='24px' width='24px' type='GLOBE' />
+                                                </g:FlowPanel>
+												<b:Caption addStyleNames='{style.tileCaption}'>
+													<b:Heading addStyleNames='{style.caption}' size="H3"
+														text='Not Specified' />
+												</b:Caption>
+												<b:Tooltip title="connect to SE Sandbox without specifying a scenario"
+													placement="BOTTOM">
+													<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+														<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+															ui:field="havenNotSpecifiedButton" text="Add" />
+													</b:Container>
+												</b:Tooltip>
+											</b:ThumbnailPanel>
+										</g:FlowPanel>
+					
+										<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+											<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+												<g:FlowPanel addStyleNames='{style.iconBorder}'>
+													<g:Image height='24px' width='24px' url='images/file.png' />
+												</g:FlowPanel>
+												<b:Caption addStyleNames='{style.tileCaption}'>
+													<b:Heading addStyleNames='{style.caption}' size="H3"
+														text='Log playback' />
+												</b:Caption>
+												<b:Tooltip
+													title="A real time assessment log is played, the SE Sandbox application is not used."
+													placement="BOTTOM">
+													<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+														<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+															ui:field="havenLogFileButton" text="Add" />
+													</b:Container>
+												</b:Tooltip>
+											</b:ThumbnailPanel>
+										</g:FlowPanel>
+									</g:FlowPanel>
+									
+									<g:FlowPanel ui:field='havenChoiceEditorPanel'>
+									
+										<g:DeckPanel width='100%' ui:field='havenChoiceEditorDeckPanel'>
+									
+											<g:FlowPanel width='auto' ui:field='havenDomainSessionLogPanel'>
+											
+												<g:DeckPanel addStyleNames='{style.padBottom}' ui:field='havenDomainSessionLogdeckPanel'>
+													<g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='havenSelectDomainSessionLogPanel'>
+								                        <g:FlowPanel>
+								                            <g:Label ui:field='havenSelectDomainSessionLogLabel' addStyleNames='{style.unselectedHeader}'>
+								                                Select Domain Session Message Log
+								                            </g:Label>
+								                        </g:FlowPanel>
+								                    </g:FocusPanel>
+								                    <g:FlowPanel ui:field='havenDomainSessionLogSelectedPanel' addStyleNames='{style.selectedPanel} {style.domainSessionLogPanel}'>
+                                                        <g:HTML addStyleNames='{style.logAssessmentLabel}'>
+                                                            Log File Assessment:
+                                                        </g:HTML>
+                                                        <g:FlowPanel addStyleNames='{style.sessionLogContentPanel}'>
+                                                            <b:Icon type='FILE_TEXT_O' addStyleNames='{style.padRight}' />
+                                                            <wb:ManagedTooltip ui:field='havenDomainSessionLogFileLabelTooltip' >
+				                                        	   <g:Label ui:field='havenDomainSessionLogFileLabel' addStyleNames='{style.sessionLogLabel}' />
+                                                            </wb:ManagedTooltip>
+                                                            <wb:ManagedTooltip title="Click to remove the selected domain session log file">
+                                                                <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons} {style.sessionLogButton}' ui:field='havenRemoveDomainSessionLogButton' >
+                                                                     Remove
+                                                                </b:Button>
+                                                            </wb:ManagedTooltip>
+                                                        </g:FlowPanel>
+                                                        <g:FlowPanel>
+                                                            <g:DeckPanel ui:field='havenLogAssessmentDeckPanel'>
+                                                                <g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='havenChooseAssessmentPanel'>
+                                                                    <g:Label addStyleNames='{style.unselectedHeader}'>
+                                                                        Select Assessment
+                                                                    </g:Label>
+                                                                </g:FocusPanel>
+                                                                <g:FlowPanel ui:field='havenSelectedAssessmentPanel' addStyleNames='{style.sessionLogContentPanel}'>
+                                                                    <b:Icon type='PLAY' addStyleNames='{style.padRight}' />
+                                                                    <wb:ManagedTooltip ui:field='havenSelectedAssessmentLabelTooltip' >
+                                                                        <g:Label ui:field="havenSelectedAssessmentLabel" addStyleNames='{style.sessionLogLabel}' />
+                                                                    </wb:ManagedTooltip>
+                                                                    <wb:ManagedTooltip title="Click to change the selected scenario from the log file">
+                                                                        <b:Button type='DEFAULT' icon='REFRESH' addStyleNames='{style.buttons} {style.sessionLogButton}' ui:field='havenChangeSelectedAssessmentBtn' visible="false">
+                                                                             Change
+                                                                        </b:Button>
+                                                                    </wb:ManagedTooltip>
+                                                                </g:FlowPanel>
+                                                            </g:DeckPanel>
+                                                        </g:FlowPanel>
+                                                        <g:HTMLPanel>
+                                                            <hr style='border-color: rgb(200,200,200); margin: 10px 0px 5px;'/>
+                                                        </g:HTMLPanel>
+                                                        <g:FlowPanel ui:field='havenCapturedAudioPanel' addStyleNames='{style.sessionLogContentPanel} {style.padTop}'>
+                                                            <g:InlineHTML>
+                                                                Play audio file when the log playback starts 
+                                                                <i style='color: gray'>(Optional)</i>
+                                                            </g:InlineHTML>
+                                                            <wb:HelpLink helpCaption='Log Session Captured Audio' addStyleNames='{style.notBold}'>
+                                                                <wb:linkWidget>
+                                                                    <b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+                                                                </wb:linkWidget>
+                                                                <wb:helpBody>
+                                                                    <g:HTML>
+                                                                        When a domain session log is played back during course
+                                                                        execution, an audio file can optionally be played 
+                                                                        alongside it.
+                                                                        <br/><br/>
+                                                                        This can be useful for providing a playback of the sounds 
+                                                                        heard while the log was captured.
+                                                                    </g:HTML>
+                                                                </wb:helpBody>
+                                                            </wb:HelpLink>
+                                                        </g:FlowPanel>
+                                                        <g:DeckPanel ui:field='havenCapturedAudioDeckPanel' addStyleNames='{style.audioDeckPanel}'>
+                                                            <b:Button type='PRIMARY' icon='PLUS' ui:field='havenSelectCapturedAudioButton' addStyleNames='{style.sessionLogLabel}'>
+                                                                Select Captured Audio
+                                                            </b:Button>
+                                                            <g:FlowPanel ui:field='havenCapturedAudioSelectedPanel' addStyleNames='{style.sessionLogContentPanel}'>
+                                                                <b:Icon type='FILE_AUDIO_O' title='Selected Audio File' addStyleNames='{style.padRight}' />
+                                                                <wb:ManagedTooltip ui:field='havenCapturedAudioFileLabelTooltip' >
+                                                                    <g:Label ui:field='havenCapturedAudioFileLabel' addStyleNames='{style.sessionLogLabel}'></g:Label>
+                                                                </wb:ManagedTooltip>
+                                                                <wb:ManagedTooltip title="Click to remove the selected audio file">
+                                                                    <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons} {style.sessionLogButton}' ui:field='havenRemoveCapturedAudioButton' >
+                                                                         Remove
+                                                                    </b:Button>
+                                                                </wb:ManagedTooltip>
+                                                            </g:FlowPanel>
+                                                        </g:DeckPanel>
+								                    </g:FlowPanel>
+								                  </g:DeckPanel>
+											</g:FlowPanel>
+											
+											<!-- for when GIFT will not manage loading a scenario or playback file -->
+                                            <g:FlowPanel width='auto' ui:field='havenNotSpecifiedPanel'>
+                                                <g:Label addStyleNames='{style.smallPadBottom}'>
+                                                    SE Sandbox scenario name not managed by GIFT.
+                                                </g:Label>
+                                            </g:FlowPanel>
+										</g:DeckPanel>
+										
+										<wb:ManagedTooltip title="Change how GIFT manages the Gateway connection(s) and any logic related to managing a SE Sandbox scenario."
+											placement="BOTTOM">
+												<b:Button ui:field='changeHAVENChoiceTypeButton' addStyleNames='{style.changeVBSChoiceButton}' type='PRIMARY' icon='REFRESH' text='Change Type' />
+										</wb:ManagedTooltip>
+									</g:FlowPanel>
+									
+								</g:DeckPanel>
+                            </g:FlowPanel>
+							
+							<!-- elements for editing RIDE load args -->
+                            <g:FlowPanel width='auto' ui:field='ridePanel'>
+							
+							<g:DeckPanel ui:field='rideChoiceDeck'>
+								
+									<g:FlowPanel addStyleNames='{style.thumbnailContainer} {style.vbsThumbnailContainer}'
+										ui:field='rideChoicePanel'>
+					
+										<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+											<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+												<g:FlowPanel addStyleNames='{style.iconBorder}'>
+                                                    <b:Icon height='24px' width='24px' type='GLOBE' />
+                                                </g:FlowPanel>
+												<b:Caption addStyleNames='{style.tileCaption}'>
+													<b:Heading addStyleNames='{style.caption}' size="H3"
+														text='Not Specified' />
+												</b:Caption>
+												<b:Tooltip title="connect to RIDE without specifying a scenario"
+													placement="BOTTOM">
+													<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+														<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+															ui:field="rideNotSpecifiedButton" text="Add" />
+													</b:Container>
+												</b:Tooltip>
+											</b:ThumbnailPanel>
+										</g:FlowPanel>
+					
+										<g:FlowPanel addStyleNames='{style.thumbnailPanel}'>
+											<b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+												<g:FlowPanel addStyleNames='{style.iconBorder}'>
+													<g:Image height='24px' width='24px' url='images/file.png' />
+												</g:FlowPanel>
+												<b:Caption addStyleNames='{style.tileCaption}'>
+													<b:Heading addStyleNames='{style.caption}' size="H3"
+														text='Log playback' />
+												</b:Caption>
+												<b:Tooltip
+													title="A real time assessment log is played, the RIDE application is not used."
+													placement="BOTTOM">
+													<b:Container addStyleNames="surveySelectHover surveySelectStyle">
+														<b:Button addStyleNames="{style.addButtonWidth} surveySelectButtonStyle" type="SUCCESS"
+															ui:field="rideLogFileButton" text="Add" />
+													</b:Container>
+												</b:Tooltip>
+											</b:ThumbnailPanel>
+										</g:FlowPanel>
+									</g:FlowPanel>
+									
+									<g:FlowPanel ui:field='rideChoiceEditorPanel'>
+									
+										<g:DeckPanel width='100%' ui:field='rideChoiceEditorDeckPanel'>
+									
+											<g:FlowPanel width='auto' ui:field='rideDomainSessionLogPanel'>
+											
+												<g:DeckPanel addStyleNames='{style.padBottom}' ui:field='rideDomainSessionLogdeckPanel'>
+													<g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='rideSelectDomainSessionLogPanel'>
+								                        <g:FlowPanel>
+								                            <g:Label ui:field='rideSelectDomainSessionLogLabel' addStyleNames='{style.unselectedHeader}'>
+								                                Select Domain Session Message Log
+								                            </g:Label>
+								                        </g:FlowPanel>
+								                    </g:FocusPanel>
+								                    <g:FlowPanel ui:field='rideDomainSessionLogSelectedPanel' addStyleNames='{style.selectedPanel} {style.domainSessionLogPanel}'>
+                                                        <g:HTML addStyleNames='{style.logAssessmentLabel}'>
+                                                            Log File Assessment:
+                                                        </g:HTML>
+                                                        <g:FlowPanel addStyleNames='{style.sessionLogContentPanel}'>
+                                                            <b:Icon type='FILE_TEXT_O' addStyleNames='{style.padRight}' />
+                                                            <wb:ManagedTooltip ui:field='rideDomainSessionLogFileLabelTooltip' >
+				                                        	   <g:Label ui:field='rideDomainSessionLogFileLabel' addStyleNames='{style.sessionLogLabel}' />
+                                                            </wb:ManagedTooltip>
+                                                            <wb:ManagedTooltip title="Click to remove the selected domain session log file">
+                                                                <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons} {style.sessionLogButton}' ui:field='rideRemoveDomainSessionLogButton' >
+                                                                     Remove
+                                                                </b:Button>
+                                                            </wb:ManagedTooltip>
+                                                        </g:FlowPanel>
+                                                        <g:FlowPanel>
+                                                            <g:DeckPanel ui:field='rideLogAssessmentDeckPanel'>
+                                                                <g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='rideChooseAssessmentPanel'>
+                                                                    <g:Label addStyleNames='{style.unselectedHeader}'>
+                                                                        Select Assessment
+                                                                    </g:Label>
+                                                                </g:FocusPanel>
+                                                                <g:FlowPanel ui:field='rideSelectedAssessmentPanel' addStyleNames='{style.sessionLogContentPanel}'>
+                                                                    <b:Icon type='PLAY' addStyleNames='{style.padRight}' />
+                                                                    <wb:ManagedTooltip ui:field='rideSelectedAssessmentLabelTooltip' >
+                                                                        <g:Label ui:field="rideSelectedAssessmentLabel" addStyleNames='{style.sessionLogLabel}' />
+                                                                    </wb:ManagedTooltip>
+                                                                    <wb:ManagedTooltip title="Click to change the selected scenario from the log file">
+                                                                        <b:Button type='DEFAULT' icon='REFRESH' addStyleNames='{style.buttons} {style.sessionLogButton}' ui:field='rideChangeSelectedAssessmentBtn' visible="false">
+                                                                             Change
+                                                                        </b:Button>
+                                                                    </wb:ManagedTooltip>
+                                                                </g:FlowPanel>
+                                                            </g:DeckPanel>
+                                                        </g:FlowPanel>
+                                                        <g:HTMLPanel>
+                                                            <hr style='border-color: rgb(200,200,200); margin: 10px 0px 5px;'/>
+                                                        </g:HTMLPanel>
+                                                        <g:FlowPanel ui:field='rideCapturedAudioPanel' addStyleNames='{style.sessionLogContentPanel} {style.padTop}'>
+                                                            <g:InlineHTML>
+                                                                Play audio file when the log playback starts 
+                                                                <i style='color: gray'>(Optional)</i>
+                                                            </g:InlineHTML>
+                                                            <wb:HelpLink helpCaption='Log Session Captured Audio' addStyleNames='{style.notBold}'>
+                                                                <wb:linkWidget>
+                                                                    <b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+                                                                </wb:linkWidget>
+                                                                <wb:helpBody>
+                                                                    <g:HTML>
+                                                                        When a domain session log is played back during course
+                                                                        execution, an audio file can optionally be played 
+                                                                        alongside it.
+                                                                        <br/><br/>
+                                                                        This can be useful for providing a playback of the sounds 
+                                                                        heard while the log was captured.
+                                                                    </g:HTML>
+                                                                </wb:helpBody>
+                                                            </wb:HelpLink>
+                                                        </g:FlowPanel>
+                                                        <g:DeckPanel ui:field='rideCapturedAudioDeckPanel' addStyleNames='{style.audioDeckPanel}'>
+                                                            <b:Button type='PRIMARY' icon='PLUS' ui:field='rideSelectCapturedAudioButton' addStyleNames='{style.sessionLogLabel}'>
+                                                                Select Captured Audio
+                                                            </b:Button>
+                                                            <g:FlowPanel ui:field='rideCapturedAudioSelectedPanel' addStyleNames='{style.sessionLogContentPanel}'>
+                                                                <b:Icon type='FILE_AUDIO_O' title='Selected Audio File' addStyleNames='{style.padRight}' />
+                                                                <wb:ManagedTooltip ui:field='rideCapturedAudioFileLabelTooltip' >
+                                                                    <g:Label ui:field='rideCapturedAudioFileLabel' addStyleNames='{style.sessionLogLabel}'></g:Label>
+                                                                </wb:ManagedTooltip>
+                                                                <wb:ManagedTooltip title="Click to remove the selected audio file">
+                                                                    <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons} {style.sessionLogButton}' ui:field='rideRemoveCapturedAudioButton' >
+                                                                         Remove
+                                                                    </b:Button>
+                                                                </wb:ManagedTooltip>
+                                                            </g:FlowPanel>
+                                                        </g:DeckPanel>
+								                    </g:FlowPanel>
+								                  </g:DeckPanel>
+											</g:FlowPanel>
+											
+											<!-- for when GIFT will not manage loading a scenario or playback file -->
+                                            <g:FlowPanel width='auto' ui:field='rideNotSpecifiedPanel'>
+                                                <g:Label addStyleNames='{style.smallPadBottom}'>
+                                                    RIDE scenario name not managed by GIFT.
+                                                </g:Label>
+                                            </g:FlowPanel>
+										</g:DeckPanel>
+										
+										<wb:ManagedTooltip title="Change how GIFT manages the Gateway connection(s) and any logic related to managing a RIDE scenario."
+											placement="BOTTOM">
+												<b:Button ui:field='changeRIDEChoiceTypeButton' addStyleNames='{style.changeVBSChoiceButton}' type='PRIMARY' icon='REFRESH' text='Change Type' />
+										</wb:ManagedTooltip>
+									</g:FlowPanel>
+									
+								</g:DeckPanel>
+                            </g:FlowPanel>
+							
+							<!-- elements for editing Unity WebGL load args -->
+							<g:FormPanel width='auto' ui:field='unityPanel'>
+								<g:FlowPanel width='100%'>
+									<g:Label addStyleNames='{style.smallPadBottom}'>
+										Unity Application:
+									</g:Label>	
+									<g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectUnityPanel'>
+				                        <g:FlowPanel>
+				                            <g:Label ui:field='selectLocalWebpageLabel' addStyleNames='{style.unselectedHeader}'>
+				                                Select Unity WebGL Application
+				                            </g:Label>
+				                        </g:FlowPanel>
+				                    </g:FocusPanel>
+									<g:FlowPanel ui:field='unitySelectedPanel'>
+				                        <g:HTMLPanel addStyleNames='{style.selectedPanel}'>
+				                            <table style='width: 100%'>
+				                                <tr>
+				                                    <td>
+				                                        <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons}' ui:field='removeUnityButton' >
+				                                             Remove
+				                                        </b:Button>
+				                                    </td>
+				                                 </tr>
+				                                <tr style='width: 100%'>
+				                                    <td style='width: 100%'>
+				                                        <g:Label ui:field='unityAppLabel' addStyleNames='{style.selectedHeader}'></g:Label>
+				                                    </td>
+				                                 </tr>  
+				                            </table>
+				                        </g:HTMLPanel>                        
+		                    		</g:FlowPanel>
+									<g:FlowPanel addStyleNames='{style.warningPanel}'>
+										<g:HTMLPanel addStyleNames='{style.warningInner}'>
+											<b>Note:</b> We recommend viewing Unity content in 
+											<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank'>Firefox</a>, 
+											<a href='https://www.google.com/chrome/index.html' target='_blank'>Chrome</a>, or
+											<a href='https://www.microsoft.com/en-us/windows/microsoft-edge' target='_blank'>Edge</a>
+											since these browsers are 
+											<a href='https://docs.unity3d.com/Manual/webgl-browsercompatibility.html' target='_blank'>
+												well-supported by Unity.
+											</a>
+											<br/><br/>
+											You may want to suggest to your learners which browsers they should use for 
+											the best learning experience.
+										</g:HTMLPanel>
+									</g:FlowPanel>
+									<g:HTMLPanel>
+										<table style='width: 100%;'>
+											<tr style='width: 100%;'>
+												<td style='width: 100%; font-size: 16px;'>
+													<g:FlowPanel>
+														<g:InlineLabel addStyleNames='{style.smallPadBottom}'>
+															Arguments to load:
+														</g:InlineLabel>
+														<wb:HelpLink helpCaption='Load Arguments'
+															addStyleNames='{style.notBold}'>
+
+															<wb:linkWidget>
+																<b:Icon title="What's this?" addStyleNames='{style.helpLink}'
+																	type='QUESTION_CIRCLE' />
+															</wb:linkWidget>
+
+															<wb:helpBody>
+																<g:HTML>
+																	This is a generic way to provide input when loading the
+																	training application.
+																	<br />
+																	<br />
+																	The load arguments defined here will be sent to the
+																	application's window embedded in the Tutoring interface when the
+																	course begins running the appropriate training appplication.
+																	<br />
+																	<br />
+																	These arguments can be used to configure or or excecute
+																	logic in the training application.
+																	<br />
+																	<br />
+																	Accepted argument key names and values generally vary
+																	from training application to training
+																	application; so for training applications that aren't recognized by
+																	this editor, argument key names and
+																	values must be entered manually.
+																	<br />
+																	<br />
+																	In order to author these fields, you will need to know
+																	how the training application will use them.
+																</g:HTML>
+															</wb:helpBody>
+
+														</wb:HelpLink>
+													</g:FlowPanel>
+												</td>
+												<td>
+													<g:Image width='20px' height='20px' addStyleNames='{style.addButton}'
+														ui:field='addEmbeddedArgumentButton'
+														title='Click here to create and add a new argument. ' />
+												</td>
+											</tr>
+										</table>
+									</g:HTMLPanel>
+									
+									<g:SimplePanel
+										addStyleNames='{style.cellTableScroller} {style.cellTableBorder} {style.padBottom}'>
+										<cell:CellTable height='50px' width='100%'
+											addStyleNames='{style.cellTableFix}' ui:field='embeddedArgumentTable' />
+									</g:SimplePanel>
+									
+								</g:FlowPanel>
+							</g:FormPanel>
+							
+							<lm:MediaPanel ui:field="mediaPanel"></lm:MediaPanel>
+							<!-- elements for editing Mobile Events load args -->
+                            <g:FormPanel width='auto' ui:field='mobileAppPanel'>
+                                <!-- The Mobile Events application currently has no load args -->
+                            </g:FormPanel>
+
+							<!-- elements for editing generic load args -->
+							<g:FormPanel width='auto' ui:field='genericInputPanel'>
+								<g:FlowPanel width='100%'>
+									<g:Label addStyleNames='{style.smallPadBottom}'>
+										Content Reference:
+									</g:Label>
+									<g:FlowPanel>
+										<g:TextBox width='100%' addStyleNames='{style.padBottom}'
+											ui:field="genericContentTextbox"></g:TextBox>
+									</g:FlowPanel>
+								</g:FlowPanel>
+							</g:FormPanel>
+
+							<!-- elements for editing CustomInpterop load args -->
+							<g:FormPanel width='auto' ui:field='customPanel'>
+								<g:FlowPanel width='100%'>
+
+									<g:HTMLPanel>
+										<table style='width: 100%;'>
+											<tr style='width: 100%;'>
+												<td style='width: 100%; font-size: 16px;'>
+													<g:FlowPanel>
+														<g:InlineLabel addStyleNames='{style.smallPadBottom}'>
+															Arguments to load:
+														</g:InlineLabel>
+														<wb:HelpLink helpCaption='Load Arguments'
+															addStyleNames='{style.notBold}'>
+
+															<wb:linkWidget>
+																<b:Icon title="What's this?" addStyleNames='{style.helpLink}'
+																	type='QUESTION_CIRCLE' />
+															</wb:linkWidget>
+
+															<wb:helpBody>
+																<g:HTML>
+																	This is a generic way to provide input when loading the
+																	training application (i.e. loading a scenario).
+																	<br />
+																	<br />
+																	The load arguments defined here will be sent to the
+																	Gateway module when the
+																	course begins running the appropriate training appplication.
+																	<br />
+																	<br />
+																	These arguments can be used to configure or or excecute
+																	logic in the interop interface used to run the
+																	training application.
+																	<br />
+																	<br />
+																	Accepted argument key names and values generally vary
+																	from training application to training
+																	application; so for training applications that aren't recognized by
+																	this editor, argument key names and
+																	values must be entered manually.
+																	<br />
+																	<br />
+																	In order to author these fields, you will need to know
+																	how GIFT and the training application will use
+																	them.
+																</g:HTML>
+															</wb:helpBody>
+
+														</wb:HelpLink>
+													</g:FlowPanel>
+												</td>
+												<td>
+													<g:Image width='20px' height='20px' addStyleNames='{style.addButton}'
+														ui:field='addArgumentButton'
+														title='
+								      				Click here to create and add a new argument.
+								      			' />
+												</td>
+											</tr>
+										</table>
+
+
+									</g:HTMLPanel>
+
+									<g:ScrollPanel
+										addStyleNames='{style.cellTableScroller} {style.cellTableBorder} {style.padBottom}'>
+										<cell:CellTable height='50px' width='100%'
+											addStyleNames='{style.cellTableFix}' ui:field='argumentTable' />
+									</g:ScrollPanel>
+
+								</g:FlowPanel>
+							</g:FormPanel>
+						</g:DeckPanel>
+					</g:HTMLPanel>
+				</g:FlowPanel>
+
+				<g:FlowPanel width='100%' ui:field="realTimeAssessmentPanel" addStyleNames='{style.padTop} {style.padBottom}'>
+					<g:FlowPanel width='100%' addStyleNames='{style.padTop}'>
+					    <g:Label ui:field='realTimeAssessmentLabel'>Real-time assessment:</g:Label>
+						<p1:RealTimeAssessmentPanel ui:field="dkfSelectPanel" />
+					</g:FlowPanel>
+				</g:FlowPanel>
+
+			</g:FlowPanel>
+
+		</g:DeckPanel>
+
+		<d:CourseObjectModal ui:field="dkfEditorDialog" />
+        <d:GiftWrapModal ui:field="giftWrapDialog" />
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

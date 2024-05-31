@@ -1,0 +1,1 @@
+this is the file to copy for test 4 of DesktopFileServicesTest.copyFileTest junit test.

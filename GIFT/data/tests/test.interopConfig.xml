@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<InteropConfig>
+  <interfaceConfigurations>
+    <InteropInterfaceConfig refID="1">
+      <className>gateway.interop.dis.DISInterface</className>
+      <name>DIS Adapter 1</name>
+      <!-- NOTE: this port needs to be different if running Gateway Module on same host as TestGateway -->
+      <networkPort>3001</networkPort>
+      <siteID>88</siteID>
+      <applicationID>18</applicationID>
+      <networkAddress>10.1.21.255</networkAddress>
+    </InteropInterfaceConfig>
+  </interfaceConfigurations>
+</InteropConfig>

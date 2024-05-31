@@ -1,0 +1,32 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "UserSessionProto";
+
+import "AbstractUserSessionDetails.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about a user session. */
+message UserSession {
+	google.protobuf.Int32Value user_id = 1;
+	
+	/* A user session may or may not have a username field. Because of this, 
+	   null is allowed. */
+	google.protobuf.StringValue username = 2;
+	
+	/* The experiment id, if the session corresponds to an experiment, 
+	   is populated accordingly. Thus, the field can be null. */
+	google.protobuf.StringValue experiment_id = 3;
+	
+	/* Stores the type of user session. Defaults to normal GIFT_USER type for backwards compatibility reasons. */
+	google.protobuf.StringValue session_type = 4;
+	
+	/* Additional details about the user session, if specified. Can be null. */
+	AbstractUserSessionDetails session_details = 5;
+}

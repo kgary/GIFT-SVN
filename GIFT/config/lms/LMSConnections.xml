@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LMSConnections>
+    <Connection>
+      <enabled>true</enabled>
+      <impl>lms.impl.simple.LmsDatabase</impl>
+      <name>LMS Database</name>
+      <Parameters/>
+    </Connection>
+   <Connection>
+      <enabled>false</enabled>
+      <impl>lms.impl.lrs.Lrs</impl>
+      <name>LRS Database</name>
+      <Parameters>
+		<networkAddress>enter_LRS_URL_here</networkAddress>
+		<username>enter_LRS_username_here</username>
+		<password>enter_LRS_password_here</password>
+		<profileServer>
+			<endPoint>https://profiles.usalearning.net/api/sparql</endPoint>
+			<apiKey>ef640ab2-934e-487c-a111-535766a2fa85</apiKey>
+		</profileServer>
+	  </Parameters>
+    </Connection>
+</LMSConnections>

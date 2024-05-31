@@ -1,0 +1,43 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:v="urn:import:mil.arl.gift.common.gwt.client.validation"
+    xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list">
+    <ui:style>
+        .rootPanel {
+            padding: 10px;
+        }
+
+        .cellTableFix {
+            border-collapse: separate;
+        }
+
+        .helpLink {
+            padding-left: 5px;
+            padding-bottom: 5px;
+            color: rgb(100, 100, 200);
+            font-weight: normal;
+        }
+    </ui:style>
+    <g:HTMLPanel addStyleNames='{style.rootPanel}'>
+        <wb:HelpLink helpCaption='Learner Actions'>
+            <wb:linkWidget>
+                <g:Label addStyleNames='{style.helpLink}'>What are learner actions?</g:Label>
+            </wb:linkWidget>
+            <wb:helpBody>
+                <g:HTML>
+                    Learner actions are buttons that appear in the Tutor webpage while this real time assessment is being used in the course.
+                    This allows the author to provide additional interactive features the learner can use that aren't embedded in the training application.
+                    <br/><br/>
+                    For example in the screenshot below there are several authored learner actions that could not be integrated into the Virtual Battlespace (VBS) scenario.
+                    In this case each of the learner action buttons have corresponding conditions that listen and assess when the learner selects the button.
+                    <br/><br/>
+                    <img src="images\help\learnerActionsScreenshot.png" height="300" width="500"/>
+                </g:HTML>
+            </wb:helpBody>
+        </wb:HelpLink>
+        <v:ValidationWidget ui:field="validationWidget" />
+        <u:ItemListEditor width='100%' addStyleNames='{style.cellTableFix}' ui:field='learnerActionsDataGrid' tableLabel="Actions to present:" />
+    </g:HTMLPanel>
+</ui:UiBinder>

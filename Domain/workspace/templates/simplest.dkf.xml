@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="Real-time Assessment" version="11.0.1">
+    <description>This is the simplest DKF that can be used by most training applications.  It only contains 1 condition, the Application Completed Condition, which when triggered will end the domain assessment and therefore the Training Application course element.</description>
+    <resources>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="Application Completed Task" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Application Completed" nodeId="2">
+                        <conditions>
+                            <condition>
+							<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+							<input>
+								<ApplicationCompletedCondition/>
+							</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects/>
+    </assessment>
+    <actions>
+        <stateTransitions/>
+        <instructionalStrategies/>
+    </actions>
+	<teamOrganization>
+        <team name="Everyone">
+			<teamMember name="Learner">
+				<learnerId>
+					<entityMarking>learner</entityMarking>
+				</learnerId>
+			</teamMember>
+		</team>
+    </teamOrganization>
+</Scenario>

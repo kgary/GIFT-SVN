@@ -1,0 +1,22 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "EventIdentifierProto";
+
+import "SimulationAddress.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information specific to an event identifier. */
+message EventIdentifier {
+	/* The event id. */
+	google.protobuf.Int32Value event_id = 1;
+	
+	/* simulation address for the event. */
+	SimulationAddress sim_addr = 2;
+}

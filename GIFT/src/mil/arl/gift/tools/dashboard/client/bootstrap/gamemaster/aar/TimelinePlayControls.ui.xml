@@ -1,0 +1,57 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style type="mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster.aar.TimelinePlayControls.Style">
+	   .mainPanel{
+            display: flex;
+	   }
+	   .playButtonContainer{
+            text-align: center;
+       }
+       .playButtonFlash{
+            animation: playButtonFlashAnimation 2s infinite;
+        }
+        @keyframes playButtonFlashAnimation{
+            0%{background-color: inherit}
+            50%{background-color: #e49505}
+            100%{background-color: inherit}
+        }
+       .loopIcon{
+            font-weight:bold;
+        }
+        .toolbarButton{
+            font-size: 20px;
+            width: 40px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #bbbbbb;
+       }
+       @external fa-play;
+       .toolbarButton.fa-play{
+            transform: rotateX(180deg);
+       }
+       .toolbarButton:hover{
+            color: #8888ff !important;
+            text-shadow: 0px 0px 5px #8888ff !important;
+            cursor: pointer;
+       }
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.mainPanel}'>
+		<wb:ManagedTooltip ui:field='playLandingTooltip' title='Use this to start the session playback' placement='TOP' trigger='MANUAL' showDelayMs='3000' hideDelayMs='4000'>
+			<g:FlowPanel>
+				<wb:ManagedTooltip placement='BOTTOM' title='Pause/resume session playback'>
+			        <g:FlowPanel addStyleNames='{style.playButtonContainer}'>
+			            <b:Icon type='PAUSE' addStyleNames='{style.toolbarButton}' ui:field='playPauseButton'/>
+			        </g:FlowPanel>
+			    </wb:ManagedTooltip>
+		    </g:FlowPanel>
+		</wb:ManagedTooltip>
+	    <wb:ManagedTooltip placement='BOTTOM' title='loop session playback'>
+	        <g:FlowPanel addStyleNames='{style.playButtonContainer}'>
+	            <b:Icon type='REPEAT' addStyleNames='{style.toolbarButton},{style.loopIcon}' ui:field='loopButton'/>
+	        </g:FlowPanel>
+	    </wb:ManagedTooltip>
+    </g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,31 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ArticulationParameterProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents an articulation parameter. */
+message ArticulationParameter {
+	
+	/* The articulation parameter type designator. */
+	google.protobuf.Int32Value parameter_type_designator = 1;
+	
+	/* Indicates a change in the articulation parameter. */
+	google.protobuf.Int32Value parameter_change = 2;
+	
+	/* ID for the part this articulation parameter is attached to. */
+	google.protobuf.Int32Value part_attached_to_id = 3;
+	
+	/* Specifies the type of parameter represented. */
+	google.protobuf.Int32Value parameter_type = 4;
+	
+	/* The value of the parameter. */
+	google.protobuf.DoubleValue parameter_value = 5;
+}

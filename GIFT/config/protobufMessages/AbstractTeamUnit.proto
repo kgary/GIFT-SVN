@@ -1,0 +1,41 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractTeamUnitProto";
+
+import "MarkedTeamMember.proto";
+import "LocatedTeamMember.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a unit that can belong to a team. */
+message AbstractTeamUnit {
+	oneof type {
+		/* A team that can contain multiple sub-teams and team members. Used to establish a hierarchy 
+		   of roles in a scenario that can be applied to learner entities in a training application. */
+		Team team = 1;
+		
+		/* A learner who is assigned a mark to be located. */
+		MarkedTeamMember marked_team_member = 2;
+		
+		/* A learner who is assigned a location to be located. */
+		LocatedTeamMember located_team_member = 3;
+	}
+}
+
+message Team {
+	/* The name of the team. */
+	google.protobuf.StringValue team_name = 1;
+	
+	/*  The echelon value of this team. */
+	google.protobuf.StringValue echelon = 2;
+	
+	/* The units (i.e. sub-teams and team members) that make up this team. Can't be null. */
+	repeated AbstractTeamUnit team_units = 3;
+}
+

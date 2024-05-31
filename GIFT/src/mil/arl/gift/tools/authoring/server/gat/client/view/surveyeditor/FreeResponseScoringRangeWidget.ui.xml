@@ -1,0 +1,55 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+	xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	
+    <ui:style>
+	    .inline {
+			display: inline;
+	    }
+        .smallMarginLeft {
+			margin-left: 5px;
+		}
+        .smallMarginRight {
+			margin-right: 5px;
+		}
+		.scoreBox {
+            width: 64px;
+            text-align: center;
+            margin-top: 5px;
+            margin-right: 10px;
+            display: inline;
+        }
+        .rangeStyle {
+			display: inline-block;
+			vertical-align: middle;
+			width: 70px;
+			min-width: 70px;
+		}
+		.removeButton{
+			cursor: pointer;
+			z-index: 2; /* Needed to make tooltip show */
+			top: 10px;
+			right: 40px;
+			margin-left: 10px;
+		}
+	</ui:style>
+    
+    <g:HTMLPanel>	
+
+        <b:DoubleBox ui:field='pointBox' addStyleNames='{style.scoreBox}'/>
+
+        <g:FlowPanel ui:field='entireRangePanel' addStyleNames='{style.inline}'>
+            <b:TextBox ui:field='minRange' addStyleNames='{style.rangeStyle}'/>
+        	<g:FlowPanel ui:field='maxRangePanel' addStyleNames='{style.inline}'>
+				<g:Label addStyleNames='{style.inline} {style.smallMarginLeft} {style.smallMarginRight}'>to</g:Label>
+				<b:TextBox ui:field='maxRange' addStyleNames='{style.rangeStyle}'/>
+        	</g:FlowPanel>
+        	<b:CheckBox ui:field='rangeCheckBox' addStyleNames='{style.inline} {style.smallMarginLeft}'> Range</b:CheckBox>
+        	<g:Image width='20px' height='20px' ui:field='removeButton' addStyleNames='{style.removeButton}' title='Click here to remove this scoring criteria row.'/>
+        </g:FlowPanel>
+        <g:Label ui:field='catchAllLabel' addStyleNames='{style.inline}'> All unspecified values will earn this score </g:Label>
+    </g:HTMLPanel>
+</ui:UiBinder> 

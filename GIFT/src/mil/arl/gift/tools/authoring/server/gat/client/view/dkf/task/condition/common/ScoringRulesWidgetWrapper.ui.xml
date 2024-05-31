@@ -1,0 +1,17 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+    xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:cc="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common">
+    <ui:style>
+        .noMarginBottom {
+	       margin-bottom: 0px;
+        }
+    </ui:style>
+    <g:FlowPanel>
+        <cc:ScoringRuleWidget ui:field="countRuleWidget" visible="false"/>
+        <cc:ScoringRuleWidget ui:field="completionTimeRuleWidget" visible="false"/>
+        <cc:ScoringRuleWidget ui:field="violationTimeRuleWidget" visible="false" addStyleNames="{style.noMarginBottom}" />
+    </g:FlowPanel>
+    
+</ui:UiBinder>

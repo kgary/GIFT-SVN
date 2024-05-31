@@ -1,0 +1,30 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "AbstractQuestionResponseMetadataProto";
+
+import "survey/QuestionResponseElementMetadata.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about an AbstractQuestionResponse without referencing 
+   the related AbstractQuestion. */
+message AbstractQuestionResponseMetadata {
+
+	/* The survey page response id for the question. */
+	google.protobuf.Int32Value survey_page_response_id = 1;
+	
+	/* The id for the survey question. */
+	google.protobuf.Int32Value survey_question_id = 2;
+	
+	/* The order of the ids that the questions were listed in. */
+	repeated int32 options_ids_order = 3;
+	
+	/* The list of responses, which can be null. */
+	repeated QuestionResponseElementMetadata response_elements_metadata = 4;
+}

@@ -1,0 +1,32 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractRawScoreProto";
+import "google/protobuf/wrappers.proto";
+
+/*  
+ *	This is the protobuf message that contains the details of a raw score.
+ */ 
+message AbstractRawScore {
+	/* The raw score can either be default or empty. */
+	oneof type {
+		DefaultRawScore default_raw_score = 1;
+	}
+}
+
+/* Message definition of a default score that just has the value. */
+message DefaultRawScore {
+	
+	/* Used to specify the value of the RawScore. Cannot be null. */
+	google.protobuf.StringValue value = 1;
+	
+	/* Used to specify the value's units of the RawScore. Cannot be null. */
+	google.protobuf.StringValue units = 2;	
+	
+}

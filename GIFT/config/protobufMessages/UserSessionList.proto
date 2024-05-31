@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "UserSessionListProto";
+
+import "UserSession.proto";
+
+/* This message contains a list of user sessions. */
+message UserSessionList {
+	/* The list of user sessions. */
+	repeated UserSession user_sessions = 1;
+}

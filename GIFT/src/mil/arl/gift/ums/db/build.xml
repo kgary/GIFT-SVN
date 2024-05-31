@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<project name="UMS Database" default="compile">
+    	    
+    <property name="root.path"         value="../../../../../.."/>
+    <property name="package.name"      value="mil.arl.gift.ums.db"/>
+    <property name="source.path"       value="mil/arl/gift/ums/db"/>
+    <property name="module.jarfile.name"      value="gift-ums-db.jar"/>
+	<property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="gift.build.properties" value="${root.path}/config/build.properties"/>
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+	
+    <path id="classpath">
+        <fileset dir="${root.path}/external" includes="**/hibernate3.jar"/>
+        <fileset dir="${root.path}/external" includes="**/jpa-api-2.0-cr-1.jar"/>
+        <fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+        <fileset dir="${root.path}/external" includes="**/json_simple-1.1.jar"/>
+        <fileset dir="${root.path}/external" includes="**/commons-lang-2.4.jar"/>
+		<fileset dir="${root.path}/bin" includes="**/legacyJsonMessageCodec.jar"/>
+        <fileset dir="${root.path}/bin"      includes="${gift.common.jar}"/>
+    </path>
+	    
+    <target name="checkForChanges">
+    	
+    	<!-- has the common jar changed since the last jar creation (true = no change, not set = common jar is newer) -->
+    	<uptodate property="upToDateWithCommon.ifSet"  targetfile="${root.path}/bin/${module.jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        
+    	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
+    	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}"/>
+        </uptodate>
+    	
+    	<!-- has the build properties file changed since the last jar creation (true = no change, not set = properties have changed) -->
+        <uptodate property="buildPropertiesUpToDate.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}">
+            <srcfiles dir="." includes="${gift.build.properties}" excludes="${src.excludes}"/>
+        </uptodate>
+    
+    	<!-- set property if:
+    		1) the build properties have changed
+    		or
+    		2) the common jar has changed
+    		or
+    		3) the ums jar source has changed
+    	-->
+        <condition property="build.required">
+            <or>
+            	<not>
+            		<isset property="buildPropertiesUpToDate.ifSet" />
+            	</not>
+            	<not>
+                	<isset property="upToDateWithCommon.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithIncludes.ifSet"/>
+            	</not>
+            </or>
+        </condition>    	
+    	
+    	<!-- DEBUG
+    	<echo message="1- buildPropertiesUpToDate.ifSet = ${buildPropertiesUpToDate.ifSet}, 
+    		upToDateWithCommon.ifSet = ${upToDateWithCommon.ifSet}, 
+    		upToDateWithIncludes.ifSet = ${upToDateWithIncludes.ifSet}, 
+    		build.required = ${build.required}"/>
+    	-->
+
+    </target>
+	
+	<!-- Original UMS DB build -->
+    <target name="compileCore" description="compile the UMS DB JAR" if="build.required">
+    	<echo message="Compiling UMS DB JAR"/>
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+            <compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
+        </javac>
+    	
+    	<!-- create ums db jar -->
+        <jar destfile="${root.path}/bin/${module.jarfile.name}" basedir="${root.path}/build/classes" includes="${source.path}/**"/>
+    </target>
+    
+    <target name="compile" depends="checkForChanges, compileCore"/>
+	
+    <target name="clean">
+        <delete file="${root.path}/bin/${module.jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

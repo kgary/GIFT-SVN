@@ -1,0 +1,49 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "VariableStateProto";
+
+import "Vector3D.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a variable state event that can be either of the types listed below. */
+message VariableState {
+	oneof type {
+		/* Variable number state type. */
+		VariableNumberState variable_number_state = 1;
+		
+		/* Weapon state type. */
+		WeaponState weapon_state = 2;
+	}
+}
+
+/* This message represents a variable state for the number type. */
+message VariableNumberState {
+	/* Variable name. */
+	google.protobuf.StringValue var_name = 1;
+	
+	/* Variable value. */
+	google.protobuf.StringValue var_value = 2;
+}
+
+/* This message represents a weapon state object. */
+message WeaponState {
+	/* Value indicating whether the weapon safety is enabled or not on the current weapon for this entity. */
+	google.protobuf.BoolValue weapon_safety_status = 1;
+	
+	/* Value indicating whether the entity has a weapon, where having a weapon either means its equipped (in hand) or available. */
+	google.protobuf.BoolValue has_weapon = 2;
+	
+	/* Value indicating where the weapon is aiming. */
+	Vector3D weapon_aim = 3;
+	
+	/* The entity marking for the entity whose weapon state is being set here. */
+	google.protobuf.StringValue entity_marking = 4;
+}
+

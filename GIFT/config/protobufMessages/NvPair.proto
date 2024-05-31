@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "NvPairProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This represents the base message for an NvPair. */
+message NvPair {
+	/* Name of the name property. */
+	google.protobuf.StringValue name = 1;
+	
+	/* Value of the value property. */
+	google.protobuf.StringValue value = 2;
+}

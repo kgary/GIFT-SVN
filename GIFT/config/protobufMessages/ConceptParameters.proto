@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ConceptParametersProto";
+
+import "QuestionTypeParameter.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains the parameters for requesting survey questions on a particular concept. */
+message ConceptParameters {
+	/* The name of the concept. */
+	google.protobuf.StringValue concept_name = 1;
+	
+	/* The list of question parameters. */
+	repeated QuestionTypeParameter question_params = 2;
+	
+	/* The list of preferred questions. */
+	repeated int32 prefer_questions = 3;
+	
+	/* The list of questions to avoid. */
+	repeated int32 avoid_questions = 4;
+}

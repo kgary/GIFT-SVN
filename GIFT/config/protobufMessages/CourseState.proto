@@ -1,0 +1,41 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "CourseStateProto";
+
+import "AbstractEnumObject.proto";
+import "AttributeValues.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information specific to a course state. */
+message CourseState {
+	/* The next transition type. */
+	google.protobuf.StringValue transition_impl = 1;
+	
+	/* The quadrant that belongs to the user. */
+	AbstractEnumObject quadrant = 2;
+	
+	/* The list of learner state attributes to the course state. */
+	repeated AttributeOrValue required_learner_state_attributes = 3;
+	
+	/* The shelf life of the learner state. */
+	map<string, bytes> learner_state_shelf_life = 4;
+	
+	/* Value indicating whether the course object can be expanded to multiple course objects. */
+	google.protobuf.StringValue expandable_course_object_state = 5;
+}
+
+/* Wrapper message type that allows encoding of an AttributeValue or individual Attribute. */
+message AttributeOrValue {
+	/* Attribute value. */
+	AttributeValues attribute_value = 1;
+		
+	/* Attribute name, used if the attribute value is null. */
+	AbstractEnumObject attribute_name = 2;
+}

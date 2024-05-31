@@ -1,0 +1,17 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ExternalMonitorConfigProto";
+
+/* This message represents a message to configure how applications used as external monitors should handle 
+   incoming data that is shared with them by GIFT. */
+message ExternalMonitorConfig {
+	/* The configurations for the monitor. */
+	map<string, bool> setting_map = 1;
+}

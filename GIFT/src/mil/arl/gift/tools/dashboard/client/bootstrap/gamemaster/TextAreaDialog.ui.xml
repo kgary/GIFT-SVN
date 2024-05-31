@@ -1,0 +1,28 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>	
+	    .infoLabel {
+	        padding-bottom: 8px;
+	    }
+		.textArea {
+	        resize: vertical;
+		}
+		.hint {
+			font-size: 11px;
+			color: gray;
+		}
+		.error {
+			color: red;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:HTML ui:field='infoLabel' addStyleNames="{style.infoLabel}" />
+		<g:FlowPanel width='500px'>
+			<b:TextArea width='100%' ui:field="textArea" addStyleNames="{style.textArea}" />	
+		</g:FlowPanel>
+		<g:HTML addStyleNames='{style.hint}' text="Press Shift + Enter for a new line." />
+   		<g:HTML addStyleNames='{style.error}' ui:field="errorLabel" visible='false' />
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,22 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LMSCourseRecordsProto";
+
+import "AbstractEnumObject.proto";
+import "LMSCourseRecord.proto";
+
+/* This message contains multiple course records. */
+message LMSCourseRecords {
+	/* The list of LMS records. */
+	repeated LMSCourseRecord course_history = 1;
+	
+	/* The map of assessments. */
+	map<string, AbstractEnumObject> assessments = 2;
+}

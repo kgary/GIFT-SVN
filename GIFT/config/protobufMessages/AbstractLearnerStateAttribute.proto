@@ -1,0 +1,70 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+ 
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractLearnerStateAttributeProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains the base representation for an Abstract Learner State Attribute. */
+message AbstractLearnerStateAttribute {
+	oneof type {
+		LearnerStateAttribute learner_state_attribute = 1;
+		LearnerStateAttributeCollection learner_state_attribute_collection = 2;
+	}
+}
+
+/* This message provides information for a learner state attribute. */
+message LearnerStateAttribute {
+	/* The short term timestamp when the characteristic was captured. */
+	google.protobuf.Int64Value short_term_timestamp = 1;
+	
+	/* The long term timestamp when the characteristic was captured. */
+	google.protobuf.Int64Value long_term_timestamp = 2;
+	
+	/* The predicted timestamp when the characteristic was captured. */
+	google.protobuf.Int64Value predicted_timestamp = 3;
+	
+	/* The name of the characteristic which is being described (e.g. "Grit") */
+	google.protobuf.StringValue name = 4;
+
+	/* The Assessment Level Enum (Unknown, BelowExpectation, AtExpectation, AboveExpectation) for short term assessment of this named characteristic (e.g. map-reading). */
+	google.protobuf.StringValue short_term = 5;
+	
+	/* The Assessment Level Enum (Unknown, BelowExpectation, AtExpectation, AboveExpectation) for long term assessment of this named characteristic (e.g. map-reading). */
+	google.protobuf.StringValue long_term = 6;	
+	
+	/* The Assessment Level Enum (Unknown, BelowExpectation, AtExpectation, AboveExpectation) for predicted assessment of this named characteristic (e.g. map-reading). */
+	google.protobuf.StringValue predicted = 7;
+}
+
+message LearnerStateAttributeCollection {
+	/* The short term timestamp when the characteristic was captured. */
+	google.protobuf.Int64Value short_term_timestamp = 1;
+	
+	/* The long term timestamp when the characteristic was captured. */
+	google.protobuf.Int64Value long_term_timestamp = 2;
+	
+	/* The predicted timestamp when the characteristic was captured. */
+	google.protobuf.Int64Value predicted_timestamp = 3;
+	
+	/* The name of the characteristic which is being described (e.g. "Grit") */
+	google.protobuf.StringValue name = 4;
+
+	/* The Assessment Level Enum (Unknown, BelowExpectation, AtExpectation, AboveExpectation) for short term assessment of this named characteristic (e.g. map-reading). */
+	google.protobuf.StringValue short_term = 5;
+	
+	/* The Assessment Level Enum (Unknown, BelowExpectation, AtExpectation, AboveExpectation) for long term assessment of this named characteristic (e.g. map-reading). */
+	google.protobuf.StringValue long_term = 6;	
+	
+	/* The Assessment Level Enum (Unknown, BelowExpectation, AtExpectation, AboveExpectation) for predicted assessment of this named characteristic (e.g. map-reading). */
+	google.protobuf.StringValue predicted = 7;
+	
+	/* The map of unique label for the attribute to the attribute's information. */
+	map<string, AbstractLearnerStateAttribute> attribute_collection = 8;
+}

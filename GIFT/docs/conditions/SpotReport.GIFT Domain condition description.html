@@ -1,0 +1,51 @@
+﻿<body>
+<p><strong>Spot Report Condition</strong></p>
+<p>This condition is used to determine when the learner indicates that a spot 
+report should be filled out.&nbsp; Currently a Spot Report learner action button 
+is something that the GIFT Tutor webpage can provide if the author enables it.&nbsp; 
+This learner action, along with other learner actions, can be used to provide 
+another mechanism for GIFT to capture learner actions which is useful in 
+situations where you are unable to incorporate certain events/tools into the 
+external application but need them as part of your assessment.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span></li><li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: the learner tutor action message indicates that the spot 
+		report is the action taken</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the learner tutor action message indicates that the spot 
+		report is NOT the action taken</li>
+	</ul>
+	</li>
+	<li>Unknown<ul>
+		<li>case: the default value</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of times the learner tutor action message indicates 
+	that the spot report is the action taken</li>
+	<li>provides the amount of time it took the learner to cause the spot report 
+	action to take place</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition completes once the learner tutor action message indicates 
+	that the spot report is the action taken</li>
+	<li>the condition can be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>normally the GIFT Tutor exposes the learner action buttons (if selected 
+	during authoring) but external applications can also produce this message</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Learner Tutor Action</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.SpotReportCondition</em></p>
+</body>

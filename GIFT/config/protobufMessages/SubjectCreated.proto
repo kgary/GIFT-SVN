@@ -1,0 +1,22 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "SubjectCreatedProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a subject created event. */
+message SubjectCreated {
+	/* The unique identifier for the course being executed by a subject of an experiment. */
+	google.protobuf.StringValue course_id = 1;
+	
+	/* The unique identifier used by the tutor to identify this pre session logic and allow it to link the 
+	   client's original experiment course request to incoming domain messages. */
+	google.protobuf.StringValue pre_session_id = 2;
+}

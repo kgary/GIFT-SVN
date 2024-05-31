@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.centerVertical{
+			vertical-align: middle;
+		}
+		.valueBox{
+			text-align: right;
+			margin: 0px !important;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		
+		<g:Image width='64px' height='64px' url='images/angle_select.png' addStyleNames='{style.centerVertical}' ui:field='angleImage'/>
+		<g:DoubleBox width='5em' addStyleNames='{style.centerVertical} {style.valueBox}' ui:field='angleBox'/>
+		<g:InlineLabel addStyleNames='{style.centerVertical}'>
+			&deg;
+		</g:InlineLabel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,75 @@
+#!/bin/bash
+
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+cd "$parent_path"
+
+# Launch GIFT's normal ActiveMQ message bus
+GIFT/scripts/util/launchActiveMQ &
+
+# Wait for ActiveMQ to start and establish its connection
+sleep 20
+
+# Launch GIFT's modules as separate processes
+GIFT/scripts/util/launchProcess start ums &
+GIFT/scripts/util/launchProcess start lms &
+GIFT/scripts/util/launchProcess start domain &
+GIFT/scripts/util/launchProcess start learner &
+GIFT/scripts/util/launchProcess start ped &
+GIFT/scripts/util/launchProcess start sensor &
+GIFT/scripts/util/launchProcess start gateway &
+GIFT/scripts/util/launchProcess start tutor &
+GIFT/scripts/tools/launchGAS &
+
+# Construct conditional statements to check if non-server modules are running
+#
+# The following checks use ss to print the process ID using the module's debug port (if there is one)
+# and grep in order to get the process ID that was printed in the output (prefixed by "pid="), 
+# confirming whether there is a process using the port
+isUmsRunning="ss -lptn 'sport = :50000' | grep -oP '(?<=pid=)[0-9]+'"
+isGatewayRunning="ss -lptn 'sport = :50008' | grep -oP '(?<=pid=)[0-9]+'"
+
+# Construct conditional statements to check if the server-launching modules are running
+#
+# The following checks use echo to attempt to write output to the TCP sockets that the server
+# is listening on, which confirms whether there is in fact a server listening. 
+isDomainRunning="echo > /dev/tcp/localhost/8885"
+isGasRunning="echo > /dev/tcp/localhost/8080"
+
+# Combine the above checks into a conditional statements to determine if GIFT is running
+isGiftRunning="${isUmsRunning} && ${isDomainRunning} ${isGasRunning}"
+
+# Setup additional variables to use in waiting for GIFT to sart
+startTimeout=60
+successMsg="\n\nGIFT is running\n\n"
+failMsg="\n\nGIFT failed to start. Please check the module logs for additional information located in docker volumes.\n (volumes\gift-output\_data\logger\module\) \n\n"
+
+# Wait the specified timeout for GIFT to start and then print a message indicating whether GIFT 
+# was started successfully. If all of GIFT's modules are started before the timeout, the wait will
+# exit and instantly print a success message.
+#
+# Explaning the below command:
+# timeout ${startTimeout}
+#     - Waits until the following bash command completes or the provided number of seconds passes
+# bash ... done
+#     - Uses bash to execute an until statement. This until statement checks the return value of
+#       ${isGiftRunning} after each sleep and only exits once ${isGiftRunning} returns a true value.
+# > /dev/null 2>&1
+#     - Hides the output of the bash command to avoid floodding the log with TCP check output
+# && msgToDisplay=${successMsg}
+#     - Tells the following echo to print a success message if the return value of the timeout 
+#       (not the bash command inside it) is true
+# && msgToDisplay=${failMsg}
+#     - Tells the following echo to print a failure message if the return value of the timeout 
+#       (not the bash command inside it) is false
+timeout ${startTimeout} bash -c "until ${isGiftRunning}; do sleep 10s; done" > /dev/null 2>&1 && msgToDisplay=${successMsg} || msgToDisplay=${failMsg}
+
+# Wait a few seconds for additional system output to appear so the success/failure message is easy to find
+sleep 10s
+
+# Print the success/failure message to indicate whether GIFT is running
+echo -e ${msgToDisplay}
+
+# Keep the initial launch process alive so the docker container stays open. 
+# This is needed since each of GIFT's modules are launched in separate processes.
+read

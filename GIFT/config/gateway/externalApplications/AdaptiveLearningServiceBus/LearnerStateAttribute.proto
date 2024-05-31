@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "LearnerStateAttributeProto";
+
+/* This message provides information for a learner state attribute. */
+message LearnerStateAttribute {
+	int64 short_term_timestamp = 1;
+	int64 long_term_timestamp = 2;
+	int64 predicted_timestamp = 3;
+	
+	/* The name of the characteristic which is being described (e.g. "Grit") */
+	string name = 4;
+
+	/** the Assessment Level Enum (Unknown, BelowExpectation, AtExpectation, AboveExpectation) for short term assessment of this named characteristic (e.g. map-reading) */
+	string short_term = 5;
+	
+	/** the Assessment Level Enum (Unknown, BelowExpectation, AtExpectation, AboveExpectation) for long term assessment of this named characteristic (e.g. map-reading) */
+	string long_term = 6;	
+	
+	/** the Assessment Level Enum (Unknown, BelowExpectation, AtExpectation, AboveExpectation) for predicted assessment of this named characteristic (e.g. map-reading) */
+	string predicted = 7;
+}

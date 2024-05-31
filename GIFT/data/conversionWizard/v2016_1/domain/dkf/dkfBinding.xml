@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" version="2.1"> 
+		  
+	<!-- setting value to true will group choice elements into one class attribute vs. one for each choice element -->
+	<!-- issue: causes choice elements with cardinality to be a single memeber variable named by concatenating each of the named choices, 
+				thats why there are bindings listed on a per node basis in this file -->
+    <globalBindings choiceContentProperty="true">
+		<!-- serializing generated class in order to be GWT compliant -->
+		<serializable uid="12343"/>
+    </globalBindings>
+		
+	<!-- identify the schema location, also maps the xs namespace for xsd node references -->
+	<bindings schemaLocation="dkf.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			
+		<!-- change the concatenated name of the end trigger type choice -->
+		<bindings node="xs:element[@name='endTriggers']//xs:complexType//xs:sequence//xs:choice">
+			<property name="triggerType"/>
+		</bindings>
+        
+        <!-- change the concatenated name of the end trigger type choice -->
+		<bindings node="//xs:element[@name='Scenario']//xs:complexType//xs:sequence//xs:element//xs:complexType//xs:sequence//xs:choice">
+			<property name="triggerType"/>
+		</bindings>
+		
+		<!-- change the concatenated name of the start trigger type choice -->
+		<bindings node="//xs:element[@name='startTriggers']//xs:complexType//xs:sequence//xs:choice">
+			<property name="triggerType"/>
+		</bindings>
+
+		<!-- change the concatenated name of the condition input choice -->
+		<bindings node="//xs:element[@name='input']//xs:complexType//xs:sequence//xs:choice">
+			<property name="type"/>
+		</bindings>
+
+		<!-- change the concatenated name of the scoring choice -->
+		<bindings node="//xs:element[@name='scoring']//xs:complexType//xs:sequence//xs:choice">
+			<property name="type"/>
+		</bindings>
+		
+		<!-- change the concatenated name of the coordinate choice -->
+		<bindings node="//xs:element[@name='coordinate']//xs:complexType//xs:sequence//xs:choice">
+			<property name="type"/>
+		</bindings>
+		
+		<!-- change the concatenated name of the learner identification choice -->
+		<bindings node="//xs:element[@name='learnerId']//xs:complexType//xs:sequence//xs:choice">
+			<property name="type"/>
+		</bindings>		
+			
+		<!-- change the concatenated name of the strategy choice -->
+		<bindings node="//xs:element[@name='strategy']//xs:complexType//xs:sequence//xs:choice">
+			<property name="strategyType"/>
+		</bindings>
+		
+		<!-- change the concatenated name of the state transition type choice -->
+		<bindings node="//xs:element[@name='stateTransition']//xs:complexType//xs:sequence//xs:choice">
+			<property name="stateType"/>
+		</bindings>
+		
+		<bindings node="//xs:element[@name='performanceAssessment']//xs:complexType//xs:sequence//xs:choice">
+			<property name="assessmentType"/>
+		</bindings>
+		
+		<bindings node="//xs:element[@name='Conversation']//xs:complexType//xs:sequence//xs:choice">
+			<property name="type"/>
+		</bindings>
+		
+		<!-- change the concatenated name of the assessments choice -->
+		<bindings node="//xs:element[@name='assessments']//xs:complexType//xs:choice">
+			<property name="assessmentTypes"/>
+		</bindings>
+        
+        <bindings node="//xs:element[@name='hasMovedExcavatorComponentInput']//xs:complexType//xs:sequence//xs:choice">
+			<property name="directionType"/>
+		</bindings>
+
+	</bindings>
+	
+	<!-- identify the schema location, also maps the xs namespace for xsd node references -->
+	<bindings schemaLocation="../ped/pedagogicalStrategy.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		
+		<!-- change the concatenated name of the scenario adaptation choice -->
+		<bindings node="//xs:element[@name='scenarioAdaptation']//xs:complexType//xs:choice">
+			<property name="adaptationTypes"/>
+		</bindings>
+		
+		<!-- change the concatenated name of the instructional intervention choice -->
+		<bindings node="//xs:element[@name='instructionalIntervention']//xs:complexType//xs:choice">
+			<property name="interventionTypes"/>
+		</bindings>		
+		
+		<!-- change the concatenated name of the feedback presentation choice -->
+		<bindings node="//xs:element[@name='feedback']//xs:complexType//xs:choice">
+			<property name="feedbackPresentation"/>
+		</bindings>
+
+	</bindings>
+	
+	<!-- identify the schema location, also maps the xs namespace for xsd node references -->
+	<bindings schemaLocation="../learnerAction/learnerActions.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+		
+		<!-- change the concatenated name of the learner action parameters choice -->
+		<bindings node="//xs:element[@name='learnerAction']//xs:complexType//xs:sequence//xs:choice">
+			<property name="learnerActionParams"/>
+		</bindings>
+		
+		<!-- change the concatenated name of the tutor me parameters choice -->
+		<bindings node="//xs:element[@name='TutorMeParams']//xs:complexType//xs:sequence//xs:choice">
+			<property name="configuration"/>
+		</bindings>
+				
+		<!-- change the concatenated name of the AutoTutor SKO type choice -->
+		<bindings node="//xs:element[@name='AutoTutorSKO']//xs:complexType//xs:choice">
+			<property name="script"/>
+		</bindings>
+	</bindings>
+
+</bindings>

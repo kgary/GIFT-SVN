@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Test Build" default="compile" basedir=".">
+    
+    <property name="root.path" value="../../../.."/>
+	<property name="gift.services.jar" value="gift-services.jar"/>
+	<property name="gift.domain.services.jar" value="gift-domain-services.jar"/>
+	<property name="gift.survey.services.jar" value="gift-ums-db.jar"/>
+	<property name="gift.ums.jar" value="gift-ums.jar"/>
+    <property name="gift.lms.services.jar" value="gift-lms-services.jar"/>
+	<property name="gift.common.gwt.jar" value="gift-commongwt.jar"/>
+    <property name="build.dependencies" value="${root.path}/config/build.dependencies"/>
+	<property name="python" value="${env.GIFT_PYTHON_HOME}"/>
+    <property name="build.excludes" value="**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.txt,**/*.TXT,**/*.ini, **/slf4j/**"/>
+    
+    <loadfile property="build.dependencies.common" srcFile="${build.dependencies}">
+        <filterchain>
+            <linecontains>
+                <contains value="@common@"/>
+            </linecontains>
+            <replacetokens>
+                <token key="common" value=""/>
+            </replacetokens>
+        </filterchain>
+    </loadfile>
+    
+    <path id="classpath">
+
+    	<fileset dir="${root.path}/bin" includes="**/jacob-loader.jar"/>
+    	<fileset dir="${root.path}/bin" includes="**/gift-authoring-common.jar"/>
+        <fileset dir="${root.path}/bin" includes="**/gift-common.jar"/>
+        <fileset dir="${root.path}/bin" includes="**/gift-dat.jar"/>        
+        <fileset dir="${root.path}/bin" includes="**/gift-domain.jar"/>
+        <fileset dir="${root.path}/bin" includes="**/gift-gateway.jar"/>
+        <fileset dir="${root.path}/bin" includes="**/gift-sensor.jar"/>
+        <fileset dir="${root.path}/bin" includes="**/gift-tools.jar"/>    
+    	<fileset dir="${root.path}/bin" includes="**/gift-import.jar"/> 
+    	<fileset dir="${root.path}/bin" includes="**/gift-gat-batch.jar"/>
+    	<fileset dir="${root.path}/bin" includes="**/gift-ert-batch.jar"/>
+        <fileset dir="${root.path}/bin" includes="**/protobuf_generated.jar"/>
+    	<fileset dir="${root.path}/bin" includes="**/protobuf_generated_external_apps.jar"/>
+        <fileset dir="${root.path}/bin" includes="**/${gift.ums.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.services.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.domain.services.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.survey.services.jar}"/>
+        <fileset dir="${root.path}/bin"      includes="${gift.lms.services.jar}"/>
+		<fileset dir="${root.path}/bin"      includes="${gift.common.gwt.jar}"/>
+		<dirset dir="${root.path}/build/war/dashboard" />  <!-- this is for the DashboardServiceImpl test whose classes are in a war not a jar -->
+    	<fileset dir="${root.path}/external" includes="**/autoTutorWebService.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/gwt/gwt-2.9.0/gwt-dev.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/gwt/gwt-2.9.0/gwt-servlet.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/gwt/extensions/gwt-dispatch-1.2.0.jar"/>
+        <fileset dir="${root.path}/external" includes="**/hamcrest-core-1.3.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/jacob.jar"/>
+        <fileset dir="${root.path}/external" includes="**/jdis.jar"/>  
+        <fileset dir="${root.path}/external" includes="**/jpa-api-2.0-cr-1.jar"/>    	
+    	<fileset dir="${root.path}/external" includes="**/lombok-1.12.2.jar"/> 
+        <fileset dir="${root.path}/external" includes="**/junit-4.11.jar"/>       	
+    	<fileset dir="${root.path}/external" includes="**/jvorbiscomment-1.0.3.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/orgjson.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/spiffy-with_source-all-0.05.jar"/>
+		<fileset dir="${root.path}/external" includes="**/SuperCSV-with_src-1.52.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/rabbitmq-java-client-bin-3.5.4/rabbitmq-client.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/lms/tincan-1.1.2-SNAPSHOT.jar"/>
+		<fileset dir="${root.path}/external" includes="**/lms/jackson-annotations-2.12.5.jar"/>
+		<fileset dir="${root.path}/external" includes="**/lms/jackson-core-2.12.5.jar"/>
+		<fileset dir="${root.path}/external" includes="**/lms/jackson-databind-2.12.5.jar"/>
+		<fileset dir="${root.path}/external" includes="**/lms/joda-time-2.9.9.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/protobuf/bin/protobuf-java-3.7.0.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/redmine/*.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/grpc/*.jar"/>
+		<fileset dir="${root.path}/external" includes="**/apache-poi-3.15/*.jar"/>
+		<fileset dir="${root.path}/external" includes="**/jdk-11/jaf-1.1.1/*.jar"/>
+    	
+    	<!-- conversion wizard jars -->
+    	<fileset dir="${root.path}/data/conversionWizard" includes="**/**/jaxb*generated.jar"/>
+		
+		<!-- 
+			MH: had to move the common classpath entries to after "activemq/lib/optional/slf4j-log4j12-1.5.11.jar" due to 
+			"java.lang.NoSuchMethodError: org.slf4j.helpers.MessageFormatter.arrayFormat(Ljava/lang/String;[Ljava/lang/Object;)Lorg/slf4j/helpers/FormattingTuple;"
+		-->
+		<fileset dir="${root.path}" includes="${build.dependencies.common}" excludes="${build.excludes}"/> 
+    		
+    	<!-- This caused binding issues:
+    	<fileset dir="${root.path}/external" includes="**/slf4j/slf4j-api-1.6.4.jar"/>
+        <fileset dir="${root.path}/external" includes="**/slf4j-log4j12-1.6.4.jar"/> 
+        
+        replaced with:
+          <fileset dir="${root.path}/external" includes="**/activemq/lib/optional/slf4j-log4j12-1.5.11.jar"/> 
+          <fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/> 
+        -->
+
+    </path>
+    
+    <target name="compile">
+        <delete dir="${root.path}/build/test_classes"/>
+        <mkdir dir="${root.path}/build/test_classes"/>
+    	<!-- #5033 - preventing out of memory with javac command below -->
+    	<property name="ANT_OPTS" value="-Xms512m -Xmx512m"/>
+		<echo>Compiling classes for test...</echo>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/test_classes" includeAntRuntime="false" 
+        	includeDestClasses="false" classpathref="classpath">
+            
+            <!-- uncomment to exclude some tests
+
+            <exclude name="common/**"/>
+            <exclude name="domain/**"/>
+            <exclude name="gateway/**"/>
+        	<exclude name="lms/**"/>
+            <exclude name="net/**"/>
+            <exclude name="sensor/**"/>
+            <exclude name="ums/**"/>
+        	<exclude name="tools/ert/**"/>
+        	<exclude name="tools/authoring/common/**"/>
+			<exclude name="tools/authoring/gat/**"/>
+			<exclude name="tools/authoring/wrap/**"/>
+        	<exclude name="tools/services/**"/>
+        	<exclude name="tools/services/experiment/**"/>
+        	<exclude name="tools/services/file/**"/>
+			<exclude name="tools/dashboard/**"/>
+            -->
+
+        	<!-- Tests to exclude which should be performed manually. 
+        	     If you wish to run one of these tests as part of this test suite:
+        	       1.) Remove it from the exclude files
+        	       2.) Make any necessary updates to the classpath
+        	       3.) Remove the @Ignore annotation from the test class
+	        -->
+        	<exclude name="gateway/VREngageInterfaceTest.java" />
+        	
+        	<compilerarg value="-Xlint"/>
+        </javac>
+		<echo>Compile complete</echo>
+    </target>
+    
+    <target name="test" depends="compile">
+        
+        <tstamp>
+            <format property="current.time"
+                pattern="yyyyMMdd_HHmmss" />
+        </tstamp>
+        
+        <property name="outputDir" value="${root.path}/output/testResults/${current.time}"/>
+        <mkdir dir="${outputDir}"/>
+        <property name="gift.root">${basedir}/${root.path}</property>
+		<!--<echo>${gift.root}</echo>-->
+        <junit fork="yes" printsummary="yes" haltonfailure="no" showoutput="yes">
+            <jvmarg value="-Duser.dir=${gift.root}" />
+			<jvmarg value="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=49999"/>
+			<sysproperty key="java.library.path" path="${root.path}/external/jacob/"/>
+			<env key="LD_LIBRARY_PATH" path="${root.path}/external/jacob/" />
+			<env key="PATH" path="${env.Path};${python}" />
+            <classpath>
+                <pathelement location="${root.path}/build/test_classes" />
+            </classpath>
+            <classpath refid="classpath"/>
+            <batchtest fork="no" todir="${outputDir}">
+                <formatter type="xml"/>
+                <fileset dir="${root.path}/build/test_classes">
+                    <include name="**/*.class"/>
+                	<exclude name= "**/*$*.class"/>
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+</project>

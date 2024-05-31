@@ -1,0 +1,13 @@
+C:\Users\mhoffman\AppData\Local\Temporary Projects\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.Form.resources
+C:\Users\mhoffman\AppData\Local\Temporary Projects\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.Properties.Resources.resources
+C:\Users\mhoffman\AppData\Local\Temporary Projects\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.csproj.GenerateResource.Cache
+C:\Users\mhoffman\AppData\Local\Temporary Projects\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.Form1.resources
+C:\Users\mhoffman\Documents\Visual Studio 2010\Projects\ExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.Properties.Resources.resources
+C:\Users\mhoffman\Documents\Visual Studio 2010\Projects\ExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.csproj.GenerateResource.Cache
+C:\Users\mhoffman\Documents\Visual Studio 2010\Projects\ExampleTrainingApplication\ExampleTrainingApplication\bin\Debug\ExampleTrainingApplication.exe
+C:\Users\mhoffman\Documents\Visual Studio 2010\Projects\ExampleTrainingApplication\ExampleTrainingApplication\bin\Debug\ExampleTrainingApplication.pdb
+C:\Users\mhoffman\Documents\Visual Studio 2010\Projects\ExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.exe
+C:\Users\mhoffman\Documents\Visual Studio 2010\Projects\ExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.pdb
+C:\Users\mhoffman\Documents\Visual Studio 2010\Projects\ExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.csprojResolveAssemblyReference.cache
+C:\Users\mhoffman\Documents\Visual Studio 2010\Projects\ExampleTrainingApplication\ExampleTrainingApplication\bin\Debug\ExampleTrainingApplication.exe.config
+C:\Users\mhoffman\Documents\Visual Studio 2010\Projects\ExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.StateNameService.resources

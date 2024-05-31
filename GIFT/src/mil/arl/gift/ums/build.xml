@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<project name="UmsModule" default="compile">
+    	    
+    <!-- General Build Properties -->
+    <property name="root.path"         value="../../../../.."/>
+    <property name="package.name"      value="mil.arl.gift.ums"/>
+    <property name="source.path"       value="mil/arl/gift/ums"/>
+    <property name="jarfile.name"      value="gift-ums.jar"/>
+    
+    <!-- GIFT Build Properties -->
+    <property name="gift.common.jar"   value="gift-common.jar"/>
+    <property name="gift.ums.db.jar"   value="gift-ums-db.jar"/>
+    
+	<property name="build.excludes" value="**/db**,**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.dll,**/*.txt,**/*.TXT,**/*.ini"/>
+	
+    
+    <!-- Up-to-Date Properties -->
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+	<property name="build.dependencies" value="${root.path}/config/build.dependencies"/>
+	
+    <loadfile property="build.dependencies.ums" srcFile="${build.dependencies}">
+        <filterchain>
+            <linecontains>
+                <contains value="@ums@"/>
+            </linecontains>
+            <replacetokens>
+                <token key="ums" value=""/>
+            </replacetokens>
+        </filterchain>
+    </loadfile>
+    
+    <path id="classpath">
+        <fileset dir="${root.path}" includes="${build.dependencies.ums}" excludes="${build.excludes}"/>
+    </path>
+	    
+    <target name="checkForChanges">
+        <uptodate property="rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        <uptodate property="build.notRequired" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="${build.excludes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <and>
+                <isset property="rebuild.required"/>
+                <isset property="build.notRequired"/>
+            </and>
+        </condition>
+    </target>
+	
+	<!-- Original UMS build -->
+    <target name="compileCore" description="compile the UMS module" unless="build.required">
+    	<echo message="Compiling UMS"/>
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath" excludes="${build.excludes}">
+			<compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" includes="${source.path}/**" excludes="${build.excludes}"/>
+    </target>
+    
+    <target name="compileDb">
+        <ant dir="db" inheritAll="false"/>
+    </target>
+    
+    <target name="compile" depends="compileDb, checkForChanges, compileCore"/>
+	
+    <target name="clean">
+        <ant dir="db" target="clean" inheritAll="false"/>
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

@@ -1,0 +1,22 @@
+1) [Introduction](Introduction.md)
+2) [Installation And Setup](Installation-And-Setup.md)
+3) [Discussing with GIFT Developers](DiscussionWithGIFTDevs.md)
+4) [GIFT 2023 Update](GIFT-2023-Update.md)
+5) [AWS Findings](AWS-Findings.md)
+6) [GIFT on Linux Machine/VM](Linux.md)
+7) [GIFT on Docker](Docker.md)
+8) [PortMap](PortMap.md)
+9) [Queues & Topics used in GIFT](QueuesAndTopics.md)
+10) [GIFT & C# TA Communication](GiftC#TACommunication.md)
+11) [GIFT - Ride TA Running Instructions](GIFTUnityRIDEAppRun.md)
+12) [GIFT & Ride TA Communication](GiftRideCommunication.md)
+13) [GIFT - Unity WebGL TA Creation](GIFTUnityAppBuildRunGuide.md)
+14) [GIFT & Unity WebGL TA Communication](GIFTUnityCommunication.md)
+15) [GIFT & Unity Desktop TA Communication](GIFTUnityDesktopAppGuide.md)
+16) [Communication between all TAs](TrainingApps.md)
+17) [Various Message Types - Unity WebGL, Unity Desktop, C# TA](MessagingSystems.md)
+18) [Miscellaneous](Misc.md)
+
+
+## Note (Mar 17, 2024)
+In each file, there may or may not be a **Summary** section. If there is a summary section, that means all the errors/issues in trying to understand that piece of GIFT have been fixed and now there's a step by step process through them. If you don't see a summary section, then that either means that all errors aren't resolved in it yet or the file is just a discussion of sorts.

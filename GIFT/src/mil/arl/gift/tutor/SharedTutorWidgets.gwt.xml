@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module>
+     
+    <inherits name='com.google.gwt.user.User' />
+    <inherits name="com.google.gwt.uibinder.UiBinder"/>
+    <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
+    <inherits name='mil.arl.gift.common.GwtGenerated-course' />
+    
+    <source path='client/coursewidgets'/>
+    
+</module>
+

@@ -1,0 +1,48 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractLearnerTutorActionProto";
+
+import "RadioUsed.proto";
+import "FinishScenario.proto";
+import "PaceCountStarted.proto";
+import "PaceCountEnded.proto";
+import "AbstractReport.proto";
+import "TutorMeLearnerTutorAction.proto";
+import "AssessMyLocationTutorAction.proto";
+import "ApplyStrategyLearnerAction.proto";
+
+/* This message represents the base implementation for all LearnerTutorAction messages. */
+message AbstractLearnerTutorAction {
+	oneof type {
+		/* Learner action for a radio used. */
+		RadioUsed radio_used = 1;
+		
+		/* Learner action for a finish scenario. */
+		FinishScenario finish_scenario = 2;
+		
+		/* Learner action for a pace count started. */
+		PaceCountStarted pace_count_started = 3;
+		
+		/* Learner action for a pace count ended. */
+		PaceCountEnded pace_count_ended = 4;
+		
+		/* Learner action for an abstract report. */
+		AbstractReport abstract_report = 5;
+		
+		/* Tutor action for a tutor me learner. */
+		TutorMeLearnerTutorAction tutor_me_learner_tutor_action = 6;
+		
+		/* Tutor action for an assess my location. */
+		AssessMyLocationTutorAction assess_my_location_tutor_action = 7;
+		
+		/* Learner action for an apply strategy. */
+		ApplyStrategyLearnerAction apply_strategy_learner_action = 8;
+	}
+}

@@ -1,0 +1,62 @@
+﻿<body>
+<p><strong>Checkpoint Progress Condition</strong></p>
+<p>This condition checks the pace of the learner's player/character/entity in 
+the external application through one or more, ordered, checkpoints.&nbsp; The 
+condition requires one or more checkpoints to be provided, each defined by a 
+location (e.g. GDC) with a time 
+constraint.&nbsp; Each time constraint can also have a window of opportunity 
+associated with it to act as a grace period for the learner to reach that 
+checkpoint and not be negatively assessed.</p>
+<p>This is different than Checkpoint Pace condition because in this 
+condition a timer is created for each checkpoint using the elapsed scenario time 
+defined in the checkpoint's time constraint.&nbsp; If a checkpoint's timer 
+reaches zero and the learner has not arrived at that checkpoint's location, the 
+learner will be negatively assessed. </p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span><ul>
+		<li>case: the learner reached the next checkpoint in the list ahead of 
+		schedule</li>
+	</ul>
+	</li>
+	<li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: reached the next checkpoint in the list within the time 
+		constraint grace period (window)</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: a checkpoint's timer reached zero and the learner has not 
+		arrived at that checpoint's location</li>
+	</ul>
+	</li>
+	<li>Unknown<ul>
+		<li>case: the default value</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of checkpoints that were not reached on time</li>
+	<li>provides the amount of time the learner was in violation of being behind 
+	progress, i.e. the total amount of time this condition was at Below Expectation. </li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>completes after the last checkpoint location has been reached and 
+	assessed</li>
+	<li>can not be repeated, i.e. once you reach the last checkpoint you can't 
+	start this same condition instance from the first checkpoint</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can cause GIFT Entity state messages to be created</li>
+	<li>GIFT Mobile App</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+	<li>GIFT Geolocation</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.CheckpointProgressCondition</em></p>
+</body>

@@ -1,0 +1,2971 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+	elementFormDefault="qualified" 
+	version="11.0" 
+	xmlns:common="http://GIFT.com/common" 
+	xmlns:fg="http://www.FGolubov.com/XMLEditor" 
+	xmlns:ped="http://GIFT.com/pedagogicalStrategy" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://GIFT.com/common" schemaLocation="../common.xsd"/>
+    <xs:import namespace="http://GIFT.com/pedagogicalStrategy" schemaLocation="../ped/pedagogicalStrategy.xsd"/>
+    <xs:include schemaLocation="../lessonMaterial/lessonMaterial.xsd"/>
+	<xs:element name="Course">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Course">
+					<fg:message>This is the root node of a GIFT course.  A GIFT course consists of one or more course objects/transitions.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element minOccurs="0" name="description" type="xs:string"/>
+				<xs:element minOccurs="0" name="lastSuccessfulValidation" type="xs:string">
+					<xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Last Successful Validation DateTime">
+                                <fg:message>When the last successful course validation was completed.  Format is yyyy:MM:dd HH:mm:ss:SSS z.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="image">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+						  <xs:minLength value="4"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+                <xs:element minOccurs="0" name="exclude" type="common:booleanEnum">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Exclude Option">
+                                <fg:message>Whether or not to exclude this course from the list of courses available to the user.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+				<xs:element name="configurations" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Configurations">
+								<fg:message>Whether or not to link configuration files to this course.</fg:message>
+								<fg:message>Refer to "Help" for more information.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="sensor">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.ConfigurableFileSelectionDialog" exposed="true" message="Sensor File">
+                                                <fg:message>A sensor configuration file.</fg:message>
+                                                <fg:param name="title">Select a sensor configuration file</fg:param>
+                                                <fg:param name="extension">sensorconfig.xml</fg:param>
+                                                <fg:param name="information">Please select a sensor configuration file.</fg:param>
+                                        </fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="16"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="0" name="learner">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.ConfigurableFileSelectionDialog" exposed="true" message="Learner File">
+													<fg:message>A learner configuration file.</fg:message>
+													<fg:param name="title">Select a learner configuration file</fg:param>
+													<fg:param name="extension">learnerconfig.xml</fg:param>
+													<fg:param name="information">Please select a learner configuration file.</fg:param>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="17"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element minOccurs="0" name="pedagogy">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.ConfigurableFileSelectionDialog" exposed="true" message="Pedagogy File">
+													<fg:message>A pedagogical configuration file.</fg:message>
+													<fg:param name="title">Select a pedagogical configuration file</fg:param>
+													<fg:param name="extension">pedagogicalconfig.xml</fg:param>
+													<fg:param name="information">Please select a pedagogical configuration file.</fg:param>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="21"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+                <xs:element minOccurs="0" ref="common:surveyContext"/>
+                <!-- Future work
+				<xs:element ref="actions" minOccurs="0"/>
+				-->
+				<xs:element minOccurs="0" ref="concepts"/>
+				<xs:element minOccurs="0" ref="ltiProviders"/>
+				<xs:element ref="transitions"/>
+			</xs:sequence>
+			<xs:attribute name="name" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Course Name">
+							<fg:message>The course name will appear on the Tutor in the list of courses.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="version" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="File Version">
+							<fg:message>The version of this file.  This is auto-incremented if using the CAT to save.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ltiProvider">
+		<xs:sequence>
+			<xs:element name="identifier">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Identifier">
+							<fg:message>The identifier used to look up the client key and secret.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>  
+			<xs:element name="key">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Client Key">
+							<fg:message>The provider client key.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>  
+			<xs:element name="sharedSecret">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Client Secret">
+							<fg:message>The provider client secret.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="protectClientData" type="common:booleanEnum" default="false">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Protect Client Data">
+							<fg:message>Indicates if the client data should be protected (e.g. should the data be removed when exporting a course). The default is false, meaning no steps will be taken to hide/protect the information submitted.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>  
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="concepts">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Concepts">
+					<fg:message>Specifies the knowledge, skills, and abilities taught by this course</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="list">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Concept List" >
+								<fg:message>Concepts are represented as a flat list with no hierarchy specified/needed.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>						
+							<xs:element name="concept" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Concept" exposed="true">
+											<fg:message>A concept in the concept list.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="name" use="required">
+										<xs:annotation>
+											<xs:appinfo>
+												<fg:node-info message="Concept Name" exposed="true">
+													<fg:message>The concept name.</fg:message>
+												</fg:node-info>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>			
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="hierarchy">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Concept List">
+								<fg:message>Concepts are represented as a hierarchy, starting with a single root node.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="conceptNode"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="conceptNode">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Concept Node">
+					<fg:message>A concept in the concept hierarchy.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="conceptNode" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element minOccurs="0" ref="authoritativeResource"/>
+			</xs:sequence>
+			<xs:attribute name="name" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Concept Name" exposed="true">
+							<fg:message>The concept name.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>			
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authoritativeResource">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Authoritative Resource">
+					<fg:message>An external resource from an authoratative system that this concept is associated with.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="id" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ltiProviders">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="LTI Providers">
+					<fg:message>Specifies the trusted LTI providers for this course.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+            	<xs:element maxOccurs="unbounded" name="ltiProvider" type="ltiProvider"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="logFile">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element name="domainSessionLog">
+						<xs:complexType>
+							<xs:simpleContent>
+								<xs:extension base="xs:string">
+									<xs:attribute name="assessmentName" type="xs:string" use="required" />
+									<xs:attribute name="start" type="xs:integer" use="required" />
+									<xs:attribute name="end" type="xs:integer" use="required" />
+								</xs:extension>
+							</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="capturedAudioFile" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Captured Audio">
+								<fg:message>The course-folder-relative path to the file containing the audio captured alongside this domain session log.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="transitions">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Transitions">
+					<fg:message>Specifies the flow of the lesson by providing an ordered list of transitions that will be presented at various points during a domain session for this scenario.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+                    <xs:element ref="AAR"/>
+					<xs:element ref="AuthoredBranch"/>
+					<xs:element ref="Guidance"/>
+                    <xs:element ref="LessonMaterial"/>
+                    <xs:element ref="MerrillsBranchPoint"/>
+                    <xs:element ref="PresentSurvey"/>
+                    <xs:element ref="TrainingApplication"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="transitionName">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Transition Name">
+                    <fg:message>A display name for this transition.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+	<xs:element name="remediationBypass" type="common:booleanEnum" default="true">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Remediation Bypass">
+                    <fg:message>Whether or not to skip this transition if the learner has reached it again due to returning to an earlier part of the course for concept remediation.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+	<xs:element name="Guidance">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Guidance">
+                    <fg:message>Guidance is a type of transition that helps guide the learner.  For example the TUI can use Guidance to display a message to the learner.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transitionName">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Display Name">
+								<fg:message>A display name for this Guidance element.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:choice>
+					<xs:element name="message">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info message="Guidance Message Content">
+									<fg:message>String guidance message to display in the tutor.</fg:message>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="content">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="URL">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info message="Guidance URL">
+									<fg:message>A webpage URL to display on guidance.</fg:message>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="address">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="URL Address">
+												<fg:message>Note: the address must contain the URL scheme prefix such as http://.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="4"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+                                <xs:element minOccurs="0" name="message">
+                                    <xs:annotation>
+                                        <xs:appinfo>
+                                            <fg:node-info message="Message">
+                                                <fg:message>Informative message (e.g. instructions) about the guidance webpage.</fg:message>
+                                            </fg:node-info>
+                                        </xs:appinfo>
+                                    </xs:annotation>
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:minLength value="4"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="file">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <fg:node-info message="Guidance File">
+                                    <fg:message>File containing Guidance content.</fg:message>
+                                    <fg:message>Refer to "Help" for more information.</fg:message>
+                                </fg:node-info>
+                            </xs:appinfo>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="HTML">
+                                    <xs:annotation>
+                                        <xs:appinfo>
+                                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.ConfigurableFileSelectionDialog" exposed="true" message="HTML File">
+                                                <fg:message>An html file containing the guidance content.</fg:message>
+                                                <fg:param name="title">Select an HTML file</fg:param>
+                                                <fg:param name="extension">htm|html</fg:param>
+                                                <fg:param name="information">Please select an HTML file that contains the guidance content.</fg:param>
+                                            </fg:node-info>
+                                        </xs:appinfo>
+                                    </xs:annotation>
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:minLength value="6"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+								<xs:element minOccurs="0" name="message">
+                                    <xs:annotation>
+                                        <xs:appinfo>
+                                            <fg:node-info message="Message">
+                                                <fg:message>Informative message (e.g. instructions) about the guidance webpage.</fg:message>
+                                            </fg:node-info>
+                                        </xs:appinfo>
+                                    </xs:annotation>
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:minLength value="4"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+                <xs:element minOccurs="0" name="displayTime">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Display Time">
+								<fg:message>Amount of time in seconds to display the message. Not providing a value means that a button will be created below the message that, when clicked, will cause the next transition to be executed.</fg:message>
+								<fg:message>Refer to "Help" for more information.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal">
+							<xs:minInclusive value="0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+                <xs:element minOccurs="0" name="fullScreen" type="common:booleanEnum" default="true">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Display Full Screen">
+								<fg:message>Whether or not to display the message in full screen mode.  The default is false, meaning the message will be displayed in the horizontally compacted TUI.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="disabled" type="common:booleanEnum" default="false">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Disable Course Object">
+								<fg:message>Whether or not to disable the course object. The default is false, meaning it will not be disabled.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TrainingApplicationWrapper">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Training Application Wrapper">
+					<fg:message>This element contains a training application course object (e.g. VBS).  Currently this element is used as the root element in a trainingapp.xml file</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element minOccurs="0" name="description" type="xs:string"/>
+				<xs:element ref="TrainingApplication"/>
+			</xs:sequence>
+			<xs:attribute name="version" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="File Version">
+							<fg:message>The version of this file.  This is auto-incremented if using the GIFT authoring tools to save.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TrainingApplication">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Training Application">
+					<fg:message>Training Application is a type of transition that manages starting the lesson with the training application.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element name="transitionName">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Display Name">
+								<fg:message>A display name for this Training Application element.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element> 
+				<xs:element name="trainingAppTypeEnum" minOccurs="0">  <!-- 9.25.19: optional (for now) so older course.xml files aren't invalid -->
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Training Application Type">
+								<fg:message>The enumerated training application type (e.g. VBS).  From  mil.arl.gift.common.enums.TrainingApplicationEnum.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="dkfRef"/>
+                <xs:element minOccurs="0" name="options">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Training App Options">
+								<fg:message>Available options for this training application instance.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+                            <xs:element minOccurs="0" ref="disableInstInterImpl"/>
+                            <xs:element minOccurs="0" ref="showAvatarInitially"/>
+							<xs:element minOccurs="0" name="fullScreen" type="common:booleanEnum">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Display Full Screen">
+											<fg:message>Whether or not to display any Tutor elements (Avatar, feedback messages, learner action buttons) in full screen mode.  
+											The default is false, meaning the message will be displayed in the horizontally compacted TUI.
+											Make sure you consider where the Training Application window will be during this part of the course.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element minOccurs="0" name="disabled" type="common:booleanEnum" default="false">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Disable Course Object">
+											<fg:message>Whether or not to disable the course object. The default is false, meaning it will not be disabled.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element minOccurs="0" name="Remediation">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Remediation">
+											<fg:message>When Remediation element is provided, ICAP after practice remediation will be enabled.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ExcludeRuleExampleContent" type="common:booleanEnum" default="false" minOccurs="0">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Exclude Rule and Example Content from Remediation Phase">
+														<fg:message>Whether or not to exclude content tagged with Rule and Example from being available in the Remediation phase.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>				
+										</xs:element>
+										<xs:element name="loopUntilPassed" minOccurs="0" type="common:booleanEnum" default="false">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Loop until passed">
+														<fg:message>Whether or not to repeat the training application scenario after remediation or to continue to the next course object. The default is false, meaning it will repeat.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="AllowedAttempts" minOccurs="0" default="3">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Allowed Attempts">
+														<fg:message>The number of attempts allowed for this training application portion of the course before gracefully ending the course.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" maxOccurs="1" ref="interops"/>
+				<xs:element minOccurs="0" maxOccurs="1" ref="embeddedApps"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="Guidance"/>
+                <xs:element name="finishedWhen" type="common:TrainingApplicationStateEnumType" default="Stopped">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Finished When...">
+                                <fg:message>Specifies the training application state that will cause the Training Application transition to be finished, meaning when can the next transition (in the list of transitions) start.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element minOccurs="0" ref="authoringSupportElements"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dkfRef">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Domain Knowledge File">
+                    <fg:message>The domain knowledge file to use to configure the assessment logic for the lesson.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="file">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.DKFSelectionDialog" exposed="true" message="File name">
+                                <fg:message>The relative DKF name from the Domain directory as specified by the domain properties.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="8"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="disableInstInterImpl" type="common:booleanEnum">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Disable Instructional Intervention Implementation(s)">
+                    <fg:message>Whether or not to disable the implementation of instructional intervention strategies (e.g. Feedback) requested by the Pedagogical model.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="showAvatarInitially">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Show Avatar Initially">
+                    <fg:message>The initial avatar to show when the training application transition is started.</fg:message>
+                    <fg:message>If no avatar information is provided here, the default tutor avatar will be used.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element name="mediaSemantics">
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <fg:node-info exposed="true" message="Media Semantics">
+                                    <fg:message>Specify the Media Semantics Character builder project information that contains an avatar.</fg:message>
+                                </fg:node-info>
+                            </xs:appinfo>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="Avatar">
+                                    <xs:annotation>
+                                        <xs:appinfo>
+                                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.ConfigurableFileSelectionDialog" exposed="true" message="Avatar File">
+                                                <fg:message>The avatar file created by a Media Semantics Character builder project.</fg:message>
+                                                <fg:param name="title">Select the Media Semantics Character Avatar file</fg:param>
+                                                <fg:param name="extension">htm|html</fg:param>
+                                                <fg:param name="information">Please select the Media Semantics Character Avatar file that contains the avatar you wish to display.</fg:param>
+                                            </fg:node-info>
+                                        </xs:appinfo>
+                                    </xs:annotation>
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:minLength value="6"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="authoringSupportElements">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Authoring Support Elements">
+                    <fg:message>Optional elements that are used to support the authoring of a course object.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="trainingAppsScenarioMapPath" minOccurs="0"> <!-- only needed if a Training.Apps scenario map is selected during authoring -->
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Training Apps Scenario Map Path">
+                                <fg:message>The relative path to the selected training application scenario map.</fg:message>
+                                <fg:message>The path is relative to the Training.Apps/maps folder (e.g. the scenario map located in 'Training.Apps/maps/Public/folderName' would have the relative path 'Public/folderName')</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="interops">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Interop Implementations">
+                    <fg:message>List of interoperability implementations (e.g. DIS, VBS) in the Gateway module that will be used during the lesson to communicate training application content to/from GIFT.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="interop"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="interop">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Interop Implementations">
+                    <fg:message>Interoperability implementation (e.g. DIS, VBS) in the Gateway module that will be used during the lesson to communicate training application content to/from GIFT.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="InteropImpl"/>
+                <xs:element ref="InteropInputs"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="embeddedApps">
+		<xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Embedded Apps">
+                    <fg:message>Input configurations for embedded applications that will be used during the lesson to display the applications in the tutoring interface and communicate training application content to/from GIFT.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element ref="embeddedApp"/>
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="embeddedApp">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Embedded App">
+					<fg:message>Input configurations for an embedded application that will be used during the lesson to display the application in the tutoring interface and communicate training application content to/from GIFT.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+    	<xs:complexType>
+            <xs:sequence>
+				<xs:choice>
+                <xs:element ref="embeddedAppUrl"/>
+                    <xs:element ref="mobileApp"/>              
+                </xs:choice>
+                <xs:element minOccurs="0" maxOccurs="1" ref="embeddedAppInputs"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="embeddedAppUrl">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Embedded App URL">
+					<fg:message>The URL for an embedded application that will be used during the lesson to display the application in the tutoring interface and handle training application content sent to/from GIFT.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+    	<xs:simpleType>
+    		<xs:restriction base="xs:anyURI">
+    			<xs:minLength value="1"/>
+    		</xs:restriction>
+    	</xs:simpleType>
+    </xs:element>
+	<xs:element name="mobileApp">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="GIFT Mobile App">
+                    <fg:message>A mobile application that will embed the tutoring interface within itself and handle training application content sent to/from GIFT.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="xs:anyType"/>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name="embeddedAppInputs">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Embedded App Inputs">
+					<fg:message>Additional configuration inputs that can be used to pass additional load arguments to an embedded application when it is displayed during the lesson.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element maxOccurs="unbounded" ref="common:nvpair"/>
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="embeddedAppInput">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Embedded App Input">
+					<fg:message>An input configuration for an embedded application that can be used to pass an additional load argument to an embedded application when it is displayed during the lesson.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+    	<xs:simpleType>
+    		<xs:restriction base="xs:string">
+    			<xs:minLength value="1"/>
+    		</xs:restriction>
+    	</xs:simpleType>
+    </xs:element>
+    <xs:element name="InteropImpl">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.InteropDialog" message="Interop Implementation">
+                    <fg:message>Specify the class path to the Interop Interface Implementation (e.g. gateway.interop.dis.DISInterface) that contains the logic for the Gateway module to interoperate with a training application.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="InteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Interop Implementation Inputs">
+                    <fg:message>Specify inputs to the selected Gateway module interop interface implementation.  These inputs will be sent by the Domain module to the Gateway module based on the type of Siman message being sent.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="CustomInteropInputs"/>
+                    <xs:element ref="DISInteropInputs"/>
+                    <xs:element ref="EmptyInteropInputs"/>
+                    <xs:element ref="GenericLoadInteropInputs"/>
+                    <xs:element ref="PowerPointInteropInputs"/>
+                    <xs:element ref="SCATTInteropInputs"/>
+					<xs:element ref="SimpleExampleTAInteropInputs"/>
+                    <xs:element ref="TC3InteropInputs"/>
+                    <xs:element ref="DETestbedInteropInputs"/>
+                    <xs:element ref="VBSInteropInputs"/>                 
+					<xs:element ref="VREngageInteropInputs"/>
+					<xs:element ref="UnityInteropInputs"/>
+					<xs:element ref="HAVENInteropInputs"/>
+					<xs:element ref="RIDEInteropInputs"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>  
+    <xs:element name="EmptyInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Empty Interop Implementation Inputs">
+                    <fg:message>This is used when the interop implementation doesn't require any inputs (e.g. scenario name to load).  This is often the case when 2 or more interops are used when communicating with a Training Application as is the case with GIFT and VBS.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="xs:anyType"/>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+    	<xs:element name="GenericLoadInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Generic Interoperability Interface Inputs">
+                    <fg:message>This is used when all the interop implementation needs to load the appropriate content is the scenario name (e.g. "Presence Patrol") or content file name (e.g. Domain/myShow.pps").</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="contentRef">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <fg:node-info exposed="true" message="Content Reference">
+                                            <fg:message>A reference to the content needed to be loaded by the interop plugin.  For example a scenario name (e.g. "Presence Patrol") or a content file name (e.g. Domain/myShow.pps").</fg:message>
+                                        </fg:node-info>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>	
+	<xs:element name="DETestbedInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="DE Testbed Interoperability Interface Inputs">
+                    <fg:message>By specifying the DE Testbed Interop element for the Training Application, the Gateway module will be configured to use the DE Testbed Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ScenarioName">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <fg:node-info exposed="true" message="Scenario Name">
+                                            <fg:message>Name of a scenario.  The value is used by the DE Testbed to load the scenario.</fg:message>
+                                        </fg:node-info>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>	
+	<xs:element name="SimpleExampleTAInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Simple Example TA Interoperability Interface Inputs">
+                    <fg:message>By specifying the Simple Example TA Interop element for the Training Application, the Gateway module will be configured to use the Simple Example TA Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ScenarioName">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <fg:node-info exposed="true" message="Scenario Name">
+                                            <fg:message>Name of an Example Scenario.  The value is used by Example scripting to load the scenario.  The value matches the name of a FITS scenario folder and is one of the entries shown in FITS scenario selection screens.</fg:message>
+                                        </fg:node-info>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="VBSInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="VBS Interoperability Interface Inputs">
+                    <fg:message>By specifying the VBS Interop element for the Training Application, the Gateway module will be configured to use the VBS Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+								<fg:message>Not providing a ScenarioName element means that the VBS menu/scenario will not be managed by GIFT but GIFT still needs a connection to the VBS scripting interface to present in-game feedbackscenario adaptations.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ScenarioName" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <fg:node-info exposed="true" message="Scenario Name">
+                                            <fg:message>Name of a VBS Scenario.  The value is used by VBS scripting to load the scenario.  The value matches the name of a VBS scenario folder and is one of the entries shown in VBS scenario selection screens.</fg:message>
+                                        </fg:node-info>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DISInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="DIS Interoperability Interface">
+                    <fg:message>By specifying the DIS Interop element for the Training Application, the Gateway module will be configured to use the DIS Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType/>
+                </xs:element>
+                <xs:element ref="logFile" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PowerPointInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="PowerPoint Interoperability Interface">
+                    <fg:message>By specifying the PPT Interop element for the Training Application, the Gateway module will be configured to use the PPT Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ShowFile">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.ConfigurableFileSelectionDialog" exposed="true" message="PowerPoint Show File">
+                                            <fg:message>The powerpoint show file to load into PowerPoint (including file extension).  For now, the path is relative to the Domain folder (i.e. "GIFT/../Domain/").</fg:message>
+                                        </fg:node-info>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="5"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="TC3InteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="TC3 Interoperability Interface Inputs">
+                    <fg:message>By specifying the TC3 Interop element for the Training Application, the Gateway module will be configured to use the TC3 Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ScenarioName">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <fg:node-info exposed="true" message="Scenario Name">
+                                            <fg:message>Name of a TC3 Scenario.  The value is used by TC3 to load the scenario.  The value matches the name of a TC3 scenario that can be loaded via the GIFT TC3 Gateway plugin.</fg:message>
+                                            <fg:message>Refer to "Help" for more information.</fg:message>
+                                        </fg:node-info>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SCATTInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="SCATT Interoperability Interface">
+                    <fg:message>By specifying the SCATT Interop element for the Training Application, the Gateway module will be configured to use the SCATT Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType/>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="VREngageInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="VR-Engage Interoperability Interface Inputs">
+                    <fg:message>By specifying the VR-Engage Interop element for the Training Application, the Gateway module will be configured to use the VR-Engage Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="HAVENInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="SE Sandbox Interoperability Interface Inputs">
+                    <fg:message>By specifying the SE Sandbox Interop element for the Training Application, the Gateway module will be configured to use the SE Sandbox Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+				<!-- As of Aug 21' this is not used but could be useful in the future and is in Haven course objects at this time -->
+                <xs:element minOccurs="0" name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+					<xs:complexType>
+                        <xs:sequence/>
+                    </xs:complexType>
+                </xs:element>
+				<xs:element ref="logFile" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="RIDEInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="RIDE Interoperability Interface Inputs">
+                    <fg:message>By specifying the RIDE Interop element for the Training Application, the Gateway module will be configured to use the RIDE Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+				<!-- As of Aug 21' this is not used but could be useful in the future and is in RIDE course objects at this time -->
+                <xs:element minOccurs="0" name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+					<xs:complexType>
+                        <xs:sequence/>
+                    </xs:complexType>
+                </xs:element>
+				<xs:element ref="logFile" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="UnityInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Unity Interoperability Interface Inputs">
+                    <fg:message>By specifying the Unity Interop element for the Training Application, the Gateway module will be configured to use the Unity Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message. The arguments are sent to the Unity application via a JSON-encoded SIMAN Load message.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+							<xs:element minOccurs="0" maxOccurs="unbounded" ref="common:nvpair"/>
+						</xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CustomInteropInputs">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Custom Interoperability Interface">
+                    <fg:message>The Custom interop allows the DKF Authorer to specify their own interop interface to be used. the Gateway module will be configured to use the custom implementation interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="loadArgs">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Load Arguments">
+                                <fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="common:nvpair"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>    
+    <xs:element name="MerrillsBranchPoint">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Merrills Branch Point">
+                    <fg:message>Specifies a branch point in course flow using a semi-fixed flow of lesson content based on Merrills 4 quadrants: Rule, Example, Recall, Practice.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="transitionName"/>
+				<xs:element name="Concepts">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Concept List">
+								<fg:message>A list of concepts taught by this branch point.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="concept" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.CourseConceptSelectionDialog" exposed="true" message="Concept Node">
+											<fg:message>A concept from the course concept collection.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+                <xs:element name="Quadrants">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="Rule"/>
+                            <xs:element minOccurs="0" ref="transitions"/>
+                            <xs:element ref="Example"/>
+                            <xs:element minOccurs="0" ref="transitions"/>
+                            <xs:element ref="Recall"/>
+							<xs:element minOccurs="0" ref="Remediation"/>
+                            <xs:element minOccurs="0" ref="transitions"/>
+                            <xs:element minOccurs="0" ref="Practice"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="disabled" type="common:booleanEnum" default="false">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Disable Course Object">
+								<fg:message>Whether or not to disable the course object. The default is false, meaning it will not be disabled.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" ref="mandatoryOption"/>
+			</xs:sequence>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name="Example">
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="xs:anyType"/>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name="Recall">
+        <xs:complexType>
+			<xs:sequence>
+				<xs:element name="PresentSurvey">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Present Survey">
+								<fg:message>Present a survey based on the branch point's concepts to assess the learner's knowledge.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+						     <xs:choice>
+								<xs:element name="ConceptSurvey">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Concept Survey">
+												<fg:message>Present a survey based on the specified concept(s) to assess the learner's comprehension.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<!-- the 'fixed' value needs to match mil.arl.gift.common.survey.Constants.KNOWLEDGE_ASSESSMENT_QBANK_GIFT_KEY -->
+											<xs:element name="GIFTSurveyKey" fixed="Knowledge Assessment Question Bank" type="xs:string"/>
+											<xs:element ref="ConceptQuestions"  maxOccurs="unbounded"/>								
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element> 
+								<!-- <xs:element ref="common:GIFTSurveyKey"/> -->
+								<!--MH: maybe in the future we will support this as a choice in this element <xs:element ref="AutoTutorSession"/>-->								
+							</xs:choice>
+                            <xs:element minOccurs="0" name="fullScreen" type="common:booleanEnum" default="true">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <fg:node-info message="Display Full Screen">
+                                            <fg:message>Whether or not to display the survey elements in full screen mode.  The default is true, meaning the survey will be displayed in the middle of the TUI.</fg:message>
+                                        </fg:node-info>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+							<xs:element minOccurs="0" name="showInAAR" type="common:booleanEnum" default="true">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Show in AAR">
+											<fg:message>Whether or not to display the survey results in any proceeding AAR.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence> 
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AllowedAttempts" minOccurs="0" default="3">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Allowed Attempts">
+								<fg:message>The number of attempts allowed for this Recall portion of the course before gracefully ending the course.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+    </xs:element>
+	<xs:element name="ConceptQuestions">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Concept" exposed="true">
+					<fg:message>Used to specify the types of questions to ask on a course concept from the set of authored concepts and how to assess the resulting score.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="QuestionTypes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Easy" default="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Easy" exposed="true">
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer">
+										<xs:minInclusive value="0"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Medium" default="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Medium" exposed="true">
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer">
+										<xs:minInclusive value="0"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Hard" default="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Hard" exposed="true">
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer">
+										<xs:minInclusive value="0"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AssessmentRules">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AboveExpectation">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NumberCorrect" default="3">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="NumberCorrect" exposed="true">
+														<fg:message>Minimum number of concept related questions to get correct to receive an 'Above Expectation' rating on this concept</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="AtExpectation">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NumberCorrect" default="2">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="NumberCorrect" exposed="true">
+														<fg:message>Minimum number of concept related questions to get correct to receive an 'At Expectation' rating on this concept</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="0"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="BelowExpectation">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="NumberCorrect" default="0">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="NumberCorrect" exposed="true">
+														<fg:message>Minimum number of concept related questions to get correct to receive a 'Below Expectation' rating on this concept</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="0"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.CourseConceptSelectionDialog" message="Concept Name" exposed="true">
+							<fg:message>A concept taught in this course for which you would like to present one or more survey question for to test the user's knowledge.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>									
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Remediation">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Remediation Phase">
+					<fg:message>The remediation phase is a newer addition to Adaptive courseflow where the author can have more control over which content can be selected for remediation after the Recall phase.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ExcludeRuleExampleContent" type="common:booleanEnum" default="false" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Exclude Rule and Example Content from Remediation Phase">
+								<fg:message>Whether or not to exclude content tagged with Rule and Example from being available in the Remediation phase.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>				
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="Rule">
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="xs:anyType"/>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name="Practice">
+        <xs:complexType>
+			<xs:sequence>
+				<!-- ticket #1100
+				<xs:element name="PracticeConcepts">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info>
+								<fg:message>Identify the concepts being practiced as well as associate those course level concepts with their DKF equivalents.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ConceptPair" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="CourseConcept">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.CourseConceptSelectionDialog" exposed="true" message="Concept Node">
+														<fg:message>A course level concept convered in this practice instance.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="DKFConcept">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.MerrillsDKFPerformanceNodeSelectionDialog" exposed="true" message="Concept Node">
+														<fg:message>A concept from the practice DKF that maps directly to the course level concept.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:sequence>
+		</xs:complexType>
+    </xs:element>
+							
+						</xs:sequence>						
+					</xs:complexType>
+				</xs:element>
+				-->
+				<xs:element name="PracticeConcepts">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info>
+								<fg:message>Identify the concepts being practiced.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>							
+							<xs:element name="CourseConcept" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.CourseConceptSelectionDialog" exposed="true" message="Concept Node">
+											<fg:message>A course level concept covered in this practice instance.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>							
+						</xs:sequence>						
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AllowedAttempts" minOccurs="0" default="3">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Allowed Attempts">
+								<fg:message>The number of attempts allowed for this Practice portion of the course before gracefully ending the course.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+    </xs:element>
+	<xs:element name="PresentSurvey">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Present Survey">
+					<fg:message>Present a survey for the learner to complete.  For example the TUI can use Present Survey to display a Pre-lesson survey to the learner.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="transitionName"/>
+				<!--<xs:element minOccurs="0" ref="remediationBypass"/>-->
+                <xs:choice id="SURVEY_TYPE">
+                    <xs:element ref="common:GIFTSurveyKey"/>
+					<xs:element ref="Conversation"/>
+					<xs:element ref="SurveyExport"/>
+					<xs:element name="ConceptSurvey">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info message="Concept Survey">
+									<fg:message>Present a survey based on the specified concept(s) to assess the learner's comprehension.</fg:message>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<!-- the 'fixed' value needs to match mil.arl.gift.common.survey.Constants.KNOWLEDGE_ASSESSMENT_QBANK_GIFT_KEY -->
+								<xs:element name="GIFTSurveyKey" fixed="Knowledge Assessment Question Bank" type="xs:string"/>
+								<xs:element minOccurs="0" name="SkipConceptsByExamination" type="common:booleanEnum" default="true">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Skip Concepts By Examination">
+												<fg:message>Whether or not the results/score of this test should be used to influence (e.g. skip) parts of various lessons in the remaining course.  A lesson can be skipped based on the expertise of the learner on the concepts tested on.  The default is true, meaning that it is possible for the learner to skip parts of this course.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element minOccurs="0" name="fullScreen" type="common:booleanEnum" default="true">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Display Full Screen">
+												<fg:message>Whether or not to display the survey elements in full screen mode.  The default is false, meaning the message will be displayed in the horizontally compacted TUI.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element ref="ConceptQuestions"  maxOccurs="unbounded"/>
+								<!-- MH: for now test will contain all course concepts - maybe in the future a subset can be selected but that might not make sense
+								<xs:element name="concept" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Concept" exposed="true">
+												<fg:message>A concept in the concept list.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="QuestionTypes">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Easy" default="1">
+															<xs:annotation>
+																<xs:appinfo>
+																	<fg:node-info message="Easy" exposed="true">
+																	</fg:node-info>
+																</xs:appinfo>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:integer">
+																	<xs:minInclusive value="0"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="Medium" default="1">
+															<xs:annotation>
+																<xs:appinfo>
+																	<fg:node-info message="Medium" exposed="true">
+																	</fg:node-info>
+																</xs:appinfo>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:integer">
+																	<xs:minInclusive value="0"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="Hard" default="1">
+															<xs:annotation>
+																<xs:appinfo>
+																	<fg:node-info message="Hard" exposed="true">
+																	</fg:node-info>
+																</xs:appinfo>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:integer">
+																	<xs:minInclusive value="0"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="AssessmentRules">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="Expert">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="NumberCorrect" default="3">
+																		<xs:annotation>
+																			<xs:appinfo>
+																				<fg:node-info message="NumberCorrect" exposed="true">
+																					<fg:message>Minimum number of questions to get correct to receive an 'Expert' prior knowledge rating on this concept</fg:message>
+																				</fg:node-info>
+																			</xs:appinfo>
+																		</xs:annotation>
+																		<xs:simpleType>
+																			<xs:restriction base="xs:integer">
+																				<xs:minInclusive value="1"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="Journeyman">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="NumberCorrect" default="2">
+																		<xs:annotation>
+																			<xs:appinfo>
+																				<fg:node-info message="NumberCorrect" exposed="true">
+																					<fg:message>Minimum number of questions to get correct to receive an 'Journeyman' prior knowledge rating on this concept</fg:message>
+																				</fg:node-info>
+																			</xs:appinfo>
+																		</xs:annotation>
+																		<xs:simpleType>
+																			<xs:restriction base="xs:integer">
+																				<xs:minInclusive value="0"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="Novice">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="NumberCorrect" default="0">
+																		<xs:annotation>
+																			<xs:appinfo>
+																				<fg:node-info message="NumberCorrect" exposed="true">
+																					<fg:message>Minimum number of questions to get correct to receive a 'Novice' prior knowledge rating on this concept</fg:message>
+																				</fg:node-info>
+																			</xs:appinfo>
+																		</xs:annotation>
+																		<xs:simpleType>
+																			<xs:restriction base="xs:integer">
+																				<xs:minInclusive value="0"/>
+																			</xs:restriction>
+																		</xs:simpleType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="name" use="required">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.CourseConceptSelectionDialog" message="Concept Name" exposed="true">
+														<fg:message>A concept taught in this course for which you would like to present one or more survey question for to test the user's knowledge.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>									
+									</xs:complexType>
+								</xs:element>
+								-->
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element> 
+                </xs:choice>
+				<xs:element minOccurs="0" name="fullScreen" type="common:booleanEnum" default="true">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Display Full Screen">
+								<fg:message>Whether or not to display the survey elements in full screen mode.  The default is false, meaning the message will be displayed in the horizontally compacted TUI.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="showInAAR" type="common:booleanEnum" default="true">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Show in AAR">
+								<fg:message>Whether or not to display the survey results in any proceeding AAR.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="disabled" type="common:booleanEnum" default="false">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Disable Course Object">
+								<fg:message>Whether or not to disable the course object. The default is false, meaning it will not be disabled.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="sharedSurvey" type="common:booleanEnum" default="false">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Shared Survey">
+								<fg:message>Whether or not the survey referenced by this course object is a reference to a survey NOT unique to this survey context. 
+								The default is false, meaning the survey was created during authoring of this course.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" ref="mandatoryOption"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+		<xs:element name="SurveyExport">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Survey Export">
+					<fg:message>Present survey course object containing one or more survey elements from a GIFT formatted export file.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice id="SURVEY_EXPORT_TYPE">
+					<xs:element name="Question">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info message="Question Export">
+									<fg:message>The export file with a GIFT survey question.</fg:message>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="File">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info exposed="true" message="Question Export File">
+												<fg:message>The course folder relative path to a question.export file.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="18"/> <!-- *.question.export-->
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element> 
+					<xs:element name="Survey">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info message="Question Export">
+									<fg:message>The export file with a GIFT survey containing one or more survey questions across one or more survey pages.</fg:message>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="File">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info exposed="true" message="Survey Export File">
+												<fg:message>The course folder relative path to a survey.export file.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="16"/> <!-- *.survey.export-->
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>								 
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element> 
+	<xs:element name="Conversation">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info exposed="true" message="Conversation">
+					<fg:message>The conversation to have with the learner to assess the learner on one of more concepts.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="common:conversationTreeFile"/>
+					<xs:element ref="AutoTutorSession"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AAR">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="After Action Review">
+					<fg:message>AAR is a type of transition that presents a review of the learner's actions during a lesson.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element ref="transitionName"/>
+				<xs:element minOccurs="0" name="fullScreen" type="common:booleanEnum" default="true">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Display Full Screen">
+								<fg:message>Whether or not to display the AAR elements in full screen mode.  The default is false, meaning the AAR elements will be displayed in the horizontally compacted TUI.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" name="disabled" type="common:booleanEnum" default="false">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Disable Course Object">
+								<fg:message>Whether or not to disable the course object. The default is false, meaning it will not be disabled.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<!--<xs:element minOccurs="0" ref="remediationBypass"/>-->
+				<xs:element name="courseObjectsToReview" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Course Objects to Review">
+								<fg:message>List of course objects before this AAR course object in the course flow that should be considered for being included in a structured review.  Not authoring a list indicates that all scored course objects before this AAR will be considered.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="transitionName" minOccurs="1" maxOccurs="unbounded">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LessonMaterial">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Lesson Material">
+					<fg:message>Lesson Material is a type of transition that presents a self-guided view of material pertaining to the lesson.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element ref="transitionName"/>
+				<!--<xs:element minOccurs="0" ref="remediationBypass"/>-->
+                <xs:element minOccurs="0" ref="LessonMaterialList"/>
+                <xs:element minOccurs="0" ref="lessonMaterialFiles"/>
+                <xs:element minOccurs="0" name="disabled" type="common:booleanEnum" default="false">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Disable Course Object">
+								<fg:message>Whether or not to disable the course object. The default is false, meaning it will not be disabled.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="lessonMaterialFiles">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Lesson Material Files">
+					<fg:message>List of Lesson Material files with references to lesson material to present.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element maxOccurs="unbounded" name="file">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.LessonMaterialSelectionDialog" message="File name">
+								<fg:message>The relative Lesson Material file name from the Training Material directory as specified by the domain properties.</fg:message>
+								<fg:message>Refer to "Help" for more information.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="8"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="AutoTutorSession">
+        <xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Auto Tutor Session">
+					<fg:message>Specifies that an Auto Tutor session should be presented to the user.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+        <xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="1">
+				<xs:element ref="AutoTutorSKO"/>
+				<xs:element ref="dkfRef"/>					
+			</xs:choice>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="AutoTutorSKO">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice minOccurs="0" maxOccurs="1">
+					<xs:element ref="common:LocalSKO"/>
+					<xs:element ref="common:ATRemoteSKO"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AuthoredBranch">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Authored Branch">
+					<fg:message>Contains paths of course objects where each path is selected based on distributions or learner centric variables/states.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element ref="transitionName"/>
+				<xs:element minOccurs="0" name="disabled" type="common:booleanEnum" default="false">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Disable Course Object">
+								<fg:message>Whether or not to disable the course object. The default is false, meaning it will not be disabled.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="SimpleDistribution" minOccurs="0"> <!-- if path level conditions are authored this should not be authored -->
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Simple Distribution">
+								<fg:message>Defines a path distribution policy that doesn't require path specific condition definitions.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice minOccurs="1" maxOccurs="1">
+								<xs:element name="Random">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Random Distribution">
+												<fg:message>Randomly selects a path in this branch independent of previous path selections for learners.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:restriction base="xs:anyType"/>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Balanced">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Balanced Distribution">
+												<fg:message>Evenly selects paths based on the historical record of how many times each path was selected.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:restriction base="xs:anyType"/>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="Custom">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Custom Distribution">
+												<fg:message>Each path has a distribution percentage used in conjunction with the historical record of how many times each path was selected.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:complexContent>
+											<xs:restriction base="xs:anyType"/>
+										</xs:complexContent>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="paths">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="path" maxOccurs="unbounded" >
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info exposed="true" message="Transition Name">
+														<fg:message>A display name for this path.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element name="condition" minOccurs="0"> <!-- should not be authored if simple distribution is used -->
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice>
+														<xs:element name="CustomPercent">
+															<xs:annotation>
+																<xs:appinfo>
+																	<fg:node-info message="Custom Percent Distribution">
+																		<fg:message>Used to specify a percent of how often this path should be selected.  A value of (0.0-100.0) is allowed.</fg:message>
+																	</fg:node-info>
+																</xs:appinfo>
+															</xs:annotation>
+															<xs:simpleType>
+																<xs:restriction base="xs:decimal">
+																	<xs:minInclusive value="0"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+														<xs:element name="LearnerCentric">
+															<xs:annotation>
+																<xs:appinfo>
+																	<fg:node-info message="Learner Centric Path Condition"> 
+																		<fg:message>Use something about the learner to decide on the path the learner should take (e.g. learner state, survey response).</fg:message>
+																	</fg:node-info> 
+																</xs:appinfo>
+															</xs:annotation>
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:choice id="LEARNER_COND_TYPE" maxOccurs="unbounded">	
+																		<xs:element name="learnerState">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<fg:node-info message="Learner State Condition"> 
+																						<fg:message>Use a learner state value as a condition for selecting this path (e.g. high Motivation).</fg:message>
+																					</fg:node-info> 
+																				</xs:appinfo>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="attribute">
+																						<xs:annotation>
+																							<xs:appinfo>
+																								<fg:node-info message="Learner State Attribute" editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeTypeDialog"> 
+																									<fg:message>The learner state attribute to use as a condition of this path (e.g. Motivation).</fg:message>
+																								</fg:node-info> 
+																							</xs:appinfo>
+																						</xs:annotation>
+																						<xs:simpleType>
+																							<xs:restriction base="xs:string">
+																								<xs:minLength value="1" />
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:element>
+																					<xs:element name="value">
+																						<xs:annotation>
+																							<xs:appinfo>
+																							<fg:node-info message="Learner State Value" editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeValueDialog"> 
+																								<fg:message>The learner state attribute value for a learner state attribute (e.g. low as in Low Motivation).</fg:message>
+																								<fg:param name="attributeValueNodeName">current</fg:param>
+																								<fg:param name="attributeTypeNodeName">attribute</fg:param>
+																								<fg:param name="allowAnyValue">false</fg:param>
+																							</fg:node-info> 
+																						</xs:appinfo>
+																						</xs:annotation>
+																						<xs:simpleType>
+																							<xs:restriction base="xs:string">
+																								<xs:minLength value="1" />
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:element>																					
+																				</xs:sequence>
+																			</xs:complexType>																			
+																		</xs:element>
+																		<xs:element name="knowledgeAssessment">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<fg:node-info message="Knowledge Assessment" editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeTypeDialog"> 
+																						<fg:message>Use a learner's assessment on knowledege about a concept as a condition for selecting this path (e.g. Expert on 'map reading').</fg:message>
+																					</fg:node-info> 
+																				</xs:appinfo>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="concept">
+																						<xs:annotation>
+																							<xs:appinfo>
+																								<fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.CourseConceptSelectionDialog" exposed="true" message="Concept Node">
+																									<fg:message>A concept from the course concept collection.</fg:message>
+																								</fg:node-info>
+																							</xs:appinfo>
+																						</xs:annotation>
+																						<xs:simpleType>
+																							<xs:restriction base="xs:string">
+																								<xs:minLength value="1"/>
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:element>
+																					<xs:element name="expertise">
+																						<xs:complexType>
+																							<xs:sequence>
+																								<xs:choice id="EXPERTISE_CHOICE">
+																									<xs:element name="Novice">
+																										<xs:complexType>
+																											<xs:complexContent>
+																												<xs:restriction base="xs:anyType"/>
+																											</xs:complexContent>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="Journeyman">
+																										<xs:complexType>
+																											<xs:complexContent>
+																												<xs:restriction base="xs:anyType"/>
+																											</xs:complexContent>
+																										</xs:complexType>
+																									</xs:element>
+																									<xs:element name="Expert">
+																										<xs:complexType>
+																											<xs:complexContent>
+																												<xs:restriction base="xs:anyType"/>
+																											</xs:complexContent>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:choice>	
+																							</xs:sequence>
+																						</xs:complexType>	
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="surveyResponse">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<fg:node-info message="Survey Response"> 
+																						<fg:message>Use a learner's choice to a survey question as a condition for selecting this path (e.g. choice 2 of question 17 in survey 4).</fg:message>
+																					</fg:node-info> 
+																				</xs:appinfo>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="survey">
+																						<xs:annotation>
+																							<xs:appinfo>
+																								<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.SurveyDialog" message="key">
+																									<fg:message>The survey question's unique id in the survey authoring system database.</fg:message>
+																									<fg:message>Note: this is not the question id but rather the survey question id. Refer to the Survey Authoring System documentation for more information.</fg:message>
+																								</fg:node-info>
+																							</xs:appinfo>
+																						</xs:annotation>
+																						<xs:simpleType>
+																							<xs:restriction base="xs:integer">
+																								<xs:minInclusive value="0"/>
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:element>
+																					<xs:element name="surveyQuestion">
+																						<xs:annotation>
+																							<xs:appinfo>
+																								<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.SurveyQuestionDialog" message="key">
+																									<fg:message>The survey question's unique id in the survey authoring system database.</fg:message>
+																									<fg:message>Note: this is not the question id but rather the survey question id. Refer to the Survey Authoring System documentation for more information.</fg:message>
+																								</fg:node-info>
+																							</xs:appinfo>
+																						</xs:annotation>
+																						<xs:simpleType>
+																							<xs:restriction base="xs:integer">
+																								<xs:minInclusive value="0"/>
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:element>
+																					<xs:element name="answer">
+																						<xs:complexType>
+																							<xs:sequence>
+																								<xs:choice id="ANSWER_TYPE">
+																									<xs:element name="entry">
+																										<xs:annotation>
+																											<xs:appinfo>
+																												<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.SurveyReplyDialog" message="key">
+																													<fg:message>The reply's unique id in the survey authoring system database.  The referenced reply id should be a possible reply to the question for the survey.</fg:message>
+																												</fg:node-info>
+																											</xs:appinfo>
+																										</xs:annotation>
+																										<xs:simpleType>
+																											<xs:restriction base="xs:string" />
+																										</xs:simpleType>
+																									</xs:element>
+																									<xs:element name="selection">
+																										<xs:complexType>
+																											<xs:sequence>
+																												<xs:element name="choice" maxOccurs="unbounded">
+																													<xs:annotation>
+																														<xs:appinfo>
+																															<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.SurveyReplyDialog" message="key">
+																																<fg:message>The reply's unique id in the survey authoring system database.  The referenced reply id should be a possible reply to the question for the survey.</fg:message>
+																															</fg:node-info>
+																														</xs:appinfo>
+																													</xs:annotation>
+																													<xs:simpleType>
+																														<xs:restriction base="xs:integer">
+																															<xs:minInclusive value="0"/>
+																														</xs:restriction>
+																													</xs:simpleType>
+																												</xs:element>
+																											</xs:sequence>
+																										</xs:complexType>
+																									</xs:element>
+																								</xs:choice>
+																							</xs:sequence>
+																						</xs:complexType>																					
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																		<xs:element name="dkfScoring">
+																			<xs:annotation>
+																				<xs:appinfo>
+																					<fg:node-info message="DKF Scoring"> 
+																						<fg:message>Use the results of DKF scoring as a condition for selecting this path (e.g. choice 2 of question 17 in survey 4).</fg:message>
+																					</fg:node-info> 
+																				</xs:appinfo>
+																			</xs:annotation>
+																			<xs:complexType>
+																				<xs:sequence>
+																					<xs:element name="taskconcept">
+																						<xs:annotation>
+																							<xs:appinfo>
+																								<fg:node-info exposed="true" message="Task or Concept Node">
+																									<fg:message>A task or concept node name from a DKF that was previously executed in this course.  That DKF node must have scoring rules.</fg:message>
+																								</fg:node-info>
+																							</xs:appinfo>
+																						</xs:annotation>
+																						<xs:simpleType>
+																							<xs:restriction base="xs:string">
+																								<xs:minLength value="1"/>
+																							</xs:restriction>
+																						</xs:simpleType>
+																					</xs:element>
+																					<xs:element name="assessment" type="common:AssessmentLevelEnumType">
+																						<xs:annotation>
+																							<xs:appinfo>
+																								<fg:node-info exposed="true" message="Assessment">
+																									<fg:message>The score to give when the evaluation is true based on the 'operator' and 'value' authored.</fg:message>
+																								</fg:node-info>
+																							</xs:appinfo>
+																						</xs:annotation>
+																					</xs:element>
+																				</xs:sequence>
+																			</xs:complexType>
+																		</xs:element>
+																	</xs:choice>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+													</xs:choice>													
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="courseobjects">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Course objects">
+														<fg:message>A sequence of course objects to execute for this path.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice minOccurs="1" maxOccurs="unbounded">
+														<xs:element ref="AAR"/>
+														<xs:element ref="AuthoredBranch"/>
+														<xs:element name="End">
+															<xs:annotation>
+																<xs:appinfo>
+																	<fg:node-info message="Course End object">
+																		<fg:message>This will cause the course to end gracefully.</fg:message>
+																	</fg:node-info>
+																</xs:appinfo>
+															</xs:annotation>
+															<xs:complexType>
+																<xs:complexContent>
+																	<xs:restriction base="xs:anyType"/>
+																</xs:complexContent>
+															</xs:complexType>
+														</xs:element>
+														<xs:element ref="Guidance"/>
+														<xs:element ref="LessonMaterial"/>
+														<xs:element ref="MerrillsBranchPoint"/>
+														<xs:element ref="PresentSurvey"/>
+														<xs:element ref="TrainingApplication"/>
+													</xs:choice>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="pathId" use="required">
+										<xs:annotation>
+											<xs:appinfo>
+												<fg:node-info exposed="true" message="Path Id">
+													<fg:message>Unique id for this path in this course.</fg:message>
+												</fg:node-info>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:integer">
+												<xs:minExclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="defaultPathId" minOccurs="0"> <!-- only needed if non-simple distribution is authored -->
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Default End Id">
+								<fg:message>Unique id for the path in this branch to enter if none of the conditions are satisfied.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minExclusive value="0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="branchId" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true" message="Branch Id">
+                            <fg:message>Unique id for this branch in this course.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minExclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+		</xs:complexType>
+	</xs:element>
+    <!-- Start of Pedagogy related items -->
+    <xs:element name="actions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="stateTransitions">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="State Transitions">
+                                <fg:message>A state transitions corresponds to a change in a learner state from the current value to the next value.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="stateTransition">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="LogicalExpression">
+                                            <xs:annotation>
+                                                <xs:appinfo>
+                                                    <fg:node-info message="State Logical Expression">
+                                                        <fg:message>Allows for the creation of a logical expression on learner state attribute transitions.  This allows for more complex and fine tuned instructional strategy selection.</fg:message>
+                                                        <fg:message>Note: For now every attribute transition child is analyzed with an AND operator.</fg:message>
+                                                    </fg:node-info>
+                                                </xs:appinfo>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:choice maxOccurs="unbounded">
+                                                        <xs:element ref="ped:LearnerStateTransitionEnum"/>
+                                                    </xs:choice>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="strategyChoices">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element maxOccurs="unbounded" ref="strategyRef"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+									<xs:attribute name="name">
+										<xs:annotation>
+											<xs:appinfo>
+												<fg:node-info exposed="true">
+													<fg:message>A display name for this state transition definition.</fg:message>
+												</fg:node-info>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="instructionalStrategies">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Instructional Strategies">
+                                <fg:message>Specifies the various instructional strategies available for this scenario.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" ref="strategy"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="strategyRef">
+		<xs:annotation>
+			<xs:appinfo>
+                <fg:node-info exposed="true" message="Strategy Reference">
+                    <fg:message>References the unique name of an instructional strategy in the strategies list.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.cat.custnodes.StrategyReferenceDialog" exposed="true" message="Strategy Name">
+                            <fg:message>Unique name of an instructional strategy.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name="strategy">
+        <xs:complexType>
+            <xs:sequence/>
+            <xs:attribute name="name" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true" message="Strategy Name">
+                            <fg:message>Unique name of an instructional strategy.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mandatoryOption">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Mandatory Option">
+                    <fg:message>This represents the selection of the mandatory behavior that the author wishes to use.</fg:message>
+                    <fg:message>This behavior is used to determine when to give a learner the choice to skip the course object if there is relevant existing learner state already</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+	        <xs:choice>
+                <xs:element ref="simpleMandatoryBehavior"/>
+                <xs:element ref="fixedDecayMandatoryBehavior"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="simpleMandatoryBehavior">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Simple Mandatory Behavior">
+                    <fg:message>This mandatory behavior specifies that available existing learner state should either always be used or never be used without consideration of any other variables/factors</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="useExistingLearnerStateIfAvailable">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Use Existing Learner State If Available">
+                                <fg:message>The value that is used to determine whether or not to use pre existing learner state instead of having the user go through the course object that could be skipped</fg:message>
+                                <fg:message>A true value indicates that previous learner state should be used if available. A false value indicates that the user should always take the course object.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:boolean"/>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="fixedDecayMandatoryBehavior">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Fixed Decay Mandatory Behavior">
+                    <fg:message>This mandatory behavior specifies that available existing learner state should be used as long as it was collected within a specified amount of time</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="learnerStateShelfLife">
+                    <xs:simpleType>
+                        <xs:annotation>
+                            <xs:appinfo>
+                                <fg:node-info message="Learner State Shelf Life">
+                                    <fg:message>The maximum age a pre existing learner state can be and still be used to allow the course taker to skip the course object.</fg:message>
+                                    <fg:message>The time is measured in milliseconds</fg:message>
+                                </fg:node-info>
+                            </xs:appinfo>
+                        </xs:annotation>
+                        <xs:restriction base="xs:integer">
+                            <xs:minExclusive value="0"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- End of Pedagogy related items -->
+</xs:schema>

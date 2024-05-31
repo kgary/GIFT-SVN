@@ -1,0 +1,39 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "WeaponFireProto";
+
+import "BurstDescriptor.proto";
+import "EntityIdentifier.proto";
+import "EventIdentifier.proto";
+import "Vector3D.proto";
+
+/* This message represents a weapon fire event. */
+message WeaponFire {
+	/* The event id. */
+	EventIdentifier event_id = 1;
+	
+	/* The firing entity id. */
+	EntityIdentifier firing_entity_id = 2;
+	
+	/* The location of the firing weapon. */
+	Vector3D location = 3;
+	
+	/* The id of the munition. */
+	EntityIdentifier munition_id = 4;
+	
+	/* The id of the weapon looking to hit. */
+	EntityIdentifier target_entity_id = 5;
+	
+	/* The velocity of the firing event. */
+	Vector3D velocity = 6;
+	
+	/* The burst description. */
+	BurstDescriptor burst_desc = 7;
+}

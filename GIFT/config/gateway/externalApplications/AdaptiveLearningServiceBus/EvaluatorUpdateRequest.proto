@@ -1,0 +1,71 @@
+/* 
+ * version 1.1 [July 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "EvaluatorUpdateRequestProto";
+
+import "Integer32Object.proto";
+import "FloatObject.proto";
+
+/* used to update attributes of a task or concept including performance assessment, observer bookmarks, 
+ * and the team organization members to relate these updates too  */
+message EvaluatorUpdateRequest{
+
+	/** the task or concept name */
+	string taskConceptName = 1;
+	
+	/** the username of the person making the request */
+	string evaluator = 2;
+	
+	/** the epoch time when the evaluator update happened */
+	int64 timestamp = 3;
+	
+	/** the Assessment Level Enum [Unknown, BelowExpectation, AtExpectation, AboveExpectation] for the task or concept */
+	string performanceMetric = 4;
+	
+	/** whether the current assessment or the provided performance metric for the named task or concept in this request should be held constant, i.e. GIFT can't change it automatically */
+	bool assessmentHold = 5;
+	
+	/** how confident is the assessment of the learner on this task or concept [0,1] */
+	FloatObject confidenceMetric = 6;
+	
+	/** whether the current confidence for the named task or concept is this request should be held constant, i.e. GIFT can't change it automatically */
+	bool confidenceHold = 7;
+	
+	/** how competence is the assessment of the learner on this task or concept [0,1] */
+	FloatObject competenceMetric = 8;
+	
+	/** whether the current competence for the named task or concept is this request should be held constant, i.e. GIFT can't change it automatically */
+	bool competenceHold = 9;
+	
+	/** the trend of the assessment of the learner on this task or concept [-1,1] */
+	FloatObject trendMetric = 10;
+	
+	/** whether the current trend for the named task or concept is this request should be held constant, i.e. GIFT can't change it automatically */
+	bool trendHold = 11;
+	
+	/** the priority of the this task or concept ( > 0) */
+	Integer32Object priorityMetric = 12;
+	
+	/** whether the current priority for the named task or concept is this request should be held constant, i.e. GIFT can't change it automatically */
+	bool priorityHold = 13;
+	
+	/** The new state to place the performance node into (only for Tasks) [UNACTIVATED, ACTIVE, DEACTIVATED, FINISHED] */
+	string taskStateEnum = 14;
+	
+	/** an explanation of why this request is being made, a note, an observation made, a bookmark */
+	string reason = 15;
+	
+	/** mapping of team organization team member names and their respective performance assessment level enum [Unknown, BelowExpectation, AtExpectation, AboveExpectation],
+	 * useful for associated specific members with this request */
+	map<string, string> teamOrgEntities = 16;
+	
+	/** reference to a media file (such as a recording [e.g. "recorder/59f3c5bc-03f7-4885-ab88-a2e56ab319e9.wav"]) 
+     * associated with this update.  E.g. an OC/T created a bookmark by recording an audio message. */
+	string mediaFile = 17;
+	
+}

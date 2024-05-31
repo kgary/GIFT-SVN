@@ -1,0 +1,13 @@
+#!/bin/bash
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+cd "$parent_path"
+
+# Get a list of PIDs for all processes that have been started by GIFT's JDK
+processList=$(pidof "$(pwd)/GIFT/external/jdk-11/bin/java")
+
+# Stop each of the processes by their listed PIDs
+for process in ${processList}; do
+    echo "Stopping GIFT process ${process}"
+    kill -9 ${process}
+done

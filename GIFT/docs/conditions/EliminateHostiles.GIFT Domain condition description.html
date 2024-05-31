@@ -1,0 +1,70 @@
+﻿
+<head>
+<style type="text/css">
+.auto-style1 {
+	margin-left: 80px;
+}
+.auto-style2 {
+	text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+<p><strong>Eliminate Hostiles Condition</strong></p>
+<p>This condition checks whether a list of pre-defined entities/characters in 
+the external application have been eliminated.&nbsp; In order to identify these 
+entities their initial locations must be defined for this condition.&nbsp; An 
+entity is eliminated if their health status is anything but healthy.&nbsp; The 
+condition doesn't look at the cause of the change in health status so you can't, 
+for example, use this condition to gaurantee that the learner was the cause of 
+the change in health unless your environment/scenario guarantees that on its own 
+(e.g. the learner is the only entity that will cause harm to the target entity).</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<p>&nbsp;&nbsp; &nbsp; Default:</p>
+<ul class="auto-style1">
+	<li><span style="color: #008000">Above Expectation</span></li><li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: all of the entities to track are no longer healthy</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the default value</li>
+		<li>case: if there is at least one healthy entity from the list of 
+		entities to track</li>
+	</ul>
+	</li>
+	<li>Unknown</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; Customize:</p>
+<ul class="auto-style1">
+	<li><span class="auto-style2">count</span>: an evaluation event happens once 
+	for each entity in the authored list when the entity is damaged.&nbsp; The 
+	number of events will be less than or equal to the number of entities.</li>
+	<li><span class="auto-style2">completion time</span>: the amount of time 
+	from the start of the task to when all entities in the list are damaged.&nbsp;&nbsp;
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li><span class="auto-style2">counts</span> the number of entities from the list that are no longer healthy 
+	(not to exceed the number of entities in the list)</li>
+	<li>provides the<span class="auto-style2"> amount of time</span> it took for all entities in the list to no 
+	longer be healthy</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition completes when all entities from the list are no longer 
+	healthy</li>
+	<li>the condition can't be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can cause GIFT Entity state messages to be created</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.EliminateHostilesCondition</em></p>
+</body>

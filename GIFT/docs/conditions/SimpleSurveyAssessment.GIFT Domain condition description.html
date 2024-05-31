@@ -1,0 +1,55 @@
+﻿<body>
+<p><strong>Simple Survey Assessment Condition</strong></p>
+<p>This condition is normally used when the author wants to apply the scoring 
+results of a survey to a concept and doesn't have another condition type that 
+applies to the situation.&nbsp; For example, suppose you would like to present a 
+survey when the learner reaches a specific location in a virtual environment 
+such as Unity.&nbsp; You don't want the survey results to change the assessment 
+for reaching that location but rather for another concept such as "identifying 
+land features".&nbsp; In this example you would want to use the simple survey 
+assessment condition to apply the score of the survey to the "identifying land 
+features" concept.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span><ul>
+		<li>case: when the learner receives an Expert score on the survey</li>
+	</ul>
+	</li>
+	<li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: when the learner receives a Journeyman score on the survey</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: when the learner receives a Novice score on the survey</li>
+	</ul>
+	</li>
+	<li>Unknown<ul>
+		<li>case: the default value, if the learner doesn't receive a score on 
+		the survey</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts - the number of times the survey score is Expert or Journeyman.</li>
+	<li>provides the amount of time from when the condition started being 
+	assessed to the time when the learner received an Expert or Journeyman score 
+	on the survey. </li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition completes when the survey score is Expert or Journeyman</li>
+	<li>the condition can be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>not associated with a Training Application because this is tied to 
+	surveys given by GIFT</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>none</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.SimpleSurveyAssessmentCondition</em></p>
+</body>

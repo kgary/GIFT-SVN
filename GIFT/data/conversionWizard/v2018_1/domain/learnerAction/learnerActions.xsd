@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 	version="8.0" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:fg="http://www.FGolubov.com/XMLEditor" 
+			xmlns:common="http://GIFT.com/common"
+			targetNamespace="http://GIFT.com/learnerActions" 
+			xmlns="http://GIFT.com/learnerActions" 
+			elementFormDefault="qualified">
+  <xs:import namespace="http://GIFT.com/common" schemaLocation="../common.xsd"/>
+  <xs:element name="LearnerActionsList">  
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Learner Actions List"> 
+			<fg:message>This is the root node of learner actions list which contains a list of learner actions.  Look for other helpful information by clicking on a node.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element ref="learnerAction" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="learnerAction">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="type" type="LearnerActionEnumType"/>
+			<xs:element name="displayName">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Display Name"> 
+						<fg:message>The display name that will appear for this action on the TUI.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="description" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Description"> 
+						<fg:message>A useful description about the learner action to appear on the TUI.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="1">
+				<xs:element ref="TutorMeParams"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element> 
+  <xs:element name="learnerActionReference">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Learner Action Name"> 
+						<fg:message>The unique name of a learner action that is available to the learner on the Tutor (e.g. TUI).</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>  
+  <xs:element name="TutorMeParams">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Available Tutor Me">
+					<fg:message>Tutor Me options are learner activated conversations available to the Learner on the Tutor during the execution of a training application.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="common:conversationTreeFile"/>
+					<xs:element ref="AutoTutorSKO"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AutoTutorSKO">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="common:LocalSKO"/>
+					<xs:element ref="common:ATRemoteSKO"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+  <xs:simpleType name="LearnerActionEnumType">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="Explosive Hazard Spot Report"/>
+			<xs:enumeration value="Nine Line Report"/>
+			<xs:enumeration value="Spot Report"/>
+			<xs:enumeration value="Radio"/>
+			<xs:enumeration value="Tutor Me"/>
+		</xs:restriction>
+	  </xs:simpleType>
+</xs:schema>

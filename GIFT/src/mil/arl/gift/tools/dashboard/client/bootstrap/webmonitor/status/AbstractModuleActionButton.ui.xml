@@ -1,0 +1,26 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style>
+	   .inline{
+            display: inline;
+	   }
+	   .button{
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+	   }
+	   @external disabled;
+	   .button.disabled{
+            box-shadow: inset 0px 5px 5px rgba(0,0,0,0.9);
+            opacity: 0.75;
+       }
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.inline}'>
+	   <wb:ManagedTooltip ui:field='tooltip'>
+	       <g:FlowPanel addStyleNames='{style.inline}'>
+	           <b:Button type="PRIMARY" addStyleNames='{style.button}' ui:field='button'/>
+	       </g:FlowPanel>
+	   </wb:ManagedTooltip>
+	</g:FlowPanel>
+</ui:UiBinder> 

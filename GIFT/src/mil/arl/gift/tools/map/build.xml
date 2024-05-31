@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Web Map Module" default="compile" basedir=".">
+	<property name="root.path" value="../../../../../.." />
+	<property name="package.name" value="mil.arl.gift.tools.map" />
+	<property name="source.path" value="mil/arl/gift/tools/map" />
+
+	<property name="gwt.sdk.extensions" value="${root.path}/external/gwt/extensions" />
+	<property name="gwt.sdk" value="${root.path}/external/gwt/gwt-2.9.0" />
+	<property name="gwt.args" value="" />
+
+	<property name="jarfile.name" value="gift-map.jar" />
+
+	<!-- This defines the version of gwtbootstrap jarfile we are using -->
+	<property name="gwtbootstrap.lib" value="gwtbootstrap3-1.0.1.jar" />
+	<property name="gwtbootstrapextras.lib" value="gwtbootstrap3-extras-1.0.1.jar" />
+
+	<property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css,**/*.swf,**/*.js" />
+	<property name="jarfile.includes" value="**" />
+	<property name="jarfile.excludes" value="*.class,**/*.class" />
+
+	<path id="classpath">
+	</path>
+
+	<path id="gwtClasspath">
+		<pathelement location="${gwt.sdk}/gwt-user.jar" />
+		<pathelement location="${gwt.sdk}/gwt-dev.jar" />
+		<fileset dir="${root.path}/external" includes="/gwtbootstrap/${gwtbootstrap.lib}" />
+		<fileset dir="${root.path}/external" includes="/gwtbootstrap/${gwtbootstrapextras.lib}" />
+		<fileset dir="${gwt.sdk.extensions}" includes="gwt-maps-api-3.10.0-alpha-6.jar" />
+		<fileset dir="${gwt.sdk.extensions}" includes="gwt-ajaxloader-1.1.0.jar" />
+
+	</path>
+
+	<target name="checkForUpdates">
+        <uptodate property="sourceChanged" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}"/>
+            <srcfiles dir="client" includes="${update.includes}"/>
+        	<srcfiles dir="shared" includes="${update.includes}"/>
+        </uptodate>
+        
+        <condition property="build.required">
+            <and>
+                <isset property="sourceChanged" />
+            </and>
+        </condition>
+    </target>   
+	
+	<target name="compileCore" unless="build.required">
+        <echo message="Compiling map"/>
+        <javac srcdir="." encoding="utf-8"
+               destdir="${root.path}/build/classes"
+               source="1.8" target="1.8" nowarn="true"
+               debug="true" debuglevel="lines,vars,source"
+               includeAntRuntime="false">
+            <classpath>
+                <path refid="classpath" />
+                <path refid="gwtClasspath" />
+            </classpath>
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <copy todir="${root.path}/build/classes/${source.path}">
+            <fileset dir=".">
+                <include name="**/*.png"/>
+                <include name="**/*.gwt.xml"/>
+            </fileset>
+        </copy>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" includes="${source.path}/**"/>
+    </target>
+
+	<target name="compile" depends="checkForUpdates,compileCore" />
+
+	<target name="clean">
+		<delete dir="${root.path}/build/classes/${source.path}"/>
+		<delete file="${root.path}/bin/${jarfile.name}"/>
+	</target>
+
+</project>

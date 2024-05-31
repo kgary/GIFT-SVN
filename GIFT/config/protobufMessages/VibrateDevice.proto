@@ -1,0 +1,16 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "VibrateDeviceProto";
+
+/* This message contains a number array specifying a pattern of vibrations and pauses, in milliseconds */
+message VibrateDevice {
+	/* The pattern array property. */
+	repeated int32 pattern_array_property = 1;
+}

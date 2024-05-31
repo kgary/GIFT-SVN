@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+ 
+option java_package = "generated.proto.common";
+option java_outer_classname = "ModuleStatusProto";
+
+import "google/protobuf/wrappers.proto";
+import "AbstractEnumObject.proto";
+
+/* Contains the status of a module. */
+message ModuleStatus {
+	/* The module's name sending the status (doesn't have to be unique). */
+	google.protobuf.StringValue module_name = 1;
+	
+	/* The module's queue name (i.e. unique message bus address to send messages too that are for this module). */
+	google.protobuf.StringValue queue_name = 2;
+	
+	/* The module's type of the module reporting this status. */
+	AbstractEnumObject module_type = 3;
+	
+	/* The module's state */
+	AbstractEnumObject module_state = 4;
+}

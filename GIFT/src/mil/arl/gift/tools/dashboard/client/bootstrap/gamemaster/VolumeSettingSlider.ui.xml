@@ -1,0 +1,45 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:s="urn:import:org.gwtbootstrap3.extras.slider.client.ui"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	    .mainPanel{
+            display: flex;
+       }
+       .sliderPanel{
+            flex: 1;
+            margin: 0px 12px;
+            align-items: center;
+	   }
+	   @external slider-horizontal;
+	   .sliderPanel .slider-horizontal{
+            width: 100%;
+	   }
+       .buttonContainer{
+            text-align: center;
+       }
+       .button{
+            padding: 0px;
+            width: 34px;
+            height: 22px;
+            box-shadow: inset -1px -3px 3px rgba(0,0,0,0.3), 2px 2px 3px rgba(0,0,0,0.5);
+	   }
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.mainPanel}'>
+	   <wb:ManagedTooltip title='Mute all sounds'>
+            <g:FlowPanel addStyleNames='{style.buttonContainer}'>
+                <b:Button icon='VOLUME_OFF' iconSize='LARGE' type='DEFAULT' addStyleNames='{style.button}' ui:field='minButton'/>
+            </g:FlowPanel>
+        </wb:ManagedTooltip>
+	   <g:FlowPanel addStyleNames='{style.sliderPanel}'>
+           <s:Slider step="0.5" ui:field='volumeSlider'/>
+       </g:FlowPanel>
+       <wb:ManagedTooltip title='Play all sounds at full volume'>
+            <g:FlowPanel addStyleNames='{style.buttonContainer}'>
+                <b:Button icon='VOLUME_UP' iconSize='LARGE' type='DEFAULT' addStyleNames='{style.button}' ui:field='maxButton'/>
+            </g:FlowPanel>
+        </wb:ManagedTooltip>
+	</g:FlowPanel>
+</ui:UiBinder> 

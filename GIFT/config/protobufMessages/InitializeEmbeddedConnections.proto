@@ -1,0 +1,16 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "InitializeEmbeddedConnectionsProto";
+
+/* This message is used to initialize/enable specific embedded applications for a lesson/domain-session. */
+message InitializeEmbeddedConnections {
+	/* The list of connections. */
+	repeated string urls = 1;
+}

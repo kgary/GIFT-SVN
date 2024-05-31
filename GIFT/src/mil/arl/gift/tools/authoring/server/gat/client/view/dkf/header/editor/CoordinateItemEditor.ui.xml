@@ -1,0 +1,14 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared">
+	<ui:style>
+	</ui:style>
+	<g:FlowPanel>
+	    <shared:Ribbon ui:field='newOrExistingRibbon'/>
+	    <g:DeckPanel ui:field='newOrExistingDeck' visible='false'>
+			<shared:ScenarioCoordinateEditor ui:field="coordinateEditor" width="auto" />
+			<shared:PlaceOfInterestPicker ui:field='pointPicker'/>
+		</g:DeckPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

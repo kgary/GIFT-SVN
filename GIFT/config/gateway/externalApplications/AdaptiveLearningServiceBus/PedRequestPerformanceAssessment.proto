@@ -1,0 +1,19 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "PedRequestPerformanceAssessmentProto";
+
+/* 
+ *	This message represents a request for a performance assessment from the
+ *	pedagogical module.
+ */
+message PedRequestPerformanceAssessment {
+	float wait_time = 1;
+	string strategy_name = 2;
+	string reason_for_request = 3;
+}

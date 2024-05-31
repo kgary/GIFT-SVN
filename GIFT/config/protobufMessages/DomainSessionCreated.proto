@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainSessionCreatedProto";
+
+import "DomainSession.proto";
+
+/* This message represents detailed information about a reated domain session. */
+message DomainSessionCreated {
+	/* The created domain session. */
+	DomainSession domain_session = 1;
+}

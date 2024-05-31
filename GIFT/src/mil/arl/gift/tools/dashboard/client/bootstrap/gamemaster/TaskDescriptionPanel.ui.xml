@@ -1,0 +1,166 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:gm="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    <ui:style type="mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster.TaskDescriptionPanel.Style">       
+       @keyframes taskActiveAnimation{
+		    0% {background-color: transparent;}
+		    50% {background-color: rgba(100,255,100, 0.5);}
+		}
+
+       .taskDescriptionPanel{
+           background-color: white;
+           border: rgb(150, 150, 150);
+           box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+           border-radius: 5px;
+           min-width: 310px;
+           transition: border-width 0.5s;
+           cursor: pointer;
+           white-space: normal;
+       }
+       .taskDescriptionPanel:hover { 
+           border-width: 2px;
+       }
+       .taskDescriptionPanel.expanded {
+           cursor: default;
+           min-width: 410px;
+       }
+       .taskDescriptionHeader{
+            display: flex;
+            align-items: center;
+            padding: 3px 10px;
+            background-image: linear-gradient(transparent 50%, rgba(0,0,0,0.20));
+            box-shadow: 0px 1px 5px rgba(0,0,0,0.50);
+       }
+       .expanded .taskDescriptionHeader{
+            cursor: pointer;
+        }
+       .taskNameText{
+            flex: 1;
+            font-size: 16px;
+            font-weight: bold;
+       }
+       .taskDescriptionBody{
+            padding-top: 5px;
+            padding-left: 5px;
+       }
+       .taskDescriptionFieldPanel{
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+       }
+       .taskDescriptionFieldLabel{
+            margin-right: 5px;
+       }
+       .taskDescriptionFieldValue{
+            flex: 1;
+            font-weight: bold;
+       }
+       .headerIcon{
+			cursor: pointer;
+			padding-left: 8px;
+		}
+        .historyLogOverlay {
+            cursor: auto;
+        }
+        .historyLog {
+            display: flex;
+            flex-flow: column nowrap;
+            min-width: 500px;
+            max-height: 400px;
+            overflow: auto;
+        }
+        .assessmentIcon{
+            margin-right: 5px;
+	    }
+	    .assessmentExplanation{
+			font-weight:bold;
+		}
+		.recordingPlayer{
+            margin-bottom: 5px;
+            margin-right: 5px;
+        }
+        .assessmentTargetPanel{
+            padding: 5px;
+            margin-bottom: 0px;
+        }
+        .assessmentTargetIcon{
+            font-size: 18px;
+	    }
+	    .assessmentTargetBadge{
+            margin-right: 5px;
+	    }
+	    .taskDescriptionDifficultyImage{
+			width:20px;
+			height:20px;
+			margin-right:5px;
+		}
+    </ui:style>
+    <g:FlowPanel addStyleNames='{style.taskDescriptionPanel}' ui:field='taskDescriptionPanel'>
+
+        <g:FlowPanel addStyleNames='{style.taskDescriptionHeader}' ui:field='taskDescriptionHeader'>
+            <gm:AssessmentLevelIcon addStyleNames='{style.assessmentIcon}' ui:field='taskAssessmentIcon'/>
+            <g:Label addStyleNames='{style.taskNameText}' ui:field='taskName'/>
+               <cb:ManagedTooltip ui:field="historyLogIconTooltip" text="Show the history log for this concept" placement="BOTTOM">
+                   <b:Icon ui:field="historyLogIcon" type="HISTORY" size="TIMES2" addStyleNames='{style.headerIcon}' visible="false" />
+               </cb:ManagedTooltip>
+               <gm:OverlayPopup ui:field="historyLogOverlay" closeIconVisible="true" addStyleNames='{style.historyLogOverlay}'>
+                   <g:FlowPanel ui:field="historyLog" addStyleNames='{style.historyLog}' />
+               </gm:OverlayPopup>
+            <cb:ManagedTooltip ui:field="statusControlImageTooltip" placement="BOTTOM">
+            	<b:Icon ui:field="statusControlIcon" type="PLAY_CIRCLE_O" size="TIMES2" addStyleNames='{style.headerIcon}'/>
+            </cb:ManagedTooltip>
+        </g:FlowPanel>
+
+        <g:FlowPanel addStyleNames='{style.taskDescriptionBody}'>
+
+            <g:FlowPanel ui:field="assessmentSourcePanel" addStyleNames='{style.taskDescriptionFieldPanel}'>
+                <g:Label text="Source:" addStyleNames='{style.taskDescriptionFieldLabel}' />
+                <g:Label addStyleNames='{style.taskDescriptionFieldValue}' ui:field='taskAssessmentSource'/>
+            </g:FlowPanel>
+            
+            <g:FlowPanel ui:field='assessmentExplanationPanel' addStyleNames='{style.taskDescriptionFieldPanel}'>
+        		<g:Label text="Explanation:" addStyleNames='{style.taskDescriptionFieldLabel}' />
+        		<g:HTML ui:field='assessmentExplanation' addStyleNames='{style.taskDescriptionFieldLabel} {style.assessmentExplanation}' />
+        	</g:FlowPanel>
+        	
+        	<gm:AudioPlayer ui:field='recordingPlayer' addStyleNames="{style.recordingPlayer}"/>
+        	
+	        <g:FlowPanel ui:field="difficultyPanel" addStyleNames='{style.taskDescriptionFieldPanel}'>
+	        	<cb:ManagedTooltip text="Difficulty" placement="BOTTOM">       	
+	                <g:Image url="images/icons/effort.png" addStyleNames='{style.taskDescriptionDifficultyImage}' />
+	            </cb:ManagedTooltip>
+	            <g:Label addStyleNames='{style.taskDescriptionFieldValue}' ui:field='taskDifficulty'/>
+	        </g:FlowPanel>	        
+            
+	        <g:FlowPanel ui:field="stressPanel" addStyleNames='{style.taskDescriptionFieldPanel}'>
+	        	<cb:ManagedTooltip text="Stress" placement="BOTTOM">
+	                <g:Image url="images/icons/stressed.png" addStyleNames='{style.taskDescriptionDifficultyImage}' />
+	            </cb:ManagedTooltip>
+                <g:Label addStyleNames='{style.taskDescriptionFieldValue}' ui:field='taskStress'/>
+            </g:FlowPanel>	        
+
+			<!-- 12/21 - hiding this panel due to the active time not proven useful by anyone yet.  Plus just added difficulty/stress above.  -->
+            <g:FlowPanel ui:field="activePanel" addStyleNames='{style.taskDescriptionFieldPanel}' visible="false">
+                <g:Label text="Active:" addStyleNames='{style.taskDescriptionFieldLabel}' />
+                <g:Label addStyleNames='{style.taskDescriptionFieldValue}' ui:field='taskActive'/>
+            </g:FlowPanel>
+            
+            <g:FlowPanel ui:field="assessmentTargetPanel" addStyleNames='{style.taskDescriptionFieldPanel} {style.assessmentTargetPanel}'>
+                <b:Icon ui:field='assessmentTargetIcon' type='USER' addStyleNames='{style.assessmentTargetIcon}'/>
+                <b:Badge addStyleNames='{style.assessmentTargetBadge}'>
+                    <g:Label ui:field='assessmentTargetBadgeLabel'/>
+                </b:Badge>
+                <g:Label addStyleNames='{style.taskDescriptionFieldValue}' ui:field='assessmentTargetLabel'/>
+            </g:FlowPanel>
+
+            <g:FlowPanel>
+                <gm:PerformanceNodeMetricsPanel ui:field='metricsPanel'/>
+            </g:FlowPanel>
+
+        </g:FlowPanel>
+
+    </g:FlowPanel>
+</ui:UiBinder> 

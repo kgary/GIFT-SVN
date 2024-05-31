@@ -1,0 +1,58 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "EntityStateProto";
+
+import "EntityIdentifier.proto";
+import "EntityType.proto";
+import "Vector3D.proto";
+import "Point3D.proto";
+import "ArticulationParameters.proto";
+import "EntityAppearance.proto";
+import "EntityMarking.proto";
+import "DeadReckoningParameters.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents an entity state. */
+message EntityState {
+
+	/* Entity force identifier. */
+	google.protobuf.Int32Value force_id = 1;
+	
+	/* A unique identifier for the entity. */ 
+	EntityIdentifier entity_id = 2;
+	
+	/* Entity type. */
+	EntityType entity_type = 3;
+	
+	/* Alternative entity type (optional). */
+	EntityType alt_entity_type = 4;
+	
+	/* Entity linear velocity (x,y,z) */
+	Vector3D linear_velocity = 5;
+	
+	/* Entity orientation (DIS Euler Angles) (psi, theta, phi). */
+	Vector3D orientation = 6;
+	
+	/* Entity world coordinates (GCC) (x,y,z). */
+	Point3D location = 7;
+	
+	/* Entity articulation parameters. */
+	ArticulationParameters articulation_parameters = 8;
+	
+	/* The entity appearance. */
+	EntityAppearance appearance = 9;
+	
+	/* The entity marking. Can be used in team scenarios to differentiate players.  Can be null
+     * when parsing legacy GIFT messages. */
+	EntityMarking marking = 10;
+	
+	/* Used to provide the parameters for dead reckoning the position and orientation of the entity (optional). */
+	DeadReckoningParameters dead_reckoning = 11;
+}

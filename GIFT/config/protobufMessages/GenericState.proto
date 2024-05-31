@@ -1,0 +1,44 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "GenericStateProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a generic state. */
+message GenericState {
+	/* The generic map object. */
+	map<string, GenericValue> object = 1;
+	
+	/* The state UUID. */
+	google.protobuf.StringValue unique_id = 2;
+}
+
+/* This message represents a payload of differing types for the state. */
+message GenericValue {
+	oneof value {
+		/* Integer value. */
+		google.protobuf.Int32Value int_value = 1;
+		
+		/* Double value. */
+		google.protobuf.DoubleValue double_value = 2;
+		
+		/* Long value. */
+		google.protobuf.Int64Value long_value = 3;
+		
+		/* Boolean value. */
+		google.protobuf.BoolValue boolean_value = 4;
+		
+		/* String value. */
+		google.protobuf.StringValue string_value = 5;
+		
+		/* JSON Object value (encoded as a string). */
+		google.protobuf.StringValue json_object = 6;
+	}
+}

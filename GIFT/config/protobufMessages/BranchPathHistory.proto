@@ -1,0 +1,46 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "BranchPathHistoryProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about a branch path history which tracks the number 
+ * of learners that have entered a particular path in a course. */
+message BranchPathHistory {
+	/* The course id for the branch path. */
+	google.protobuf.StringValue course_id = 1;
+	
+	/* The experiment id for the branch. */
+	google.protobuf.StringValue experiment_id = 2;
+	
+	/* The unique id associated with the branch. */
+	google.protobuf.Int32Value branch_id = 3;
+	
+	/* The path id associated with the branch. */
+	google.protobuf.Int32Value path_id = 4;
+	
+	/* The actual number of learners that have entered this path which can be different 
+	 * than the count value. */
+	google.protobuf.Int32Value actual_cnt = 5;
+	
+	/* This number is used when determining which path of a branch the current
+	 * learner should enter. */
+	google.protobuf.Int32Value cnt = 6;
+	
+	/* Value indicating whether this history entry is merely meant to increment the count 
+	 * in the databaseas an indication that a learner is entering this path. */
+	google.protobuf.BoolValue increment = 7;
+	
+	/* Value indicating whether the path is ending. */
+	google.protobuf.BoolValue pathend = 8;
+	
+	/* Optional, the name of the path chosen. */
+	google.protobuf.StringValue pathname = 9;
+}

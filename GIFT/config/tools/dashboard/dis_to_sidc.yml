@@ -1,0 +1,1303 @@
+0.0.0.0.0.0.0:
+  description: UNKNOWN
+  hierarchy: WAR.GRDTRK.UNT
+  sidc: SWGAU-----*****
+1.0.0.0.0.0.0:
+  description: GROUND TRACK
+  hierarchy: WAR.GRDTRK
+  sidc: S*G*------*****
+1.1.0.0.0.0.0:
+  description: GROUND TRACK
+  hierarchy: WAR.GRDTRK
+  sidc: S*G*------*****
+1.1.0.1.0.0.0:
+  description: TANK
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.TANK
+  sidc: S*G*EVAT--*****
+1.1.0.10.0.0.0:
+  description: MORTAR
+  hierarchy: WAR.GRDTRK.EQT.WPN.MORT
+  sidc: S*G*EWO---*****
+1.1.0.11.0.0.0:
+  description: MINE CLEARING VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ENGVEH.MCVEH
+  sidc: S*G*EVEA--*****
+1.1.0.12.0.0.0:
+  description: MINE CLEARING VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ENGVEH.MCVEH
+  sidc: S*G*EVEA--*****
+1.1.0.13.0.0.0:
+  description: MINE CLEARING VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ENGVEH.MCVEH
+  sidc: S*G*EVEA--*****
+1.1.0.14.0.0.0:
+  description: GROUND VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH
+  sidc: S*G*EV----*****
+1.1.0.15.0.0.0:
+  description: GROUND VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH
+  sidc: S*G*EV----*****
+1.1.0.16.0.0.0:
+  description: GROUND VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH
+  sidc: S*G*EV----*****
+1.1.0.17.0.0.0:
+  description: GROUND VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH
+  sidc: S*G*EV----*****
+1.1.0.18.0.0.0:
+  description: SPECIAL EQUIPMENT
+  hierarchy: WAR.GRDTRK.EQT.SPL
+  sidc: S*G*EX----*****
+1.1.0.19.0.0.0:
+  description: GROUND VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH
+  sidc: S*G*EV----*****
+1.1.0.2.0.0.0:
+  description: ARMORED VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD
+  sidc: S*G*EVA---*****
+1.1.0.20.0.0.0:
+  description: GROUND VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH
+  sidc: S*G*EV----*****
+1.1.0.21.0.0.0:
+  description: HOWITZER/GUN
+  hierarchy: WAR.GRDTRK.UNT.CBT.FLDART.HOW
+  sidc: S*G*UCFH--*****
+1.1.0.22.0.0.0:
+  description: GROUND VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH
+  sidc: S*G*EV----*****
+1.1.0.23.0.0.0:
+  description: SENSOR
+  hierarchy: EMS.OPN.SNS
+  sidc: S*G*ES----*****
+1.1.0.24.0.0.0:
+  description: TRAIN LOCOMOTIVE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.TRNLCO
+  sidc: S*G*EVT---*****
+1.1.0.25.0.0.0:
+  description: TRAIN LOCOMOTIVE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.TRNLCO
+  sidc: S*G*EVT---*****
+1.1.0.26.0.0.0:
+  description: TRAIN LOCOMOTIVE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.TRNLCO
+  sidc: S*G*EVT---*****
+1.1.0.27.0.0.0:
+  description: CIVILIAN VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.CVLVEH
+  sidc: S*G*EVC---*****
+1.1.0.28.0.0.0:
+  description: AIR DEFENSE (AD) MISSILE LAUNCHER
+  hierarchy: WAR.GRDTRK.EQT.WPN.MSLL.ADFAD
+  sidc: S*G*EWMA--*****
+1.1.0.29.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.3.0.0.0:
+  description: GROUND VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH
+  sidc: S*G*EV----*****
+1.1.0.30.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.31.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.32.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.33.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.34.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.35.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.36.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.37.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.38.0.0.0:
+  description: MILITARY BASE
+  hierarchy: EMS.INFSTR.MIL.MILBF
+  sidc: S*G*IB----H****
+1.1.0.39.0.0.0:
+  description: COMBAT OUTPOST
+  hierarchy: TACGRP.C2GM.DEF.PNT.OBSPST.CBTPST
+  sidc: G*G*DPOC--****X
+1.1.0.4.0.0.0:
+  description: HOWITZER/GUN
+  hierarchy: WAR.GRDTRK.UNT.CBT.FLDART.HOW
+  sidc: S*G*UCFH--*****
+1.1.0.40.0.0.0:
+  description: OBSERVATION POST/OUTPOST
+  hierarchy: TACGRP.C2GM.DEF.PNT.OBSPST
+  sidc: G*G*DPO---****X
+1.1.0.5.0.0.0:
+  description: HOWITZER/GUN
+  hierarchy: WAR.GRDTRK.UNT.CBT.FLDART.HOW
+  sidc: S*G*UCFH--*****
+1.1.0.6.0.0.0:
+  description: UTILITY VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.UTYVEH
+  sidc: S*G*EVU---*****
+1.1.0.7.0.0.0:
+  description: UTILITY VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.UTYVEH
+  sidc: S*G*EVU---*****
+1.1.0.8.0.0.0:
+  description: UTILITY VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.UTYVEH
+  sidc: S*G*EVU---*****
+1.1.0.9.0.0.0:
+  description: UTILITY VEHICLE
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.UTYVEH
+  sidc: S*G*EVU---*****
+1.2.0.0.0.0.0:
+  description: AIR TRACK
+  hierarchy: WAR.AIRTRK
+  sidc: S*A*------*****
+1.2.0.1.0.0.0:
+  description: FIGHTER
+  hierarchy: WAR.AIRTRK.MIL.FIXD.FTR
+  sidc: S*A*MFF---*****
+1.2.0.100.0.0.0:
+  description: LIGHTER THAN AIR
+  hierarchy: WAR.AIRTRK.CVL.LTA
+  sidc: S*A*CL----*****
+1.2.0.101.0.0.0:
+  description: LIGHTER THAN AIR
+  hierarchy: WAR.AIRTRK.CVL.LTA
+  sidc: S*A*CL----*****
+1.2.0.2.0.0.0:
+  description: ATTACK/STRIKE
+  hierarchy: WAR.AIRTRK.MIL.FIXD.ATK
+  sidc: S*A*MFA---*****
+1.2.0.20.0.0.0:
+  description: ATTACK
+  hierarchy: WAR.AIRTRK.MIL.ROT.ATK
+  sidc: S*A*MHA---*****
+1.2.0.21.0.0.0:
+  description: UTILITY
+  hierarchy: WAR.AIRTRK.MIL.ROT.UTY
+  sidc: S*A*MHU---*****
+1.2.0.22.0.0.0:
+  description: ANTISUBMARINE WARFARE/MPA
+  hierarchy: WAR.AIRTRK.MIL.ROT.ASBW
+  sidc: S*A*MHS---*****
+1.2.0.23.0.0.0:
+  description: CARGO AIRLIFT (TRANSPORT)
+  hierarchy: WAR.AIRTRK.MIL.ROT.CGOALT
+  sidc: S*A*MHC---*****
+1.2.0.24.0.0.0:
+  description: RECONNAISSANCE
+  hierarchy: WAR.AIRTRK.MIL.ROT.RECON
+  sidc: S*A*MHR---*****
+1.2.0.25.0.0.0:
+  description: SPECIAL OPERATIONS FORCES (SOF)
+  hierarchy: WAR.AIRTRK.MIL.ROT.SOF
+  sidc: S*A*MHM---*****
+1.2.0.3.0.0.0:
+  description: BOMBER
+  hierarchy: WAR.AIRTRK.MIL.FIXD.BMB
+  sidc: S*A*MFB---*****
+1.2.0.4.0.0.0:
+  description: AIR TRACK
+  hierarchy: WAR.AIRTRK
+  sidc: S*A*------*****
+1.2.0.40.0.0.0:
+  description: AIR TRACK
+  hierarchy: WAR.AIRTRK
+  sidc: S*A*------*****
+1.2.0.5.0.0.0:
+  description: PATROL
+  hierarchy: WAR.AIRTRK.MIL.FIXD.PAT
+  sidc: S*A*MFP---*****
+1.2.0.50.0.0.0:
+  description: AIR TRACK
+  hierarchy: WAR.AIRTRK
+  sidc: S*A*------*****
+1.2.0.57.0.0.0:
+  description: CIVIL AIRCRAFT
+  hierarchy: WAR.AIRTRK.CVL
+  sidc: S*A*C-----*****
+1.2.0.6.0.0.0:
+  description: MILITARY
+  hierarchy: WAR.AIRTRK.MIL
+  sidc: S*A*M-----*****
+1.2.0.7.0.0.0:
+  description: RECONNAISSANCE
+  hierarchy: WAR.AIRTRK.MIL.FIXD.RECON
+  sidc: S*A*MFR---*****
+1.2.0.8.0.0.0:
+  description: AIRBORNE EARLY WARNING (AEW)
+  hierarchy: WAR.AIRTRK.MIL.FIXD.RECON.ABNEW
+  sidc: S*A*MFRW--*****
+1.2.0.80.0.0.0:
+  description: CIVIL AIRCRAFT
+  hierarchy: WAR.AIRTRK.CVL
+  sidc: S*A*C-----*****
+1.2.0.81.0.0.0:
+  description: CIVIL AIRCRAFT
+  hierarchy: WAR.AIRTRK.CVL
+  sidc: S*A*C-----*****
+1.2.0.83.0.0.0:
+  description: FIXED WING
+  hierarchy: WAR.AIRTRK.CVL.FIXD
+  sidc: S*A*CF----*****
+1.2.0.84.0.0.0:
+  description: FIXED WING
+  hierarchy: WAR.AIRTRK.CVL.FIXD
+  sidc: S*A*CF----*****
+1.2.0.85.0.0.0:
+  description: FIXED WING
+  hierarchy: WAR.AIRTRK.CVL.FIXD
+  sidc: S*A*CF----*****
+1.2.0.86.0.0.0:
+  description: FIXED WING
+  hierarchy: WAR.AIRTRK.CVL.FIXD
+  sidc: S*A*CF----*****
+1.2.0.87.0.0.0:
+  description: FIXED WING
+  hierarchy: WAR.AIRTRK.CVL.FIXD
+  sidc: S*A*CF----*****
+1.2.0.88.0.0.0:
+  description: FIXED WING
+  hierarchy: WAR.AIRTRK.CVL.FIXD
+  sidc: S*A*CF----*****
+1.2.0.90.0.0.0:
+  description: ROTARY WING
+  hierarchy: WAR.AIRTRK.CVL.ROT
+  sidc: S*A*CH----*****
+1.2.0.91.0.0.0:
+  description: ROTARY WING
+  hierarchy: WAR.AIRTRK.CVL.ROT
+  sidc: S*A*CH----*****
+1.2.0.92.0.0.0:
+  description: ROTARY WING
+  hierarchy: WAR.AIRTRK.CVL.ROT
+  sidc: S*A*CH----*****
+1.2.0.93.0.0.0:
+  description: CIVIL AIRCRAFT
+  hierarchy: WAR.AIRTRK.CVL
+  sidc: S*A*C-----*****
+1.3.0.0.0.0.0:
+  description: SEA SURFACE TRACK
+  hierarchy: WAR.SSUF
+  sidc: S*S*------*****
+1.3.0.1.0.0.0:
+  description: CARRIER
+  hierarchy: WAR.SSUF.CBTT.LNE.CRR
+  sidc: S*S*CLCV--*****
+1.3.0.10.0.0.0:
+  description: LANDING SHIP TANK
+  hierarchy: WAR.SSUF.CBTT.AMPWS.LNDSHP.TANK
+  sidc: S*S*CALST-*****
+1.3.0.11.0.0.0:
+  description: LANDING CRAFT
+  hierarchy: WAR.SSUF.CBTT.AMPWS.LNDCRT
+  sidc: S*S*CALC--*****
+1.3.0.12.0.0.0:
+  description: CARRIER
+  hierarchy: WAR.SSUF.CBTT.LNE.CRR
+  sidc: S*S*CLCV--*****
+1.3.0.13.0.0.0:
+  description: CRUISER
+  hierarchy: WAR.SSUF.CBTT.LNE.CRU
+  sidc: S*S*CLCC--*****
+1.3.0.14.0.0.0:
+  description: SEA SURFACE TRACK
+  hierarchy: WAR.SSUF
+  sidc: S*S*------*****
+1.3.0.15.0.0.0:
+  description: SEA SURFACE TRACK
+  hierarchy: WAR.SSUF
+  sidc: S*S*------*****
+1.3.0.16.0.0.0:
+  description: UNDERWAY REPLENISHMENT
+  hierarchy: WAR.SSUF.NCBTT.UWRPM
+  sidc: S*S*NR----*****
+1.3.0.17.0.0.0:
+  description: MERCHANT
+  hierarchy: WAR.SSUF.NMIL.MCT
+  sidc: S*S*XM----*****
+1.3.0.18.0.0.0:
+  description: NONCOMBATANT
+  hierarchy: WAR.SSUF.NCBTT
+  sidc: S*S*N-----*****
+1.3.0.2.0.0.0:
+  description: CRUISER
+  hierarchy: WAR.SSUF.CBTT.LNE.CRU
+  sidc: S*S*CLCC--*****
+1.3.0.3.0.0.0:
+  description: CRUISER
+  hierarchy: WAR.SSUF.CBTT.LNE.CRU
+  sidc: S*S*CLCC--*****
+1.3.0.4.0.0.0:
+  description: DESTROYER
+  hierarchy: WAR.SSUF.CBTT.LNE.DD
+  sidc: S*S*CLDD--*****
+1.3.0.5.0.0.0:
+  description: DESTROYER
+  hierarchy: WAR.SSUF.CBTT.LNE.DD
+  sidc: S*S*CLDD--*****
+1.3.0.50.0.0.0:
+  description: FRIGATE/CORVETTE
+  hierarchy: WAR.SSUF.CBTT.LNE.FFR
+  sidc: S*S*CLFF--*****
+1.3.0.51.0.0.0:
+  description: BATTLESHIP
+  hierarchy: WAR.SSUF.CBTT.LNE.BBS
+  sidc: S*S*CLBB--*****
+1.3.0.52.0.0.0:
+  description: CRUISER
+  hierarchy: WAR.SSUF.CBTT.LNE.CRU
+  sidc: S*S*CLCC--*****
+1.3.0.53.0.0.0:
+  description: NONCOMBATANT
+  hierarchy: WAR.SSUF.NCBTT
+  sidc: S*S*N-----*****
+1.3.0.54.0.0.0:
+  description: ASSAULT VESSEL
+  hierarchy: WAR.SSUF.CBTT.AMPWS.ASTVES
+  sidc: S*S*CALA--*****
+1.3.0.55.0.0.0:
+  description: AMPHIBIOUS WARFARE SHIP
+  hierarchy: WAR.SSUF.CBTT.AMPWS
+  sidc: S*S*CA----*****
+1.3.0.56.0.0.0:
+  description: LANDING SHIP
+  hierarchy: WAR.SSUF.CBTT.AMPWS.LNDSHP
+  sidc: S*S*CALS--*****
+1.3.0.57.0.0.0:
+  description: UNDERWAY REPLENISHMENT
+  hierarchy: WAR.SSUF.NCBTT.UWRPM
+  sidc: S*S*NR----*****
+1.3.0.58.0.0.0:
+  description: UNDERWAY REPLENISHMENT
+  hierarchy: WAR.SSUF.NCBTT.UWRPM
+  sidc: S*S*NR----*****
+1.3.0.59.0.0.0:
+  description: ANTISUBMARINE WARFARE
+  hierarchy: WAR.SSUF.CBTT.PAT.ASBW
+  sidc: S*S*CPSB--*****
+1.3.0.6.0.0.0:
+  description: FRIGATE/CORVETTE
+  hierarchy: WAR.SSUF.CBTT.LNE.FFR
+  sidc: S*S*CLFF--*****
+1.3.0.60.0.0.0:
+  description: UNDERWAY REPLENISHMENT
+  hierarchy: WAR.SSUF.NCBTT.UWRPM
+  sidc: S*S*NR----*****
+1.3.0.61.0.0.0:
+  description: SEA SURFACE TRACK
+  hierarchy: WAR.SSUF
+  sidc: S*S*------*****
+1.3.0.62.0.0.0:
+  description: COAST GUARD EQUIPMENT
+  hierarchy: EMS.OPN.LAWENF.CSTGD.CSTGDE
+  sidc: S*S*XL----*****
+1.3.0.63.0.0.0:
+  description: COAST GUARD EQUIPMENT
+  hierarchy: EMS.OPN.LAWENF.CSTGD.CSTGDE
+  sidc: S*S*XL----*****
+1.3.0.7.0.0.0:
+  description: PATROL
+  hierarchy: WAR.SSUF.CBTT.PAT
+  sidc: S*S*CP----*****
+1.3.0.8.0.0.0:
+  description: MINE WARFARE VESSEL
+  hierarchy: WAR.SSUF.CBTT.MNEWV
+  sidc: S*S*CM----*****
+1.3.0.9.0.0.0:
+  description: LANDING SHIP
+  hierarchy: WAR.SSUF.CBTT.AMPWS.LNDSHP
+  sidc: S*S*CALS--*****
+1.4.0.0.0.0.0:
+  description: SUBSURFACE TRACK
+  hierarchy: WAR.SBSUF
+  sidc: S*U*------*****
+1.4.0.1.0.0.0:
+  description: BALLISTIC MISSILE SUBMARINE (SSBN)
+  hierarchy: WAR.SBSUF.SUB.NPRN.BLST
+  sidc: S*U*SNB---*****
+1.4.0.2.0.0.0:
+  description: GUIDED MISSILE SUBMARINE (SSGN)
+  hierarchy: WAR.SBSUF.SUB.NPRN.GDD
+  sidc: S*U*SNG---*****
+1.4.0.3.0.0.0:
+  description: ATTACK SUBMARINE (SSN)
+  hierarchy: WAR.SBSUF.SUB.NPRN.ATK
+  sidc: S*U*SNA---*****
+1.4.0.4.0.0.0:
+  description: GUIDED MISSILE SUBMARINE (SSG)
+  hierarchy: WAR.SBSUF.SUB.CNVPRN.GDD
+  sidc: S*U*SCG---*****
+1.4.0.5.0.0.0:
+  description: ATTACK SUBMARINE (SS)
+  hierarchy: WAR.SBSUF.SUB.CNVPRN.ATK
+  sidc: S*U*SCA---*****
+1.4.0.6.0.0.0:
+  description: NUCLEAR PROPULSION
+  hierarchy: WAR.SBSUF.SUB.NPRN
+  sidc: S*U*SN----*****
+1.4.0.7.0.0.0:
+  description: CONVENTIONAL PROPULSION
+  hierarchy: WAR.SBSUF.SUB.CNVPRN
+  sidc: S*U*SC----*****
+1.4.0.8.0.0.0:
+  description: UNMANNED UNDERWATER VEHICLE (UUV)
+  hierarchy: WAR.SBSUF.SUB.UUV
+  sidc: S*U*SU----*****
+1.5.0.0.0.0.0:
+  description: SPACE TRACK
+  hierarchy: WAR.SPC
+  sidc: S*P*------*****
+1.5.0.1.0.0.0:
+  description: SPACE TRACK
+  hierarchy: WAR.SPC
+  sidc: S*P*------*****
+1.5.0.2.0.0.0:
+  description: SATELLITE
+  hierarchy: WAR.SPC.SAT
+  sidc: S*P*S-----*****
+1.5.0.3.0.0.0:
+  description: SPACE LAUNCH VEHICLE
+  hierarchy: WAR.SPC.SLV
+  sidc: S*P*L-----*****
+  
+# Bicycle Lake UAV Mappings
+
+1.2.225.50.4.2.0:
+  description: UAV
+  hierarchy: WAR.SPC.SLV
+  sidc: S*A*MFQ---*****
+  
+#GIFT_Scenario_Mappings
+3.1.0.0.0.16.36:
+  description: Automatic_Rifleman_M249
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWZL--*****
+  
+3.1.0.0.0.15.172:
+  description: Rifleman_M4
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWZL--*****
+  
+3.1.0.0.0.18.196:
+  description: Inf_Leader_M4
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWZL--*****
+  
+3.1.0.0.0.15.220:
+  description: Grenadier_M4
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWZL--*****
+  
+3.1.0.0.0.9.93:
+  description: Taliban_Ldr_AK74
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRR--*****
+  
+3.1.0.0.0.9.86:
+  description: Taliban_SVD_Dragunov
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRR--*****
+  
+3.1.0.0.0.9.98:
+  description: Afghani_Man_3
+  hierarchy: WAR.SPC.SLV
+  sidc: O*P*------*****
+  
+3.1.0.0.0.11.7:
+  description: Security_Contractor_1
+  hierarchy: WAR.SPC.SLV
+  sidc: O*P*------*****
+  
+3.1.0.0.0.8.183:
+  description: Mongrel_Dog
+  hierarchy: WAR.SPC.SLV
+  sidc: O*P*------*****
+  
+1.1.20000.0.0.4.47:
+  description: Taliban_Toyota_Hilux
+  hierarchy: WAR.SPC.SLV
+  sidc: SHGCEVCOL-*****
+  
+1.1.0.0.0.5.197:
+  description: Desert_HMMWV_m1151
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EV----*****
+  
+1.2.0.0.0.0.111:
+  description: MQ-9 Reaper
+  hierarchy: WAR.SPC.SLV
+  sidc: S*A*MFQ---*****
+  
+#GIFT_Scenario_Mappings for USMA Capstone
+3.1.20000.0.0.9.84:
+  description: AF Taliban AK-74
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRR--*****
+3.1.20000.0.0.9.81:
+  description: AF Taliban AKM
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRR--*****
+3.1.20000.0.0.9.87:
+  description: AF Taliban RPK-74
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRL--*****
+1.1.20000.0.0.4.63:
+  description: AF Taliban Wheeled-UAZ 469-Covered
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EVUX--*****
+3.1.20000.0.0.1.74:
+  description: US Civilians - Businessman
+  hierarchy: WAR.SPC.SLV
+  sidc: ONPP------****A
+3.1.20000.0.0.1.83:
+  description: GenericCivilians-AfricanMan-BlackTshirt
+  hierarchy: WAR.SPC.SLV
+  sidc: ONPP------****B
+3.1.20000.0.0.1.82:
+  description: GenericCivilians-CaucasianMan-RandomTshirt
+  hierarchy: WAR.SPC.SLV
+  sidc: ONPP------****C
+3.1.0.0.0.11.7:
+  description: Security_Contractor_1
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*UULC--*****
+3.1.0.0.0.11.8:
+  description: Security_Contractor_2
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*UULC--*****
+3.1.20000.0.0.1.102:
+  description: US Civilians-Woman
+  hierarchy: WAR.SPC.SLV
+  sidc: ONPP------****D
+3.1.20000.0.0.0.110:
+  description: IQ Civilians-Iraqi elder-Interpreter
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*UUI---*****
+3.1.20000.0.0.12.142:
+  description: US Army ACU-OCP-Assistant Machine Gunner-M4 CCO
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRH--*****
+3.1.20000.0.0.13.174:
+  description: US Army ACU-OCP-AT Ammo Bearer-Javelin
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWT---*****
+3.1.20000.0.0.13.150:
+  description: US Army ACU-OCP-AT Gunner-Javelin
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWTM--*****
+3.1.20000.0.0.12.22:
+  description: US Army ACU-OCP-Grenadier-M320
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWZL--*****
+3.1.20000.0.0.14.254:
+  description: US Army ACU-OCP-Leader-M4
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRR--*****
+1.1.20000.0.0.5.221:
+  description: US Army Wheeled-Desert-M1078 LSAC-Troop Carrier
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EVAA--*****
+1.1.20000.0.0.5.171:
+  description: US Army Wheeled-Desert-M1114 HMMWV
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EVA---*****
+3.1.20000.0.0.14.206:
+  description: US Army ACU-OCP-Medic-M4
+  hierarchy: WAR.SPC.SLV
+  sidc: E*O*AA----*****
+3.1.20000.0.0.14.158:
+  description: US Army ACU-OCP-Medic Squad Leader-M4
+  hierarchy: WAR.SPC.SLV
+  sidc: E*O*AA----*****
+3.1.20000.0.0.14.182:
+  description: US Army ACU-OCP-Medic Team Leader-M4
+  hierarchy: WAR.SPC.SLV
+  sidc: E*O*AA----*****
+3.1.20000.0.0.12.118:
+  description: US Army ACU-OCP-Machine Gunner-M240 MGO
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRH--*****
+3.1.20000.0.0.12.94:
+  description: US Army ACU-OCP-Automatic Rifleman-M249 MGO
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRL--*****
+3.1.20000.0.0.11.230:
+  description: US Army ACU-OCP-Rifleman-M4 CCO
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRR--*****
+3.1.20000.0.0.15.172:
+  description: US Army ACU-OCP-Rifleman-M4 CCO
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EWRR--*****
+1.1.20000.0.0.4.193:
+  description: AF Army Wheeled-Desert-M1114 HMMWV-GPK Turret
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EVA---*****
+1.1.20000.0.0.3.152:
+  description: Generic Independent Army Wheeled-Desert-Iveco LMV-Unarmed
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EVA---*****
+1.1.20000.0.0.3.83:
+  description: Generic Civilian Wheeled-Car-Hatchback
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EV----*****
+1.2.20000.0.0.0.148:
+  description: Unmanned Vehicle-Pchela-1T UAV
+  hierarchy: WAR.SPC.SLV
+  sidc: S*A*MFQ---*****
+1.2.20000.0.0.0.108:
+  description: Unmanned Vehicle-MQ-1 Predator(USAF)
+  hierarchy: WAR.SPC.SLV
+  sidc: S*A*MFQ---*****
+1.2.20000.0.0.0.227:
+  description: US Army Air-AH-64D Apache-M230-Hydra-AGM114K
+  hierarchy: WAR.SPC.SLV
+  sidc: S*A*MHA---*****
+  
+#VR-Forces MR_VR_Flight_Demo.scn
+1.2.225.40.3.1.0:
+  description: T-83C Talon
+  hierarchy: WAR.SPC.SLV
+  sidc: S*A*MFF---*****
+  
+1.1.225.1.1.3.0:
+  description: M1A2 Abrams MBT
+  hierarchy: WAR.SPC.SLV
+  sidc: S*G*EVATM-*****
+  
+#VR-Forces followSuspect.scnx
+1.2.225.50.27.0.1:
+  description: RQ11 RAVEN
+  hierarchy: WAR.SPC.SLV
+  sidc: SFACMFQ---*****
+
+3.0.0.0.0.0.0:
+  description: INFANTRY
+  hierarchy: WAR.GRDTRK.UNT.CBT.INF
+  sidc: S*G*UCI---*****
+3.1.0.1.0.0.0:
+  description: INFANTRY
+  hierarchy: WAR.GRDTRK.UNT.CBT.INF
+  sidc: S*G*UCI---*****
+3.1.0.2.0.0.0:
+  description: INFANTRY
+  hierarchy: WAR.GRDTRK.UNT.CBT.INF
+  sidc: S*G*UCI---*****
+3.1.0.5.0.0.0:
+  description: PACK ANIMAL(S)
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.PKAN
+  sidc: S*G*EVM---*****
+3.2.0.1.0.0.0:
+  description: INFANTRY AIRBORNE
+  hierarchy: WAR.GRDTRK.UNT.CBT.INF.ABN
+  sidc: S*G*UCIA--*****
+3.3.0.1.0.0.0:
+  description: INFANTRY NAVAL
+  hierarchy: WAR.GRDTRK.UNT.CBT.INF.NAV
+  sidc: S*G*UCIN--*****
+3.3.0.2.0.0.0:
+  description: INFANTRY NAVAL
+  hierarchy: WAR.GRDTRK.UNT.CBT.INF.NAV
+  sidc: S*G*UCIN--*****
+3.4.0.1.0.0.0:
+  description: DIVER
+  hierarchy: WAR.SBSUF.NSUB.DVR
+  sidc: S*U*ND----*****
+3.4.0.2.0.0.0:
+  description: MARINE LIFE
+  hierarchy: TACGRP.OTH.SSUBSR.MARLFE
+  sidc: G*O*SM----****X
+3.4.0.3.0.0.0:
+  description: MARINE LIFE
+  hierarchy: TACGRP.OTH.SSUBSR.MARLFE
+  sidc: G*O*SM----****X
+3.4.0.4.0.0.0:
+  description: MARINE LIFE
+  hierarchy: TACGRP.OTH.SSUBSR.MARLFE
+  sidc: G*O*SM----****X
+5.1.0.1.0.0.0:
+  description: BRIDGE OR GAP
+  hierarchy: TACGRP.MOBSU.OBSTBP.CSGSTE.BRG
+  sidc: G*M*BCB---****X
+5.1.0.10.0.0.0:
+  description: AIRPORT
+  hierarchy: EMS.INFSTR.TSP.AIRPT
+  sidc: S*G*IBA---H****
+5.1.0.11.0.0.0:
+  description: MILITARY INFRASTRUCTURE
+  hierarchy: EMS.INFSTR.MIL
+  sidc: E*F*G-----H****
+5.1.0.12.0.0.0:
+  description: NUCLEAR FACILITY
+  hierarchy: EMS.INFSTR.ENGFAC.NUCFAC
+  sidc: S*G*IUEN--H****
+5.1.0.13.0.0.0:
+  description: RAIL STATION
+  hierarchy: EMS.INFSTR.TSP.RLSTN
+  sidc: E*F*LJ----H****
+5.1.0.14.0.0.0:
+  description: MILITARY INFRASTRUCTURE
+  hierarchy: EMS.INFSTR.MIL
+  sidc: E*F*G-----H****
+5.1.0.15.0.0.0:
+  description: PETROLEUM FACILITY
+  hierarchy: EMS.INFSTR.ENGFAC.PETFAC
+  sidc: S*G*IRP---H****
+5.1.0.17.1.0.0:
+  description: TELECOMMUNICATIONS TOWER
+  hierarchy: EMS.INFSTR.TELCOM.TCTWR
+  sidc: E*F*KB----H****
+5.1.0.17.2.0.0:
+  description: STORAGE TOWER
+  hierarchy: EMS.INFSTR.WS.STRTWR
+  sidc: E*F*MG----H****
+5.1.0.17.4.0.0:
+  description: AIR TRAFFIC CONTROL FACILITY
+  hierarchy: EMS.INFSTR.TSP.ATCF
+  sidc: E*F*LA----H****
+5.1.0.18.0.0.0:
+  description: MILITARY INFRASTRUCTURE
+  hierarchy: EMS.INFSTR.MIL
+  sidc: E*F*G-----H****
+5.1.0.19.0.0.0:
+  description: BRIDGE OR GAP
+  hierarchy: TACGRP.MOBSU.OBSTBP.CSGSTE.BRG
+  sidc: G*M*BCB---****X
+5.1.0.2.0.0.0:
+  description: INSTALLATION
+  hierarchy: WAR.GRDTRK.INS
+  sidc: S*G*I-----H****
+5.1.0.8.0.0.0:
+  description: INSTALLATION
+  hierarchy: WAR.GRDTRK.INS
+  sidc: S*G*I-----H****
+5.1.0.9.0.0.0:
+  description: MILITARY INFRASTRUCTURE
+  hierarchy: EMS.INFSTR.MIL
+  sidc: E*F*G-----H****
+5.3.0.1.0.0.0:
+  description: OIL/GAS RIG
+  hierarchy: METOC.OCA.MMD.OLRG
+  sidc: WOS-MOA---P----
+5.3.0.2.0.0.0:
+  description: BUOY DEFAULT
+  hierarchy: METOC.OCA.HYDGRY.ATN.BUOY
+  sidc: WOS-HABB--P----
+5.3.0.3.0.0.0:
+  description: WRECK (SUBMERGED)
+  hierarchy: METOC.OCA.HYDGRY.DANHAZ.WRK.SBM
+  sidc: WOS-HHDWB-P----
+5.3.0.4.0.0.0:
+  description: MARKER
+  hierarchy: METOC.OCA.HYDGRY.ATN.MRK
+  sidc: WOS-HABM--P----
+9.0.0.0.0.0.0:
+  description: SIGNALS INTELLIGENCE
+  hierarchy: SIGINT
+  sidc: I--------------
+9.1.0.0.0.0.0:
+  description: GROUND TRACK
+  hierarchy: SIGINT.GRDTRK
+  sidc: I*G*--------***
+9.2.0.0.0.0.0:
+  description: AIR TRACK
+  hierarchy: SIGINT.AIRTRK
+  sidc: I*A*--------***
+9.3.0.0.0.0.0:
+  description: SEA SURFACE TRACK
+  hierarchy: SIGINT.SSUF
+  sidc: I*S*--------***
+9.4.0.0.0.0.0:
+  description: SUBSURFACE TRACK
+  hierarchy: SIGINT.SBSUF
+  sidc: I*U*--------***
+9.5.0.0.0.0.0:
+  description: SPACE TRACK
+  hierarchy: SIGINT.SPC
+  sidc: I*P*--------***
+
+# OBW Mappings Begin
+1.1.0.0.0.19.0:
+  description: M1126 Infantry Carrier Vehicle (Stryker) with Kongsberg RWS 50 cal
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.ARMPC
+  sidc: S*G*EVAA--*****
+1.1.0.1.1.13.0:
+  description: M1A1
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.TANK.HVY
+  sidc: S*G*EVATH-*****
+1.1.0.1.1.15.0:
+  description: M1A2
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.TANK.HVY
+  sidc: S*G*EVATH-*****
+1.1.0.1.2.2.0:
+  description: T-72M1M
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.TANK
+  sidc: S*G*EVAT--*****
+1.1.0.1.4.1.0:
+  description: T-62
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.TANK.MDM
+  sidc: S*G*EVATM-*****
+1.1.0.1.6.1.0:
+  description: M41 Walker Bulldog 76mm Light tank
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.TANK.LIT
+  sidc: S*G*EVATL-*****
+1.1.0.1.9.2.0:
+  description: T-90SA+T-90MS
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.TANK
+  sidc: S*G*EVAT--*****
+1.1.0.2.1.1.0:
+  description: BMP-1
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.ARMINF
+  sidc: S*G*EVAI--*****
+1.1.0.2.19.0.0:
+  description: V-150 Commando 4x4 AFV
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.LARMVH
+  sidc: S*G*EVAL--*****
+1.1.0.2.20.1.0:
+  description: RM-79 APC
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.ARMPC
+  sidc: S*G*EVAA--*****
+1.1.0.2.21.0.0:
+  description: M3 Half Track APC
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.ARMPC
+  sidc: S*G*EVAA--*****
+1.1.0.2.26.6.0:
+  description: AAVP1
+  hierarchy: WAR.SSUF.CBTT.AMPWS.ASTVES
+  sidc: S*S*CALA--*****
+1.1.0.2.3.1.0:
+  description: BMP-3
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.ARMINF
+  sidc: S*G*EVAI--*****
+1.1.0.2.4.1.0:
+  description: BMP-2
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.ARMINF
+  sidc: S*G*EVAI--*****
+1.1.0.2.41.3.0:
+  description: LAV
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.LARMVH
+  sidc: S*G*EVAL--*****
+1.1.0.2.5.22.1:
+  description: M1128  Stryker
+  hierarchy: WAR.GRDTRK.EQT.WPN.DFG.LIT.SPD
+  sidc: S*G*EWDLS-*****
+1.1.0.28.24.0.0:
+  description: S-400 (missile)
+  hierarchy: WAR.AIRTRK.WPN.MSLIF.SLM
+  sidc: S*A*WMS---*****
+1.1.0.4.41.1.0:
+  description: SA-8
+  hierarchy: WAR.GRDTRK.EQT.WPN.MSLL.ADFAD.THT.TELAR
+  sidc: S*G*EWMATE*****
+1.1.0.4.9.0.0:
+  description: R-65 (FROG-7)
+  hierarchy: WAR.GRDTRK.EQT.WPN.MSLL
+  sidc: S*G*EWM---*****
+1.1.0.5.3.1.0:
+  description: Reinosa howitzers 105mm/26 howitzers  Spain (12)
+  hierarchy: WAR.GRDTRK.EQT.WPN.HOW.LIT
+  sidc: S*G*EWHL--*****
+1.1.0.6.1.1.0:
+  description: M998
+  hierarchy: WAR.GRDTRK.EQT.GRDVEH.ARMD.LARMVH
+  sidc: S*G*EVAL--*****
+1.2.0.1.2.1.0:
+  description: Mig 29
+  hierarchy: WAR.AIRTRK.MIL.FIXD.FTR
+  sidc: S*A*MFF---*****
+1.2.0.1.3.10.0:
+  description: F-16CM
+  hierarchy: WAR.AIRTRK.MIL.FIXD.FTR
+  sidc: S*A*MFF---*****
+1.2.0.1.3.3.0:
+  description: F-16 Block 50
+  hierarchy: WAR.AIRTRK.MIL.FIXD.FTR
+  sidc: S*A*MFF---*****
+1.2.0.1.9.10.0:
+  description: F-18E
+  hierarchy: WAR.AIRTRK.MIL.FIXD.FTR
+  sidc: S*A*MFF---*****
+1.2.0.1.9.11.0:
+  description: F-18F
+  hierarchy: WAR.AIRTRK.MIL.FIXD.FTR
+  sidc: S*A*MFF---*****
+1.2.0.2.4.3.0:
+  description: A-10
+  hierarchy: WAR.AIRTRK.MIL.FIXD.ATK
+  sidc: S*A*MFA---*****
+1.2.0.22.3.9.0:
+  description: MH-60R (MITL)
+  hierarchy: WAR.AIRTRK.MIL.ROT.CSAR
+  sidc: S*A*MHH---*****
+1.2.0.23.2.0.0:
+  description: CH-53E
+  hierarchy: WAR.AIRTRK.MIL.ROT.CGOALT.HVY
+  sidc: S*A*MHCH--*****
+1.2.0.24.1.1.0:
+  description: Bell OH-58 Kiowa
+  hierarchy: WAR.AIRTRK.MIL.ROT.RECON
+  sidc: S*A*MHR---*****
+1.2.0.25.1.2.0:
+  description: HH-60 Pave Hawk
+  hierarchy: WAR.AIRTRK.MIL.ROT.CSAR
+  sidc: S*A*MHH---*****
+1.2.0.4.1.1.4:
+  description: C-130
+  hierarchy: WAR.AIRTRK.MIL.FIXD.CGOALT
+  sidc: S*A*MFC---*****
+1.2.0.4.30.0.0:
+  description: V-280
+  hierarchy: WAR.AIRTRK.MIL.FIXD.VSTOL
+  sidc: S*A*MFL---*****
+1.2.0.4.5.0.0:
+  description: KC-135
+  hierarchy: WAR.AIRTRK.MIL.FIXD.TNK
+  sidc: S*A*MFK---*****
+1.2.0.4.9.0.0:
+  description: C-17
+  hierarchy: WAR.AIRTRK.MIL.FIXD.CGOALT.HVY
+  sidc: S*A*MFCH--*****
+1.2.0.5.5.0.0:
+  description: P-8A
+  hierarchy: WAR.AIRTRK.MIL.FIXD.PAT.ASUW
+  sidc: S*A*MFPN--*****
+1.2.0.50.25.0.0:
+  description: Scan Eagle RPA
+  hierarchy: WAR.AIRTRK.MIL.FIXD.DRN.RECON
+  sidc: S*A*MFQR--*****
+1.2.0.50.34.1.0:
+  description: MQ-9
+  hierarchy: WAR.AIRTRK.MIL.FIXD.DRN
+  sidc: S*A*MFQ---*****
+1.2.0.50.35.1.0:
+  description: MQ-8B Fire Scout
+  hierarchy: WAR.AIRTRK.MIL.ROT.DRN
+  sidc: S*A*MHQ---*****
+1.2.0.50.4.3.0:
+  description: MQ-1B
+  hierarchy: WAR.AIRTRK.MIL.FIXD.DRN
+  sidc: S*A*MFQ---*****
+1.2.0.50.4.33.0:
+  description: RQ-4
+  hierarchy: WAR.AIRTRK.MIL.FIXD.DRN.RECON
+  sidc: S*A*MFQR--*****
+1.2.0.50.6.0.0:
+  description: Global Hawk
+  hierarchy: WAR.AIRTRK.MIL.FIXD.DRN.RECON
+  sidc: S*A*MFQR--*****
+1.2.0.50.6.1.0:
+  description: RQ-4A
+  hierarchy: WAR.AIRTRK.MIL.FIXD.DRN.RECON
+  sidc: S*A*MFQR--*****
+1.2.0.50.6.2.0:
+  description: MQ-4C Triton
+  hierarchy: WAR.AIRTRK.MIL.FIXD.DRN.RECON
+  sidc: S*A*MFQR--*****
+1.2.0.50.8.1.0:
+  description: RQ-7
+  hierarchy: WAR.AIRTRK.MIL.FIXD.DRN.RECON
+  sidc: S*A*MFQR--*****
+1.2.0.57.1.7.0:
+  description: B737 Generic
+  hierarchy: WAR.AIRTRK.CVL.FIXD
+  sidc: S*A*CF----*****
+1.2.0.57.1.8.0:
+  description: B767
+  hierarchy: WAR.AIRTRK.CVL.FIXD
+  sidc: S*A*CF----*****
+1.2.0.6.10.0.0:
+  description: EA-18G Jammer
+  hierarchy: WAR.AIRTRK.MIL.FIXD.ECM
+  sidc: S*A*MFJ---*****
+1.2.0.7.8.7.0:
+  description: MC-12W Liberty
+  hierarchy: WAR.AIRTRK.MIL.FIXD.RECON
+  sidc: S*A*MFR---*****
+1.2.0.8.1.1.0:
+  description: E-2D
+  hierarchy: WAR.AIRTRK.MIL.FIXD.RECON.ABNEW
+  sidc: S*A*MFRW--*****
+1.2.0.8.4.3.0:
+  description: E-3C
+  hierarchy: WAR.AIRTRK.MIL.FIXD.RECON.ABNEW
+  sidc: S*A*MFRW--*****
+1.2.0.8.6.0.0:
+  description: E-8A
+  hierarchy: WAR.AIRTRK.MIL.FIXD.ABNCP
+  sidc: S*A*MFD---*****
+1.3.0.1.1.7.0:
+  description: CVN 74
+  hierarchy: WAR.SSUF.CBTT.LNE.CRR
+  sidc: S*S*CLCV--*****
+1.3.0.11.1.0.0:
+  description: LCAC
+  hierarchy: WAR.SSUF.CBTT.HOV
+  sidc: S*S*CH----*****
+1.3.0.20.1.3.0:
+  description: LCS-3 USS Fort Worth
+  hierarchy: WAR.SSUF.CBTT.LNE.LL
+  sidc: S*S*CLLL--*****
+1.3.0.20.1.4.0:
+  description: LCS-4 USS Coronado
+  hierarchy: WAR.SSUF.CBTT.LNE.LL
+  sidc: S*S*CLLL--*****
+1.3.0.3.1.24.0:
+  description: CG-70 USS Lake Erie
+  hierarchy: WAR.SSUF.CBTT.LNE.CRU
+  sidc: S*S*CLCC--*****
+1.3.0.4.1.3.0:
+  description: DDG 53 USS William P. Lawrence
+  hierarchy: WAR.SSUF.CBTT.LNE.DD
+  sidc: S*S*CLDD--*****
+1.3.0.4.1.43.0:
+  description: DDG-93  USS Chung-Hoon (DDG 93)
+  hierarchy: WAR.SSUF.CBTT.LNE.DD
+  sidc: S*S*CLDD--*****
+1.3.0.4.1.56.0:
+  description: DDG-106  USS Stockdale (DDG 106)
+  hierarchy: WAR.SSUF.CBTT.LNE.DD
+  sidc: S*S*CLDD--*****
+1.3.0.54.3.6.0:
+  description: LHD-6  USS Bonhomme Richard
+  hierarchy: WAR.SSUF.CBTT.AMPWS
+  sidc: S*S*CA----*****
+1.3.0.56.1.11.0:
+  description: LPD
+  hierarchy: WAR.SSUF.CBTT.AMPWS
+  sidc: S*S*CA----*****
+1.3.0.56.2.9.0:
+  description: LPD-25 USS Somerset
+  hierarchy: WAR.SSUF.CBTT.AMPWS
+  sidc: S*S*CA----*****
+1.3.0.60.2.1.0:
+  description: AOE 6
+  hierarchy: WAR.SSUF.NCBTT
+  sidc: S*S*N-----*****
+1.3.0.60.2.2.0:
+  description: T-AOE-7  USNS Rainier (T-AOE 7)
+  hierarchy: WAR.SSUF.NCBTT
+  sidc: S*S*N-----*****
+1.3.0.62.6.13.0:
+  description: WPB Marine Protector Cochito (WPB 87329)
+  hierarchy: EMS.OPN.LAWENF.CSTGD
+  sidc: E*O*DN----*****
+1.3.0.62.6.36.0:
+  description: WPB Marine Protector Petrel  (WPB 87350)
+  hierarchy: EMS.OPN.LAWENF.CSTGD
+  sidc: E*O*DN----*****
+1.3.0.62.8.1.0:
+  description: Balboa Coast Guard Cutter  (USCGC Berthoff)
+  hierarchy: EMS.OPN.LAWENF.CSTGD
+  sidc: E*O*DN----*****
+1.3.0.63.8.0.0:
+  description: RHIB  (Rigged Hull Inflatable Boat)
+  hierarchy: WAR.SSUF.NMIL.FSTREC.RHIB
+  sidc: S*S*XAR---*****
+1.3.0.7.4.0.0:
+  description: OSA II class missile boat
+  hierarchy: WAR.SSUF.CBTT.PAT.ASUW.ASMSL
+  sidc: S*S*CPSUM-*****
+1.3.0.80.1.0.0:
+  description: Generic Cruise Ship
+  hierarchy: WAR.SSUF.NMIL.MCT.PSG
+  sidc: S*S*XMP---*****
+1.3.0.80.4.0.0:
+  description: Generic Ferry
+  hierarchy: WAR.SSUF.NMIL.MCT.FRY
+  sidc: S*S*XMF---*****
+1.3.0.81.2.0.0:
+  description: Generic Dry Bulk Cargo Ship
+  hierarchy: WAR.SSUF.NMIL.MCT.CGO
+  sidc: S*S*XMC---*****
+1.3.0.81.3.0.0:
+  description: Generic Container Ship
+  hierarchy: WAR.SSUF.NMIL.MCT.CGO
+  sidc: S*S*XMC---*****
+1.3.0.82.5.0.0:
+  description: Generic Crude Oil Tanker
+  hierarchy: WAR.SSUF.NMIL.MCT.OLR
+  sidc: S*S*XMO---*****
+1.3.0.83.3.0.0:
+  description: Generic Tugboat
+  hierarchy: WAR.SSUF.NMIL.MCT.TUG
+  sidc: S*S*XMTU--*****
+1.3.0.84.1.0.0:
+  description: Skiff (Generic Small Motorboat    White Skiff
+  hierarchy: WAR.SSUF.NMIL.FSTREC
+  sidc: S*S*XA----*****
+1.3.0.84.1.0.1:
+  description: Skiff (Generic Small Motorboat    Green Skiff
+  hierarchy: WAR.SSUF.NMIL.FSTREC
+  sidc: S*S*XA----*****
+1.3.0.84.2.0.0:
+  description: Generic Medium Motorboat (up to 39ft/11.9m)
+  hierarchy: WAR.SSUF.NMIL.FSTREC.SPDBT
+  sidc: S*S*XAS---*****
+1.3.0.84.3.0.0:
+  description: Generic Large Motorboat (up to 65ft/19.8m)
+  hierarchy: WAR.SSUF.NMIL.FSTREC
+  sidc: S*S*XA----*****
+1.3.0.85.2.0.0:
+  description: Generic Medium Sailboat (up to 39ft/11.9m)
+  hierarchy: WAR.SSUF.NMIL.LESCRT
+  sidc: S*S*XR----*****
+1.3.0.86.1.0.0:
+  description: Opfor Fishing boat 1
+  hierarchy: WAR.SSUF.NMIL.FSG
+  sidc: S*S*XF----*****
+1.3.0.86.1.1.0:
+  description: Opfor Fishing boat 2
+  hierarchy: WAR.SSUF.NMIL.FSG
+  sidc: S*S*XF----*****
+1.3.0.86.1.2.0:
+  description: Opfor Fishing boat 3
+  hierarchy: WAR.SSUF.NMIL.FSG
+  sidc: S*S*XF----*****
+1.3.0.86.1.3.0:
+  description: Opfor Fishing boat 4
+  hierarchy: WAR.SSUF.NMIL.FSG
+  sidc: S*S*XF----*****
+1.3.0.86.1.4.0:
+  description: Opfor Fishing boat 5
+  hierarchy: WAR.SSUF.NMIL.FSG
+  sidc: S*S*XF----*****
+1.3.0.86.1.5.0:
+  description: Opfor Fishing boat 6
+  hierarchy: WAR.SSUF.NMIL.FSG
+  sidc: S*S*XF----*****
+1.3.0.86.1.6.0:
+  description: Opfor Fishing boat 7
+  hierarchy: WAR.SSUF.NMIL.FSG
+  sidc: S*S*XF----*****
+1.3.0.86.2.0.0:
+  description: Generic Medium Fishing Vessel (up to 65ft/19.8m)
+  hierarchy: WAR.SSUF.NMIL.FSG
+  sidc: S*S*XF----*****
+1.4.0.8.4.0.0:
+  description: Double Eagle (UUV)
+  hierarchy: WAR.SBSUF.SUB.UUV
+  sidc: S*U*SU----*****
+2.1.0.1.1.1.0:
+  description: Aim9
+  hierarchy: WAR.AIRTRK.WPN.MSLIF.ALM.AAM
+  sidc: S*A*WMAA--*****
+2.1.0.1.2.1.0:
+  description: AIM120
+  hierarchy: WAR.AIRTRK.WPN.MSLIF.ALM.AAM
+  sidc: S*A*WMAA--*****
+2.10.0.1.2.0.0:
+  description: No Dong, No Dong II
+  hierarchy: WAR.AIRTRK.WPN.MSLIF.BLST
+  sidc: S*A*WMB---*****
+2.2.0.2.11.2.0:
+  description: Bofors m/45 105 mm  Sweden (28)
+  hierarchy: WAR.GRDTRK.EQT.WPN.ATG
+  sidc: S*G*EWG---*****
+2.7.0.1.2.1.0:
+  description: Mk48 Torpedo
+  hierarchy: WAR.SBSUF.UH2WPN.TPD
+  sidc: S*U*WT----*****
+2.9.0.1.27.0.0:
+  description: HYDRA 70 - Advanced Precision Kill Weapon System (APKWS)
+  hierarchy: WAR.AIRTRK.WPN.MSLIF.ALM.ASM
+  sidc: S*A*WMAS--*****
+2.9.0.2.21.1.0:
+  description: Rockets 2.75
+  hierarchy: WAR.AIRTRK.WPN.MSLIF.ALM.ASM
+  sidc: S*A*WMAS--*****
+3.1.0.1.41.127.0:
+  description: U.S Marine w/ M4
+  hierarchy: WAR.GRDTRK.EQT.WPN.RIFWPN.RIF
+  sidc: S*G*EWRR--*****
+3.1.0.1.41.7.15:
+  description: U.S. Army w/M4
+  hierarchy: WAR.GRDTRK.EQT.WPN.RIFWPN.RIF
+  sidc: S*G*EWRR--*****
+3.1.0.102.0.0.0:
+  description: Opfor Male no weapon
+  hierarchy: STBOPS.INDIV
+  sidc: O*P*------*****
+3.1.0.102.0.0.3:
+  description: Opfor Male no weapon
+  hierarchy: STBOPS.INDIV
+  sidc: O*P*------*****
+3.1.0.102.0.0.60:
+  description: Opfor Male no weapon
+  hierarchy: STBOPS.INDIV
+  sidc: O*P*------*****
+3.1.0.102.0.0.70:
+  description: Opfor Male no weapon
+  hierarchy: STBOPS.INDIV
+  sidc: O*P*------*****
+3.1.0.102.0.0.8:
+  description: Opfor Male no weapon
+  hierarchy: STBOPS.INDIV
+  sidc: O*P*------*****
+3.1.0.102.0.0.80:
+  description: Opfor Male no weapon
+  hierarchy: STBOPS.INDIV
+  sidc: O*P*------*****
+3.1.0.102.0.0.9:
+  description: Opfor Male no weapon
+  hierarchy: STBOPS.INDIV
+  sidc: O*P*------*****
+3.1.0.102.5.112.0:
+  description: Opfor Male with AK47
+  hierarchy: WAR.GRDTRK.EQT.WPN.RIFWPN.RIF
+  sidc: S*G*EWRR--*****
+3.1.0.102.5.112.3:
+  description: Opfor Male with AK47
+  hierarchy: WAR.GRDTRK.EQT.WPN.RIFWPN.RIF
+  sidc: S*G*EWRR--*****
+3.1.0.102.5.112.60:
+  description: Opfor Male with AK47
+  hierarchy: WAR.GRDTRK.EQT.WPN.RIFWPN.RIF
+  sidc: S*G*EWRR--*****
+3.1.0.102.5.112.70:
+  description: Opfor Male with AK47
+  hierarchy: WAR.GRDTRK.EQT.WPN.RIFWPN.RIF
+  sidc: S*G*EWRR--*****
+3.1.0.102.5.112.8:
+  description: Opfor Male with AK47
+  hierarchy: WAR.GRDTRK.EQT.WPN.RIFWPN.RIF
+  sidc: S*G*EWRR--*****
+3.1.0.102.5.112.80:
+  description: Opfor Male with AK47
+  hierarchy: WAR.GRDTRK.EQT.WPN.RIFWPN.RIF
+  sidc: S*G*EWRR--*****
+3.1.0.102.5.112.9:
+  description: Opfor Male with AK47
+  hierarchy: WAR.GRDTRK.EQT.WPN.RIFWPN.RIF
+  sidc: S*G*EWRR--*****
+9.1.0.2.2.4.0:
+  description: TPS-75
+  hierarchy: WAR.GRDTRK.EQT.SNS.RAD
+  sidc: S*G*ESR---*****
+9.4.0.11.77.0.0:
+  description: Passive Sonobuoy
+  hierarchy: TACGRP.C2GM.GNL.PNT.USW.SNBY
+  sidc: G*G*GPUY--****X
+# OBW Mappings End

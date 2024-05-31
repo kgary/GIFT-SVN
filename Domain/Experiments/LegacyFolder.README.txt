@@ -1,0 +1,5 @@
+This folder has become obsolete as of July 2019 (https://gifttutoring.org/issues/4077).
+
+Only experiments created before ticket 4077 will exist in this folder (now known as 'legacy' experiments).
+
+All experiments created after ticket 4077 will simply reference the source course and copy the course into a unique subfolder of "runtime/experiments" each time the experiment is run.

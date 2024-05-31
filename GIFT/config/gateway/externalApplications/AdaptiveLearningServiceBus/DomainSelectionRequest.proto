@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "DomainSelectionRequestProto";
+
+/* 
+ * This message is used to start a new session in the ITS.
+ */
+message DomainSelectionRequest {
+
+	/** the id of a course/real-time assessment that can be loaded in the ITS.  Directly related to values from DomainOption.proto->source_id */
+	string domain_source_id = 1;
+	
+	/** the username of who the session is being started for, could be a learner, observer, instructor, admin */
+	string lms_username = 2;
+}

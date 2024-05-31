@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ModuleAllocationReplyProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains the necessary information for a module to reply to a module allocation request. */
+message ModuleAllocationReply {
+	/* The info about why the request was denied. */
+	google.protobuf.StringValue request_denied_msg = 1;
+	
+	/* The additional information about why the request was denied. */
+	google.protobuf.StringValue additional_info = 2;
+}

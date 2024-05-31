@@ -1,0 +1,19 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "FilteredSensorDataProto";
+
+import "SensorAttributeValue.proto";
+
+message FilteredSensorData {
+	int64 elapsed_time = 1;
+	string sensor_name = 2;
+	string sensor_type = 3;
+	string filter_name = 4;
+	map<string, SensorAttributeValue> attribute_values = 5;
+}

@@ -1,0 +1,246 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui" xmlns:c="urn:import:com.google.gwt.user.cellview.client">
+	<ui:style
+		type="mil.arl.gift.tools.authoring.server.gat.client.view.course.media.MediaManagementDialog.Style">
+		.bottomMargin {
+			margin-bottom: 10px;
+		}
+		
+		.buttonPanel {
+			height: 53px;
+			margin: -15px -15px 7px;
+			padding-left: 3%;
+			padding-top: 9px;
+			background: #F9F9F9;
+			border-radius: 3px;
+			border: solid 1px #E6E6E6;
+		}
+		
+		.cellTableBorder {
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(185, 185, 185);
+			border-radius: 3px;
+			box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+			background-color: rgb(250, 250, 250);
+		}
+		
+		.cellTableContainer {
+			height: 100%;
+		}
+		
+		.cellTableInset {
+			box-sizing: content-box;
+			border-collapse: separate;
+			width: 100%;
+		}
+		
+		.cellTableScroller {
+			min-height: 100px;
+			height: 100%;
+		}
+		
+		.downloadPanel {
+			float: right;
+			text-align: center;
+			margin-top: -9px;
+			padding-top: 9px;
+			border-left: solid 1px #e6e6e6;
+			width: 120px;
+			height: 52px;
+			cursor: pointer;
+		}
+		
+		.downloadDisabled {
+			cursor: not-allowed;
+			opacity: 0.5;
+			filter: alpha(opacity = 50);
+		}
+		
+		.downloadEnabled:hover {
+			cursor: allowed;
+			background: #E6E6E6;
+			border: solid 1px #D0D0D0;
+			border-radius: 0 3px 3px 0;
+			height: 53px;
+			margin-right: -1px;
+			width: 122px;
+			opacity: 1.0;
+			filter: alpha(opacity = 100);
+		}
+		
+		.deletePanel {
+			float: right;
+			text-align: center;
+			margin-top: -9px;
+			padding-top: 4px;
+			border-left: solid 1px #e6e6e6;
+			width: 120px;
+			height: 52px;
+			cursor: pointer;
+		}
+		
+		.deleteDisabled {
+			cursor: not-allowed;
+		}
+		
+		.deleteEnabled:hover {
+			background: #E6E6E6;
+			border: solid 1px #D0D0D0;
+			border-radius: 0 3px 3px 0;
+			margin-top: -10px;
+			height: 53px;
+			margin-right: -1px;
+			width: 122px;
+		}
+		
+		.gridHeaderName {
+			padding-left: 85px !important;
+		}
+		
+		.gridHeaderText {
+			background: #dddddd;
+			border: solid 1px #b9b9b9;
+			border-radius: 3px;
+			font-weight: bold;
+			font-size: 15px;
+			padding: 10px;
+		}
+		
+		.headerText {
+			display: inline;
+			margin-top: -30px;
+			position: absolute;
+		}
+		
+		.hoverCursor {
+			cursor: pointer;
+		}
+		
+		.loadingImage {
+			display: block;
+			margin: auto;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+		
+		.modalPadding {
+			height: 100%;
+			padding-bottom: 82px;
+		}
+		
+		.noBorder {
+			border: none !important;
+		}
+		
+		.overlay {
+			height: 100%;
+			width: 100%;
+			background-color: rgba(255, 255, 255, 0.7);
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+		}
+		
+		.padBottom {
+			padding-bottom: 10px;
+		}
+		
+		.previewButton {
+			color: #376fab;
+		}
+		
+		.previewButton:hover {
+			color: #376fab;
+		}
+		</ui:style>
+
+	<g:HTMLPanel>
+		<b:Modal title='' b:id="courseMediaModal" closable="true"
+			fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="courseMediaModal"
+			addStyleNames='courseMediaModal'>
+
+			<b:ModalHeader width='100%' height='100%'
+				addStyleNames="{style.noBorder}">
+				<w:DynamicHeaderScrollPanel width='100%'
+					height='100%'>
+
+					<w:north>
+						<b:ModalHeader addStyleNames="{style.noBorder} {style.padBottom}"
+							closable='false'>
+							<b:Heading size="H3" addStyleNames="{style.headerText}">
+								<g:InlineHTML>Media</g:InlineHTML>
+							</b:Heading>
+						</b:ModalHeader>
+					</w:north>
+
+					<w:center>
+						<g:FlowPanel width="100%" height="100%">
+							<b:ModalBody width='100%' height='100%'>
+
+								<g:FlowPanel addStyleNames="{style.modalPadding}">
+									<g:FlowPanel addStyleNames="{style.buttonPanel}">
+										<b:Button ui:field="uploadButton" width="100px">Upload</b:Button>
+										<g:FlowPanel addStyleNames="{style.deletePanel}"
+											ui:field="deletePanel">
+											<g:Image height="42px" width="42px" ui:field="deleteImage" />
+										</g:FlowPanel>
+										<g:FlowPanel addStyleNames="{style.downloadPanel}"
+											ui:field="downloadPanel">
+											<g:Image height="35px" width="35px" ui:field="downloadImage" />
+										</g:FlowPanel>
+									</g:FlowPanel>
+
+									<g:FlowPanel addStyleNames="{style.cellTableContainer}">
+										<g:Grid width="100%" ui:field="headerGrid">
+											<g:row>
+												<g:customCell>
+													<g:HTML ui:field="checkHeader" addStyleNames="{style.gridHeaderText}">&nbsp;</g:HTML>
+												</g:customCell>
+												<g:customCell>
+													<g:Label ui:field="nameHeader"
+														addStyleNames="{style.gridHeaderName} {style.gridHeaderText} {style.hoverCursor}">Name</g:Label>
+												</g:customCell>
+												<g:customCell>
+													<g:Label ui:field="typeHeader"
+														addStyleNames="{style.gridHeaderText} {style.hoverCursor}">Type</g:Label>
+												</g:customCell>
+												<g:customCell>
+													<g:Label ui:field="previewHeader"
+														addStyleNames="{style.gridHeaderText} {style.hoverCursor}">Preview</g:Label>
+												</g:customCell>
+											</g:row>
+										</g:Grid>
+										<g:ScrollPanel
+											addStyleNames='{style.cellTableScroller} {style.cellTableBorder} {style.bottomMargin}'>
+											<c:CellTable addStyleNames='{style.cellTableInset}'
+												width="100%" ui:field="mediaListTable" />
+										</g:ScrollPanel>
+									</g:FlowPanel>
+								</g:FlowPanel>
+							</b:ModalBody>
+							<g:FlowPanel addStyleNames="{style.overlay}"
+								ui:field="loadingOverlay">
+								<g:Image url="images/loading.gif" addStyleNames="{style.loadingImage}"></g:Image>
+							</g:FlowPanel>
+						</g:FlowPanel>
+					</w:center>
+
+					<w:south>
+						<b:ModalFooter addStyleNames="{style.noBorder}"></b:ModalFooter>
+					</w:south>
+
+				</w:DynamicHeaderScrollPanel>
+			</b:ModalHeader>
+
+		</b:Modal>
+	</g:HTMLPanel>
+
+</ui:UiBinder>

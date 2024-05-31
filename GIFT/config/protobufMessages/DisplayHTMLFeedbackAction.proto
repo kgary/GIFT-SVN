@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DisplayHTMLFeedbackActionProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information about an HTML file that contains feedback to present to the learner. */
+message DisplayHTMLFeedbackAction {
+	/* The url of the feedback. */
+	google.protobuf.StringValue url = 1;
+}

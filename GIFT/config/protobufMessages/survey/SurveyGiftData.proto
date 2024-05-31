@@ -1,0 +1,23 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyGiftDataProto";
+
+import "survey/Survey.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a payload for a GET_SURVEY_REPLY message. */
+message SurveyGiftData {
+
+	/* The survey. Cannot be null. */
+	Survey survey = 1;
+	
+	/* The key. Cannot be null. */
+	google.protobuf.StringValue gift_key = 2;
+}

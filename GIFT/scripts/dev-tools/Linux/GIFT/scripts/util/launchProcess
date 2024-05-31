@@ -1,0 +1,52 @@
+#!/bin/bash
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+cd "$parent_path"
+
+AbsBaseDir=$(cd "$parent_path/../.."; pwd)
+
+# Check to see if any spaces are in the path and, if so, throw an error.
+# While GIFT's own scripts can handle spaces, some of its third party dependencies cannot.
+if [[ "${AbsBaseDir}" = *" "* ]]; then
+	echo
+	echo "ERROR: Please remove all spaces in the GIFT path of ${AbsBaseDir}, otherwise the various GIFT scripts will not work"
+	echo
+	exit 1
+fi
+
+jdkDir="${AbsBaseDir}/external/jdk-11"
+jdkDirArchive="${AbsBaseDir}/external/openjdk-11-linux.x64.GIFT.tar.gz"
+JAVA_HOME="${jdkDir}"
+
+#Special error code that GIFT returns once an error has been detected and handled
+GIFT_ERROR_CODE=101
+
+#Check if the JDK has been extracted
+if ! [ -d "${jdkDir}" ] ; then
+
+    if ! [ -f "${jdkDirArchive}" ] ; then
+    
+        echo "ERROR: Unable to find ${jdkDirArchive}."
+	echo "Do you have the GIFT third parties in the ${AbsBaseDir}/external folder?"
+	
+	exit 1
+    fi
+    
+    cd ${AbsBaseDir}/external
+    tar -xvzf ${jdkDirArchive}
+    cd "$parent_path"
+else
+    echo "Found JDK at ${JAVA_HOME}"
+fi
+
+export JAVA_HOME
+"${AbsBaseDir}/external/ant/bin/ant" -file "launchProcess.xml" checkTargets $@
+
+#Store the error code returned from calling the Ant configuration file
+ERROR_CODE=$?
+
+#Check if the application launch was successful. If not, pause the console and capture 
+#user input to continue. 
+if [ ${ERROR_CODE} != 0 ] && [ ${ERROR_CODE} != ${GIFT_ERROR_CODE} ] ; then 
+    read -p "Press enter to continue..."
+fi

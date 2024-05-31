@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ChatLogProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains a snapshot of a chat window log between the GIFT user and the GIFT tutor. */
+message ChatLog {
+	/* Unique id for the chat. */
+	google.protobuf.Int32Value chat_id = 1;
+	
+	/* User chat entries. */
+	repeated string user_entries = 2;
+	
+	/* Tutor chat entries. */
+	repeated string tutor_entries = 3;
+}

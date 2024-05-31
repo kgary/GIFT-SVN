@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Training Application Reference Authoring Tool (TARAT).
+	This file contains information needed for GIFT to launch a training application course element.
+	The information includes the training application file (e.g. powerpoint show, VBS scenario name) as well as other configuration parameters.
+-->
+<TrainingApplicationWrapper version="6.0.2"
+    xmlns:c0="http://GIFT.com/common"
+    xmlns:p0="http://GIFT.com/pedagogicalStrategy" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <description>desc</description>
+    <TrainingApplication>
+        <transitionName>name</transitionName>
+        <dkfRef>
+            <file>AutoTutorSession.example.dkf.xml</file>
+        </dkfRef>
+        <options>
+            <disableInstInterImpl>false</disableInstInterImpl>
+            <showAvatarInitially>
+                <mediaSemantics>
+                    <Avatar>Explicit Feedback within Game-Based Training\Condition 1 - TC3 Team Member\tc3_teammember.html</Avatar>
+                </mediaSemantics>
+            </showAvatarInitially>
+            <fullScreen>false</fullScreen>
+        </options>
+        <interops>
+            <interop>
+                <InteropImpl>gateway.interop.detestbedplugin.DETestbedPluginDISInterface</InteropImpl>
+                <InteropInputs>
+                    <CustomInteropInputs>
+                        <loadArgs>
+                            <c0:nvpair xmlns:c0="http://GIFT.com/common">
+                                <c0:name>name</c0:name>
+                                <c0:value>value</c0:value>
+                            </c0:nvpair>
+                        </loadArgs>
+                    </CustomInteropInputs>
+                </InteropInputs>
+            </interop>
+        </interops>
+        <Guidance>
+            <transitionName>asdfasfd</transitionName>
+            <message>
+                <content>a</content>
+            </message>
+            <displayTime>1.0</displayTime>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <finishedWhen>Stopped</finishedWhen>
+    </TrainingApplication>
+</TrainingApplicationWrapper>

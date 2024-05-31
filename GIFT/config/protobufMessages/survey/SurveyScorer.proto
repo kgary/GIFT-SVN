@@ -1,0 +1,23 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyScorerProto";
+
+import "survey/TotalScorer.proto";
+import "survey/AttributeScorerProperties.proto";
+
+/* This message represents a scorer for a survey. */
+message SurveyScorer {
+
+	/* The total scorer for the survey. Can be null. */
+	TotalScorer total_scorer = 1;
+	
+	/* List of attribute scorers for the survey. Can be null. */
+	repeated AttributeScorerProperties attribute_scorers = 2;
+}

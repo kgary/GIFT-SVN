@@ -1,0 +1,31 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "UserDataProto";
+
+import "AbstractEnumObject.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about a user such as biographical information. */
+message UserData {
+	/* The user's user id. */
+	google.protobuf.Int32Value user_id = 1;
+	
+	/* The user's user name. */
+	google.protobuf.StringValue user_name = 2;
+	
+	/* The unique experiment id if this user is a subject in an experiment. */
+	google.protobuf.StringValue experiment_id = 3;
+	
+	/* The gender of the user. */
+	AbstractEnumObject gender = 4;
+	
+	/* The user's lms username. */
+	google.protobuf.StringValue lms_username = 5;
+}

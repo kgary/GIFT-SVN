@@ -1,0 +1,57 @@
+/* 
+ * version 1.1 [February 2022]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DataCollectionItemProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information specific to a course state. */
+message DataCollectionItem {
+	/* The id of the data. */
+	google.protobuf.StringValue id = 1;
+	
+	/* Name. */
+	google.protobuf.StringValue name = 2;
+	
+	/* Data description. */
+	google.protobuf.StringValue description = 3;
+	
+	/* The username of the experiment author. */
+	google.protobuf.StringValue author_username = 4;
+	
+	/* The folder the data belongs in. */
+	google.protobuf.StringValue course_folder = 5;
+	
+	/* The url of the data. */
+	google.protobuf.StringValue url = 6;
+	
+	/* The data status. */
+	google.protobuf.StringValue status = 7;
+		
+	/* The ype of the dataset. */
+	google.protobuf.StringValue dataset_type = 8;
+	
+	/* The course id for the data. */
+	google.protobuf.StringValue sourse_course_id = 9;
+	
+	/* Amount of subjects present for the data. */
+	google.protobuf.Int32Value subject_size = 10;
+	
+	/* The time the subject last attempted the experiment. */
+	google.protobuf.StringValue subject_last_attempt = 11;
+	
+	/* The sample size of the lti results. */
+	google.protobuf.Int32Value lti_results_size = 12;
+	
+	/* The time the subject last attempted the experiment. */
+	google.protobuf.StringValue lti_subject_last_attempt = 13;
+	
+	/* The date and time when the experiment was published. This string should be in the format yyyy-MM-dd HH:mm:ss, with the hour in 24-hour format. (2022-02-01 00:01:02) */
+	google.protobuf.StringValue published_date = 14;
+}

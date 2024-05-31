@@ -1,0 +1,73 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+	xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:input="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.sensor.input"
+	xmlns:widgets="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.sensor.widgets">
+	
+		<ui:style>	
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}	
+		.textBoxPad{
+			padding: 7px 5px !important;
+		}
+		.hint{
+			color: red;
+		}
+	</ui:style>
+	
+	<g:FlowPanel width="100%">
+	
+		<g:HTML addStyleNames='{style.smallPadBottom}'>
+			What directory (relative to the GIFT directory) should the file be written to?<span style='color: red; font-weight: bold;'>*</span>
+		</g:HTML>
+		<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+			<g:TextBox width="100%" ui:field="outputDirectoryTextBox"/>
+		</g:FlowPanel>
+				
+		<g:HTML addStyleNames='{style.smallPadBottom}'>
+			What prefix would you like to prepend to the file name?<span style='color: red; font-weight: bold;'>*</span>
+		</g:HTML>
+		<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+			<g:TextBox width="100%" ui:field="filePrefixTextBox"/>
+		</g:FlowPanel>
+		
+		<!-- GenericSensorDelimitedWriter widgets -->
+		<g:FlowPanel ui:field='genericSensorDelimitedWriterPanel'>
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="delimiterLabel">
+				What character would you like to use as a delimiter?<span style='color: red; font-weight: bold;'>*</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:TextBox width="100%" ui:field="delimiterTextBox"/>
+			</g:FlowPanel>
+		</g:FlowPanel>
+		
+		<!-- KinectSensorWriter widgets -->
+		<g:FlowPanel ui:field='kinectSensorWriterPanel'>
+		
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="colorCompressionLabel">
+				Which compression algorithm should be used to compress the color frame?<span style='color: red; font-weight: bold;'>*</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<widgets:ImageCompressionFormatValueListBox width="100%" ui:field="colorCompressionListBox"/>
+			</g:FlowPanel>
+			
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="depthCompressionLabel">
+				Which compression algorithm should be used to compress the depth frame?<span style='color: red; font-weight: bold;'>*</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<widgets:ImageCompressionFormatValueListBox width="100%" ui:field="depthCompressionListBox"/>
+			</g:FlowPanel>
+			
+		</g:FlowPanel>
+		
+		<g:Label addStyleNames='{style.hint}'>* - indicates required field</g:Label>
+		
+	</g:FlowPanel>
+	
+</ui:UiBinder> 

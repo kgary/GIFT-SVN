@@ -1,0 +1,560 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:common="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:slider="urn:import:org.gwtbootstrap3.extras.slider.client.ui"
+    xmlns:common.bs="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:select="urn:import:org.gwtbootstrap3.extras.select.client.ui"
+    xmlns:itemList="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list">
+    <ui:style type="mil.arl.gift.tools.authoring.server.gat.client.view.dkf.strategy.ScenarioAdaptationEditor.UiStyle">
+
+        .environmentAdaptation > * {
+            background-color: #dff0d8;
+        }
+
+        .playerSettingsAdaptation > * {
+            background-color: #d9edf7;
+        }
+
+        .actorsAdaptation > * {
+            background-color: #f2dede;
+        }
+        
+        .subEditorPanel{
+            display: flex;
+	    }
+        
+        .subEditorControlsPanel {
+            flex: 1;
+        }
+
+        .fieldPanel {
+            margin-top: 8px;
+        }
+        
+        .stressCategory{
+			margin-right:10px;
+		}
+        
+        .fieldPanel > * {
+            margin-top: 8px;
+		}
+		
+		.helpLink {
+            margin-left: 4px;
+            color: rgb(100, 100, 200);
+        }
+		
+		@external btn active;
+		.rootPanel .subEditorPanel .subEditorControlsPanel .createActorsPanel button.btn.enemyActorButton.active {
+            color: #fff;
+            background-color: #c9302c;
+            border-color: #ac2925;
+        }
+        
+        .rootPanel .subEditorPanel .subEditorControlsPanel .createActorsPanel button.btn.friendlyActorButton.active {
+            color: #fff;
+            background-color: #204d74;
+            border-color: #122b40;
+        }
+        
+        .rootPanel .subEditorPanel .subEditorControlsPanel .createActorsPanel button.btn.civilianActorButton.active {
+            color: #fff;
+            background-color: #449d44;
+            border-color: #398439;
+        }
+        
+		.rootPanel .subEditorPanel .subEditorControlsPanel .addHighlightObjectPanel button.btn.highlightRedButton.active {
+            color: #fff;
+            background-color: #c9302c;
+            border-color: #ac2925;
+        }
+        
+        .rootPanel .subEditorPanel .subEditorControlsPanel .addHighlightObjectPanel button.btn.highlightBlueButton.active {
+            color: #fff;
+            background-color: #204d74;
+            border-color: #122b40;
+        }
+        
+        .rootPanel .subEditorPanel .subEditorControlsPanel .addHighlightObjectPanel button.btn.highlightGreenButton.active {
+            color: #fff;
+            background-color: #449d44;
+            border-color: #398439;
+        }
+        
+        .rootPanel .subEditorPanel .subEditorControlsPanel .timePanel button.active {
+            color: #fff;
+            background-color: #204d74;
+            border-color: #122b40;
+        }
+        
+        @external slider slider-track slider-track-low slider-selection slider-track-high;
+        .rootPanel .subEditorPanel .subEditorControlsPanel .slider .slider-track .slider-track-low {
+            background-image: linear-gradient(to bottom,#808080 0,#545454 100%);
+        }
+        
+        .rootPanel .subEditorPanel .subEditorControlsPanel .slider .slider-track .slider-selection {
+            background-image: linear-gradient(to bottom,#808080 0,#545454 100%);
+        }
+        
+        .rootPanel .subEditorPanel .subEditorControlsPanel .slider .slider-track .slider-track-high {
+            background-image: linear-gradient(to bottom,#808080 0,#545454 100%);
+        }
+        .teamPicker{
+            margin-bottom: 10px;
+	    }
+	    .stressCategoryPickerPanel{
+			margin-top:10px;
+		}
+	    .descriptionContainer {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: flex-end;
+            margin-top: 6px;
+            padding-left: 32px;
+	    }
+	    .descriptionPanel {
+            padding-left: 10px;
+            padding-top: 5px;
+            flex: 1;
+        }
+        .descriptionTextBox {
+            margin-top: 3px;
+        }
+        .note {
+            border-style: solid;
+            border-Width: 1px;
+            border-color: rgb(185, 185, 185);
+            border-radius: 3px;
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+            background-color: rgb(255, 255, 200);
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .timeTable{
+	       border: 1px solid #888; 
+	       border-radius: 3px;
+           text-align: left;
+           display: inline-block;
+	    }
+	    .timeTable tr:nth-child\(even\){
+            background-color: rgba(0,0,0,0.1);
+        }
+	    .timeTable td{
+            padding: 3px;
+        }
+        .timeTable td:last-child{
+            text-align: right;
+        }
+        .highlightNameLabel{
+			padding-right: 7px;
+		}
+		.highlightNamePanel{
+			margin-bottom: 7px;
+		}
+		.highlightOffsetLabel{
+			margin-top: 7px;
+		}
+		.removeHighlightNameBox{
+            display: inline-block;
+            width: 400px;
+            margin-right: 10px;
+	   }
+	   .createActorTypeCategoryBox{
+			width:300px;
+		}
+		.createActorTypeCategoryPanel{
+			padding-top:5px;
+		}
+	   .createBreadcrumbsTeamPicker{
+			margin-top: 7px;
+		}
+		.highlightNameErrorLabel{
+			padding-left: 7px;
+			font-style: italic;
+		}
+		.createActorHeadingSlider{
+			padding-top:16px;
+		}
+    </ui:style>
+    <g:DeckPanel ui:field="rootPanel" animationEnabled="true" addStyleNames="{style.rootPanel}">
+        <!-- Type Ribbon -->
+        <shared:Ribbon ui:field="adaptationTypeRibbon" tileHeight="100" />
+
+        <g:FlowPanel ui:field="subEditorPanel" >
+            <g:FlowPanel addStyleNames="{style.subEditorPanel}">
+            <b:Tooltip ui:field="subEditorTypeIconTooltip">
+                <b:Icon ui:field="subEditorTypeIcon" type="QUESTION" size="TIMES2" marginRight="8" />
+            </b:Tooltip>
+            <g:DeckPanel ui:field="subEditorControlsPanel" addStyleNames="{style.subEditorControlsPanel}">
+            
+            	<!-- (Add) Highlight object -->
+            	<g:FlowPanel ui:field="addHighlightObjectPanel" addStyleNames="{style.addHighlightObjectPanel}">
+            		<g:HorizontalPanel addStyleNames="{style.fieldPanel} {style.highlightNamePanel}">
+            			<g:Label addStyleNames="{style.highlightNameLabel}" title="Unique name of the highlighting, used to remove the highlighting by name">Name</g:Label>
+            			<b:TextBox title="Unique name of the highlighting, used to remove the highlighting by name" ui:field="highlightNameTextbox" />
+            			<g:Label addStyleNames="{style.highlightNameErrorLabel}">(letters/numbers only)</g:Label>
+            		</g:HorizontalPanel>
+            		
+            		<g:DeckPanel ui:field="highlightTypeRootPanel" animationEnabled="true" addStyleNames="{style.rootPanel}">
+            			<!-- Type Ribbon -->
+        				<shared:Ribbon ui:field="highlightTypeRibbon" tileHeight="120" />
+        				<g:FlowPanel ui:field="highlightSubEditorPanel" >
+        					<g:DeckPanel ui:field="highlightSubEditorDeckPanel" addStyleNames="{style.subEditorControlsPanel}">
+        						<shared:TeamMemberPicker addStyleNames='{style.teamPicker}' label='Team Member who should be highlighted:' ui:field='highlightMemberPicker' />
+        						<shared:PlaceOfInterestPicker label='Location to highlight:' ui:field="highlightLocationPicker" />
+        					</g:DeckPanel>
+        				</g:FlowPanel>
+        			</g:DeckPanel>
+            		<g:Label addStyleNames="{style.highlightOffsetLabel}" 
+            			title="Where to place the highlighting object, if an object is created, in relation to the object being highlighted.">Offset from object (meters):</g:Label>
+            		<g:HorizontalPanel addStyleNames="{style.fieldPanel}">
+            			<g:Label width="200px">Right (negative value for Left)</g:Label>
+            			<b:TextBox width="100px" ui:field="highlightOffsetRightTextbox" />
+            		</g:HorizontalPanel>
+            		<g:HorizontalPanel addStyleNames="{style.fieldPanel}">
+            			<g:Label width="200px">Front (negative value for Behind)</g:Label>
+            			<b:TextBox width="100px" ui:field="highlightOffsetFrontTextbox" />
+            		</g:HorizontalPanel>
+            		<g:HorizontalPanel addStyleNames="{style.fieldPanel}">
+            			<g:Label width="200px">Up (negative value for Below)</g:Label>
+            			<b:TextBox width="100px" ui:field="highlightOffsetUpTextbox" />
+            		</g:HorizontalPanel>
+            		<b:ButtonGroup title="The color of the highlight" addStyleNames="{style.fieldPanel}">
+                        <b:Button ui:field="highlightRedButton" text="Red" addStyleNames="{style.highlightRedButton}" active="true" />
+                        <b:Button ui:field="highlightGreenButton" text="Green" addStyleNames="{style.highlightGreenButton}" />
+                        <b:Button ui:field="highlightBlueButton" text="Blue" addStyleNames="{style.highlightBlueButton}" />
+                    </b:ButtonGroup>
+            	</g:FlowPanel>
+            	
+            	<!-- (Remove) Highlight object -->
+            	<g:FlowPanel ui:field="removeHighlightObjectPanel">
+            		<g:HTMLPanel ui:field='removeHighlightNamePanel'>
+					Highlight to remove: <select:Select addStyleNames="{style.removeHighlightNameBox}" ui:field='removeHighlightNameBox'/>
+					</g:HTMLPanel>
+            	</g:FlowPanel>
+            	
+            	<!--  create bread crumbs -->
+            	<g:FlowPanel ui:field="createBreadcrumbsPanel">
+            		<g:Label>The breadcrumb(s) to show:</g:Label>
+            		<shared:PlaceOfInterestPicker ui:field="breadcrumbLocationPicker" />
+            		<shared:EditableTeamPicker label='The following should see the breadcrumb(s):' addStyleNames='{style.teamPicker} {style.createBreadcrumbsTeamPicker}' ui:field='createBreadcrumbsTeamPicker' />
+            	</g:FlowPanel>
+            	
+            	<!--  remove bread crumbs -->
+            	<g:FlowPanel ui:field="removeBreadcrumbsPanel">
+            		<shared:EditableTeamPicker label='The following should have all breadcrumb(s) removed:' addStyleNames='{style.teamPicker}' ui:field='removeBreadcrumbsTeamPicker' />            	
+            	</g:FlowPanel>
+
+                <!-- Fatigue Recovery -->
+                <g:FlowPanel ui:field="fatiguePanel">
+                    <shared:TeamMemberPicker addStyleNames='{style.teamPicker}' label='Learner whose fatigue should be recovered:' ui:field='fatigueMemberPicker' />
+                    <g:HTML>Recovery Rate: (e.g. '3' means three times as fast, '0.5' means half as fast)</g:HTML>
+                    <common:DecimalNumberSpinner ui:field="fatigueRateSpinner" />
+                </g:FlowPanel>
+
+                <!-- Fog -->
+                <g:FlowPanel ui:field="fogPanel">
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}">
+                        <g:HTML>Fog density:</g:HTML>
+                        <slider:Slider ui:field="fogDensitySlider" min="0" max="1" value="0" step="0.01" />
+                    </g:FlowPanel>
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}">
+                        <b:Button ui:field="fogColorToggle" text="Custom Color" dataToggle="BUTTON" marginRight="16" />
+                        <common:ColorBox ui:field="fogColorBox" />
+                    </g:FlowPanel>
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}" ui:field='fogDurationPanel'>
+                        <g:HTML>Duration: (apply the change in fog over this time period)</g:HTML>
+                        <common.bs:FormattedTimeBox ui:field="fogTransitionTimeBox" />
+                    </g:FlowPanel>
+                    <g:HorizontalPanel addStyleNames="{style.fieldPanel}">
+                    	<b:Label addStyleNames="{style.stressCategory}">Stress Category:</b:Label>
+                    	<g:Label ui:field="fogStressCategoryLabel" />
+                   	</g:HorizontalPanel>
+                </g:FlowPanel>
+
+                <!-- Rain -->
+                <g:FlowPanel ui:field="rainPanel">
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}">
+                        <g:HTML>Rain density:</g:HTML>
+                        <slider:Slider ui:field="rainSlider" min="0" max="1" value="0" step="0.01" />
+                    </g:FlowPanel>
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}" ui:field='rainDurationPanel'>
+                        <g:HTML>Duration: (apply the change in rain over this time period)</g:HTML>
+                        <common.bs:FormattedTimeBox ui:field="rainTransitionTimeBox" />
+                    </g:FlowPanel>
+                    <g:HorizontalPanel addStyleNames="{style.fieldPanel}">
+                    	<b:Label addStyleNames="{style.stressCategory}">Stress Category:</b:Label>
+                    	<g:Label ui:field="rainStressCategoryLabel" />
+                   	</g:HorizontalPanel>
+                </g:FlowPanel>
+
+                <!-- Overcast -->
+                <g:FlowPanel ui:field="overcastPanel">
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}">
+                        <g:HTML>Overcast density:</g:HTML>
+                        <slider:Slider ui:field="overcastSlider" min="0" max="1" value="0" step="0.01" />
+                    </g:FlowPanel>
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}" ui:field='overcastDurationPanel'>
+                        <g:HTML>Duration: (apply the change in overcast over this time period)</g:HTML>
+                        <common.bs:FormattedTimeBox ui:field="overcastTransitionTimeBox" />
+                    </g:FlowPanel>
+                    <g:HorizontalPanel addStyleNames="{style.fieldPanel}">
+                    	<b:Label addStyleNames="{style.stressCategory}">Stress Category:</b:Label>
+                    	<g:Label ui:field="overcastStressCategoryLabel" />
+                   	</g:HorizontalPanel>
+                </g:FlowPanel>
+
+                <!-- Teleport Learner -->
+                <g:FlowPanel ui:field="teleportPanel">
+                    <shared:ScenarioCoordinateEditor ui:field="teleportCoordinateEditor" />
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}">
+                        <shared:TeamMemberPicker addStyleNames='{style.teamPicker}' label='Learner that should be teleported:' ui:field='teleportMemberPicker' />
+                        <b:Button ui:field="teleportHeadingToggle" text="Custom Heading" dataToggle="BUTTON" marginRight="16" />
+                        <slider:Slider ui:field="teleportHeadingSlider" min="0" max="360" value="0" step="1" />
+                    </g:FlowPanel>
+                </g:FlowPanel>
+
+                <!-- Create Actors -->
+                <g:FlowPanel ui:field="createActorsPanel" addStyleNames="{style.createActorsPanel}">
+                    <shared:ScenarioCoordinateEditor ui:field="createActorCoordinateEditor" />
+                    <b:Button ui:field="createActorHeadingToggle" text="Custom Heading" dataToggle="BUTTON" marginRight="16" marginTop="16" />
+                    <slider:Slider ui:field="createActorHeadingSlider" addStyleNames="{style.createActorHeadingSlider}" min="0" max="360" value="0" step="1"  />
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}">
+                        <g:InlineHTML>Actor Name</g:InlineHTML>
+                        <common.bs:HelpLink helpCaption="Actor Name">
+                            <common.bs:linkWidget>
+                                <b:Icon type="QUESTION_CIRCLE" addStyleNames="{style.helpLink}"/>
+                            </common.bs:linkWidget>
+                            <common.bs:helpBody>
+                                <g:HTML>
+                                    Provide a unique name of the actor that will be created in order to help identify
+                                    the actor among any other actors in the application.  Having a unique name allows
+                                    you to remove specific actors using the Remove Actor strategy.<br/><br/>
+                                    If you don't provide a name, a non-unique name will be given to this actor and any
+                                    other actor created that is not given a unique name.  When the Remove Actor strategy
+                                    is invoked on a given name it removes all actors with that name.                                    
+                                </g:HTML>
+                            </common.bs:helpBody>
+                        </common.bs:HelpLink>
+                        <b:TextBox ui:field="createActorNameBox" />
+                    </g:FlowPanel>
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}">
+                        <g:InlineHTML>Actor Type</g:InlineHTML>
+                        <common.bs:HelpLink helpCaption="Actor Type">
+                            <common.bs:linkWidget>
+                                <b:Icon type="QUESTION_CIRCLE" addStyleNames="{style.helpLink}"/>
+                            </common.bs:linkWidget>
+                            <common.bs:helpBody>
+                                <g:HTML>
+                                    Identifies the type of actor to create.<br/><br/>
+                                    <b>VBS</b><br/>
+                                    The list of actor types is hidden.  Here are some ways to find the list of values:
+                                    <ul>
+                                    	<li>Use the 'typeof' script command
+                                    		<ol>
+                                    			<li>During a VBS scenario, use 'm' to open the map.</li>
+                                    			<li>Open the "Developer Console" under the <b>Tools</b> menu</li>
+                                    			<li>(optional) Create the type of actor you want GIFT to create with this strategy during the real-time assessment.</li>
+                                    			<li>Next to 'Variable Watch #1', enter "typeof <i>object</i>" in the text field where <i>object</i> is the VBS actor's 'Name' value you want to get the type of.</li>
+                                    			<li>Use the value that appears in the text field below that as the actor type to create in the GIFT real-time assessment editor.</li>
+                                    		</ol>
+                                    	</li>
+                                    	<li>(prior to VBS4) &lt;vbs install path&gt;\config\vbs_to_lvc.config (e.g. vbs2_iq_militia_01_aks74u)</li>
+                                    </ul>
+                                </g:HTML>
+                            </common.bs:helpBody>
+                        </common.bs:HelpLink>
+                        <b:TextBox ui:field="createActorTypeBox" />
+                    </g:FlowPanel>
+                    <g:FlowPanel ui:field='createActorTypeCategoryPanel' addStyleNames="{style.fieldPanel}">
+                    	<g:InlineHTML>Actor Type Category</g:InlineHTML>
+                    	<common.bs:HelpLink helpCaption="Actor Type Category">
+                            <common.bs:linkWidget>
+                                <b:Icon type="QUESTION_CIRCLE" addStyleNames="{style.helpLink}"/>
+                            </common.bs:linkWidget>
+                            <common.bs:helpBody>
+                                <g:HTML>
+                                    Identifies the category for the actor type being created.<br/><br/>
+                                    <b>VBS</b><br/>
+                                    The VBS scripting languange has one command for creating vehicles ('createVehicle') and another command for creating people/lifeforms ('createUnit').  Therefore you need to select
+                                    which category the actor type you are creating falls under. If you don't know which selection to make, then take a guess, and test it out.  If you don't see the object created in VBS, 
+                                    but maybe you see an icon on the map in Game Master, try a different choice and test again.<br/>
+                                    The 'OTHER' choice currently uses the 'createUnit' command which is the same as 'PERSON'.                                    
+                                </g:HTML>
+                            </common.bs:helpBody>
+                        </common.bs:HelpLink>
+                        <select:Select addStyleNames="{style.createActorTypeCategoryBox}" ui:field='createActorTypeCategoryBox'/>
+                    </g:FlowPanel>
+                    <b:ButtonGroup addStyleNames="{style.fieldPanel}">
+                        <b:Button ui:field="createActorEnemyButton" text="Enemy" addStyleNames="{style.enemyActorButton}" active="true" />
+                        <b:Button ui:field="createActorFriendlyButton" text="Friendly" addStyleNames="{style.friendlyActorButton}" />
+                        <b:Button ui:field="createActorCivilianButton" text="Civilian" addStyleNames="{style.civilianActorButton}" />
+                    </b:ButtonGroup>
+                </g:FlowPanel>
+
+                <!-- Remove Actors -->
+                <g:FlowPanel ui:field="removeActorsPanel">
+                	<g:FlowPanel addStyleNames="{style.fieldPanel}">
+                		<g:InlineHTML>Actor Name</g:InlineHTML>
+                        <common.bs:HelpLink helpCaption="Actor Name">
+                            <common.bs:linkWidget>
+                                <b:Icon type="QUESTION_CIRCLE" addStyleNames="{style.helpLink}"/>
+                            </common.bs:linkWidget>
+                            <common.bs:helpBody>
+                                <g:HTML>
+                                    Provide the name of the actor that will be removed.  It is possible all the actors with this name will be removed.                                                                       
+                                </g:HTML>
+                            </common.bs:helpBody>
+                        </common.bs:HelpLink>
+                        <b:TextBox ui:field="removeActorNameBox" />
+                    </g:FlowPanel>
+                	<g:FlowPanel ui:field='removeActorTypeCategoryPanel' addStyleNames="{style.fieldPanel}">
+                    	<g:InlineHTML>Actor Type Category</g:InlineHTML>
+                    	<common.bs:HelpLink helpCaption="Actor Type Category">
+                            <common.bs:linkWidget>
+                                <b:Icon type="QUESTION_CIRCLE" addStyleNames="{style.helpLink}"/>
+                            </common.bs:linkWidget>
+                            <common.bs:helpBody>
+                                <g:HTML>
+                                    Identifies the category for the actor type being removed.<br/><br/>
+                                    <b>VBS</b><br/>
+                                    The VBS scripting languange has one command for retrieving vehicles ('allVehicles') and another command for retrieving all people/lifeforms ('allUnits').  Therefore you need to select
+                                    which category the actor type you are removing falls under. If you don't know which selection to make, then take a guess, and test it out.  If you don't see the object removed in VBS, 
+                                    , try a different choice and test again.<br/>
+                                    The 'OTHER' choice currently uses the 'allUnits' command which is the same as 'PERSON'.                                    
+                                </g:HTML>
+                            </common.bs:helpBody>
+                        </common.bs:HelpLink>
+                        <select:Select addStyleNames="{style.createActorTypeCategoryBox}" ui:field='removeActorTypeCategoryBox'/>
+                    </g:FlowPanel>
+                </g:FlowPanel>
+
+                <!-- Script -->
+                <g:FlowPanel ui:field="scriptPanel">
+                    <g:InlineHTML>Script text:</g:InlineHTML>
+                    <common.bs:HelpLink helpCaption="Custom Script Text">
+                        <common.bs:linkWidget>
+                            <b:Icon type="QUESTION_CIRCLE" addStyleNames="{style.helpLink}"/>
+                        </common.bs:linkWidget>
+                        <common.bs:helpBody>
+                        <!--  help text now set dynamically -->
+                            <g:HTML ui:field="scriptHelp"/>
+                        </common.bs:helpBody>
+                    </common.bs:HelpLink>
+                    <b:TextArea ui:field="scriptTextArea" visibleLines="4" />
+                </g:FlowPanel>
+
+                <!-- Time of Day -->
+                <g:FlowPanel ui:field="timePanel" addStyleNames="{style.timePanel}">
+                    
+                    <b:ButtonGroup>
+                        <b:Button ui:field="dawnTimeButton" text="Dawn" active="true" />
+                        <b:Button ui:field="middayTimeButton" text="Midday" />
+                        <b:Button ui:field="duskTimeButton" text="Dusk" />
+                        <b:Button ui:field="midnightTimeButton" text="Midnight" />
+                    </b:ButtonGroup>
+                    
+                    <g:HTMLPanel ui:field='todVrEngageHelp' addStyleNames='{style.note}'>
+                        <b>Note:</b> Time of day is set with respect to Coordinated Universal Time (UTC/GMT), 
+                        not the localized time zone of the location where the VR-Engage scenario is set.
+                        <common.bs:HelpLink helpCaption="Converting Between Time Zones">
+                            <common.bs:linkWidget>
+                                <b:Icon type="QUESTION_CIRCLE" addStyleNames="{style.helpLink}"/>
+                            </common.bs:linkWidget>
+                            <common.bs:helpBody>
+                                <g:HTMLPanel>
+                                    The available time of day options correspond to the following 24-hour real-world times:
+                                    <br/><br/>
+                                    <div style='text-align: center;'>
+                                        <div class='{style.timeTable}'>
+		                                    <table>
+		                                        <tr>
+		                                            <td>Midnight</td>
+		                                            <td>0:00:00 UTC</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>Dawn</td>
+		                                            <td>8:00:00 UTC</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>Midday</td>
+		                                            <td>12:00:00 UTC</td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td>Dusk</td>
+		                                            <td>18:00:00 UTC</td>
+		                                        </tr>
+		                                    </table>
+	                                    </div>
+                                    </div>
+                                    <br/>
+	                                While these options correspond to the appropriate time of day in 
+	                                Coordinated Universal Time (UTC/GMT), they may not match the appropriate time of
+	                                day for your scenario if it is located in a different time zone. If your scenario
+	                                is located near the International Date Line, for example, using the Midnight option
+	                                will likely set the local time of your scenario to sometime around Midday.
+	                                <br/><br/>
+	                                To figure out which time of day option best corresponds to your scenario, you'll
+	                                want to convert your intended local time of day to UTC time and then pick the closest
+	                                time of day option available.
+	                                <br/><br/>
+	                                You can convert your intended local time of day to UTC time on websites like 
+	                                <a href='https://www.timeanddate.com/worldclock/converter.html' target='_blank'>
+	                                timeanddate.com</a>, which can be especially useful
+	                                for dealing with local time standards like daylight savings time.
+	                            </g:HTMLPanel>
+                            </common.bs:helpBody>
+                        </common.bs:HelpLink>
+                    </g:HTMLPanel>
+                    <g:HorizontalPanel addStyleNames="{style.fieldPanel}">
+                    	<b:Label addStyleNames="{style.stressCategory}">Stress Category:</b:Label>
+                    	<g:Label ui:field="todStressCategoryLabel" />
+                   	</g:HorizontalPanel>
+                </g:FlowPanel>
+
+                <!-- Endurance -->
+                <g:FlowPanel ui:field="endurancePanel">
+                    <shared:TeamMemberPicker addStyleNames='{style.teamPicker}' label='Learner whose endurance should be changed:' ui:field='enduranceMemberPicker' />
+                    <g:HTML>Endurance value:</g:HTML>
+                    <slider:Slider ui:field="enduranceSlider" min="0" max="1" value="0" step="0.01" />
+                </g:FlowPanel>
+            </g:DeckPanel>
+            </g:FlowPanel>
+            <g:HorizontalPanel addStyleNames="{style.stressCategoryPickerPanel}" ui:field="stressCategoryPickerPanel">
+            	<b:Label>Stress Category:</b:Label>
+            	<b:ButtonGroup>
+                        <b:Button ui:field="environmentalStressCategoryButton" text="Environmental" />
+                        <b:Button ui:field="cognitiveStressCategoryButton" text="Cognitive" />
+                        <b:Button ui:field="physiologicalStressCategoryButton" text="Physiological" />
+                </b:ButtonGroup>
+                <common.bs:HelpLink helpCaption="Stress Category">
+                    <common.bs:linkWidget>
+                        <b:Icon title="What's this?" type="QUESTION_CIRCLE" addStyleNames="{style.helpLink}"/>
+                    </common.bs:linkWidget>
+                    <common.bs:helpBody>
+                        <g:HTML>
+                            The Stress Category value can be used as an additional data point when analyzing the experiences
+                            under which tasks were performed. 
+                            <br/><br/>
+                            <b>Environmental</b> - temperature/wetness, vibration/noise/fumes, bugs, physical work, lighting, visibilty (fog/foliage), difficult terrain
+                            <br/><br/>
+                            <b>Cognitive</b> - workload, ambious information, time pressure, volatility, complexity, rules of engagement, hard/no choices, impaired function
+                            <br/><br/>
+                            <b>Physiological</b> - muscular/aerobic fatigue, injury, sleep deprivation
+                        </g:HTML>
+                    </common.bs:helpBody>
+                </common.bs:HelpLink>
+            </g:HorizontalPanel>
+            <g:FlowPanel addStyleNames="{style.descriptionContainer}">
+                <b:Button ui:field="descriptionButton" text="Description" />
+                <g:FlowPanel ui:field="descriptionFlowPanel" addStyleNames="{style.descriptionPanel}" >
+                    <g:InlineHTML>This description can be used as a summary of this adaptation:</g:InlineHTML>
+                    <b:TextBox ui:field="descriptionTextBox" addStyleNames="{style.descriptionTextBox}" />
+                </g:FlowPanel>
+            </g:FlowPanel>
+        </g:FlowPanel>
+    </g:DeckPanel>
+</ui:UiBinder>

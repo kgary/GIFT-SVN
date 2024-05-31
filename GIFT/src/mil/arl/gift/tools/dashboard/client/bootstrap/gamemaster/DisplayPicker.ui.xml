@@ -1,0 +1,143 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style>
+        .settingsMenu {
+            min-width: 230px;
+            padding: 4px 8px;
+        }
+        @external fa;
+        .settingsMenu .fa {
+	       width: 15px;
+	       padding: 0px !important;
+	       text-align: center;
+	       margin-right: 10px;
+        }
+        .subMenuGroup{
+            cursor: pointer;
+        }
+        .subMenuGroup:hover .settingsSubMenu:first-child > .dropdown-menu{
+            display: block;
+        }
+        .settingsSubMenu{
+            position: relative;
+        }
+        @external dropdown-menu checkbox disabled;
+        .settingsSubMenu > .dropdown-menu{
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+            min-width: 230px;
+            padding: 4px 8px;
+        }
+        .settingsSubMenu > .dropdown-menu > .checkbox {
+            display: block;
+            padding-left: 4px;
+        }
+        .settingsSubMenu > .dropdown-menu > .checkbox > label {
+            width: 100%;
+            color: black;
+            user-select: none;
+        }
+        .settingsSubMenu > .dropdown-menu > .checkbox:hover{
+            text-decoration: none;
+            color: #fff;
+            background-color: #446e9b;
+        }
+        .settingsSubMenu > .dropdown-menu > .checkbox:hover > label {
+            color: #fff !important;
+        }
+        .settingsSubMenu > .dropdown-menu > .checkbox.disabled > label {
+            color: gray;
+        }
+        .settingsSubMenu > .dropdown-menu > .checkbox > label > span {
+            padding-left: 8px;
+        }
+        @external divider gwt-HTML;
+        .settingsSubMenu > .dropdown-menu > .divider {
+            cursor: default;
+            margin: 4px 0px;
+        }
+        .settingsSubMenu > .dropdown-menu > .gwt-HTML {
+            color: black;
+            user-select: none;
+        }
+        .settingsSubMenu > .dropdown-menu > .gwt-HTML:hover {
+            color: #fff;
+            background-color: #446e9b;
+        }
+        .radioItem{
+            display: block !important;
+            padding-left: 4px;
+            padding-bottom: 4px;
+            padding-top: 2px;
+            cursor:pointer;
+            color: black;
+            width: 100%;
+        }
+        .radioItem > label {
+            width: 100%;
+            user-select: none;
+        }
+        .radioItem > label > input {
+		    cursor: pointer;
+		}
+		.radioItem > label > span {
+            padding-left: 8px;
+        }
+        @external disabled;
+        .radioItem.disabled {
+        	cursor: not-allowed;
+        }
+        .radioItem.disabled > label {
+	        color: gray;
+        }
+        .radioItem:hover{
+            text-decoration: none;
+            color: #fff !important;
+            background-color: #446e9b;
+        }
+        .videoRadioContainer {
+        	display: flex;
+        	align-items: center;
+        }
+        .videoRadioContainer > i {
+            color: black;
+        }
+        </ui:style>
+    <b:ButtonGroup>
+        <wb:ManagedTooltip placement='BOTTOM' ui:field='tooltip'>
+            <b:Button ui:field="headerButton" dataToggle="DROPDOWN" text="Nothing selected" type="LINK" addStyleNames="gameMasterHeaderButton" />
+        </wb:ManagedTooltip>
+        <b:DropDownMenu ui:field="selectMenu" addStyleNames="{style.settingsMenu}">
+            <wb:ManagedTooltip title="Remove the panel" placement="BOTTOM">
+                <b:Radio ui:field="noneRadio" text="None" addStyleNames="{style.radioItem}" />
+            </wb:ManagedTooltip>
+            <wb:ManagedTooltip title="Display the locations of learners on a map" placement="BOTTOM">
+                <b:Radio ui:field="mapRadio" addStyleNames="{style.radioItem}" />
+            </wb:ManagedTooltip>
+            <wb:ManagedTooltip title="Show the last selected session assessments" placement="BOTTOM">
+                <b:Radio ui:field="assessmentsRadio" addStyleNames="{style.radioItem}" />
+            </wb:ManagedTooltip>
+            <wb:ManagedTooltip title="Show the scenario injects that have been applied" placement="BOTTOM">
+                <b:Radio ui:field="strategiesRadio" addStyleNames="{style.radioItem}" />
+            </wb:ManagedTooltip>
+            <wb:ManagedTooltip title="Show the notes that have been made" placement="BOTTOM">
+                <b:Radio ui:field="bookmarkRadio" addStyleNames="{style.radioItem}" />
+            </wb:ManagedTooltip>
+            <g:FlowPanel addStyleNames="{style.subMenuGroup}">
+                <g:FlowPanel addStyleNames="{style.settingsSubMenu}">
+                    <b:DropDownMenu ui:field="videoMenu" />
+                </g:FlowPanel>
+                 <g:FlowPanel ui:field="videoRadioContainer" addStyleNames="{style.videoRadioContainer}">
+                    <wb:ManagedTooltip title="Show the Video Player" placement="BOTTOM">
+                        <b:Radio ui:field="videoRadio" addStyleNames="{style.radioItem}" />
+                    </wb:ManagedTooltip>
+                    <b:Icon type="CARET_RIGHT" />
+                </g:FlowPanel>
+            </g:FlowPanel>
+        </b:DropDownMenu>
+    </b:ButtonGroup>
+</ui:UiBinder>

@@ -1,0 +1,477 @@
+<?xml version="1.0" ?>
+<project name="GatewayModule" default="compile">
+    <property name="root.path" value="../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.gateway"/>
+    <property name="source.path" value="mil/arl/gift/gateway"/>
+	<property name="common.source.path" value="mil/arl/gift/common"/>
+	<property name="remote.path" value="bin/war/remote"/>
+	<property name="remote.build.path" value="${remote.path}/bin" />
+    <property name="jarfile.ext.path" value="gift-gateway"/>
+    <property name="jarfile.name" value="gift-gateway.jar"/>
+	<property name="protobuf.generated.external.apps.jar" value="protobuf_generated_external_apps.jar" />
+	<property name="remote.jarfile.name" value="gift-gateway-remote.jar"/>
+	<property name="native.x86.jarfile.name" value="gift-native-x86.jar"/>
+	<property name="native.x64.jarfile.name" value="gift-native-x64.jar"/>
+	<property name="jacob.loader.jarfile.name" value="jacob-loader.jar"/>
+    <property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="protobuf.generated.jar" value="protobuf_generated.jar" />
+	<property name="jaxb.generated.jar" value="jaxb_generated.jar" />
+	<property name="gift.build.properties" value="${root.path}/config/build.properties"/>
+	<property name="build.dependencies" value="${root.path}/config/build.dependencies"/>
+	
+	<!-- Note: exclude JacobLibraryStaticLoader.class because it will be in its own jar (#5266)-->
+	<property name="build.excludes" value="**/gwt/client/**,**/gwt/server/**,**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.dll,**/*.txt,**/*.TXT,**/*.ini,**/JacobLibraryStaticLoader.class"/>
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+	
+	<property file="${gift.build.properties}"/>
+	
+	<condition property="isLinux">
+        <os family="unix" />
+    </condition>
+
+   <loadfile property="build.dependencies.gateway" srcFile="${build.dependencies}">
+        <filterchain>
+            <linecontains>
+                <contains value="@gateway@"/>
+            </linecontains>
+            <replacetokens>
+                <token key="gateway" value=""/>
+            </replacetokens>
+        </filterchain>
+    </loadfile>
+    
+    <path id="classpath">
+        <fileset dir="${root.path}" includes="${build.dependencies.gateway}" excludes="${build.excludes}"/>
+    </path>
+	
+    <target name="checkForChanges">
+    	
+    	<!-- has the common jar changed since the last jar creation (true = no change, not set = common jar is newer) -->
+        <uptodate property="upToDateWithCommon.ifSet" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        
+    	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
+    	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="${build.excludes}" />
+        </uptodate>
+    	
+    	<!-- have the files included in the remote jar changed since the last remote jar creation (true = no change, not set = files have changed) -->
+		<uptodate property="remote.upToDateWithIncludes.ifSet" targetfile="${root.path}/${remote.build.path}/${remote.jarfile.name}">
+			<srcfiles dir="${root.path}/config" includes="**/*"/>
+			<srcfiles dir="${root.path}/../Training.Apps/Util" includes="**/*"/>
+       	 	<srcfiles dir="${root.path}/../Training.Apps/Util/" includes="WindowUtil.exe"/>
+			<srcfiles dir="${root.path}/../Training.Apps/Util/" includes="WindowUtil.exe"/>
+		</uptodate>
+    	
+    	<!-- have the files included in the Native remote jar changed since the last remote jar creation (true = no change, not set = files have changed) -->
+        <uptodate property="remoteNative.upToDateWithIncludes.ifSet" targetfile="${root.path}/${remote.build.path}/${native.x86.jarfile.name}">
+            <srcfiles dir="${root.path}/external/jacob/" includes="jacob-1.17-M2-x86.dll"/>
+        </uptodate>
+    	
+    	<!-- has the build properties file changed since the last jar creation (true = no change, not set = properties have changed) -->
+        <uptodate property="buildPropertiesUpToDate.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${gift.build.properties}"/>
+        </uptodate>
+    	
+    	<!-- have the GIFT protobuf files changed since the last jar creation (true = no change, not set = files have changed) -->
+        <uptodate property="protobuf_generated_external_apps.filesChanged.ifSet" targetfile="${root.path}/bin/${protobuf.generated.external.apps.jar}">
+            <srcfiles dir="${root.path}" includes="${protobuf.files.external.apps}"/>
+        </uptodate>
+		
+		<!-- have the GIFT schemas changed since the last jar creation (true = no change, not set = files have changed) -->
+		<uptodate property="jaxb_generated.schemaChanged.ifSet" targetfile="${root.path}/bin/${jaxb.generated.jar}">
+			<srcfiles dir="${root.path}" includes="${schema.files}" />
+		</uptodate>
+		
+		<!-- have the GIFT protobuf files changed since the last jar creation (true = no change, not set = files have changed) -->
+        <uptodate property="protobuf_generated.filesChanged.ifSet" targetfile="${root.path}/bin/${protobuf.generated.jar}">
+            <srcfiles dir="${root.path}" includes="${protobuf.files}"/>
+        </uptodate>
+		
+		<!-- has the startGIFTGateway.bat been modified since the last zip creation (true = no change, not set = files have changed) -->
+		<uptodate property="start_gift_gateway.fileChanged.ifSet" targetfile="${root.path}/${remote.path}/generated/loadGatewayDependencies.zip">
+			<srcfiles dir="${root.path}/${remote.path}" includes="startGIFTGateway.bat"/>
+		</uptodate>
+		
+		<!-- does gateway dependencies zip exist (true = no change, not set = zip doesn't exist -->
+		<available property="startGatewayZIPexist.ifSet" file="${root.path}\${remote.path}\generated\loadGatewayDependencies.zip"/>
+		
+		<!-- does jre-11 directory exist (true = no change, not set = directory doesnt exist -->
+		<available property="jreExist.ifSet" file="${root.path}/temp/jre-11" type="dir"/>
+    	
+    	<!-- set property if:
+    		1) the build properties have changed
+    		OR
+    		2) the GIFT protobuf (.proto) files have changed
+    	-->
+        <condition property="protobuf_generated_external_apps.build.required">
+            <or>
+            	<not>
+                	<isset property="buildPropertiesUpToDate.ifSet" />
+            	</not>
+            	<not>
+                	<isset property="protobuf_generated_external_apps.filesChanged.ifSet" />
+            	</not>
+            </or>
+        </condition>
+		
+    	<!-- set property if:
+    		1) the build properties have changed
+    		or
+    		2) the common jar has changed
+    		or
+    		3) the gateway jar source has changed
+    	-->
+		<condition property="build.core.required">
+            <or>
+            	<not>
+            		<isset property="buildPropertiesUpToDate.ifSet" />
+            	</not>
+            	<not>
+                	<isset property="upToDateWithCommon.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithIncludes.ifSet"/>
+            	</not>
+            </or>
+        </condition>
+		
+    	<!-- DEBUG
+    	<echo message="1- buildPropertiesUpToDate.ifSet = ${buildPropertiesUpToDate.ifSet}, 
+    		upToDateWithCommon.ifSet = ${upToDateWithCommon.ifSet}, 
+    		upToDateWithIncludes.ifSet = ${upToDateWithIncludes.ifSet}, 
+    		build.core.required = ${build.core.required}, 
+    		remote.upToDateWithIncludes.ifSet = ${remote.upToDateWithIncludes.ifSet}"/>
+    	-->
+    	
+    	<!-- set property if:
+    		1) the build properties have changed
+    		or
+    		2) the gateway core is being built
+    		or
+    		3) the remote jar needs to be built
+    	-->    	
+		<condition property="build.remote.required">
+            <or>
+            	<not>
+            		<isset property="buildPropertiesUpToDate.ifSet" />
+            	</not>
+                <isset property="build.core.required"/>
+            	<not>
+					<isset property="remote.upToDateWithIncludes.ifSet"/>
+            	</not>
+            </or>
+        </condition>
+    	
+    	<!--
+    		set property if:
+    		1) the native jar is out of date
+    	-->
+		<condition property="build.remoteNative.required">
+			<not>
+				<isset property="remoteNative.upToDateWithIncludes.ifSet"/>
+			</not>
+        </condition>
+		
+		<!--
+			set property if:
+			1)Zip does not exist
+			2)Any jars are out of date
+			3)startGIFTGateway.bat has been modified
+			4)temp/jre-11 exists
+		-->
+		<condition property="build.gatewayZIP.required">
+			<or>
+				<not>
+					<isset property="startGatewayZIPexist.ifSet"/>
+				</not>
+				<not>
+					<isset property="start_gift_gateway.fileChanged.ifSet"/>
+				</not>
+				<not>
+					<isset property="upToDateWithCommon.ifSet"/>
+				</not>
+				<not>
+					<isset property="remote.upToDateWithIncludes.ifSet"/>
+				</not>
+				<not>
+					<isset property="jaxb_generated.schemaChanged.ifSet"/>
+				</not>
+				<not>
+					<isset property="protobuf_generated.filesChanged.ifSet"/>
+				</not>
+				<not>
+					<isset property="protobuf_generated_external_apps.filesChanged.ifSet"/>
+				</not>
+				<isset property="jreExist.ifSet"/>
+			</or>
+		</condition>
+		
+		<condition property="delete.jre.required">
+			<isset property="jreExist.ifSet"/>
+		</condition>
+		
+    </target>
+
+	<!-- Generates protocol buffers. -->
+	<target name="generate_protobuf_external_apps"  if="protobuf_generated_external_apps.build.required">
+		<echo message="Running external protobuf compiler(s)"/>
+	
+		<!-- gets the fully qualified path to the proto source folder -->
+		<path id="proto.src.path" path="${root.path}/config/gateway/externalApplications" />
+		<pathconvert property="proto.srcs" refid="proto.src.path"></pathconvert>
+		
+		<!-- create directory to place protobuf generated classes -->
+		<mkdir dir="${root.path}/generated/external_proto"/>
+		
+		<!-- 
+			get all the protobuf files
+			NOTE: in order to allow duplicate definitions across the externalApplication subfolders
+			      each will need to be compiled with their own protoc.exe.  Otherwise you will see:
+			      	[exec] entity.proto:51:9: "Fog" is already defined in file "EnvironmentAdaptation.proto".
+     				[exec] entity.proto:51:9: Note that enum values use C++ scoping rules, meaning that enum values 
+     				are siblings of their type, not children of it.  Therefore, "Fog" must be unique within the 
+     				global scope, not just within "WeatherType".
+		 -->
+		
+		<!-- AdaptiveLearningServiceBus proto files -->
+		<fileset id="protobufFileSetAdaptiveLearningServiceBus" dir="${root.path}">
+			<include name="config/gateway/externalApplications/AdaptiveLearningServiceBus/*.proto" />
+		</fileset>
+		<pathconvert property="protobufInputFilesAdaptiveLearningServiceBus" refid="protobufFileSetAdaptiveLearningServiceBus" pathsep="&quot; &quot;" />
+		
+		<!-- ARES proto files -->
+		<fileset id="protobufFileSetARES" dir="${root.path}">
+			<include name="config/gateway/externalApplications/ARES/*.proto" />
+		</fileset>
+		<pathconvert property="protobufInputFilesARES" refid="protobufFileSetARES" pathsep="&quot; &quot;" />
+		
+		<!-- VR-Engage proto files -->
+		<fileset id="protobufFileSetVREngage" dir="${root.path}">
+			<include name="config/gateway/externalApplications/VR-Engage/*.proto" />
+		</fileset>
+		<pathconvert property="protobufInputFilesVREngage" refid="protobufFileSetVREngage" pathsep="&quot; &quot;" />
+		
+		<!-- HAVEN proto files -->
+		<fileset id="protobufFileSetHAVEN" dir="${root.path}">
+			<include name="config/gateway/externalApplications/HAVEN/proto/*.proto" />
+		</fileset>
+		<pathconvert property="protobufInputFilesHAVEN" refid="protobufFileSetHAVEN" pathsep="&quot; &quot;" />
+		
+		<!-- Use the appropriate protobuf executable depending on the OS platform -->
+        <condition property="protocExec" value="protoc" else="protoc.exe">
+            <os family="unix" />
+        </condition>
+		
+		<!--
+			Now compile each set of files from above
+		-->
+			
+		<!-- create the AdaptiveLearningServiceBus java classes -->
+		<echo message="Running protobuf compiler [AdaptiveLearningServiceBus]"/>
+		<exec executable="external/protobuf/bin/${protocExec}" resolveexecutable="true" dir="${root.path}" failonerror="true">
+			<arg value="--java_out=generated/external_proto" />
+			<arg value="-I=${proto.srcs}/AdaptiveLearningServiceBus" />
+			<arg line="&quot;${protobufInputFilesAdaptiveLearningServiceBus}&quot;" />
+		</exec>
+		
+		<!-- create the ARES java classes -->
+		<echo message="Running protobuf compiler [ARES]"/>
+		<exec executable="external/protobuf/bin/${protocExec}" resolveexecutable="true" dir="${root.path}" failonerror="true">
+			<arg value="--java_out=generated/external_proto" />
+			<arg value="-I=${proto.srcs}/ARES" />
+			<arg line="&quot;${protobufInputFilesARES}&quot;" />
+		</exec>
+		
+		<!-- create the VR-Engage java classes -->
+		<echo message="Running protobuf compiler [VR-Engage]"/>
+		<exec executable="external/protobuf/bin/${protocExec}" resolveexecutable="true" dir="${root.path}" failonerror="true">
+			<arg value="--java_out=generated/external_proto" />
+			<arg value="-I=${proto.srcs}/VR-Engage" />
+			<arg line="&quot;${protobufInputFilesVREngage}&quot;" />
+		</exec>
+		
+		<!-- create the HAVEN java classes -->
+		<echo message="Running protobuf compiler [HAVEN]"/>
+		<exec executable="external/protobuf/bin/${protocExec}" resolveexecutable="true" dir="${root.path}" failonerror="true">
+			<arg value="--java_out=generated/external_proto" />
+			<arg value="-I=${proto.srcs}/HAVEN" />
+			<arg line="&quot;${protobufInputFilesHAVEN}&quot;" />
+		</exec>
+		
+		<condition property="grpcPluginExec" value="protoc-gen-grpc-java-1.39.0-linux-x86_64.exe" else="protoc-gen-grpc-java-1.39.0-windows-x86_32.exe">
+		    <os family="unix" />
+		</condition>
+		
+		<!-- create the HAVEN java classes using grpcPlugin -->
+		<echo message="Running protobuf compiler with GRPC plugin [HAVEN]"/>
+		<exec executable="external/protobuf/bin/${protocExec}" resolveexecutable="true" dir="${root.path}" failonerror="true">
+			<arg value="--plugin=protoc-gen-grpc-java=external/protobuf/bin/${grpcPluginExec}"/>
+			<arg value="--grpc-java_out=generated/external_proto" />
+			<arg value="-I=${proto.srcs}/HAVEN" />
+			<arg line="&quot;${protobufInputFilesHAVEN}&quot;" />
+		</exec>
+		
+		<!-- compile those classes and create jar -->
+		<echo message="Create GIFT external protobuf jar"/>
+		<javac debug="on" srcdir="${root.path}/generated/external_proto" destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+            <compilerarg value="-Xlint"/>
+			<compilerarg value="-Xlint:-path"/> <!-- necessary to silence the build errors about bad path elements as jars referenced in external are different from MANIFEST file -->
+        </javac>
+        <jar destfile="${root.path}/bin/${protobuf.generated.external.apps.jar}" basedir="${root.path}/build/classes" includes="com/dignitas/ares/**,com/dignitas/vrengage/**,cta/tmt/**,generated/proto/gateway/**" excludes="${build.excludes}"/>
+		
+		<!-- copy the generated jar for remote Gateway Module launch -->
+		<copy file="${root.path}/bin/${protobuf.generated.external.apps.jar}" todir="${root.path}/${remote.build.path}"/>
+	</target>
+	
+    <target name="compileCore" if="build.core.required">
+    	<echo message="Compiling Gateway"/>
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+			<compilerarg value="-Xlint:-path"/> <!-- necessary to silence the build errors about bad path elements as jars referenced in external are different from MANIFEST file -->
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" 
+        	includes="${source.path}/**,${root.path}/config/**" excludes="${build.excludes}"/>
+    </target>
+	
+	<!-- create the jacob loader jar used to load the jacob dll and prevent UnsatisfiedLinkError jacob-1.17-M2-x64.dll already loaded in another classloader (#5266) -->
+	<target name="compileJacobLoader" depends="compileCore" if="build.core.required">
+		<echo message="Compiling Jacob Loader"/>
+		<!-- the class file is created in compileCore.javac but is excluded from the core Gateway jar because of build.excludes -->
+		<jar destfile="${root.path}/bin/${jacob.loader.jarfile.name}" >
+			<zipfileset dir="${root.path}/build/classes/${source.path}/interop/ppt" prefix="${source.path}/interop/ppt" includes="**/JacobLibraryStaticLoader.class"/>
+		</jar>
+	</target>
+				
+	<!--
+		This target is used to create the GIFT Gateway module jar used for the remote Gateway Module launch.
+	-->
+	<target name="compileRemoteCore" if="build.remote.required" depends="compileCore">
+		<echo message="Compiling Remote Gateway"/>
+		<jar destfile="${root.path}/${remote.build.path}/${remote.jarfile.name}">
+
+        	<zipfileset dir="${root.path}/build/classes/${source.path}" prefix="${source.path}"/>
+			<zipfileset dir="${root.path}/config" prefix="config">
+				<include name="gateway/**" />
+				<include name="domain/common.xsd" />
+				<include name="domain/course/course.xsd" />
+				<include name="domain/dkf/dkf.xsd" />
+				<include name="domain/ped/pedagogicalStrategy.xsd" />
+				<include name="domain/learnerAction/learnerActions.xsd" />
+				<include name="domain/lessonMaterial/lessonMaterial.xsd" />
+				<include name="common.properties" />
+				<include name="module.common.properties" />
+				<include name="images.properties" />
+				<include name="version.txt" />
+			</zipfileset>
+			<zipfileset dir="${root.path}/scripts" prefix="scripts">
+				<include name="install/installVBSExtensions.bat" />
+				<include name="install/setEnvVariable.bat" />
+				<include name="install/uninstallVBSExtensions.bat" />
+			</zipfileset>
+			<zipfileset dir="${root.path}/../Training.Apps/Util" prefix="Training.Apps/Util"/>
+
+    		<manifest>
+    		    <attribute name="Manifest-Version" value="1.0"/>
+    			<!--
+    			MH 2/3/15: using the Trusted Library manifest attribute causes a NoClassDefFound exception on AbstractModule
+    			<attribute name="Trusted-Library" value="true"/>
+    			-->
+    			<attribute name="Permissions" value="all-permissions"/>
+    			<attribute name="Codebase" value="${gateway.jws.server.address}"/>
+    			<attribute name="Application-Name" value="GIFT Gateway Module"/>
+    		</manifest>
+
+    	</jar>
+    </target>
+
+	<!-- resolves issues with existing jre and corrupted zip resulting from canceled builds -->
+	<target name="deleteJre" if="delete.jre.required" depends="compileRemoteCore">
+		<echo message="Deleting out of date jre"/>
+		<delete dir="${root.path}/temp/jre-11"/>
+		<echo message="Deleting corrupted zip"/>
+		<delete file="${root.path}/${remote.path}/generated/loadGatewayDependencies.zip"/>
+	</target>
+	
+	<target name="buildRemoteZip" if="build.gatewayZIP.required" depends="compileRemoteCore,buildRemoteZipWindows,buildRemoteZipLinux">
+		
+		<!-- the libraries that need to be in the bin folder of the remote gateway zip (and not the external folder)-->
+        <property name="remoteZipBinFiles" value="gift-common.jar, gift-gateway-remote.jar, jaxb_generated.jar, protobuf_generated.jar, protobuf_generated_external_apps.jar, GIFTlogo.png, GIFTsplash.png, legacyJsonMessageCodec.jar" />
+
+        <!-- after jars are updated, create zip folder that will be used for remote start -->
+        <zip destfile="${root.path}/${remote.path}/generated/loadGatewayDependencies.zip"  basedir="${root.path}/${remote.path}" includes="startGIFTGateway.bat">
+            <!-- the libraries included in the bin directory of bin\war\remote are the same inside externals folder, seperate the two -->
+            <zipfileset dir="${root.path}/${remote.build.path}" includes="${remoteZipBinFiles}" prefix="bin"/>
+            <zipfileset dir="${root.path}/${remote.build.path}" excludes="${remoteZipBinFiles}" prefix="external"/>         
+            <zipfileset dir="${root.path}/temp/jre-11" prefix="external/jre-11"/>
+            <zipfileset dir="${root.path}/external/jdk-11/jaxb-ri" prefix="external/jre-11/jaxb-ri"/>
+            <zipfileset dir="${root.path}/external/javafx-sdk-11.0.2" prefix="external/javafx-sdk-11.0.2"/>
+            <zipfileset dir="${root.path}/config/gateway" includes="gateway.remote.properties" prefix="config"/>
+            <!-- xsd files needed for UnityInterface's use of AbstractSchemaHandler -->
+            <zipfileset dir="${root.path}/config/domain/course" includes="course.xsd" prefix="config/domain/course"/>
+            <zipfileset dir="${root.path}/config/domain" includes="common.xsd" prefix="config/domain"/>
+            <zipfileset dir="${root.path}/config/domain/ped" includes="pedagogicalStrategy.xsd" prefix="config/domain/ped"/>
+            <zipfileset dir="${root.path}/config/domain/lessonMaterial" includes="lessonMaterial.xsd" prefix="config/domain/lessonMaterial"/>
+        </zip>
+        
+        <!-- delete JRE directory since it no longer needs to be copied to zip -->
+        <echo message="Deleting JRE directory"/>
+        <delete dir="${root.path}/temp/jre-11"/>
+	</target>
+	
+	<!-- Builds the remote zip from component files in windows OS -->
+	<target name="buildRemoteZipWindows" if="build.gatewayZIP.required" depends="compileRemoteCore" unless="isLinux">
+		<echo message="Building remote generated .zip"/>
+
+		<!-- before building the zip, create the JRE for use with the remote zip -->
+		<echo message="Creating custom JRE"/>
+		
+		<!-- call java jlink executable to build JRE with modules from java.se and jdk.management.agent -->
+		<exec executable="external/jdk-11/bin/jlink.exe" resolveexecutable="true" dir="${root.path}" failonerror="true">			
+			<arg line="--bind-services --module-path &quot;external/javafx-sdk-11.0.2/lib&quot; --add-modules java.se,jdk.management.agent,jdk.unsupported,javafx.base,javafx.controls,javafx.fxml,javafx.graphics,javafx.media,javafx.swing,javafx.web" />
+			<arg line="--output temp/jre-11" />
+		</exec>
+		
+		<!-- copy required dlls missing from javafx into JRE -->
+		<echo message="Copying required dlls"/>
+		<copy file="${root.path}/external/javafx-sdk-11.0.2/bin/prism_sw.dll" todir="${root.path}/temp/jre-11/bin"/>
+		<copy file="${root.path}/external/javafx-sdk-11.0.2/bin/prism_d3d.dll" todir="${root.path}/temp/jre-11/bin"/>
+		<copy file="${root.path}/external/javafx-sdk-11.0.2/bin/javafx_font.dll" todir="${root.path}/temp/jre-11/bin"/>
+		<copy file="${root.path}/external/javafx-sdk-11.0.2/bin/glass.dll" todir="${root.path}/temp/jre-11/bin"/>
+		
+    </target>
+	
+	<!-- Builds the remote zip from a prebuilt jre in linux OS because linux can't run jlink or work with the .dll's properly -->
+	<target name="buildRemoteZipLinux" if="isLinux" depends="compileRemoteCore">
+        <echo message="Copying remote generated .zip"/>
+
+		<!-- 
+		    When building GIFT for Linux, assume that clientd that download the remote Gateway zip are
+		    running on Windows. To allow them to run the JRE, we must extract a prebuilt copy of the JRE
+		    with executables for Windows
+		-->
+        <unzip src="${root.path}/external/remote-jre-11-windows.zip" dest="${root.path}/temp" />
+        
+    </target>
+	
+	<!--
+		This target is used to create a jar that contains a native libraries (e.g. DLLs) used by the Gateway module
+		remote application.
+	-->
+	<target name="compileNative" if="build.RemoteNative.required">
+		<echo message="Compiling Remote Gateway Native"/>
+    	<jar destfile="${root.path}/${remote.build.path}/${native.x86.jarfile.name}">
+    		<zipfileset dir="${root.path}/external/jacob/" includes="jacob-1.17-M2-x86.dll"/>
+    	</jar>
+    	<jar destfile="${root.path}/${remote.build.path}/${native.x64.jarfile.name}">
+    		<zipfileset dir="${root.path}/external/jacob/" includes="jacob-1.17-M2-x64.dll"/>
+    	</jar>
+	</target>
+	
+    <target name="compile" depends="checkForChanges, generate_protobuf_external_apps, compileJacobLoader, compileCore, compileRemoteCore, deleteJre, buildRemoteZip, compileNative" />
+	
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

@@ -1,0 +1,31 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "GeolocationProto";
+
+import "Point3D.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the real-world location of an object with respect to the Earth. */
+message Geolocation {
+	/* The property of the coordinates. */
+	Point3D coordinates_property = 1;
+	
+	/* The accuracy of the location. */
+	google.protobuf.DoubleValue accuracy_property = 2;
+	
+	/* The accuracy of the altitude. */
+	google.protobuf.DoubleValue altitude_accuracy_property = 3;
+	
+	/* The heading value. */
+	google.protobuf.DoubleValue heading_property = 4;
+	
+	/* The speed value. */
+	google.protobuf.DoubleValue speed_property = 5;
+}

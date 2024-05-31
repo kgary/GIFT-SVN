@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractAfterActionReviewEventProto";
+
+import "AfterActionReviewCourseEvent.proto";
+import "AfterActionReviewSurveyEvent.proto";
+import "AfterActionReviewRemediationEvent.proto";
+
+/* 
+ *	This is the protobuf message that contains the base implementations for all after 
+ *	action review events.
+ */	 
+message AbstractAfterActionReviewEvent {
+	/* The AAR can either represent a course event, survey event, or remediation event. */
+	oneof type {
+		AfterActionReviewCourseEvent after_action_review_course_event = 1;
+		AfterActionReviewSurveyEvent after_action_review_survey_event = 2;
+		AfterActionReviewRemediationEvent after_action_review_remediation_event = 3;
+	}
+}

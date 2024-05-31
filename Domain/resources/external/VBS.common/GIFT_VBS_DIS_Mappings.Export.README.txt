@@ -1,0 +1,21 @@
+The file GIFT_VBS_DIS_Mappings.Export.csv was created on 10.11.17 and is an export of the DIS mappings in VBS3 v3.9.2.
+
+For VBS v3.9.2, this csv file should be imported into VBS via the import mappings option on http://localhost:2310/ui/VBSGateway.
+
+For VBS 19.1.6, this csv file should be imported into VBS via the import mappings option on http://localhost:9003/index.html#/.
+
+NOTE: An issue has been found where VBS 19.1.6 occasionally does not import GIFT_VBS_DIS_Mappings.Export.csv properly. If this issue
+occurs, then exporting VBS's current mappings to a csv file after performing the import will create a file that is smaller than 
+GIFT_VBS_DIS_Mappings.Export.csv. To fix this, copy GIFT_VBS_DIS_Mappings.Export.csv to the components/Gateway folder inside your
+VBS installaton, import the copied GIFT_VBS_DIS_Mappings.Export.csv file from that location, and then restart VBS after the import 
+completes. If the csv file was imported correctly, then exporting the mappings to a csv file should create a file that is larger than
+GIFT_VBS_DIS_Mappings.Export.csv.
+
+GIFT_VBS_DIS_Mappings.Export.csv was created by performing the following:
+1. installing VBS3 v3.9.2
+2. starting VBS using the GIFT VBS shortcut (including -gateway -admin args)
+3. loaded the GIFT VBS presence patrol scenario into VBS as a network scenario
+4. opened http://localhost:2310/ui/VBSGateway
+5. filled in the missing DIS mappings
+6. exported the mappings to a .csv file via the export mappings option on http://localhost:2310/ui/VBSGateway
+7. manually added the DIS mappings to this .csv file that were added by the GIFT Development team for the GIFT VBS Clear Building scenario.

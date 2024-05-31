@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema 	xmlns:fg="http://www.FGolubov.com/XMLEditor"
+			targetNamespace="http://GIFT.com/pedagogicalStrategy" 
+			xmlns="http://GIFT.com/pedagogicalStrategy" 
+			elementFormDefault="qualified"
+			xmlns:common="http://GIFT.com/common" 
+			version="7.0"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import schemaLocation="../common.xsd" 
+               namespace="http://GIFT.com/common"/>
+			   
+    <xs:element name="LearnerStateTransitionEnum">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Enum State Transition"> 
+				<fg:message>Represents a change in a learner state attribute enum value. E.g Arousal</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="previous" minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info message="Previous State" editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeValueDialog"> 
+							<fg:message>The previous learner state attribute value for a learner state attribute.</fg:message>
+							<fg:message>If the 'previous' value is not provided it will be treated as a wild card.  In this case the 'current' value must be provided.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+							<fg:param name="attributeValueNodeName">previous</fg:param>
+                            <fg:param name="attributeTypeNodeName">attribute</fg:param>
+							<fg:param name="allowAnyValue">false</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="current" minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info message="Current State" editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeValueDialog"> 
+							<fg:message>The current learner state attribute value for a learner state attribute.</fg:message>
+							<fg:message>If the 'current' value is not provided it will be treated as a wild card.  In this case the 'previous' value must be provided.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+							<fg:param name="attributeValueNodeName">current</fg:param>
+                            <fg:param name="attributeTypeNodeName">attribute</fg:param>
+							<fg:param name="allowAnyValue">false</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="attribute" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+					<fg:node-info message="Learner State Attribute" editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeTypeDialog"> 
+						<fg:message>The learner state attribute to analyze.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="doNothingInstStrategy">
+        <xs:annotation>
+            <xs:appinfo>
+				<fg:node-info exposed="true"
+					 message="Do-Nothing Strategy"> 
+					<fg:message>An instructional strategy that has no implications on the tutor or learner.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+			<xs:sequence>
+                <xs:element ref="strategyHandler" />
+			</xs:sequence>
+		</xs:complexType>
+    </xs:element>
+	<xs:element name="doNothingTactic">
+        <xs:annotation>
+            <xs:appinfo>
+				<fg:node-info exposed="true"
+					 message="Do-Nothing Tactic"> 
+					<fg:message>An instructional strategy tactic that has no implications on the tutor or learner.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="xs:anyType"/>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name="instructionalIntervention">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Instructional Intervention Instructional Strategy"> 
+				<fg:message>Contents of an instructional intervention used by the Domain module.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="strategyHandler" />
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element ref="feedback" />
+					<xs:element ref="doNothingTactic" />
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="feedback">
+        <xs:complexType>
+			<xs:sequence>
+            <xs:choice>
+				<xs:element ref="message" />
+                <xs:element ref="audio" />
+                <xs:element ref="mediaSemantics" />
+            </xs:choice>
+				<xs:element name="AffectiveFeedbackType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog"  exposed="true" message="Affective Feedback"> 
+								<fg:message>The Affective type for this feedback which can be used to deliver the ideal feedback for the current affective state of the learner.</fg:message>
+								<fg:param name="title">Affective Feedback Type</fg:param>
+								<fg:param name="enumClass">mil.arl.gift.common.enums.AffectiveFeedbackEnum</fg:param>
+								<fg:param name="information">Please select the enumerated affective type that describes this feedback from the list provided.</fg:param>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>															
+				</xs:element>
+				<xs:element name="FeedbackSpecificityType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog"  exposed="true" message="Feedback Specificity"> 
+								<fg:message>The specificity type for this feedback which can be used to deliver the ideal feedback for the current learner state.</fg:message>
+								<fg:param name="title">Feedback Specificity Type</fg:param>
+								<fg:param name="enumClass">mil.arl.gift.common.enums.FeedbackSpecificityEnum</fg:param>
+								<fg:param name="information">Please select the enumerated specificity type that describes this feedback from the list provided.</fg:param>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>															
+				</xs:element>
+			</xs:sequence>
+        </xs:complexType>
+    </xs:element> 
+	<xs:element name="InTutor">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TextEnhancement" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog"  exposed="true" message="Text Enhancement"> 
+								<fg:message>Configures how the feedback text is rendered in the Tutor.</fg:message>
+								<fg:message>Default: Beep and Flash</fg:message>
+								<fg:param name="title">Feedback Text Enhancement</fg:param>
+								<fg:param name="enumClass">mil.arl.gift.common.enums.TextFeedbackDisplayEnum</fg:param>
+								<fg:param name="information">Please select the enumerated way to enhance feedback text in the Tutor from the list provided.</fg:param>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>															
+				</xs:element>
+				<xs:element name="MessagePresentation" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog"  exposed="true" message="Message Presentation"> 
+								<fg:message>Configures how the feedback message is presented in the Tutor.</fg:message>
+								<fg:message>Default: both text and avatar</fg:message>
+								<fg:param name="title">Feedback Message Presentation</fg:param>
+								<fg:param name="enumClass">mil.arl.gift.common.enums.MessageFeedbackDisplayModeEnum</fg:param>
+								<fg:param name="information">Please select the enumerated way to present feedback message in the Tutor from the list provided.</fg:param>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>	
+					</xs:simpleType>							
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+    <xs:element name="audio">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Feedback Audio"> 
+				<fg:message>The audio file to play during a domain session for feedback purposes to the learner.</fg:message>
+				<fg:message>Note: In order to support playing the audio file across all browsers the following file types are needed.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="OGGFile" minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info 
+                    message="OGG Audio File"
+                    editor-class="mil.arl.gift.tools.authoring.dat.custnodes.OGGFileSelectionDialog"> 
+							<fg:message>Feedback audio file in OGG format.</fg:message>
+							<fg:param name="title">Select OGG Audio file</fg:param>
+							<fg:param name="extension">ogg</fg:param>
+							<fg:param name="information">Please select an ogg audio file that contains the appropriate feedback.</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="MP3File">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info exposed="true"
+                    message="MP3 Audio File"
+                    editor-class="mil.arl.gift.tools.authoring.dat.custnodes.ConfigurableFileSelectionDialog"> 
+							<fg:message>Feedback audio file in MP3 format.</fg:message>
+							<fg:param name="title">Select MP3 Audio file</fg:param>
+							<fg:param name="extension">mp3</fg:param>
+							<fg:param name="information">Please select an mp3 audio file that contains the appropriate feedback.</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mediaSemantics">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Media Semantics"> 
+				<fg:message>Specify the Media Semantics Character builder project information that contains the pre-runtime rendered  logic for a static message.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Avatar">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info exposed="true"
+								message="Avatar File"
+								editor-class="mil.arl.gift.tools.authoring.dat.custnodes.ConfigurableFileSelectionDialog"> 
+							<fg:message>The avatar file created by a Media Semantics Character builder project.</fg:message>
+							<fg:param name="title">Select the Media Semantics Character Avatar file</fg:param>
+							<fg:param name="extension">htm|html</fg:param>
+							<fg:param name="information">Please select the Media Semantics Character Avatar file that contains the appropriate, pre-runtime rendered feedback.</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="6" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="key-name">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info exposed="true"
+                    message="Avatar Message Key Name"
+                    editor-class="mil.arl.gift.tools.authoring.dat.custnodes.MediaSemanticsAvatarMessageKeyName"> 
+							<fg:message>Avatar message key name value that uniquely identifies a message the avatar has logic to render.</fg:message>
+							<fg:message>Note: this is case sensitive and must match the Character Builder name value for this action.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+				<xs:element ref="message" minOccurs="0" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="message">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info exposed="true" message="Feedback Message"> 
+					<fg:message>The message to display to the learner during a course for feedback purposes.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="content">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Message Content"> 
+								<fg:message>You can format your message being displayed on the tutor using HTML syntax as long as you replace ASCII characters (&quot;,&lt;,&gt;,&amp;) with their equivalent 'entity name' values (http://www.w3schools.com/html/html_entities.asp).</fg:message>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="2" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Delivery" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Message Delivery"> 
+								<fg:message>Define where the message text will be delivered, as well as any additional message enhancements.</fg:message>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="InTutor" minOccurs="0"/>
+							<xs:element name="InTrainingApplication" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="enabled" type="common:booleanEnum" default="true"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>							
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="scenarioAdaptation">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Scenario Adaptation Instructional Strategy"> 
+				<fg:message>Contents of a Scenario Adaptation.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="strategyHandler" />
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element ref="environmentAdaptation" />
+					<xs:element ref="doNothingTactic" />
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="environmentAdaptation">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Environment Adaptation"> 
+				<fg:message>A type of scenario adaptation which causes a change in the scenario's environment.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pair">
+                    <xs:complexType>
+                        <xs:attribute name="type"
+                                      type="xs:NCName"
+                                      use="required" />
+                        <xs:attribute name="value"
+                                      type="xs:NCName"
+                                      use="required" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="strategyHandler">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Strategy Handler"> 
+				<fg:message>Specifies information about what will handle a particular instructional strategy.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="impl">
+                    <xs:annotation>
+                        <xs:appinfo>
+					<fg:node-info exposed="true"
+                   message="Strategy Handler implementation"
+                   editor-class="mil.arl.gift.tools.authoring.common.custnodes.StrategyHandlerDialog"> 
+						<fg:message>Specifies the class that will handle a particular instructional strategy (e.g. domain.knowledge.strategy.DefaultStrategyHandler)</fg:message>
+						<fg:message>Refer to "Help" for more information.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="7" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="params"
+                            minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+					<fg:node-info message="Input Parameters"> 
+						<fg:message>Specifies a list of name:value pairs as input to configure the strategy handler implementation.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="common:nvpair"
+                                        minOccurs="1"
+                                        maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

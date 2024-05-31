@@ -1,0 +1,207 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:ud="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.dialog"
+	xmlns:d="urn:import:mil.arl.gift.common.gwt.client.widgets">
+	<ui:style>
+	   .phaseName {
+	        font-weight: bold;
+	        margin: -10px 0px 10px
+	    }
+	    .padTop {
+	        margin-top: 5px;
+	    }
+	    .helpLink {
+	        padding-left: 5px;
+	        color: rgb(100, 100, 200);
+	        font-weight: normal;
+	    }
+	    .padBottom {
+	        margin-bottom: 10px;
+	    }
+	    .showFilesLabel {
+	        font-weight: bold;
+	        display: inline;
+	        color: white;
+	        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+	    }
+	    
+	    .showFilesPanel {
+	        border-radius: 5px;
+	        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+	        padding: 5px;
+	        background-color: black;
+	        background-image: linear-gradient(rgba(50, 50, 50, 1) 0,
+	            rgba(100, 100, 100, 1) 10%, rgba(50, 50, 50, 1) 50%, black);
+	        text-align: center;
+	    }
+	    .overflowAuto{
+	        overflow: auto;
+	    }
+	    .smallPadTop {
+	        margin-top: 5px;
+	    }
+	    .showFilesLoadingPanel {
+	        position: absolute;
+	        top: 0px;
+	        bottom: 0px;
+	        left: 0px;
+	        right: 0px;
+	        background-color: rgba(255, 255, 255, 0.50);
+	        color: rgb(100, 100, 100);
+	    }
+	    .fileList {
+	        position: relative;
+	        text-align: left;
+	    }
+	    .refreshButton {
+	        color: white;
+	        float: right;
+	        font-size: 1em;
+	        padding: 0px 5px;
+	    }
+	    .cellTableBorder {
+	        border-style: solid;
+	        border-Width: 1px;
+	        border-color: rgb(185, 185, 185);
+	        border-radius: 3px;
+	        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+	        background-color: rgb(250, 250, 250);
+	    }
+	    .cellTableScroller {
+	        min-height: 50px;
+	        max-height: 400px;
+	    }
+	    .addButton{
+	        cursor: pointer;
+	        float: right;
+	        margin-top:2px;
+	    }
+	    .fullWidthWorkAround {
+	        width: 100%;
+	    }
+	    .smallPadOther {
+	        margin: 5px;
+	    }
+	    .smallPadLeft {
+	        padding-left: 5px;
+	    }
+	    .centerVertical {
+	        vertical-align: middle;
+	    }
+	    .spinnerStyle {
+	        display: inline-block;
+	        vertical-align: middle;
+	        width: 50px;
+	    }
+	    .repeatPanel{
+            line-height: 1.4;
+	    }
+	    .repeatRuleBox{
+            display: inline-block;
+            width: auto;
+            padding: 5px;
+            height: 30px;
+	    }
+	    .inline{
+            display: inline;
+	    }
+	    .smallPadBottom {
+	        margin-bottom: 5px;
+	    }
+	    .noCourseConceptsLabel{
+	        color:red;
+	        font-style:italic;
+	    }
+	</ui:style>
+	<g:FlowPanel width='100%'>
+	   <g:Label ui:field='noCourseConceptsLabel' visible='false' addStyleNames='{style.smallPadBottom} {style.noCourseConceptsLabel}'>
+           Please add one or more of this course's concepts to the provided real-time assessment.
+       </g:Label>
+       <g:FlowPanel width='100%'>
+           <g:InlineLabel addStyleNames='{style.phaseName}'>
+               Remediation Phase
+           </g:InlineLabel>
+           <wb:HelpLink helpCaption='Remediation Phase'>
+               <wb:linkWidget>
+                   <b:Icon title="What's this?" addStyleNames='{style.helpLink}'
+                       type='QUESTION_CIRCLE' />
+               </wb:linkWidget>
+               <wb:helpBody>
+                   <g:HTML>
+                       The remediation phase of training application course object is where remedial content is defined.  The remediation phase can be entered after completing the training application scenario depending on the assessment of the learner.
+                   </g:HTML>
+               </wb:helpBody>
+           </wb:HelpLink>
+       </g:FlowPanel>
+       
+       <g:FlowPanel width='100%' addStyleNames='{style.padTop}'>
+           <g:CheckBox ui:field="excludeRuleExampleContentCheckBox" >Exclude Rule/Example Content</g:CheckBox>
+       </g:FlowPanel>  
+
+       <g:FlowPanel addStyleNames='{style.padBottom} {style.padTop}'>
+           <g:FlowPanel addStyleNames="{style.showFilesPanel} {style.padBottom}">
+
+               <g:FlowPanel addStyleNames='{style.overflowAuto}'>
+
+                   <g:HTML addStyleNames='{style.showFilesLabel}'>
+                       <i class="fa fa-folder"></i>
+                       <div style='display: inline-block; padding: 0px 5px;'>
+                           Remediation Content
+                       </div>
+                   </g:HTML>
+
+                   <b:Button addStyleNames='{style.refreshButton}' type='LINK'
+                       icon='REFRESH' ui:field='remediationRefreshButton' title='Refresh the list' />
+                   <g:Image width='20px' height='20px' ui:field='addRemediationContentButton' addStyleNames='{style.addButton}' 
+                       title='Add Remediation Content'/>                                       
+
+               </g:FlowPanel>
+
+               <g:FlowPanel>
+
+                   <g:FlowPanel addStyleNames='{style.fileList}'>
+
+                       <g:ScrollPanel
+                           addStyleNames='{style.smallPadTop} {style.cellTableScroller} {style.cellTableBorder} {style.fullWidthWorkAround}'>
+                           <g:FlowPanel addStyleNames='{style.smallPadOther}'
+                               ui:field='remediationFilesList'>
+                               <!-- Example content files go here -->
+                           </g:FlowPanel>
+                       </g:ScrollPanel>
+
+                       <g:FlowPanel addStyleNames='{style.showFilesLoadingPanel}'
+                           ui:field='remediationFilesLoadingPanel'>
+                           <g:VerticalPanel width='100%' height='100%'
+                               horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
+                               <g:FlowPanel>
+                                   <wb:BsLoadingIcon size='TIMES2'
+                                       addStyleNames='{style.centerVertical}' ui:field='remediationFilesLoadingIcon' />
+                                   <g:InlineHTML addStyleNames='{style.smallPadLeft} {style.centerVertical}'>
+                                       Retrieving...
+                                   </g:InlineHTML>
+                               </g:FlowPanel>
+                           </g:VerticalPanel>
+                       </g:FlowPanel>
+
+                   </g:FlowPanel>
+
+               </g:FlowPanel>
+           </g:FlowPanel>
+           
+           <g:HTMLPanel addStyleNames='{style.repeatPanel}'>
+	           <b:ValueListBox addStyleNames="{style.repeatRuleBox}" ui:field='repeatRuleBox'/> 
+	           <g:HTMLPanel addStyleNames="{style.inline}" visible='false' ui:field='allowedAttemptsPanel'>
+	               <d:NumberSpinner ui:field='repeatAllowedAttempts' addStyleNames='{style.spinnerStyle}'/>
+	               time(s)
+	           </g:HTMLPanel>
+	           if the learner fails a course concept
+           </g:HTMLPanel>
+       </g:FlowPanel>
+       
+       <ud:CourseObjectModal ui:field="metadataObjectDialog" />
+
+   </g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,188 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:s="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.surveyeditor"
+    xmlns:sw="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.surveyeditor.widgets"
+    xmlns:b3="urn:import:org.gwtbootstrap3.extras.slider.client.ui"
+    xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html">
+	
+    <ui:style>
+		.wellStyle {
+            margin-left:-15px;
+            margin-right:-15px;
+        }
+        
+        .centerAlign {
+           text-align:center;
+        }
+        
+        .leftAlign {
+           text-align:left;
+        }
+        
+        .rightAlign {
+           text-align:right;
+        }
+        
+        .buttonMargin {
+           margin-right:10px;
+        }
+        
+        .collapseStyle {
+           margin-right:10px;
+           width:32px;
+        }
+        
+        .containerStyle {
+            width:100%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #e3e3e3;
+            border-style: solid;
+            border-radius: 4px;
+            background-color: #e5e5e5;
+        }
+        
+        .inlineLabelStyle {
+            margin-left:10px;
+        }
+        
+        .marginStyle {
+            margin-bottom:20px;
+        }
+        
+        .lowStyle {
+            background: linear-gradient(#73BB5C, #307B18);
+            color: #ffffff;
+        }
+        
+        .medStyle {
+            background: linear-gradient(#CCD86B, #828E1C);
+            color: #ffffff;
+        }
+        .highStyle {
+            background: linear-gradient(#7E8AB4, #536196);
+            color: #ffffff;
+        }
+        
+        .centerAlign {
+            text-align:center;
+        }
+        
+        .scoringRules {
+            margin-top:20px;
+        }
+        
+        .buttonColumn {
+            text-align:left;
+            margin-top:15px;
+        }
+        
+        .headerColumn {
+            text-align:left;
+            margin-left:-50px;
+        }
+        
+        .rulesContainer {
+            width:100%;
+            background: #f5f5f5; 
+            border-width: 0px 1px 1px; 
+            border-style: solid; 
+            border-color: #e3e3e3;
+            border-radius: 0px 0px 4px 4px; 
+            margin-top: 0px; 
+            border-top-radius: 0px;
+            margin-bottom:10px;
+        }
+        
+        .rulesContent {
+            margin-top:15px;
+        }
+        
+        .footerStyle {
+            width:100%;
+            text-align:right;
+        }
+        
+        .attributeLabel {
+			font-size:20px;
+			font-weight:normal;
+			line-height:1.5;
+		}
+		
+		.scoredOnListStyle{
+			width:60% !important;
+		}
+		
+		.scoreOnLabelStyle{
+			font-size:100%;
+			line-height:1.8;
+			font-weight:bold;
+			background-color:transparent;
+			color:black;
+			width:40% !important;
+		}
+        
+	</ui:style>
+ 
+    <b:Container addStyleNames="{style.containerStyle}" ui:field="rulesPanel">
+         <b:Row addStyleNames="{style.rulesContent}">
+            <b:Column size="XS_4">
+            	<b:Label addStyleNames="{style.attributeLabel}" ui:field="attributeNameLabel"/>
+            </b:Column>
+            
+            <b:Column size="XS_4">
+                 <g:FlowPanel>
+	                 <b:Label addStyleNames="col-lg-3 {style.scoreOnLabelStyle}">Score On</b:Label>
+	                 <b:ListBox addStyleNames="col-lg-9 {style.scoredOnListStyle}" ui:field="scoredOnList">
+	                    <g:item>Total</g:item>
+	                    <g:item>Same Attribute</g:item>
+	                  </b:ListBox>
+	              </g:FlowPanel>
+            </b:Column>
+            <b:Column size="XS_4" addStyleNames="{style.rightAlign}">   
+                <b:Description>
+                    <b:DescriptionTitle text="Possible Total Points" />
+                    <b:DescriptionData ui:field="possiblePoints" text="0"/>
+                </b:Description>
+            </b:Column>
+        </b:Row>
+
+        <b:Container width="100%">
+            <b.html:Paragraph alignment="CENTER">Use the slider to adjust the scoring rules:</b.html:Paragraph>
+	        <b:Container addStyleNames='sliderScoredStyle'>
+	            <b3:RangeSlider ui:field="rangeScoringSlider" min="0" max="100" step="1" value="[65,85]"  tooltipSplit="true" width="100%"/>
+	        </b:Container>
+	        <b:Container addStyleNames='simpleSliderScoredStyle' visible="false">
+	            <b3:Slider ui:field="simpleScoringSlider" min="0" max="100" step="1" value="50" width="100%"/>
+	        </b:Container>
+        </b:Container>
+        
+         <b:Row addStyleNames="{style.scoringRules}">
+            <b:Column size="XS_4" addStyleNames="{style.centerAlign}" ui:field="lowColumn">
+                <b:Description>
+                    <b:DescriptionTitle text="Low" addStyleNames="{style.lowStyle}" ui:field="lowDescription"/>
+                    <b:DescriptionData ui:field="lowText" text="Between 0 and 25 percent"/>
+                </b:Description>
+            </b:Column>
+            <b:Column size="XS_4" addStyleNames="{style.centerAlign}" ui:field="mediumColumn">   
+                <b:Description>
+                    <b:DescriptionTitle text="Medium" addStyleNames="{style.medStyle}" ui:field="mediumDescription"/>
+                    <b:DescriptionData ui:field="mediumText" text="Between 25 and 90 percent"/>
+                </b:Description>
+            </b:Column>
+            <b:Column size="XS_4" addStyleNames="{style.centerAlign}" ui:field="highColumn">   
+                <b:Description>
+                    <b:DescriptionTitle text="High" addStyleNames="{style.highStyle}" ui:field="highDescription"/>
+                    <b:DescriptionData ui:field="highText" text="Between 90 and 100 percent"/>
+                </b:Description>
+            </b:Column>
+        </b:Row>
+        
+        <b:Container ui:field="footerContainer" addStyleNames="{style.footerStyle}">
+        	<b:InlineCheckBox text="Show Percentages" pull='LEFT' ui:field="showPercentages"/>
+        </b:Container>
+    </b:Container>
+    
+</ui:UiBinder> 

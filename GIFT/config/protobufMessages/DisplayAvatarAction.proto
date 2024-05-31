@@ -1,0 +1,52 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DisplayAvatarActionProto";
+
+import "AvatarData.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information needed for an avatar to convert text to speech. */
+message DisplayAvatarAction {
+	/* Optional avatar to display. */
+	AvatarData avatar = 1;
+	
+	/* Value indicating if the avatar should be displayed or preloaded only. */
+	google.protobuf.BoolValue preload_only = 2;
+	
+	oneof action {
+		/* This message represents the information needed for an avatar to convert text to speech. */
+		TextToSpeechAvatarAction text_to_speech_avatar_action = 3;
+		
+		/* This message represents the information needed for an avatar to execute audio. */
+		DisplayScriptedAvatarAction display_scripted_avatar_action = 4;
+	}
+}
+
+message TextToSpeechAvatarAction {
+	/* The text that will be converted to speech. */
+	google.protobuf.StringValue text = 1;
+	
+	/* Optional avatar to display. */
+	AvatarData avatar = 2;
+	
+	/* Value indicating if the avatar should be displayed or preloaded only. */
+	google.protobuf.BoolValue preload_only = 3;
+}
+
+message DisplayScriptedAvatarAction {
+	/* The action for the avatar to execute. */
+	google.protobuf.StringValue key = 1;
+	
+	/* Optional avatar to display. */
+	AvatarData avatar = 2;
+	
+	/* Value indicating if the avatar should be displayed or preloaded only. */
+	google.protobuf.BoolValue preload_only = 3;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:common="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:c="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:gallery="urn:import:org.gwtbootstrap3.extras.gallery.client.ui">
+
+    <ui:style>
+        .teamPicker {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .freeLookDurationSpinner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .angleSpinner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .freeLookDurationPanel{
+			padding-top:5px;
+		}
+    </ui:style>
+
+    <g:HTMLPanel>
+            
+        <gallery:Gallery thumbnailWidth="100px" thumbnailHeight="100px">
+           	<gallery:GalleryImage url="images/help/assignedSector.Params.PNG" />
+           	<gallery:GalleryImage url="images/help/assignedSector.assessment.PNG" />
+   		</gallery:Gallery>  
+        <span>Assess when </span>
+        <shared:EditableTeamPicker ui:field="teamPicker" addStyleNames="{style.teamPicker}" />
+        <span> looks more than </span>
+        <common:DecimalNumberSpinner ui:field="angleSpinner" addStyleNames="{style.angleSpinner}" />
+        <span>degrees away from the assigned sector's center at </span>
+        <shared:PlaceOfInterestPicker ui:field='assignedSectorCenterPlacePicker' />
+		
+        <!-- Optional free look duration Spinner -->
+        <g:HTMLPanel addStyleNames="{style.freeLookDurationPanel}">
+            <cb:ToggleButton ui:field="useFreeLookDurationCheckBox" postLabel="Allow briefly looking outside of assigned sector." width="auto" />
+            <common:DecimalNumberSpinner ui:field="freeLookDurationSpinner" addStyleNames="{style.freeLookDurationSpinner}" />
+            <g:InlineLabel ui:field='freeLookDurationLabel'>seconds</g:InlineLabel>
+        </g:HTMLPanel>
+
+        <c:RealTimeAssessmentScoringRulesPanel ui:field="rtaRulesPanel" />
+    </g:HTMLPanel>
+</ui:UiBinder>

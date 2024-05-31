@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "MetadataAttributeItemProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about a metadata attribute item for a branch adaptation strategy. */
+message MetadataAttributeItem {
+	/* Metadata attribute item. */
+	google.protobuf.StringValue attribute = 1;
+	
+	/* Priority of the attribute. */
+	google.protobuf.Int32Value priority = 2;
+	
+	/* The unique label used to distinguish this set of metadata attributes. */
+	google.protobuf.StringValue label = 3;
+}

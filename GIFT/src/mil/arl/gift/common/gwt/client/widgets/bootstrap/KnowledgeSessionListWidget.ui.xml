@@ -1,0 +1,29 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <ui:style>
+        .mainPanel {
+            overflow-y: auto;
+        }
+        .padTop {
+            padding: 0px 5px 0px;
+        }
+        .noSessionsLabelIndent{
+            padding: 10px 15px;
+            margin: 0px;
+            color: white;
+            text-align: center;
+		}
+		@external .list-group-item;
+		.linkedGroup > .list-group-item {
+            border-width: 2px;
+	    }
+    </ui:style>
+    <g:HTMLPanel addStyleNames="{style.mainPanel}">
+        <g:DeckPanel ui:field="deckPanel" addStyleNames="{style.padTop}">
+            <b:LinkedGroup ui:field="sessionList" width="100%" addStyleNames="{style.linkedGroup}" />
+            <b:Heading ui:field="noSessionsLabel" size="H4" addStyleNames="giftBackgroundText {style.noSessionsLabelIndent}" text="No sessions found." />
+        </g:DeckPanel>
+    </g:HTMLPanel>
+</ui:UiBinder>

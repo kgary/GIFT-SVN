@@ -1,0 +1,57 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "ServiceBusMessageProto";
+
+import "google/protobuf/timestamp.proto";
+import "ACK.proto";
+import "ActiveDomainSessionsReply.proto";
+import "ActiveDomainSessionsRequest.proto";
+import "ApplyStrategies.proto";
+import "AuthorizeStrategiesRequest.proto";
+import "CloseDomainSessionRequest.proto";
+import "DomainOptionsReply.proto";
+import "DomainOptionsRequest.proto";
+import "DomainSelectionReply.proto";
+import "DomainSelectionRequest.proto";
+import "LearnerState.proto";
+import "LessonCompleted.proto";
+import "LessonStarted.proto";
+import "NACK.proto";
+import "PedagogicalRequest.proto";
+import "Siman.proto";
+import "TeamMemberRoleAssignmentReply.proto";
+import "TeamMemberRoleAssignmentRequest.proto";
+import "TutorUserInterfaceFeedbackPayload.proto";
+import "EvaluatorUpdateRequest.proto";
+
+message ServiceBusMessage {
+	google.protobuf.Timestamp timestamp = 1;
+	oneof type {
+		DomainOptionsRequest domain_options_request = 2;
+		DomainOptionsReply domain_options_reply = 3;
+		Siman siman = 4;
+		DomainSelectionRequest domain_selection_request = 5;
+		DomainSelectionReply domain_selection_reply = 6;
+		ActiveDomainSessionsRequest active_domain_sessions_request = 7;
+		CloseDomainSessionRequest close_domain_session_request = 8;
+		ActiveDomainSessionsReply active_domain_sessions_reply = 9;
+		LearnerState learner_state = 10;
+		AuthorizeStrategiesRequest authorize_strategies_request = 11;
+		LessonCompleted lesson_completed = 12;
+		LessonStarted lesson_started = 13;
+		NACK nack = 14;
+		ACK ack = 15;
+		ApplyStrategies apply_strategies = 16;
+		TeamMemberRoleAssignmentRequest team_member_role_assignment_request = 17;
+		TeamMemberRoleAssignmentReply team_member_role_assignment_reply = 18;
+		TutorUserInterfaceFeedbackPayload tutor_user_interface_feedback_payload = 19;
+		PedagogicalRequest pedagogical_request = 20;
+		EvaluatorUpdateRequest evaluator_update_request = 21;
+	}
+}

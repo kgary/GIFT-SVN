@@ -1,0 +1,37 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyPageResponseProto";
+
+import "google/protobuf/timestamp.proto";
+import "survey/SurveyPage.proto";
+import "survey/QuestionResponse.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a response to a survey page. */
+message SurveyPageResponse {
+
+	/* The id of the survey page response. */
+	google.protobuf.Int32Value survey_page_response_id = 1;
+	
+	/* The id the survey response belongs to. */
+	google.protobuf.Int32Value survey_response_id = 2;
+	
+	/* The time the survey was started. */
+	google.protobuf.Timestamp start_time = 3;
+	
+	/* The time the survey was completed. */
+	google.protobuf.Timestamp end_time = 4;
+	
+	/* The survey the response is responding to. */
+	SurveyPage survey_page = 5;
+	
+	/* The list of responses to questions on the survey page. */
+	repeated QuestionResponse question_responses = 6;
+}

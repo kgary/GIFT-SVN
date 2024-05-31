@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "CloseDomainSessionRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a close domain session request. */
+message CloseDomainSessionRequest {
+	/* Reason for the request. */
+	google.protobuf.StringValue reason = 1;
+}

@@ -1,0 +1,25 @@
+# Skip copying Docker resources used to build and export, since they are not needed in a running container
+#Docker/scripts
+#Docker/export
+
+# Skip copying GIFT temporary files
+GIFT/temp/*
+
+# Skip copying GIFT files that are only used to develop GIFT, not run it
+GIFT/build
+GIFT/src.py
+GIFT/test
+GIFT/generated
+
+# Skip any Windows-based JDK that may have already been extracted
+GIFT/external/jdk-11
+
+# Skip copying existing GIFT logs, since the container should start with no logs
+GIFT/output/converted
+GIFT/output/domainSessions/domainSession*
+GIFT/output/logger/tools/*
+GIFT/output/logger/module/*
+GIFT/output/logger/message/*
+
+# Skip any Windows JDK that may have been extracted already
+GIFT/external/jdk-11

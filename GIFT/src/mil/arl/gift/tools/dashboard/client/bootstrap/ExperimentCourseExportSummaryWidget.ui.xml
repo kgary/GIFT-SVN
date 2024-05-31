@@ -1,0 +1,30 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:w='urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap'
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	/* Add CSS here. See the GWT docs on UI Binder for more details */
+	</ui:style>
+	<g:HTMLPanel>
+	                    
+       	The following course will be exported from <b><g:InlineLabel ui:field='experimentName'/></b>:
+       	
+			<g:HTML addStyleNames='exportCoursesDialogCourseList' ui:field='courseNamesList'>
+			</g:HTML>
+			
+		The export process will gather Survey Contexts needed by the course being<br/>
+		exported as well as any other resources referenced by those surveys<br/>
+		(e.g. survey question images).<br/>
+		
+			
+			<div style='text-align: center;'>
+				<span>
+					Estimated Download Size: 
+					<g:InlineLabel ui:field='estimatedSizeLabel'>
+						Calculating...
+					</g:InlineLabel>
+					<w:BsLoadingIcon type="SPINNER" size="NONE" ui:field="ctrlLoadIcon"/>
+				</span>
+			</div>
+       </g:HTMLPanel>
+</ui:UiBinder> 

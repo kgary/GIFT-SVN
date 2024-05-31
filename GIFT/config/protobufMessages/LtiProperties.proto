@@ -1,0 +1,40 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LtiPropertiesProto";
+
+import "NvPair.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This represents the properties that may be observed for a Lti user. */
+message LtiProperties {
+	/* Min value of the slider. */
+	google.protobuf.StringValue slider_min = 1;
+	
+	/* Max value of the slider. */
+	google.protobuf.StringValue slider_max = 2;
+	
+	/* Lti identifier property. */
+	google.protobuf.StringValue lti_identifier = 3;
+	
+	/* Value indicating if a score should be allowed in the Lti property. */
+	google.protobuf.StringValue allow_score = 4;
+	
+	/* Value of the isKnowledge property. */
+	google.protobuf.StringValue is_knowledge = 5;
+	
+	/* Gets the display mode of the Lti property. */
+	google.protobuf.StringValue display_mode = 6;
+	
+	/* The list of concepts for the property. */
+	repeated string concepts = 7;
+	
+	/* Anonymous complex type. */
+	repeated NvPair custom_param = 8;
+}

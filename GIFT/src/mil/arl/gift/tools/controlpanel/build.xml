@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<project name="ControlPanel" default="compile">
+    
+    <property name="root.path" value="../../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.tools.controlpanel"/>
+    <property name="source.path" value="mil/arl/gift/tools/controlpanel"/>
+    <property name="jarfile.ext.path" value="gift-controlpanel"/>
+    <property name="jarfile.name" value="gift-controlpanel.jar"/>
+    <property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="gift.remote.jar" value="gift-remote.jar"/>
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+        
+    <path id="classpath">
+        <fileset dir="${root.path}/bin" includes="gift-common.jar"/>
+    	<fileset dir="${root.path}/bin" includes="gift-remote.jar"/>
+        <fileset dir="${root.path}/external" includes="**/commons-cli-1.2.jar"/>
+        <fileset dir="${root.path}/external" includes="**/commons-lang-2.4.jar"/>
+        <fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+        <fileset dir="${root.path}/external" includes="**/jcommon-1.0.16.jar"/>
+        <fileset dir="${root.path}/external" includes="**/jfreechart-1.0.13.jar"/>
+        <fileset dir="${root.path}/external" includes="**/json_simple-1.1.jar"/>	
+    </path>
+    
+    <target name="checkForChanges">
+    	<uptodate property="rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        <uptodate property="build.notRequired" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="${src.excludes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <and>
+                <isset property="rebuild.required"/>
+                <isset property="build.notRequired"/>
+            </and>
+        </condition>
+    </target>
+    
+    <target name="compileCore" unless="build.required">
+    	<echo message="Compiling ControlPanel"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" classpathref="classpath" includeDestClasses="false" excludes="${src.excludes}">
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <copy todir="${root.path}/build/classes/${source.path}">
+            <fileset dir="." includes="**/*.png"/>
+        </copy>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes/" includes="${source.path}/**"/>
+    </target>
+
+    <target name="compile" depends="checkForChanges, compileCore">        
+    </target>
+    	
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

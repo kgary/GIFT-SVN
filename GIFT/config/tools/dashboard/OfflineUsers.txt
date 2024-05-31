@@ -1,0 +1,24 @@
+#
+# OfflineUsers.txt
+#
+# The offline users file contains a list of preset usernames that can be used in desktop mode when offline. These users
+# will automatically be populated into the UMS database and other needed initialization. 
+#
+# Usernames must adhere to the following rules:
+#   - All lowercase
+#   - Do not contain spaces
+#   - Follow normal GIFT portal username requirements (no special symbols, etc).
+#   - must be at least 3 characters long (not including leading or trailing whitespace)
+#
+# To use this file, comments can be added with the "#" symbol at the beginning of the line.  Users should be added
+# after the comments sequentially with one username per line.  An example could look like the following:
+#    testuser_1
+#    testuser_2
+#    testuser_3
+#    ..etc...
+#
+# Collisions with existing names are ignored.  
+# Leave the list of names empty if this feature is not needed.
+# 
+# This is used by mil.arl.gift.tools.dashboard.server.OfflineUsers.java
+# 

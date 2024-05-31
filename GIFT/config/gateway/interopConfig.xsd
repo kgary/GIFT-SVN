@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="4.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fg="http://www.FGolubov.com/XMLEditor" elementFormDefault="qualified">
+  <xs:element name="InteropConfig">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Interoperability Configuration"> 
+			<fg:message>This is the root node of the interopConfig.  Look for other helpful information by clicking on a node.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="interfaceConfigurations"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interfaceConfigurations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="InteropInterfaceConfig"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InteropInterfaceConfig">
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element name="available" type="xs:boolean" default="true" minOccurs="0">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Is Available"> 
+					<fg:message>Whether this interop interface is available for use by this GW module (Default is true)</fg:message>
+					<fg:message>An interface might be unavailable if the training application is not installed.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>			
+		</xs:element>
+        <xs:element ref="impl"/>
+        <xs:element ref="name"/>
+		<!-- Making this choice element optional in case the interface doesn't need configuration parameters -->
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element ref="AdaptiveLearningServiceBus"/>
+          <xs:element ref="DIS"/>
+          <xs:element ref="VBS"/>
+		  <xs:element ref="PPT"/>
+		  <xs:element ref="TC3"/>
+          <xs:element ref="SCATT"/>
+		  <xs:element ref="XML-RPC"/>
+		  <xs:element ref="REST"/>
+		  <xs:element ref="ARES"/>
+		  <xs:element ref="AMQP"/>
+		  <xs:element ref="VR-Engage"/>
+          <xs:element ref="Unity"/>
+		  <xs:element ref="SESandbox"/>
+		  <xs:element ref="RIDE"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="refID" use="required" type="xs:integer">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Reference ID"> 
+					<fg:message>Unique id of the interop interface.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+		</xs:annotation>
+	  </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="impl">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Implementation"> 
+			<fg:message>Specify the class that contains the logic for this interop interface, i.e. is responsible for handling communication between an external application and GIFT modules.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="name">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Name"> 
+			<fg:message>The name of the interop interface.  This can be used for display purposes and doesn't have to be unique.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+
+  <xs:element name="DIS">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="DIS"> 
+			<fg:message>Input for a Distributed Interactive Simulation (DIS) interop config interface.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="exerciseID"/>
+        <xs:element name="sendPort">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Send Network Port"> 
+					<fg:message>A network port number used to send DIS traffic in the interop interface implementation. E.g. 3000</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="65535"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+		<xs:element name="receivePort">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Receive Network Port"> 
+					<fg:message>A network port number used to receive DIS traffic in the interop interface implementation. E.g. 3000</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="65535"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+        <xs:element ref="siteID"/>
+        <xs:element ref="applicationID"/>
+        <xs:element ref="networkAddress"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="exerciseID">
+	<xs:simpleType>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="siteID" type="xs:integer"/>
+  <xs:element name="applicationID" type="xs:integer"/>
+  <xs:element name="VBS">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="VBS"> 
+			<fg:message>Input for a VBS interop config interface.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="networkPort"/>
+        <xs:element ref="networkAddress"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PPT">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="PowerPoint"> 
+			<fg:message>Input for a PowerPoint interop config interface.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType"/>
+		</xs:complexContent>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="TC3">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="TC3"> 
+			<fg:message>Input for a TC3 interop config interface.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="networkPort"/>
+        <xs:element ref="networkAddress"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SCATT">
+    <xs:annotation>
+      <xs:appinfo>
+        <fg:node-info message="SCATT">
+          <fg:message>Input for a SCATT interop config interface.</fg:message>
+        </fg:node-info>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="networkPort"/>
+        <xs:element ref="networkAddress"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="networkPort">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Network Port"> 
+			<fg:message>A network port number used for communication purposes in the interop interface implementation. E.g. 3000</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:simpleType>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="65535"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="networkAddress">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Network Address"> 
+			<fg:message>A network IP address (no port information) used for communication purposes in the interop interface implementation. E.g. 127.0.0.1</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="XML-RPC">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="XML-RPC Input"> 
+			<fg:message>Input for a XML-RPC Example interop config interface.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		  <xs:element name="ExternalServerNetworkAddress">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="External XML-RPC Server Network Address"> 
+					<fg:message>A network IP address (no port information) of an XML-RPC server. E.g. 127.0.0.1</fg:message>
+					<fg:message>This address will be used to connect a GIFT XML-RPC client to the server.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		   </xs:element>
+		  <xs:element name="ExternalServerNetworkPort">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="External XML-RPC Server Network Port"> 
+						<fg:message>A network port number of an XML-RPC server. E.g. 10524</fg:message>
+						<fg:message>This port will be used to connect a GIFT XML-RPC client to the server.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="65535"/>
+				</xs:restriction>
+			</xs:simpleType>
+		  </xs:element>
+          <xs:element name="ServerNetworkPort">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="XML-RPC Server Network Port"> 
+						<fg:message>A network port number used for an XML-RPC Server created by GIFT. E.g. 10524</fg:message>
+						<fg:message>This port number must match the XML-RPC client's port number.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="65535"/>
+				</xs:restriction>
+			</xs:simpleType>
+		  </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="REST">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="REST Input"> 
+			<fg:message>Input for a REST interop config interface.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		  <xs:element name="ServerURL">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Server URL"> 
+					<fg:message>The URL of the REST Server. E.g. http://127.0.0.1</fg:message>
+					<fg:message>This string will be used as a prefix when building URLs for REST client requests.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		  </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AMQP">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="ActiveMQ Protocol Input"> 
+			<fg:message>Input for an ActiveMQ connection.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element ref="networkPort"/>
+		<xs:element ref="networkAddress"/>
+		<xs:element name="user">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Username"> 
+					<fg:message>The username for authenticating the ActiveMQ client.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+		<xs:element name="password">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Password"> 
+					<fg:message>The password for authenticating the ActiveMQ client.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+	  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ARES">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Augmented REality Sandbox (ARES)"> 
+			<fg:message>Input for an ARES connection.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element ref="REST"/>
+		<xs:element ref="AMQP"/>
+	  </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VR-Engage">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="VR-Engage"> 
+			<fg:message>Input for a VR-Engage interop config interface.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="networkPort"/>
+        <xs:element ref="networkAddress"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Unity">
+    <xs:annotation>
+      <xs:appinfo>
+        <fg:node-info message="Unity">
+            <fg:message>Input for a Unity interop config interface.</fg:message>
+        </fg:node-info>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="networkPort"/>
+        <xs:element ref="networkAddress"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SESandbox">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="SESandbox"> 
+			<fg:message>Input for a SE Sandbox interop config interface.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element ref="networkPort"/>
+        <xs:element ref="networkAddress"/>
+		<xs:element name="grpcNetworkPort">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="GRPC Network Port"> 
+					<fg:message>A network port number used for GRPC communication purposes in the interop interface implementation. E.g. 3000</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="65535"/>
+				</xs:restriction>
+			</xs:simpleType>
+	  </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RIDE">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="RIDE"> 
+			<fg:message>Input for a RIDE interop config interface.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element ref="networkPort"/>
+        <xs:element ref="networkAddress"/>
+		<xs:element name="grpcNetworkPort">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="GRPC Network Port"> 
+					<fg:message>A network port number used for GRPC communication purposes in the interop interface implementation. E.g. 3000</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:integer">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="65535"/>
+				</xs:restriction>
+			</xs:simpleType>
+	  </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AdaptiveLearningServiceBus">
+    <xs:annotation>
+      <xs:appinfo>
+        <fg:node-info message="Adaptive Learning Service Bus">
+        <fg:message>Input for the Adaptive Learning Service Bus interop config interface.</fg:message>
+        </fg:node-info>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="networkPort"/>
+        <xs:element ref="networkAddress"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+ </xs:schema>

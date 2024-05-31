@@ -1,0 +1,54 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyItemPropertyValueProto";
+
+import "survey/OptionList.proto";
+import "survey/SurveyScorer.proto";
+import "survey/QuestionScorer.proto";
+import "survey/SliderRange.proto";
+import "survey/MatrixOfChoicesReplyWeights.proto";
+import "survey/FreeResponseReplyWeights.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the type of properties which are present 
+   inside a survey property value. */
+message SurveyItemPropertyValue {
+	oneof value {	
+		/* The list of options for the survey item property. */
+		OptionList option_list = 1;
+		
+		/* The name of the survey property. */
+		google.protobuf.StringValue string_payload = 2;
+		
+		/* The scorer for the survey property. */
+		SurveyScorer survey_scorer = 3;
+		
+		/* The questin scorer for the survey property. */
+		QuestionScorer question_scorer = 4;
+		
+		/* The range of values that the survey property supports. */
+		SliderRange slider_range = 5;
+		
+		/* The reply weights for a matrix of choices question. */
+		MatrixOfChoicesReplyWeights matrix_of_choices_reply_weights = 6;
+		
+		/* The reply weights for a free response question. */
+		FreeResponseReplyWeights free_response_reply_weights = 7;
+		
+		/* The list of property values. */
+		SurveyItemPropertyValueList survey_item_property_value_list = 8;
+	}
+}
+
+/* This message represents a list of survey item property values. */
+message SurveyItemPropertyValueList {
+	/* The list of survey item property values. */
+	repeated SurveyItemPropertyValue property_value_list = 1;
+}

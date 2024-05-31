@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="New DKF" version="11.0.1">
+    <description>This is the simplest DKF possible. Update this text with a description of your DKF.</description>
+    <resources>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="Complete App Task" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Complete App Concept" nodeId="2">
+                        <conditions>
+                            <condition>
+							<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+							<input>
+								<ApplicationCompletedCondition>
+									<IdealCompletionDuration>00:30:00</IdealCompletionDuration>
+								</ApplicationCompletedCondition>
+							</input>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                </concepts>
+                <assessments/>
+            </task>
+        </tasks>
+        <objects/>
+    </assessment>
+    <actions>
+        <stateTransitions/>
+        <instructionalStrategies/>
+    </actions>
+</Scenario>

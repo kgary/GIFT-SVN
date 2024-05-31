@@ -1,0 +1,40 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "PedagogicalRequestTypeProto";
+
+import "PedRequestInstructionalIntervention.proto";
+import "PedRequestMidLessonMedia.proto";
+import "PedRequestPerformanceAssessment.proto";
+import "PedRequestScenarioAdaptation.proto";
+import "PedRequestBranchAdaptation.proto";
+import "PedRequestDoNothingStrategy.proto";
+
+/* This message serves as the base for the pedagogical requests. */
+message PedagogicalRequestType {
+	
+	/* Pedagogical request types. */
+	oneof type {
+		PedRequestInstructionalIntervention ped_request_instructional_intervention = 2;
+		PedRequestMidLessonMedia ped_request_mid_lesson_media = 3;
+		PedRequestPerformanceAssessment ped_request_performance_assessment = 4;
+		PedRequestScenarioAdaptation ped_request_scenario_adaptation = 5;
+		PedRequestBranchAdaptation ped_request_branch_adaptation = 6;
+		PedRequestDoNothingStrategy ped_request_do_nothing_strategy = 7;
+	}
+	
+	/* 
+	 *	All pedagogical requests contain information such as the strategy type  
+	 * 	(micro or macro strategy), the name of the strategy, the wait time, and 
+	 *	the reason for the request.
+	 */
+	bool macro = 8;
+	string strategy_name = 9;
+	float wait_time = 10;
+	string reason = 11;		
+}

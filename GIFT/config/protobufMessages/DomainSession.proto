@@ -1,0 +1,37 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainSessionProto";
+
+import "UserSession.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents detailed information about a domain session. */
+message DomainSession {
+	/* Details for the user session. */
+	UserSession user_session_details = 1;
+	
+	/* the unique domain session id - across GIFT.  Managed by UMS database. */
+	google.protobuf.Int32Value ds_id = 2;
+	
+	/*  the course runtime id which is the path to the course used when taking the course 
+     * E.g. mhoffman\2021-02-18_14-25-34\new course\new course.course.xml */
+	google.protobuf.StringValue domain_name = 3;
+	
+	/* the course source id which is the path to the authored course 
+     * E.g. mhoffman/new course/new course.course.xml  */
+	google.protobuf.StringValue source_id = 4;
+	
+	/* (optional) the id of a subject in a published course.  
+     * As of 06/2021 all courses are published courses.  This id is managed by the UMS database.
+     * It is different than the user id.  A single user identified by a user id can have multiple
+     * subject ids for the same course / published course if they take the course multiple times. */
+	google.protobuf.Int32Value subject_id = 5;
+	
+}

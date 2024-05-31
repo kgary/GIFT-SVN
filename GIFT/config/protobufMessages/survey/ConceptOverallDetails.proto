@@ -1,0 +1,23 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "ConceptOverallDetailsProto";
+
+/*  
+ *	This is the protobuf message that contains the base implementations for concepts' overall
+ *	details.
+ */ 
+message ConceptOverallDetails {
+
+	/* The collection of correct questions. */
+	repeated int32 correct_questions = 1;
+	
+	/* The collection of incorrect_questions. */
+	repeated int32 incorrect_questions = 2;
+}

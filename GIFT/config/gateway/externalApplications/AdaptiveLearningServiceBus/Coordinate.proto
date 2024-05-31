@@ -1,0 +1,38 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_outer_classname = "CoordinateProto";
+option java_package = "generated.proto.gateway";
+
+/* A location in the training environment. */
+message Coordinate {
+    /* A location relative to the center of the earth. */
+    message GCC {
+		double x = 1;
+		double y = 2;
+		double z = 3;
+	}
+
+    /* A location expressed in latitude, longitude, and elevation. */
+	message GDC {
+		double latitude = 1;
+		double longitude = 2;
+		double elevation = 3;
+	}
+
+	message AGL {
+		double x = 1;
+		double y = 2;
+		double elevation = 3;
+	}
+	
+	oneof type {
+		GCC gcc = 1;
+		GDC gdc = 2;
+		AGL agl = 3;
+	}
+}

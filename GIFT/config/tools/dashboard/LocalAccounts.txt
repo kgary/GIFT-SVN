@@ -1,0 +1,20 @@
+#
+# This file defines a set of predefined user credientials that can be used to sign in to GIFT without using an external 
+# authentication system, such as the default authentication logic used by GIFTPortalUserAuthentication.java.
+#
+# Any account credentials defined below will used by mil.arl.gift.common.gwt.server.authentication.LocalAccountAuthentication.java 
+# 
+# Account creditials are defined using lines of username and password pairs, like so:
+# username1=password1
+# username2=password2
+# johndoe=12345678
+#
+# (Note that some characters, like # and =, have special meaning and generally shouldn't be used by passwords in this file)
+#
+# If at least one username-password pair is defined below, then LocalAccountAuthentication.java will be used instead of an
+# external authentication system. Note that this will mean that only users with the credentials defined below will be able
+# to sign into this GIFT instance, even if they would normally be able to sign in to the default authentication system.
+#
+# Local account authentication does not bypass the user white list defined in WhiteListUsers.txt, so if any usernames have been
+# specifically whitelisted in that file, then only those usernames will be able to sign in.
+#

@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+ 
+option java_package = "generated.proto.common";
+option java_outer_classname = "ApplyStrategiesProto";
+
+import "google/protobuf/wrappers.proto";
+import "StrategyToApply.proto";
+
+/* This is a message payload that is sent by the WebMonitorModule indicating that a certain set of strategies should be applied. */
+message ApplyStrategies {
+	/* The evaluator of the strategy. */
+	google.protobuf.StringValue evaluator = 1;	
+	
+	/* The activities to execute. */
+	repeated StrategyToApply strategies = 2;
+	
+	/* Value indicating whether this strategy is associated with a scenario element. */
+	google.protobuf.BoolValue scenario_support = 3;
+}

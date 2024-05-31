@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DisplayAARTutorRequestProto";
+
+import "AbstractAfterActionReviewEvent.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information specific to a Display AAR tutor request. */
+message DisplayAARTutorRequest {
+	/* The authorable title of the view. */
+	google.protobuf.StringValue title = 1;
+	
+	/* Value indicating whether the AAR should be presented in full screen. */
+	google.protobuf.BoolValue fullscreen = 2;
+	
+	/* Events for the AAR. */
+	repeated AbstractAfterActionReviewEvent events = 3;
+}

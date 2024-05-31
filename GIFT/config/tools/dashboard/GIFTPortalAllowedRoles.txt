@@ -1,0 +1,12 @@
+#
+# A comma delimited list of "GIFT" project user roles on the GIFT portal (gifttutoring.org) that 
+# can access the GIFT instances that uses this file
+# The list of project roles can be found by a GIFT portal admin account under Settings->Members tab.
+#
+# An empty list means the role list isn't used.
+#
+# e.g. "Manager"
+#
+# This is used by mil.arl.gift.common.gwt.server.authentication.GIFTPortalUserAuthentication.java 
+# 
+ROLES=

@@ -1,0 +1,7 @@
+#
+# A comma delimited list of users that can access the GIFT instances that uses this file
+# An empty list means the white list isn't used.
+#
+# This is used by mil.arl.gift.common.gwt.server.authentication.WhiteListUserAuth.java 
+# 
+USERS=

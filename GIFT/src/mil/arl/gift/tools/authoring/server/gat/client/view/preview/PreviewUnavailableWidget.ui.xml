@@ -1,0 +1,51 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+             xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+             xmlns:w='urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap'
+             xmlns:tw='urn:import:mil.arl.gift.tutor.client.coursewidgets'>
+	<ui:style>
+		.container {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			padding: 20px;
+			overflow: auto;
+		}
+		.image {
+			height: 50%;
+			min-height: 300px;
+			border: rgba(191, 210, 212, 0.64) solid 10px;
+			border-radius: 16px;
+			display: block;
+		}
+		.textPanel {
+			margin-top: -65px;
+		}
+		.title {
+			text-align: center;
+			font-size: 6em;
+			font-weight: bold;
+			color: rgb(98, 128, 131);
+			text-shadow: 1px 0px 13px rgb(255, 255, 255), 1px 0px 2px rgb(209, 220, 206);
+		}
+		.description {
+			text-align: center;
+    		font-size: 1.7em;
+    		font-weight: bold;
+    		color: #3f4847;
+    		text-shadow: 1px 0px 6px rgb(255, 255, 255), 1px 0px 1px rgba(255, 255, 255, 0.52);
+			margin-top: -10px;
+		}
+	</ui:style>
+	<g:FlowPanel height="100%" width="100%" addStyleNames='{style.container}'>
+        <g:Image ui:field='image' title='Preview unavailable' url='images/preview_unavailable.png' addStyleNames='{style.image} center'/>
+        <g:FlowPanel width="100%" addStyleNames='{style.textPanel}'>
+            <g:Label ui:field='title' addStyleNames='{style.title}'>Preview Unavailable</g:Label>
+            <g:HTML ui:field='description' addStyleNames='{style.description}'></g:HTML>
+        </g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

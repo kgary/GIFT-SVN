@@ -1,0 +1,62 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:list="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list">
+	<ui:style>
+	    .entranceHeader{
+            color: white;
+            padding: 5px 10px 0px;
+	    }
+	    .pointsHeader{
+            color: white;
+            padding: 0px 10px;
+        }
+	    @external btn;
+        .poiList .btn{
+            padding: 3px 6px;
+        }
+        .poiList > div:last-child{
+            background: none !important; /* Remove default background to maintain visual contrast  */
+            border: none !important;
+            box-shadow: none !important;
+        }
+        .poiList > div:last-child > div:last-child{
+            color: white; /* Makes sure the empty table text is readable on the dark background*/
+        }
+        @external draggableFlexTable;
+        .poiList .draggableFlexTable{
+            border-spacing: 0 8px;
+        }
+        @external excludedOverlayItem;
+        .poiList .draggableFlexTable > tbody > .excludedOverlayItem{
+            box-shadow: 0 0 3px 0px rgba(255, 255, 255, 0.5) !important;
+        }
+        .poiList .draggableFlexTable > tbody > tr{
+            box-shadow: 0px 0px 1px 1px rgba(255,255,255,0.5) !important;
+            height: auto;
+        }
+        .poiList .draggableFlexTable > tbody > tr > td{
+            background-image: linear-gradient(transparent 50%, rgba(0,0,0,0.1));
+            padding-left: 0px;
+            padding-right: 5px;
+        }
+        .poiList .draggableFlexTable > tbody > tr > td:last-child > i{
+            padding: 10px 5px !important;
+        }
+        .poiList .draggableFlexTable > tbody > tr > td:first-child{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+	</ui:style>
+	<g:HTMLPanel>
+	   <div class='{style.entranceHeader}'>
+	       Entrances:
+	   </div>
+	   <g:FlowPanel>
+	       <list:ItemListEditor addStyleNames='{style.poiList}' ui:field="entranceList" />  
+	   </g:FlowPanel>
+	   <div class='{style.pointsHeader}'>
+           Available points:
+       </div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

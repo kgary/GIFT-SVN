@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "EntityMarkingProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents an entity appearance. */
+message EntityMarking {
+
+	/* The entity Character Set. */
+	google.protobuf.StringValue entity_char_set = 1;
+	
+	/* The Entity Marking. */
+	google.protobuf.StringValue entity_marking = 2;
+	
+	/* The user-friendly name to use for the entity within GIFT. */
+	google.protobuf.StringValue gift_display_name = 3;
+}

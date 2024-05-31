@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was created with the GIFT Learner Configuration Authoring Tool (LCAT).
+It contains configuration information for how to translate incoming sensor data into learner state attributes.-->
+<LearnerConfiguration version="11.0.1" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <inputs>
+        <input name="Self Assessment TwoState">
+            <translator>
+                <translatorImpl>learner.clusterer.data.SelfAssessmentTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.EngagementTwoStateClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.EngagementTwoStatePredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <sensor type="SELF_ASSESSMENT"/>
+            </producers>
+        </input>
+        <input name="Sine Wave TwoState">
+            <translator>
+                <translatorImpl>learner.clusterer.data.SineWaveTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.EngagementTwoStateClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.EngagementTwoStatePredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <sensor type="SINEWAVE"/>
+            </producers>
+        </input>
+        <input name="Mouse Arousal">
+            <translator>
+                <translatorImpl>learner.clusterer.data.MouseTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.ArousalClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.ArousalPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <sensor type="MOUSE_TEMP_HUMIDITY_SURROGATE"/>
+                <sensor type="MOUSE_TEMP_HUMIDITY"/>
+            </producers>
+        </input>
+        <input name="Q Arousal">
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.ArousalClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.ArousalPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <sensor type="Q"/>
+                <sensor type="KINECT"/>
+            </producers>
+        </input>
+        <input name="Motivation Surrogate Knowledge">
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.MotivationClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.MotivationPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <sensor type="MOTIVATION_SURROGATE"/>
+            </producers>
+        </input>
+        <input name="Expertise Surrogate Expertise">
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.ExpertiseClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.ExpertisePredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <sensor type="EXPERTISE_SURROGATE"/>
+            </producers>
+        </input>
+        <input name="Generic JSONState Generic">
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.AnxiousClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.GenericPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <trainingAppState type="GenericJSONState"/>
+            </producers>
+        </input>
+        <input name="Kinect Generic">
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.EngConcentrationClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.GenericTemporalPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <sensor type="KINECT"/>
+            </producers>
+        </input>
+    </inputs>
+</LearnerConfiguration>

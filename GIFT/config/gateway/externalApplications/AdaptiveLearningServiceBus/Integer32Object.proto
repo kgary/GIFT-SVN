@@ -1,0 +1,16 @@
+/* 
+ * version 1.1 [July 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "IntegerObjectProto";
+
+/** contains a 32 bit integer, useful for null/optional integer values in other messages 
+* Uses variable-length encoding. Inefficient for encoding negative numbers - if your field is likely to have negative values, use sint32 instead.
+*/
+message Integer32Object{
+	int32 value = 1;
+}

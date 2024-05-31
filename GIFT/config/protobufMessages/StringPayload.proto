@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "StringPayloadProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message handles cases where the payload is only a single string. */
+message StringPayload {
+	/* The payload of the message, encoded as a string. */
+	google.protobuf.StringValue payload = 1;
+}

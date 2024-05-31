@@ -1,0 +1,43 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:guidance="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.guidance"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.guidancePanel{
+			margin-top: 5px;
+			border: solid 1px #AAAAAA;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+			border-radius: 5px;
+		}
+		.changeTypeButton{
+			margin: 10px;
+		}
+	</ui:style>
+	<g:FlowPanel>
+		<g:CheckBox ui:field='checkBox'>
+			Show informational message
+		</g:CheckBox>
+		<g:DeckPanel animationEnabled='true' ui:field='guidanceDeck'>
+		
+			<g:FlowPanel addStyleNames='{style.guidancePanel}' ui:field='guidancePanel'>
+			
+				<g:SimplePanel ui:field='editorPanel'>
+					<!-- 
+						Editor goes here. The editor has been intentionally left out of the UI binder declaration so that it 
+						can be constructed only when it is needed. This helps reduce unnecessary load times in places where
+						authoring guidance is optional and unlikely to be used under most circumstances.
+					-->
+				</g:SimplePanel>
+				
+				<b:Button addStyleNames='{style.changeTypeButton}' type='PRIMARY' icon='REFRESH' visible='false' ui:field='changeTypeButton'>
+					Change Type
+				</b:Button>
+				
+			</g:FlowPanel>
+			
+			<g:SimplePanel ui:field='noGuidancePanel'/>
+			
+		</g:DeckPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

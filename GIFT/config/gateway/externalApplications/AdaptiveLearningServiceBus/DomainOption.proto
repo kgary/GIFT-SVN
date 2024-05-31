@@ -1,0 +1,73 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "DomainOptionProto";
+
+import "DomainOptionPermissions.proto";
+
+/**
+ * This class represents a domain option, a possible domain a learner can load and tutor on.
+ */
+message DomainOption {
+
+	/** 
+	 *	The concepts of the course can be organized into either a hierarchy or flat list. The 
+	 *  Concept Tree is used to organize into a hierarchy while the Concept List can store the 
+	 *  concepts as a flat list. In both, the "concepts" field serves to describe what the course 
+	 *  teaches.
+	 */
+	message ConceptList {
+		repeated LeafConcept concepts = 1;
+	}
+	
+	message ConceptTree {
+		Concept root_concept = 1;
+	}
+	
+	/** 
+	 *	The message type Concept can be represented as either a leaf_concept, representing a single 
+	 *	node for the concept tree that holds details about a single course, or an intermediate_concept, 
+	 *	which allows for more nodes (Concepts) to spawn from the course that may be related.
+	 */
+	message Concept {
+		oneof type {
+			LeafConcept leaf_concept = 1;
+			IntermediateConcept intermediate_concept = 2;
+		}
+	}
+	
+	/* Leaf node for a single concept with no children. */
+	message LeafConcept {
+		string name = 1;
+	}
+	
+	/* Parent node, storing information for a concept and other possible leaf or parent concepts. */
+	message IntermediateConcept {
+		string name = 1;
+		repeated Concept sub_concepts = 2;
+	}	
+	
+	/* Domain option information. */
+	string username = 1;
+	string domain_name = 2;
+	string domain_id = 3;
+	string source_id = 4;
+	string description = 5;
+	string type = 6;
+	string reason = 7;
+	string details = 8;
+	
+	/* The concepts can either be represented as a tree (hierarchial) or a list. */
+	oneof concepts {
+		ConceptList list = 9;
+		ConceptTree tree = 10;
+	}
+	
+	/* List of all users that have permission to access the domain option. */
+	repeated DomainOptionPermissions domain_option_permissions = 11;
+}

@@ -1,0 +1,56 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "BranchAdaptationStrategyProto";
+
+/*
+ *	This message represents the Branch Adaptation instructional strategy, which can be used to 
+ *	progress further in the course, provide remediation, or skip (i.e. advance) past a certain
+ *	element in the course.
+ */
+message BranchAdaptationStrategy {
+	bool after_practice = 1;
+	bool is_skill = 2;
+	string type = 3;
+	string next_quadrant = 4;
+	
+	/* List of attributes that determine the content to present. */
+	repeated MetadataAttributeItem attributes = 5;
+	
+	/* The list of concepts that are needing advancement. */
+	repeated AdvancementConcept advancement = 6;
+	
+	/* The map of assessed concept names to a descending prioritized list of remediation types. */
+	map<string, ListRemediationConcept> remediation = 7;
+
+	/* Message definition for a list of Remediation Concepts for the map. */
+	message ListRemediationConcept {
+		repeated RemediationConcept remediation_concepts = 1;
+	}	
+}
+
+/* Single attribute item. */
+message MetadataAttributeItem {
+	int32 priority = 1;
+	string attribute = 2;
+	string label = 3;
+}
+
+/* Single concept that contains the type, name, quadrant the concept is in, and a list of attributes. */
+message RemediationConcept {
+	string remediation_type = 1;
+	string concept = 2;
+	string remediation_quadrant = 3;
+	repeated MetadataAttributeItem attributes = 4;
+}
+
+/* Advancement concept definition. */
+message AdvancementConcept { 
+	string concept = 1;
+	string advancement_reason = 2;
+}

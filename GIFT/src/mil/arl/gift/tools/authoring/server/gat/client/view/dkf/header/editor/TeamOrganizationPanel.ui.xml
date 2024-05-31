@@ -1,0 +1,165 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:valid="urn:import:mil.arl.gift.common.gwt.client.validation"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style type="mil.arl.gift.tools.authoring.server.gat.client.view.dkf.header.editor.TeamOrganizationPanel.Style">
+	    .rootPanel {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+	   .helpLink {
+            padding-left: 5px;
+            padding-bottom: 5px;
+            color: rgb(100, 100, 200);
+            font-weight: normal;
+            font-size:14px;
+        }
+       .teamTree{
+            flex: 1;
+            overflow: auto;
+            border: 1px solid rgb(200,200,200);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.25);            
+            border-radius: 5px;
+            padding-top: 1px;
+	   }
+	   @external gwt-TreeItem-selected;
+       .teamTree .gwt-TreeItem-selected{
+           background: none;
+       }
+       .teamTree .gwt-TreeItem-selected > div{
+           background: rgb(220,220,255) !important;
+           border-radius: 5px;
+           border: 1px solid rgb(200,200,255);
+           margin: -1px;
+           cursor: move;
+       }
+       .teamTreeDisabled .gwt-TreeItem-selected > div{
+           cursor: pointer !important];
+       }
+       @external gwt-TreeItem;
+       .teamTree .gwt-TreeItem{
+           font-size: 14px;
+           display: inline-block !important;
+           margin-left: -7px;
+       }
+       .teamTree .gwt-TreeItem > div{
+           padding: 4px 5px;
+       }
+       .teamTree .gwt-TreeItem:hover > div{
+           background: rgb(255,255,200);
+           border-radius: 5px;
+           border: 1px solid rgb(230,230,170);
+           margin: -1px;
+        }
+        
+       .teamTree td > div{
+           /* Ensure that non-leaf nodes line up with leaf nodes*/
+           margin-left: 0px !important;
+       }
+        
+       .teamTree td > img{
+            cursor: pointer;
+       }
+       
+       .teamTree > div{
+           cursor: pointer;
+       }
+       
+       @external scenarioTreeItemName;
+       .gwt-TreeItem .scenarioTreeItemName{
+    
+            /* only allow clicking on the item name when the item is selected */
+            pointer-events: none;
+       }
+       
+       .gwt-TreeItem-selected .scenarioTreeItemName{
+    
+            /* only allow clicking on the item name when the item is selected */
+            pointer-events: all;
+       }
+       
+       @external scenarioTreeItemButton;
+       .teamTree .gwt-TreeItem-selected .scenarioTreeItemButton{
+           
+            /* display buttons when the item is selected */
+            opacity: 1;
+            transition: opacity 300ms;
+       }
+       .teamTree .gwt-TreeItem:hover .scenarioTreeItemButton{
+           
+            /* display buttons when the item is moused over */
+            opacity: 1;
+            transition: opacity 300ms;
+       }
+       .flipIcon i{
+            transform: rotateX(180deg);
+	   }
+	   .searchBox {
+            width: 300px;
+            display: inline-block;
+            padding-left: 27px;
+        }
+	   .searchPanel{
+           position: relative;
+           margin: 5px 0px;
+           display: inline-block;
+           margin-left: 5px;
+        }
+        .searchIcon{
+            position: absolute;
+            left: 7px;
+            top: 7px;
+            pointer-events: none;
+            font-size: 16px;
+        }
+	</ui:style>
+	<g:HTMLPanel addStyleNames='{style.rootPanel}' width='100%' height='100%'>
+	
+	   <valid:ValidationWidget ui:field="validations" />
+	   
+	   <g:FlowPanel>
+	       <b:Tooltip container='body' title='Collapse All'>
+	           <b:Button addStyleNames='{style.flipIcon}' icon='SORT_AMOUNT_DESC' ui:field='collapseAllButton'/>
+	       </b:Tooltip>
+	       
+	       <b:Tooltip container='body' title='Expand All'>
+	           <b:Button icon='SORT_AMOUNT_ASC' ui:field='expandAllButton'/>
+           </b:Tooltip>
+           
+           <g:FlowPanel addStyleNames='{style.searchPanel}'>
+	            <b:Icon addStyleNames='{style.searchIcon}' type='SEARCH'/>
+	            <b:TextBox ui:field='searchBox' addStyleNames='{style.searchBox}'/>
+	        </g:FlowPanel>
+        
+        	<wb:HelpLink helpCaption='Team Organization'>
+	            <wb:linkWidget>
+	                <g:Label addStyleNames='{style.helpLink}'>
+	                    How does GIFT use team organization?
+	                </g:Label>
+	            </wb:linkWidget>
+	            <wb:helpBody>
+	                	<g:HTML>
+	                    Use Team Organization to define a hierarchy of teams which can be comprised of other teams and team members.
+	                    Both teams and team members can be referenced in various parts of the real time assessment.  For example you
+	                    may want to deliver feedback to the leader of a team rather than every member of that team.  You could assess
+	                    the actions of a group of learners instead of a single learner by selecting the team or team members for that
+	                    condition instance such as Avoid Location.<br/><br/>
+	                    <b>Requirements:</b><br/>
+	                    1. Every level of this hierarchy must have a unique name<br/>
+	                    2. there must be at least one team member defined so that the learner can be linked to it.<br/><br/>
+	                    <b>Special considerations:</b><br/>
+	                    For VBS3 v3.9.2 you should use Entity Marking to define team members.  Using start locations to define a team 
+	                    member's training application character (lifeform's only) will only work if that character doesn't mount a 
+	                    vehicle of some kind because VBS will stop emitting entity state messages for that entity and will use a 
+	                    different entity identifier when the character dismounts. 
+	                	</g:HTML>
+	            </wb:helpBody>
+        	</wb:HelpLink> 
+	   </g:FlowPanel>
+	   
+	   <g:Tree addStyleNames='{style.teamTree}' animationEnabled='true' scrollOnSelectEnabled='true' ui:field='teamTree' />            
+	</g:HTMLPanel>
+</ui:UiBinder> 

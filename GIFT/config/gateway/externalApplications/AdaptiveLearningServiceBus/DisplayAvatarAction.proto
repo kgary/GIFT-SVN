@@ -1,0 +1,29 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "DisplayAvatarActionProto";
+
+import "AvatarData.proto";
+
+message DisplayAvatarAction {
+	oneof type {
+		DisplayTextToSpeechAvatarAction display_text_to_speech_avatar_action = 2;
+		DisplayScriptedAvatarAction display_scripted_avatar_action = 3;
+	}
+	
+	AvatarData avatar = 4;
+	bool preload_only = 5;
+}
+
+message DisplayTextToSpeechAvatarAction {
+	string text = 1;
+}
+
+message DisplayScriptedAvatarAction {
+	string key = 1;
+}

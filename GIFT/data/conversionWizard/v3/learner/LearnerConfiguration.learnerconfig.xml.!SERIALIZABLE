@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was created with the GIFT Learner Configuration Authoring Tool (LCAT).
+It contains configuration information for how to translate incoming sensor data into learner state attributes.-->
+<LearnerConfiguration version="3.0.2" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <inputs>
+        <input>
+            <translator>
+                <translatorImpl>learner.clusterer.data.SelfAssessmentTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.EngagementTwoStateClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.EngagementTwoStatePredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <producer sensorType="SELF_ASSESSMENT"/>
+            </producers>
+        </input>
+        <input>
+            <translator>
+                <translatorImpl>learner.clusterer.data.SineWaveTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.EngagementTwoStateClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.EngagementTwoStatePredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <producer sensorType="SINEWAVE"/>
+            </producers>
+        </input>
+        <input>
+            <translator>
+                <translatorImpl>learner.clusterer.data.MouseTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.ArousalClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.ArousalPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <producer sensorType="MOUSE_TEMP_HUMIDITY_SURROGATE"/>
+                <producer sensorType="MOUSE_TEMP_HUMIDITY"/>
+            </producers>
+        </input>
+        <input>
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.ArousalClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.ArousalPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <producer sensorType="Q"/>
+				<producer sensorType="KINECT"/>
+            </producers>
+        </input>
+		<input>
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.MotivationClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.MotivationPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <producer sensorType="MOTIVATION_SURROGATE"/>
+            </producers>
+        </input>
+		<input>
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.ExpertiseClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.ExpertisePredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <producer sensorType="EXPERTISE_SURROGATE"/>
+            </producers>
+        </input>
+    </inputs>
+</LearnerConfiguration>

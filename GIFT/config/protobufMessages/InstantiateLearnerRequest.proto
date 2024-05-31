@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "InstantiateLearnerRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message is used to instantiate the learner after the learner has logged into the system. */
+message InstantiateLearnerRequest {
+	/*  The LMS user name of this learner. */
+	google.protobuf.StringValue lms_username = 1;
+	
+	/* The Pedagogical configuration as a String.  */
+	google.protobuf.StringValue configuration = 2;
+	
+	/* The course concepts being used in this course.  */
+	google.protobuf.StringValue course_concepts = 3;
+}

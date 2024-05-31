@@ -1,0 +1,34 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ModuleAllocationRequestProto";
+
+import "ModuleStatus.proto";
+import "GatewayModuleStatus.proto";
+
+/* This message contains the necessary information for a module to create a module allocation request. */
+message ModuleAllocationRequest {
+	/* The info about why the request was denied. */
+	ModuleStatus requestor = 1;
+	
+	/* The collection of modules already allocated to the requesting module. */
+	map<string, ModuleValue> allocated_modules = 2;
+}
+
+/* Custom value type for the map, which can represent either a ModuleStatus object or a GatewayModuleStatus 
+   object. */
+message ModuleValue {
+	oneof type {
+		/* Module status payload. */
+		ModuleStatus module_value = 1;
+		
+		/* Gateway module status payload. */
+		GatewayModuleStatus gateway_module_value = 2;
+	}
+}

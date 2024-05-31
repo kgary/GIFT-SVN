@@ -1,0 +1,29 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	   .nameBox{
+            display: inline-block;
+            width: 400px;
+            margin-right: 10px;
+	   }
+	   .inlineFlex{
+            display: inline-flex;
+	   }
+	</ui:style>
+	<g:HTMLPanel>
+	
+	   Strategy name: <b:ValueListBox addStyleNames="{style.nameBox}" ui:field='nameBox'/>
+	   
+	   <g:FlowPanel addStyleNames='{style.inlineFlex}' ui:field='activitiesContainer'>
+	       <g:InlineHTML>
+	           Activity types:
+	       </g:InlineHTML>
+	       <g:FlowPanel addStyleNames='{style.inlineFlex}' ui:field='activitiesPanel'>
+	           <!-- Activity icons go here -->
+	       </g:FlowPanel>
+	   </g:FlowPanel>
+	   
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Web Tutor Module" default="compile" basedir=".">			
+    <property name="root.path" value="../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.tutor"/>
+    <property name="source.path" value="mil/arl/gift/tutor"/>
+    <property name="client.path" value="${source.path}/client"/>
+    <property name="shared.path" value="${source.path}/shared"/>
+    
+    <property name="gwt.sdk.extensions" value="${root.path}/external/gwt/extensions" />
+	<property name="gwt.sdk" value="${root.path}/external/gwt/gwt-2.9.0" />
+    <property name="gwt.args" value=""/>
+    
+    <property name="war.root.rel.path" value="build/war/tutor"/>
+    <property name="war.path" value="${root.path}/${war.root.rel.path}"/>
+    <property name="warfile.name" value="gift-tutor.war"/>
+    <property name="jarfile.name" value="gift-tutor-shared.jar"/>
+    
+    <property name="gift.common.jar" value="gift-common.jar"/>
+    <property name="gift.commongwt.jar" value="gift-commongwt.jar"/>
+    
+	<!-- This defines the version of gwtbootstrap jarfile we are using -->
+    <property name="gwtbootstrap.lib" value="gwtbootstrap3-1.0.1.jar"/>
+    <property name="gwtbootstrapextras.lib" value="gwtbootstrap3-extras-1.0.1.jar"/>
+    
+    <!-- Path to all images -->
+    <property name="images.path" value="${root.path}/src/mil/arl/gift/common/images"/>  
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css,**/*.swf,**/*.js"/>
+    <property name="jarfile.includes" value="**/coursewidgets/**" />
+    <property name="jarfile.excludes" value="*.class,**/*.class"/>
+    
+	<property name="build.dependencies" value="${root.path}/config/build.dependencies"/>
+	
+	<property name="jaxb.generated.jar" value="jaxb_generated.jar" />
+	<property name="protobuf.generated.jar" value="protobuf_generated.jar" />
+
+    <loadfile property="build.dependencies.tutor" srcFile="${build.dependencies}">
+        <filterchain>
+            <linecontains>
+                <contains value="@tutor@"/>
+            </linecontains>
+            <replacetokens>
+                <token key="tutor" value=""/>
+            </replacetokens>
+        </filterchain>
+    </loadfile>
+    
+    <path id="classpath">
+        <fileset dir="${root.path}" includes="${build.dependencies.tutor}"/>
+        <fileset dir="${root.path}/external" includes="**/gwtbootstrap/${gwtbootstrap.lib}"/>
+        <fileset dir="${root.path}/external" includes="**/gwtbootstrap/${gwtbootstrapextras.lib}"/>
+    	<fileset dir="${root.path}/external" includes="**/jetty-9.4.41/lib/websocket/*"/>
+    </path>
+    
+	<!-- used for running in dev mode -->
+    <path id="runtime-classpath">
+        <fileset dir="${root.path}/bin" includes="gift-common.jar"/>
+        <fileset dir="${root.path}/bin" includes="gift-commongwt.jar"/>
+        <fileset dir="${root.path}/external"  includes="**/commons-fileupload-1.2.2.jar"/>
+    	<fileset dir="${root.path}/bin" includes="${jaxb.generated.jar}"/>
+		<fileset dir="${root.path}/bin" includes="${protobuf.generated.jar}"/>
+        <fileset dir="${root.path}/external/slf4j"/>
+        <fileset dir="${root.path}/external" includes="/gwtbootstrap/${gwtbootstrap.lib}"/>
+        <fileset dir="${root.path}/external" includes="/gwtbootstrap/${gwtbootstrapextras.lib}"/>
+    </path>
+    
+    <path id="gwtBuildClasspath">
+        <pathelement location="${gwt.sdk}/gwt-user.jar"/>
+        <pathelement location="${gwt.sdk}/gwt-dev.jar"/>
+        <pathelement location="${gwt.sdk.extensions}/gwt-slider-bar-1.0.jar"/>
+    	<pathelement location="${gwt.sdk.extensions}/eventbinder-1.0.2.jar" />   
+        <pathelement location="${gwt.sdk.extensions}/draggable-plugin-1.0.4.jar" />
+		<pathelement location="${gwt.sdk.extensions}/droppable-plugin-1.0.8.jar" />
+        <pathelement location="${gwt.sdk.extensions}/gwtquery-1.5-beta1.jar" />   
+        <fileset dir="${root.path}/bin" includes="${gift.commongwt.jar}"/>
+        <fileset dir="${root.path}/external" includes="/gwtbootstrap/${gwtbootstrap.lib}"/>
+        <fileset dir="${root.path}/external" includes="/gwtbootstrap/${gwtbootstrapextras.lib}"/>
+        <fileset dir="${root.path}/external" includes="**/gson-2.3.1.jar"/>
+		<fileset dir="${root.path}/external" includes="/zip4j-1.3.2/zip4j-1.3.2.jar"/>
+    </path>
+    
+    <target name="checkForChanges">
+
+        <uptodate property="root.changed" targetfile="${root.path}/bin/${warfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="*/**/*"/>
+        </uptodate>
+        
+        <uptodate property="client.changed" targetfile="${root.path}/bin/${warfile.name}">
+            <srcfiles dir="client" includes="${update.includes}"/>
+            <srcfiles dir="shared" includes="${update.includes}"/>
+        </uptodate>
+        
+        <uptodate property="jar.changed" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." excludes="${jarfile.excludes}"/>
+            <srcfiles dir="." includes="${jarfile.includes}"/>
+        </uptodate>
+        
+        <uptodate property="common.changed" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        
+        <uptodate property="commongwt.changed" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.commongwt.jar}"/>
+    	
+    	<uptodate property="imageproperties.changed" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/config/images.properties"/>
+        
+        <condition property="client.required">
+            <and>
+                <isset property="root.changed"/>
+                <isset property="client.changed"/>
+                <isset property="common.changed"/>
+                <isset property="commongwt.changed"/>
+            	<isset property="imageproperties.changed"/>
+            </and>
+        </condition>
+        
+        <uptodate property="server.changed" targetfile="${root.path}/bin/${warfile.name}">
+            <srcfiles dir="server" includes="${update.includes}"/>
+        </uptodate>
+        
+        <condition property="server.required">
+            <and>
+                <isset property="root.changed"/>
+                <isset property="client.required"/>
+                <isset property="server.changed"/>
+                <isset property="common.changed"/>
+                <isset property="commongwt.changed"/>
+            	<isset property="imageproperties.changed"/>
+            </and>
+        </condition>
+        
+        <uptodate property="war.changed" targetfile="${root.path}/bin/${warfile.name}">
+            <srcfiles dir="war" includes="${update.includes}"/>
+        </uptodate>
+        
+        <condition property="war.required">
+            <and>
+                <isset property="root.changed"/>
+                <isset property="war.changed"/>
+                <isset property="common.changed"/>
+                <isset property="commongwt.changed"/>
+            	<isset property="imageproperties.changed"/>
+            </and>
+        </condition>
+        
+        <condition property="jar.required">
+            <and>
+                <isset property="jar.changed"/>
+                <isset property="client.required"/>
+            </and>
+        </condition>
+        
+        <condition property="servlet.required">
+            <and>
+                <isset property="client.required"/>
+                <isset property="server.required"/>
+                <isset property="war.required"/>
+            </and>
+        </condition>
+
+        <condition property="build.required">
+            <and>
+                <isset property="servlet.required"/>
+            </and>
+        </condition>
+    </target>
+
+    <target name="copyTutorLibs" unless="war.required" description="Copy 3rd party libs needed for web app">
+        <mkdir dir="${war.path}"/>
+        <mkdir dir="${war.path}/WEB-INF"/>
+        <mkdir dir="${war.path}/WEB-INF/lib"/>
+        
+        <!-- Server Dependencies -->
+        <copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="false">
+            <fileset dir="${root.path}/external" includes="**/activemq-all-5.18.3.jar"/>
+            <fileset dir="${root.path}/external" includes="**/json_simple-1.1.jar"/>
+            <fileset dir="${root.path}/external" includes="**/vecmath.jar"/>
+        	<fileset dir="${root.path}/external" includes="**/open-dis_4.16.jar"/>
+            <fileset dir="${root.path}/external" includes="**/commons-lang-2.4.jar"/>
+            <fileset dir="${root.path}/external" includes="**/commons-cli-1.2.jar"/>
+            <fileset dir="${root.path}/external" includes="**/commons-collections-3.1.jar"/>
+            <fileset dir="${root.path}/external" includes="**/jdis.jar"/>
+            <fileset dir="${root.path}/external" includes="**/gson-2.3.1.jar"/>
+			<fileset dir="${root.path}/external" includes="/zip4j-1.3.2/zip4j-1.3.2.jar"/>
+			<fileset dir="${root.path}/bin" includes="**/legacyJsonMessageCodec.jar"/>
+			<fileset dir="${root.path}/external" includes="**/protobuf-java-3.7.0.jar"/>
+			<fileset dir="${root.path}/external" includes="**/protobuf-java-util-3.7.0.jar"/>
+        	<fileset dir="${root.path}/bin" includes="**/jaxb_generated.jar"/>
+			<fileset dir="${root.path}/bin" includes="**/protobuf_generated.jar"/>
+
+        	<!-- Redmine authentication -->
+        	<fileset dir="${root.path}/external" includes="**/redmine/*.jar"/>
+        	<fileset dir="${root.path}/external" includes="**/apache-xmlrpc-3.1.3/lib/commons-logging-1.1.jar"/>
+        	<fileset dir="${root.path}/external" includes="**/commons-codec-1.7.jar"/>
+        	
+        </copy>
+        
+	    <!-- GWT JARs -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk}/gwt-servlet.jar" verbose="false"/>
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk}/gwt-servlet-deps.jar" verbose="true"/>
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/gwtbootstrap/${gwtbootstrap.lib}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/gwtbootstrap/${gwtbootstrapextras.lib}" verbose="true" />
+        
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/orgjson.jar" verbose="true" />
+    	
+        <!-- Logging JARs -->
+        <copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="false">
+            <fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+        </copy>
+        
+        <!-- The SLF4J JAR needs to be the first JAR loaded to prevent a unnecessary warning,
+             renaming it to be alphabetically the first JAR in the folder -->
+        <move file="${war.path}/WEB-INF/lib/slf4j-api-1.6.4.jar" tofile="${war.path}/WEB-INF/lib/1-slf4j-api-1.6.4.jar"/>
+        
+        <!-- GIFT JARs -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.common.jar}" verbose="false"/>
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.commongwt.jar}" verbose="false"/>  
+    	
+    	<!-- Copy images -->
+        <copy todir="${war.path}/images">
+            <fileset dir="${images.path}">
+                <include name="Alert.png" />
+                <include name="errorIcon.png" />
+                <include name="gift_open.png" />
+                <include name="green_check.png" />
+                <include name="loading.gif" />
+                <include name="NoRecommendation.png" />
+                <include name="NotRecommended.png" />
+                <include name="questionmark.png" />  
+                <include name="radio.png" />
+                <include name="tutorMe.png" />
+                <include name="Recommended.png" />
+                <include name="report.png" />
+                <include name="Unavailable.png" />
+            	<include name="clean.png" />
+            	<include name="instructions-36.png" />
+            	<include name="question_puzzle.transparent.small.png" />
+            	<include name="post-it-note.png" />
+            	<include name="download.png" />
+            	<include name="JavaOutOfDateDialog.png" />
+            	<include name="pencil_professor-64.png" />
+            	<include name="pace_start.png" />
+            	<include name="pace_end.png" />
+            	<include name="pencil_professor-64.png" />
+            	<include name="strategy.png" />
+				<include name="extractZip.PNG" />
+				<include name="startGIFTGateway.PNG" />
+				<include name="setupDialog.png" />
+            	
+            </fileset>
+        </copy>
+    	
+    	<!-- Copy images defined in images.properties file -->
+    	<!-- TODO: add uptodate check on images.properties file -->
+    	<property file="${root.path}/config/images.properties"/>
+    	<copy todir="${war.path}">
+    	    <fileset dir="${root.path}/src">
+    	    	<include name="${Organization}" />
+    	    	<include name="${Background}" />
+    	    	<include name="${System_Icon_Small}" />
+    	    	<include name="${Logo}" />
+    	    </fileset>
+    	</copy>
+    	
+    	<!-- copy the logo file specified by the property to the war as 'logo.png' for TutorError/TUtorExperimentCompleted/TutorExperimentResume/TutorExperimentWelcome.html 
+    		static references --> 
+    	<copy tofile="${war.path}/images/Logo.png" verbose="true">
+    		<fileset dir="${root.path}/src">
+    	    	<include name="${Logo}" />
+    	    </fileset>    		
+    	</copy>
+    	
+    	<!-- copy the favorite icon file specified by the property to the war as 'favicon.ico' for TutorUserWebInterface.html 
+    		and TutorTest.html static references --> 
+    	<copy tofile="${war.path}/images/favicon.ico" verbose="true">
+    		<fileset dir="${root.path}/src">
+    	    	<include name="${Favorite_Icon}" />
+    	    </fileset>    		
+    	</copy>
+        
+        <!-- Copy over the war directory to be part of the resulting war file -->
+        <copy todir="${war.path}">
+            <fileset dir="war"/>
+        </copy>
+    </target>
+    
+    <target name="compileTutorClient" depends="copyTutorLibs" unless="client.required" description="Build the web TUI javascript client code and create the war file">	
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+    	
+    	<!-- determine which module to use - the dev one limits the number of user.agents -->
+    	<condition property="GWT-Module" value="TutorUserWebInterface" else="TutorUserWebInterfaceDev">
+	        <isset property="build.release"/>
+	    </condition>
+    	
+    	<echo>Using ${GWT-Module} module</echo>
+    		
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+            <classpath>
+                <pathelement location="${root.path}/src"/>
+                <path refid="gwtBuildClasspath"/>
+                <path refid="classpath"/>
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA.jar" />
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA-sources.jar" />
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrap.lib}"/>
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrapextras.lib}"/>
+            </classpath>
+			
+            <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+            <jvmarg value="-Xmx1024M"/>
+            <arg line="-war"/>
+            <arg value="${war.path}"/>
+            <arg line="-logLevel"/>
+            <arg value="WARN"/>
+            <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+            <arg line="${gwt.args}"/>
+            <arg value="${package.name}.${GWT-Module}"/>
+            <arg value="${package.name}.TutorTest"/>
+        	
+        	<!-- improves compile time -->
+        	<arg value="-localWorkers" />
+        	<arg value="4" />
+        	
+        </java>
+    </target>
+    
+    <target name="compileTutorServer" depends="compileTutorClient" unless="server.required" description="Build the web TUI server-side and shared code">
+        <mkdir dir="${war.path}/WEB-INF/classes"/>
+        <javac srcdir="." includes="**" encoding="utf-8"
+               destdir="${war.path}/WEB-INF/classes"
+               source="1.7" target="1.7" nowarn="true"
+               debug="true" debuglevel="lines,vars,source"
+               includeDestClasses="false" includeAntRuntime="false">
+            <classpath>
+                <path refid="classpath" />
+                <path refid="gwtBuildClasspath" />
+                <pathelement location="${war.path}/WEB-INF/lib/gift-common.jar"/>
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrap.lib}"/>
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrapextras.lib}"/>
+            </classpath>
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <copy todir="${war.path}/WEB-INF/classes/${source.path}">
+            <fileset dir="." excludes="**/*.java,war/**"/>
+        </copy>
+    </target>
+      
+    <target name="compileJar" unless="jar.required">
+         <javac srcdir="." includes="${jarfile.includes}" encoding="utf-8"
+               destdir="${war.path}/WEB-INF/classes"
+               source="1.7" target="1.7" nowarn="true"
+               debug="true" debuglevel="lines,vars,source"
+               includeDestClasses="false" includeAntRuntime="false">
+            <classpath>
+                <pathelement location="${root.path}/src"/>
+                <path refid="gwtBuildClasspath"/>
+                <path refid="classpath"/>
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA.jar" />
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA-sources.jar" />
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrap.lib}"/>
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrapextras.lib}"/>
+            </classpath>
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${war.path}/WEB-INF/classes">
+            <include name="${client.path}/coursewidgets/*"/>
+        </jar>
+    </target>
+    
+    <target name="compileWebTutor" depends="copyTutorLibs,compileTutorClient,compileTutorServer,compileJar" unless="servlet.required">
+        <jar basedir="${war.path}" destfile="${root.path}/bin/${warfile.name}"/>
+    </target>
+    
+    <target name="compile" depends="checkForChanges,compileWebTutor"/>
+	
+    <target name="clean">
+        <delete file="${root.path}/bin/${warfile.name}"/>
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${war.path}"/>
+    </target>
+	
+    <target name="DevelopmentMode" depends="compile" description="Run the web app in dev mode">
+    	
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.DevMode" dir="${root.path}">
+            <classpath>
+                <pathelement location="${root.path}/src"/>
+                <pathelement location="${root.path}/config/tutor"/>
+                <path refid="gwtBuildClasspath"/>
+                <path refid="runtime-classpath"/>
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA.jar" />
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA-sources.jar" />
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrap.lib}"/>
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrapextras.lib}"/>
+            </classpath>
+            <jvmarg value="-Xmx1024M"/>
+        	
+        	<!-- 
+               Don't launch the default GWT Dev Mode server, since differences in its internal Jetty
+               instance can conflict with the GAS's normally Jetty server log. Instead, the GAS should 
+               be launched normally alongside the dev mode process
+            -->
+            <arg line="-noserver"/>
+            
+            <!-- 
+               Set the server's bind address to 0.0.0.0 so that either the IP of the host machine
+               or localhost can be used to access it. 0.0.0.0 resolves to all IPv4 addresses on the
+               local machine.
+             -->
+            <arg value="-bindAddress"/>
+            <arg value="0.0.0.0"/>
+        	
+        	<!--
+        	   Set the port that the GWT code server should run on. This acts as the host for the 
+        	   source maps that are used to debug client-side code.
+        	   
+        	   By default, the code server uses port 9876, but we are explicitly changing it to a
+        	   different port because we have multiple servers that we may want to use dev mode with,
+        	   so assigning a unique code server port to each allows us to use dev mode with
+        	   multiple servers simultaneously.
+        	   
+        	   If the port below conflicts with another application on your machine, the code server
+               port can be freely changed to any open port without any negative effects on the code server.
+        	-->
+        	<arg value="-codeServerPort"/>
+        	<arg value="8091"/>
+        	
+        	<!-- Set the port that the running Tutor server can be reached from-->
+        	<arg value="-port"/>
+        	<arg value="8090"/>
+	            
+            <arg line="-startupUrl"/>
+            <arg value="tutor/TutorUserWebInterface.html"/>
+            <arg line="-war"/>
+            <arg value="${war.root.rel.path}"/>
+            <arg line="-logLevel"/>
+            <arg value="WARN"/>
+        	
+        	<!-- improves compile time -->
+		<!-- 7/9/14 
+			Including the following two lines results in a BUILD FAILED message when executing this target with Ant.
+			The message states that "localWorkers" is an unknown argument.
+		
+        	<arg value="-localWorkers" />
+        	<arg value="4" />
+		-->
+
+	        <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+            <arg line="${gwt.args}"/>
+            <arg value="${package.name}.TutorUserWebInterface"/>
+            <arg value="${package.name}.TutorTest"/>
+        </java>
+    </target>	
+</project>

@@ -1,0 +1,14 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	.conceptNameLabel{
+		font-weight:bold;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+	   <g:Label addStyleNames='{style.conceptNameLabel}' >Concept name:</g:Label>
+	   <b:TextBox ui:field='nameBox'/>
+	</g:HTMLPanel>
+</ui:UiBinder> 

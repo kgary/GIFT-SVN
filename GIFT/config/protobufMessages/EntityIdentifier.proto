@@ -1,0 +1,23 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "EntityIdentifierProto";
+
+import "SimulationAddress.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents an entity identifier. */
+message EntityIdentifier {
+	
+	/* The unique id of an entity. */
+	google.protobuf.Int32Value entity_id = 1;
+	
+	/* The simulation address of this entity. */
+	SimulationAddress simulation_address = 2;
+}

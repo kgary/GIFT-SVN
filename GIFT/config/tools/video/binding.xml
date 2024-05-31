@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" version="2.1"> 
+		  
+	<!-- setting value to true will group choice elements into one class attribute vs. one for each choice element -->
+	<!-- issue: causes choice elements with cardinality to be a single member variable named by concatenating each of the named choices, 
+				that's why there are bindings listed on a per node basis in this file -->
+    
+    <globalBindings generateElementProperty="false" choiceContentProperty="true" >
+		<!-- serializing generated class in order to be GWT compliant -->
+		<serializable uid="12343"/>
+    </globalBindings>
+		
+	<!-- identify the schema location, also maps the xs namespace for xsd node references -->
+	<bindings schemaLocation="imsmd_strict_v1p3p2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">	
+
+	</bindings>
+
+</bindings>
+
+		

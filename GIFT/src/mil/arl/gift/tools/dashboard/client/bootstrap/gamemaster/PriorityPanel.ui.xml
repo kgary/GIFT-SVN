@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <ui:style>
+     	.pendingBubble {
+             border-radius: 50%;
+         }
+
+         .itemsPanel > * {
+             margin: 4px auto;
+         }
+    </ui:style>
+    <g:DeckPanel ui:field='mainDeck'>
+	    <g:FlowPanel ui:field='mainPanel'>
+	        <b:Button ui:field="pendingBubble" visible="false" />
+	        <g:FlowPanel ui:field="itemsPanel" addStyleNames="{style.itemsPanel}" />
+	    </g:FlowPanel>
+	    <g:Label ui:field='emptyLabel'/>
+    </g:DeckPanel>
+</ui:UiBinder>

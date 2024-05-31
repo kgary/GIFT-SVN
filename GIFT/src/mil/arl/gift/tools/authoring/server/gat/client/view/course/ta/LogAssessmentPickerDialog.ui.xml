@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style>
+		.largePadTop {
+			padding-top: 10px;
+		}
+		.smallMarginTop {
+            margin-top: 4px;
+        }
+	</ui:style>
+	<g:FlowPanel>
+	
+		<g:InlineHTML addStyleNames='{style.largePadTop}'> 
+   			Choose which assessment to use for the log playback:
+   		</g:InlineHTML> 		
+		
+		<wb:KnowledgeSessionListWidget ui:field="logAssessmentList" addStyleNames="{style.smallMarginTop}" emptyListText="There are no assessments." />
+	</g:FlowPanel>
+</ui:UiBinder> 

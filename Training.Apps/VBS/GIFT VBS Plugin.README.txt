@@ -1,0 +1,8 @@
+This plugin is for communication with VBS with the GIFT System.  
+
+The appropriate dll in VBSGIFTPlugin\ will be copied to your VBS install folder when you run the GIFT installer.
+
+Source code is available at https://gifttutoring.org/projects/gift/files/
+
+Additional documentation about this plugin can be found at https://gifttutoring.org/projects/gift/wiki/Documentation
+(Open the appropriate GIFT version's wiki page and then look for 'VBS plugin')

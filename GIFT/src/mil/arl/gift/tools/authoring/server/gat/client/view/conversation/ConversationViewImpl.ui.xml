@@ -1,0 +1,67 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view"
+	xmlns:c="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.conversation.tree">
+	<ui:style>
+		.container{
+			overflow-y: auto;
+			overflow-x: hidden;
+			background-color: white;
+		}
+		.headerLabel{			
+			-webkit-touch-callout: none;
+		    -webkit-user-select: none;
+		    -khtml-user-select: none;
+		    -moz-user-select: none;
+		    -ms-user-select: none;
+		    user-select: none;
+	
+			text-align: center;
+			padding: 10px 0px;
+			margin-bottom: 5px;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+			background-color: rgb(100,150,100);
+			background-image: linear-gradient(#649664, #649664, #006400 90%, #006400);
+			color: white;
+			font-weight: bold;
+			text-shadow: 1px 2px rgba(0,0,0,0.5);
+			cursor: pointer;
+			border: solid 1px rgb(0, 200, 101);
+			border-radius: 3px;
+		}
+		.headerLabel:hover{
+			padding: 8px 0px 12px 0px;
+			background-image: linear-gradient(#649664, rgb(0, 175, 100), #649664, #006400 90%, #006400);
+		}
+		.headerLabel:active{
+			cursor: pointer; 
+			padding: 12px 0px 8px 0px;
+			background-image: linear-gradient(rgb(75, 125, 75), rgb(0,75,0), black);
+		}
+		.transitionListContainer{
+			background-color: white;
+		}
+		.border{
+			border-style: solid;
+			border-width: 1px;
+			border-color: rgb(200,200,200);
+		}
+		.transitionScroller{
+			height: 100%;
+		}
+		.transition{
+			padding: 8px 0px 8px 20px;
+			border-bottom: 1px solid lightgray;
+		}
+		.transition:hover{
+			cursor: pointer;
+		}
+	</ui:style>
+
+	<g:DockLayoutPanel ui:field='mainContainer'>
+		<g:center>
+			<c:TreeEditor ui:field="treeEditor" />
+		</g:center>
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

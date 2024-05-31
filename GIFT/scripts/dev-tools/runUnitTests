@@ -1,0 +1,58 @@
+#!/bin/bash
+
+echo 'WARNING: This script will temporarily shut down the network server, which may'
+echo		'prevent applications like the UMS module, the single process launcher,'
+echo		'and the authoring tools from accessing the database if they are left' 
+echo		'running when the network server is shut down.' 
+
+read -p "Press enter to continue"
+
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+cd "$parent_path"
+
+AbsBaseDir=$(cd "$parent_path/../.."; pwd)
+jdkDir="${AbsBaseDir}/external/jdk-11"
+JAVA_HOME="${jdkDir}"
+
+#Check if the JDK has been extracted
+if ! [ -d "${jdkDir}" ] ; then
+
+    if ! [ -f "${jdkDirArchive}" ] ; then
+    
+        echo "ERROR: Unable to find ${jdkDirArchive}."
+	echo "Do you have the GIFT third parties in the ${AbsBaseDir}/external folder?"
+	
+	exit 1
+    fi
+    
+    cd ${AbsBaseDir}/external
+    tar -xvzf ${jdkDirArchive}
+    cd "$parent_path"
+else
+    echo "Found JDK at ${JAVA_HOME}"
+fi
+
+# Check to see if any spaces are in the path and, if so, throw an error.
+# While GIFT's own scripts can handle spaces, some of its third party dependencies cannot.
+if [[ "${AbsBaseDir}" = *" "* ]]; then
+	echo
+	echo "ERROR: Please remove all spaces in the GIFT path of ${AbsBaseDir}, otherwise the various GIFT scripts will not work"
+	echo
+	exit 1
+fi
+
+cd ../../
+
+export JAVA_HOME
+
+# Stop a currently running derby server which maybe connected to a different
+# GIFT UMS db (i.e. this can happen when you have multiple GIFTs on your machine)
+
+./external/db-derby-10.15.2.0-bin/bin/stopNetworkServer
+
+/bin/bash build.sh test &
+
+./external/db-derby-10.15.2.0-bin/bin/startNetworkServer
+wait
+read -p "Press enter to exit"

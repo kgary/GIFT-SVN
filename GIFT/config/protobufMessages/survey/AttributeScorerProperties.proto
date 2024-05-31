@@ -1,0 +1,52 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "AttributeScorerPropertiesProto";
+
+import "AbstractEnumObject.proto";
+import "survey/ReturnValueCondition.proto";
+
+enum LearnerStateAttributeName {
+	UNKNOWN_LEARNERSTATEATTRIBUTENAME = 0;
+	ENGAGEMENT = 1;
+	UNDERSTANDING = 2;
+	AROUSAL = 3;
+	LT_EXCITEMENT = 4;
+	ST_EXCITEMENT = 5;
+	MEDITATION = 6;
+	FRUSTRATION = 7;
+	ANXIOUS = 8;
+	BORED = 9;
+	CONFUSED = 10;
+	ENG_CONCENTRATION = 11;
+	OFFTASK = 12;
+	SURPRISED = 13;
+	MOTIVATION = 14;
+	PRIOR_KNOWLEDGE = 15;
+	KNOWLEDGE = 16;
+	SKILL = 17;
+	SOCIO_ECONOMIC_STATUS = 18;
+	LOCUS_OF_CONTROL = 19;
+	LEARNER_ABILITY = 20;
+	GENERAL_INTELLIGENCE = 21;
+	LEARNING_STYLE = 22;
+	SELF_REGULATORY_ABILITY = 23;
+	GRIT = 24;
+	SELF_EFFICACY = 25;
+	GOAL_ORIENTATION = 26;
+}
+
+/* This message contains additional information about the attribute scorer. */
+message AttributeScorerProperties {
+	/* The message must be assigned an attribute type. */
+	AbstractEnumObject attribute_type = 1;
+	
+	/* The list of return conditions can be empty, but not null. */
+	repeated ReturnValueCondition return_conditions = 2;
+}

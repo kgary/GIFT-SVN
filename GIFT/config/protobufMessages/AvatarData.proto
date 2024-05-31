@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AvatarDataProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information needed for an avatar. */
+message AvatarData {
+	/* The url of the avatar. */
+	google.protobuf.StringValue url = 1;
+	
+	/* Height dimensions. */
+	google.protobuf.Int32Value height = 2;
+	
+	/* Width dimensions. */
+	google.protobuf.Int32Value width = 3;
+}

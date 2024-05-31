@@ -1,0 +1,55 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractDisplayGuidanceTutorRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the base message for display guidance requests. */
+message AbstractDisplayGuidanceTutorRequest {
+	/* The requests can either be a DisplayTextGuidanceTutorRequest or DisplayHtmlPageGuidanceTutorRequest. */
+	oneof type {
+		/* This represents a message that requests the Tutor User Interface to display text guidance. */
+		DisplayTextGuidanceTutorRequest display_text_guidance_tutor_request = 1;
+		
+		/* This represents a message that requests the Tutor User Interface to display a media dialog. */
+		DisplayHtmlPageGuidanceTutorRequest display_html_page_guidance_tutor_request = 2;
+	}
+}
+
+message DisplayTextGuidanceTutorRequest {
+	/* Text for the guidance course object. */
+	google.protobuf.StringValue text = 1;
+	
+	/* Duration of the display object. */
+	google.protobuf.Int32Value display_duration = 2;
+	
+	/* Value indicating whether the guidance is for when the training application loads. */
+	google.protobuf.BoolValue while_ta_loads = 3;
+	
+	/* Value indicating whether the request should display in full screen. */
+	google.protobuf.BoolValue fullscreen = 4;
+}
+
+message DisplayHtmlPageGuidanceTutorRequest {
+	/* Url for the course object. */
+	google.protobuf.StringValue url = 1;
+	
+	/* Message for the course object. */
+	google.protobuf.StringValue message = 2;
+	
+	/* Duration of the display object. */
+	google.protobuf.Int32Value display_duration = 3;
+	
+	/* Value indicating whether the guidance is for when the training application loads. */
+	google.protobuf.BoolValue while_ta_loads = 4;
+	
+	/* Value indicating whether the request should display in full screen. */
+	google.protobuf.BoolValue fullscreen = 5;
+}

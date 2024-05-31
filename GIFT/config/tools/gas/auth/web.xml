@@ -1,0 +1,37 @@
+<!-- 
+    Uncomment the below configurations to enable SSO authentication
+	
+	This document maintains a web.xml configuration that GIFT's servers can use to enforce Single-Sign-On (SSO) 
+    authentication when accessing their web pages.
+    
+    On its own, this file does nothing, but the webdefault.xml files used by GIFT's servers all point to it and inject
+    it into their own XML configurations. This allows all of GIFT's servers to be easily configured to use the same
+    SSO authentication from a single file, rather that configuring each one separately
+    
+	To describe the settings below, the <sercurity-role> elements specify what roles in the SSO service should be 
+	acknowedged by GIFT. The <sercurity-constraint>, meanwhile, specifies the names of the roles in the SSO service that should
+	be allowed to access GIFT's webpages. It also uses a <transport-guarantee> of none so that the server is not required to run
+	in HTTPS mode, which may be necessary if running the SSO service locally without a certificate or behind a proxy.
+-->
+<!--
+<security-constraint>
+
+  <web-resource-collection>
+    <web-resource-name>All Webpages</web-resource-name>
+    <url-pattern>/*</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+    <role-name>*</role-name>
+  </auth-constraint>
+  <user-data-constraint>
+	<transport-guarantee>NONE</transport-guarantee>
+  </user-data-constraint>
+</security-constraint>
+
+<security-role>
+  <role-name>admin</role-name>
+</security-role>
+<security-role>
+  <role-name>user</role-name>
+</security-role>
+-->

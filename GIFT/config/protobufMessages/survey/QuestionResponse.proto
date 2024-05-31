@@ -1,0 +1,30 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "QuestionResponseProto";
+
+import "survey/SurveyElement.proto";
+import "survey/QuestionResponseElement.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a response to the survey question asked. */
+message QuestionResponse {
+
+	/* Id of the survey page response. */
+	google.protobuf.Int32Value survey_page_response_id = 1;
+	
+	/* The corresponding survey question the response is for. */
+	SurveyElement survey_question = 2;
+	
+	/* The order of the ids that the questions were listed in. */
+	repeated int32 option_ids_order = 3;
+	
+	/* The list of responses for the question. */
+	repeated QuestionResponseElement responses = 4;
+}

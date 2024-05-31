@@ -1,0 +1,109 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	
+    <ui:style>
+		.GroupTransparent{
+			opacity: 0;
+		}
+        
+        .rowStyle {
+            margin-left:100px;
+            position:relative;
+        }
+        .thumbnailStyle {
+            text-align:center;
+            height:250px;
+            position:relative;
+            padding-top:20px;
+            box-shadow: 5px 5px 5px #888888;
+        }
+        
+        .colStyle {
+            position:relative;
+        }
+        
+        
+	</ui:style>
+	<g:FlowPanel width='1024px'>
+        <b:Row addStyleNames="{style.rowStyle}">
+            <!--
+            <b:Column size="XS_3">
+            </b:Column>
+            -->
+            <b:Column size="XS_4" addStyleNames="{style.colStyle}">  
+                <b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+                  <b:IconStack ui:field="iconStackCollectInfo" size="TIMES3">
+                      <b:Icon type="CLONE" stackBase="true"/>
+                  </b:IconStack>
+                  <b:Caption>
+                    <b:Heading size="H3" text="Collect Learner Information"/>
+                    <b:Heading size="H3" text="(Not Actionable)"/>
+                  </b:Caption>
+                  <b:Tooltip ui:field="tooltipCuiNa" title="Select this type of survey to create a basic survey that simply collects information about the learner." placement="BOTTOM">
+                      <b:Container addStyleNames="surveySelectHover surveySelectStyle">
+                        <b:Button addStyleNames="surveySelectButtonStyle" type="SUCCESS" ui:field="buttonCuiNa" text="Create"/>
+                      </b:Container>
+                  </b:Tooltip>
+                </b:ThumbnailPanel>
+                
+            </b:Column>
+                
+            <b:Column size="XS_4">
+                <b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+                  <b:IconStack ui:field="iconStackCollectInfoScored" size="TIMES3">
+                    <b:Icon type="SQUARE_O" stackBase="true"/>
+                    <b:Icon type="BOLT" stackTop="true"/>
+                 </b:IconStack>
+                  <b:Caption>
+                    <b:Heading size="H3" text="Collect Learner Information"/>
+                    <b:Heading size="H3" text="(Actionable)"/>
+                  </b:Caption>
+                  <b:Tooltip ui:field="tooltipCuiA"  title="Select this type of survey to create a survey that will collect information about the learner and take action within the course based on the results." placement="BOTTOM">
+                      <b:Container addStyleNames="surveySelectHover surveySelectStyle">
+                        <b:Button addStyleNames="surveySelectButtonStyle" type="SUCCESS" ui:field="buttonCuiA" text="Create"/>
+                      </b:Container>
+                  </b:Tooltip>
+                </b:ThumbnailPanel>
+            </b:Column>
+            <b:Column size="XS_4">
+                <b:ThumbnailPanel addStyleNames="{style.thumbnailStyle}">
+                  <b:IconStack ui:field="iconStackAssessKnowledge" size="TIMES3">
+                    <b:Icon type="SQUARE_O" stackBase="true"/>
+                    <b:Icon type="REORDER" stackTop="true"/>
+                  </b:IconStack>
+                  <b:Caption>
+                    <b:Heading size="H3" text="Assess Learner Knowledge"/>
+                  </b:Caption>
+                  <b:Tooltip ui:field="tooltipAlk" title="Select this option to create survey that can assess the learner's knowledge within the course." placement="BOTTOM">
+                      <b:Container addStyleNames="surveySelectHover surveySelectStyle">
+                        <b:Button addStyleNames="surveySelectButtonStyle" type="SUCCESS" ui:field="buttonAlk" text="Create"/>
+                      </b:Container>
+                  </b:Tooltip>
+                </b:ThumbnailPanel>
+            </b:Column>
+            <!--
+            <b:Column size="XS_3">
+            </b:Column>
+            -->
+        </b:Row>
+       
+        
+        
+        
+        <!-- This is used as the header of the dialog, it is not used inline here. -->
+        <!--
+        <b:Container ui:field="dialogHeader">
+            <b:Heading size="H2" addStyleNames="{style.textAlignLeft}" text="Add a Survey"/>
+        </b:Container>
+        -->
+        
+        <!-- This is used as the footer of the dialog, it is not used inline here. -->
+        <b:Container ui:field="dialogFooter">
+            <b:Button ui:field="cancelButton" type="DANGER">Cancel</b:Button>
+        </b:Container>
+        
+    </g:FlowPanel>
+</ui:UiBinder> 

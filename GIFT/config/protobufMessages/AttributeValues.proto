@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AttributeValuesProto";
+
+import "AbstractEnumObject.proto";
+
+/* This message represents the information specific to a course state. */
+message AttributeValues {
+	/* The type of attributes that can be represented for a course. */
+	oneof type {
+		ConceptAttributeValues concept_attribute_values = 1;
+	}
+}
+
+/* This message contains course concept specific attributes. */
+message ConceptAttributeValues {
+	/* The mapping of unique course concept name to an optional required expertise level 
+	   associated with that concept. */
+	map<string, AbstractEnumObject> concept_expertise_level = 1;
+}

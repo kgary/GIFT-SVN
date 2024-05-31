@@ -1,0 +1,126 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	   .tree{
+            flex: 1;
+            overflow: auto;
+            border: 1px solid rgb(200,200,200);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.25);            
+            border-radius: 5px;
+            padding-top: 1px;
+       }
+       @external gwt-TreeItem-selected;
+       .tree .gwt-TreeItem-selected{
+           background: none;
+       }
+       .tree .gwt-TreeItem-selected > div{
+           background: rgb(220,220,255) !important;
+           border-radius: 5px;
+           border: 1px solid rgb(200,200,255);
+           margin: -1px;
+           cursor: move;
+       }
+       .treeDisabled .gwt-TreeItem-selected > div{
+           cursor: pointer !important];
+       }
+       @external gwt-TreeItem;
+       .tree .gwt-TreeItem{
+           font-size: 14px;
+           display: inline-block !important;
+           margin-left: -7px;
+       }
+       .tree .gwt-TreeItem > div{
+           padding: 4px 5px;
+       }
+       .tree .gwt-TreeItem:hover > div{
+           background: rgb(255,255,200);
+           border-radius: 5px;
+           border: 1px solid rgb(230,230,170);
+           margin: -1px;
+        }
+        
+       .tree td > div{
+           /* Ensure that non-leaf nodes line up with leaf nodes*/
+           margin-left: 0px !important;
+       }
+        
+       .tree td > img{
+            cursor: pointer;
+       }
+       
+       .tree > div{
+           cursor: pointer;
+       }
+       
+       @external scenarioTreeItemName;
+       .gwt-TreeItem .scenarioTreeItemName{
+    
+            /* only allow clicking on the item name when the item is selected */
+            pointer-events: none;
+       }
+       
+       .gwt-TreeItem-selected .scenarioTreeItemName{
+    
+            /* only allow clicking on the item name when the item is selected */
+            pointer-events: all;
+       }
+       
+       @external scenarioTreeItemButton;
+       .tree .gwt-TreeItem-selected .scenarioTreeItemButton{
+           
+            /* display buttons when the item is selected */
+            opacity: 1;
+            transition: opacity 300ms;
+       }
+       .tree .gwt-TreeItem:hover .scenarioTreeItemButton{
+           
+            /* display buttons when the item is moused over */
+            opacity: 1;
+            transition: opacity 300ms;
+       }
+       .flipIcon i{
+            transform: rotateX(180deg);
+       }
+       .searchBox {
+            width: 300px;
+            display: inline-block;
+            padding-left: 27px !important;
+        }
+       .searchPanel{
+           position: relative;
+           margin: 5px 0px;
+           display: inline-block;
+           margin-left: 5px;
+        }
+        .searchIcon{
+            position: absolute;
+            left: 7px;
+            top: 7px;
+            pointer-events: none;
+            font-size: 16px;
+        }
+        .mainPanel{
+            display: flex;
+            flex-direction: column;
+	    }
+	</ui:style>
+	<g:FlowPanel width='800px' height='400px' addStyleNames='{style.mainPanel}'>
+	   <g:FlowPanel>
+           <b:Tooltip container='body' title='Collapse All'>
+               <b:Button addStyleNames='{style.flipIcon}' icon='SORT_AMOUNT_DESC' ui:field='collapseAllButton'/>
+           </b:Tooltip>
+           
+           <b:Tooltip container='body' title='Expand All'>
+               <b:Button icon='SORT_AMOUNT_ASC' ui:field='expandAllButton'/>
+           </b:Tooltip>
+           
+           <g:FlowPanel addStyleNames='{style.searchPanel}'>
+                <b:Icon addStyleNames='{style.searchIcon}' type='SEARCH'/>
+                <b:TextBox ui:field='searchBox' addStyleNames='{style.searchBox}'/>
+            </g:FlowPanel>
+       </g:FlowPanel>
+	   <g:Tree addStyleNames='{style.tree}' animationEnabled='true' scrollOnSelectEnabled='true' ui:field='tree' /> 
+	</g:FlowPanel>
+</ui:UiBinder> 

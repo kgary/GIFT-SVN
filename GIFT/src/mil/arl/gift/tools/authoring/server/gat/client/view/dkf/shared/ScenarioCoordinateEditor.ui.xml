@@ -1,0 +1,98 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    <ui:style>
+        .editIcon {
+            display: inline;
+            padding-right: 5px;
+        }
+        .coordinateBox {
+            margin: 0px 10px 5px 5px;
+            min-width: 100px;
+            width: auto;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .buttonPanel {
+            width: 100%;
+            padding-top: 10px;
+            text-align: center;
+        }
+        .viewCoordinateTypeLabel {
+            padding-left: 4px;
+            padding-right: 10px;
+        }
+        .viewModeStyle {
+            padding: 10px;
+            border: 1px solid rgb(200, 200, 200);
+            box-shadow: 2px 2px 3px rgb(150, 150, 150);
+            border-radius: 5px;
+            display: inline-block;
+            width: auto;
+        }
+        .viewModeStyle:hover {
+            cursor: pointer;
+        }
+        .sameSizeButton {
+            width:121px;
+            margin: 4px;
+            display: inline;
+        }
+        .editPanel {
+            border-style: solid;
+            border-width: 1px;
+            border-color: #b9b9b9;
+            border-radius: 5px;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+            padding: 10px;
+        }
+        .editLabelPanel{            
+            margin-bottom: 10px;
+	    }
+	    .fieldPanel{
+            display: inline-block;
+        }
+    </ui:style>
+    <g:DeckPanel ui:field="deckPanel" width="auto">
+        <shared:Ribbon ui:field='choiceRibbon' />
+
+        <g:FlowPanel ui:field='editCoordinatePanel' visible="false" addStyleNames='{style.editPanel}' >
+            <g:FlowPanel addStyleNames='{style.editLabelPanel}' ui:field='editTypeLabelPanel'>
+                <b:Icon ui:field='editIcon' size='LARGE' type='LINE_CHART' addStyleNames='{style.editIcon}' />
+                <g:InlineHTML ui:field='editIconLabel' />
+            </g:FlowPanel>
+            <g:FlowPanel>
+                <g:FlowPanel addStyleNames='{style.fieldPanel}'>
+	                <g:InlineHTML ui:field='firstEditLabel' />
+	                <b:TextBox ui:field="firstEditField" addStyleNames="{style.coordinateBox}" />
+                </g:FlowPanel>
+                <g:FlowPanel addStyleNames='{style.fieldPanel}'>
+	                <g:InlineHTML ui:field='secondEditLabel' />
+	                <b:TextBox ui:field="secondEditField" addStyleNames="{style.coordinateBox}" />
+                </g:FlowPanel>
+                <g:FlowPanel addStyleNames='{style.fieldPanel}'>
+                    <g:InlineHTML ui:field='thirdEditLabel' />
+	                <b:TextBox ui:field="thirdEditField" addStyleNames="{style.coordinateBox}" />
+                </g:FlowPanel>
+                <b:Button ui:field='changeTypeButton' type='PRIMARY' icon='REFRESH' text='Change Type' />
+            </g:FlowPanel>
+
+            <g:FlowPanel ui:field='buttonPanel' addStyleNames="{style.buttonPanel}">
+                <b:Button ui:field="saveButton" icon="CHECK" type='PRIMARY' text="Set Location" addStyleNames="{style.sameSizeButton}" />
+                <b:Button ui:field="cancelButton" icon="TIMES" type="DANGER" text="Cancel" addStyleNames="{style.sameSizeButton}" />
+            </g:FlowPanel>
+        </g:FlowPanel>
+
+        <g:FlowPanel ui:field='viewModePanel' visible="false" addStyleNames="{style.viewModeStyle}" >
+            <b:Icon ui:field='viewModeIcon' size='LARGE' type='LINE_CHART' addStyleNames='{style.editIcon}' />
+            <g:InlineHTML ui:field='viewCoordinateTypeLabel' addStyleNames='{style.viewCoordinateTypeLabel}' />
+            <wb:BubbleLabel ui:field='firstViewLabel' />
+            <wb:BubbleLabel ui:field='secondViewLabel' />
+            <wb:BubbleLabel ui:field='thirdViewLabel' />
+        </g:FlowPanel>
+    </g:DeckPanel>
+</ui:UiBinder> 

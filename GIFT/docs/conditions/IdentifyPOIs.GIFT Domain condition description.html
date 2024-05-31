@@ -1,0 +1,71 @@
+﻿
+<head>
+<style type="text/css">
+.auto-style1 {
+	margin-left: 80px;
+}
+.auto-style2 {
+	text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+<p><strong>Identify Points of Interest (POIs) Condition</strong></p>
+<p>This condition checks whether the learner has seen a set of points.&nbsp; The 
+set of points is provided as input to the condition. </p>
+<p>Currently to identify a point means that the underyling application must 
+provide information about whether the learner can see that location.&nbsp; This 
+is performed by having this condition class send a request to the Gateway module 
+which than should query the application for an answer on a particular set of 
+points.&nbsp; In the case of Virtual Battlespace (VBS), this is answered by 
+performing Line of sight (LoS) queries in VBS.&nbsp; For performance reasons, 
+this condition class will only request LoS queries once every second until all 
+points have been seen.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<p>&nbsp;&nbsp;&nbsp; Default:&nbsp;</p>
+<ul class="auto-style1">
+	<li><span style="color: #008000">Above Expectation</span></li><li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: the learner has seen all points</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the default value</li>
+		<li>case: until all points are seen</li>
+	</ul>
+	</li>
+	<li>Unknown</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp; Customize:</p>
+<ul class="auto-style1">
+	<li><span class="auto-style2">count</span>: an evaluation event happens once 
+	for point in the authored list when the point is identified.&nbsp; The 
+	number of events will be less than or equal to the number of points.</li>
+	<li><span class="auto-style2">completion time</span>: amount of time it 
+	takes the learner to identify all of the points in the list.</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of points that were seen</li>
+	<li>provides the time it took for the learner to see all the points</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition completes once all points have been seen as reported by 
+	the external application</li>
+	<li>can not be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>Virtual Battlespace (VBS)</li>
+	<li>any application that can send entity state and respond to GIFT LOS 
+	requests with a GIFT LOS result</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT LOS Result</li>
+	<li>GIFT Entity State</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.IdentifyPOIsCondition</em></p>
+</body>

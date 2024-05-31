@@ -1,0 +1,33 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyPageProto";
+
+import "survey/SurveyElement.proto";
+import "survey/SurveyItemPropertyValue.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a page inside a survey. */
+message SurveyPage { 
+	
+	/* The id of the survey page. */
+	google.protobuf.Int32Value survey_page_id = 1;
+	
+	/* The survey id of the survey page. */
+	google.protobuf.Int32Value survey_id = 2;
+	
+	/* The name of the survey page. */
+	google.protobuf.StringValue survey_page_name = 3;
+	
+	/* The list of elements within a survey. */
+	repeated SurveyElement elements = 4;
+	
+	/* The properties of a survey page, which can be empty but not null. */
+	map<string, SurveyItemPropertyValue> properties = 5;
+}

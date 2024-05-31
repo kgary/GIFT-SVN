@@ -1,0 +1,36 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "PerformanceStateAttributeProto";
+
+message PerformanceStateAttribute {
+	int32 id = 1;
+	int32 priority = 2;
+	int64 short_term_timestamp = 3;
+	int64 long_term_timestamp = 4;
+	int64 predicted_timestamp = 5;
+	float confidence = 6;
+	float competence = 7;
+	float trend = 8;
+	bool assessment_hold = 9;
+	bool priority_hold = 10;
+	bool competence_hold = 11;
+	bool trend_hold = 12;
+	bool scenario_support = 13;
+	string name = 14;
+	string course_id = 15;
+	string short_term = 16;
+	string long_term = 17;
+	string predicted = 19;	
+	string node_state = 20;		
+	string evaluator = 21;
+	string observer_comment = 22;
+	string observer_media = 23;
+	repeated string assessment_explanation = 24;
+	map<string, string> assessed_team_org_entries = 25;
+}

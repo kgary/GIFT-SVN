@@ -1,0 +1,370 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style>
+       
+       
+       .setupStatusContainer{
+			background-image: url("images/backgrounds/blank_blackboard.jpg");
+			background-size: 100% 100%;
+		    border: 6px solid white;
+		    border-radius: 3px;
+		    box-shadow: 5px 5px 3px rgba(0,0,0,0.15);		
+		    box-sizing: border-box;
+		    padding: 10px;		
+		    color: white;   
+		    font-size: 14pt;
+		    text-shadow: 0px 2px rgba(0,0,0,0.25);
+		}
+        
+        .buttonStyle {
+            margin: 5px;
+            padding: 10px 30px;
+        }
+        
+        .panelStyle {
+            text-align: left;
+        }
+        
+        .rowStyle {
+            margin: 0px;
+            border: #ffffff solid 1px;
+        }
+        
+        .headerContainer {
+            color: white;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .containerStyle {
+            text-align: center;
+            color: white;
+        }
+
+        .startContainerStyle {
+            border: #ffffff solid 1px;
+            background: rgba(25, 25, 25, 0.75);
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .labelStyle {
+            border: #ffffff solid 1px;
+            background: rgba(25, 25, 25, 0.75);
+            text-align: left;
+            color: white;
+            padding-left: 8px;
+        }
+        
+        .sessionListContainerStyle {
+            border: #ffffff solid 1px;
+            background: rgba(25, 25, 25, 0.75);
+        }
+        
+        .headerStyle {
+            text-align: center;
+        }
+        
+        .footerStyle {
+            text-align: center;
+        }
+        
+        .descriptionStyle {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 2px 10px;
+        }
+        .descriptionStyle > div:first-child{
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .overflowStyle span{
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            color: white;
+        }
+        
+        .headerRowStyle {
+            margin: 0px;
+            color: white;
+        }
+        
+        .teamRowStyle {
+	        color: white;
+            background-color: rgba(0,0,0,0.4);
+            background-image: linear-gradient(transparent, rgba(0,0,0,0.4));
+            border-radius: 10px;
+            padding: 20px 10px;
+            margin: 10px;
+        }
+
+        .hostRowStyle {
+            margin: 0px;
+            color: white;
+        }
+        
+        .teamListDivStyle {
+            color: white;
+        }
+        
+        .joinedContainerStyle{
+            border: #ffffff solid 1px;
+            background: rgba(25, 25, 25, 0.75);
+            text-align: right;
+            padding-right: 10px;
+        }
+        
+        .colStyle {
+            text-align:center;
+        }
+        
+        .userOptionsStyle {
+            margin-top: 12px;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid rgb(200,200,200);
+        }
+        
+        .optionsContainerStyle {
+            margin-left: 40px;
+            margin-right: 40px;
+            border: #ffffff solid 1px;
+            background: rgba(25, 25, 25, 0.75);
+       }
+       
+       .teamRoleStyle {
+            text-align: center;
+            background-image: linear-gradient(#f0f0f0, #fafafa, #f0f0f0, #d2d2d2 70%, #e6e6e6 90%);
+            color: black;
+            background-color: #e6e6e6;
+            text-shadow: 0px 2px 1px white;
+            padding: 3px;
+            border-bottom: 1px solid rgb(150,150,150);
+            display: flex;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+            align-items: center;
+       }
+       
+       .teamTree{
+            color: black;
+            background-color: white;
+            padding: 5px;
+            cursor: pointer;
+	   }
+	   .teamTree img{
+            pointer-events: none; /* prevents bug where clicking the collapse icon toggles the collapse state twice*/
+       }
+       .teamTree table{
+            min-width: 100%; /* allows parent tree items's content to fill remaining width*/
+       }
+       .teamTree td:first-child{
+            width: 1px; /* makes collapse icon take up only needed width */
+       }
+	   
+	   .sessionDetails{
+            flex: 1;
+	   }
+	   
+	   .sessionDetailsPanel{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+	   }
+	   
+	   .teamRoleHeader{
+            margin: 0px !important;
+            flex: 1;
+	   }
+	   
+	   .startSessionButton{
+            padding: 15px 100px;
+            color: white;
+	   }
+	   
+	   .startSessionPanel{
+            text-align: center;
+	   }
+	   
+	   .joinedTableHeader{
+	        background-image: linear-gradient(#f0f0f0, #fafafa, #f0f0f0, #d2d2d2 70%, #e6e6e6 90%);
+            color: black;
+            background-color: #e6e6e6;
+            text-shadow: 0px 2px 1px white;
+            margin: 0px;
+            border-bottom: 1px solid rgb(150,150,150);
+	   }
+	   
+	   .usersTable{
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid rgb(200,200,200);
+	   }
+	   
+	   .userList{
+            display: flex;
+            flex-direction: column;
+	   }
+	   .headingText{
+	        color: white;
+			margin-top:10px;
+			display: inline-block;
+		}
+        .teamSessionDiv {
+		    width: 100%;
+		    min-height: 100%;
+		    text-align: left;
+		    background-color: rgba(15,20,25,0.8);
+		    border-radius: 5px;
+		}
+		.usersHeader{
+            color: white;
+	    }
+	    .flipIcon i{
+            transform: rotateX(180deg);
+       }
+       .sessionNameLabel{
+            margin-top: -15px;
+            flex: 1;
+	   }
+	   .sessionNameLabel input{
+            color: black;
+	   }
+	   .hostHelpButton{
+            padding: 0px;
+	   }
+	   .hostHelpText{
+	       background-color: #ffff96;
+           background-image: linear-gradient(rgba(255,255,255,0.25), transparent, rgba(0,0,0,0.25));
+           text-shadow: none;
+           color: black;
+           border-radius: 5px;
+           padding: 5px;
+           box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+	   }
+	</ui:style>
+    <g:FlowPanel addStyleNames="{style.teamSessionDiv}">
+        <g:FlowPanel>
+            <g:FlowPanel ui:field="sessionPanel">
+                <b:Row addStyleNames="{style.headerRowStyle}">
+                    <b:Column size="XS_12">
+	                    <g:FlowPanel addStyleNames='{style.headerContainer}'>
+		                    <b:Heading size="H3" addStyleNames="{style.headingText}" text="Multiplayer Team Session"/>
+		                    <b.html:Paragraph text="This part of the course requires one or more players.  You can either join a session that is waiting for more players or, if available, host a session of your own for others to join."/>
+		                    <b:Button type='LINK' addStyleNames='{style.hostHelpButton}' ui:field='hostHelpButton'>
+                                Why would I host a team session?
+                            </b:Button> 
+		                    <b:Collapse toggle='false' addStyleNames='{style.hostHelpText}' ui:field='hostHelpCollapse'>
+                                <g:HTMLPanel>
+                                    When you host a team session you will have the ability to name your session so other
+                                    learners can identify your session among others, kick learners that have joined your session and, most importantly, decide when to start the session.  You will only have access to 
+                                    host a team session if a Gateway module is available to support your real time assessment.<br/><br/>
+                                    In some instances, such as when using the Virtual Battlespace (VBS) training application, the appropriate training application scenario/file 
+                                    will be automatically loaded for the host but not learners who have joined.  Joiners must load and join as appropriate in the training application
+                                    as well.  Being a host also means that all training application
+                                    state traffic will come through your Gateway module instance.  This means that the training application must provide world state to the
+                                    Gateway module instance in order for all real time assessment to take place.  If there is more than one training application instance 
+                                    (i.e. one for each learner in the team organization), each training application instance should communicate state amongst themselves and not
+                                    involve the gateway module.<br/>
+                                </g:HTMLPanel>
+                            </b:Collapse>
+		                </g:FlowPanel>
+	                </b:Column>
+                </b:Row>
+                <g:FlowPanel addStyleNames="{style.teamRowStyle}">
+	                <g:FlowPanel addStyleNames='{style.containerStyle}'>
+	                    <b:Button type="PRIMARY" size="LARGE" text="HOST" addStyleNames='{style.buttonStyle}' ui:field="hostButton" />
+	                    <b:Button type="PRIMARY" size="LARGE" text="JOIN"  addStyleNames='{style.buttonStyle}' ui:field="joinButton"/>
+	                    <b:Button type="PRIMARY" icon="REFRESH" size="LARGE" addStyleNames='{style.buttonStyle}' ui:field="refreshButton"/>
+	                </g:FlowPanel>
+                    <cb:KnowledgeSessionListWidget ui:field="sessionListWidget" />   
+                </g:FlowPanel>
+            </g:FlowPanel>
+
+            <g:FlowPanel ui:field="teamPanel">
+                <b:Row addStyleNames="{style.headerRowStyle}">
+                    <b:Column size="XS_12">
+                        <g:FlowPanel addStyleNames='{style.headerContainer}'>
+                            <b:Heading size="H3" addStyleNames="{style.headingText}" text="Multiplayer Team Session" ui:field='sessionHeaderText'/>	
+                            <b.html:Paragraph text="Select a role from the list below.  The host will begin the team session once everyone has choosen a role to play." ui:field="helpText"/>
+                        </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+                <b:Row addStyleNames="{style.teamRowStyle}">
+                    <b:Column size="SM_7">
+                        <g:FlowPanel addStyleNames="{style.sessionDetailsPanel}">
+                            <b:Button type="DANGER" size="LARGE" text="Leave Session" ui:field="leaveSessionButton" />
+                            <g:FlowPanel addStyleNames="{style.sessionDetails}">
+                                <g:FlowPanel addStyleNames='{style.descriptionStyle}'>
+                                    <g:Label text="Session Name: "/>
+                                    <cb:EditableLabel ui:field="sessionName" addStyleNames='{style.overflowStyle} {style.sessionNameLabel}'/>
+                                </g:FlowPanel>
+                                <g:FlowPanel addStyleNames='{style.descriptionStyle}'>
+                                    <g:Label text="Course ID: "/>
+                                    <g:Label ui:field="courseId" addStyleNames='{style.overflowStyle}'/>
+                                </g:FlowPanel>
+                            </g:FlowPanel>
+                        </g:FlowPanel>
+                        <g:FlowPanel addStyleNames="{style.userOptionsStyle}">
+                            <g:FlowPanel>
+                                <g:FlowPanel>
+                                    <g:FlowPanel addStyleNames="{style.teamRoleStyle}">
+                                        <b:Heading size="H3" addStyleNames='{style.teamRoleHeader}' text="Choose a Team Role"/>
+                                        <b:Tooltip container='body' title='Collapse All'>
+                                            <b:Button addStyleNames='{style.flipIcon}' icon='SORT_AMOUNT_DESC' pull='LEFT' ui:field='collapseAllButton'/>
+                                        </b:Tooltip>
+                                        <b:Tooltip container='body' title='Expand All'>
+                                            <b:Button icon='SORT_AMOUNT_ASC' ui:field='expandAllButton' pull='LEFT'/>
+                                        </b:Tooltip>
+                                    </g:FlowPanel>
+                                    <g:FlowPanel>
+                                        <g:Tree addStyleNames='{style.teamTree}' animationEnabled='true' scrollOnSelectEnabled='true' ui:field="teamTree"/>
+                                    </g:FlowPanel>
+                                </g:FlowPanel>
+                            </g:FlowPanel>
+                        </g:FlowPanel>
+                    </b:Column>
+                    <b:Column size="SM_5" addStyleNames="{style.teamListDivStyle}">
+                        
+                        <g:FlowPanel addStyleNames='{style.startSessionPanel}'>
+                            <b:Button type="SUCCESS" size="LARGE" addStyleNames='{style.startSessionButton}' text="Start Session" ui:field="startSessionButton" />
+                        </g:FlowPanel>
+                        <g:FlowPanel>
+                            <b:Heading size="H5" addStyleNames='{style.usersHeader}' text="Users Joined" ui:field="joinedHeader"/>	
+                        </g:FlowPanel>
+                        <g:FlowPanel addStyleNames='{style.usersTable}'>
+	                        <g:FlowPanel>
+	                            <b:Row addStyleNames="{style.joinedTableHeader}">
+	                                <b:Column size="XS_1" addStyleNames='{style.colStyle}'>
+	                                    <!-- reserved for icon of the host -->
+	                                </b:Column>
+	                                
+	                                <b:Column size="XS_5">
+	                                    <b:Heading size="H4" text="User"/>	
+	                                </b:Column>
+	                                
+	                                <b:Column size="XS_5">
+	                                    <b:Heading size="H4" text="Team Role"/>	
+	                                </b:Column>
+	                                <b:Column size="XS_1">  
+	                                    <!-- reserved for ready icon -->
+	                                </b:Column>
+	                            </b:Row>
+	                        </g:FlowPanel>
+	                        <g:FlowPanel addStyleNames='{style.userList}' ui:field="userList" >
+	                            <!-- This is where the widgets containing the list of users will go. -->
+	                        </g:FlowPanel>
+                        </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+            </g:FlowPanel>
+        </g:FlowPanel>
+    </g:FlowPanel>
+</ui:UiBinder> 

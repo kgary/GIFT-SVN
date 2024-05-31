@@ -1,0 +1,49 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractCoordinateProto";
+
+import "Point3D.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the base message for coordinate representations. */
+message AbstractCoordinate {
+	/* The coordinates can either represent an AGL, GCC, or GDC coordinate. */
+	oneof type {
+		/* Above-ground-level coordinate, used in VBS systems. */
+		AGL agl = 1;
+		
+		/* Coordinate describing a geocentric coordinate type. */
+		GCC gcc = 2;
+		
+		/* Geodetic coordinate system. */
+		GDC gdc = 3;
+	}
+}
+
+message AGL {
+	/* Above-ground-level coordinate. */
+	Point3D coordinate_val = 1;
+}
+
+message GCC {
+	/* Geocentric coordinate. */
+	Point3D coordinate_val = 1;
+}
+
+message GDC {	
+	/* Latitude value. */
+	google.protobuf.DoubleValue latitude = 1;
+	
+	/* Longitude value. */
+	google.protobuf.DoubleValue longitude = 2;
+	
+	/* Elevation value. */
+	google.protobuf.DoubleValue elevation = 3;
+}

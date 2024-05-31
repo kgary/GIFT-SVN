@@ -1,0 +1,986 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util"
+	xmlns:m="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.mbp"
+	xmlns:d="urn:import:mil.arl.gift.common.gwt.client.widgets" xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:sp="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util"
+	xmlns:ud="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.dialog"
+	xmlns:select="urn:import:org.gwtbootstrap3.extras.select.client.ui"
+    xmlns:tagsinput="urn:import:org.gwtbootstrap3.extras.tagsinput.client.ui"
+    xmlns:cw="urn:import:mil.arl.gift.common.gwt.client.widgets"
+	xmlns:guidance="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.guidance">
+	<ui:style type="mil.arl.gift.tools.authoring.server.gat.client.view.course.mbp.MbpViewImpl.Style">
+	.pad {
+		padding: 15px;
+	}
+	
+	.padSides {
+		padding: 3px 5px;
+	}
+	
+	.padTop {
+		margin-top: 5px;
+	}
+	
+	.padBottom {
+		margin-bottom: 10px;
+	}
+	
+	.padBottomOther {
+		padding-bottom: 10px;
+	}
+	
+	.smallPadBottom {
+		margin-bottom: 5px;
+	}
+	
+	.tabbed {
+		margin-left: 30px;
+	}
+	
+	.rightTabbed {
+		padding-right: 30px;
+	}
+	
+	.doubleTabbed {
+		margin-left: 60px;
+	}
+	
+	.rightDoubleTabbed {
+		padding-left: 60px;
+	}
+	
+	.textBoxPad {
+		padding: 7px 5px !important;
+		/* Nick: Marking as important since something higher up seems to screw up the padding */
+	}
+	
+	.grayBorder {
+		border-style: solid;
+		border-Width: 1px;
+		border-color: rgb(150, 150, 150);
+	}
+	
+	/* controls the style of the cell table itself which is inset from the border */
+	.cellTableInset {
+		box-sizing: content-box;
+		border-collapse: separate;
+		width: 100%;
+	}
+	
+	/* A border element (usually a flowpanel or div) that wraps the cell table and creates a border around it */
+	.cellTableBorder {
+		border-style: solid;
+		border-Width: 1px;
+		border-color: rgb(185, 185, 185);
+		border-radius: 3px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+		background-color: rgb(250, 250, 250);
+	}
+	
+	.smallPadTop {
+		margin-top: 5px;
+	}
+	
+	.inline {
+		display: inline;
+	}
+	
+	.smallPad {
+		margin: 5px;
+	}
+	
+	.smallPadOther {
+		margin: 5px;
+	}
+	
+	.warningImage {
+		float: left;
+		padding-right: 5px;
+	}
+	
+	.leftAlign {
+		padding: 0 0 10px 20px;
+	}
+	
+	/* Border for the legend areas */
+	.legendBorder {
+		border: solid 1px #AAAAAA;
+		position: relative;
+		padding: 10px;
+		margin: 20px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+	}
+	
+	/* The title of the legend areas */
+	.legendTitle {
+		font-weight: bold;
+		position: absolute;
+		top: -10px;
+		left: 40px;
+		margin-left: -35px;
+		padding-right: 5px;
+		padding-left: 5px;
+		background-color: rgb(237, 237, 237);
+	}
+	
+	.clickable {
+		cursor: pointer;
+	}
+	
+	.showFilesLabel {
+		font-weight: bold;
+		display: inline;
+		color: white;
+		text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+	}
+	
+	.showFilesPanel {
+		border-radius: 5px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+		padding: 5px;
+		background-color: black;
+		background-image: linear-gradient(rgba(50, 50, 50, 1) 0,
+			rgba(100, 100, 100, 1) 10%, rgba(50, 50, 50, 1) 50%, black);
+		text-align: center;
+	}
+	
+	.padTab {
+		padding: 0px 60px;
+	}
+	
+	.cellTableScroller {
+		min-height: 50px;
+		max-height: 400px;
+	}
+	
+	.showFilesAnchor {
+		padding-left: 5px;
+		cursor: pointer;
+	}
+	
+	.showFilesLoadingPanel {
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		background-color: rgba(255, 255, 255, 0.50);
+		color: rgb(100, 100, 100);
+	}
+	.showPracticeApplicationsLoadingPanel {
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		background-color: rgba(255, 255, 255, 0.9);  /* higher alpha value to hide the empty table label when refreshing */
+		color: rgb(100, 100, 100);
+	}
+	
+	.fileList {
+		position: relative;
+		text-align: left;
+	}
+	
+	.smallPadLeft {
+		padding-left: 5px;
+	}
+	
+	.centerVertical {
+		vertical-align: middle;
+	}
+	
+	.refreshButton {
+		color: white;
+		float: right;
+		font-size: 1em;
+		padding: 0px 5px;
+	}
+	
+	.refreshButton:hover {
+		color: white;
+		text-shadow: 0px 0px 7px white;
+	}
+	
+	.refreshButton:focus {
+		color: white;
+		text-shadow: 0px 0px 7px white;
+	}
+	
+	.note {
+		display: inline-block;
+		border-style: solid;
+		border-Width: 1px;
+		border-color: rgb(185, 185, 185);
+		border-radius: 3px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+		background-color: rgb(255, 255, 200);
+		margin: 10px 5px;
+	}
+	
+	.largePadBottom {
+		margin-bottom: 15px;
+	}
+	
+	.container {
+		padding: 10px;
+	}
+	
+	.phaseName {
+		font-weight: bold;
+		margin: -10px 0px 10px
+	}
+	
+	.criteriaPanel {
+		display: inline-block;
+		width: 33%;
+		min-width: 250px;
+	}
+	
+	.centerText {
+		text-align: center;
+	}
+	
+	.spinnerStyle {
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 8px;
+		width: 50px;
+	}
+	
+	.spinnerPanelStyle {
+		display: inline;
+	}
+	
+	.helpLink {
+		padding-left: 5px;
+		color: rgb(100, 100, 200);
+		font-weight: normal;
+	}
+	
+	.fullWidthWorkAround {
+		width: 100%;
+	}
+	.disclosurePanelInner {
+		margin-right: 5px
+	}
+	.overflowAuto{
+		overflow: auto;
+	}
+	.addButton{
+		cursor: pointer;
+		float: right;
+		margin-top:2px;
+	}
+	.conceptSelectPanel{
+     	padding: 0px;
+        border-width: 0px;
+        width: 100%;
+        margin-bottom: 5px !important;
+        display: inline-block;
+	}
+	.conceptTagsInputPanel{
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        position: relative; /** so blocker panel isn't applied to a higher panel */
+        margin-bottom: -10px; /** bring the horizontal bar closer to the bottom of this panel */
+	}
+    @external bootstrap-tagsinput;
+    .conceptTagsInputPanel > .bootstrap-tagsinput {
+         cursor: default;
+     }
+     .conceptTagsInputPanel input {
+         display: none;
+     }
+     @external label-info;
+	.conceptTagsInputPanel .label-info{
+		background-color: #b733ad !important;
+	}
+     .practiceConceptTagsInputPanel{
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        position: relative; /** so blocker panel isn't applied to a higher panel */
+	}
+    @external bootstrap-practiceConceptTagsInputPanel;
+    .practiceConceptTagsInputPanel > .bootstrap-practiceConceptTagsInputPanel {
+         cursor: default;
+         border: none;
+         box-shadow: none;
+         vertical-align: top;
+     }
+     .practiceConceptTagsInputPanel input {
+         display: none;
+     }
+     @external label-info;
+	.practiceConceptTagsInputPanel .label-info{
+		background-color: #b733ad !important;
+	}
+	.conceptsMultipleSelect{
+		min-width: 175;
+	}
+	.noCourseConceptsLabel{
+		color:red;
+		font-style:italic;
+	}
+	.groupLabel{
+		font-weight: bold;
+		color: black;
+		font-size: 13px;
+	}
+	.blocker{
+        z-index: 1 !important;
+    }
+   	.optionsTableMandatoryInvisible .mandatoryControlsRow {
+    	display: none;
+    }
+	
+	.mandatoryControlsRow {
+	    
+    }
+	
+	.mandatoryBehaviorComboBox {
+	    vertical-align: middle;
+    }
+    .learnerStateShelfLifeSpinner {
+	    width: 50px;
+	    margin-left:4px;
+	    margin-right: 4px;
+	    vertical-align: middle;
+    }
+    
+	.learnerStateShelfLifeContainer {
+	    display: inline;
+    }
+    
+    .helpLink{
+        padding-left: 5px;          
+        color: rgb(100,100,200);
+        font-weight: normal;
+    }
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.container}' width='100%'
+		height='100%'>
+		<g:HTMLPanel width='100%'>
+
+		<g:FlowPanel>
+			<g:Label ui:field='noCourseConceptsLabel' addStyleNames='{style.smallPadBottom} {style.noCourseConceptsLabel}'>
+				No course concepts were found. Please add concepts to the course properties.
+			</g:Label>
+		</g:FlowPanel>
+        <g:FlowPanel>
+            <g:SimplePanel ui:field='conceptsSelectPanel' addStyleNames='{style.conceptSelectPanel}' >
+                <select:MultipleSelect ui:field='conceptMultipleSelect' countSelectedTextFormat="1" showActionsBox="true" addStyleNames='{style.conceptsMultipleSelect}' />
+            </g:SimplePanel>
+            <b:Tooltip placement="BOTTOM" title="Course concepts taught by this course object.">            
+	            <g:FlowPanel ui:field='conceptsTagPanel' addStyleNames='{style.conceptTagsInputPanel}' >
+	                <tagsinput:TagsInput ui:field='conceptsTagInput'/>
+	                <cw:BlockerPanel showDisabled='true' ui:field='conceptsTagPanelBlocker' addStyleNames='{style.blocker}'/>
+	            </g:FlowPanel>
+            </b:Tooltip>
+        </g:FlowPanel>
+
+			<hr style='border-color: rgb(200,200,200);' />
+
+			<g:FlowPanel>
+				<g:HTML addStyleNames='{style.phaseName}' ui:field="rulePhaseLabel">
+					Rule Phase <i style="font-weight:normal">(optional)</i>
+				</g:HTML>
+
+				<g:DeckPanel animationEnabled='true' ui:field='ruleShowFilesDeck'>
+
+					<g:FlowPanel addStyleNames='{style.padBottom} {style.padTop}'
+						ui:field='ruleFilesPanel'>
+						<g:FlowPanel addStyleNames="{style.showFilesPanel}">
+							<g:FlowPanel addStyleNames='{style.overflowAuto}'>
+								<g:HTML addStyleNames='{style.showFilesLabel}'>
+									<i class="fa fa-folder"></i>
+									<div style='display: inline-block; padding: 0px 5px;'>
+										Rule Content
+									</div>
+								</g:HTML>
+
+								<wb:ManagedTooltip title="Refresh the list">
+									<b:Button addStyleNames='{style.refreshButton}' type='LINK'
+										icon='REFRESH' ui:field='ruleRefreshButton' />
+								</wb:ManagedTooltip>
+								<wb:ManagedTooltip title="Add Rule Content">
+									<g:Image width='20px' height='20px' ui:field='addRuleContentButton' addStyleNames='{style.addButton}'/>	
+								</wb:ManagedTooltip>
+
+							</g:FlowPanel>
+
+							<g:FlowPanel>
+								<g:FlowPanel addStyleNames='{style.fileList}'>
+									<g:ScrollPanel
+										addStyleNames='{style.smallPadTop} {style.cellTableScroller} {style.cellTableBorder} {style.fullWidthWorkAround}'>
+										<g:FlowPanel addStyleNames='{style.smallPadOther}'
+											ui:field='ruleFilesList'>
+											<!-- Rule content files go here -->
+										</g:FlowPanel>
+									</g:ScrollPanel>
+
+									<g:FlowPanel addStyleNames='{style.showFilesLoadingPanel}'
+										ui:field='ruleFilesLoadingPanel'>
+										<g:VerticalPanel width='100%' height='100%'
+											horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
+											<g:FlowPanel>
+												<wb:BsLoadingIcon size='TIMES2'
+													addStyleNames='{style.centerVertical}' ui:field='ruleFilesLoadingIcon' />
+												<g:InlineHTML addStyleNames='{style.smallPadLeft} {style.centerVertical}'>
+													Retrieving ...
+												</g:InlineHTML>
+											</g:FlowPanel>
+										</g:VerticalPanel>
+									</g:FlowPanel>
+
+								</g:FlowPanel>
+
+							</g:FlowPanel>
+						</g:FlowPanel>
+						<g:FlowPanel>
+						</g:FlowPanel>
+					</g:FlowPanel>
+
+				</g:DeckPanel>
+
+				<g:HTMLPanel visible='false' ui:field='ruleWarningPanel'>
+					<div
+						style='border-style: solid; border-Width: 1px; border-color: rgb(185,185,185); 
+												border-radius: 3px; box-shadow: 3px 3px 5px rgba(0,0,0,0.2); background-color: rgb(250,250,250); 
+												padding: 5px; margin: 5px;'>
+						<g:Image addStyleNames='{style.warningImage}' ui:field='ruleWarningImage' />
+						<g:HTML ui:field='ruleTransitionsWarning'>
+							<!-- Error message text goes here -->
+						</g:HTML>
+					</div>
+				</g:HTMLPanel>
+
+				<guidance:OptionalGuidanceCreator
+					addStyleNames='{style.padTop}' ui:field='ruleGuidanceCreator'>
+					Show message on completion
+				</guidance:OptionalGuidanceCreator>
+
+			</g:FlowPanel>
+
+			<hr style='border-color: rgb(200,200,200);' />
+
+
+			<g:FlowPanel width='100%'>
+				<g:HTML addStyleNames='{style.phaseName}'>
+					Example Phase
+				</g:HTML>
+
+				<g:DeckPanel animationEnabled='true' ui:field='exampleShowFilesDeck'>
+
+					<g:FlowPanel addStyleNames='{style.padBottom} {style.padTop}'
+						ui:field='exampleFilesPanel'>
+						<g:FlowPanel addStyleNames="{style.showFilesPanel}">
+
+							<g:FlowPanel addStyleNames='{style.overflowAuto}'>
+
+								<g:HTML addStyleNames='{style.showFilesLabel}'>
+									<i class="fa fa-folder"></i>
+									<div style='display: inline-block; padding: 0px 5px;'>
+										Example Content
+									</div>
+								</g:HTML>
+
+								<wb:ManagedTooltip title="Refresh the list">
+									<b:Button addStyleNames='{style.refreshButton}' type='LINK'
+										icon='REFRESH' ui:field='exampleRefreshButton'  />
+								</wb:ManagedTooltip>
+								<wb:ManagedTooltip title="Add Example Content">
+									<g:Image width='20px' height='20px' ui:field='addExampleContentButton' addStyleNames='{style.addButton}' 
+										/>	
+								</wb:ManagedTooltip>									
+
+							</g:FlowPanel>
+
+							<g:FlowPanel>
+
+								<g:FlowPanel addStyleNames='{style.fileList}'>
+
+									<g:ScrollPanel
+										addStyleNames='{style.smallPadTop} {style.cellTableScroller} {style.cellTableBorder} {style.fullWidthWorkAround}'>
+										<g:FlowPanel addStyleNames='{style.smallPadOther}'
+											ui:field='exampleFilesList'>
+											<!-- Example content files go here -->
+										</g:FlowPanel>
+									</g:ScrollPanel>
+
+									<g:FlowPanel addStyleNames='{style.showFilesLoadingPanel}'
+										ui:field='exampleFilesLoadingPanel'>
+										<g:VerticalPanel width='100%' height='100%'
+											horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
+											<g:FlowPanel>
+												<wb:BsLoadingIcon size='TIMES2'
+													addStyleNames='{style.centerVertical}' ui:field='exampleFilesLoadingIcon' />
+												<g:InlineHTML addStyleNames='{style.smallPadLeft} {style.centerVertical}'>
+													Retrieving...
+												</g:InlineHTML>
+											</g:FlowPanel>
+										</g:VerticalPanel>
+									</g:FlowPanel>
+
+								</g:FlowPanel>
+
+							</g:FlowPanel>
+						</g:FlowPanel>
+						<g:FlowPanel>
+						</g:FlowPanel>
+					</g:FlowPanel>
+
+				</g:DeckPanel>
+
+				<g:HTMLPanel visible='false' ui:field='exampleWarningPanel'>
+					<div
+						style='border-style: solid; border-Width: 1px; border-color: rgb(185,185,185); 
+												border-radius: 3px; box-shadow: 3px 3px 5px rgba(0,0,0,0.2); background-color: rgb(250,250,250); 
+												padding: 5px; margin: 5px;'>
+						<g:Image addStyleNames='{style.warningImage}' ui:field='exampleWarningImage' />
+						<g:HTML ui:field='exampleTransitionsWarning'>
+							<!-- Error message text goes here -->
+						</g:HTML>
+					</div>
+				</g:HTMLPanel>
+
+				<guidance:OptionalGuidanceCreator
+					addStyleNames='{style.padTop}' ui:field='exampleGuidanceCreator'>
+					Show message on completion
+				</guidance:OptionalGuidanceCreator>
+
+			</g:FlowPanel>
+
+
+			<hr style='border-color: rgb(200,200,200);' />
+
+			<g:FlowPanel width='100%'>
+
+				<g:HTML addStyleNames='{style.phaseName}'>
+					Check on Learning Phase (Recall)
+				</g:HTML>
+
+				<sp:SurveyPickerQuestionBank
+					addStyleNames='{style.largePadBottom} {style.padTop}' ui:field='surveyPickerQuestionBank' />
+
+				<g:Label addStyleNames='{style.smallPadBottom}'>
+					Number of questions to show per
+					concept:
+				</g:Label>
+				<g:FlowPanel addStyleNames='{style.largePadBottom}'>
+					<g:ScrollPanel addStyleNames='{style.cellTableScroller} {style.cellTableBorder}'>
+						<c:CellTable addStyleNames='{style.cellTableInset}'
+							ui:field='questionCellTable' />
+					</g:ScrollPanel>
+				</g:FlowPanel>
+				<g:InlineLabel addStyleNames='{style.smallPadBottom}'>
+					Criteria needed to reach
+					a particular expertise level on each concept:
+				</g:InlineLabel>
+				<wb:HelpLink helpCaption='Knowledge Level Assessment'>
+					<wb:linkWidget>
+						<b:Icon title="What's this?" addStyleNames='{style.helpLink}'
+							type='QUESTION_CIRCLE' />
+					</wb:linkWidget>
+					<wb:helpBody>
+						<g:HTML>
+							GIFT needs to know how to assess the learner's knowledge level on
+							each concept being taught in this course object.
+							<br />
+							<br />
+							At a minimum the learner is either a novice or an expert on a
+							concept based on the answers to the assessment questions.
+							Ideally you would author enough questions so that the learner could also
+							be a journeyman for a concept.
+							<br />
+							<br />
+							<b>Concept Remediation</b>
+							<br/>
+							Both <b>Novice</b> and <b>Journeyman</b> assessment scores will result in remediation.
+							Remediation will include an ideal set of content to satisfy the concepts
+							needing remediation at this time based on an evolving selection algorithm.
+							<br />
+							Once the learner is assessed at the
+							<b>Expert</b>
+							level for all concepts in this course object either the optional
+							practice phase or the next course object is started.
+						</g:HTML>
+					</wb:helpBody>
+
+				</wb:HelpLink>
+				<g:FlowPanel addStyleNames='{style.largePadBottom}'>
+					<g:FlowPanel ui:field="sliderPanel" />
+				</g:FlowPanel>
+
+				<g:HTMLPanel visible='false' ui:field='recallWarningPanel'>
+					<div
+						style='border-style: solid; border-Width: 1px; border-color: rgb(185,185,185); 
+												border-radius: 3px; box-shadow: 3px 3px 5px rgba(0,0,0,0.2); background-color: rgb(250,250,250); 
+												padding: 5px; margin: 5px;'>
+						<g:Image addStyleNames='{style.warningImage}' ui:field='recallWarningImage' />
+						<g:HTML ui:field='recallTransitionsWarning'>
+							<!-- Error message text goes here -->
+						</g:HTML>
+					</div>
+				</g:HTMLPanel>
+
+				<g:CheckBox ui:field="recallAllowedAttemptsCheckBox">Set Allowed Attempts</g:CheckBox>
+				<g:FlowPanel ui:field="recallAllowedAttemptsPanel"
+					addStyleNames='{style.spinnerPanelStyle}'>
+					<d:NumberSpinner ui:field='recallAllowedAttempts'
+						addStyleNames='{style.spinnerStyle}' />
+				</g:FlowPanel>
+				<wb:HelpLink helpCaption='Recall Allowed Attempts'>
+					<wb:linkWidget>
+						<b:Icon title="What's this?" addStyleNames='{style.helpLink}'
+							type='QUESTION_CIRCLE' />
+					</wb:linkWidget>
+					<wb:helpBody>
+						<g:HTML>
+							The number of times the learner is allowed to receive remediation for this Check On Learning (Recall) portion of the course before gracefully ending the course. If the allowed attempts is not set, the learner has unlimited attempts on the recall material.
+						</g:HTML>
+					</wb:helpBody>
+				</wb:HelpLink>
+
+
+				<guidance:OptionalGuidanceCreator
+					addStyleNames='{style.padTop}' ui:field='recallGuidanceCreator'>
+					Show message on completion
+				</guidance:OptionalGuidanceCreator>
+
+			</g:FlowPanel>
+
+			<hr style='border-color: rgb(200,200,200);' />
+			
+			<g:FlowPanel width='100%'>
+				<g:FlowPanel width='100%'>
+					<g:InlineLabel addStyleNames='{style.phaseName}'>
+						Remediation Phase
+					</g:InlineLabel>
+					<wb:HelpLink helpCaption='Remediation Phase'>
+						<wb:linkWidget>
+							<b:Icon title="What's this?" addStyleNames='{style.helpLink}'
+								type='QUESTION_CIRCLE' />
+						</wb:linkWidget>
+						<wb:helpBody>
+							<g:HTML>
+								The remediation phase of an adaptive courseflow course object is where remedial content is defined.  The remediation phase can be entered after the Check on Learning or Practice phases depending on the assessment of the learner.
+							</g:HTML>
+						</wb:helpBody>
+					</wb:HelpLink>
+				</g:FlowPanel>
+				
+				<g:FlowPanel width='100%' addStyleNames='{style.padTop}'>
+					<g:CheckBox ui:field="excludeRuleExampleContentCheckBox" >Exclude Rule/Example Content</g:CheckBox>
+				</g:FlowPanel>	
+				
+				<g:FlowPanel addStyleNames='{style.padBottom} {style.padTop}'>
+					<g:FlowPanel addStyleNames="{style.showFilesPanel}">
+
+						<g:FlowPanel addStyleNames='{style.overflowAuto}'>
+
+							<g:HTML addStyleNames='{style.showFilesLabel}'>
+								<i class="fa fa-folder"></i>
+								<div style='display: inline-block; padding: 0px 5px;'>
+									Remediation Content
+								</div>
+							</g:HTML>
+
+							<wb:ManagedTooltip title="Refresh the list">
+								<b:Button addStyleNames='{style.refreshButton}' type='LINK'
+									icon='REFRESH' ui:field='remediationRefreshButton' />
+							</wb:ManagedTooltip>
+							<wb:ManagedTooltip title="Add Remediation Content">
+								<g:Image width='20px' height='20px' ui:field='addRemediationContentButton' addStyleNames='{style.addButton}' 
+									/>
+							</wb:ManagedTooltip>										
+
+						</g:FlowPanel>
+
+						<g:FlowPanel>
+
+							<g:FlowPanel addStyleNames='{style.fileList}'>
+
+								<g:ScrollPanel
+									addStyleNames='{style.smallPadTop} {style.cellTableScroller} {style.cellTableBorder} {style.fullWidthWorkAround}'>
+									<g:FlowPanel addStyleNames='{style.smallPadOther}'
+										ui:field='remediationFilesList'>
+										<!-- Example content files go here -->
+									</g:FlowPanel>
+								</g:ScrollPanel>
+
+								<g:FlowPanel addStyleNames='{style.showFilesLoadingPanel}'
+									ui:field='remediationFilesLoadingPanel'>
+									<g:VerticalPanel width='100%' height='100%'
+										horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
+										<g:FlowPanel>
+											<wb:BsLoadingIcon size='TIMES2'
+												addStyleNames='{style.centerVertical}' ui:field='remediationFilesLoadingIcon' />
+											<g:InlineHTML addStyleNames='{style.smallPadLeft} {style.centerVertical}'>
+												Retrieving...
+											</g:InlineHTML>
+										</g:FlowPanel>
+									</g:VerticalPanel>
+								</g:FlowPanel>
+
+							</g:FlowPanel>
+
+						</g:FlowPanel>
+					</g:FlowPanel>
+				</g:FlowPanel>
+
+			</g:FlowPanel>
+			
+			<hr style='border-color: rgb(200,200,200);' />
+
+			<g:FlowPanel width='100%'>
+
+				<g:HTML addStyleNames='{style.phaseName}'>
+					Practice Phase (optional)
+				</g:HTML>
+
+				<g:FlowPanel addStyleNames='{style.padBottom}'>
+					<g:CheckBox ui:field='showPracticePanelCheckBox'>
+						Add practice phase
+					</g:CheckBox>
+				</g:FlowPanel>
+
+				<g:DeckPanel animationEnabled='true' ui:field='practiceDeckPanel'>
+
+					<g:FlowPanel ui:field='practicePanel'>
+					
+									
+						<g:FlowPanel>
+							<g:Label ui:field='noPracticeCourseConceptsLabel' addStyleNames='{style.smallPadBottom} {style.noCourseConceptsLabel}'>
+								No course concepts were found. Please add concepts to the course properties.
+							</g:Label>
+						</g:FlowPanel>
+				        <g:FlowPanel>
+				            <g:SimplePanel ui:field='practiceConceptsSelectPanel' addStyleNames='{style.conceptSelectPanel}' >
+				                <select:MultipleSelect ui:field='practiceConceptMultipleSelect' countSelectedTextFormat="1" showActionsBox="true" addStyleNames='{style.conceptsMultipleSelect}' />
+				            </g:SimplePanel>
+				            <b:Tooltip placement="BOTTOM" title="Course concepts to practice in this course object.">            
+					            <g:FlowPanel ui:field='practiceConceptsTagPanel' addStyleNames='{style.practiceConceptTagsInputPanel}' >
+					                <tagsinput:TagsInput ui:field='practiceConceptsTagInput'/>
+					                <cw:BlockerPanel showDisabled='true' ui:field='practiceConceptsTagPanelBlocker' addStyleNames='{style.blocker}'/>
+					            </g:FlowPanel>
+				            </b:Tooltip>
+				        </g:FlowPanel>
+
+						<g:DeckPanel animationEnabled='true'
+							ui:field='practiceShowApplicationsDeck'>
+
+							<g:FlowPanel addStyleNames='{style.padTop} {style.padBottom}'
+								ui:field='practiceApplicationsPanel'>
+								<g:FlowPanel addStyleNames="{style.showFilesPanel}">
+
+									<g:FlowPanel addStyleNames='{style.overflowAuto}'>
+
+										<g:HTML addStyleNames='{style.showFilesLabel}'>
+											<i class="fa fa-television"></i>
+											<div style='display: inline-block; padding: 0px 5px;'>
+												Practice Applications
+											</div>
+										</g:HTML>
+
+										<wb:ManagedTooltip title="Refresh the list of applications">
+											<b:Button addStyleNames='{style.refreshButton}' type='LINK'
+												icon='REFRESH' ui:field='practiceRefreshButton' />
+										</wb:ManagedTooltip>
+										<wb:ManagedTooltip title="Add Practice">
+											<g:Image width='20px' height='20px' ui:field='addApplicationButton' addStyleNames='{style.addButton}' 
+												/>	
+										</wb:ManagedTooltip>											
+
+									</g:FlowPanel>
+
+									<g:FlowPanel>
+
+										<g:FlowPanel addStyleNames='{style.fileList}'>
+
+											<g:ScrollPanel
+												addStyleNames='{style.smallPadTop} {style.cellTableScroller} {style.cellTableBorder} {style.fullWidthWorkAround}'>
+												<g:FlowPanel addStyleNames='{style.smallPadOther}'
+													ui:field='practiceApplicationsList'>
+													<c:CellTable addStyleNames='{style.cellTableInset}'
+														ui:field='practiceApplicationList' />
+												</g:FlowPanel>
+											</g:ScrollPanel>
+
+											<g:FlowPanel addStyleNames='{style.showPracticeApplicationsLoadingPanel}'
+												ui:field='practiceApplicationsLoadingPanel'>
+												<g:VerticalPanel width='100%' height='100%'
+													horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
+													<g:FlowPanel>
+														<wb:BsLoadingIcon size='TIMES2'
+															addStyleNames='{style.centerVertical}' ui:field='practiceApplicationsLoadingIcon' />
+														<g:InlineHTML
+															addStyleNames='{style.smallPadLeft} {style.centerVertical}'>
+															Retrieving applications...
+														</g:InlineHTML>
+													</g:FlowPanel>
+												</g:VerticalPanel>
+											</g:FlowPanel>
+
+										</g:FlowPanel>
+
+									</g:FlowPanel>
+								</g:FlowPanel>
+								<g:FlowPanel>
+								</g:FlowPanel>
+							</g:FlowPanel>
+
+						</g:DeckPanel>
+
+						<g:FlowPanel addStyleNames='{style.padBottom}'>
+							<g:CheckBox ui:field="practiceAllowedAttemptsCheckBox">Set Allowed Attempts</g:CheckBox>
+							<g:FlowPanel ui:field="practiceAllowedAttemptsPanel"
+								addStyleNames='{style.spinnerPanelStyle}'>
+								<d:NumberSpinner ui:field='practiceAllowedAttempts'
+									addStyleNames='{style.spinnerStyle}' />
+							</g:FlowPanel>
+							<wb:HelpLink helpCaption='Practice Allowed Attempts'>
+								<wb:linkWidget>
+									<b:Icon title="What's this?" addStyleNames='{style.helpLink}'
+										type='QUESTION_CIRCLE' />
+								</wb:linkWidget>
+								<wb:helpBody>
+									<g:HTML>
+										The number of times the learner is allowed to receive remediation for this Practice portion of the course before gracefully ending the course. If the allowed attempts is not set, the learner has unlimited attempts on the practice material.
+									</g:HTML>
+								</wb:helpBody>
+							</wb:HelpLink>
+
+							<g:HTMLPanel addStyleNames='{style.note}'>
+								<div style='padding: 5px;'>
+									<b>Note:</b>
+									Currently, GIFT requires that at least one practice
+									application
+									<i>must</i>
+									cover
+									<i>all</i>
+									of the concepts taught by this practice phase.
+								</div>
+							</g:HTMLPanel>
+						</g:FlowPanel>
+
+					</g:FlowPanel>
+
+					<g:SimplePanel width='100%' ui:field='noPracticePanel'>
+					</g:SimplePanel>
+				</g:DeckPanel>
+
+			</g:FlowPanel>
+
+			<g:FlowPanel addStyleNames='{style.padBottom}'>						
+			<g:FlowPanel>						
+				<g:DisclosurePanel animationEnabled='true' width='100%' ui:field='mbpOptionsPanel' >
+				
+					<g:header>
+						Options
+					</g:header>
+					
+					<g:FlowPanel addStyleNames='{style.smallPadBottom} {style.rightTabbed} {style.disclosurePanelInner}'>
+						<g:FlowPanel width='100%'>
+						  <g:HTMLPanel ui:field="optionTablePanel">
+                            <table style='width: 100%;'>
+                                <tr style='width: 100%;'>
+                                    <td style='vertical-align: top; width: 10px'>
+                                       <g:CheckBox ui:field='disabled'/>                         
+                                    </td>
+                                    <td style='vertical-align: top;'>
+                                    	<wb:ManagedTooltip title="Disabled means this will not be shown to the learner and not checked for authoring errors.">
+                                        	<g:Label addStyleNames='{style.padSides}'>Disable course object</g:Label> 
+                                        </wb:ManagedTooltip>                             
+                                    </td>
+                                 </tr>
+                                 <tr class="{style.mandatoryControlsRow}" style='width: 100%;'>
+                                    <td style='vertical-align: top; width: 10px'>
+                                       <g:CheckBox ui:field='mandatoryCheckBox'/>                         
+                                    </td>
+                                    <td style='vertical-align: top;'>
+                                        <g:InlineLabel addStyleNames='{style.padSides}'>Make Adaptive Courseflow mandatory</g:InlineLabel>
+                                        <g:ValueListBox ui:field="mandatoryBehaviorSelector"/>
+                                        <g:FlowPanel ui:field="learnerStateShelfLifePanel" addStyleNames="{style.learnerStateShelfLifeContainer}">
+	                                        <g:InlineLabel>the learner state is</g:InlineLabel>
+	                                        <cw:NumberSpinner ui:field="learnerStateShelfLife" addStyleNames="{style.learnerStateShelfLifeSpinner}" minValue="1"/>
+	                                        <g:InlineLabel>days old</g:InlineLabel>
+                                        </g:FlowPanel>
+                                        <wb:HelpLink helpCaption='Adaptive Courseflow Mandatory Behavior'>
+						                    <wb:linkWidget>
+						                        <b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE'/>
+						                    </wb:linkWidget>
+						                    <wb:helpBody>
+						                        <g:HTML>
+						                            <p>
+							                            The mandatory behavior options are used to specify when a learner should be given the opportunity 
+							                            to skip any portion of this Adaptive Courseflow course object based on existing learner state. The following options
+						                            </p>
+					                                <h3>None</h3>
+				                                    <p>
+					                                    If the checkbox isn't checked this indicates that the learner should always be given the opportunity
+					                                    to skip the Adaptive Courseflow if Expert Knowledge or Skill learner state values can be found for all the course concepts covered here.
+				                                    </p>
+				                                    <p>
+				                                        <b>Example 1:</b> If the Adaptive Courseflow references 'Concept A' and the learner state has a Knowledge value 
+				                                        of Expert for 'Concept A', then the user is given a choice to skip the Rule, Example, and Recall phases.
+				                                    </p>
+				                                    <p>
+				                                        <b>Example 2:</b> If the Adaptive Courseflow references 'Concept A' and 'Concept B' but the learner state 
+				                                        has only a Knowledge value of Expert for 'Concept A', the user has to take the Adaptive Courseflow.
+				                                    </p>
+					                                <h3>Checked, Always</h3>
+				                                    <p>						                                    
+				                                        If the checkbox is checked and the drop down menu has selected 'Always', the learner will never be given 
+				                                        the option to skip the Adaptive Courseflow regardless of their current learner state.
+				                                    </p>
+					                                <h3>Checked, After</h3>
+				                                    <p>
+				                                        If the checkbox is checked and the drop down menu has selected 'After', the learner will be given the 
+				                                        opportunity to skip the Adaptive Courseflow if Expert Knowledge can be found for all the course concepts covered here 
+				                                        and the values for the learner state attributes were collected within the number of days 
+				                                        indicated by the number spinner control.
+				                                    </p>
+				                                    
+				                                    <p>
+				                                        <b>Example 1:</b> If the Adaptive Courseflow covers only 'Concept A' and the learner state shows Expert Knowledge 
+                                                              on 'Concept A', and 'Concept B' 2 days before and the number of days for the mandatory 
+                                                              behavior has been set to 3 days, then the user is given the choice to skip.
+				                                    </p>
+				                                    
+				                                    <p>
+			                                            <b>Example 2:</b> If the Adaptive Courseflow covers only 'Concept A' and the learner state shows Expert Knowledge 
+                                                              on 'Concept A', and 'Concept B' 2 days before and the number of days for the mandatory 
+                                                              behavior has been set to 1 day, then the user has to take the Adaptive Courseflow.
+			                                        </p>
+			                                        
+			                                        <p>
+			                                            <b>Example 3:</b> If the Adaptive Courseflow covers 'Concept A', and 'Concept B' but learner state 
+                                                              has only Expert Knowledge for 'Concept A', the user has to take the Adaptive Courseflow.
+			                                        </p>
+						                        </g:HTML>
+						                    </wb:helpBody>
+						                        
+						                </wb:HelpLink>
+                                    </td>
+                                 </tr>
+                              </table>
+							</g:HTMLPanel>
+							
+                        </g:FlowPanel>
+					</g:FlowPanel>
+				</g:DisclosurePanel>
+			</g:FlowPanel>
+			</g:FlowPanel>
+
+				</g:HTMLPanel>
+		<m:AddApplicationDialog ui:field="addApplicationDialog" />
+		<ud:CourseObjectModal ui:field="metadataObjectDialog" />
+	</g:FlowPanel>
+</ui:UiBinder> 

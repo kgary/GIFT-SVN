@@ -1,0 +1,29 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractScoreProto";
+
+import "AbstractAnswerScore.proto";
+import "AbstractScaleScore.proto";
+import "survey/SurveyConceptAssessmentScore.proto";
+import "survey/SurveyFeedbackScorer.proto";
+
+/* This is the protobuf message that contains the base implementations for all score types. */ 
+message AbstractScore {
+	/* 
+	 *	The score can either represent an abstract answer, abstract scale, survey concept assessment,  
+	 *	or survey feedback type. 
+	 */
+	oneof type {
+		AbstractAnswerScore abstract_answer_score = 1;
+		AbstractScaleScore abstract_scale_score = 2;
+		SurveyConceptAssessmentScore survey_concept_assessment_score = 3;
+		SurveyFeedbackScorer survey_feedback_scorer = 4;
+	}
+}

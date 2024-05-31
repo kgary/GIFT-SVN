@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema elementFormDefault="qualified"
+           targetNamespace="http://GIFT.com/conversationTree"
+		   xmlns="http://GIFT.com/conversationTree"
+           version="8.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="conversation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="authorsDescription">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							Describes the conversation from an authoring perspective.  
+							This is useful for making notes on the goals of the conversation.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="learnersDescription">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							A description of the conversation that can be shown to the learner.  
+							This is useful for providing a summary or overview of the conversation to the learner before starting it.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="startNodeId">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							A reference to the the first node in the conversation.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minExclusive value="0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="messages">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							All message nodes in the conversation.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="message" minOccurs="0" maxOccurs="unbounded" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="questions">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							All question nodes in the conversation.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="question" minOccurs="0" maxOccurs="unbounded" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="choices">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							All question choice nodes in the conversation.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="choice" minOccurs="0" maxOccurs="unbounded" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ends">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							All end nodes in the conversation.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="end" minOccurs="1" maxOccurs="unbounded" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="name" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						The name of the conversation.  This is useful when referencing this conversation.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="version" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						The version number of the XML file.  Typically GIFT version numbers are formatted as schema version followed by saved version (e.g. 6.0.11).
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>		
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="message">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="text">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							The message content.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="childNodeId">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							The next conversation node after this message has been presented.  
+							This can't be a question choice node.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minExclusive value="0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="nodeId" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						The unique conversation tree node id among all nodes in the tree.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minExclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>	
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="question">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="text">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							The question to ask.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="choices">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="choiceId" minOccurs="2" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation xml:lang="en">
+										The choices available as answers to the question presented.
+									</xs:documentation>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:integer">
+										<xs:minExclusive value="0"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>				
+			</xs:sequence>
+			<xs:attribute name="nodeId" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						The unique conversation tree node id among all nodes in the tree.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minExclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>	
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="choice">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="text">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							The question choice content.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="childNodeId">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							The next conversation node after this message has been presented.  
+							This can't be a question choice or end node.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minExclusive value="0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="assessment" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							Contains assessment values based on the learner choosing this answer in the conversation.  
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="nodeId" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						The unique conversation tree node id among all nodes in the tree.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minExclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>	
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="end">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="assessment" minOccurs="0"  maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							Contains assessment values based on the learner ending the conversation on this node.  
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="nodeId" use="required">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">
+						The unique conversation tree node id among all nodes in the tree.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minExclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>	
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="assessment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="concept">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							The name of the concept associated with this assessment.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="level">
+					<xs:simpleType>
+						<xs:annotation>
+							<xs:documentation xml:lang="en">
+								The GIFT enumerated assessment level for this assessment (e.g. At Expectation).
+							</xs:documentation>
+						</xs:annotation>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="confidence">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							The confidence of this assessment for this concept.
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal">
+							<xs:minExclusive value="0"/>
+							<xs:maxInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

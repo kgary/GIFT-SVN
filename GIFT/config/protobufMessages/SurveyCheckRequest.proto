@@ -1,0 +1,46 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "SurveyCheckRequestProto";
+
+import "GetSurveyRequest.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains attributes of a survey that are needing to be checked and validated against the survey database. */
+message SurveyCheckRequest {
+	/* The key for the survey in the survey context. */
+	google.protobuf.StringValue gift_key = 1;
+	
+	/* The index of the course object that this survey check request corresponds to. */
+	google.protobuf.Int32Value course_object_index = 2;
+	
+	/* The unique id for the survey context that is associated with the survey. */
+	google.protobuf.Int32Value survey_context_id = 3;
+	
+	/* The list of questions whose elements also need to be checked. */
+	repeated QuestionCheck questions = 4;
+	
+	/* The contents of a knowledge assessment survey request which contains survey elements to check. */
+	GetSurveyRequest recall_request = 5;
+}
+
+/* This message represents a question. */
+message QuestionCheck {
+	/* The unique id of a question. */
+	google.protobuf.Int32Value question_id = 1;
+	
+	/* The collection of replies to check. */
+	repeated ReplyCheck replies = 2;
+}
+
+/* This message represents a response. */
+message ReplyCheck {
+	/* The unique id of a reply to a question. */
+	google.protobuf.Int32Value reply_id = 1;
+}

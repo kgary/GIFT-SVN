@@ -1,0 +1,49 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LearnerActionProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents an action that a learner may invoke. */
+message LearnerAction {
+	oneof learner_type {
+		/* Parameters for a learner that is of a tutor-me type. */
+		TutorMeParams tutor_me_params = 1;
+		
+		/* Strategy reference for the learner. */
+		StrategyReference strategy_reference = 2;
+	}
+	
+	/* Unique name identifying the learner. */
+	google.protobuf.StringValue display_name = 3;
+	
+	/* Type of the learner. */
+	google.protobuf.StringValue type = 4;
+	
+	/* Description of the learner. */
+	google.protobuf.StringValue description = 5;
+}
+
+message TutorMeParams {
+	/* The conversation file. */
+	google.protobuf.StringValue conversation_file = 1;
+	
+	/* The remote sko. */
+	google.protobuf.StringValue remote_sko = 2;
+	
+	/* The local sko. */
+	google.protobuf.StringValue local_sko = 3;
+}
+
+message StrategyReference {
+	/* The conversation file. */
+	google.protobuf.StringValue strategy_name = 1;
+}
+	

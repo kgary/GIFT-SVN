@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" version="11.0"
+    xmlns:common="http://GIFT.com/common"
+    xmlns:fg="http://www.FGolubov.com/XMLEditor"
+    xmlns:lm="http://GIFT.com/lessonMaterial" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://GIFT.com/common" schemaLocation="../common.xsd"/>
+    <xs:element name="Metadata">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Metadata">
+                    <fg:message>This is the root node of the metadata which contains information about a domain content filea.  Look for other helpful information by clicking on a node.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+				<xs:choice>
+					<xs:element name="simple">					
+						<xs:annotation>
+							<xs:appinfo>
+                                <fg:node-info
+                                    editor-class="mil.arl.gift.tools.authoring.mat.custnodes.ConfigurableFileSelectionDialog" message="Domain Content File">
+									<fg:message>This element contains the content/resource file that this metadata is describing.</fg:message>
+									<fg:message>This option provides no way to reference a DKF, nor provide runtime configuration options that maybe needed by systems like an ITS (e.g. GIFT requires a trainingapp.xml file for metadata that uses VBS scenarios).</fg:message>
+									<fg:param name="title">Select Domain content file</fg:param>
+									<fg:param name="information">Please select the domain content file this metadata file describes.</fg:param>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="value">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="4"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="trainingApp">					
+						<xs:annotation>
+							<xs:appinfo>
+                                <fg:node-info
+                                    editor-class="mil.arl.gift.tools.authoring.mat.custnodes.ConfigurableFileSelectionDialog" message="Training Application File">
+									<fg:message>This element contains a reference to a training application XML file that contains parameters for handling the content this metadata describes.</fg:message>
+									<fg:message>This option provides a way to reference a DKF, as well as provide runtime configuration options that maybe needed by systems like an ITS.</fg:message>
+									<fg:param name="title">Select Training Application XML file</fg:param>
+									<fg:param name="extension">trainingapp.xml</fg:param>
+									<fg:param name="information">Please select the training application file that references the content this metadata file describes.</fg:param>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="value">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+                                    <xs:minLength value="17"/>
+                                    <!-- 17 characters = 1 (min file name) + 1 (.) + 15 (trainingapp.xml).  Example: 'a.trainingapp.xml' -->
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+                        </xs:complexType>
+					</xs:element>
+					<xs:element name="lessonMaterial">					
+						<xs:annotation>
+							<xs:appinfo>
+                                <fg:node-info
+                                    editor-class="mil.arl.gift.tools.authoring.mat.custnodes.ConfigurableFileSelectionDialog" message="Lesson Material File">
+									<fg:message>This element contains a reference to a lesson material XML file that contains parameters for handling the content this metadata describes.</fg:message>
+									<fg:param name="title">Select Lesson Material XML file</fg:param>
+									<fg:param name="extension">lessonMaterial.xml</fg:param>
+									<fg:param name="information">Please select the lesson material file that references the content this metadata file describes.</fg:param>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="value">
+                                    <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                    <xs:minLength value="20"/>
+                                    <!-- 17 characters = 1 (min file name) + 1 (.) + 18 (lessonMaterial.xml).  Example: 'a.lessonMaterial.xml' -->
+                                    </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+					</xs:element>
+					<xs:element name="URL">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info message="Content URL">
+									<fg:message>A webpage URL to that contains the content to display.</fg:message>
+									<fg:message>Note: the address must contain the URL scheme prefix such as http://.</fg:message>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="value">
+                                    <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                    <xs:minLength value="4"/>
+                                    </xs:restriction>
+                                    </xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+				</xs:choice>
+				<xs:element ref="PresentAt"/>
+                <xs:element name="Concepts">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Concepts">
+                                <fg:message>Specify one or more Concepts that describes the material covered in the content this metadata references.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="Concept"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+			<xs:attribute name="displayName" use="optional">
+				<xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="Display Name">
+                            <fg:message>A label used to identify this metadata and the content it references</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+			</xs:attribute>
+            <xs:attribute name="version" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="File Version">
+                            <fg:message>The version of this file.  This is auto-incremented if using the MAT to save.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PresentAt">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Present At">
+                    <fg:message>When to allow the content to be presented to the learner.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <!-- GIFT validation logic will require at least one of these to be in the XML -->
+                <xs:element default="false" name="remediationOnly" type="common:booleanEnum">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Remediation Only">
+                                <fg:message>Whether this content is for remediation only and should not be given to the learner as pre-check on learning lesson material.  A value of 'false' means that a Merrill's quadrant needs to be specified.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element minOccurs="0" ref="MerrillQuadrant"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element default="Example" name="MerrillQuadrant">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info
+                    editor-class="mil.arl.gift.tools.authoring.mat.custnodes.MerrillQuadrantSelectionDialog" message="Merrill Quadrant">
+                    <fg:message>The Merrill Quadrant the content file is associated with.  Currently mapped to the enums in mil.arl.gift.common.enums.MerrillQuadrantEnum.java</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="4"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="Attributes">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Attributes">
+                    <fg:message>Specify one or more characteristics of the content this metadata references.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Attribute"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Attribute">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Attribute">
+                    <fg:message>A characteristic (choosen from a static list of choices) of the content this metadata references.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="value">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info
+                                editor-class="mil.arl.gift.tools.authoring.mat.custnodes.MetadataAttributeSelectionDialog"
+                                exposed="true" message="Attribute Value">
+                                <fg:message>Specify the attribute value (e.g. "Medium Difficulty", "IMI2") that describes the content this metadata references.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Concept">
+		<xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ActivityType"/>
+			</xs:sequence>
+			<xs:attribute name="name" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info exposed="true" message="Concept Name">
+							<fg:message>The name of a concept (e.g. "Map Reading") that is covered by the content this metadata references.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+        </xs:complexType>		
+    </xs:element>
+    <xs:element name="ActivityType">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Activity Type">
+                    <fg:message>The type of activity the learner will be performing with the content.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+					<xs:element name="Interactive">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:restriction base="xs:anyType"/>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Constructive">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:restriction base="xs:anyType"/>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Active">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:restriction base="xs:anyType"/>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Passive">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element ref="Attributes"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

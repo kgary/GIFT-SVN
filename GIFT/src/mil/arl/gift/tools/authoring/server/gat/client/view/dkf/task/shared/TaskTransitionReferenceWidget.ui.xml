@@ -1,0 +1,47 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+    xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    
+    <ui:style>
+        .inlineBlock {
+            display: inline-block;
+        }
+        .left-align {
+            text-align: left;
+        }
+        .pointer-cursor {
+            cursor: pointer;
+        }
+        .helpLink {
+            padding-left: 5px;
+            color: rgb(100, 100, 200);
+            font-weight: normal;
+        }
+        .panelPadding{
+            padding-top:5px;
+            padding-bottom:0px;
+        }
+    </ui:style>
+    
+     <b:Panel>
+        <b:PanelHeader ui:field="panelHeader" dataToggle="COLLAPSE" addStyleNames="{style.pointer-cursor}">
+            <b:Heading text="Tasks" size="H2" addStyleNames="{style.left-align} {style.inlineBlock}" />
+             <wb:HelpLink helpCaption='Tasks' ui:field='helpLink' >
+                <wb:linkWidget>
+                    <b:Icon title="What's this?" addStyleNames='{style.helpLink} {style.inlineBlock}' type='QUESTION_CIRCLE' />
+                </wb:linkWidget>
+                <wb:helpBody>
+                    <g:HTML ui:field='helpText' />
+                </wb:helpBody>
+            </wb:HelpLink>
+        </b:PanelHeader>
+        <b:Collapse ui:field="collapse">
+            <b:PanelBody addStyleNames="{style.panelPadding}">
+                <wb:GenericListEditor ui:field="listEditor" placeholder="No instructional strategy will be used for changes in assessment" />
+            </b:PanelBody>
+        </b:Collapse>
+    </b:Panel>
+</ui:UiBinder>

@@ -1,0 +1,28 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.headerPanel {
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+        .center {
+            display: block;
+            margin-right: auto;
+			margin-left: auto;
+        }
+		.feedbackArea {
+            padding: 5px;
+		}
+		.feedbackWrapper {
+		    background: rgba(230, 242, 247, 0.75);
+ 		    border-radius: 20px;
+ 		    padding: 27px 20px;
+		}
+	</ui:style>
+	<g:ScrollPanel styleName="{style.feedbackArea}" ui:field="feedbackScrollPanel" >
+	    <g:FlowPanel width="100%" height="100%" addStyleNames="{style.feedbackWrapper}" ui:field="feedbackWrapper" visible="false">
+			<g:FlowPanel width="100%" height="100%" ui:field="feedbackPanel"/>
+		</g:FlowPanel>
+	</g:ScrollPanel>
+</ui:UiBinder> 

@@ -1,0 +1,100 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:gm="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster"
+	xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+        .border{
+            border: 1px solid black;
+            display: inline-block;
+            margin-right: 5px; 
+            margin-up: 10px;
+        }
+        .rect{
+            width: 40px;
+            height: 20px;
+        }
+        .belowExpectation{
+            border-color: #700;
+            border-style: solid;
+        }
+        .belowExpectation > .rect{
+            background-color: red;
+        }
+        .atExpectation{
+            border-color: #050;
+            border-style: solid;
+        }
+        .atExpectation > .rect{
+            background-color: #0d0;
+        }
+        .aboveExpectation{
+            border-color: black;
+            border-style: dashed;
+        }
+        .aboveExpectation > .rect{
+            background-color: #129e12;
+        }
+        .unknown{
+            border-color: #888;
+            border-style: dashed;
+        }
+        .unknown > .rect{
+            background-color: #cdcdcd;
+        }
+        .text{
+            position: relative;
+            top: -6px;
+        }
+        .aboveText{
+            position: relative;
+            top: -6px;
+            right: 13px
+        }
+        .star{
+            position: relative;
+            color: yellow;
+            stroke: none !important;
+            filter: drop-shadow(1px 1px 1px black);
+            font-size: 14px;
+            left: -32px;
+            top: -6px;
+        }
+	</ui:style>
+	<g:FlowPanel>
+	   <g:FlowPanel>
+	       <g:FlowPanel addStyleNames='{style.border} {style.belowExpectation}'>
+	           <g:FlowPanel addStyleNames='{style.rect}'/>
+	       </g:FlowPanel>
+	       <g:InlineHTML addStyleNames='{style.text}'>
+	           Below Expectation
+	       </g:InlineHTML>
+	   </g:FlowPanel>
+	   <g:FlowPanel>
+           <g:FlowPanel addStyleNames='{style.border} {style.atExpectation}'>
+               <g:FlowPanel addStyleNames='{style.rect}'/>
+           </g:FlowPanel>
+            <g:InlineHTML addStyleNames='{style.text}'>
+               At Expectation
+           </g:InlineHTML>
+       </g:FlowPanel>
+           <g:FlowPanel>
+           <g:FlowPanel addStyleNames='{style.border} {style.aboveExpectation}'>
+               <g:FlowPanel addStyleNames='{style.rect}'/>
+           </g:FlowPanel>
+           <b:Icon addStyleNames='{style.star}' type='STAR'/>                      
+           <g:InlineHTML addStyleNames='{style.aboveText}'>
+               Above Expectation
+           </g:InlineHTML>
+       </g:FlowPanel>
+       <g:FlowPanel>
+           <g:FlowPanel addStyleNames='{style.border} {style.unknown}'>
+               <g:FlowPanel addStyleNames='{style.rect}'/>
+           </g:FlowPanel>
+           <g:InlineHTML addStyleNames='{style.text}'>
+               Unknown
+           </g:InlineHTML>
+       </g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

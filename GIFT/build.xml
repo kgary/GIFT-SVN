@@ -1,0 +1,394 @@
+<?xml version="1.0" ?>
+<project name="GIFTBase" default="compile">
+    
+    <!-- TODO: Figure out a good way to check if the Javadoc is out of date -->
+
+    <property name="trainingapp.vbs.dir" value="../Training.Apps/VBS"/>
+	
+	<!-- used to enable verbose on operations like copy file -->
+	<property name="useVerbose" value="false"/>
+	<property name="useQuiet" value="true"/>
+	
+	<!-- read in the version properties file to use values in the build logic -->
+	<loadproperties srcfile="${basedir}/config/version.txt" prefix="GIFT"/>
+
+    <property environment="env"/>
+    
+	<!-- 
+		Compilation targets 
+	-->
+	
+    <target name="compile" description="Builds all of GIFT for development">
+<!--
+		<echo message="Ant args:  ANT_OPTS = ${env.ANT_OPTS}"/>
+		 <echoproperties/>
+-->
+        <ant dir="src/mil/arl/gift"/>
+    </target>
+	
+	<target name="modules" description="Builds only the GIFT Modules">
+	
+		<echo message="Building Modules target"/>
+		
+		<ant dir="src/mil/arl/gift" target="ums"/>
+		<ant dir="src/mil/arl/gift" target="lms"/>
+		<ant dir="src/mil/arl/gift" target="sensor"/>
+		<ant dir="src/mil/arl/gift" target="learner"/>
+		<ant dir="src/mil/arl/gift" target="ped"/>
+		<ant dir="src/mil/arl/gift" target="domain"/>
+        <ant dir="src/mil/arl/gift" target="tutor"/>
+		<ant dir="src/mil/arl/gift" target="gateway"/>
+    </target>
+	
+	<target name="release" description="Builds all of GIFT for release and Javadocs">
+		<echo message="Building Release target (with Javadocs)"/>
+<!--
+	<echo message="Ant args:  ANT_OPTS = ${env.ANT_OPTS}"/>
+		 <echoproperties/>
+-->
+		<property name="build.release" value="true" />
+        <ant dir="src/mil/arl/gift"/>
+		<ant target="javadoc"/>
+    </target>
+	
+	<target name="release_noJavaDocs" description="Builds all of GIFT for release">
+		<echo message="Building Release target (no Javadocs)"/>
+<!--
+	<echo message="Ant args:  ANT_OPTS = ${env.ANT_OPTS}"/>
+		 <echoproperties/>
+-->
+		<property name="build.release" value="true" />
+        <ant dir="src/mil/arl/gift"/>
+    </target>
+
+	<!-- A zip will be created in GIFT/build/aws that can be used to deploy to a GIFT Amazon Web
+		service (AWS) virtual machine (VM) -->
+    <target name="aws" description="Builds an AWS deploy package for deploying on an AWS server">
+        
+        <!-- note that properties that are defined here are specific for the ant task/target (and sub tasks here) -->
+        <!-- set build release -->
+        <property name="build.release" value="true" />
+        <!-- Load the aws properties file -->
+        <property file="config/aws.properties" />
+
+        <!-- set dynamic properties (properties based on the properties file) -->
+        <condition property="giftProtocol" value="https" else="http">
+            <istrue value="${giftUseHttps}"/>
+        </condition>
+        
+        <condition property="giftTutorUrl" value="${giftProtocol}://${giftHost}/tutor" else="${giftProtocol}://${giftHost}:${giftTutorPort}/tutor">
+            <istrue value="${giftUsePortForwarding}"/>
+        </condition>
+        
+        <condition property="giftAdminServerUrl" value="${giftProtocol}://${giftHost}" else="${giftProtocol}://${giftHost}:${giftAdminServerPort}">
+            <istrue value="${giftUsePortForwarding}"/>
+        </condition>
+        
+        <condition property="giftJwsUrl" value="${giftProtocol}://${giftHost}/remote" else="${giftProtocol}://${giftHost}:${giftTutorPort}/remote">
+            <istrue value="${giftUsePortForwarding}"/>
+        </condition>
+        <echo message="Value of giftUsePortForwarding=${giftUsePortForwarding}"/>
+        <echo message="Value of giftTutorUrl=${giftTutorUrl}"/>
+        <echo message="Value of giftAdminServerUrl=${giftAdminServerUrl}"/>
+        <echo message="Value of giftJwsUrl=${giftJwsUrl}"/>
+        
+        <!-- set the deploy output folder name (based on timestamp) -->
+        <tstamp> 
+            <format  property = "build.timestamp"  pattern ="yyyyMMdd_HHmmss"/> 
+        </tstamp> 
+        <property name="build.foldername" value="${awsDeployName}_${build.timestamp}"/>
+        
+        <!-- copy the modified build.properties before the build is done...unfortunately this goes into the build branch folder (for now) since it needs to be part of the 'build' process -->
+        <copy toDir="./config" overwrite="true">
+          <fileset dir="${awsTemplatesDir}/config">
+            <include name="build.properties"/>
+          </fileset>
+          <filterset begintoken="@" endtoken="@">
+            <filtersfile file="config/aws.properties"/>
+            <filter token="giftTutorUrl" value="${giftTutorUrl}"/>
+            <filter token="giftAdminServerUrl" value="${giftAdminServerUrl}"/>
+            <filter token="giftJwsUrl" value="${giftJwsUrl}"/>
+          </filterset>
+        </copy>
+        
+        <!-- build the source code -->
+        <ant dir="src/mil/arl/gift"/>
+        
+        <!-- copy the required GIFT files to a new output folder -->
+        <copy toDir="${awsDeployFolder}/${build.foldername}/${awsDeployName}/${awsDeployGiftFoldername}" overwrite="true">
+            <fileset dir=".">
+                <include name="bin/**"/>
+                <include name="config/**"/>
+                <include name="data/**"/>
+                <include name="docs/**"/>
+                <include name="external/**"/>
+                <include name="generated/**"/>
+                <include name="scripts/**"/>
+                <include name="src.py/**"/>
+                <include name="test/**"/>
+                <include name="*.gwt.xml"/>
+                <include name="*.cmd"/>
+                <include name="*.classpath"/>
+                <include name="*.project"/>
+                <include name="build.xml"/>
+            </fileset>
+        </copy>
+		
+		<!-- make empty temp directory -->
+		<mkdir dir="${awsDeployFolder}/${build.foldername}/${awsDeployName}/${awsDeployGiftFoldername}/temp" />
+        
+        <copy toDir="${awsDeployFolder}/${build.foldername}/${awsDeployName}" overwrite="true">
+            <fileset dir="../">
+                <include name="Training.Apps/**"/>
+                <include name="installGIFT.bat"/>
+            </fileset>
+        </copy>
+        
+         <!-- overwrite any other external & data files as needed (order matters here since these configs may get overwritten by templates yet). -->
+        <copy toDir="${awsDeployFolder}/${build.foldername}/${awsDeployName}/${awsDeployGiftFoldername}" overwrite="true">
+            <fileset dir="${awsTemplatesDir}">
+                <include name="data/**"/>
+                <include name="external/**"/>
+            </fileset>
+        </copy> 
+        
+        <!-- overwrite the config files based on the properties -->
+        <copy toDir="${awsDeployFolder}/${build.foldername}/${awsDeployName}/${awsDeployGiftFoldername}/config" overwrite="true">
+          <fileset dir="${awsTemplatesDir}/config">
+            <include name="**/*.properties"/>
+            <include name="**/*.xml"/>
+          </fileset>
+          <filterset begintoken="@" endtoken="@">
+            <filtersfile file="config/aws.properties"/>
+            <filter token="giftTutorUrl" value="${giftTutorUrl}"/>
+            <filter token="giftAdminServerUrl" value="${giftAdminServerUrl}"/>
+            <filter token="giftJwsUrl" value="${giftJwsUrl}"/>
+            <filter token="giftTutorPort" value="${giftTutorPort}"/>
+            <filter token="giftAdminServerPort" value="${giftAdminServerPort}"/>
+          </filterset>
+        </copy>
+        
+        <!-- overwrite some of the data files that also depend on build parameters. -->
+        <copy toDir="${awsDeployFolder}/${build.foldername}/${awsDeployName}/${awsDeployGiftFoldername}/data" overwrite="true">
+          <fileset dir="${awsTemplatesDir}/data">
+            <include name="**/DefaultAvatar.js"/>
+          </fileset>
+          <filterset begintoken="@" endtoken="@">
+            <filtersfile file="config/aws.properties"/>
+            <filter token="giftTutorUrl" value="${giftTutorUrl}"/>
+            <filter token="giftAdminServerUrl" value="${giftAdminServerUrl}"/>
+            <filter token="giftProtocol" value="${giftProtocol}"/>
+            <filter token="giftJwsUrl" value="${giftJwsUrl}"/>
+          </filterset>
+        </copy>
+
+        <!-- remove any unnecessary folder/files (such as UMS/LMS folders) -->
+        <delete dir="${awsDeployFolder}/${build.foldername}/${awsDeployName}/${awsDeployGiftFoldername}/data/DerbyDb/GiftLms"/>
+        <delete dir="${awsDeployFolder}/${build.foldername}/${awsDeployName}/${awsDeployGiftFoldername}/data/DerbyDb/GiftUms"/>
+        <delete dir="${awsDeployFolder}/${build.foldername}/${awsDeployName}/${awsDeployGiftFoldername}/bin/eclipse"/>
+        
+        <!-- zip up the output folder -->
+        <zip destfile="${awsDeployFolder}/${build.foldername}.zip" basedir="${awsDeployFolder}/${build.foldername}"/>
+        
+        <!-- delete the unzipped folder -->
+        <delete dir="${awsDeployFolder}/${build.foldername}"/>
+    </target>
+    
+    <target name="common" description="Builds the common module">
+        <ant dir="src/mil/arl/gift" target="common"/>
+    </target>
+	
+	<!-- Currently not used -->
+    <!-- <target name="client">
+        <ant dir="src/mil/arl/gift" target="client"/>
+    </target>
+    
+    <target name="server">
+        <ant dir="src/mil/arl/gift" target="server"/>
+    </target>
+	-->
+    
+    <target name="ums" description="Builds the ums module">
+        <ant dir="src/mil/arl/gift" target="ums" />
+    </target>
+    
+    <target name="lms" description="Builds the lms module">
+        <ant dir="src/mil/arl/gift" target="lms" />
+    </target>
+    
+    <target name="learner" description="Builds the learner module">
+        <ant dir="src/mil/arl/gift" target="learner" />
+    </target>
+    
+    <target name="ped" description="Builds the ped module">
+        <ant dir="src/mil/arl/gift" target="ped" />
+    </target>
+    
+    <target name="tutor" description="Builds the tutor module">
+        <ant dir="src/mil/arl/gift" target="tutor" />
+    </target>
+    
+    <target name="sensor" description="Builds the sensor module">
+        <ant dir="src/mil/arl/gift" target="sensor" />
+    </target>
+    
+    <target name="gateway" description="Builds the gateway module">
+        <ant dir="src/mil/arl/gift" target="gateway" />
+    </target>
+    
+    <target name="domain" description="Builds the domain module">
+        <ant dir="src/mil/arl/gift" target="domain" />
+    </target>
+    
+    <target name="tools" description="Builds only the tools">
+        <ant dir="src/mil/arl/gift" target="tools" />
+    </target>
+    
+    <target name="camel" description="Builds the camel module">
+        <ant dir="src/mil/arl/gift" target="camel" />
+    </target>
+    
+    <target name="installer" description="Builds the GIFT installer">
+        <ant dir="src/mil/arl/gift" target="installer" />
+    </target>
+	
+	<target name="uninstaller" description="Builds the GIFT uninstaller">
+        <ant dir="src/mil/arl/gift" target="uninstaller" />
+    </target>
+	
+	<!-- End Compilation targets -->
+	
+	
+	<!-- Cleaning targets -->
+	
+	<target name="clean-common" description="Cleans the common module">
+        <ant dir="src/mil/arl/gift/common" target="clean"/>
+    </target>
+	
+	<!-- currently not used -->
+	
+    <!-- <target name="clean-client">
+        <ant dir="src/mil/arl/gift" target="client"/>
+    </target>
+    -->
+    
+	<!-- <target name="clean-server">
+        <ant dir="src/mil/arl/gift" target="server"/>
+    </target>
+	-->
+    
+    <target name="clean-ums" description="Cleans the ums module">
+        <ant dir="src/mil/arl/gift/ums" target="clean" />
+    </target>
+    
+    <target name="clean-lms" description="Cleans the lms module">
+        <ant dir="src/mil/arl/gift/lms" target="clean" />
+    </target>
+    
+    <target name="clean-learner" description="Cleans the learner module">
+        <ant dir="src/mil/arl/gift/learner" target="clean" />
+    </target>
+    
+    <target name="clean-ped" description="Cleans the ped module">
+        <ant dir="src/mil/arl/gift/ped" target="clean" />
+    </target>
+    
+    <target name="clean-tutor" description="Cleans the tutor module">
+        <ant dir="src/mil/arl/gift/tutor" target="clean" />
+    </target>
+    
+    <target name="clean-sensor" description="Cleans the sensor module">
+        <ant dir="src/mil/arl/gift/sensor" target="clean" />
+    </target>
+    
+    <target name="clean-gateway" description="Cleans the gateway module">
+        <ant dir="src/mil/arl/gift/gateway" target="clean" />
+    </target>
+    
+    <target name="clean-domain" description="Cleans the domain module">
+        <ant dir="src/mil/arl/gift/domain" target="clean" />
+    </target>
+    
+    <target name="clean-tools" description="Cleans the tools package">
+        <ant dir="src/mil/arl/gift/tools" target="clean" />
+    </target>
+    
+    <target name="clean-camel" description="Cleans the camel package">
+        <ant dir="src/mil/arl/gift/net/camel" target="clean" />
+    </target>
+	
+	<target name="clean-installer" description="Cleans the installer tool">
+        <ant dir="src/mil/arl/gift/tools/installer" target="clean" />
+    </target>
+	
+	<target name="clean-uninstaller" description="Cleans the uninstaller tool">
+        <ant dir="src/mil/arl/gift/tools/uninstaller" target="clean" />
+    </target>
+
+    <target name="clean" description="Cleans all GIFT source and java docs">
+		<ant target="clean-ums"/>
+		<ant target="clean-lms"/>
+		<ant target="clean-ped"/>
+		<ant target="clean-learner"/>
+		<ant target="clean-tutor"/>
+		<ant target="clean-sensor"/>
+		<ant target="clean-gateway"/>
+		<ant target="clean-domain"/>
+		<ant target="clean-tools"/>
+		<ant target="clean-camel"/>
+        <delete dir="api-docs"/>
+        <delete dir="build"/>
+        <delete dir="bin">
+			<exclude name="**/gift-installer.jar"/>
+			<exclude name="**/gift-uninstaller.jar"/>
+			<exclude name="**/legacyJsonMessageCodec.jar"/>
+			<exclude name="**/GIFT.logo.splashScreen.png"/>
+			<exclude name="**/war/remote/**" />
+			<exclude name="**/installPython.png"/>
+			<exclude name="**/pythonInstalled.png"/>
+			<exclude name="**/less.png"/>
+			<exclude name="**/more.png"/>
+        	<exclude name="**/jaxb_generated.jar"/>  <!-- this is deleted in clean-common target -->
+		</delete>
+		<delete dir="generated"/>
+		
+		<!-- moving this to end of list because sometimes Eclipse IDE has jaxb_generated opened -->
+		<ant target="clean-common"/>
+    </target>
+    
+    <target name="test" description="Runs unit tests">
+        <ant dir="test/mil/arl/gift" target="test"/>
+    </target>
+	
+	<!-- End Cleaning targets -->
+    
+    <target name="javadoc" description="Create Javadocs">
+        <mkdir dir="${basedir}/api-docs/"/>
+        <javadoc
+            packagenames="mil.arl.gift.*"
+			useexternalfile="yes"
+			excludepackagenames="mil.arl.gift.**.override.*"
+            sourcepath="src"
+            destdir="${basedir}/api-docs/"
+            windowtitle="GIFT API">
+                
+            <doctitle><![CDATA[<h1>GIFT API</h1>]]></doctitle>
+            
+            <fileset dir="src">
+                <include name="**.java" />
+            </fileset>
+            
+            <classpath>
+                <fileset dir="external">
+                    <include name="**/*.jar" />
+                </fileset>
+				<fileset dir="bin">
+                    <include name="jaxb_generated.jar" />
+                </fileset>
+				<fileset dir="data/conversionWizard/">
+                    <include name="**/**/jaxb*generated.jar" />
+                </fileset>
+            </classpath>			
+        </javadoc>
+    </target>
+</project>

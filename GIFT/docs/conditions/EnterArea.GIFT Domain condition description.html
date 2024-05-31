@@ -1,0 +1,58 @@
+﻿<body>
+<p><strong>Enter Area Condition</strong></p>
+<p>This condition checks whether the learner has entered a location among one or 
+more locations defined for this condition.&nbsp; For this condition entering a 
+location is defined as reaching a location (within a defined radius) called the 
+start location followed by reaching a second but different location (within a 
+defined radius) called the end point.&nbsp; The learner can only be assessed 
+against one of these start/end location sets at a time within this condition.&nbsp; 
+This means if a learner reaches the start point for one entrance and then 
+reaches the start point for a second entrance, the first entrance will no longer 
+be checked against.&nbsp; This condition is useful for checking whether the 
+learner has entered an area that you may or may not want them to be in (e.g. 
+which doorway was entered in a building).&nbsp; It is because of either use case 
+that each entrance requires the author to define the appropriate assessment 
+level if that entrance is crossed by the learner.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span></li><ul>
+		<li>case: when the learner crosses an entrance that the author defined 
+		Above Expectation assessment for</li>
+	</ul>
+	<li><span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: when the learner crosses an entrance that the author defined 
+		At Expectation assessment for</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: when the learner crosses an entrance that the author defined 
+		Below Expectation assessment for</li>
+	</ul>
+	</li>
+	<li>Unknown<ul>
+		<li>case: the default value</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>count - the number of times the learner crosses an entrance that was 
+	authored with Below Expectation assessment.</li>
+	<li>time - none (because the condition never completes)</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>NEVER completes, i.e. the learner can be assessed on all 
+	entrances any number of times</li>
+	<li>can be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can cause GIFT Entity state messages to be created</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.EnterAreaCondition</em></p>
+</body>

@@ -1,0 +1,58 @@
+/* ------------------
+ styling for the tables 
+   ------------------   */
+
+#background-image {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 15px;
+	/*width: auto;*/
+	text-align: middle;
+	border-collapse: collapse;
+	background: url('images/armyRanks.jpg') 765px 80px no-repeat;
+}
+
+#background-image th {
+	padding: 12px;
+	font-weight: normal;
+	font-size: 14px;
+	color: #339;
+	white-space: nowrap;
+}
+
+#background-image td {
+	padding: 9px 12px;
+	color: #669;
+	border-top: 1px solid #fff;
+}
+
+.urlField  {
+	padding: 9px 12px;
+	color: #669;
+	/*white-space: nowrap;*/
+	border-top: 1px solid #fff;
+}
+
+#background-image tfoot td {
+	font-size: 11px;
+}
+#background-image tbody td {
+	background: url('images/back.png');
+}
+
+* html #background-image tbody td {
+	/* 
+	   ----------------------------
+		PUT THIS ON IE6 ONLY STYLE 
+		AS THE RULE INVALIDATES
+		YOUR STYLESHEET
+	   ----------------------------
+	*/
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='css/test/images/back.png',sizingMethod='crop');
+	background: none;
+}	
+
+#background-image tbody tr:hover td {
+	color: #339;
+	background: none;
+}

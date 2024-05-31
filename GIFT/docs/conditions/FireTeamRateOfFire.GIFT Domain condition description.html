@@ -1,0 +1,57 @@
+<body>
+<p><strong>Fire Team Rate of Fire Condition</strong></p>
+<p>This condition checks whether the provided members are maintaining an 
+appropriate rate of fire while this condition is being assessed. The assessment 
+uses a formula called Talking the Guns (TG) which is </p>
+<p>TG ratio = 1 - (total dead space time / total assessment time)</p>
+<p>The total assessment time is provide by the author and is a sliding window.&nbsp; Assessments happen after the first 30 seconds and 
+then every 5 seconds after that.&nbsp; Both of these values can be changed by 
+the author.&nbsp; Also, the TG ratio required to achieve Below/At/Above 
+expectation can be defined.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span><ul>
+		<li>case: when the TG ratio is <strong>
+		above</strong> the upper bounds of the <strong>At</strong> Expectation 
+		TG ratio.</li>
+	</ul>
+	</li>
+	<li><span style="color : #0000FF">At Expectation</span>
+		<ul>
+			<li>case: when the TG ratio is <strong>
+			above</strong> the upper bounds of the <strong>Below</strong> 
+			Expectation TG ratio.</li>
+		</ul>
+	</li>
+	<li><span style="color : #FF0000">Below Expectation</span>
+		<ul>
+			<li>case: when the TG ratio is <strong>
+			below</strong> the upper bounds of the <strong>Below</strong> 
+			Expectation TG ratio.</li>
+		</ul>
+	</li>
+	<li>Unknown
+		<ul>
+			<li>case: The default initial value of this condition. </li>
+	</ul>
+		</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of violations (going from Above/At to Below Expecation)</li>
+	<li>sums the duration of time in Below Expectation</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>this condition does not complete</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can produce weapon fire messages</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Weapon Fire</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>mil.arl.gift.domain.knowledge.condition.FireTeamRateOfFireCondition</em></p>
+</body>

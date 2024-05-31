@@ -1,0 +1,16 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "DomainSelectionReplyProto";
+
+import "DomainSession.proto";
+
+/* This message contains the returned Domain Session from the UMS module. */
+message DomainSelectionReply {
+	DomainSession domain_session = 1;
+}

@@ -1,0 +1,169 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+	xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:input="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.sensor.input"
+	xmlns:widgets="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.sensor.widgets">
+	
+	<ui:style>	
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}	
+		.textBoxPad{
+			padding: 7px 5px !important;
+		}
+		.hint{
+			color: red;
+		}
+	</ui:style>
+	
+	<g:FlowPanel width="100%">
+		    
+		<g:HTML addStyleNames='{style.smallPadBottom}'>
+			What would you like to name the sensor?<span style='color: red; font-weight: bold;'>*</span>
+		</g:HTML>
+		<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+			<g:TextBox width="100%" ui:field="sensorNameTextBox"/>
+		</g:FlowPanel>
+		
+		<g:HTML addStyleNames='{style.smallPadBottom}'>
+			How often (seconds) should the sensor be queried for data? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+		</g:HTML>
+		<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+			<g:DoubleBox width="100%" addStyleNames='{style.textBoxPad}' ui:field="intervalDoubleBox" />
+		</g:FlowPanel>
+				
+		<!-- SelfAssessmentSensor widgets -->
+
+		<g:FlowPanel ui:field='selfAssessmentSensorPanel'>
+				    
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="rateChangeAmountLabel">
+				How much would you like to change the sensor value during each sensor tick?<span style='color: red; font-weight: bold;'>*</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:DoubleBox width="100%" addStyleNames='{style.textBoxPad}' ui:field="rateChangeAmountDoubleBox"/>
+			</g:FlowPanel>
+			
+		</g:FlowPanel>
+						
+		<!-- MouseTempHumiditySurrogateSensor widgets -->
+		<g:FlowPanel ui:field='mouseTempHumitySurrogateSensorPanel'>
+		    
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="temperatureRateChangeLabel">
+				How much would you like to change the temperature value during each sensor tick?<span style='color: red; font-weight: bold;'>*</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:DoubleBox width="100%" addStyleNames='{style.textBoxPad}' ui:field="temperatureRateChangeAmountDoubleBox"/>
+			</g:FlowPanel>
+			
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="humidityRateChangeLabel">
+				How much would you like to change the humidity value during each sensor tick?<span style='color: red; font-weight: bold;'>*</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:DoubleBox width="100%" addStyleNames='{style.textBoxPad}' ui:field="humidityRateChangeAmountDoubleBox"/>
+			</g:FlowPanel>
+			
+		</g:FlowPanel>
+		
+		<!-- SineWaveSensor widgets -->
+		<g:FlowPanel ui:field='sineWaveSensorPanel'>
+		    
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="amplitudeLabel">
+				What is the peak deviation of the sine wave function from its center position?<span style='color: red; font-weight: bold;'>*</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:DoubleBox addStyleNames='{style.textBoxPad}' width="100%" ui:field="amplitudeDoubleBox"/>			
+			</g:FlowPanel>
+			
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="periodLabel">
+				How many seconds does it take to complete a sine wave duration?<span style='color: red; font-weight: bold;'>*</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:DoubleBox addStyleNames='{style.textBoxPad}' width="100%" ui:field="periodDoubleBox"/>
+			</g:FlowPanel>
+			
+		</g:FlowPanel>
+		
+		<!-- VhtMultisenseSensor widgets -->
+		
+		<g:FlowPanel ui:field='vhtMultisenseSensorPanel'>
+		    
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="datlessWarningDelayLabel">
+				How long until a dataless warning is issued? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:LongBox addStyleNames='{style.textBoxPad}' width="100%" ui:field="datalessWarningDelayLongBox"/>
+			</g:FlowPanel>
+			
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="activeMqUrlLabel">
+				What is the URL of the ActiveMQ that VHT is running on? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:TextBox width="100%" ui:field="activeMqUrlTextBox"/>
+			</g:FlowPanel>
+			
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="activeMqTopicLabel">
+				What is the topic of the ActiveMQ that VHT and Multisense is publishing data to? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:TextBox width="100%" ui:field="activeMqTopicTextBox"/>
+			</g:FlowPanel>
+			
+		</g:FlowPanel>
+		
+		<!-- KinectSensor widgets -->
+		<g:FlowPanel ui:field='kinectSensorPanel'>
+		    
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="trackingIntervalLabel">
+				How often should face and skeleton data be queried? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:DoubleBox width="100%" addStyleNames='{style.textBoxPad}' ui:field="trackingIntervalDoubleBox"/>
+			</g:FlowPanel>
+			
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="colorSampleIntervalLabel">
+				How often should color frame data be queried? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:DoubleBox width="100%" addStyleNames='{style.textBoxPad}' ui:field="colorSampleIntervalDoubleBox"/>
+			</g:FlowPanel>
+			
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="colorFrameFormatLabel">
+				What resolution is the color frame Kinect produces? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<widgets:KinectColorResolutionValueListBox width="100%" ui:field="colorFrameFormatListBox"/>
+			</g:FlowPanel>
+			
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="depthSampleIntervalLabel">
+				How often should depth frame data be queried? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<g:DoubleBox width="100%" addStyleNames='{style.textBoxPad}' ui:field="depthSampleIntervalDoubleBox"/>
+			</g:FlowPanel>
+			
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="depthFrameFormatLabel">
+				What resolution is the depth frame Kinect produces? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<widgets:KinectDepthResolutionValueListBox width="100%" ui:field="depthFrameFormatListBox"/>
+			</g:FlowPanel>
+						
+			<g:HTML addStyleNames='{style.smallPadBottom}' ui:field="nearModeLabel">
+				Near mode for Kinect's skeletal/facial detection? <span style='font-style: italic; color: rgb(150,150,150)'>(optional)</span>
+			</g:HTML>
+			<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+				<widgets:BooleanEnumListBox width="100%" ui:field="nearModeListBox"/>
+			</g:FlowPanel>
+			
+		</g:FlowPanel>
+		
+		<g:Label addStyleNames='{style.hint}'>* - indicates required field</g:Label>
+		
+	</g:FlowPanel>
+	
+</ui:UiBinder> 

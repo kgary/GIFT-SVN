@@ -1,0 +1,150 @@
+.border {
+  fill: none;
+  shape-rendering: crispEdges;
+  stroke: #aaa;
+}
+
+.node {
+  cursor: pointer;
+  
+  /* Prevent browsers from selecting text in nodes
+  	 since this prevents drag and drop.*/
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.link {
+  fill: none;
+  stroke: black;
+  stroke-width: 1.5px;
+}
+
+.multiLink {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 4px;
+}
+
+.multiLink:hover {
+  stroke-width: 6px;
+  stroke: white;
+  cursor: pointer;
+}
+
+.icon {
+	
+}
+
+.failedValidationIcon {
+	
+}
+
+.failedValidationIcon_hidden {
+	display: none;
+}
+
+.text {
+	font-size: 17px;
+}
+
+.header {
+	font-size: 17px;
+	font-weight: bold;
+}
+
+.startNodeHeader {
+	fill: white;
+}
+
+.endNodeHeader {
+	fill: #646464;
+	font-weight: bold;
+    font-size: 100px;
+}
+
+.separator{
+	stroke: gray;
+	strike-width: 1;
+}
+
+.endNodeSeparator{
+	stroke: none;
+}
+
+.nodeRect{
+	fill: rgb(255, 255, 255);
+	stroke: rgb(100,100,100);
+	stroke-width: 1.5px;
+}
+
+.startNodeRect{
+	fill: black !important;
+}
+
+.endNodeRect{
+	fill: rgb(237, 237, 237) !important;
+	stroke-width: 3px;
+	stroke-dasharray: 10 5; /** Breaks the border into dashed lines with the given length in pixels */
+}
+
+.selectedNodeRect{
+	stroke: rgb(100,100,255);
+	stroke-width: 5px;
+	stroke-dasharray: 10 5; /** Breaks the border into dashed lines with the given length in pixels */
+  	animation: 
+  		dash /** Invokes the "dash" animation */
+  		40s /** Sets the duration of the animation. Lower values will make the animation faster */
+  		linear; 
+  	animation-iteration-count: infinite; /** Makes the animation repeat*/
+}
+
+.selectedDisabledNodeRect{
+	fill: #b0b7b7;
+	stroke: rgb(100,100,255);
+	stroke-width: 5px;
+	stroke-dasharray: 10 5; /** Breaks the border into dashed lines with the given length in pixels */
+  	animation: 
+  		dash /** Invokes the "dash" animation */
+  		40s /** Sets the duration of the animation. Lower values will make the animation faster */
+  		linear; 
+  	animation-iteration-count: infinite; /** Makes the animation repeat*/
+}
+
+.disabledNodeRect{
+	fill: #b0b7b7;
+}
+
+.selectedDeleteRect{
+	stroke: rgba(100, 100, 255, 0.48);
+    stroke-width: 5px;
+    stroke-dasharray: 10 5;
+    animation: dash 40s linear;
+    animation-iteration-count: infinite;	
+    cursor: pointer;
+}
+
+.dropArea{
+	stroke: rgb(100,100,255);
+	stroke-width: 7px;
+	stroke-dasharray: 10 5; /** Breaks the border into dashed lines with the given length in pixels */
+  	animation: 
+  		dash /** Invokes the "dash" animation */
+  		40s /** Sets the duration of the animation. Lower values will make the animation faster */
+  		linear; 
+  	animation-iteration-count: infinite; /** Makes the animation repeat*/
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000; /** Moves the offset of the border dashes each frame, making them move */
+  }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+	xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:widgets="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.pedagogy.widgets">
+	
+	<ui:style>	
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}	
+	</ui:style>
+	
+	<g:FlowPanel width="100%">
+	
+		<g:HTML addStyleNames='{style.smallPadBottom}'>
+			Which state must the learner be in to use the metadata?
+		</g:HTML>
+		
+		<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+			<widgets:LearnerStateValueListBox width='100%' ui:field="learnerStateValueListBox"/>
+		</g:FlowPanel>
+
+
+		<g:HTML addStyleNames='{style.smallPadBottom}'>
+			Degree required to use the metadata?
+		</g:HTML>
+		
+		<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+			
+			<widgets:LowMediumHighLevelValueListBox width='100%' ui:field="lowMediumHighLevelValueListBox"/>
+			
+			<widgets:GoalOrientationValueListBox width='100%' ui:field="goalOrientationValueListBox"/>
+			
+			<widgets:LowHighLevelValueListBox width='100%' ui:field="lowHighLevelValueListBox"/>
+			
+			<widgets:ExpertiseLevelValueListBox width='100%' ui:field="expertiseLevelValueListBox"/>
+			
+			<widgets:LearningStyleValueListBox width='100%' ui:field="learningStyleValueListBox"/>
+			
+			<widgets:LocusOfControlValueListBox width='100%' ui:field="locusOfControlValueListBox"/>
+			
+		</g:FlowPanel>
+	</g:FlowPanel>
+	
+</ui:UiBinder> 

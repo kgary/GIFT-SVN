@@ -1,0 +1,19 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "DomainOptionsRequestProto";
+
+/* 
+ *	This message is used to query for courses/real-time assessments that have
+ *  been authored and are available to load into the ITS by the provided user.
+ *  A DomainOptionsReply is returned by the ITS as a response.
+ */
+message DomainOptionsRequest {
+	/** used to collect courses/real-time assessments that are available to this user */
+	string LMS_UserName = 1;
+}

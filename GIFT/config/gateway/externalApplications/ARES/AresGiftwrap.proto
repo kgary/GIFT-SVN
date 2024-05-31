@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package ares.pb;
+option java_package  = "com.dignitas.ares.protobuf";
+option java_outer_classname = "AresMessageGiftWrap";
+
+message GiftWrapSelectableObject {
+    string id = 1;
+    string name = 2;
+}
+  
+// Sent when object(s) are selected and selection is confirmed
+message GiftWrapSelectionChanged {
+    repeated GiftWrapSelectableObject selected_object_list = 1;
+    bool selection_confirmed = 2;
+}

@@ -1,0 +1,33 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "VariablesStateRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a variable state request event. */
+message VariablesStateRequest {
+	/* The unique id assigned to this request which will be provided in the corresponding response/result
+	   and can be used to filter other requests. */
+	google.protobuf.StringValue request_id = 1;
+	
+	/* The mapping that contains the type of variables that need to be queried for, the variable 
+	   names if needed and who the variable is assigned to. */
+	map<string, VariableInfo> types_map = 2;
+}
+
+/* This message contains information about a variable to request the value for and who the variable
+   is associated with. */
+message VariableInfo {
+	/* The name of the variable. */
+	google.protobuf.StringValue var_name = 1;
+	
+	/* The entity identifiers (entity markings) that the variable is associated with. */
+	repeated string entity_ids = 2;
+}

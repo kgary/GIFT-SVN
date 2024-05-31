@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<conversation xmlns="http://GIFT.com/conversationTree" name="I need help with even numbers" version="6.0.1">
+  <authorsDescription>This conversation is used for development purposes</authorsDescription>
+  <learnersDescription>This conversation is useless for learning something.  It does ask about even numbers though which is useful for testing conversation tree logic. &lt;br&gt;&lt;br&gt;  An even number: &lt;br&gt;&lt;br&gt;
+					&lt;img src=&quot;https://pixabay.com/static/uploads/photo/2014/09/07/15/37/number-437926_960_720.jpg&quot;/&gt; &lt;br&gt;&lt;br&gt; and an odd number &lt;br&gt;&lt;br&gt; 
+					&lt;img src=&quot;https://pixabay.com/static/uploads/photo/2014/09/07/15/31/number-437919_960_720.jpg&quot;/&gt;</learnersDescription>
+  <startNodeId>1</startNodeId>
+  <messages>
+    <message nodeId="1">
+      <text>Welcome to the conversation!</text>
+      <childNodeId>40</childNodeId>
+    </message>
+	<message nodeId="2">
+      <text>Correct!</text>
+      <childNodeId>10</childNodeId>
+    </message>
+	<message nodeId="3">
+      <text>Wrong again.</text>
+      <childNodeId>12</childNodeId>
+    </message>
+	<message nodeId="14">
+      <text>You got that one right.</text>
+      <childNodeId>11</childNodeId>
+    </message>
+  </messages>
+  <questions>
+    <question nodeId="40">
+      <text>Please choose a path</text>
+      <choices>
+		<choiceId>60</choiceId>
+		<choiceId>70</choiceId>
+	  </choices>      
+    </question>
+    <question nodeId="4">
+      <text>Which is an even number?</text>
+      <choices>
+		<choiceId>6</choiceId>
+		<choiceId>7</choiceId>
+	  </choices>      
+    </question>
+	<question nodeId="5">
+      <text>Let's try again.  Which is an even number?</text>
+      <choices>
+		<choiceId>8</choiceId>
+		<choiceId>9</choiceId>
+	  </choices>      
+    </question>
+  </questions>
+  <choices>
+    <choice nodeId="60">
+		<text>Alpha</text>
+		<childNodeId>4</childNodeId>
+	</choice>
+	<choice nodeId="70">
+        <text>Bravo</text>
+        <childNodeId>4</childNodeId>
+    </choice>
+    <choice nodeId="6">
+		<text>4</text>
+		<childNodeId>2</childNodeId>
+		<assessment>
+		  <concept>even numbers</concept>
+		  <level>AtExpectation</level>
+		  <confidence>0.9</confidence>
+		</assessment>
+	</choice>
+	<choice nodeId="7">
+        <text>7</text>
+        <childNodeId>5</childNodeId>
+        <assessment>
+          <concept>even numbers</concept>
+          <level>BelowExpectation</level>
+          <confidence>0.9</confidence>
+        </assessment>
+    </choice>
+	<choice nodeId="8">
+		<text>13</text>
+		<childNodeId>3</childNodeId>
+		<assessment>
+		  <concept>even numbers</concept>
+		  <level>BelowExpectation</level>
+		  <confidence>1.0</confidence>
+		</assessment>
+	</choice>
+	<choice nodeId="9">
+        <text>10</text>
+        <childNodeId>14</childNodeId>
+        <assessment>
+          <concept>even numbers</concept>
+          <level>AtExpectation</level>
+          <confidence>0.5</confidence>
+        </assessment>
+    </choice>
+  </choices>
+  <ends>
+    <end nodeId="10">
+      <assessment>
+        <concept>even numbers</concept>
+        <level>AtExpectation</level>
+        <confidence>0.9</confidence>
+      </assessment>
+    </end>
+	<end nodeId="11">
+      <assessment>
+        <concept>even numbers</concept>
+        <level>AtExpectation</level>
+        <confidence>0.5</confidence>
+      </assessment>
+    </end>
+	<end nodeId="12">
+      <assessment>
+        <concept>even numbers</concept>
+        <level>BelowExpectation</level>
+        <confidence>1.0</confidence>
+      </assessment>
+    </end>
+  </ends>
+</conversation>

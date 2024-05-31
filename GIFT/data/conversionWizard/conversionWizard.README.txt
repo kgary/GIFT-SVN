@@ -1,0 +1,7 @@
+==========================================================================================================
+3/23/2015
+==========================================================================================================
+This folder contains the schema (.xsd) files for all GIFT XML file types authored by GIFT authoring tools. 
+The files cover all versions of GIFT since GIFT v2.0. In addition there are fully populated (i.e. every XML 
+element is used) versions of Course and DKF XML files for each GIFT version. These files are useful for 
+testing the GIFT XML file conversion logic.

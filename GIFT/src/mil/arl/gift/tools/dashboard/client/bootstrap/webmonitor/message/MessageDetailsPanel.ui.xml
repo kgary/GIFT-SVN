@@ -1,0 +1,112 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	   .mainPanel{
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+	   }
+	   .labelRow{
+            margin-bottom: 5px;
+	   }
+	   
+	   .labelRow > *:first-child{
+            font-weight: bold;
+            margin-right: 5px;
+       }
+       .headerArea{
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            padding: 5px;
+            background-color: white;
+       }
+       .detailsArea{
+            flex: 1;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            padding: 5px;
+            overflow: auto;
+            background-color: white;
+	   }
+	   .detailsArea pre{
+            height: 100%;
+       }
+	   .detailsLabel{
+            color: black;
+            font-weight: bold;
+	   }
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.mainPanel}'>
+	   <g:FlowPanel addStyleNames='{style.headerArea}'>
+		   <g:FlowPanel addStyleNames='{style.labelRow}'>
+		       <g:InlineLabel>
+		           Source:
+		       </g:InlineLabel>
+		       <g:InlineLabel ui:field='source'/>
+		   </g:FlowPanel>
+		   <g:FlowPanel addStyleNames='{style.labelRow}' ui:field='sourceModuleTypePanel' visible="false">
+		       <g:InlineLabel>
+		           Source Module Type:
+		       </g:InlineLabel>
+		       <g:InlineLabel ui:field='sourceModuleType'/>
+		   </g:FlowPanel>		   
+		    <g:FlowPanel addStyleNames='{style.labelRow}'>
+	           <g:InlineLabel>
+	               Destination Address:
+	           </g:InlineLabel>
+	           <g:InlineLabel ui:field='destination'/>
+	       </g:FlowPanel>
+	        <g:FlowPanel addStyleNames='{style.labelRow}'>
+	           <g:InlineLabel>
+	               Message Type:
+	           </g:InlineLabel>
+	           <g:InlineLabel ui:field='type'/>
+	       </g:FlowPanel>
+		   <g:FlowPanel addStyleNames='{style.labelRow}' ui:field='seqNumPanel' visible="false">
+		       <g:InlineLabel>
+		           Sequence #:
+		       </g:InlineLabel>
+		       <g:InlineLabel ui:field='seqNum'/>
+		   </g:FlowPanel>
+		   <g:FlowPanel addStyleNames='{style.labelRow}' ui:field='sourceEventIdPanel' visible="false">
+		       <g:InlineLabel>
+		           Source Event Id:
+		       </g:InlineLabel>
+		       <g:InlineLabel ui:field='sourceEventId'/>
+		   </g:FlowPanel>
+		   <g:FlowPanel addStyleNames='{style.labelRow}' ui:field='needsACKPanel' visible="false">
+		       <g:InlineLabel>
+		           Needs ACK:
+		       </g:InlineLabel>
+		       <g:InlineLabel ui:field='needsACK'/>
+		   </g:FlowPanel>
+	        <g:FlowPanel addStyleNames='{style.labelRow}'>
+	           <g:InlineLabel>
+	               User ID:
+	           </g:InlineLabel>
+	           <g:InlineLabel ui:field='userId'/>
+	       </g:FlowPanel>
+	        <g:FlowPanel addStyleNames='{style.labelRow}'>
+	           <g:InlineLabel>
+	               Username:
+	           </g:InlineLabel>
+	           <g:InlineHTML ui:field='username'/>
+	       </g:FlowPanel>
+	        <g:FlowPanel addStyleNames='{style.labelRow}'>
+	           <g:InlineLabel>
+	               Timestamp:
+	           </g:InlineLabel>
+	           <g:InlineLabel ui:field='timestamp'/>
+	       </g:FlowPanel>
+       </g:FlowPanel>
+       <g:InlineLabel addStyleNames='{style.detailsLabel}'>
+           Message Details:
+       </g:InlineLabel>
+       <g:FlowPanel addStyleNames='{style.detailsArea}'>
+           <g:HTML height='100%' ui:field='details'/>
+       </g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

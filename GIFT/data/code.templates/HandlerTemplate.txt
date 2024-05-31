@@ -1,0 +1,78 @@
+/**
+ * Copyright Dignitas Technologies, LLC
+ * 
+ * This file and its contents are governed by one or more distribution and
+ * copyright statements as described in the LICENSE.txt file distributed with
+ * this work.
+ */
+package %HANDLER_PACKAGE_NAME%;
+
+import mil.arl.gift.tools.authoring.gat.server.GatService;
+import mil.arl.gift.tools.authoring.gat.server.GatServiceException;
+
+import %PACKAGE_NAME%.%ACTION_NAME%;
+import %PACKAGE_NAME%.%ACTION_NAME%Result;
+
+import net.customware.gwt.dispatch.server.ActionHandler;
+import net.customware.gwt.dispatch.server.ExecutionContext;
+import net.customware.gwt.dispatch.shared.ActionException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+/**
+ * ActionHandler for actions of type %ACTION_NAME%
+ *
+ */ 
+public class %ACTION_NAME%Handler implements ActionHandler<%ACTION_NAME%, %ACTION_NAME%Result> {
+
+    /** instance of the logger */
+    private static Logger logger = LoggerFactory.getLogger(%ACTION_NAME%Handler.class);
+    
+    /* (non-Javadoc)
+     * @see net.customware.gwt.dispatch.server.ActionHandler#getActionType()
+     */
+    @Override
+    public Class<%ACTION_NAME%> getActionType() {
+        return %ACTION_NAME%.class;
+    }
+
+    /* (non-Javadoc)
+     * @see net.customware.gwt.dispatch.server.ActionHandler#execute(net.customware.gwt.dispatch.shared.Action, net.customware.gwt.dispatch.server.ExecutionContext)
+     */
+    @Override
+    public synchronized %ACTION_NAME%Result execute( %ACTION_NAME% action, ExecutionContext context ) 
+            throws ActionException {
+        
+        logger.debug("execute()");
+        
+        GatService service = GatService.getInstance();
+        
+        %ACTION_NAME%Result result = new %ACTION_NAME%Result();
+        
+        try {
+                        
+            //TODO: Do something with the service -- get any needed args from the %ACTION_NAME% action. 
+            //TODO: Do something with the return value from the service call (assuming it returns something, stuff it into the %ACTION_NAME%Result
+            service.dummyMethod();
+            result.setSuccess(true);
+        
+        } catch (GatServiceException e) {
+        
+            result.setSuccess(false);
+            result.setErrorMsg(e.getLocalizedMessage());
+        }
+                
+        return result;
+    }
+
+    /* (non-Javadoc)
+     * @see net.customware.gwt.dispatch.server.ActionHandler#rollback(net.customware.gwt.dispatch.shared.Action, net.customware.gwt.dispatch.shared.Result, net.customware.gwt.dispatch.server.ExecutionContext)
+     */
+    @Override
+    public synchronized void rollback( %ACTION_NAME% action, %ACTION_NAME%Result result, ExecutionContext context ) 
+            throws ActionException {
+
+    }
+}

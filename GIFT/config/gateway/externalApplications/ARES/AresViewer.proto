@@ -1,0 +1,204 @@
+syntax = "proto3";
+
+package ares.pb;
+option java_package  = "com.dignitas.ares.protobuf";
+option java_outer_classname = "AresMessageViewer";
+
+import "AresCommon.proto";
+
+message ViewerCommand {
+    oneof CommandType {
+        string scenario_id = 1;
+        bool clear_scenario = 2;
+        string terrain_template_id = 3;
+        string scenario_server = 4;
+        SnapshotParams snapshot_params = 5;
+        string save_sand_heights = 6;
+        ContoursParameters contours_params = 7;
+        HeightMap compare_heights = 8;
+        CalibrationCommands calibration_commands = 9;
+        HypsometricParameters hypsometric_params = 10;
+        LightingParameters lighting_params = 11;
+        CalibrationParameters calibration_params = 12;
+        HeightMapCompareParameters compare_heights_parameters = 13;
+        ScenarioDisplayOptions scenario_display_options = 14;
+        GridLinesParameters grid_lines_parameters = 15;
+        bool visible = 16;
+        HeightLabelParameters height_label_parameters = 17;
+        ProjectionMappingParameters projection_mapping_params = 18;
+    }
+}
+
+message HeightLabelParameters {
+    enum HeightLabelType {
+       UNSET = 0;
+       MIN_MAX = 1;
+       SPECIFIC_LOCATIONS = 2;
+    }
+    BoolType enabled = 1;
+    HeightLabelType height_label_type = 2;
+
+    // projectorFrameUV:
+    // Valid values:
+    //    X => [0..1]
+    //    Y => [0..1]
+    // Top Left is 0,0
+    repeated Vector2f projector_frame_uv = 3;
+}
+
+message SnapshotParams {
+    ImageType image_type = 1;
+}
+
+message SnapshotResult {
+    Bounds bounds = 1;
+    Image image = 2;
+}
+
+message SnapshotResponse {
+    oneof ResponseType {
+        RequestResult error = 1;
+        SnapshotResult snapshot_result = 2;
+    }
+}
+
+message CalibrationResult {
+    float calibration_error = 1;
+    string calibration_data = 2;
+}
+
+message CalibrationResponse {
+    oneof ResponseType {
+        RequestResult error = 1;
+        CalibrationResult calibration_result = 2;
+    }
+}
+
+message GridLinesParameters {
+   enum GridLineType {
+       UNSET = 0;
+       UTM = 1;
+       GDC = 2;
+       POINT_DESIGNATION = 3;
+    }
+
+    BoolType grid_lines_enabled = 1;
+
+    GridLineType grid_line_type = 2;
+
+    // Width of the margin in table size so something
+    // like .03 is good;
+    FloatType margin_size_meters = 3;
+
+    // Margin of the label anchor point.  If 
+    // the label anchor should be inside the margin
+    // make this value smaller than margin_size_meters
+    FloatType label_margin_size_meters = 4;
+
+    Color line_color = 5;
+
+    // text_size: Default is 15
+    IntType text_size = 6;
+}
+message ScenarioDisplayOptions {
+    // 0..1
+    FloatType map_alpha = 1;
+    // 0..1
+    FloatType scenario_objects_alpha = 2;
+}
+message HeightMapCompareParameters {
+    StringType path = 1;
+    ContoursParameters target_contour_params = 2;
+    BoolType use_dashed_target_contours = 3;
+    BoolType show_colored_diff = 4;
+    ScenarioDisplayOptions scenario_display_options = 5;
+}
+message ContoursParameters {
+    BoolType use_contours = 1;
+    IntType line_width = 2;
+    Color color = 3;
+    IntType interval = 4;
+}
+
+message HypsometricParameters {
+
+    // use_hypsometric
+    FloatType use_hypsometric = 1;
+
+    // min_height
+    FloatType min_height = 2; 
+
+    FloatType max_height = 3;
+    Color color0 = 4;
+    Color color1 = 5;
+    Color color2 = 6;
+    Color color3 = 7;
+    Color color4 = 8;
+    Color color5 = 9;
+    Color color6 = 10;
+    Color color7 = 11;
+}
+message LightingParameters {
+    BoolType use_lighting = 1;
+    FloatType ambient = 2;
+    FloatType diffuse = 3;
+    FloatType specular = 4; 
+}
+
+message CalibrationCommands {
+    oneof CalibrationCommadType {
+        // do_calibrate command returns CalibrationResponse
+        bool do_calibrate = 1;
+        bool reload_calibration = 2;
+    }
+}
+
+message CalibrationParameters {
+    FloatType table_roll_degrees = 1;
+    FloatType table_pitch_degrees = 2;
+    FloatType stretch_factor = 3;
+}
+
+message HeightMap {
+    string file = 1;
+}
+
+
+
+message ProjectionMappingParameters {
+    // table_size.x = width in meters
+    // table_size.y = length in meters
+    // table_size.z = height of walls in meters
+    Vector3f table_size = 1;
+
+    // projector_position.x = Horizontal distance in meters of projector from center line
+    //                        typically would be zero if projector is centered on table
+    // projector_position.y = Distance of projector from the back of the table.  If the
+    //                        projector is centered on table, the value would be half the table_size.y
+    // projector_position.z = Distance of projector in meters above the bottom of the table (bottom of table
+    //                        is what the sand is on)
+    // 
+    Vector3f projector_position = 2;
+
+    KeystoneAdjustment keystone_adjustment = 3;
+}
+
+/**
+ * KeystoneAdjustment stretches the projected image
+ * to compensate for the projectors keystone adjustment.
+ * The values represent how high above the bottom of the table
+ * the projector is projecting on the side walls of the table.
+ * Each corner of the table is taken into account, and the x values 
+ * are for the side (shorter) walls and the y values are for the 
+ * upper and lower (longer) walls.
+ */
+message KeystoneAdjustment {
+    Vector2f upper_left = 1;
+    Vector2f upper_right = 2;
+    Vector2f lower_left = 3;
+    Vector2f lower_right = 4;
+
+    // If this is set to true, lines will be drawn on the walls of the sand table
+    // to assist in lining of the keystone adjustment
+    BoolType adjustment_mode_enabled = 5;
+}

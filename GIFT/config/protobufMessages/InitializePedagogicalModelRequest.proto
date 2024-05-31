@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "InitializePedagogicalModelRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information needed to initialize a Pedagogical Model. */
+message InitializePedagogicalModelRequest {
+	/*  The XML Schema actions element populated with Pedagogical related information. */
+	google.protobuf.StringValue actions = 1;
+	
+	/* The Pedagogical configuration as a String..  */
+	google.protobuf.StringValue configuration = 2;
+	
+	/* Value indicating wor not the actions are from a course (versus a DKF). */
+	google.protobuf.BoolValue course_actions = 3;
+}

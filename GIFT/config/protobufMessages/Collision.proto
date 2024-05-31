@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "CollisionProto";
+
+import "EntityIdentifier.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about a collision between two objects. */
+message Collision {
+	/* Entity that is issuing the collision. */
+	EntityIdentifier issuing_entity = 1;
+	
+	/* Entity which has collided with the issuing entity. */
+	EntityIdentifier colliding_entity = 2;
+	
+	/* The type of collision. */
+	google.protobuf.Int32Value collision_type = 3;
+}

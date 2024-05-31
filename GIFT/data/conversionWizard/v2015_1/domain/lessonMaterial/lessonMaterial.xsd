@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 	version="5.1" 
+			xmlns:common="http://GIFT.com/common"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:fg="http://www.FGolubov.com/XMLEditor" 
+			elementFormDefault="qualified">
+  <xs:import namespace="http://GIFT.com/common" schemaLocation="../common.xsd"/>
+  <xs:element name="LessonMaterialList">  
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Lesson Material List"> 
+			<fg:message>This is the root node of lesson material list which contains a list of lesson material references.  Look for other helpful information by clicking on a node.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="media"/>
+		</xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="media">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Media"> 
+				<fg:message>A reference to training material media for a course or lesson.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element ref="name"/>
+			<xs:element ref="uri"/>
+			<xs:choice>
+				<xs:element ref="PDFProperties"/>
+				<xs:element ref="WebpageProperties"/>
+				<xs:element ref="YoutubeVideoProperties"/>
+				<!--MH: not supported in Tutor yet - <xs:element ref="VideoProperties"/>-->
+				<xs:element ref="ImageProperties"/>
+			</xs:choice>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PDFProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="PDF Properties"> 
+				<fg:message>Represents the properties for displaying a PDF.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="WebpageProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Webpage Properties"> 
+				<fg:message>Represents the properties for displaying a Webpage.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="YoutubeVideoProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="YoutubeVideo Properties"> 
+				<fg:message>Represents the properties for displaying a YoutubeVideo.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="size" minOccurs="0"/>
+			<xs:element ref="allowFullScreen" minOccurs="0"/>
+			<xs:element ref="allowAutoPlay" minOccurs="0"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VideoProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Video Properties"> 
+				<fg:message>Represents the properties for displaying a Video.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="ImageProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Image Properties"> 
+				<fg:message>Represents the properties for displaying a Image.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="size">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Size"> 
+			<fg:message>The display size of the material.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="width" type="xs:integer" default="420"/>
+			<xs:element name="height" type="xs:integer" default="315"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="allowFullScreen" type="common:booleanEnum">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Allow Full Screen"> 
+			<fg:message>Whether to allow the user to show the material in full screen mode.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+  </xs:element>
+   <xs:element name="allowAutoPlay" type="common:booleanEnum">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Allow AutoPlay"> 
+			<fg:message>Whether to allow the material to begin playing as soon as it loads.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+  </xs:element>
+  <xs:element name="name">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Display Name"> 
+			<fg:message>The display name of the material as shown on the TUI.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="uri">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Uniform Resource Identifier (URI) "> 
+			<fg:message>Identifies the location of a lesson material resource (e.g. .pdf, index.html, youtube.com).</fg:message>
+			<fg:message>If the resource is a local file, specify the relative path from the Domain\TrainingMaterial directory.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+</xs:schema>

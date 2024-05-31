@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LtiGetUserResponseProto";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+/* This message represents the response to the LtiGetUserRequest. */
+message LtiGetUserResponse {
+	/* The consumer key for the response. */
+	google.protobuf.StringValue consumer_key = 1;
+	
+	/* The consumer id for the response. */
+	google.protobuf.StringValue consumer_id = 2;
+	
+	/* The global user id for the response. */
+	google.protobuf.Int32Value global_user_id = 3;
+	
+	/* The timestamp that the response was generated. */
+	google.protobuf.Timestamp lti_timestamp = 4;
+}

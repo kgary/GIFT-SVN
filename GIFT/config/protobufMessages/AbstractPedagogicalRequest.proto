@@ -1,0 +1,127 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractPedagogicalRequestProto";
+
+import "BranchAdaptationStrategy.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the base message for all pedagogical requests. */
+message AbstractPedagogicalRequest {
+	oneof type {
+		/* Pedagogical request for instructional intervention. */
+		RequestInstructionalIntervention request_instructional_intervention = 1;
+		
+		/* Mid lesson media request. */
+		RequestMidLessonMedia request_mid_lesson_media = 2;
+		
+		/* Request for performance assessment from the pedagogical module. */
+		RequestPerformanceAssessment request_performance_assessment = 3;
+		
+		/* Scenario adaptation request. */
+		RequestScenarioAdaptation request_scenario_adaptation = 4;
+		
+		/* Branch adaptation request. */
+		RequestBranchAdaptation request_branch_adaptation = 5;
+		
+		/* Do nothing strategy request. */
+		RequestDoNothingStrategy request_do_nothing_strategy = 6;
+	}
+	
+	/* optional collection of DKF XML node (Task/concept) ids that caused this strategy to be requested (added Feb 2022) */
+	repeated int32 taskConceptIds = 7;
+}
+
+message RequestInstructionalIntervention {
+	/* Value indicating if the request is a macro or micro strategy. */
+	google.protobuf.BoolValue macro = 1;
+	
+	/* The domain action knowledge strategy name. */
+	google.protobuf.StringValue strategy_name = 2;
+	
+	/* The amount of time (seconds) to wait after executing the strategy. */
+	google.protobuf.FloatValue wait_time = 3;
+	
+	/* The reason why this pedagogical request is being made. */
+	google.protobuf.StringValue reason = 4;
+}
+
+message RequestMidLessonMedia {
+	/* Value indicating if the request is a macro or micro strategy. */
+	google.protobuf.BoolValue macro = 1;
+	
+	/* The domain action knowledge strategy name. */
+	google.protobuf.StringValue strategy_name = 2;
+	
+	/* The amount of time (seconds) to wait after executing the strategy. */
+	google.protobuf.FloatValue wait_time = 3;
+	
+	/* The reason why this pedagogical request is being made. */
+	google.protobuf.StringValue reason = 4;
+}
+
+message RequestPerformanceAssessment {
+	/* Value indicating if the request is a macro or micro strategy. */
+	google.protobuf.BoolValue macro = 1;
+	
+	/* The domain action knowledge strategy name. */
+	google.protobuf.StringValue strategy_name = 2;
+	
+	/* The amount of time (seconds) to wait after executing the strategy. */
+	google.protobuf.FloatValue wait_time = 3;
+	
+	/* The reason why this pedagogical request is being made. */
+	google.protobuf.StringValue reason = 4;
+}
+
+message RequestScenarioAdaptation {
+	/* Value indicating if the request is a macro or micro strategy. */
+	google.protobuf.BoolValue macro = 1;
+	
+	/* The domain action knowledge strategy name. */
+	google.protobuf.StringValue strategy_name = 2;
+	
+	/* The amount of time (seconds) to wait after executing the strategy. */
+	google.protobuf.FloatValue wait_time = 3;
+	
+	/* The reason why this pedagogical request is being made. */
+	google.protobuf.StringValue reason = 4;
+}
+
+message RequestBranchAdaptation {	
+	/* The corresponding strategy for the branch adaptation. */
+	BranchAdaptationStrategy strategy = 1;
+	
+	/* Value indicating if the request is a macro or micro strategy. */
+	google.protobuf.BoolValue macro = 2;
+	
+	/* The domain action knowledge strategy name. */
+	google.protobuf.StringValue strategy_name = 3;
+	
+	/* The amount of time (seconds) to wait after executing the strategy. */
+	google.protobuf.FloatValue wait_time = 4;
+	
+	/* The reason why this pedagogical request is being made. */
+	google.protobuf.StringValue reason = 5;
+}
+
+message RequestDoNothingStrategy {
+	/* Value indicating if the request is a macro or micro strategy. */
+	google.protobuf.BoolValue macro = 1;
+	
+	/* The domain action knowledge strategy name. */
+	google.protobuf.StringValue strategy_name = 2;
+	
+	/* The amount of time (seconds) to wait after executing the strategy. */
+	google.protobuf.FloatValue wait_time = 3;
+	
+	/* The reason why this pedagogical request is being made. */
+	google.protobuf.StringValue reason = 4;
+}
+

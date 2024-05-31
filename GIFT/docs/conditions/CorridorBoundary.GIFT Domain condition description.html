@@ -1,0 +1,54 @@
+﻿<body>
+<p><strong>Follow Path Condition</strong></p>
+<p>This condition checks whether the learner has stays within the bounds of an 
+entered path.&nbsp; This is useful for areas where you would 
+like the learner to stay within a certain pre-defined cylinder.&nbsp; A path segment 
+must have an entrance and exit as well as a width to the segment.&nbsp; You may 
+also provide a buffer value that is used at the edge along this segment to give 
+the learner leeway when it comes to assessing whether the learner is still 
+within the path.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span></li>
+	<li><span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: the learner entered a path segment, has not exited that segment
+		and is still within that segment's boundary</li>
+		<li>case: the learner entered a path segment, has not exited that segment, 
+		went outside of that segment and has now come back into that segment's 
+		boundary</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the learner entered a path segment and before exiting that 
+		segment the learner went outside of that segment's boundary</li>
+	</ul>
+	</li>
+	<li>Unknown<ul>
+		<li>case: the default value</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the total number of times the learner went outside of all 
+	segment's boundaries for a path segment that the learner has entered but has 
+	not properly exited </li>
+	<li>provides the amount of time the learner was in violation of being 
+	outside of a path segment, i.e. the total amount of time this condition was at Below Expectation. </li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>NEVER completes, i.e. the learner can enter/exit and be assessed on all 
+	path segments any number of times</li>
+	<li>can be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can cause GIFT Entity state messages to be created</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.CorridorBoundaryCondition</em></p>
+</body>

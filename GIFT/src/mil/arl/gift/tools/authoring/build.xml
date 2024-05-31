@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<project name="GIFTAuthoringTools" default="compile">
+
+    <target name="compile">
+    	<echo message="Compiling Authoring Tools"/>
+		<!-- <ant dir="common" inheritAll="false"/> Now called by tools/build.xml directly (MH: I don't like having to do this) --> 
+    	<ant dir="desktop/common" inheritAll="false"/>
+    	<parallel threadcount="8">
+    		<ant dir="desktop/dat" inheritAll="false"/>
+	    	<ant dir="desktop/cat" inheritAll="false"/>
+	    	<ant dir="desktop/mat" inheritAll="false"/>
+	        <ant dir="desktop/scat" inheritAll="false"/>
+	    	<ant dir="desktop/lcat" inheritAll="false"/>
+	    	<ant dir="desktop/pcat" inheritAll="false"/>
+    		<ant dir="desktop/tarat" inheritAll="false"/>
+    	</parallel>
+        
+    </target>
+    	
+    <target name="clean">
+    	<echo message="Cleaning Authoring Tools"/>
+		<ant dir="common" target="clean" inheritAll="false"/>
+    	<ant dir="desktop/common" target="clean" inheritAll="false"/>
+    	<ant dir="desktop/dat" target="clean" inheritAll="false"/>
+    	<ant dir="desktop/cat" target="clean" inheritAll="false"/>
+    	<ant dir="desktop/mat" target="clean" inheritAll="false"/>
+    	<ant dir="desktop/scat" target="clean" inheritAll="false"/>
+    	<ant dir="desktop/lcat" target="clean" inheritAll="false"/>
+    	<ant dir="desktop/pcat" target="clean" inheritAll="false"/>
+    	<ant dir="desktop/tarat" target="clean" inheritAll="false"/>
+    </target>
+	
+</project>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Sensor Configuration Authoring Tool (SCAT).
+	This file contains the configuration for sensors for the sensor module.
+	Multiple sensors, filters and writers can be configured using this file.
+	For specific sensor configuration examples look at the various sensor configuration xml files (e.g. SensorConfiguration.Mouse.xml).
+-->
+<SensorsConfiguration version="11.0.1" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <Sensors>
+        <Sensor id="1">
+            <name>MouseTempHumidity</name>
+            <interval>1.0</interval>
+            <sensorImpl>sensor.impl.MouseTempHumiditySensor</sensorImpl>
+            <distributeExternally>false</distributeExternally>
+            <sensorInput/>
+            <filterInstance>3</filterInstance>
+            <writerInstance>5</writerInstance>
+        </Sensor>
+        <Sensor id="2">
+            <name>SelfAssessment</name>
+            <interval>0.5</interval>
+            <sensorImpl>sensor.impl.SelfAssessmentSensor</sensorImpl>
+            <distributeExternally>false</distributeExternally>
+            <sensorInput>
+                <SelfAssessmentSensor>
+                    <rateChangeAmount>0.1</rateChangeAmount>
+                </SelfAssessmentSensor>
+            </sensorInput>
+            <filterInstance>4</filterInstance>
+            <writerInstance>7</writerInstance>
+        </Sensor>
+    </Sensors>
+    <Filters>
+        <Filter id="3">
+            <name>GenericMouseTempHumidityFilter</name>
+            <filterImpl>sensor.filter.GenericSensorFilter</filterImpl>
+            <distributeExternally>true</distributeExternally>
+            <writerInstance>6</writerInstance>
+            <filterInput/>
+        </Filter>
+        <Filter id="4">
+            <name>GenericEngagementFilter</name>
+            <filterImpl>sensor.filter.GenericSensorFilter</filterImpl>
+            <distributeExternally>true</distributeExternally>
+            <writerInstance>8</writerInstance>
+            <filterInput/>
+        </Filter>
+    </Filters>
+    <Writers>
+        <Writer id="5">
+            <name>RawMouseWriter</name>
+            <writerImpl>sensor.writer.GenericSensorDelimitedWriter</writerImpl>
+            <writerInput>
+                <GenericSensorDelimitedWriter>
+                    <directoryToWrite>output/sensor</directoryToWrite>
+                    <filePrefix>unfilteredMouseTempHumidity</filePrefix>
+                </GenericSensorDelimitedWriter>
+            </writerInput>
+        </Writer>
+        <Writer id="6">
+            <name>FilteredMouseWriter</name>
+            <writerImpl>sensor.writer.GenericSensorDelimitedWriter</writerImpl>
+            <writerInput>
+                <GenericSensorDelimitedWriter>
+                    <directoryToWrite>output/sensor</directoryToWrite>
+                    <filePrefix>filteredMouseTempHumidity</filePrefix>
+                </GenericSensorDelimitedWriter>
+            </writerInput>
+        </Writer>
+        <Writer id="7">
+            <name>RawSelfAssessmentWriter</name>
+            <writerImpl>sensor.writer.GenericSensorDelimitedWriter</writerImpl>
+            <writerInput>
+                <GenericSensorDelimitedWriter>
+                    <directoryToWrite>output/sensor</directoryToWrite>
+                    <filePrefix>unfilteredSelfAssessment</filePrefix>
+                </GenericSensorDelimitedWriter>
+            </writerInput>
+        </Writer>
+        <Writer id="8">
+            <name>FilteredSelfAssessmentWriter</name>
+            <writerImpl>sensor.writer.GenericSensorDelimitedWriter</writerImpl>
+            <writerInput>
+                <GenericSensorDelimitedWriter>
+                    <directoryToWrite>output/sensor</directoryToWrite>
+                    <filePrefix>filteredSelfAssessment</filePrefix>
+                </GenericSensorDelimitedWriter>
+            </writerInput>
+        </Writer>
+    </Writers>
+</SensorsConfiguration>

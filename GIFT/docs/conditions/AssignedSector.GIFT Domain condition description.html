@@ -1,0 +1,47 @@
+<body>
+<p><strong>Assigned Sector Condition</strong></p>
+<p>This condition checks whether the provided members are looking in their 
+assigned sectors. The author can define a maxium offset of degrees from the 
+perfect viewing of the sector that is allowed.&nbsp; Also, there is an optional 
+free look duration that can be provided to allow momentary scanning outside of 
+the assigned sector (default is 0 seconds).</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li style="color: #008000">Above Expectation</li>
+	<li><span style="color : #0000FF">At Expectation</span>
+		<ul>
+			<li>case: All assessed members are looking at the assigned sector 
+			within the provided angle threshold.</li>
+		</ul>
+	</li>
+	<li><span style="color : #FF0000">Below Expectation</span>
+		<ul>
+			<li>case: At least one assessed member is looking outside of their 
+			assigned sector beyond the free look duration.</li>
+		</ul>
+	</li>
+	<li>Unknown
+		<ul>
+			<li>case: The default initial value of this condition. </li>
+		</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of violations (going from At to Below Expecation)</li>
+	<li>sums the duration of time in Below Expectation</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>this condition does not complete</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can produce entity state messages</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>mil.arl.gift.domain.knowledge.condition.AssignedSectorCondition</em></p>
+</body>

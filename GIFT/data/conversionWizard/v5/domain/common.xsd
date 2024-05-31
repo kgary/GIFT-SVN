@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:fg="http://www.FGolubov.com/XMLEditor"
+           elementFormDefault="qualified"
+           targetNamespace="http://GIFT.com/common"
+		   xmlns="http://GIFT.com/common"
+           version="4.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="nvpair">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="value">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="surveyContext">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Survey Context" editor-class="mil.arl.gift.tools.authoring.common.custnodes.SurveyContextDialog"> 
+					<fg:message>Unique key in the Survey Authoring System database used to identify the survey context.  A survey context includes the list of surveys for a course or lesson referenced by GIFT keys.</fg:message>
+					<fg:message>Refer to the Survey Auhtoring System documentation for more information on survey context.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+    </xs:element>
+	<xs:element name="GIFTSurveyKey">
+		<xs:annotation>
+		  <xs:appinfo>
+			<fg:node-info message="Survey Key" editor-class="mil.arl.gift.tools.authoring.common.custnodes.SurveyKeyDialog"> 
+				<fg:message>The survey's unique Gift Key with the provided DKF survey context in the survey authoring system database.  Refer to the Survey Authoring System documentation for more information.</fg:message>
+				<fg:message>Refer to the Survey Auhtoring System documentation for more information on survey context.</fg:message>
+			</fg:node-info> 
+		  </xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1" />
+			</xs:restriction>
+		</xs:simpleType>
+    </xs:element>
+	  <xs:element name="GDC">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="GDC"> 
+			<fg:message>This is the Geodetic Coordinate System coordinate system specification.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element name="latitude" type="xs:decimal"/>
+		<xs:element name="longitude" type="xs:decimal"/>
+		<xs:element name="elevation" type="xs:decimal"/> 
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GCC">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="GCC"> 
+			<fg:message>This is the Geocentric Coordinate System coordinate system specification.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element name="x" type="xs:decimal"/>
+		<xs:element name="y" type="xs:decimal"/>
+		<xs:element name="z" type="xs:decimal"/>   
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VBS2_AGL">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="VBS2 Above-Ground-Level Coordinate"> 
+			<fg:message>This is a VBS2 coordinate system specification, useful for VBS2 scripting logic.  For more information: http://resources.bisimulations.com/wiki/PositionAGL.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element name="x" type="xs:decimal"/>
+		<xs:element name="y" type="xs:decimal"/>
+		<xs:element name="z" type="xs:decimal"/>   
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+	  <!-- Start of Enumerations -->
+  <xs:simpleType name="OperatorEnumType">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog" exposed="true" message="Operator Type">
+				<fg:message>A mathematical symbol for comparision of numbers.</fg:message>
+				<fg:param name="title">Mathematical Symbol</fg:param>
+				<fg:param name="enumClass">mil.arl.gift.common.enums.OperatorEnum</fg:param>
+				<fg:param name="information">Please select the symbol's name to use from the list provided.</fg:param>
+			</fg:node-info>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1"/>
+	</xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PostureEnumType">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog" exposed="true" message="Posture Type">
+				<fg:message>A person's posture.</fg:message>
+				<fg:param name="title">Posture Type</fg:param>
+				<fg:param name="enumClass">mil.arl.gift.common.enums.PostureEnum</fg:param>
+				<fg:param name="information">Please select the postures's name to use from the list provided.</fg:param>
+			</fg:node-info>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:restriction base="xs:string">
+		<xs:minLength value="1"/>
+	</xs:restriction>
+  </xs:simpleType>
+	<xs:simpleType name="AssessmentLevelEnumType">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog" exposed="true" message="Assessment Level">
+					<fg:message>A GIFT assessment level.</fg:message>
+					<fg:param name="title">Assessment Level</fg:param>
+					<fg:param name="enumClass">mil.arl.gift.common.enums.AssessmentLevelEnum</fg:param>
+					<fg:param name="information">Please select the assessment level's name to use from the list provided.</fg:param>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UnitsEnumType">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="count"/>
+			<xs:enumeration value="hh:mm:ss"/>
+			<!-- Not sure how this got in here but we don't support it. Never have.
+			<xs:enumeration value="Equals"/> 
+			-->
+		</xs:restriction>
+  </xs:simpleType>  
+    <xs:simpleType name="TrainingApplicationStateEnumType">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog" exposed="true" message="Training Application State">
+					<fg:message>The training application state.</fg:message>
+					<fg:param name="title">Training Application State</fg:param>
+					<fg:param name="enumClass">mil.arl.gift.common.enums.TrainingApplicationStateEnum</fg:param>
+					<fg:param name="information">Please select the training application state's name to use from the list provided.</fg:param>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="booleanEnum">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="false"/>
+            <xs:enumeration value="true"/>
+        </xs:restriction>
+    </xs:simpleType>
+	<xs:simpleType name="WeaponControlStatusEnum">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="Tight"/>
+            <xs:enumeration value="Hold"/>
+			<xs:enumeration value="Free"/>
+        </xs:restriction>
+    </xs:simpleType>
+	<xs:simpleType name="ExcavatorComponentEnum">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="bucket"/>
+			<xs:enumeration value="boom"/>
+			<xs:enumeration value="arm"/>
+			<xs:enumeration value="swing"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- End of Enumerations -->
+</xs:schema>

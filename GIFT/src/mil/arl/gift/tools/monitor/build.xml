@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<project name="Monitor" default="compile">
+    
+    <property name="root.path" value="../../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.tools.monitor"/>
+    <property name="source.path" value="mil/arl/gift/tools/monitor"/>
+	<property name="services.jarfile.name" value="gift-monitor-services.jar"/>
+    <property name="jarfile.ext.path" value="gift-monitor"/>
+    <property name="jarfile.name" value="gift-monitor.jar"/>
+    <property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="gift.remote.jar" value="gift-remote.jar"/>
+	<property name="build.excludes" value="**/gwt/**,**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.dll,**/*.txt,**/*.TXT,**/*.ini"/>
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+        
+    <path id="classpath">
+    	<fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+        <fileset dir="${root.path}/external" includes="**/commons-cli-1.2.jar"/>
+        <fileset dir="${root.path}/external" includes="**/jcommon-1.0.16.jar"/>
+        <fileset dir="${root.path}/external" includes="**/jfreechart-1.0.13.jar"/>
+        <fileset dir="${root.path}/external" includes="**/json_simple-1.1.jar"/>
+		<fileset dir="${root.path}/external" includes="**/commons-lang-2.4.jar"/>
+		<fileset dir="${root.path}/external" includes="**/org-netbeans-swing-outline.jar"/>
+        <fileset dir="${root.path}/bin" includes="gift-common.jar"/>
+    	<fileset dir="${root.path}/bin" includes="gift-remote.jar"/>
+		<fileset dir="${root.path}/bin" includes="protobuf_generated.jar"/>
+		<fileset dir="${root.path}/external/protobuf/bin" includes="**/protobuf-java-3.7.0.jar"/>
+    </path>
+	
+    
+    <target name="checkForChanges">
+        <uptodate property="rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        <uptodate property="build.notRequired" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="${src.excludes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+        	<and>
+                <isset property="rebuild.required"/>
+                <isset property="build.notRequired"/>
+            </and>
+        </condition>
+    </target>
+	
+	<!-- checking for changes in dependencies needed to compile ${services.jarfile.name} -->
+	    <target name="checkForChanges.Services">
+	    	
+	    	<!-- has the common jar changed since the last jar creation (true = no change, not set = common jar is newer) -->
+	    	<uptodate property="upToDateWithCommon.ifSet" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+
+	    	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
+	    	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+	            <srcfiles dir="." includes="${update.includes}"/>
+	        </uptodate>
+	    
+	    	<!-- set property if:
+	    		1) the build properties have changed
+	    		or
+	    		2) the common jar has changed
+	    		or
+	    		3) the domain jar source has changed
+	    	-->
+	        <condition property="buildServices.required">
+	            <or>
+	            	<not>
+	                	<isset property="upToDateWithCommon.ifSet"/>
+	            	</not>
+	            	<not>
+	                	<isset property="upToDateWithIncludes.ifSet"/>
+	            	</not>
+	            </or>
+	        </condition>
+	    </target>
+    
+    <target name="compileCore" unless="build.required">
+    	<echo message="Compiling Monitor"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" classpathref="classpath" includeDestClasses="false" excludes="${src.excludes}">
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <copy todir="${root.path}/build/classes/${source.path}">
+            <fileset dir="." includes="**/*.png"/>
+        </copy>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes/" includes="${source.path}/**"/>
+    </target>
+
+    <target name="compile" depends="checkForChanges, compileCore">        
+    </target>
+	
+	<!-- create gift monitor services jar -->
+	<target name="compileMonitorServices" depends="checkForChanges.Services" if="buildServices.required">
+		<property name="monitorServices.class.includes"
+			value="
+			${source.path}/DomainSessionStatusListener*.class,
+			${source.path}/DomainSessionStatusModel*.class,
+			${source.path}/UserStatusListener*.class,
+			${source.path}/UserStatusModel*.class,
+			${source.path}/DomainSessionMonitorListener*.class"/>
+		
+		<echo message="Compiling Monitor Services"/>
+		<mkdir dir="${root.path}/build/classes"/>
+		<mkdir dir="${root.path}/bin" />
+		<javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+			<compilerarg value="-Xlint"/>
+			<include name="DomainSessionStatusListener.java"/>
+			<include name="DomainSessionStatusModel.java"/>
+			<include name="UserStatusListener.java"/>
+			<include name="UserStatusModel.java"/>
+			<include name="DomainSessionMonitorListener.java"/>
+		</javac>
+		
+		<jar destfile="${root.path}/bin/${services.jarfile.name}"
+			basedir="${root.path}/build/classes"
+			includes="${monitorServices.class.includes}"
+			excludes="${build.excludes}"/>
+    </target>	
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

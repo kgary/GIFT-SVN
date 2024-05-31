@@ -1,0 +1,132 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:mil.arl.gift.common.gwt.client.widgets"
+	xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util">
+	<ui:style>
+		.padTop{
+			padding-top: 5px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}
+		.tabbed{
+			padding: 0px 30px;
+		}
+		.smallPad{
+			margin: 5px;
+		}
+		.title{
+			margin: 14px;
+		}
+		.helpLink{
+			padding-left: 5px; 			
+			color: rgb(100,100,200);
+			font-weight: normal;
+		}
+		.scrollPanel{
+			height: 600px;
+    		width: 900px;
+    		border: solid 1px lightgray;
+		}
+		.footer{
+			width: 100%;
+    		text-align: center;
+    		padding: 7px 4px 3px;
+		}
+	</ui:style>
+	
+	<g:FlowPanel>
+		<g:FlowPanel>
+			<b:Heading size="H3" text="Conversation Properties" addStyleNames="{style.title}"/>
+		</g:FlowPanel>
+		<g:ScrollPanel addStyleNames="{style.scrollPanel}">
+			<g:HTMLPanel width='100%'>
+				<div style="border:solid 1px #AAAAAA; 
+						position:relative; 
+						padding:10px; 
+						margin: 10px; 
+						margin-bottom: 15px; 
+						box-shadow: 3px 3px 5px rgba(0,0,0,0.3)
+					">
+					<div style="font-weight: bold; 
+							position:absolute; 
+							top:-10px; 
+							left: 40px; 
+							margin-left:-35px; 
+							padding-right: 5px; 
+							padding-left: 5px; 
+							background-color:white;
+						">
+						Conversation Details
+					</div>		      	
+					<g:FlowPanel addStyleNames='{style.tabbed} {style.padTop}'>
+					
+						<g:HTML addStyleNames='{style.smallPadBottom}'>
+							<b>Name:</b>
+						</g:HTML>
+						
+						<g:FlowPanel addStyleNames='{style.tabbed} {style.smallPadBottom}'>		      		
+							<g:TextBox width='100%' ui:field="nameTextBox" />		      			
+						</g:FlowPanel>	 
+									
+						<g:HTMLPanel>
+						<div style="border:solid 1px #AAAAAA; 
+							position:relative; 
+							padding:30px 10px 10px; 
+							margin: 30px 10px 40px;
+							box-shadow: 3px 3px 5px rgba(0,0,0,0.3)
+						">
+							<div style="font-weight: bold; 
+								position:absolute; 
+								top:-10px; 
+								left: 40px; 
+								margin-left:-35px; 
+								padding-right: 5px; 
+								padding-left: 5px; 
+								background-color:white;
+							">
+								Author's Description:
+							</div>		      		
+							<g:FlowPanel addStyleNames='{style.tabbed} {style.smallPadBottom}'>	
+								<g:Widget ui:field="authorsDescriptionToolbar"/>
+								<g:RichTextArea ui:field="authorsDescriptionTextArea" />				      			
+							</g:FlowPanel>
+						</div>
+						
+						<div style="border:solid 1px #AAAAAA; 
+							position:relative; 
+							padding:30px 10px 10px; 
+							margin: 10px; 
+							margin-bottom: 15px; 
+							box-shadow: 3px 3px 5px rgba(0,0,0,0.3)
+						">
+							<div style="font-weight: bold; 
+								position:absolute; 
+								top:-10px; 
+								left: 40px; 
+								margin-left:-35px; 
+								padding-right: 5px; 
+								padding-left: 5px; 
+								background-color:white;
+							">
+							Learner's Description:
+						</div>		      		
+						
+						<g:FlowPanel addStyleNames='{style.tabbed} {style.smallPadBottom}'>			
+							<g:Widget ui:field="learnersDescriptionToolbar"/>
+							<g:RichTextArea ui:field="learnersDescriptionTextArea" />				      			
+						</g:FlowPanel>
+					</div>
+					</g:HTMLPanel>
+					</g:FlowPanel>
+				 </div>
+			</g:HTMLPanel>
+		</g:ScrollPanel>
+		<g:FlowPanel addStyleNames="{style.footer}">
+			<b:Button width="150px" type="PRIMARY" ui:field="closeButton">Close</b:Button>
+		</g:FlowPanel>
+	</g:FlowPanel>
+
+</ui:UiBinder> 

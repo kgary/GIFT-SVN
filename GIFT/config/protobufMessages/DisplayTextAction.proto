@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DisplayTextActionProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information on how this feedback text should be delivered to the user. */
+message DisplayTextAction {
+	/* The text. */
+	google.protobuf.StringValue text = 1;
+	
+	/* The information on how this feedback text should be delivered to the user. */
+	google.protobuf.StringValue delivery_settings = 2;
+}

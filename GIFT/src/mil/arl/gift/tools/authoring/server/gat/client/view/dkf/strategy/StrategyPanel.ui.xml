@@ -1,0 +1,269 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:task="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.shared"
+    xmlns:dkfShared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:valid="urn:import:mil.arl.gift.common.gwt.client.validation"
+    xmlns:slider="urn:import:org.gwtbootstrap3.extras.slider.client.ui"
+    xmlns:util="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list">
+    <ui:style>
+        .inlineBlock {
+            display: inline-block;
+        }
+        .left-align {
+            text-align: left;
+        }
+        .pointer-cursor {
+            cursor: pointer;
+        }
+        .rootPanel {
+            overflow: auto;
+        }
+        .panelPadding > .strategyActionSummaryPanel > .strategyTypeSelect {
+            display: inline-block;
+            width: auto;
+            padding-left: 5px;
+        }
+        .panel {
+            margin: 4px;
+        }
+        .advancedOptionsButton {
+            display: inline-block;
+            border-color: transparent;
+            padding: 6px;
+            margin-left: 4px;
+        }
+        
+        .disclosurePanelInner{
+            margin: 5px
+        }
+        .panelBorder{
+            border-style: solid !important;
+            border-Width: 1px !important;
+            border-color: rgb(185,185,185) !important;
+            border-radius: 3px !important;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+        }
+
+        .padBottom{
+            margin-bottom: 10px;
+        }
+        .tabbed{
+            padding: 0px 30px;
+        }
+        
+        .smallPad{
+            margin: 5px;
+        }
+        .smallPadBottom{
+            margin-bottom: 5px;
+        }
+        .messageDisplayButton{
+            margin-top: 5px;
+            color: #333;
+        }
+        @external focus;
+        .messageDisplayButton.focus{
+            background-color: white;
+            color: #333;
+        }
+        .messageDisplayButton:hover{
+            background-color: white;
+            background-image: linear-gradient(transparent, rgba(0,0,255,0.1));
+            box-shadow: 0px 0px 5px blue;
+            z-index: 10 !important;
+            color: #333;
+        }
+        @external active;
+        .messageDisplayButton.active{
+            color: #333;
+            background-color: #e6e6e6;
+        }
+        .messageDisplayButton > span{
+            width: auto !important;
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+        .mandatoryStrategyButton{
+            margin-right: 10px;
+            border-radius: 5px !important;
+        }
+        .fieldPanel {
+            margin-top: 8px;
+        }
+        .stressRatingHeading {
+			font-weight:bold;
+		}
+		.stressCategoryHeading {
+			font-weight:bold;
+			font-size:14px;
+			padding-right:5px;
+		}
+		.removesStressLabel{
+			margin-right:10px;
+		}
+		.veryStressfulLabel{
+			margin-left:10px;
+		}
+		.rootPanel .strategyPanel .actionPanelCollapse .slider .slider-track .slider-selection {
+			background-image:linear-gradient(rgb(10, 189, 207) 0px, rgb(8, 255, 244) 100%);
+        }
+		.stressSliderPanel{
+			padding-top:5px;
+			padding-bottom:5px;
+		}
+		.stressCategoryPanel{
+			padding-top:5px;
+			padding-bottom:5px;
+			margin-top:10px;
+			margin-bottom:10px;
+		}
+		.helpLink {
+	        padding-left: 5px;
+	        color: rgb(100, 100, 200);
+	        font-weight: normal;
+	    }
+	    .stressSlider{
+	    }
+	    @external .slider-track, .slider-selection, .slider-track-high, .slider-handle;
+        .stressSliderPanel .slider-track{
+	       /* This allows the slider to transition from blue to red for higher stress values*/
+	       background-image: linear-gradient(90deg, rgb(200,200,255), rgb(255,200,200));
+	    }
+	    .stressSliderPanel .slider-selection{
+           /* Let blue-red background show up to the right of the slider handle. */
+           background-color: transparent;
+           background-image: linear-gradient(rgba(0,0,0,0.25), transparent, rgba(255,255,255, 0.5));
+        }
+	    .stressSliderPanel .slider-track-high{
+	        /* Hide slider background to the right of the slider handle. This hides the red for low values.*/
+	        box-shadow: rgba(0,0,0,0.15) 0px 2px 2px inset;
+            background-color: white;
+	    }
+	    .stressSliderPanel .slider-handle{
+            box-shadow: rgba(0,0,0,0.50) 0px 0px 1px 1px;
+            background-image: linear-gradient(rgb(255, 150,255), rgb(150, 50, 150));
+	    }
+    </ui:style>
+    <g:HTMLPanel height="100%" addStyleNames='{style.rootPanel}' ui:field="rootPanel">
+        
+        <valid:ValidationWidget ui:field="validations" />
+    
+        <!-- Strategy Authoring Panel -->
+        <b:Panel addStyleNames="{style.panel}" ui:field="stratgyPanel">
+            <b:PanelHeader ui:field="actionPanelHeader" dataToggle="COLLAPSE" addStyleNames="{style.pointer-cursor}">
+                <b:Heading text="Activities" size="H2" addStyleNames="{style.left-align}"/>
+            </b:PanelHeader>
+            <b:Collapse ui:field="actionPanelCollapse">
+                <b:PanelBody addStyleNames="{style.panelPadding}">
+                    <util:ItemListEditor ui:field="strategyActivitiesList" />
+                    
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}">
+                    
+                    	<g:HorizontalPanel>
+                    		<g:Label addStyleNames="{style.stressRatingHeading}">Difficulty rating:</g:Label>
+                    		
+	                    	<wb:HelpLink helpCaption='Strategy Difficulty Rating' ui:field='difficultyHelpLink'>
+			    			
+			    				<wb:linkWidget>
+									<b:Icon title="What's this?"
+										addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+								</wb:linkWidget>
+								   			
+					   			<wb:helpBody>
+					   				<g:HTML>
+										The difficulty rating of a strategy is an indicator of how much difficulty this strategy
+										applies to any associated task(s) during a real-time assessment.  An associated task for a strategy
+										is normally a task that is referenced in a state transition that was activated and caused this strategy to be selected.
+										If that can't be determined than all running tasks are used.<br/><br/>
+										A value of 0 means the strategy doesn't add or remove difficulty.<br/>
+										A value of 1 means the strategy adds the most difficulty possible for a single strategy set.<br/>
+										A value of -1 means the strategy removes a great deal of difficulty.<br/>  
+							   		</g:HTML>
+					   			</wb:helpBody>
+					   			
+					   		</wb:HelpLink>
+			   			</g:HorizontalPanel>
+                        <g:FlowPanel addStyleNames="{style.stressSliderPanel}" >
+                        	<b:Label addStyleNames="{style.removesStressLabel}">Removes Difficulty</b:Label>
+                        	<slider:Slider ui:field="difficultySlider" addStyleNames="{style.stressSlider}" min="-1.0" max="1" value="0" step="0.1" />
+                        	<b:Label addStyleNames="{style.veryStressfulLabel}" type="DANGER">Very Difficult</b:Label>
+                        </g:FlowPanel>
+                    </g:FlowPanel>
+                    
+                    <g:FlowPanel addStyleNames="{style.fieldPanel}">
+                    
+                    	<g:HorizontalPanel>
+                    		<g:Label addStyleNames="{style.stressRatingHeading}">Stress rating:</g:Label>
+                    		
+	                    	<wb:HelpLink helpCaption='Strategy Stress Rating' ui:field='stressHelpLink'>
+			    			
+			    				<wb:linkWidget>
+									<b:Icon title="What's this?"
+										addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+								</wb:linkWidget>
+								   			
+					   			<wb:helpBody>
+					   				<g:HTML>
+										The stress rating of a strategy is an indicator of how much stress this strategy
+										applies to associated task(s) during a real-time assessment.  An associated task for a strategy
+										is normally a task that is referenced in a state transition that was activated and caused this strategy to be selected.
+										If that can't be determined than all running tasks are used.<br/><br/>
+										A value of 0 means the strategy doesn't add or remove stress.<br/>
+										A value of 1 means the strategy adds the most stress possible for a single strategy set.<br/>
+										A value of -1 means the strategy removes a great deal of stress.<br/>  
+							   		</g:HTML>
+					   			</wb:helpBody>
+					   			
+					   		</wb:HelpLink>
+			   			</g:HorizontalPanel>
+                        <g:FlowPanel addStyleNames="{style.stressSliderPanel}" >
+                        	<b:Label addStyleNames="{style.removesStressLabel}">Removes stress</b:Label>
+                        	<slider:Slider ui:field="stressSlider" addStyleNames="{style.stressSlider}" min="-1.0" max="1" value="0" step="0.1" />
+                        	<b:Label addStyleNames="{style.veryStressfulLabel}" type="DANGER">Very stressful</b:Label>
+                        </g:FlowPanel>
+                        <g:HorizontalPanel addStyleNames="{style.stressCategoryPanel}" >
+                        	<g:Label addStyleNames="{style.stressCategoryHeading}">Stress Categories: </g:Label>
+                        	<g:Label ui:field="stressCategoriesLabel"/>
+                        </g:HorizontalPanel>
+                    </g:FlowPanel>
+                    
+                    <b:ButtonGroup dataToggle="BUTTONS">
+                        <wb:ManagedTooltip title="If selected, this strategy will be processed automatically even if the Observer Controller chooses to manually approve strategies">
+                            <b:CheckBoxButton addStyleNames="{style.messageDisplayButton} {style.mandatoryStrategyButton}" icon="HANDSHAKE_O" ui:field='mandatoryStrategyButton'>
+                                Always Automatically Apply Strategy
+                            </b:CheckBoxButton>
+                        </wb:ManagedTooltip>
+                    </b:ButtonGroup>
+                    <b:ButtonGroup dataToggle="BUTTONS">
+                        <wb:ManagedTooltip title="If selected, will reset the knowledge session after the strategy has completed alll of its activities.">
+                            <b:CheckBoxButton addStyleNames="{style.messageDisplayButton} {style.mandatoryStrategyButton}" icon="REPEAT" ui:field='resetKnowledgeButton'>
+                                Reset Knowledge Session
+                            </b:CheckBoxButton>
+                        </wb:ManagedTooltip>
+                    </b:ButtonGroup>
+                </b:PanelBody>
+            </b:Collapse>
+        </b:Panel>
+        
+        <!-- Panel that specifies which StateTransitions are referencing this Strategy -->
+        <task:StateTransitionReferenceWidget 
+            ui:field="referencedStateTransitions" 
+            addStyleNames="{style.panel}" 
+            tableLabel="This strategy may be invoked whenever any of the below State Transitions occur." />
+            
+        <!-- Panel that specifies which Tasks are referencing this Strategy -->
+        <task:TaskTransitionReferenceWidget 
+            ui:field="referencedTasks" 
+            addStyleNames="{style.panel}" 
+            tableLabel="This strategy may be invoked whenever any of the below Tasks occur." />
+            
+        <!-- Panel that specifies which Learner Actions are referencing this Strategy -->
+        <dkfShared:LearnerActionReferenceWidget 
+            ui:field="referencedLearnerActions" 
+            addStyleNames="{style.panel}" 
+            tableLabel="This strategy may be invoked whenever any of the below Learner Actions are selected." />
+    </g:HTMLPanel>
+</ui:UiBinder>

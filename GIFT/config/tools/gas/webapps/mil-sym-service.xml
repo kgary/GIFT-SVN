@@ -1,0 +1,23 @@
+<?xml version="1.0"  encoding="ISO-8859-1"?>
+<!DOCTYPE doc [
+    <!ENTITY Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+    <!ENTITY keycloakWebAppConfig SYSTEM "config/tools/gas/auth/keycloak/webapp.xml">
+]>
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+	<Set name="contextPath">/mil-sym-service</Set>
+	<Set name="war"><SystemProperty name="gift.home" default="."/>/external/mil-sym-service-0.1.35.war</Set>
+	
+	<!-- assign an explicit temporary directory to avoid leaving Jetty's auto-generated ones behind -->
+	<Set name="tempDirectory"><SystemProperty name="gift.home" default="."/>/temp/jetty-gift-mil-sym-service</Set>
+	
+	<!-- Ensure static files can be fetched inside a Windows symlink context -->
+	<Call name="addAliasCheck">
+        <Arg>
+            <New class="org.eclipse.jetty.server.SameFileAliasChecker"/>
+        </Arg>
+    </Call>
+	
+	<!-- Optional Keycloak authentication settings shared between GIFT's web apps -->
+    &keycloakWebAppConfig;
+	
+</Configure>

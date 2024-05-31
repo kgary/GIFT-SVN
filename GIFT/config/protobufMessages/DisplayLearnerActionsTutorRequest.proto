@@ -1,0 +1,22 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DisplayLearnerActionsTutorRequestProto";
+
+import "LearnerAction.proto";
+import "ScenarioControls.proto";
+
+/* This message represents the information to display for a learner actions tutor request. */
+message DisplayLearnerActionsTutorRequest {
+	/* The list of learner actions to be displayed. */
+	repeated LearnerAction actions_list = 1;
+	
+	/* The scenario controls to make available for the user. */
+	ScenarioControls scenario_controls = 2;
+}

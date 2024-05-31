@@ -1,0 +1,23 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "QuestionScorerProto";
+
+import "survey/AttributeScorerProperties.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about a scorer for a question. */ 
+message QuestionScorer {
+
+     /* If this question should be included with total scoring */
+	google.protobuf.BoolValue totalQuestion = 1;
+	
+	/* The list of scorers per question. */
+	repeated AttributeScorerProperties attribute_scorers = 2;
+}

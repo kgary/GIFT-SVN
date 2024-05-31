@@ -1,0 +1,52 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainOptionProto";
+
+import "AbstractEnumObject.proto";
+import "DomainOptionPermissions.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information about a domain option. */
+message DomainOption {
+	/* The user name. */
+	google.protobuf.StringValue user_name = 1;
+	
+	/* The domain name for the option. */
+	google.protobuf.StringValue domain_name = 2;
+	
+	/* The domain id for the option. */
+	google.protobuf.StringValue domain_id = 3;
+	
+	/* The source id for the option. */
+	google.protobuf.StringValue source_id = 4;
+	
+	/* Option description. */
+	google.protobuf.StringValue description = 5;
+	
+	/* The recommendation to the user about the domain option. */
+	DomainOptionRecommendation recommendation = 6;
+	
+	/* The list of permissions the domain option has. */
+	repeated DomainOptionPermissions permissions = 7;
+	
+	/* The concepts asspciated with the domain option. */
+	google.protobuf.StringValue concepts = 8;
+}
+
+message DomainOptionRecommendation {
+	/* The recommendation to the user about the domain option. */
+	AbstractEnumObject type = 1;
+	
+	/* Reason for the recommendation. */
+	google.protobuf.StringValue reason = 2;
+	
+	/* Details about the recommendation. */
+	google.protobuf.StringValue details = 3;
+}

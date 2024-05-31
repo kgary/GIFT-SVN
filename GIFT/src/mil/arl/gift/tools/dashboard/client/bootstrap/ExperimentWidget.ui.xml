@@ -1,0 +1,332 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:db="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap">
+    <ui:style>
+        .experimentNameLabel{
+            font-weight: bold;
+            padding: 5px;
+            display: inline;
+        }
+        .experimentStatusLabel{
+            display: inline;
+            float: right;            
+        }
+        .tabbed{
+            padding: 0px 20px;
+        }
+        .marginBottom{
+            margin-bottom: 10px;
+        }
+        .inline{
+            display: inline;
+        }
+        .alignRight{
+            text-align: right;
+        }    
+        .controlButton{
+            margin: 5px;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+        }        
+        .panelButton{
+            font-size: 1.5em;
+            padding: 0px;
+            margin: -7px 5px 0px 5px;
+            color: #dddddd;
+        }
+        .panelButton:hover{
+            color: #fff;
+            text-shadow: 0px 0px 7px white;
+        }
+        .panelButton:focus{
+            color: #ffffff;
+            text-shadow: 0px 0px 7px white;
+        }
+        .center{
+            text-align: center;
+        }
+        .lastContentElement{
+            margin-bottom: 10px;
+        }
+        .clickable{
+            cursor: pointer;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        .italic{
+			font-style: italic;
+		}
+        .spaceRight{
+            margin-right: 5px;
+        }
+        .smallPadBottom{
+            padding-bottom: 5px;
+        }
+        .largePadRight{
+            padding-right: 30px;
+        }
+        .inlineBlock{
+            display: inline-block;
+        }
+        /* For some reason, adding overflow:auto fixes the problem where floating elements go outside their parent's height.*/
+        .fixFloat{
+            overflow: auto;
+        }
+        .validateButton{
+            padding: 0px 5px;
+            color: gray;
+        }
+        .downloadButton{
+            padding: 0px 5px;
+        }
+        .descriptionText{
+            max-height: 100px;
+            overflow: auto;
+            white-space: pre-wrap;
+        }
+        
+        .typeIconStyle {
+            margin-left: 20px;
+            margin-right: 0px;
+        }
+        .editCourseIconStyle {
+            cursor: pointer;
+        }
+        .endedReasonStyle {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .urlLabel {
+            display: inline;
+        }
+        .copyUrlButton {
+	        padding: 0px 12px;
+        }
+    </ui:style>
+    <g:FlowPanel addStyleNames='experimentPanel experimentPausedPanel' ui:field='container'>
+    
+        <g:FocusPanel addStyleNames='{style.clickable}' ui:field='headerPanel'>        
+            <g:FlowPanel addStyleNames='{style.fixFloat}'>
+            
+                <b:Icon type='CHEVRON_CIRCLE_RIGHT' ui:field='headerCollapseIcon'/>
+        
+                <b:Icon type='PLUG' ui:field='dataSetTypeIcon' addStyleNames='{style.typeIconStyle}'/>
+                
+                <g:Label addStyleNames='{style.experimentNameLabel}' ui:field='experimentName'/>
+                
+                
+                
+                <g:FlowPanel addStyleNames='{style.experimentStatusLabel}'>                    
+                    
+                    <g:HTML addStyleNames='{style.inline} {style.spaceRight}' ui:field='ownerLabel'>
+                        Owner:
+                    </g:HTML>
+                    <g:InlineLabel addStyleNames='{style.italic} {style.largePadRight}' ui:field='ownerUsername'/>
+                    <g:InlineLabel addStyleNames='{style.bold} {style.largePadRight}' ui:field='status'>
+                        Paused
+                    </g:InlineLabel>
+                    
+                    <g:FlowPanel addStyleNames='{style.inlineBlock}'></g:FlowPanel>
+
+	                    <b:Tooltip placement='LEFT' title="Share Published Course">
+	                        <b:Button type="LINK" icon="USER_PLUS" size="LARGE"  addStyleNames="{style.panelButton}" ui:field="ctrlSharePublishedCourse" visible="false"/>
+	                    </b:Tooltip>
+                        <b:Tooltip  placement='LEFT' title="Validates this course, checking it for errors and missing references.">
+                            <b:Button type='LINK' icon='CHECK_SQUARE_O' addStyleNames='{style.panelButton}' ui:field='validateCourseButton'/>
+                        </b:Tooltip>
+                        <b:Tooltip  placement='LEFT' title="Exports a copy of this course to a downloadable file.">
+                            <b:Button type='LINK' icon='DOWNLOAD' addStyleNames='{style.panelButton}' ui:field='exportCourseButton'/>
+                        </b:Tooltip>
+                        
+                        <b:Tooltip placement='LEFT' title="Edits the metadata of this published course">
+                            <b:Button type='LINK' icon='PENCIL' addStyleNames='{style.panelButton}' ui:field='editButton'/>
+                        </b:Tooltip>
+                        
+                        <b:Tooltip placement='LEFT' title="Refreshes this published course metadata.">
+                            <b:Button type='LINK' icon='REFRESH' addStyleNames='{style.panelButton}' ui:field='refreshButton'/>
+                        </b:Tooltip>
+                        
+                        <!-- NOTE: placed tooltip around flowpanel so the tooltip would appear when the delete button is disabled -->
+                        <wb:ManagedTooltip placement='LEFT' ui:field='deleteButtonTooltip'>
+                        	<g:FlowPanel addStyleNames='{style.inlineBlock}'>
+                            	<b:Button type='LINK' icon='TRASH' addStyleNames='{style.panelButton}' ui:field='deleteButton'/>
+                            </g:FlowPanel>
+                        </wb:ManagedTooltip>
+                        
+                    </g:FlowPanel>
+                
+            </g:FlowPanel>
+        </g:FocusPanel>    
+        
+        <g:FlowPanel>
+        
+            <g:DeckPanel animationEnabled='true' ui:field='contentDeck'>
+                
+                <g:SimplePanel ui:field='noContentPanel' />
+                
+                <g:FlowPanel addStyleNames='experimentContent' ui:field='contentPanel'>
+                
+                    <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom} {style.endedReasonStyle}' ui:field='endedReasonPanel'>
+                        <b.html:Paragraph addStyleNames='{style.descriptionText}' ui:field='endedReasonText'/>
+                    </g:FlowPanel>
+                    
+                    <g:FlowPanel ui:field="buttonGroupPanel">
+                        <b:ButtonGroup dataToggle="BUTTONS">
+                            <b:RadioButton type='PRIMARY' name="panelGroup" ui:field='generalInfoButton'>View Details</b:RadioButton>
+                            <b:RadioButton type='PRIMARY' name="panelGroup" ui:field='ltiInfoButton'>View LTI Properties</b:RadioButton>
+                        </b:ButtonGroup>
+                    </g:FlowPanel>
+      
+                    <g:DeckPanel ui:field='infoDeck'>
+                        <g:FlowPanel ui:field='generalInfoPanel'>
+                            
+                            
+                            <g:HTML addStyleNames='{style.experimentNameLabel}'>
+                                Description
+                            </g:HTML>
+                            <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                <b.html:Paragraph addStyleNames='{style.descriptionText}' ui:field='descriptionText'/>
+                            </g:FlowPanel>
+                            
+                            <g:HTML addStyleNames='{style.experimentNameLabel}' ui:field='urlTitle'>
+                                URL
+                            </g:HTML>
+                            <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                <g:Label width='100%' addStyleNames='{style.urlLabel}' ui:field='urlLabel'/>
+	                            <wb:ManagedTooltip title="Copy the URL to the Clipboard">
+				                    <b:Button ui:field='copyUrlButton' type='LINK' icon='COPY' addStyleNames='{style.copyUrlButton}' />
+				                </wb:ManagedTooltip>
+                            </g:FlowPanel>
+                            
+                            <g:HTML addStyleNames='{style.experimentNameLabel}'>
+                                Course
+                            </g:HTML>
+                            <wb:ManagedTooltip title="Edit the published course">
+                                <b:Icon type='PENCIL' ui:field='editCourseIcon' addStyleNames='{style.editCourseIconStyle}'/>
+                            </wb:ManagedTooltip>
+                            
+                            <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                <g:InlineLabel ui:field='courseText'>
+                                    Explicit Feedback with Game-Based Training
+                                </g:InlineLabel>
+                            </g:FlowPanel>
+                            
+                            <g:HTML addStyleNames='{style.experimentNameLabel}'>
+                                Subject Data
+                            </g:HTML>
+                            
+                            <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                <g:HTMLPanel>
+                                    <g:InlineHTML addStyleNames='{style.spaceRight}'>
+                                        Number of Attempts:
+                                    </g:InlineHTML>
+                                    <b><g:InlineLabel ui:field='numberOfAttempts'/></b>
+                                    <br/>
+                                    <g:InlineHTML addStyleNames='{style.spaceRight}'>
+                                        Latest Attempt:
+                                    </g:InlineHTML>
+                                    <b><g:InlineLabel ui:field='latestAttempt'/></b>
+                                </g:HTMLPanel>                        
+                            </g:FlowPanel>
+                        </g:FlowPanel>
+                        
+                        <db:DataCollectionLtiPropertiesPanel ui:field='ltiInfoPanel' />
+                       
+                    </g:DeckPanel>
+                    
+                    
+                    <g:FlowPanel addStyleNames='{style.alignRight} {style.lastContentElement}'>
+                        
+                        
+                    
+                        <g:FlowPanel visible='false' addStyleNames='{style.inlineBlock}' ui:field='rpcStatusPanel'>
+                            <g:InlineLabel addStyleNames='{style.spaceRight}' ui:field='rpcStatusLabel' />
+                            <wb:BsLoadingIcon ui:field='rpcLoadingIcon'/>
+                        </g:FlowPanel>
+                    
+                        <g:DeckPanel addStyleNames='{style.inlineBlock}' ui:field='buttonDeck'>
+                        
+                            <g:FlowPanel ui:field='activeButtonPanel'>
+                                <b:Tooltip title='Temporarily unpublishes the course, thereby stopping data collection and preventing anyone from accessing it.'>
+                                    <b:Button type='DANGER' icon='PAUSE' addStyleNames='{style.controlButton}' ui:field='pauseButton'>
+                                        Pause
+                                    </b:Button>
+                                </b:Tooltip>
+                                
+                                <b:Tooltip title='Exports raw data collected for this published course to a downloadable file. '>
+                                    <b:Button type='PRIMARY' icon='DOWNLOAD' addStyleNames='{style.controlButton}' ui:field='exportSubjectDataButton'>
+                                        Export Raw Data
+                                    </b:Button>
+                                </b:Tooltip>
+                                
+                                <b:Tooltip title='Temporarily unpublishes the course, thereby stopping data collection and preventing anyone from accessing it in order to build a downloadable report of the data collected.'>
+                                    <b:Button type='PRIMARY' icon='BAR_CHART' addStyleNames='{style.controlButton}' ui:field='pauseAndBuildButton'>
+                                        Pause and Build Report
+                                    </b:Button>
+                                </b:Tooltip>
+                            </g:FlowPanel>
+                            
+                            <g:FlowPanel  ui:field='pausedButtonPanel'>
+                                <b:Tooltip title='Returns the course to published status, allowing participants to access it from its URL once again.'>
+                                    <b:Button type='SUCCESS' icon='PLAY' addStyleNames='{style.controlButton}' ui:field='resumeButton'>
+                                        Resume
+                                    </b:Button>
+                                </b:Tooltip>
+                                
+                                <b:Tooltip title='Exports raw data collected to a downloadable file. '>
+                                    <b:Button type='PRIMARY' icon='DOWNLOAD' addStyleNames='{style.controlButton}' ui:field='exportSubjectDataButtonPaused'>
+                                        Export Raw Data
+                                    </b:Button>
+                                </b:Tooltip>
+                                
+                                <b:Tooltip title='Begins building a downloadable report of the data collected.'>
+                                    <b:Button type='PRIMARY' icon='BAR_CHART' addStyleNames='{style.controlButton}' ui:field='buildButton'>
+                                        Build Report
+                                    </b:Button>
+                                </b:Tooltip>
+                            </g:FlowPanel>
+                            
+                            <g:FlowPanel  ui:field='endedButtonPanel'>                             
+                                <b:Tooltip title='Exports raw data collected to a downloadable file. '>
+                                    <b:Button type='PRIMARY' icon='DOWNLOAD' addStyleNames='{style.controlButton}' ui:field='exportSubjectDataButtonEnded'>
+                                        Export Raw Data
+                                    </b:Button>
+                                </b:Tooltip>
+                                
+                                <b:Tooltip title='Begins building a downloadable report of the data collected.'>
+                                    <b:Button type='PRIMARY' icon='BAR_CHART' addStyleNames='{style.controlButton}' ui:field='buildButtonEnded'>
+                                        Build Report
+                                    </b:Button>
+                                </b:Tooltip>
+                            </g:FlowPanel>
+                            
+                        </g:DeckPanel>    
+                    </g:FlowPanel>                    
+                    
+                    <g:FocusPanel addStyleNames='{style.center} {style.clickable}' ui:field='footerPanel'>
+                
+                        <g:FlowPanel>
+                    
+                            <g:HTML>
+                                <hr style='border-color: rgb(175, 175, 175); margin: 0px;'/>
+                            </g:HTML>
+                            
+                            <b:Icon type='ANGLE_DOUBLE_DOWN' size='TIMES2' ui:field='footerCollapseIcon'/>
+                        
+                        </g:FlowPanel>
+                        
+                    </g:FocusPanel>
+                    
+                </g:FlowPanel>
+            
+            </g:DeckPanel>    
+            
+        </g:FlowPanel>
+    </g:FlowPanel>
+</ui:UiBinder> 

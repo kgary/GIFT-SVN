@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<project name="SensorModule" default="compile">
+    <property name="root.path" value="../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.sensor"/>
+    <property name="source.path" value="mil/arl/gift/sensor"/>
+    <property name="jarfile.ext.path" value="gift-sensor"/>
+    <property name="jarfile.name" value="gift-sensor.jar"/>
+    <property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="build.dependencies" value="${root.path}/config/build.dependencies"/>
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+	<property name="build.excludes" value="**/gwt/**,**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.dll,**/*.txt,**/*.TXT,**/*.ini"/>
+    
+    <!-- determine if Emotiv should be built -->
+    <available file="${root.path}/external/emotiv/edk.dll" property="isEmotivAvail" />
+    <condition property="excludeEmotiv" value="false" else="true">
+        <isset property="isEmotivAvail" />
+    </condition>
+	    
+	<!-- determine if the InterialLabs OS3D gateway should be built -->
+    <available file="${root.path}/external/InertialLabs_SDK_Lite.dll" property="isOS3DAvail" />
+    <condition property="excludeOS3D" value="false" else="true">
+        <isset property="isOS3DAvail" />
+    </condition>
+	
+    <loadfile property="build.dependencies.sensor" srcFile="${build.dependencies}">
+        <filterchain>
+            <linecontains>
+                <contains value="@sensor@"/>
+            </linecontains>
+            <replacetokens>
+                <token key="sensor" value=""/>
+            </replacetokens>
+        </filterchain>
+    </loadfile>
+    
+    <path id="classpath">
+        <fileset dir="${root.path}" includes="${build.dependencies.sensor}" excludes="${build.excludes}"/>
+    </path>
+    
+    <target name="checkForChanges">
+        <uptodate property="rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        <uptodate property="build.notRequired" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <and>
+                <isset property="rebuild.required"/>
+                <isset property="build.notRequired"/>
+            </and>
+        </condition>
+    </target>
+
+    <target name="compileCore" unless="build.required">
+    	<echo message="Compiling Sensor"/>
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+        
+        <echo message="Emotiv: exclude = ${excludeEmotiv}" />        
+        <echo message="OS3D: exclude = ${excludeOS3D}" />          
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+			<!-- exclude emotiv accordingly -->
+            <exclude name="impl/emotiv/**" if="${excludeEmotiv}"/>
+			<!-- exclude OS3D accordingly -->
+            <exclude name="impl/os3d/**" if="${excludeOS3D}"/>
+            <compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes">
+            <include name="${source.path}/**/*"/>
+			<!-- exclude emotiv accordingly -->
+            <exclude name="${source.path}/impl/emotiv/**" if="${excludeEmotiv}"/>	
+            <!-- exclude OS3D accordingly -->
+            <exclude name="${source.path}/impl/os3d/**" if="${excludeOS3D}"/>				
+        </jar>
+    </target>
+    
+    <target name="compile" depends="checkForChanges, compileCore"/>
+		
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

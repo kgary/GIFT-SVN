@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LoSQueryProto";
+
+import "Point3D.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message is used to request one or more line of sight (LoS) queries. */
+message LoSQuery {
+	/* The username of a GIFT user. */
+	google.protobuf.StringValue	request_id = 1;
+	
+	/* The collection of locations to conduct a LoS query on. */
+	repeated Point3D locations = 2;
+	
+	/* The collection of entities that need their weapon status retrieved. */
+	repeated string entities = 3;
+}

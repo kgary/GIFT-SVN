@@ -1,0 +1,106 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <ui:style>
+        .rootPanel {
+            padding: 8px;
+        }
+
+        .rootTable {
+            
+        }
+
+        .col {
+            padding: 4px;
+            vertical-align: top;
+	    }
+        
+        .col-1 {
+            width: 20%;
+            min-width: 260px;
+        }
+
+        .col-2 {
+            width: 80%;
+        }
+
+        .conditionToolbar {
+            vertical-alignment: top;
+        }
+
+        .conditionHeader {
+            display: inline;
+        }
+
+        .selectButton {
+            float: right;
+        }
+        .conditionDescription {
+            font-size: 16px;
+			border-style: solid; 
+			border-width: 1px; 
+			border-color: rgb(185,185,185); 
+			border-radius: 4px; 
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.2); 
+			background-color: rgb(250,250,250); 
+			height: 100%;
+			width: 100%; 
+			padding-left: 10px;
+			padding-right: 10px;
+        }
+        .helpLink {
+			padding-left: 5px;
+			color: rgb(100, 100, 200);
+			font-weight: normal;
+			font-size: 12px;
+		}
+    </ui:style>
+    <g:HTMLPanel addStyleNames="{style.rootPanel}" height="100%">
+        <table style="width: 100%; height: 100%;" class="{style.rootTable}">
+            <tr>
+                <td class="{style.col} {style.col-1}">
+                    <b:ButtonGroup width="100%">
+                        <b:Button ui:field="selectAppButton" width="100%" dataToggle="DROPDOWN" type="INFO" toggleCaret="true" />
+                        <b:DropDownMenu ui:field="trainingAppDropDown" />
+                    </b:ButtonGroup>
+                </td>
+                <td class="{style.col} {style.col-2}">
+                	<wb:HelpLink helpCaption='Training Application Selection'>
+						<wb:linkWidget>
+							<g:Label addStyleNames='{style.helpLink}'>
+			                	Why change this?
+			                </g:Label>
+						</wb:linkWidget>
+						<wb:helpBody>
+							<g:HTML>
+								The real time assessment editor will automatically select the appropriate training application type based on the particular object you are editing.
+								<br/><br/>
+								To see the assessment capabilities for other training applications you can select another training application type and explore the available conditions.
+								<br/><br/>
+								<b>Warning:</b> using an assessment condition meant for another application in your real time assessment will not work as expected without additional software development.
+				  			</g:HTML>
+						</wb:helpBody>
+					</wb:HelpLink>
+                </td>
+            </tr>
+            <tr style="height: 100%">
+                <td class="{style.col} {style.col-1}" style="height: 100%;">
+                    <div style="width: 100%; height:100%; overflow: auto;">
+                        <b:LinkedGroup ui:field="conditionList" width="100%" />
+                        <b:Button type="INFO" toggleCaret="true" dataToggle="COLLAPSE" width="100%" ui:field="learnerActionCollapseBtn" text="Learner Action Assessments"/>
+						<b:Collapse ui:field="learnerActionCollapse" toggle="false" >
+                        	<b:LinkedGroup ui:field="learnerActionConditionList" width="100%" />
+						</b:Collapse>
+                    </div>
+                </td>
+                <td class="{style.col} {style.col-2}" style="height: 100%;">
+                    <div style="width: 100%; height:100%; overflow: auto;" class="{style.conditionDescription}" >
+                        <g:HTML ui:field="conditionDescription" width="100%" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </g:HTMLPanel>
+</ui:UiBinder>

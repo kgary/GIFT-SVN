@@ -1,0 +1,29 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+  	xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html">
+	
+    <ui:style>	
+		.textBox{
+			margin-top: 5px;
+			margin-left: -5px;
+            margin-right:20px;
+		}
+        
+        .containerStyle {
+            margin-left:-10px;
+            padding-right:5px;
+            width:100%;
+        }
+	</ui:style>
+    
+    <g:HTMLPanel>	   	   
+        <b:Container addStyleNames='{style.containerStyle}'>
+            <b:TextArea width="100%" placeholder="This is where users will enter their responses to your question." 
+                    addStyleNames='{style.textBox}' readOnly='true' ui:field='textBox'/>
+        </b:Container>
+    </g:HTMLPanel>
+    
+</ui:UiBinder> 

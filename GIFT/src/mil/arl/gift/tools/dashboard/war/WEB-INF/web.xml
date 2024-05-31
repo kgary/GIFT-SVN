@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+    <!-- This filter prevents caching of GWT *.nocache.* files. -->
+    <filter> 
+       <filter-name>GwtCacheControlFilter</filter-name>
+       <filter-class>mil.arl.gift.common.gwt.server.GwtCacheControlFilter</filter-class>
+    </filter>
+         
+    <filter-mapping>      
+       <filter-name>GwtCacheControlFilter</filter-name>              
+       <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>dashboardServiceImpl</servlet-name>
+    <servlet-class>mil.arl.gift.tools.dashboard.server.DashboardServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>dashboardServiceImpl</servlet-name>
+    <url-pattern>/dashboard/rpc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+        <servlet-name>importUploadServlet</servlet-name>
+        <servlet-class>mil.arl.gift.common.gwt.server.FileServlet</servlet-class>
+      
+        <init-param>
+            <param-name>File_Path</param-name>
+            <param-value>../Domain/Imports</param-value>
+        </init-param>
+        
+        <init-param>
+            <param-name>Enable_File_Upload</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+  
+  <servlet-mapping>
+	  <servlet-name>importUploadServlet</servlet-name>
+	  <url-pattern>/dashboard/import/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>metricsServlet</servlet-name>
+    <servlet-class>mil.arl.gift.common.metrics.MetricsServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+        <servlet-name>metricsServlet</servlet-name>
+        <url-pattern>/dashboard/metrics/</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+        <servlet-name>DashbaordWebSocketServlet</servlet-name>
+        <servlet-class>mil.arl.gift.tools.dashboard.server.DashboardWebSocketServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DashbaordWebSocketServlet</servlet-name>
+        <url-pattern>/websocket</url-pattern>
+    </servlet-mapping>
+    
+  
+  <servlet>
+        <servlet-name>nuxeoFileServlet</servlet-name>
+        <servlet-class>mil.arl.gift.tools.dashboard.server.MemoryFileServlet</servlet-class>
+      
+        <init-param>
+            <param-name>File_Path</param-name>
+            <param-value>../Domain/temp</param-value>
+        </init-param>
+        
+        <init-param>
+            <param-name>Enable_File_Upload</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        
+        <init-param>
+            <param-name>Enable_Nuxeo_Connection</param-name>
+            <param-value>true</param-value>
+        </init-param>
+</servlet>
+  
+  <servlet-mapping>
+	  <servlet-name>nuxeoFileServlet</servlet-name>
+	  <url-pattern>/dashboard/cm/*</url-pattern>
+  </servlet-mapping>
+  
+  <!-- LTI Tool Provider servlet -->
+  <servlet>
+       <servlet-name>ltiToolProviderTutorServlet</servlet-name>
+       <servlet-class>mil.arl.gift.tools.dashboard.server.lti.LtiToolProviderTutorServlet</servlet-class>
+   </servlet>
+ 
+   <servlet-mapping>
+       <servlet-name>ltiToolProviderTutorServlet</servlet-name>
+       <url-pattern>/lti</url-pattern>
+   </servlet-mapping>
+   
+   <!--  Recorder servlet -->
+   <servlet>
+        <servlet-name>recorderServlet</servlet-name>
+        <servlet-class>mil.arl.gift.tools.dashboard.server.RecorderServlet</servlet-class>
+   </servlet>
+    <servlet-mapping>
+       <servlet-name>recorderServlet</servlet-name>
+       <url-pattern>/recorder/*</url-pattern>
+   </servlet-mapping>
+  
+   <filter>
+        <filter-name>guiceFilter</filter-name>
+        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+    </filter>
+    
+    <filter-mapping>
+        <filter-name>guiceFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- Servlets -->
+    <servlet>
+        <servlet-name>sasRpcServlet</servlet-name>
+        <servlet-class>mil.arl.gift.tools.authoring.server.gat.server.survey.SurveyRpcServiceImpl</servlet-class>
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>sasRpcServlet</servlet-name>
+        <url-pattern>/gat/sas_rpc</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+        <listener-class>mil.arl.gift.tools.authoring.server.gat.server.BootstrapListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>remoteLogging</servlet-name>
+        <servlet-class>com.google.gwt.logging.server.RemoteLoggingServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>remoteLogging</servlet-name>
+        <url-pattern>/gat/remote_logging</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>surveyFileServlet</servlet-name>
+        <servlet-class>mil.arl.gift.common.gwt.server.FileServlet</servlet-class>
+      
+        <init-param>
+            <param-name>File_Path</param-name>
+            <param-value>data/surveyWebResources</param-value>
+        </init-param>
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>surveyFileServlet</servlet-name>
+        <url-pattern>/surveyWebResources/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>surveyImageUploadServlet</servlet-name>
+        <servlet-class>mil.arl.gift.common.gwt.server.FileServlet</servlet-class>
+      
+        <init-param>
+            <param-name>File_Path</param-name>
+            <param-value>data/surveyWebResources/uploadedImages</param-value>
+        </init-param>
+        
+        <init-param>
+            <param-name>Enable_File_Upload</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>surveyImageUploadServlet</servlet-name>
+        <url-pattern>/surveyWebResources/uploadedImages/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet> 
+        <servlet-name>rpcServlet</servlet-name>
+        <servlet-class>mil.arl.gift.tools.authoring.server.gat.server.GatRpcServiceImpl</servlet-class> 
+    </servlet>
+         
+    <servlet-mapping> 
+      <servlet-name>rpcServlet</servlet-name>
+      <url-pattern>/gat/rpc</url-pattern> 
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>courseResourceUploadServlet</servlet-name>
+        <servlet-class>mil.arl.gift.common.gwt.server.FileServlet</servlet-class>
+      
+        <init-param>
+            <param-name>File_Path</param-name>
+            <param-value>../Domain/temp</param-value>
+        </init-param>
+        
+        <init-param>
+            <param-name>Enable_File_Upload</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        
+        <init-param>
+            <param-name>Content_Disposition</param-name>
+            <param-value>attachment</param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>courseResourceUploadServlet</servlet-name>
+        <url-pattern>/courseResources/*</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+	    <servlet-name>downloadService</servlet-name>
+	    <servlet-class>mil.arl.gift.common.gwt.server.DownloadServlet</servlet-class>
+	  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>downloadService</servlet-name>
+      <url-pattern>/downloadService</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+     <servlet-name>mapImageService</servlet-name>
+     <servlet-class>mil.arl.gift.common.gwt.server.GiftScenarioMapImageServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+     <servlet-name>mapImageService</servlet-name>
+     <url-pattern>/mapImage/*</url-pattern>
+  </servlet-mapping>
+    
+  <!-- ERT Servlets -->
+  <servlet>
+    <servlet-name>ertRpcServlet</servlet-name>
+    <servlet-class>mil.arl.gift.tools.ert.server.ErtRpcServiceImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ertRpcServlet</servlet-name>
+    <url-pattern>/ert/rpc</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>Dashboard.html</welcome-file>
+  </welcome-file-list>
+  
+  <!-- This listener currently is used to track the user session particularly if the session is expired (rather than the user manually signs out)
+       In this case, the listener gets notified that the session is expiring so we can react to it and decrement the active sessions properly.
+  -->
+  <listener>
+        <listener-class>
+           mil.arl.gift.tools.dashboard.server.DashboardServiceImpl
+        </listener-class>
+  </listener>
+
+</web-app>

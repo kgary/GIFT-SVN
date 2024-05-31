@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package vrengage.pb;
+option java_package  = "com.dignitas.vrengage.protobuf";
+option java_outer_classname = "VrEngageCommon";
+
+import "google/protobuf/any.proto";
+
+enum ImageType {
+   PNG = 0;
+   JPG = 1;
+}
+
+message StringType {
+    string value = 1;
+}
+
+message IntType {
+    int32 value = 1;
+}
+
+message FloatType {
+    float value = 1;
+}
+
+message DoubleType {
+    double value = 1;
+}
+
+message BoolType {
+    bool value = 1;
+}
+
+message Vector3d {
+    double x = 1;
+    double y = 2;
+    double z = 3;
+}
+
+message RequestResult {
+    bool success = 1;
+    string msg = 2;
+}
+
+message VrEngageMessage {
+    google.protobuf.Any payload = 1;
+}
+
+
+

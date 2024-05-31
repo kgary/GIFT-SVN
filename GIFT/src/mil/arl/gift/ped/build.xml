@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<project name="PedagogicalModule" default="compile">
+    <property name="root.path" value="../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.ped"/>
+    <property name="source.path" value="mil/arl/gift/ped"/>
+    <property name="jarfile.ext.path" value="gift-pedagogical"/>
+    <property name="jarfile.name" value="gift-pedagogical.jar"/>
+    <property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="build.dependencies" value="${root.path}/config/build.dependencies"/>
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+	<property name="build.excludes" value="**/gwt/**,**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.dll,**/*.txt,**/*.TXT,**/*.ini"/>
+
+    <loadfile property="build.dependencies.ped" srcFile="${build.dependencies}">
+        <filterchain>
+            <linecontains>
+                <contains value="@ped@"/>
+            </linecontains>
+            <replacetokens>
+                <token key="ped" value=""/>
+            </replacetokens>
+        </filterchain>
+    </loadfile>
+    
+    <path id="classpath">
+        <fileset dir="${root.path}" includes="${build.dependencies.ped}" excludes="${build.excludes}"/>
+    </path>
+    
+    <target name="checkForChanges">
+        <uptodate property="rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        <uptodate property="build.notRequired" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <and>
+                <isset property="rebuild.required"/>
+                <isset property="build.notRequired"/>
+            </and>
+        </condition>
+    </target>
+
+    <target name="compileCore" unless="build.required">
+    	<echo message="Compiling Pedagogical"/>
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+			<compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" includes="${source.path}/**" excludes="${build.excludes}}"/>
+    </target>
+    
+    <target name="compile" depends="checkForChanges, compileCore"/>
+	
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

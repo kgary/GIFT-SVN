@@ -1,0 +1,132 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	.pad{
+			padding: 15px;
+		}	
+		.padSides{
+			padding: 3px 5px;
+		}
+		.padTop{
+			margin-top: 5px;
+		}
+		.padBottom{
+			margin-bottom: 15px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}
+		.tabbed{
+			margin-left: 30px;
+		}
+		.rightTabbed{
+			padding-right: 30px;
+		}
+		.doubleTabbed{
+			margin-left: 60px;
+		}
+		.rightDoubleTabbed{
+			padding-left: 60px;
+		}
+		.grayBorder{
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(150,150,150);
+		}
+		.panelBorder{
+			border-style: solid !important;
+			border-Width: 1px !important;
+			border-color: rgb(185,185,185) !important;
+			border-radius: 3px !important;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+		}
+		.smallPadTop{
+			margin-top: 5px;
+		}
+		.inline{
+			display: inline;
+		}
+		.smallPad{
+			margin: 5px;
+		}
+		.disclosurePanelInner{
+			margin-right: 5px
+		}
+		
+		/* controls the style of the cell table itself which is inset from the border */
+		.cellTableInset {
+			box-sizing: content-box;
+			border-collapse: separate;
+			width: 100%;
+		}		
+		.cellTableBorder{
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(185,185,185);
+			border-radius: 3px;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+			background-color: rgb(250,250,250);
+		}
+		.cellTableScroller{
+			min-height: 50px;
+			max-height: 400px;
+		}
+		.centerText{
+			text-align: center;
+		}
+		.criteriaPanel{
+			display: inline-block;
+			width: 33%;
+			min-width: 250px;
+		}
+		.sliderPanel {
+			margin: 0px -20px;
+		}
+		.helpLink{
+			padding-left: 5px; 			
+			color: rgb(100,100,200);
+			font-weight: normal;
+		}
+	</ui:style>
+	<g:FlowPanel>
+		<g:Label addStyleNames='{style.smallPadBottom}'>
+			Number of questions to show per concept:
+		</g:Label>
+		<g:FlowPanel addStyleNames='{style.padBottom}'>
+			<g:ScrollPanel addStyleNames='{style.cellTableScroller} {style.cellTableBorder}'>
+				<c:CellTable addStyleNames='{style.cellTableInset}' ui:field='questionCellTable'/>
+			</g:ScrollPanel>
+		</g:FlowPanel>
+		<g:InlineLabel addStyleNames='{style.smallPadBottom}'>
+			Criteria needed to reach a particular expertise level on each concept:
+		</g:InlineLabel>
+		<wb:HelpLink helpCaption='Knowledge Level Assessment'>
+   			<wb:linkWidget>
+				<b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE'/>
+			</wb:linkWidget>
+   			<wb:helpBody>
+   				<g:HTML>
+	   				GIFT needs to know how to assess the learner's knowledge level on each concept being taught in this course object. 
+					<br/><br/>
+					At a minimum the learner is either a novice or an expert on a concept based on the answers to the assessment questions. 
+					Ideally you would author enough questions so that the learner could also be a journeyman for a concept. 
+					<br/><br/>
+					<b>Concept Remediation</b>
+					<br/>
+					Both <b>Novice</b> and <b>Journeyman</b> assessment scores will result in remediation.
+					Remediation will include an ideal set of content to satisfy the concepts
+					needing remediation at this time based on an evolving selection algorithm.
+					<br />
+					<br/>
+					Once the learner is assessed at the <b>Expert</b> level for all concepts in this course object either the optional practice phase or the next course object is started.
+   				</g:HTML>
+   			</wb:helpBody>
+	   			
+	   	</wb:HelpLink>
+		<b:Container ui:field="sliderPanel" addStyleNames='{style.sliderPanel}' fluid="true"></b:Container>
+	</g:FlowPanel>			
+</ui:UiBinder> 

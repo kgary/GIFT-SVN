@@ -1,0 +1,78 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "SensorAttributeValueProto";
+
+/* This message serves as the base for a sensor attribute value. */
+message SensorAttributeValue {
+	/* The sensor can either contain a double, integer, string, tuple, or image value inside. */
+	oneof type {
+		SensorDoubleValue sensor_double_value = 2;
+		SensorIntegerValue sensor_integer_value = 3;
+		SensorStringValue sensor_string_value = 4;
+		SensorTuple3d sensor_tuple_3d = 5;
+		SensorImageValue sensor_image_value = 6;
+	}
+	
+	string name = 7;
+}
+
+/* Double value for the sensor. */
+message SensorDoubleValue {
+	double value = 1;
+}
+
+/* Integer value for the sensor. */
+message SensorIntegerValue {
+	int32 value = 1;
+}
+
+/* String value for the sensor. */
+message SensorStringValue {
+	string value = 1;
+}
+
+/* Tuple value for the sensor. */
+message SensorTuple3d {
+	Tuple3d value = 1;
+}
+/* Image for the sensor. */
+message SensorImageValue {
+	ImageData value = 1;
+}
+
+/* 3d vector definition, containing x, y, and z coordinates. */
+message Vector3d {
+	double x = 1;
+	double y = 2;
+	double z = 3;
+}
+
+/* 3d point coordinates, containing x, y, and z coordinates. */
+message Point3d {
+	double x = 1;
+	double y = 2;
+	double z = 3;
+}
+
+/* A tuple definition, which can either be a vector or point. */
+
+message Tuple3d {
+	oneof type {
+		Vector3d vector_3d = 2;
+		Point3d point_3d = 3;
+	}
+}
+
+/* Image definition, which contains the width, height, the data, and the picture format. */
+message ImageData {
+	int32 width = 1;
+	int32 height = 2;
+	string data = 3;
+	string format = 4;
+}

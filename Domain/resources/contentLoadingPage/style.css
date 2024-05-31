@@ -1,0 +1,20 @@
+@font-face {
+	font-family: 'EraserRegular';
+	src: url('fonts/EraserRegular.eot');
+	src: local('☺'), url('fonts/EraserRegular.woff') format('woff'), url('fonts/EraserRegular.ttf') format('truetype'), url('fonts/EraserRegular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Chawp';
+	src: url('fonts/chawp.eot');
+	src: local('☺'), url('fonts/chawp.woff') format('woff'), url('fonts/chawp.ttf') format('truetype'), url('fonts/chawp.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.newStyle1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 40px;
+}

@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "PerformanceStateProto";
+
+import "google/protobuf/wrappers.proto";
+import "AbstractPerformanceState.proto";
+
+/* This message contains the performance state of a learner state. */
+message PerformanceState {
+	/* The collection of task performance states (key: task performance node id). */
+	map<int32, TaskPerformanceState> tasks = 1;
+	
+	/* The username of the person making the request. */
+	google.protobuf.StringValue evaluator = 2;
+	
+	/* The observer controller (OC) comment. */
+	google.protobuf.StringValue observer_comment = 3;
+	
+	/* The reference to a media file. */
+	google.protobuf.StringValue observer_media = 4;
+}

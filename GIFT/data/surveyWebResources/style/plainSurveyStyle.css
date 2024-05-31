@@ -1,0 +1,312 @@
+/**
+ * A style sheet for styling a GIFT survey, plainly
+ *
+ * @author jleonard
+ */
+ 
+.surveyContentPanel {
+    display: inline-block;
+    text-align: left;
+    width: 80%;
+    background: #EFEFEF;
+    box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 30px;
+    border: rgb(132, 145, 152) solid 1px;
+    border-radius: 15px;
+    min-height: 27%;
+    margin: 25px auto;
+    padding: 0 20px 0;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.surveyContentPanelAar {
+    display: inline-block;
+    text-align: left;
+    width: 80%;
+	min-width: 389px;
+    background: #EFEFEF;
+    box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 30px;
+    border: rgb(132, 145, 152) solid 1px;
+    border-radius: 15px;
+    min-height: 27%;
+    margin: auto;
+    padding: 0 20px 0;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.surveyAarHeader {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align:center;
+	color: #ebfffd; 
+}
+
+.surveyAarHeaderPanel {
+	display: inline-block;
+	min-width: 30%;
+	background-color: rgba(0, 0, 0, 0.48);
+	color: #ebfffd;
+	font-size: 18px;			
+	padding: 10px;
+}
+
+.surveyReviewPanel {
+    width: 100%;
+	height: 100%;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    border: none;
+    border-radius: 15px 15px 0 0;
+}
+ 
+@media(max-width: 1000px) {
+	.surveyContentPanel {
+		width: 70% !important;
+	} 
+}
+
+@media(max-width: 768px) {
+	.surveyContentPanel {
+		width: 90% !important;
+	} 
+}
+ 
+/* same as CourseHeaderWidget.ui.xml .title to match other course objects */
+.surveyName {
+    color: #ebfffd;  
+	display: inline;
+    vertical-align: middle;
+}
+
+/* same as GiftAuthoringTool.css .headerPanel to match other course objects */
+.surveyNameHeaderPanel {
+	display: inline-block;
+	min-width: 35%;
+	text-align: left;
+	background-color: rgba(0, 0, 0, 0.48);
+	color: #ebfffd;
+	font-size: 18px;			
+	padding: 10px;
+}
+
+.surveyPageName {
+    background: rgb(43, 67, 80);
+	color: #F7F9F7;
+    margin: 0px -20px 15px;
+    padding: 10px;
+    border: solid 1px #2B3A42;
+	border-radius: 13px 13px 0 0;
+    font-size: 17px;
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.surveyFooterArea {
+	margin: 3px;
+	height: 60px;
+}
+
+.surveyContinueButton {
+    float: right;
+	margin-top: 15px;
+	margin-bottom: 17px;
+}
+
+.surveyQuestionWidget {
+    margin: 20px 10px 0;
+	padding-bottom: 40px;
+	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.02));
+	border-radius: 15px;
+}
+
+.surveyQuestionWidgetQuestion {
+    margin-bottom: 5px;
+    text-shadow: 0px 0px;
+	font-size: 16px;
+}
+
+.surveyQuestionWidgetResponseArea {
+    display: inline-block;
+    margin-right: 15px;
+	text-align: left;
+}
+
+.surveyQuestionWidgetResponseArea label {
+    background: transparent;
+	text-shadow: none;
+    border: none;
+    font-size: 15px;
+	white-space: normal;
+	color: inherit;
+}
+
+.surveyQuestionWidgetResponseArea label:hover {
+    background: transparent;
+    border: none;
+    color: #4D5C80;
+}
+
+.surveyQuestionWidgetResponseAreaCenter{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sqChildNoMargin > * {
+	margin: 0px;
+}
+
+.surveyQuestionWidgetAnswer{
+	padding: 5px;
+	font-family: 'Arial';
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb(0,200,0);
+	border-radius: 5px;
+	box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+	background: linear-gradient(rgb(255, 255, 255), rgb(200, 255, 150));
+}
+
+.surveyQuestionWidgetStatus {
+    text-align: center;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.surveyQuestionWidgetErrorLabel {
+    color: white;
+	font-weight: bold;
+    background: linear-gradient(to right, rgba(236, 0, 0, 0.36), rgba(232, 0, 0, 0.83), rgba(236, 0, 0, 0.36));
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(125, 0, 0, 0.46);
+	padding: 5px;
+	border-radius: 10px;
+	display: block;
+	margin-top: -10px;
+	margin-bottom: -5px;
+}
+
+.surveyQuestionWidgetWarningLabel {
+    background-color: yellow;
+    background: linear-gradient(to right, rgba(255, 255, 150, 0.46), rgba(255, 255, 173, 0.87), rgba(255, 255, 50, 0.28));
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(255, 200, 100, 0.5);
+    padding: 5px;
+    border-radius: 10px;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: -5px;
+}
+
+table.sqBarLayout {
+	border-style: none;
+	border-collapse: collapse;
+}
+
+tr.sqBarOptionRowLayout {
+	background-color: white;
+}
+
+tr.sqBarOptionRowLayout td {
+	border-width: 1px;
+	padding: 5px;
+	border-style: solid;
+	border-color: black;
+}
+
+td.sqBarCell:hover {
+	color: white;
+	background-color: #404040;
+	cursor: default;
+}
+
+.sqBarCellSelected {
+	color: white;
+	background-color: black;
+}
+
+.questionPanelWithHelp {
+	position: relative;
+	padding-right: 30px;
+}
+
+.questionHelpText div {
+    display: none;
+    text-decoration: none;
+}
+
+.questionHelpText:hover div {
+    display: block;
+    position: absolute;
+    width: 300px;
+    background-color: white;
+    border: 2px solid #CCC;
+    color: black; 
+    padding: 10px;
+	right: 10px;
+	top: 10px;
+}
+
+.questionHelpImage {
+	right: 10px;
+	top: 0px;
+	position: absolute;
+}
+
+.questionHelpImageTooltip {
+    word-break: break-word;
+}
+
+.sqTextBlock {
+	padding: 5px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #CCC;
+	border-radius: 10px;
+}
+
+.sqCorrectAnswerBlock {
+	width: 100%;
+	border-width: 5px;
+    border-style: double;
+    border-color: #47c75d;
+    border-radius: 5px;
+    background-color: #c6f9c5;
+}
+
+.sqSliderBar{
+	margin: 0px 10px;
+}
+.sqSliderBar > .slider > .slider-track{
+	background-image: linear-gradient(to bottom,#808080 0,#545454 100%);
+}
+.sqSliderBar > .slider > .slider-track >.slider-selection{
+	background-image: linear-gradient(to bottom,#808080 0,#545454 100%);
+}
+.sqSliderBar > .slider > .slider-track > .slider-handle{
+	background-image: linear-gradient(to bottom, white 50%, lightgray 100%);
+	box-shadow: 0px 0px 3px rgba(0,0,0,1);
+}
+
+.freeResponseRowStyle {
+	margin-bottom: 10px;
+} 
+.freeResponseRowStyle td {
+	padding-left: 5px !important;
+}
+
+.freeResponseIconStyle {
+	display: inline-block;
+	position: absolute;
+	vertical-align: top;
+	margin-top: 5px;
+}
+
+.freeResponseDropdownStyle td:first-child {
+	padding-top: 2px;
+	padding-right: 5px;
+	padding-left: 10px;
+}

@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package ares.pb;
+option java_package  = "com.dignitas.ares.protobuf";
+option java_outer_classname = "AresMessageCommon";
+
+enum ImageType {
+   PNG = 0;
+   JPG = 1;
+}
+
+message StringType {
+    string value = 1;
+}
+
+message IntType {
+    int32 value = 1;
+}
+
+message FloatType {
+    float value = 1;
+}
+
+message DoubleType {
+    float value = 1;
+}
+
+message BoolType {
+    bool value = 1;
+}
+
+message Bounds {
+    Location sw = 1;
+    Location ne = 2;
+}
+
+message Location {
+    // Degrees
+    double latitude = 1;
+    // Degrees
+    double longitude = 2;
+    // Optional altitude (WGS84 ellipsoid)
+    DoubleType altitude = 3;
+}
+
+// Can be used for terrain local vector where y points north and x points east
+message Vector2f {
+    float x = 1;
+    float y = 2;
+}
+
+// Can be used for terrain local vector where y points north and x points east,
+// and z is up and down for altitude
+message Vector3f {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+message Color {
+    float r = 1;
+    float g = 2;
+    float b = 3;
+    float a = 4;
+}
+
+message Image {
+    ImageType image_type = 1;
+    bytes image_data = 2;
+}
+
+message RequestResult {
+    bool success = 1;
+    string msg = 2;
+}
+
+
+
+

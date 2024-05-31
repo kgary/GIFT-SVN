@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<project name="GIFT" default="compile">
+    	
+    <target name="common">
+        <ant dir="common"/>
+    </target>
+	
+    <target name="ums" depends="common">
+        <ant dir="ums"/>
+    </target>
+	
+    <target name="lms" depends="common">
+        <ant dir="lms"/>
+    </target>
+
+    <target name="learner" depends="common">
+        <ant dir="learner"/>
+    </target>
+	
+    <target name="ped" depends="common">
+        <ant dir="ped"/>
+    </target>
+	
+    <target name="tutor" depends="common">
+        <ant dir="tutor"/>
+    </target>
+	
+    <target name="sensor" depends="common">
+        <ant dir="sensor"/>
+    </target>
+	
+    <target name="gateway" depends="common">
+        <ant dir="gateway"/>
+    </target>
+    
+    <target name="domain" depends="common">
+        <ant dir="domain"/>
+    </target>
+	
+    <target name="tools" depends="common,ums">
+        <ant dir="tools"/>
+    </target>
+	
+    <target name="dbio" depends="common,ums">
+        <ant dir="tools/dbio"/>
+    </target>
+	
+    <target name="dat" depends="common,ums">
+        <ant dir="tools/dat"/>
+    </target>
+	
+    <target name="cat" depends="common,ums">
+        <ant dir="tools/cat"/>
+    </target>
+    	
+    <target name="ert" depends="common,ums">
+        <ant dir="tools/ert"/>
+    </target>
+	
+    <target name="lcat" depends="common">
+        <ant dir="tools/lcat"/>
+    </target>
+	
+    <target name="monitor" depends="common,remote">
+        <ant dir="tools/monitor"/>
+    </target>
+    	
+    <target name="remote" depends="common">
+        <ant dir="tools/remote"/>
+    </target>
+	
+    <target name="scat" depends="common">
+        <ant dir="tools/scat"/>
+    </target>
+	
+    <target name="segmentgenerator" depends="common">
+        <ant dir="tools/segmentgenerator"/>
+    </target>
+        
+    <target name="camel" depends="common">
+        <ant dir="net/camel"/>
+    </target>
+    
+    <target name="installer" depends="common">
+        <ant dir="tools" target="installer"/>
+    </target>
+	
+	<target name="uninstaller" depends="common">
+        <ant dir="tools" target="uninstaller"/>
+    </target>
+	
+	<target name="conversion" depends="common">
+        <ant dir="tools/authoring/common/conversion"/>
+    </target>
+	
+	<target name="compile">
+		<ant target="common"/>
+		<parallel threadcount="7"> <!-- these modules can go after common since they don't rely on anything else -->
+			<ant target="learner"/>
+			<ant target="tutor"/>
+			<ant target="sensor"/>
+			<ant target="gateway"/>
+			<ant target="ped"/>
+			<ant target="ums"/>  <!-- needed by conversion, services -->
+			<ant target="lms"/>  <!-- needed by services -->
+		</parallel>
+		<ant target="conversion"/>
+		<ant target="compileDomainServices" dir="domain"/> <!-- contains selected domain package classes needed by services -->
+		<ant dir="tools/authoring/common" inheritAll="true" /> <!-- needed by services -->
+		<ant dir="tools/export" inheritAll="false" /> <!-- needed by services -->
+		<ant dir="tools/importer" inheritAll="false" /> <!-- needed by services -->
+		
+		<ant dir="tools/services"/> <!-- needed by domain module -->
+
+		<!-- occasionaly having issues with the domain not building when in the parallel section below, 
+		error has to do with gift-domain.jar not being accessible -->
+		<ant target="domain"/>
+
+	    <ant target="tools"/>
+		<ant target="camel"/>
+	</target>
+	
+	<target name="clean" description="Cleans GIFT source">
+    	<echo message="Cleaning Source"/>
+    	<ant dir="common" target="clean" inheritAll="false"/>
+        <ant dir="domain" target="clean" inheritAll="false"/>
+    	<ant dir="gateway" target="clean" inheritAll="false"/>
+    	<ant dir="learner" target="clean" inheritAll="false"/>
+    	<ant dir="lms" target="clean" inheritAll="false"/>
+    	<ant dir="ped" target="clean" inheritAll="false"/>
+    	<ant dir="sensor" target="clean" inheritAll="false"/>
+    	<ant dir="tools" target="clean" inheritAll="false"/>
+    	<ant dir="tutor" target="clean" inheritAll="false"/>
+		<ant dir="ums" target="clean" inheritAll="false"/>
+	</target>
+    
+    <target name="client" depends="common,tutor,domain,sensor"/>
+	
+    <target name="server" depends="common,ums,lms,learner,ped,gateway,tools,domain,camel"/>
+	
+</project>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Pedagogy Configuration Authoring Tool (PCAT).
+	This file contains configuration information for pedagogical models (e.g. eMAP).
+-->
+<EMAP version="6.0.2" xmlns:c0="http://GIFT.com/common" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <Rule>
+        <Attributes>
+            <Attribute type="Engagement">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Rule>
+    <Example>
+        <Attributes>
+            <Attribute type="Arousal">
+                <value>Medium</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Example>
+    <Recall>
+        <Attributes>
+            <Attribute type="Arousal">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Recall>
+    <Practice>
+        <Attributes>
+            <Attribute type="Arousal">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Practice>
+</EMAP>

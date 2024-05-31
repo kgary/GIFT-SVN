@@ -1,0 +1,54 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <ui:style>
+        .border {
+			border: 1px solid #c8c8c8;
+			border-radius: 2px;
+			padding: 7px;
+			color: black;
+		}
+		.buttons {
+			padding: 0px 5px;
+		}
+		.left-margin {
+			margin-left: 5px;
+		}
+		.bottom-margin {
+			margin-bottom: 5px;
+		}
+    </ui:style>
+    <g:FlowPanel width='100%' addStyleNames='{style.border}'>
+		<g:DeckPanel ui:field='assessmentPanel'>
+			<g:FlowPanel ui:field='addPanel'>
+				<b:Tooltip ui:field="addTooltip">
+					<b:Button type='PRIMARY' icon='PLUS' ui:field='addButton'>
+						Click to Add
+					</b:Button>
+				</b:Tooltip>
+			</g:FlowPanel>
+			<g:FlowPanel ui:field='buttonPanel'>
+				<g:FlowPanel addStyleNames='{style.bottom-margin}'>
+					<b:Button type="DEFAULT" icon="PENCIL" addStyleNames="{style.buttons}" ui:field="editButton">
+					    Edit
+					</b:Button>
+					<b:Tooltip ui:field="copyTooltip">
+						<b:Button type="DEFAULT" icon="FILES_O" addStyleNames="{style.buttons} {style.left-margin}" ui:field="copyButton">
+						    Copy
+						</b:Button>
+					</b:Tooltip>
+					<b:Tooltip ui:field="deleteTooltip">
+						<b:Button type="DEFAULT" icon="TIMES" addStyleNames="{style.buttons} {style.left-margin}" ui:field="deleteButton">
+						    Remove
+						</b:Button>
+					</b:Tooltip>
+				</g:FlowPanel>
+				
+				<g:Label ui:field="label">
+					Real-Time Assessment
+				</g:Label>
+			</g:FlowPanel>
+		</g:DeckPanel>
+	</g:FlowPanel>
+</ui:UiBinder>

@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "NACKProto";
+
+/*  
+ *	This message represents a Not Acknowledged (NACK) message. It contains information such as
+ * 	the message and the reason for non-acknowledgment. 
+ */
+message NACK {
+    string message = 1;
+    string reason = 2;
+}

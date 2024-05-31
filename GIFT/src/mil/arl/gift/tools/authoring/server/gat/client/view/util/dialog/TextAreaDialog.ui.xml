@@ -1,0 +1,24 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:summer="urn:import:org.gwtbootstrap3.extras.summernote.client.ui">
+	<ui:style>	
+		.hint {
+			font-size: 11px;
+			color: gray;
+			margin-top: -15px;
+		}
+		.error {
+			color: red;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:Label ui:field='infoLabel'/> 		
+		<g:FlowPanel width='500px'>
+			<summer:Summernote width='100%' ui:field="richTextArea"/>	
+		</g:FlowPanel>
+		<g:Label addStyleNames='{style.hint}'>Press Shift + Enter for a new line.</g:Label>
+   		<g:Label addStyleNames='{style.error}' ui:field="errorLabel" visible='false'/>
+	</g:HTMLPanel>
+</ui:UiBinder> 

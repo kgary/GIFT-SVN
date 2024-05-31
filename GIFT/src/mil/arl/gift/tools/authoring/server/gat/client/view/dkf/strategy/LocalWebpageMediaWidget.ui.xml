@@ -1,0 +1,93 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    <ui:style>
+        .selectedHeader {
+            font-weight: bold;
+            font-size: larger;
+            color: #2b2b2b;
+            min-width: 100px;
+            width: 100%;
+            margin-right: -59px;
+            display: inline-block;
+            padding: 5px 0px 0px 0px;
+        }
+        .selectedPanel {
+            padding: 3px 13px 13px 13px;
+            background-color: #f1f1f1;
+            background-image: none;
+            border: 1px solid;
+            border-color: #c1c1c1;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+        }
+        .unselectedPanel {
+            cursor: pointer;
+            padding: 20px 15px;
+            border-radius: 5px;
+        }
+        .unselectedHeader {
+            font-weight: bold;
+            color: white;
+        }
+        .padTop {
+            padding-top: 10px;
+        }
+        .mediaTitleStyle {
+            margin-top: 2px;
+            margin-bottom: 10px;
+        }
+        .padRight {
+            padding-right: 10px;
+        }
+        .buttons {
+            padding: 0px 5px;
+        }
+    </ui:style>
+    <g:FlowPanel>
+        <g:InlineHTML addStyleNames='{style.padTop} {style.padRight}'> 
+            Media Title:<span style='color: red'>*</span>
+        </g:InlineHTML>
+        <wb:HelpLink helpCaption='Media Title'>
+            
+            <wb:helpBody>
+                <g:HTML>
+                    When lesson material is shown to the learner, media resources are presented with a title. 
+                    <br/><br/>
+                    Modifying this text box will change the text of the title that is presented with this media to the learner.
+                </g:HTML>
+            </wb:helpBody>
+            
+        </wb:HelpLink>
+        <g:TextBox width='100%' addStyleNames='{style.mediaTitleStyle}' ui:field='mediaTitleTextbox'/>
+        <g:DeckPanel ui:field='deckPanel'>
+            <g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectLocalWebpagePanel'>
+                <g:FlowPanel>
+                    <g:Label addStyleNames='{style.unselectedHeader}'>
+                        Select Webpage
+                    </g:Label>
+                </g:FlowPanel>
+            </g:FocusPanel>
+            <g:FlowPanel ui:field='localWebpageSelectedPanel'>
+                <g:HTMLPanel addStyleNames='{style.selectedPanel}'>
+                    <table style='width: 100%'>
+                        <tr>
+                            <td>
+                                <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons}' ui:field='removeLocalWebpageButton' >
+                                     Remove
+                                </b:Button>
+                            </td>
+                         </tr>
+                        <tr style='width: 100%'>
+                            <td style='width: 100%'>
+                                <g:Label ui:field='localWebpageFileLabel' addStyleNames='{style.selectedHeader}'></g:Label>
+                            </td>
+                         </tr>  
+                    </table>
+                </g:HTMLPanel>                        
+            </g:FlowPanel>
+        </g:DeckPanel>
+    </g:FlowPanel>
+</ui:UiBinder> 

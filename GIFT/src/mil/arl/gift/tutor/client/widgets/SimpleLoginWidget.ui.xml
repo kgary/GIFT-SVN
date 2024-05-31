@@ -1,0 +1,128 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.wrapper {
+			min-width: 350px;
+			width: 30%;
+		}
+		.center {
+			text-align: center;
+		}
+		.strikethrough {
+			text-decoration:line-through;
+		}
+		.orLabel {
+			margin-right: 10px;
+			margin-left: 10px;
+			padding-top: 10px;
+		}
+		.signInLabel {
+			padding-top: 5px;
+			padding-bottom: 10px;
+			font-size: 16px;
+			font-weight: bold;
+			display: none;
+		}
+		.textbox {
+			margin: auto;
+		}
+	    .landingPageMessageLabel {
+			margin-left: 3px;
+			font-size: 14px;
+		}
+		.signInPanel {
+			margin-top: 7px;
+		}
+		.orPanel {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			text-align: center;
+		}
+		.createNewUserPanel {
+			margin-right: auto;
+			margin-left: auto;
+		}
+		.loginPanel {
+			padding: 20px;
+			background-color: #EFEFEF;
+    		border-radius: 20px;
+    		border: solid 1px #C3C3C3;
+		}
+		.logoImage {
+		}
+		.logoPanel {
+			margin-right: auto;
+			margin-left: auto;
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+		.auxillaryPanel {
+			padding: 5px;
+			background-color: #EFEFEF;
+    		border-radius: 20px;
+    		border: solid 1px #C3C3C3;
+		}
+		.spacerDiv {
+			margin-top: 10px;
+		}
+		.aboutButton {
+			font-weight: bold;
+			float: right;
+		}
+		.userIdLabel {
+			font-size: 16px;
+			font-weight: bold;
+			margin: 5px;
+			text-shadow: 2px 2px 3px rgba(0,0,0,0.25);
+		}
+		.errorIcon {
+			margin: 5px;
+			vertical-align: middle;
+		}
+		.progressImage {
+			margin: 5px;
+			vertical-align: middle;
+		}
+		.errorLabel {
+			color: #9C1D09;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName="{style.wrapper}">
+		<g:FlowPanel>
+			<g:FlowPanel styleName="{style.logoPanel}">
+				<g:Image width="250px" height="146px" styleName="{style.logoImage}" ui:field='logoImage'/>
+			</g:FlowPanel>
+			<g:FlowPanel height="250px" ui:field="loginContainerPanel">
+				<g:FlowPanel height="100%" styleName="{style.loginPanel}" ui:field="loginPanel">
+					<g:Label text="Sign in to GIFT" styleName="{style.signInLabel}"/>
+					<g:FlowPanel ui:field="errorPanel" visible="false">
+						<g:Image width="15px" height="15px" styleName="{style.errorIcon}" url="images/errorIcon.png"/>
+						<g:InlineLabel ui:field="errorLabel" styleName="{style.errorLabel}"/>
+					</g:FlowPanel>
+					<b:TextBox width="98%" addStyleNames="{style.textbox}" ui:field="userIdTextBox" placeholder="User ID (e.g. 1)"/>
+					<g:FlowPanel styleName="{style.signInPanel}">
+						<b:Button text="Sign In" type="PRIMARY" width="98%" styleName="buttonPadding" ui:field="signInButton"/>
+						<g:Image width="20px" height="20px" styleName="{style.progressImage}" url="images/loading.gif" ui:field="loadingImage" visible="false"/>
+					</g:FlowPanel>
+					<g:FlowPanel styleName="{style.orPanel}">
+						<g:InlineLabel text="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" styleName="{style.strikethrough}"/>
+						<g:InlineLabel text="OR" styleName="{style.orLabel}"/>
+						<g:InlineLabel text="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;" styleName="{style.strikethrough}"/>
+					</g:FlowPanel>
+					<g:FlowPanel styleName="{style.createNewUserPanel}" width="200px">
+						<b:Button text="Create New User" type="PRIMARY" width="200px" styleName="buttonPadding" ui:field="createNewUserButton"/>
+					</g:FlowPanel>
+				</g:FlowPanel>
+			</g:FlowPanel>
+			<g:FlowPanel styleName="{style.spacerDiv}"/>
+			<g:FlowPanel width="300px" height="70px" ui:field="landingPageMessageContainerPanel">
+				<g:FlowPanel width="290px" height="65px" styleName="{style.auxillaryPanel}">
+					<g:Image width="20px" height="20px" styleName="{style.errorIcon}" url="images/Alert.png"/>
+					<g:InlineLabel text="" ui:field="landingPageMessageLabel" styleName="{style.landingPageMessageLabel}"/>
+				</g:FlowPanel>
+			</g:FlowPanel>			
+		</g:FlowPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

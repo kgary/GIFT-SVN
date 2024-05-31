@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" version="8.0" xmlns:fg="http://www.FGolubov.com/XMLEditor" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="SensorsConfiguration">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Sensors Configuration">
+                    <fg:message>This is the root node of the Sensor Configuration.  Look for other helpful information by clicking on a node.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Sensors"/>
+                <xs:element ref="Filters"/>
+                <xs:element ref="Writers"/>
+            </xs:sequence>
+            <xs:attribute name="version" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="File Version">
+                            <fg:message>The version of this file.  This is auto-incremented if using the SCAT to save.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Sensors">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Sensors">
+                    <fg:message>The list of sensors the sensor module will be configured to use and collect data for/on.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="Sensor"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Sensor">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" ref="name"/>
+                <xs:element minOccurs="0" ref="interval"/>
+                <xs:element ref="sensorImpl"/>
+                <xs:element minOccurs="1" ref="distributeExternally"/>
+                <xs:element minOccurs="1" ref="sensorInput"/>
+                <xs:element minOccurs="0" ref="filterInstance"/>
+                <xs:element minOccurs="0" ref="writerInstance"/>
+            </xs:sequence>
+            <xs:attribute name="id" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.IdGenerator" exposed="true" message="Id">
+                            <fg:message>The unique id of this event producer. This value must be unique among sensors, filters and writers.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="interval" type="xs:decimal">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Interval">
+                    <fg:message>The interval at which this sensor is queried for information.  The value represents seconds.  If the value is zero or not specified, the interval will be set to as fast as possible.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="filterInstance">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.scat.custnodes.FilterInstanceDialog" message="Filter Instance">
+                    <fg:message>Refers to the unique id of a filter which will be responsible for filtering the raw data from this sensor.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="Filters">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Filters">
+                    <fg:message>Filters are responsible for filtering raw sensor data (or re-filtering filtered data)</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Filter"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Filter">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" ref="name"/>
+                <xs:element ref="filterImpl"/>
+                <xs:element minOccurs="1" ref="distributeExternally"/>
+                <xs:element minOccurs="0" ref="writerInstance"/>
+                <xs:element minOccurs="1" ref="filterInput"/>
+            </xs:sequence>
+            <xs:attribute name="id" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.IdGenerator" exposed="true" message="Id">
+                            <fg:message>The unique id of this event producer. This value must be unique among sensors, filters and writers.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Writers">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Writers">
+                    <fg:message>Writers can write data to different output streams.  E.g a csv file or system out to the command prompt.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="Writer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Writer">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" ref="name"/>
+                <xs:element ref="writerImpl"/>
+                <xs:element minOccurs="1" ref="writerInput"/>
+            </xs:sequence>
+            <xs:attribute name="id" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.IdGenerator" exposed="true" message="Id">
+                            <fg:message>The unique id of this event producer. This value must be unique among sensors, filters and writers.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="name">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true"/>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="sensorImpl">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.scat.custnodes.SensorDialog" message="Sensor Implementation">
+                    <fg:message>Specify the sensor implementation class.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="filterImpl">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.scat.custnodes.FilterDialog" message="Filter Implementation">
+                    <fg:message>Specify the filter implementation class.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="writerImpl">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.scat.custnodes.WriterDialog" message="Writer Implementation">
+                    <fg:message>Specify the writer implementation class.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="distributeExternally" type="booleanEnum">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Distribute Externally">
+                    <fg:message>Specifies whether the raw sensor or filtered data should be sent to the Learner module.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="writerInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Writer Input">
+                    <fg:message>A writer input contains configuration parameters for the writer implementation class - beyond the explicit xml elements for all writer. Note: the writer implementation class must have a constructor that consumes the input class object (if an input is provided)</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="GenericSensorDelimitedWriter"/>
+                    <xs:element ref="KinectSensorWriter"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GenericSensorDelimitedWriter">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Generic Sensor Delimited Writer">
+                    <fg:message>This Writer will write raw or filtered sensor data to a file using a string delimited encoding.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" ref="directoryToWrite"/>
+                <xs:element minOccurs="1" ref="filePrefix"/>
+				<xs:element minOccurs="0" ref="datumDelimReplacementChar"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="datumDelimReplacementChar">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Datum Delimiter Replacement Character">
+                    <fg:message>A character to replace the delimiter character (e.g. ",") in string representations of complex sensor/filter data values.</fg:message>
+					<fg:message>e.g. character value of "|" for a tuple3d value of "1.0,2.0,3.0" would be changed to "1.0|2.0|3.0".</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+		<xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+				<xs:maxLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="directoryToWrite" type="xs:string" default="output/sensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Directory to Write" editor-class="mil.arl.gift.tools.authoring.common.custnodes.FolderSelectionDialog">
+                    <fg:message>Specifies a directory on disk to write data too.</fg:message>
+					<fg:param name="StartingDirectory">output/sensor</fg:param>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="filePrefix" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="File Prefix">
+                    <fg:message>A prefix label to attach to the generated file being written to on disk.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="KinectSensorWriter">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Kinect Sensor Writer">
+                    <fg:message>This Writer will write raw or filtered kinect data to a file using a string delimited encoding and the Color and Depth data to their own binary files.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element maxOccurs="1" minOccurs="1" ref="directoryToWrite"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="filePrefix"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="ColorCompression"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="DepthCompression"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ColorCompression" type="ImageCompressionFormat">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Color Compression Format">
+                    <fg:message>What compression algorithm to use to compress the color frame before being written to disk.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="DepthCompression" type="ImageCompressionFormat">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Depth Compression Format">
+                    <fg:message>What compression algorithm to use to compress the Depth frame before being written to disk.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="filterInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Filter Input">
+                    <fg:message>A filter input contains configuration parameters for the filter implementation class - beyond the explicit xml elements for all filters (e.g. name). Note: the filter implementation class must have a constructor that consumes the input class object (if an input is provided)</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="GSRDetectionFilterInput"/>
+                    <xs:element ref="ECGDetectionFilterInput"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GSRDetectionFilterInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="GSR Detection Filter Input">
+                    <fg:message>Contains the configuration parameters for the GSR Detection Filter.  By seperating the input arguments from the implementation, GIFT allows the developer to provide their own filter implementation while still using this configuration input schema.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="samplingRateHz">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Sampling Rate (Hz)">
+                                <fg:message>How often sensor data is produced that needs to be filtered.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="windowSize">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Window Size (Seconds)">
+                                <fg:message>This corresponds to how long it takes a user reaction to be observed in the raw GSR data.  A value in the range of 3.0-10.0 seconds is reasonable depending on the sampling rate.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:float">
+                            <xs:minExclusive value="0"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ECGDetectionFilterInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="ECG Detection Filter Input">
+                    <fg:message>Contains the configuration parameters for the ECG Detection Filter.  By seperating the input arguments from the implementation, GIFT allows the developer to provide their own filter implementation while still using this configuration input schema.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="samplingRateHz">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Sampling Rate (Hz)">
+                                <fg:message>How often sensor data is produced that needs to be filtered.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="windowSize">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Window Size">
+                                <fg:message>How many raw sensor data readings to use for the filters calculations.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="EMPTY" type="xs:string"/>
+    <xs:element name="sensorInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Sensor Input">
+                    <fg:message>A sensor input contains configuration parameters for the sensor implementation class - beyond the explicit xml elements for all sensors (e.g. name). Note: the sensor implementation class must have a constructor that consumes the input class object (if an input is provided)</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0">
+                    <xs:element ref="SelfAssessmentSensor"/>
+                    <xs:element ref="EmoComposerSensor"/>
+                    <xs:element ref="EmotivSensor"/>
+                    <xs:element ref="MouseTempHumiditySensor"/>
+                    <xs:element ref="MouseTempHumiditySurrogateSensor"/>
+                    <xs:element ref="QSensor"/>
+                    <xs:element ref="SineWaveSensor"/>
+                    <xs:element ref="VhtMultisenseSensor"/>
+                    <xs:element ref="OS3DSensor"/>
+                    <xs:element ref="BioHarnessSensor"/>
+                    <xs:element ref="KinectSensor"/>
+					<xs:element ref="MicrosoftBandSensor"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OS3DSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="OS3D Surrogate">
+                    <fg:message>The OS3D Sensor from Inertial Labs is a sub-miniature orientation sensor designed for tracking an object's angular motion.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="BioHarnessSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="BioHarness Sensor">
+                    <fg:message>This sensor class interfaces with the BioHarness sensor hardware that contains cardiac, respitatory and temperature activity readings.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SineWaveSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Sine Wave Surrogate">
+                    <fg:message>The Sine Wave Sensor is a sensor which produces data according to the sine wave formula.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" ref="amplitude"/>
+                <xs:element minOccurs="1" ref="period"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="amplitude" type="xs:decimal">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Amplitude">
+                    <fg:message>The peak deviation of the sine wave function from its center position.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="period" type="xs:decimal">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Period">
+                    <fg:message>The time it takes for a sine wave duration (seconds).</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="QSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Q Sensor">
+                    <fg:message>This sensor class interfaces with the Q sensor hardware that contains temperature, accelerometer and electrodermal activity readings.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MouseTempHumiditySurrogateSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Mouse Sensor Surrogate">
+                    <fg:message>This mouse sensor surrogate is a software implementation of the Mouse sensor.  It produces artifical temperature and humidity values using the values obtained from two dialogs that can be controlled with buttons.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" ref="temperatureRateChangeAmount"/>
+                <xs:element minOccurs="1" ref="humidityRateChangeAmount"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="temperatureRateChangeAmount" type="xs:decimal">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Temp Rate Change Amount">
+                    <fg:message>The amount to change the sensor temperature value during each tick of the sensor. Note: value should be positive as used by the Mouse TempHumidity surrogate sensor implementation.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="humidityRateChangeAmount" type="xs:decimal">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Humidity Rate Change Amount">
+                    <fg:message>The amount to change the sensor humidity value during each tick of the sensor. Note: value should be positive as used by the Mouse TempHumidity surrogate sensor implementation.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="MouseTempHumiditySensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Mouse Sensor">
+                    <fg:message>The Mouse TempHumidity Sensor is a sensor that was built for the ARL LITE lab that can capture temperature and humidty values from the palm of its user.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="EmotivSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Emotiv Sensor">
+                    <fg:message>The Emotiv Sensor interfaces with the Emotiv EPOC headset which produces Emotiv events.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" ref="UseAffective"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UseAffective" type="booleanEnum">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Use Affective">
+                    <fg:message>This property determines if the Emotiv Affectiv suite of attributes should be collected - in addition to the other Emotiv attributes.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="EmoComposerSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Emotiv EmoComposer Sensor">
+                    <fg:message>The Emo Composer sensor interfaces with the Emotiv EmoComposer application which can producer emotiv events.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ipAddr" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SelfAssessmentSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Self Assessment Sensor">
+                    <fg:message>The Self Assessment Sensor produces data that changes by a specific rate every tick.  It shows a dialog which allows the user to change the rate thereby affecting the values produced by the sensor.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="1" ref="rateChangeAmount"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="rateChangeAmount" type="xs:decimal">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Rate Change Amount">
+                    <fg:message>The amount to change the sensor value during each tick of the sensor. Note: value should be positive as used by the Self Assessment sensor implementation.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="VhtMultisenseSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="VHT Multisense Sensor">
+                    <fg:message>The VHT Multisense Sensor produces data that changes by a specific rate every tick.  It shows a dialog which allows the user to change the rate thereby affecting the values produced by the sensor.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element maxOccurs="1" minOccurs="0" ref="vhtActiveMqUrl"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="vhtActiveMqTopic"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="datalessWarningDelay"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="vhtActiveMqUrl" type="xs:normalizedString">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="VHT Multisense ActiveMQ URL">
+                    <fg:message>The URL of the ActiveMQ that VHT is running on.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="vhtActiveMqTopic" type="xs:normalizedString">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="VHT Multisense ActiveMQ Topic">
+                    <fg:message>The topic of the ActiveMQ that VHT and Multisense is publishing data to.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="datalessWarningDelay" type="xs:long">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Dataless Warning Delay">
+                    <fg:message>How long to wait, in seconds, before sending a warning message when the sensor has not received any data</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="writerInstance">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.scat.custnodes.WriterInstanceDialog" message="Writer Instance">
+                    <fg:message>Refers to the unique id of a writer which will be responsible for writing the raw sensor or filtered data. E.g. a writer instance can write filtered sensor data to a csv file.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+	<xs:element name="MicrosoftBandSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Microsoft Band Sensor">
+                    <fg:message>Contains the configuration parameters for the Microsoft Band Sensor.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="networkPort"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="KinectSensor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Kinect Sensor">
+                    <fg:message>Contains the configuration parameters for the Kinect Sensor.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:all>
+                <xs:element maxOccurs="1" minOccurs="0" ref="skeletonAndFaceTrackingSampleInterval"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="colorSampleInterval"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="depthSampleInterval"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="nearMode"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="colorFrameFormat"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="depthFrameFormat"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="skeletonAndFaceTrackingSampleInterval" type="xs:decimal">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Skeleton and Face Tracking Interval">
+                    <fg:message>How often face and skeleton data is queried. Overrides the sensor interval property.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="colorSampleInterval" type="xs:decimal">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Color Sample Interval">
+                    <fg:message>How often Color frame data is queried. Overrides the sensor interval property.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="depthSampleInterval" type="xs:decimal">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Depth Sample Interval">
+                    <fg:message>How often Depth frame data is queried. Overrides the sensor interval property.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="colorFrameFormat" type="KinectColorResolutionEnum">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Color Frame Resolution">
+                    <fg:message>Resolution of the color frame coming from the Kinect</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="depthFrameFormat" type="KinectDepthResolutionEnum">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Depth Frame Resolution">
+                    <fg:message>Resolution of the depth frame coming from the Kinect</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="nearMode" type="booleanEnum">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Near Mode">
+                    <fg:message>If the Kinect should use near mode for skeletal and face detection.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+	<xs:element name="networkPort">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Network Port"> 
+					<fg:message>A network port number used for communication purposes. E.g. 3000</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="65535"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+    <xs:simpleType name="KinectColorResolutionEnum">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="ResolutionInfrared640x480Fps30"/>
+            <xs:enumeration value="ResolutionRawBayer1280x960Fps12"/>
+            <xs:enumeration value="ResolutionRawBayer640x480Fps30"/>
+            <xs:enumeration value="ResolutionRawYuv640x480Fps15"/>
+            <xs:enumeration value="ResolutionRgb1280x960Fps12"/>
+            <xs:enumeration value="ResolutionRgb640x480Fps30"/>
+            <xs:enumeration value="ResolutionYuv640x480Fps15"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="KinectDepthResolutionEnum">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="Resolution640x480"/>
+            <xs:enumeration value="Resolution320x240"/>
+            <xs:enumeration value="Resolution80x60"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ImageCompressionFormat">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="PNG"/>
+            <xs:enumeration value="LZ4"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="booleanEnum">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="false"/>
+            <xs:enumeration value="true"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

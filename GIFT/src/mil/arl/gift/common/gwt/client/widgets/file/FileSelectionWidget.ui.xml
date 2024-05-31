@@ -1,0 +1,85 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
+	<ui:style>
+		/*@external gwt-TabPanelTab gwt-TabTab-selected; 
+		
+		.gwt-TabPanelTab{	
+			background-color:white;
+		}
+		
+		.gwt-TabTab-selected{
+			background-color: white;
+		}*/
+		.bottomPanel{
+			background-color: rgb(245, 245,245);
+			border-style: solid;
+			border-width: 0px 1px 1px 1px;
+			border-color: rgba(237, 237, 237, 1);
+		}
+		.arrows{
+			font-size: 18pt;
+		}
+		.pad{
+			margin: 5px;
+		}
+		.inline{
+			display: inline;
+		}
+		.textbox{
+			margin-left: 5px;
+		}
+		.fileTable{
+			border-width: 5px 1px;
+			border-style: double solid;
+			border-color: rgba(237, 237, 237, 1);
+		}
+	</ui:style>
+	<g:FlowPanel>
+		<g:TabPanel ui:field='tabPanel' width='100%'>
+			<g:Tab text='Upload'>
+				<g:SimplePanel ui:field='uploadTab'>
+					<g:FormPanel ui:field='form'>
+						<g:FileUpload width='100%' name='uploadFileElement' ui:field='fileUpload'/>
+					</g:FormPanel>			
+				</g:SimplePanel>
+			</g:Tab>
+			<g:Tab text='My Workspace'>
+				<g:DeckPanel ui:field='workspaceDeck'>
+					<g:VerticalPanel ui:field='workspaceLoadPanel' horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
+						<g:Image ui:field='workspaceLoadImage'/>
+					</g:VerticalPanel>
+					<g:FlowPanel ui:field='loadedContentPanel'>
+						<g:VerticalPanel>
+							<g:MenuBar width='100%'>
+								<g:MenuItem ui:field='upArrow'>&uarr;</g:MenuItem>
+								<!-- <g:MenuItem ui:field='backArrow'>&larr;</g:MenuItem>
+								<g:MenuItem ui:field='forwardArrow'>&rarr;</g:MenuItem>
+								<g:MenuItem ui:field='refreshArrow'>&#x21BB;</g:MenuItem>-->
+								<g:MenuItem ui:field='directoryName'>
+									Directory Name
+								</g:MenuItem>
+							</g:MenuBar>
+							<g:FlowPanel addStyleNames='{style.fileTable}' >
+								<g:ScrollPanel ui:field='fileTableScrollPanel'>
+									<c:CellTable width='100%' ui:field='fileNameTable'/>
+								</g:ScrollPanel>
+							</g:FlowPanel>
+							<g:VerticalPanel width='100%' verticalAlignment='middle' styleName='{style.bottomPanel}'>
+								<g:HorizontalPanel width='100%' verticalAlignment='middle' addStyleNames='{style.pad}'>
+									<g:FlowPanel width='100%'>
+										<g:Label horizontalAlignment='right' addStyleNames='{style.inline}'>
+											File Name:
+										</g:Label>
+										<g:TextBox width='85%' addStyleNames='{style.inline} {style.textbox}' ui:field='fileNameInput'/>
+									</g:FlowPanel>
+								</g:HorizontalPanel>						
+							</g:VerticalPanel>
+						</g:VerticalPanel>
+					</g:FlowPanel>
+				</g:DeckPanel>
+			</g:Tab>
+		</g:TabPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,34 @@
+#!/bin/bash
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+cd "$parent_path"
+
+InstallBase="../../../.."
+
+if [ -d "../Linux" ] ; then
+	
+	# This script does not yet exist next to the GIFT folder, which means the 
+	# Linux scripts are still in dev-tools and need to be copied over.
+	echo Extracting Linux scripts
+	
+	cp -r "." "${InstallBase}"
+	
+	cd "${InstallBase}"
+	
+	# Rerun the Linux installer once it is moved
+	"./installGIFT"
+	
+	exit
+fi
+
+launchProcessScript="GIFT/scripts/util/launchProcess"
+
+# Detect if execute permissions need to be given to GIFT's scripts
+if ! [ -x "${launchProcessScript}" ] ; then
+
+	# Enable execute permission for files within GIFT's folder so that scripts can be executed
+	echo Enabling execute permissions on internal scripts
+	find "." -type f -exec chmod +x {} \;
+fi
+
+"./${launchProcessScript}" start installer

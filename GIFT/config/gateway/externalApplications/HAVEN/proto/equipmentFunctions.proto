@@ -1,0 +1,105 @@
+syntax = "proto3";
+import "proto/entity.proto";
+
+option csharp_namespace = "Cta.Tmt.Protobuf";
+option java_generic_services = true;
+option java_package = "cta.tmt.protobuf";
+
+package equipment;
+
+
+// Service for handling functions pertaining to equipment
+service EquipmentService {
+	// tests if the weapon safety is on
+	rpc IsWeaponSafetyOn(IsWeaponSaftetyOnRequest) returns (IsWeaponSafetyOnResponse) {}
+	
+	// tests if the weapon is up or down
+	rpc IsWeaponUp(IsWeaponUpRequest) returns (IsWeaponUpResponse) {}
+	
+	// returns all equipment associated with the given entity
+	//rpc GetEquipment(GetEquipmentRequest) returns (GetEquipmentResponse) {}
+	
+	// return the primary weapon of the entity
+	rpc GetPrimaryWeapon(GetPrimaryWeaponRequest) returns (GetPrimaryWeaponResponse) {}
+	
+	// returns the type of weapon
+	rpc GetWeaponType(GetWeaponTypeRequest) returns (GetWeaponTypeResponse) {}
+	
+	// cause a piece of equipment to malfunction
+	rpc Malfunction(MalfunctionRequest) returns (MalfunctionResponse) {}
+	
+	// repair a piece of equipment
+	rpc Repair(RepairRequest) returns (RepairResponse) {}
+	
+	// get all of the weapons with simulation IDs 
+	rpc GetSimulationWeapons(GetSimulationWeaponsRequest) returns (GetSimulationWeaponsResponse) {}
+
+}
+
+
+message IsWeaponSaftetyOnRequest {
+	int32 weapon = 1;
+}
+
+message IsWeaponSafetyOnResponse {
+	bool isOn = 1;
+}
+
+message IsWeaponUpRequest {
+	int32 weapon = 1;
+}
+
+message IsWeaponUpResponse {
+	bool isUp = 1;
+}
+
+message GetEquipmentRequest {
+	int32 owner = 1;
+}
+
+message GetEquipmentResponse {
+	repeated int32 items = 1;
+}
+
+message GetPrimaryWeaponRequest {
+	int32 owner = 1;
+}
+
+message GetPrimaryWeaponResponse {
+	int32 weapon = 1;
+}
+
+message GetWeaponTypeRequest {
+	int32 weapon = 1;
+}
+
+message GetWeaponTypeResponse {
+	WeaponType type = 1;
+}
+
+message MalfunctionRequest {
+	int32 item = 1;
+	float duration = 2;
+}
+
+message MalfunctionResponse {
+	
+}
+
+message RepairRequest {
+	int32 item = 1;
+	float duration = 2;
+}
+
+message RepairResponse {
+	
+}
+
+message GetSimulationWeaponsRequest {
+	
+}
+
+message GetSimulationWeaponsResponse {
+	repeated Entity weapons = 1;
+}
+

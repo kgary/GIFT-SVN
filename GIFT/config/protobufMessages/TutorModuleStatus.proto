@@ -1,0 +1,29 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+ 
+option java_package = "generated.proto.common";
+option java_outer_classname = "TutorModuleStatusProto";
+
+import "google/protobuf/wrappers.proto";
+import "ModuleStatus.proto";
+
+/* Used to communicate the status of the tutor module. */
+message TutorModuleStatus {
+	
+	/* The name of the Tutor Topic that embedded app messages will
+	 * be sent to in order to reach the domain. Cannot be empty or null. The topic 
+	 * name should be unique to a domain session and there should be at most one topic
+	 * for each domain session. */
+	google.protobuf.StringValue topic_name = 1;
+	
+	/* The base status of the TutorModule. A null value will result in a 
+	 * NullReferenceException. If the module name, queue name, or module type of the status
+	 * is null an exception will be thrown by the super class' constructor. */
+	ModuleStatus module_status = 2;
+	
+}

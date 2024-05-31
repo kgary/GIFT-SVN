@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html style="                    height: 100%;">
+  <head>
+    <meta content="text/html; charset=windows-1252" http-equiv="content-type">
+    <title>Welcome! | GIFT Experiment Tool</title>
+  </head>
+  <body style="                 margin: 0px; height: 100%;">
+    <table style="width: 100%; height: 100%;" cellpadding="0" cellspacing="0">
+      <tbody>
+        <tr>
+          <td style="vertical-align: middle;" align="center">
+            <div style="font-family: Arial; color: white; text-shadow: 3px 3px 5px rgba(0,0,0,0.59); padding-bottom: 111px;">
+              <img src="images/Logo.png" alt="GIFT logo" style="width: 200px; margin-bottom: 20px;">
+              <div style="font-size: 50pt; font-weight: bold; margin-bottom: 20px;">
+                Welcome! </div>
+              <div style="font-size: 18pt; margin-bottom: 30px;"> If you are
+                seeing this page, then you have been invited to take a course in GIFT.<br>
+                <br>
+                To begin, please click the start
+                button below. </div>
+              <!-- In order for GIFT to pick up when the user clicks the start button, we need to apply an ID here that GIFT recognizes -->
+              <button id="startExperimentButton" style="
+                -ms-touch-action: manipulation;-ms-user-select: none;                background-color: rgb(68, 110, 155);background-image: linear-gradient(rgb(109, 148, 191), rgb(68, 110, 155) 50%, rgb(62, 100, 141));               background-repeat: no-repeat;border-bottom-color: rgb(52, 85, 120);                border-bottom-style: solid;border-bottom-width: 1px;                border-left-color: rgb(52, 85, 120);border-left-style: solid;                border-left-width: 1px;border-right-color: rgb(52, 85, 120);                border-right-style: solid;border-right-width: 1px;                border-top-color: rgb(52, 85, 120);border-top-style: solid;                border-top-width: 1px;box-sizing: border-box;                color: rgb(255, 255, 255);cursor: pointer;                direction: ltr;display: inline-block;                filter: none;font-family: Arial Unicode MS, Arial, sans-serif;                font-size: 32px;font-style: normal;                font-variant: normal;font-weight: 400;line-height: 19.99px;margin-bottom: 0px;                margin-left: 0px;margin-right: 0px;                margin-top: 0px;text-align: center; text-shadow: 0px -1px 0px rgba(0,0,0,0.3);text-transform: none; touch-action: manipulation;vertical-align: middle; white-space: nowrap; padding: 20px 50px; font-weight: bold; border-radius: 10px; box-shadow: 3px 3px 5px rgba(0,0,0,0.5);">Start</button>
+			  
+			  <!-- In order for GIFT to show a loading indicator in the page, we need to apply an ID here that GIFT recognizes -->
+			  <div id="GIFT_WELCOME_EXPERIMENT_LOADING_INDICATOR" style='display: none;'>
+				<img src="backgrounds/loading.gif" alt="Loading indicator">
+				
+				<!-- In order for GIFT to show a loading label inside the loading indicator, we need to apply an ID here that GIFT recognizes -->
+				<div id="GIFT_WELCOME_EXPERIMENT_LOADING_TEXT" style='font-size: 32px; font-weight: bold;'>
+					Retrieving experiment...
+				</div>
+			  </div>
+			</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

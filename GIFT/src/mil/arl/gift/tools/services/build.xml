@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<project name="Database-IO" default="compile">
+    
+    <property name="root.path" value="../../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.tools.services"/>
+    <property name="source.path" value="mil/arl/gift/tools/services"/>
+    <property name="jarfile.ext.path" value="gift-services"/>
+    <property name="jarfile.name" value="gift-services.jar"/>
+	<property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="gift.domain.services.jar" value="gift-domain-services.jar"/>
+	<property name="gift.survey.services.jar" value="gift-ums-db.jar"/>
+	<property name="gift.lms.services.jar" value="gift-lms-services.jar"/>
+	<property name="gift.authoring.common.jarfile.name" value="gift-authoring-common.jar"/>
+	<property name="authoring.conversion.jar" value="gift-authoring-conversion.jar" />
+	<property name="gift.export.jar" value="gift-export.jar"/>
+	<property name="gift.import.jar" value="gift-import.jar"/>
+	<property name="gift.gateway.jar" value="gift-gateway.jar"/>
+	
+	<property name="jaxb.generated.jar" value="jaxb_generated.jar" />
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+        
+    <path id="classpath">
+    	<fileset dir="${root.path}/bin" includes="${gift.common.jar}"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.domain.services.jar}"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.survey.services.jar}"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.lms.services.jar}"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.authoring.common.jarfile.name}"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.export.jar}"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.import.jar}"/>
+        <fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+        <fileset dir="${root.path}/external" includes="**/apache-poi-3.15/*.jar"/>
+    	<fileset dir="${root.path}/external" includes="commons-io-2.3.jar" />
+    	<fileset dir="${root.path}/external" includes="commons-lang-2.4.jar" />
+    	<fileset dir="${root.path}/external" includes="**/json_simple-1.1.jar" />
+    	<fileset dir="${root.path}/external" includes="hibernate/dom4j-2.1.0.jar" />
+    	<fileset dir="${root.path}/external" includes="hibernate/hibernate-jpa-2.0-api-1.0.0.Final.jar" />
+    	<fileset dir="${root.path}/external" includes="hibernate/hibernate3.jar" />
+    	<fileset dir="${root.path}/external" includes="gson-2.3.1.jar" />
+		<fileset dir="${root.path}/external" includes="**zip4j-1.3.2/zip4j-1.3.2.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/nuxeo/*.jar"/>
+		<fileset dir="${root.path}/external" includes="vecmath.jar"/>
+		<fileset dir="${root.path}/external" includes="**/lms/jackson-annotations-2.12.5.jar"/>
+		<fileset dir="${root.path}/external" includes="**/lms/jackson-core-2.12.5.jar"/>
+		<fileset dir="${root.path}/external" includes="**/lms/jackson-databind-2.12.5.jar"/>
+    	<fileset dir="${root.path}/bin" includes="**/${jaxb.generated.jar}"/>
+    	<fileset dir="${root.path}/bin" includes="**/json_generated.jar"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.gateway.jar}"/>
+    	<fileset dir="${root.path}/bin" includes="${authoring.conversion.jar}"/>
+		<fileset dir="${root.path}/bin" includes="**/legacyJsonMessageCodec.jar"/>
+		<fileset dir="${root.path}/external" includes="**/jdk-11/jaxb-ri/mod/jaxb-api-2.3.1.GIFT.jar"/>
+    </path>
+    
+    <target name="checkForChanges">
+    	
+    	<!-- has the common jar changed since the last jar creation (true = no change, not set = common jar is newer) -->
+        <uptodate property="upToDateWithCommon.ifSet" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        
+    	<!-- has the domain services jar changed since the last jar creation (true = no change, not set = domain services jar is newer) -->
+        <uptodate property="upToDateWithDomainServices.ifSet" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.domain.services.jar}"/>
+        
+    	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
+    	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="${src.excludes}"/>
+        </uptodate>
+        
+    	<uptodate property="upToDateWithGateway.ifSet" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.gateway.jar}"/>
+    	
+    
+    	<!-- set property if:
+    		1) the common jar has changed
+    		or
+    		2) the domain services jar has changed
+    		or
+    		3) the services jar source has changed
+    	-->
+        <condition property="build.required">
+        	<or>
+            	<not>
+                	<isset property="upToDateWithCommon.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithDomainServices.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithIncludes.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithGateway.ifSet"/>
+            	</not>
+        	</or>
+        </condition>
+    	
+    	<!-- DEBUG
+    	<echo message="1- upToDateWithDomainServices.ifSet = ${upToDateWithDomainServices.ifSet}, 
+    		upToDateWithCommon.ifSet = ${upToDateWithCommon.ifSet}, 
+    		upToDateWithIncludes.ifSet = ${upToDateWithIncludes.ifSet}, 
+    		build.required = ${build.required}"/>
+    	-->
+    	
+    </target>
+    
+    <target name="compileCore" if="build.required">
+    	<echo message="Compiling GIFT Services"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" classpathref="classpath" includeDestClasses="false" excludes="${src.excludes}">
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes/" includes="${source.path}/**"/>
+    </target>
+
+    <target name="compile" depends="checkForChanges, compileCore">        
+    </target>
+    	
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

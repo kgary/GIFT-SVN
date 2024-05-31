@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <ui:style>
+		.largeFont{
+			font-size: large;
+		}
+	</ui:style>
+	<g:VerticalPanel>
+		<b:Tooltip title="Prevents this survey's name from being shown when this survey is displayed during a course or in the preview window.">
+	    <g:CheckBox styleName="{style.largeFont}" ui:field="hideSurveyNameCheckBox">Hide Survey Name during Execution</g:CheckBox>
+	    </b:Tooltip>
+	    <b:Tooltip title="Prevents the numbers for this survey's questions from being shown when this survey is displayed during a course or in the preview window.">
+	    <g:CheckBox styleName="{style.largeFont}" ui:field="hideNumQuestionsCheckBox">Hide Question Numbers during Execution</g:CheckBox>
+	    </b:Tooltip>
+        <!-- Page number property is not used yet in the TUI.
+            <g:CheckBox styleName="{style.largeFont}" ui:field="hideNumPagesCheckBox">Hide Page Numbers</g:CheckBox>
+        -->
+	    <!--  The full screen option currently part of the presentsurveyimpl editor.  The option is not a survey property, but is
+              saved to the presentsurvey transition object (in the course.xml).
+              It would be nice to have the full screen checkbox in the survey editor, but the functionality would need to be made to support that.
+              Leaving the checkbox here in case it is desired to have this enabled in the future.
+        <g:CheckBox styleName="{style.largeFont}" ui:field="fullScreenCheckBox">Display in Full Screen</g:CheckBox> 
+        -->
+	</g:VerticalPanel>
+</ui:UiBinder>

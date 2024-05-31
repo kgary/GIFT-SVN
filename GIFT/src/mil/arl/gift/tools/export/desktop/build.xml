@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<project name="Database-IO" default="compile">
+    
+    <property name="root.path" value="../../../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.tools.export.desktop"/>
+    <property name="source.path" value="mil/arl/gift/tools/export/desktop"/>
+    <property name="jarfile.ext.path" value="gift-desktop-export"/>
+    <property name="jarfile.name" value="gift-desktop-export.jar"/>
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+        
+    <path id="classpath">
+    	<fileset dir="${root.path}/bin" includes="gift-common.jar"/>
+    	<fileset dir="${root.path}/bin" includes="gift-domain.jar"/>
+    	<fileset dir="${root.path}/bin" includes="gift-ums-db.jar"/>
+        <fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-compress-1.4.1.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-io-2.3.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-lang-2.4.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/CJWizards-0.2.jar"/>
+        <fileset dir="${root.path}/external" includes="**/hibernate3.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/json_simple-1.1.jar"/>
+		<fileset dir="${root.path}/bin" includes="**/legacyJsonMessageCodec.jar"/>
+    </path>
+    
+    <target name="checkForChanges">
+        <uptodate property="build.notRequired" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="${src.excludes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <and>
+                <isset property="build.notRequired"/>
+            </and>
+        </condition>
+    </target>
+    
+    <target name="compileCore" unless="build.required">
+    	<echo message="Compiling Desktop Export Tool"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" classpathref="classpath" includeDestClasses="false" excludes="${src.excludes}">
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes/" includes="${source.path}/**"/>
+    </target>
+
+    <target name="compile" depends="checkForChanges, compileCore">        
+    </target>
+    	
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

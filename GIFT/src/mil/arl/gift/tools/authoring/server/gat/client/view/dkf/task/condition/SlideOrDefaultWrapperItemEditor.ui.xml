@@ -1,0 +1,32 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:c="urn:import:mil.arl.gift.common.gwt.client.widgets">
+    <ui:style>
+        .slideNumberPanel {
+            display: inline;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .slideNumberPanel > * {
+            display: inline;
+        }
+        .defaultSlideLabel {
+            display: inline;
+        }
+        .slideNumberSpinner {
+            vertical-align: middle;
+        }
+        .slideTimeBox {
+            vertical-align: middle;
+        }
+    </ui:style>
+    <g:FlowPanel>
+        <g:DeckPanel ui:field="slideNumberPanel" addStyleNames="{style.slideNumberPanel}">
+            <g:HTML ui:field="defaultSlideLabel" addStyleNames="{style.defaultSlideLabel}" />
+            <c:NumberSpinner ui:field="slideNumberSpinner" addStyleNames="{style.slideNumberSpinner}" />
+        </g:DeckPanel>
+        <cb:FormattedTimeBox ui:field="slideTimeBox" addStyleNames="{style.slideTimeBox}" />
+    </g:FlowPanel>
+</ui:UiBinder>

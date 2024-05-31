@@ -1,0 +1,23 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "PedagogicalRequestProto";
+
+import "AbstractPedagogicalRequest.proto";
+
+/* This message represents a Pedagogical Request from the Pedagogical Module. */
+message PedagogicalRequest {
+	/* The map of unique reasons why to a collection of pedagogical request(s) for that reason. */
+	map<string, PedagogicalRequestList> requests = 1;
+}
+
+/* This message represents the value type for the requests map, a list of encodable requests. */
+message PedagogicalRequestList {
+	repeated AbstractPedagogicalRequest request_list = 1;
+}

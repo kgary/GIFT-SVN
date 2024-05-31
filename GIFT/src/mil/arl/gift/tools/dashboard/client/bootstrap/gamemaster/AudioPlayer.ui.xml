@@ -1,0 +1,49 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	   .recordedPanel{
+           display: flex;
+           flex-wrap: wrap;
+           align-items: center;
+           border: 1px solid rgba(0,0,0,0.2);
+           border-radius: 5px;
+           padding: 3px;
+       }
+       .recordedLabel{
+           flex: 1;
+       }
+       .recordingIcon{
+           padding: 0px;
+           width: 24px;
+           height: 24px;
+           border-radius: 50%;
+           margin-right: 5px;
+       }
+       .deleteRecordingButton{
+           padding: 0px;
+           width: 24px;
+           height: 24px;
+           border-radius: 50%;
+       }
+	</ui:style>
+	<g:FlowPanel ui:field='recordedPanel' addStyleNames='{style.recordedPanel}'>
+        <g:HTMLPanel addStyleNames='{style.recordedLabel}'>
+            <i class='fa fa-volume-up'/>
+            <g:InlineLabel>
+                Recorded Audio
+            </g:InlineLabel>
+        </g:HTMLPanel>
+         <b:Tooltip title='Click to play this recording'>
+            <b:Button ui:field='playRecordingButton' type='DEFAULT' icon='PLAY' addStyleNames="{style.recordingIcon}"/>
+        </b:Tooltip>
+         <b:Tooltip title='Click to stop pause this recording'>
+            <b:Button ui:field='pauseRecordingButton' type='DEFAULT' icon='PAUSE' addStyleNames="{style.recordingIcon}"/>
+        </b:Tooltip>
+        <b:Tooltip title='Click to delete this recording'>
+            <b:Button ui:field='deleteRecordingButton' visible='false' type='PRIMARY' icon='TRASH' 
+                addStyleNames="{style.deleteRecordingButton}"/>
+        </b:Tooltip>
+    </g:FlowPanel>
+</ui:UiBinder> 

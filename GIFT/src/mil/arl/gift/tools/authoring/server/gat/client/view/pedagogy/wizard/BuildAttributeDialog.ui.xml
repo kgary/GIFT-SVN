@@ -1,0 +1,72 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+	xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:wizard="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.pedagogy.wizard">
+	
+	<ui:style>
+		.padTop{
+			margin-top: 5px;
+		}
+		.container{
+			padding:10px 20px;
+		}
+		.padStep{
+			text-align: center;
+			font-weight: bold;
+			padding: 10px 0px;
+		}
+	</ui:style>
+	
+	<g:FlowPanel ui:field="verticalPanel">
+	
+		<g:FlowPanel width="600px" addStyleNames='{style.container}'>
+		
+		    <g:Label ui:field="stepLabel" addStyleNames='{style.padStep}'/>
+		    
+			<wizard:SelectQuadrantPane ui:field="selectQuadrantPane"/>
+			
+			<wizard:SelectLearnerStatePane ui:field="selectLearnerStatePane"/>
+			
+			<wizard:SelectMetadataAttributesPane ui:field="selectMetadataAttributesPane"/>
+			
+			<g:HTML ui:field="finishedPane">
+				<div style="text-align: center; font-size: 16px; padding: 100px 0px;"> 
+					<span style="font-weight: bold; font-size: 20pt; text-decoration: underline;">
+						Congratulations! You're done!
+					</span>
+					<br/>
+	     			 Click <span style="font-weight: bold;">Finish</span> to add the metadata list
+     			 </div>
+			</g:HTML>
+			
+		</g:FlowPanel>
+		
+		<g:HTML>				
+			<hr style='border-top-style: solid; border-top-width: 1px; border-top-color: #AAAAAA;'/>
+		</g:HTML>
+		
+		<g:VerticalPanel width='100%' horizontalAlignment='ALIGN_CENTER' addStyleNames='{style.padTop}'>
+			<g:HorizontalPanel width='60%' horizontalAlignment='ALIGN_CENTER'>
+			
+				<g:Button width='75px' ui:field="previousButton" enabled="false">
+					Previous
+				</g:Button>
+				
+				<g:Button width='75px' ui:field="nextButton">
+					Next
+				</g:Button>
+				
+				<g:Button width='75px' ui:field="finishButton" enabled="false">
+					Finish
+				</g:Button>
+				
+				<g:Button width='75px' ui:field="cancelButton">
+					Cancel
+				</g:Button>
+				
+			</g:HorizontalPanel>
+		</g:VerticalPanel>
+		
+	</g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,57 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractScaleScoreProto";
+
+import "AbstractScale.proto";
+
+/*  
+ *	This is the protobuf message that contains the base implementations for scale scores.
+ */ 
+message AbstractScaleScore {
+	/* 
+	 *	The score can either represent a question scale type, a reply scale type, or a 
+	 *	survey scale type. 
+	 */
+	oneof type {
+		SurveyScaleScore survey_scale_score = 1;
+		QuestionScaleScore question_scale_score = 2;
+		ReplyScaleScore reply_scale_score = 3;
+	}
+}
+
+/* 
+ *  Message definition for a question scale score that contains a list of question scale.
+ *  scores.
+ */
+message SurveyScaleScore {
+
+	/* Contains the attribute, value pairing associated with a survey score scale attribute. */
+    repeated AbstractScale scales = 1;
+    
+    /* This is a score for a question that has one or more scales associated with its answers. */
+    repeated QuestionScaleScore question_scores = 2;
+}
+
+/* Message definition for a question scale score that contains a list of reply scores. */
+message QuestionScaleScore {
+
+	/* Contains the attribute, value pairing associated with a survey score scale attribute. */
+    repeated AbstractScale scales = 1;
+    
+    /* This is a score for a reply that has one or more scales associated with its answers. */
+	repeated ReplyScaleScore reply_scores = 2;
+}
+
+/* Message definition for a reply scale score. */
+message ReplyScaleScore {
+
+	/* Contains the attribute, value pairing associated with a survey score scale attribute. */
+    repeated AbstractScale scales = 1;
+}

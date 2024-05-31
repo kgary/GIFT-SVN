@@ -1,0 +1,25 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:c="urn:import:com.google.gwt.user.cellview.client">
+
+    <ui:style type="mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared.DkfNameValuePairEditor.UiStyle">
+        .rootTable {
+            width: 100%;
+        }
+        
+        .textInputCell {
+	       padding-left: 0px;
+	       padding-right: 0px;
+	    }
+        
+        .textInputCell>div>input {
+	       width: 100%;
+	    }
+    </ui:style>
+
+    <g:FlowPanel>
+	    <c:CellTable ui:field="rootTable" addStyleNames="{style.rootTable}"/>
+    </g:FlowPanel>
+
+</ui:UiBinder>

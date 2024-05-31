@@ -1,0 +1,33 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LMSCourseRecordProto";
+
+import "AbstractScoreNode.proto";
+import "LMSConnectionInfo.proto";
+import "CourseRecordRef.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains a single course record. */
+message LMSCourseRecord {
+	/* The referecnce to the course record. */
+	CourseRecordRef courseRecordRef = 1;
+	
+	/* The name of the domain from which this course was generated. */
+	google.protobuf.StringValue domain_name = 2;
+	
+	/* The root of the course record score tree. */
+	GradedScoreNode root = 3;
+	
+	/* The date the course was completed. */
+	google.protobuf.StringValue date = 4;
+	
+	/* The LMS connection information for this record. */
+	LMSConnectionInfo connection = 5;
+}

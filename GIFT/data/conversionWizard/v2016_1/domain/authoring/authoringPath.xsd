@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:fg="http://www.FGolubov.com/XMLEditor" version="4.0"
+	elementFormDefault="qualified">
+
+	<xs:element name="CoursePath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="AARPath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	 
+	<xs:element name="GuidancePath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="GuidanceFilePath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="GuidanceURLPath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element> 
+	
+	<xs:element name="GuidanceMessagePath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="LessonMaterialPath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="MerrillsBranchPointPath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="PresentSurveyPath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="TrainingApplicationPath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="step" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name="AuthoringPath">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CoursePath"/>
+				<xs:element ref="AARPath"/>
+				<xs:element ref="GuidancePath"/>
+				<xs:element ref="GuidanceFilePath"/>
+				<xs:element ref="GuidanceURLPath"/>
+				<xs:element ref="GuidanceMessagePath"/>
+				<xs:element ref="LessonMaterialPath"/>
+				<xs:element ref="MerrillsBranchPointPath"/>
+				<xs:element ref="PresentSurveyPath"/>
+				<xs:element ref="TrainingApplicationPath"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+		
+	<xs:element name="step">        
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element name="container" type="xs:boolean" nillable="false" minOccurs="0"/>
+				<xs:element name="parentStepId" type="xs:int"/>
+				<xs:element name="stepId" type="xs:int"/>
+				<xs:element name="question" type="xs:string"/>
+				<xs:element name="description" type="xs:string"/>
+				<xs:element name="componentType" type="ComponentTypeEnum"/>
+				<xs:element name="modelType" type="ModelTypeEnum"/>
+				<xs:element name="required" type="xs:boolean"/>
+				<xs:element name="propertyName" type="PropertyEnum"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="ComponentTypeEnum">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="TextField" />
+			<xs:enumeration value="RichTextEditor" />
+			<xs:enumeration value="TextAreaItem" />
+			<xs:enumeration value="TextItem" />
+			<xs:enumeration value="IButton" />
+			<xs:enumeration value="CheckboxItem" />
+			<xs:enumeration value="ComboBoxItem" />
+			<xs:enumeration value="ListGrid" />
+			<xs:enumeration value="SelectItem" />
+			<xs:enumeration value="NotApplicable" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ModelTypeEnum">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="Course" />
+			<xs:enumeration value="AAR" />
+			<xs:enumeration value="Guidance" />
+			<xs:enumeration value="GuidanceFile" />
+			<xs:enumeration value="GuidanceURL" />
+			<xs:enumeration value="GuidanceMessage" />
+			<xs:enumeration value="LessonMaterial" />
+			<xs:enumeration value="MerrillsBranchPoint" />
+			<xs:enumeration value="PresentSurvey" />
+			<xs:enumeration value="TrainingApplication" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="PropertyEnum">
+		<xs:restriction base="xs:normalizedString">
+			<!-- Course properties -->
+			<xs:enumeration value="courseIntro" />
+			<xs:enumeration value="name" />
+			<xs:enumeration value="description" />
+			<xs:enumeration value="version" />
+			<xs:enumeration value="surveyContext" />
+			<xs:enumeration value="exclude" />
+			<xs:enumeration value="transitions" />
+			<!-- Guidance properties -->
+			<xs:enumeration value="transitionName" />
+			<xs:enumeration value="displayTime" />
+			<xs:enumeration value="fullScreen" />
+			<xs:enumeration value="showInAAR" />
+			<xs:enumeration value="guidanceChoice" />
+			<!-- Guidance content type properties -->
+			<xs:enumeration value="html" />
+			<xs:enumeration value="content" />
+			<xs:enumeration value="address" />
+			<xs:enumeration value="message" />
+			<!-- Survey properties -->
+			<xs:enumeration value="surveyChoice" />
+            <!-- Lesson Material Properties -->
+            <xs:enumeration value="LessonMaterialList" />
+            <xs:enumeration value="LessonMaterialFiles" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="GuidanceContentTypeEnum">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="File" />
+			<xs:enumeration value="URL" />
+			<xs:enumeration value="Message" />
+		</xs:restriction>
+	</xs:simpleType>
+    
+    <xs:simpleType name="YesNoEnum">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="Yes" />
+			<xs:enumeration value="No" />
+		</xs:restriction>
+	</xs:simpleType>
+    
+</xs:schema>

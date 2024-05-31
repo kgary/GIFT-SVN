@@ -1,0 +1,31 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "SimanProto";
+
+import "AbstractEnumObject.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains a simulation management request. */
+message Siman {
+	/* The siman type being requested. */
+	AbstractEnumObject siman_type = 1;
+	
+	/* The route type being requested. */
+	AbstractEnumObject route_type = 2;
+	
+	/* The data associated with a siman load request. */
+	map<string, string> load_args = 3;
+	
+	/* The course folder. */
+	google.protobuf.StringValue course_folder = 4;
+	
+	/* The size (bytes) of a training application file to load on the client side */
+	google.protobuf.Int64Value file_size = 5;
+}

@@ -1,0 +1,43 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "SurveyCheckResponseProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains responses to a survey check request. */
+message SurveyCheckResponse {
+	/* The collection of responses, mapped in the same manner as the survey check request. */
+	map<string, ResponseInterfaceList> responses = 1;
+}
+
+/* This message encapsulates the type of messages the response can send out. */
+message ResponseInterface {
+	oneof type {
+		/* Success. */
+		SuccessResponse success_response = 1;
+		
+		/* Failure. */
+		FailureResponse failure_response = 2;
+	}
+}
+
+/* This message represents a list of response types. */
+message ResponseInterfaceList {
+	repeated ResponseInterface response_list = 1;
+}
+
+/* This message represents a success response from the check. */
+message SuccessResponse {}
+
+/* This message represents a failure response with a message. */
+message FailureResponse {
+	/* The failure message. */
+	google.protobuf.StringValue message = 1;
+}

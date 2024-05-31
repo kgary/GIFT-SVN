@@ -1,0 +1,29 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <ui:style>
+        .simpleConfigPanel {
+            border: 1px solid #B9B9B9;
+            border-radius: 4px;
+            padding: 8px;
+            margin: 4px;
+        }
+    </ui:style>
+    <g:HTMLPanel>
+        <g:HTML>The SIMILE configuration file that should define this condition's assessment logic:</g:HTML>
+        <g:DeckPanel ui:field="simileConfigPanel" addStyleNames="{style.simpleConfigPanel}">
+            <g:FlowPanel ui:field="simileConfigSelectPanel">
+                <b:Button ui:field="addConfigButton" type="PRIMARY" text="No SIMILE Configuration Selected" />
+            </g:FlowPanel>
+            <g:FlowPanel ui:field="simileConfigSelectedPanel">
+                <b:Button ui:field="removeConfigButton" type="DANGER" text="Remove" icon="TIMES" />
+                <g:HTML ui:field="configNameLabel" />
+            </g:FlowPanel>
+        </g:DeckPanel>
+        <g:FlowPanel ui:field="conditionKeyPanel">
+            <g:HTML>The SIMILE condition that should be assessed:</g:HTML>
+            <b:ValueListBox ui:field="conditionKeySelect" />
+        </g:FlowPanel>
+    </g:HTMLPanel>
+</ui:UiBinder>

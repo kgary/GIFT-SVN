@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LtiLessonGradedScoreRequestProto";
+
+import "AbstractScoreNode.proto";
+
+/* This message encapsulates the data needed to send the graded score result from the LTI provider. */
+message LtiLessonGradedScoreRequest {
+	/* The graded score node. */
+	GradedScoreNode score_node = 1;
+	
+	/* The list of concepts associated with the request. */
+	repeated string concepts = 2;
+}

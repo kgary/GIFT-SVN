@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainSessionStartTimeRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the request for the domain session. */
+message DomainSessionStartTimeRequest {
+	/* The domain session id. */
+	google.protobuf.Int32Value domain_session_id = 1;
+}

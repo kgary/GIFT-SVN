@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fg="http://www.FGolubov.com/XMLEditor" elementFormDefault="qualified">
+<xs:include schemaLocation="../lessonMaterial/lessonMaterial.xsd" />
+  <xs:element name="Course">  
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Course"> 
+				<fg:message>This is the root node of a Course.  Look for other helpful information by clicking on a node.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+      <xs:sequence>
+		<xs:element name="description" type="xs:string" minOccurs="0"/>
+	  	<xs:element ref="surveyContext"/>
+        <xs:element ref="transitions"/>
+      </xs:sequence>
+	  <xs:attribute name="name" use="required">
+	  	<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="Course Name"> 
+					<fg:message>The course name will appear on the Tutor in the list of courses.</fg:message>
+					<fg:message>Refer to "Help" for more information.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:minLength value="1"/>
+			</xs:restriction>
+		</xs:simpleType>
+	  </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="surveyContext" type="xs:integer">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Survey Context" editor-class="mil.arl.gift.tools.cat.custnodes.SurveyContextDialog"> 
+				<fg:message>Unique key in the Survey Authoring System database used to identify the survey context.  A survey context includes the list of surveys for a course or lesson referenced by GIFT keys.</fg:message>
+				<fg:message>Refer to the Survey Auhtoring System documentation for more information on survey context.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+  </xs:element>
+  <xs:element name="transitions">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Transitions"> 
+				<fg:message>Specifies the flow of the lesson by providing an ordered list of transitions that will be presented at various points during a domain session for this scenario.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="Guidance"/>
+			<xs:element ref="PresentSurvey"/>
+			<xs:element ref="AAR"/>
+			<xs:element ref="TrainingApplication"/>
+			<xs:element ref="LessonMaterial"/>
+		</xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TrainingApplication">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Training Application"> 
+				<fg:message>Training Application is a type of transition that manages starting the lesson with the training application.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element ref="dkfRef"/>
+			<xs:element ref="interops"/>
+			<xs:element ref="Guidance" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="finishedWhen" type="TrainingApplicationStateEnumType">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Finished When..."> 
+							<fg:message>Specifies the training application state that will cause the Training Application transition to be finished, meaning when can the next transition (in the list of transitions) start.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation> 
+			</xs:element>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="loadArgs">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Load Arguments"> 
+				<fg:message>List of configuration parameters (name:value pairs) used when the Domain Module notifies the Gateway Module of Siman.LOAD.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element ref="nvpair" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dkfRef">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Domain Knowledge File"> 
+				<fg:message>The domain knowledge file to use to configure the assessment logic for the lesson that will be given by a training application instance.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element name="file">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="File name" editor-class="mil.arl.gift.tools.cat.custnodes.DKFSelectionDialog"> 
+							<fg:message>The relative DKF name from the Domain directory as specified by the domain properties.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interops">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Interop Implementations"> 
+				<fg:message>List of interoperability implementations (e.g. DIS, VBS2) in the Gateway module that will be used during the lesson to communicate training application content to/from GIFT.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element ref="interop" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interop">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Interop Implementations"> 
+				<fg:message>Interoperability implementation (e.g. DIS, VBS2) in the Gateway module that will be used during the lesson to communicate training application content to/from GIFT.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element ref="InteropImpl"/>
+			<xs:element ref="InteropInputs"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InteropImpl">
+    <xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Interop Implementation"  editor-class="mil.arl.gift.tools.cat.custnodes.InteropDialog"> 
+			<fg:message>Specify the class path to the Interop Interface Implementation (e.g. gateway.interop.dis.DISInterface) that contains the logic for the Gateway module to interoperate with a training application.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="InteropInputs">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info exposed="true" message="Interop Implementation Inputs"> 
+				<fg:message>Specify inputs to the selected Gateway module interop interface implementation.  These inputs will be sent by the Domain module to the Gateway module based on the type of Siman message being sent.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation> 
+	<xs:complexType>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="VBS2InteropInputs"/>
+				<xs:element ref="DISInteropInputs"/>
+				<xs:element ref="PowerPointInteropInputs"/>
+				<xs:element ref="CustomInteropInputs"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>  
+  <xs:element name="Guidance">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Guidance"> 
+				<fg:message>Guidance is a type of transition that helps guide the learner.  For example the TUI can use Guidance to display a message to the learner.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element name="message">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="displayTime" minOccurs="0" type="xs:decimal"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PresentSurvey">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Present Survey"> 
+				<fg:message>Present a survey for the learner to complete.  For example the TUI can use Present Survey to display a Pre-lesson survey to the learner.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element ref="GIFTSurveyKey"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AAR">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="After Action Review"> 
+				<fg:message>AAR is a type of transition that presents a review of the learner's actions during a lesson.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:complexContent>
+			<xs:restriction base="xs:anyType"/>
+		</xs:complexContent>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="LessonMaterial">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Lesson Material"> 
+				<fg:message>Lesson Material is a type of transition that presents a self-guided view of material pertaining to the lesson.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="LessonMaterialList" minOccurs="0"/>
+			<xs:element ref="lessonMaterialFiles" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="lessonMaterialFiles">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Lesson Material Files"> 
+				<fg:message>List of Lesson Material files with references to lesson material to present.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="file" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="File name" editor-class="mil.arl.gift.tools.cat.custnodes.LessonMaterialSelectionDialog"> 
+							<fg:message>The relative Lesson Material file name from the Training Material directory as specified by the domain properties.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="8"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="GIFTSurveyKey" type="xs:string">
+	<xs:annotation> 
+	  <xs:appinfo>
+		<fg:node-info message="Survey Key" editor-class="mil.arl.gift.tools.cat.custnodes.SurveyKeyDialog"> 
+			<fg:message>The survey's unique Gift Key with the provided DKF survey context in the survey authoring system database.  Refer to the Survey Authoring System documentation for more information.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+  </xs:element>
+  <xs:element name="VBS2InteropInputs">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info exposed="true" message="VBS2 Interoperability Interface Inputs">
+				<fg:message>By specifying the VBS2 Interop element for the Training Application, the Gateway module will be configured to use the VBS2 Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element name="loadArgs">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info exposed="true" message="Load Arguments">
+							<fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ScenarioName">
+							<xs:annotation>
+								<xs:appinfo>
+									<fg:node-info exposed="true" message="Scenario Name">
+										<fg:message>Name of a VBS2 Scenario.  The value is used by VBS2 scripting to load the scenario.  The value matches the name of a VBS2 scenario folder and is one of the entries shown in VBS2 scenario selection screens.</fg:message>
+										<fg:message>Refer to "Help" for more information.</fg:message>
+									</fg:node-info> 
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DISInteropInputs">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info exposed="true" message="DIS Interoperability Interface">
+				<fg:message>By specifying the DIS Interop element for the Training Application, the Gateway module will be configured to use the DIS Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>			
+			<xs:element name="loadArgs">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info exposed="true" message="Load Arguments">
+							<fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PowerPointInteropInputs">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info exposed="true" message="PowerPoint Interoperability Interface">
+				<fg:message>By specifying the PPT Interop element for the Training Application, the Gateway module will be configured to use the PPT Interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element name="loadArgs">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info exposed="true" message="Load Arguments">
+							<fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ShowFile">
+							<xs:annotation>
+								<xs:appinfo>
+									<fg:node-info exposed="true" message="PowerPoint Show File" editor-class="mil.arl.gift.tools.cat.custnodes.FileSelectionDialog">
+										<fg:message>The powerpoint show file to load into PowerPoint (including file extension).  For now, the path is relative to the Domain folder (i.e. "GIFT/../Domain/").</fg:message>
+										<fg:message>Refer to "Help" for more information.</fg:message>
+									</fg:node-info> 
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:minLength value="5"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CustomInteropInputs">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info exposed="true" message="Custom Interoperability Interface">
+				<fg:message>The Custom interop allows the DKF Authorer to specify their own interop interface to be used. the Gateway module will be configured to use the custom implementation interop configuration specified in the interopConfig.xml for the duration of the lesson that uses this instance of the training application.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element name="loadArgs">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info exposed="true" message="Load Arguments">
+							<fg:message>These are the arguments sent to the Gateway module with the Siman.Load message.  The arguments are used to configure or execute logic in the interop interface.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="nvpair" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nvpair">
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element name="name">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="value">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="TrainingApplicationStateEnumType">
+    <xs:restriction base="xs:normalizedString">
+        <xs:enumeration value="Loaded"/>
+        <xs:enumeration value="Stopped"/>
+        <xs:enumeration value="Paused"/>
+        <xs:enumeration value="Running"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

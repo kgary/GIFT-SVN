@@ -1,0 +1,32 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "BurstDescriptorProto";
+
+import "EntityType.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message data class contains the burst descriptor attributes associated
+ * with weapon fire messages. */
+message BurstDescriptor {
+	/* Type of munition used in a weapon fire. */
+	EntityType munition_type = 1;
+	
+	/* The type of warhead. */
+	google.protobuf.Int32Value warhead = 2;
+	
+	/* The type of fuse. */
+	google.protobuf.Int32Value fuse = 3;
+	
+	/* The number of rounds fired in the burst. */
+	google.protobuf.Int32Value quantity = 4;
+	
+	/* The number of rounds fired per minute. */
+	google.protobuf.Int32Value rate = 5;
+}

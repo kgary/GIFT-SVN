@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "RemoveEntityProto";
+
+import "EntityIdentifier.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a request to remove an entity from an exercise. */
+message RemoveEntity {
+	/* The originating entity id. */
+	EntityIdentifier originating_entity_id = 1;
+	
+	/* The receiving entity id. */
+	EntityIdentifier receiving_entity_id = 2;
+	
+	/* The request id. */
+	google.protobuf.Int32Value request_id = 3;
+}

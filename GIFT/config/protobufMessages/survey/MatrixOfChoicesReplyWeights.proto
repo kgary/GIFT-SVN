@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "MatrixOfChoicesReplyWeightsProto";
+
+/* This message contains scoring weights for a matrix of choices question. */
+message MatrixOfChoicesReplyWeights {
+	/* The list of scoring weights for the matrix of choices reply. */
+	repeated ReplyWeightsList reply_weights = 1;
+}
+
+message ReplyWeightsList {
+	/* The list of row scoring weights for the matrix of choices reply. */
+	repeated double row_reply_weights = 1;
+}

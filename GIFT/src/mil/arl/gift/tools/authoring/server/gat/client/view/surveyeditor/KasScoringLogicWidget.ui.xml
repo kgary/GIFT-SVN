@@ -1,0 +1,176 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:s="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.surveyeditor"
+    xmlns:sw="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.surveyeditor.widgets"
+    xmlns:b3="urn:import:org.gwtbootstrap3.extras.slider.client.ui"
+    xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+    xmlns:cw="urn:import:mil.arl.gift.common.gwt.client.widgets">
+	
+    <ui:style>
+		.wellStyle {
+            margin-left:-15px;
+            margin-right:-15px;
+            margin-top:2px;
+            margin-bottom:0px;
+            padding-top:10px;
+            padding-bottom:10px;
+            background: linear-gradient(#f0f0f0, #fafafa, #f0f0f0, #d2d2d2 70%, #e6e6e6 90%);
+        }
+        
+        .centerAlign {
+           text-align:center;
+        }
+        
+        .leftAlign {
+           text-align:left;
+        }
+        
+        .rightAlign {
+           text-align:right;
+        }
+        
+        .buttonMargin {
+           margin-right:10px;
+        }
+        
+        .collapseStyle {
+           margin-right:10px;
+           width:32px;
+        }
+        
+        .containerStyle {
+            width:100%;
+        }
+        
+        .inlineLabelStyle {
+            margin-left:10px;
+        }
+        
+        .marginStyle {
+            margin-bottom:10px;
+        }
+        
+        .noviceStyle {
+            background: linear-gradient(#73BB5C, #307B18);
+            color:#ffffff;
+        }
+        
+        .journeymanStyle {
+            background: linear-gradient(#CCD86B, #828E1C);
+            color:#ffffff;
+        }
+        .expertStyle {
+            background: linear-gradient(#7E8AB4, #536196);
+            color:#ffffff;
+        }
+        
+        .centerAlign {
+            text-align:center;
+        }
+        
+        .scoringRules {
+            margin-top:2px;
+        }
+        
+        .buttonColumn {
+            text-align:left;
+            margin-top:15px;
+        }
+        
+        .headerColumn {
+            text-align:left;
+            margin-left:-50px;
+        }
+        
+        .rulesContainer {
+            width:100%;
+            background: #f5f5f5; 
+            border-width: 0px 1px 1px; 
+            border-style: solid; 
+            border-color: #e3e3e3;
+            border-radius: 0px 0px 4px 4px; 
+            margin-top: 0px; 
+            border-top-radius: 0px;
+            position:relative;
+        }
+        
+        .rulesContent {
+            margin-top:15px;
+        }
+        
+        .inlineStyle {
+            display:inline;
+        }
+        
+	</ui:style>
+    
+   
+    <b:Container fluid="true" addStyleNames="{style.containerStyle} {style.marginStyle}">
+    
+        <b:Well addStyleNames="{style.wellStyle}" ui:field="scoringHeader">
+            <b:Row>
+                <b:Column size="XS_6" addStyleNames="{style.inlineStyle}">
+                    <sw:CollapseButton type="PRIMARY" addStyleNames="{style.collapseStyle}" ui:field="collapseButton"></sw:CollapseButton>
+                    <b:Heading size="H3" text="Scoring Logic" addStyleNames="{style.inlineStyle}"/>
+                </b:Column>
+            </b:Row>
+        </b:Well>
+        
+        <b:Container addStyleNames="{style.rulesContainer}" ui:field="rulesPanel">
+             <b:Row addStyleNames="{style.rulesContent}">
+                <b:Column size="XS_6">
+                    <b:Description addStyleNames="{style.leftAlign}">
+                        <b:DescriptionTitle text="Scoring Based On" />
+                        <b:DescriptionData ui:field="scoredAttribute" text="Knowledge"/>
+                    </b:Description>
+                    
+                   
+                </b:Column>
+                <b:Column size="XS_6" addStyleNames="{style.rightAlign}">   
+                    <b:Description>
+                        <b:DescriptionTitle text="Possible Total Points" />
+                        <b:DescriptionData ui:field="possiblePoints" text="0"/>
+                    </b:Description>
+                </b:Column>
+            </b:Row>
+
+            
+            <b:Container addStyleNames='sliderScoredStyle'>
+                <b.html:Paragraph alignment="CENTER">Use the slider to adjust the scoring rules:</b.html:Paragraph>
+                <b3:RangeSlider ui:field="scoringSlider" min="0" max="100" step="1" value="[65,85]"  tooltipSplit="true" width="100%"/>
+            </b:Container>
+            
+             <b:Row addStyleNames="{style.scoringRules}">
+                <b:Column size="XS_4" addStyleNames="{style.centerAlign}">
+                    <b:Description>
+                        <b:DescriptionTitle text="Novice" addStyleNames="{style.noviceStyle}"/>
+                        <b:DescriptionData ui:field="noviceText" text="Between 0 and 25 percent"/>
+                    </b:Description>
+                </b:Column>
+                <b:Column size="XS_4" addStyleNames="{style.centerAlign}">   
+                    <b:Description>
+                        <b:DescriptionTitle text="Journeyman" addStyleNames="{style.journeymanStyle}"/>
+                        <b:DescriptionData ui:field="journeymanText" text="Between 25 and 90 percent"/>
+                    </b:Description>
+                </b:Column>
+                <b:Column size="XS_4" addStyleNames="{style.centerAlign}">   
+                    <b:Description>
+                        <b:DescriptionTitle text="Expert" addStyleNames="{style.expertStyle}"/>
+                        <b:DescriptionData ui:field="expertText" text="Between 90 and 100 percent"/>
+                    </b:Description>
+                </b:Column>
+            </b:Row>
+            
+            <b:FormGroup>
+                <b:InlineCheckBox text="Show Percentages" ui:field="showPercentages"/>
+            </b:FormGroup>
+            
+            <cw:BlockerPanel showDisabled='true' ui:field='rulesBlocker'/>
+            
+        </b:Container>
+        
+    </b:Container>
+    
+</ui:UiBinder> 

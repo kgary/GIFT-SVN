@@ -1,0 +1,40 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DisplayChatWindowRequestProto";
+
+import "DisplayAvatarAction.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information that displays a chat window request. */
+message DisplayChatWindowRequest {
+	/* Optional avatar to display. */
+	DisplayAvatarAction avatar = 1;
+	
+	/* The tutor name for the request. */
+	google.protobuf.StringValue tutor_name = 2;
+	
+	/* User name for the request. */
+	google.protobuf.StringValue user_name = 3;
+	
+	/* Chat name for the request. */
+	google.protobuf.StringValue chat_name = 4;
+	
+	/* The chat window description. */
+	google.protobuf.StringValue description = 5;
+	
+	/* Value indicating  whether or not to allow the user to continue without having to complete the chat. */
+	google.protobuf.BoolValue bypass = 6;
+	
+	/* Value indicating whether the AAR should be presented in full screen. */
+	google.protobuf.BoolValue fullscreen = 7;
+	
+	/* Request id. */
+	google.protobuf.Int32Value id = 8;
+}

@@ -1,0 +1,13 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyFeedbackScorerProto";
+
+/* This is the protobuf message that contains the feedback for a survey's score. */
+message SurveyFeedbackScorer {}

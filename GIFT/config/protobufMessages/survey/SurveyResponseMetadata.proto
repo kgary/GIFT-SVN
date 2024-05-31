@@ -1,0 +1,50 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyResponseMetadataProto";
+
+import "AbstractEnumObject.proto";
+import "survey/SurveyPageResponseMetadata.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents important data about a survey response similar 
+   to a survey response. */
+message SurveyResponseMetadata {
+
+	/* The gift key of the survey response. */
+	google.protobuf.StringValue gift_key = 1;
+	
+	/* Value that represents if the survey has a fill in the blank question with 
+	   an answer ideal to the survey. */
+	google.protobuf.BoolValue has_ideal_answer = 2;
+	
+	/* The id of the survey context. */
+	google.protobuf.Int32Value survey_context_id = 3;
+	
+	/* The time the survey was completed. */
+	google.protobuf.StringValue end_time = 4;
+	
+	/* The time the survey was started. */
+	google.protobuf.StringValue start_time = 5;
+	
+	/* Id of the survey. */
+	google.protobuf.Int32Value survey_id = 6;
+	
+	/* Name of the survey. */
+	google.protobuf.StringValue survey_name = 7;
+	
+	/* Id of the survey response. */
+	google.protobuf.Int32Value survey_response_id = 8;
+	
+	/* Survey type. */
+	google.protobuf.StringValue survey_type = 9;
+	
+	/* List of additional information about the survey page responses per survey response. */
+	repeated SurveyPageResponseMetadata survey_page_responses = 10;
+}

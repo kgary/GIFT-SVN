@@ -1,0 +1,128 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:mc="urn:import:com.google.gwt.media.client"
+    xmlns:cw="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:b3s="urn:import:org.gwtbootstrap3.extras.slider.client.ui">
+    <ui:style type="mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster.aar.VideoManager.Style">
+        .videoContainerPanel {
+        	position: relative;
+        	min-width: 0;
+        	width: 100%;
+        	cursor:pointer;
+        }
+        .videoContainerPanel:hover > .controlPanel {
+            opacity: 1;
+	    }
+        .blocker {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            font-size: 20px;
+            background-color: rgba(158,158,158,0.65) !important;
+            z-index: 800 !important; /* Allow popups and modals to show up on top*/
+            user-select: none;
+        }
+        .channelLabel {
+        	max-width: 100%;
+        	white-space: nowrap;
+        	color: #00ced1;
+        	font-weight: bold;
+        	font-size: 24px;
+        	position: absolute;
+        	padding-left: 8px;
+        	text-overflow: ellipsis;
+        	left: 0;
+        	overflow: hidden;
+        	cursor: default;
+        	text-shadow: 1px 1px 5px black;
+        }
+        .controlPanel {
+        	position: absolute;
+        	left: 0;
+        	bottom: 0;
+        	margin-bottom: 4px;
+        	opacity: 0;
+        	transition: opacity .5s ease-in-out;
+            width: 100%;
+        }
+        .controlButton {
+	        height: 30px;
+	        width: 30px;
+	        padding: 0px;
+        }
+        .leftSideControls {
+            display: inline-block;
+	        margin-left: 4px;
+        }
+        @external .slider .slider-track .slider-selection .slider-track-high;
+        .volumePanel > .slider {
+            opacity: 0;
+	        width: 0px;
+            margin-left: 0px;
+            transition: opacity .5s ease-in-out, width .5s ease-in-out, margin-left .5s ease-in-out;
+	    }
+	    .volumeSliderActive,
+        .volumePanel:hover > .slider {
+            opacity: 1 !important;
+            width: 100px !important;
+            margin-left: 12px !important;
+            display: inline-block;
+        }
+        .volumePanel > .slider > .slider-track > .slider-selection {
+            background-image: none;
+            background-color: white;
+        }
+        .volumePanel > .slider > .slider-track > .slider-track-high {
+            background-image: none;
+            background-color: gray;
+        }
+        .rightSideControls {
+	        float: right;
+	        margin-right: 4px;
+        }
+        .videoPlayer {
+        	height: 100%;
+        	width: 100%;
+        }
+        .fullscreenVideo {
+	        border: none !important;
+        }
+    </ui:style>
+    <g:FlowPanel ui:field="videoContainerPanel" addStyleNames="{style.videoContainerPanel}">
+        <cw:BlockerPanel ui:field="blockerPane" showDisabled="true" addStyleNames="{style.blocker}">
+            <g:FlowPanel>
+                <g:Label ui:field="blockerLabel" />
+                <b:Icon ui:field="blockerIcon" type="SPINNER" size="TIMES3" spin="true"/>
+            </g:FlowPanel>
+        </cw:BlockerPanel>
+        <g:Label ui:field="channelLabel" addStyleNames="{style.channelLabel}" />
+
+        <mc:Video ui:field="videoPlayer" addStyleNames="{style.videoPlayer}" />
+        
+        <!-- Build the custom controls for the video -->
+        <g:FlowPanel ui:field="controlPanel" addStyleNames="{style.controlPanel}" >
+            <g:FlowPanel ui:field="leftSideControls" addStyleNames="{style.leftSideControls}">
+                <wb:ManagedTooltip ui:field="volumePanelTooltip" >
+                    <g:FlowPanel ui:field="volumePanel" addStyleNames="{style.volumePanel}">
+                        <wb:ManagedTooltip ui:field="muteButtonTooltip" title="Mute Video">
+                            <b:Button ui:field="muteButton" icon="VOLUME_UP" iconSize="LARGE" addStyleNames="{style.controlButton}" />
+                        </wb:ManagedTooltip>
+                        <b3s:Slider ui:field="volumeSlider" min="0" max="1" step=".01" value="1" tooltip="HIDE" />
+                    </g:FlowPanel>
+                </wb:ManagedTooltip>
+            </g:FlowPanel>
+            <g:FlowPanel ui:field="rightSideControls" addStyleNames="{style.rightSideControls}">
+                <b:Tooltip ui:field="fullscreenButtonTooltip" title="Enter Fullscreen">
+                    <b:Button ui:field="fullscreenButton" icon="ARROWS_ALT" iconSize="LARGE" addStyleNames="{style.controlButton}" />
+                </b:Tooltip>
+            </g:FlowPanel>
+        </g:FlowPanel>
+
+    </g:FlowPanel>
+</ui:UiBinder> 

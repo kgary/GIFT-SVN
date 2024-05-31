@@ -1,0 +1,31 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DataCollectionResultsLtiProto";
+
+import "LtiUserID.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information specific to a course state. */
+message DataCollectionResultsLti {
+	/* The id of the data. */
+	LtiUserID id = 1;
+	
+	/* The data set id for the lti data. */
+	google.protobuf.StringValue data_set_id = 2;
+	
+	/* Start time. */
+	google.protobuf.StringValue start_time = 3;
+	
+	/* End time. */
+	google.protobuf.StringValue end_time = 4;
+	
+	/* The message log filename the results created. */
+	google.protobuf.StringValue message_log_file = 5;
+}

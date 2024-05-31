@@ -1,0 +1,786 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+            xmlns:g="urn:import:com.google.gwt.user.client.ui"
+            xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+            xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+            xmlns:select="urn:import:org.gwtbootstrap3.extras.select.client.ui"
+            xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+                xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+               xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+               xmlns:p="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap">
+    <ui:style>
+        .createPanel{
+            border: dashed 1px darkgray;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+            background-image: linear-gradient(rgba(0,0,0,0), rgba(255,255,255, 0.15));
+            cursor: pointer;
+        }
+        .smallMarginBottom{
+            margin-bottom: 5px;
+        }
+        .createPanelContainer{
+            padding: 0px 5px 5px 5px;
+            display: inline-block;
+            min-width: 275px
+        }
+        .scrolls{
+            overflow: auto;
+        }
+        .experimentContainer{
+            border: outset 2px rgb(100,100,100);
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+        }
+        .smallPad{
+            padding: 5px;
+        }
+        .pad{
+            padding: 10px;
+        }
+        .mainContainer{
+            background-color: rgba(46, 51, 56, 1);
+        }
+        .headerStyle{
+            color: white;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+            padding-right: 10px;
+        }
+        .createButton{
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+            min-width: 250px;
+        }
+        .center{
+            text-align: center;
+        }
+		.centerCell {
+			display: table-cell; 
+			height: 100%;
+		}
+        .experimentNameLabel{
+            font-weight: bold;
+            padding: 5px;
+            display: inline;
+        }
+        .selectCourseLabel{
+	        font-weight: bold;
+            padding: 5px;
+		}
+        .marginBottom{
+            margin-bottom: 15px;
+        }
+        .courseList{
+            border: solid 1px rgb(175, 175, 175);
+            border-radius: 3px;            
+        }
+        .courseListScroll{
+            overflow: auto;
+            padding: 5px;
+        }
+        .note{
+            border-style: solid;
+            border-Width: 1px;
+            border-color: rgb(185,185,185);
+            border-radius: 3px;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+            background-color: rgb(255, 255, 200);
+            margin-bottom: 10px;
+        }
+        .tabbed{
+            padding: 0px 30px;
+        }        
+        .publishTypePanel {
+			display: flex;
+			flex-flow: row nowrap;
+        }
+        .fixSpacing label{
+            padding-left: 5px;
+        }
+        .inline{
+            display: inline;
+        }
+        .typeButtons{
+			width: 100px;
+		}
+		.headerText {
+			display: inline;
+			margin-top: -20px;
+			padding-top:5px;
+		}
+		.publishCourseFooter{
+			padding-bottom:5px;
+			padding-top:8px;
+		}
+		.descriptionTextArea{
+			width:100%;
+			height:100px;
+			resize:vertical;
+		}
+		.experimentCreateDialogHeader{
+			padding: 10px 5px 5px 10px;
+		}
+		.publishCourseDisclosurePanel{
+			column-width:700px;
+			padding-left:10px;
+		}
+		.publishCourseDisclosureHeader{
+			vertical-align:middle;
+		}
+		.searchPanel{
+				
+		}
+		.searchBox::-ms-clear{
+			display: none;
+		}
+		.publishedCoursesSearchBox::-ms-clear{
+			display: none;
+		}
+		.helpLink {
+	        padding-left: 5px;
+	        color: rgb(100, 100, 200);
+	        font-weight: normal;
+	    }
+	    .publishedCoursesSearchHelpLink{
+			font-size:18px;
+			color:#c9c9f1;
+			padding-left:2px;
+		}
+		.publishedCoursesHelpLink{
+			font-size:18px;
+			background:transparent;
+			color:white;
+		}
+	    .searchInputGroup{
+			width:350px;
+			padding-bottom:10px;
+		}
+		.buttonGroup{
+			padding-left:30px;
+			width: auto;
+		}
+		.createDialogCenterPanel{
+			padding-top:5px;
+		}
+		.userCourseTable{
+			table-layout:fixed;
+		}
+		.publishedCoursesFiltersPanel{
+			margin-left:20px;
+		}
+		.sortControlLabel {
+	        color:white;
+	        font-size:16px;
+	        padding-top:7px;
+        }
+        .filterControlLabel{
+			padding-left:10px;
+			color:white;
+	        font-size:16px;
+	        padding-top:7px;
+		}
+		.sortControl {
+	        padding-left:10px;
+        }
+        .noPublishedCoursesLabel{
+			color:white;
+			text-align:center;
+		}
+		.publishCourseHelpPanel{
+			padding-right:20px;
+		}
+		.convertBinaryLogCheckBox {
+	        display: inline-block;
+	        float: left;
+		}
+    </ui:style>
+    <g:FlowPanel addStyleNames='{style.pad} {style.mainContainer}' ui:field='mainContainer'>
+    
+		<g:HTMLPanel width='100%' height='100%'>
+			<div style='display: table; table-layout: fixed; width: 100%; height: 100%;'>
+				<div style='display: table-row;'>
+					<g:SimplePanel ui:field='northContainer'>
+
+						<g:FlowPanel>
+						
+							
+							
+							<g:FlowPanel addStyleNames='{style.center}'>
+								<g:SimplePanel width='50%' height='80px' addStyleNames="{style.createPanelContainer}">
+									<g:FocusPanel width='100%' height='100%' addStyleNames='{style.createPanel}' ui:field='createExperimentPanel'>
+										<g:VerticalPanel width='100%' height='100%' horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
+											<b:Button width='50%' type='PRIMARY' size='LARGE' icon='USERS' addStyleNames='{style.createButton}' title="Create a new published course from an existing course" ui:field='createButton'>
+												Publish Course
+											</b:Button>
+										</g:VerticalPanel>
+									</g:FocusPanel>
+								</g:SimplePanel>
+								
+								<g:SimplePanel width='50%' height='80px' addStyleNames="{style.createPanelContainer}">
+									<g:FocusPanel width='100%' height='100%' addStyleNames='{style.createPanel}' ui:field='createCoursePanel'>
+										<g:VerticalPanel width='100%' height='100%' horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
+											<b:Button width='50%' type='PRIMARY' size='LARGE' icon='BOOK' addStyleNames='{style.createButton}' title="Create a new course using the Course Creator" ui:field='createCourseButton'>
+												Create Course
+											</b:Button>
+										</g:VerticalPanel>
+									</g:FocusPanel>
+								</g:SimplePanel>
+							</g:FlowPanel>
+							
+							<g:FlowPanel addStyleNames='{style.center}'>
+								<g:HorizontalPanel width='100%' addStyleNames='{style.publishedCoursesFiltersPanel}'>
+		    			
+		    						<g:cell width="450px">
+						    			<b:InputGroup>
+											   						
+						    				<b:TextBox addStyleNames='{style.publishedCoursesSearchBox}' placeholder='Search by name, description, id, course name...' ui:field='publishedCoursesSearchBox'/>
+						    				
+						    				<b:InputGroupButton>
+						    					<b:Button type='DEFAULT' icon='SEARCH' ui:field='publishedCoursesSearchButton'/>
+						    				</b:InputGroupButton>
+						    				
+						    			</b:InputGroup>
+						    		</g:cell>
+						    		<g:cell width="40px">	
+						    			<wb:HelpLink helpCaption='Published Courses Search Queries' ui:field='publishedCoursesSearchHelpLink'>
+						    			
+						    				<wb:linkWidget>
+												<b:Icon title="How does this search work?"
+													addStyleNames='{style.publishedCoursesSearchHelpLink}' type='QUESTION_CIRCLE' />
+											</wb:linkWidget>
+											   			
+								   			<wb:helpBody>
+								   				<g:HTML>
+										   				By default, the search bar will look for published courses whose name, description, 
+										   				id, or course names containing any
+										        		of the words typed in, separated by spaces. For more robust
+										        		searching, consider using some of the commands below.
+										        		<br/><br/>
+										        		Note: Any words marked in italics below can be substituted for any
+										        		other word or any phrase enclosed in quotes.<br/>
+										        		<br/>
+										        		<b>Commands:</b><br/>
+								        				<b>-<i>age</i></b> searches for all that do not contain the word <i>age</i>.<br/>
+								        				<br/>
+								        				<b>"<i>what is your age</i>"</b> searches for all that contain the phrase
+								        				<i>what is your age</i> exactly as it is written. Phrases within quotes will be
+								        				treated as a single search term, which can then be used with other
+								        				commands.<br/>
+								        				<br/>
+								        				<b><i>what</i> AND <i>"is your age"</i></b> searches for all that contain both
+								        				the word <i>what</i> and the phrase <i>is your age</i>.<br/>
+								        				<br/>
+								        				<b><i>"what is your"</i> OR <i>age</i></b> searches for all that contain either
+								        				the phrase <i>what is your</i> or the word <i>age</i>. This is identical to the default
+								        				behavior when used on only two search terms but can be used in a
+								        				chain of AND and OR commands to increase search precision.<br/>
+								        				<br/>
+								        				All commands propagate from the left. So, searching for <i>"What is"</i> AND
+								        				<i>your</i> OR <i>-"age"</i> will find all that contain the phrase <i>What is</i>
+								        				and the word <i>your</i> as well as all that do not
+								        				contain the phrase <i>age</i>.
+											   		</g:HTML>
+								   			</wb:helpBody>
+								   			
+								   		</wb:HelpLink>
+								   	</g:cell>
+								   	<g:cell width="45px">
+									   	<b:FormLabel for="publishedCourseSortOptions" addStyleNames="{style.sortControlLabel}">Sort:</b:FormLabel>
+									 </g:cell>
+									<g:cell width="60px">
+					                    <select:Select 
+					                        ui:field="ctrlSortOptions" 
+					                        b:id="publishedCourseSortOptions" 
+					                        addStyleNames="{style.sortControl}"
+					                        width="auto"/>
+								   	</g:cell>
+								   	<g:cell width="65px">
+									   	<b:FormLabel for="publishedCourseFilterOptions" addStyleNames="{style.filterControlLabel}">Filter:</b:FormLabel>
+									 </g:cell>
+									 <g:cell>
+					                    <select:Select 
+					                        ui:field="ctrlFilterOptions" 
+					                        b:id="publishedCourseFilterOptions" 
+					                        addStyleNames="{style.sortControl}"
+					                        width="auto"/>
+								   	</g:cell>
+								   	<g:cell width="30px">
+									   	<g:FlowPanel addStyleNames="{style.publishCourseHelpPanel}">
+<!-- 											<b:Heading size="H3" addStyleNames='{style.inline}'> -->
+<!-- 												<g:InlineHTML addStyleNames='{style.headerStyle}'> -->
+<!-- 													Published Courses: -->
+<!-- 												</g:InlineHTML> -->
+<!-- 											</b:Heading> -->
+											<wb:HelpLink helpCaption='Publish Course'>
+											
+												<wb:linkWidget>
+													<b:Label text="What is a published course?"
+														addStyleNames='{style.publishedCoursesHelpLink}' />
+												</wb:linkWidget>
+												<wb:helpBody>   
+													<g:HTMLPanel> 
+														This panel allows an instructor the ability to integrate their courses with external tools such as EdX using LTI or create experiments with their courses.  In either case,
+														the instructor is able to build reports and collect data on the course based on the results from the subjects of an experiment or users of the LTI course.  To have data collection for a course, a 
+														the course must be published.  A course can be published as many times as needed.  There are currently two
+														ways to publish a course in GIFT (one of which can be put into a collection).  These are described below:
+														<br/>
+														<hr/>
+			                                            <h4><b:Icon type="LIST_OL" size="TIMES2"/> Collections</h4>
+			                                            Collections can contain any number of published experiments (see below). These experiments will be grouped together and can be shown on a single URL page.
+			                                            <hr/>
+														<h4><b:Icon type="FLASK" size="TIMES2"/>Experiments</h4>
+														In an experiment, subjects participate in a specific course experience. Subjects will not have to create an account,
+														worry about selecting the appropriate course or use valuable time exploring other features of the GIFT dashboard.
+														<br/><br/>
+														At the beginning and end of each experiment's course there will be a generic Welcome and Thank you web page. In between those pages,
+														the subject will go through the course elements you authored in the course authoring tool. During course execution GIFT is logging key events
+														such as survey responses, learner state changes and pedagogical requests.
+														<br/><br/>
+														When ready, the experimenter can automatically generate a report on the interested events to be analyzed.
+														<hr/>
+														<h4><b:Icon type="PLUG" size="TIMES2"/>LTI (Learning Tools Interoperability)</h4>
+														With LTI, an instructor can create a GIFT course that is embeddable from other Tool Consumers (such as EdX).  This type of publishing
+														can be used to collect the data from any students that have taken the course.  Reports can be generated from the data or the raw logs from
+														each session can be retrieved.
+														<br/><br/>
+														Using this tool, the instructor can then perform data collection on the results of the
+														users who took the course via LTI.   The instructor can generate a report on the interested events to be analyzed.
+													</g:HTMLPanel>
+												</wb:helpBody>
+											</wb:HelpLink>
+										</g:FlowPanel>
+								   	</g:cell>
+						   		</g:HorizontalPanel>
+						   		
+						   		
+							
+							</g:FlowPanel>
+							
+						</g:FlowPanel>
+                
+					</g:SimplePanel>
+				</div>
+            
+				<div style='display: table-row; height: 100%;'>
+					<g:HTMLPanel styleName="{style.centerCell}" ui:field="centerContainerCell">
+						<div style='height: 100%; position: relative; overflow: hidden;'>
+							<div style='position: absolute; top: 0; bottom: 0; left: 0; right: 0;'>	
+								<g:SimplePanel width='100%' height='100%' ui:field='centerContainer'>
+									<g:SimplePanel width='100%' height='100%' addStyleNames='{style.smallPad}'>
+										<g:SimplePanel width='100%' height='100%' addStyleNames='{style.experimentContainer}'>
+											<g:FlowPanel width='100%' height='100%'>
+											
+												<g:FlowPanel addStyleNames='giftBackgroundText'>
+											
+													<b:Heading size="H4" text="" addStyleNames="{style.noPublishedCoursesLabel}" ui:field="ctrlExperimentMessage"/>
+														
+													<b.html:Paragraph ui:field="ctrlLoadExperimentPanel" alignment="CENTER">
+														<b:Heading size="H4" addStyleNames="{style.noPublishedCoursesLabel}" text="Retrieving the list of experiments.  Please wait."/>
+														<wb:BsLoadingIcon type="SPINNER" size="TIMES5" ui:field="ctrlLoadExperimentIcon"/>
+													</b.html:Paragraph>
+													
+												</g:FlowPanel>
+											
+												<g:FlowPanel width='100%' height='100%' addStyleNames='{style.scrolls}' ui:field='experimentListPanel'>
+												
+												</g:FlowPanel>
+											
+											</g:FlowPanel>
+										</g:SimplePanel>
+									</g:SimplePanel>
+								</g:SimplePanel>
+							</div>
+						</div>
+					</g:HTMLPanel>
+				</div>
+        
+			</div>
+		</g:HTMLPanel>
+    
+        <b:Modal title='' b:id="createExperimentDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="createDialog"
+                addStyleNames="experimentCreateDialog">
+            
+            <b:ModalHeader width='100%' height='100%' addStyleNames="{style.experimentCreateDialogHeader}">
+				<w:DynamicHeaderScrollPanel width='100%' height='100%' ui:field="createDialogScrollPanel">
+
+					<w:north>
+						<b:ModalHeader
+							closable='false'>
+							<b:Heading size="H3" addStyleNames="{style.headerText}">
+								<g:InlineHTML>Publish Course</g:InlineHTML>
+							</b:Heading>
+						</b:ModalHeader>
+					</w:north>
+
+           	  		<w:center>
+                              
+                        <g:FlowPanel height="100%" addStyleNames='{style.createDialogCenterPanel}'>
+                            <g:HTML addStyleNames='{style.experimentNameLabel}'>
+                                Publish Course as:
+                            </g:HTML>
+                            <g:FlowPanel addStyleNames='{style.publishTypePanel} {style.marginBottom}'>
+
+                                    <b:ButtonGroup dataToggle="BUTTONS" addStyleNames='{style.buttonGroup}'>
+	                                    <b:RadioButton type='PRIMARY' name="panelGroup" ui:field='experimentTypeButton' addStyleNames='{style.typeButtons}'>Experiment</b:RadioButton>
+	                                    <b:RadioButton type='PRIMARY' name="panelGroup" ui:field='collectionTypeButton' addStyleNames='{style.typeButtons}'>Collection</b:RadioButton>
+	                            		<b:RadioButton type='PRIMARY' name="panelGroup" ui:field='ltiTypeButton' addStyleNames='{style.typeButtons}'>LTI</b:RadioButton>
+	                                </b:ButtonGroup>
+
+                                    <g:DisclosurePanel animationEnabled='true' addStyleNames="{style.publishCourseDisclosurePanel}">
+	                                	<g:header addStyleNames="{style.publishCourseDisclosureHeader}">
+											What's this?
+										</g:header>
+										
+										<g:FlowPanel>
+											<g:HTMLPanel addStyleNames='{style.note}' ui:field="experimentNote">
+				                              <div style='padding: 5px;'>
+				                                  <b:Icon type="FLASK" size="TIMES2"/> <b>Experiment</b><br/>Select 'Experiment' if you want to do data collection on anonymous users through sharing a link to the course.  The course 
+				                                  you select here will be presented to participants in this experiment.<br/> 
+				                                  <br/>
+                                                  You must have access to edit the GIFT course you select in order to publish the course.  A  'lock' (<b:Icon type="LOCK"/>) icon in the course list below indicates that you do not have
+                                                  perimissions to edit the GIFT course and cannot publish the course.<br/>
+                                                  <br/>
+				                                  Note that the course used by this experiment will be lock, but can be modified if needed. If the original course is changed, the changes will be shown the next time the course is started. The course can also be 
+				                                  downloaded so that it can be modified as a new course and used in a new published course.
+				                              </div>
+	                            			</g:HTMLPanel>
+                                            
+                                            <g:HTMLPanel addStyleNames='{style.note}' ui:field="collectionNote">
+                                              <div style='padding: 5px;'>
+                                                  <b:Icon type="LIST_OL" size="TIMES2"/> <b>Collection</b><br/>Select 'Collection' if you want to be able to group experiments and/or LTI courses together.<br/> 
+                                                  <br/>
+                                                  You can create experiments or LTI courses to be added into this collection after it has been created.<br/>
+                                                  <br/>
+                                                  The learners can visit the collection URL to see the group of courses that the collection contains. They will be able to start each course from that location.
+                                              </div>
+                                            </g:HTMLPanel>
+	                          
+				                            <g:HTMLPanel addStyleNames='{style.note}' ui:field="ltiNote">
+				                              <div style='padding: 5px;'>
+				                                  <b:Icon type="PLUG" size="TIMES2"/> <b>LTI (Learning Tools Interoperability)</b><br/>Select 'LTI' if you want to collect data on users for an LTI enabled GIFT course.  An LTI enabled course is
+				                                        typically embedded into an external Tool Consumer (such as edX).  Publishing a course using LTI allows you to gather the data on the users that participated in the GIFT course from the Tool Consumer.<br/> 
+				                                  <br/>
+				                                  You must have access to edit the GIFT course you select in order to publish the course using LTI.  A  'lock' (<b:Icon type="LOCK"/>) icon in the course list below indicates that you do not have
+				                                  perimissions to edit the GIFT course and cannot publish the course using LTI.<br/>      
+				                                  <br/>
+				                                  Once you publish the course using LTI, you can copy/paste the LTI parameters into the Tool Consumer by selecting the "View LTI Properties" button on the published course.
+				                              </div>
+				                            </g:HTMLPanel>
+				                            
+	                            		</g:FlowPanel>
+										
+	                                </g:DisclosurePanel>
+                            </g:FlowPanel>
+                        
+                            <g:FlowPanel ui:field="parentCollectionPanel" >
+                                <g:HTML addStyleNames='{style.experimentNameLabel}'>
+                                    Parent Collection:
+                                </g:HTML>
+                                <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                    <g:Label width='100%' ui:field='parentCollectionLabel'/>
+                                </g:FlowPanel>
+                            </g:FlowPanel>
+                            
+                            <g:HTML ui:field="experimentNameLabel" addStyleNames='{style.experimentNameLabel}' />
+                            <wb:ManagedTooltip placement='BOTTOM' ui:field='createNameTextBoxTooltip'>
+                            	<g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                	<g:TextBox width='100%' ui:field='createNameTextBox'/>
+                            	</g:FlowPanel>
+                            </wb:ManagedTooltip>                            
+                        
+                            <g:HTML addStyleNames='{style.experimentNameLabel}'>
+                                Description <i>(Optional)</i>:
+                            </g:HTML>
+                            <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                <g:TextArea addStyleNames='{style.descriptionTextArea}' ui:field='createDescriptionTextBox'/>
+                            </g:FlowPanel>
+                            
+			                	<g:FlowPanel ui:field="searchPanel" addStyleNames='{style.searchPanel}'>
+			   						<g:HorizontalPanel width='100%'>
+			   					
+			   							<g:cell>
+									       <g:HTML addStyleNames='{style.selectCourseLabel}'>
+					                            Select Course:
+					                        </g:HTML>
+					    				</g:cell>
+					    				<g:cell horizontalAlignment="ALIGN_RIGHT" width="70%">
+							    			<b:InputGroup addStyleNames='{style.searchInputGroup}'>
+												   						
+							    				<b:TextBox addStyleNames='{style.searchBox}' placeholder='Search...' ui:field='courseSearchBox'/>
+							    				
+							    				<b:InputGroupButton>
+							    					<b:Button type='DEFAULT' icon='SEARCH' ui:field='courseSearchButton'/>
+							    				</b:InputGroupButton>
+							    				
+							    			</b:InputGroup>
+							    		</g:cell>
+							    		<g:cell>
+		
+							    			<wb:HelpLink helpCaption='Course Search Queries' ui:field='helpLink'>
+							    			
+							    				<wb:linkWidget>
+													<b:Icon title="How does this search work?"
+														addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+												</wb:linkWidget>
+												   			
+									   			<wb:helpBody>
+									   				<g:HTML>
+										   				By default, the search bar will look for course names containing any
+										        		of the words typed in, separated by spaces. For more robust
+										        		searching, consider using some of the commands below.
+										        		<br/><br/>
+										        		Note: Any words marked in italics below can be substituted for any
+										        		other word or any phrase enclosed in quotes.<br/>
+										        		<br/>
+										        		<b>Commands:</b><br/>
+								        				<b>-<i>age</i></b> searches for all course names that do not contain the word <i>age</i>.<br/>
+								        				<br/>
+								        				<b>"<i>what is your age</i>"</b> searches for all course names that contain the phrase
+								        				<i>what is your age</i> exactly as it is written. Phrases within quotes will be
+								        				treated as a single search term, which can then be used with other
+								        				commands.<br/>
+								        				<br/>
+								        				<b><i>what</i> AND <i>"is your age"</i></b> searches for all course names that contain both
+								        				the word <i>what</i> and the phrase <i>is your age</i>.<br/>
+								        				<br/>
+								        				<b><i>"what is your"</i> OR <i>age</i></b> searches for all course names that contain either
+								        				the phrase <i>what is your</i> or the word <i>age</i>. This is identical to the default
+								        				behavior when used on only two search terms but can be used in a
+								        				chain of AND and OR commands to increase search precision.<br/>
+								        				<br/>
+								        				All commands propagate from the left. So, searching for <i>"What is"</i> AND
+								        				<i>your</i> OR <i>-"age"</i> will find all course names that contain the phrase <i>What is</i>
+								        				and the word <i>your</i> as well as all courses that do not
+								        				contain the phrase <i>age</i>.
+											   		</g:HTML>
+									   			</wb:helpBody>
+									   			
+									   		</wb:HelpLink>
+									   		</g:cell>
+							   		</g:HorizontalPanel>
+							   		 
+						   	</g:FlowPanel>
+                            
+
+			                <g:FlowPanel ui:field="courseListPanel" height="100%" addStyleNames='{style.tabbed} {style.marginBottom}'>
+			                    <g:FlowPanel height="100%" addStyleNames='{style.courseList}'>
+			                    
+			                        <b:Heading size="H4" text="" ui:field="ctrlCourseMessage"/>
+			                    
+			                        <b.html:Paragraph ui:field="ctrlLoadPanel" alignment="CENTER">
+			                            <b:Heading size="H4" text="Retrieving the list of courses.  Please wait."/>
+			                            <wb:BsLoadingIcon type="SPINNER" size="TIMES5" ui:field="ctrlLoadIcon"/>
+			                        </b.html:Paragraph>
+			                        
+									<c:CellTable ui:field='userCourseTable' width='100%' addStyleNames='{style.userCourseTable}'/>         
+			                    
+			                    </g:FlowPanel>            
+			                </g:FlowPanel>
+						</g:FlowPanel>
+
+            		</w:center>
+            
+            		<w:south>
+			            <b:ModalFooter addStyleNames='{style.publishCourseFooter}'>
+			                <b:Button type="PRIMARY" ui:field="createExperimentButton">
+			                    Publish Course
+			                </b:Button>
+			                <b:Button type="DANGER" ui:field="cancelCreateButton">
+			                    Cancel
+			                </b:Button>
+			            </b:ModalFooter>
+					</w:south>
+				</w:DynamicHeaderScrollPanel>
+			</b:ModalHeader>
+
+       </b:Modal>
+       
+        <b:Modal title='' b:id="createProgressDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="createProgressDialog">
+            <b:ModalHeader>
+                <b:Heading size="H3">
+                    <b.html:Text text="Publishing Course..." ui:field='createProgressDialogHeading'/>
+                </b:Heading>
+            </b:ModalHeader>
+            <b:ModalBody>
+                <!-- The java class determins which icon to make visible based on the type of dialog is being shown -->
+                 <b:Row>
+                    <b:Column size="MD_12">                    
+                       <g:FlowPanel>
+                               <wb:ProgressBarListEntry ui:field='createOverallProgress'/>
+                       </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+            </b:ModalBody>
+            <b:ModalFooter>
+                <b:Button type="DANGER" dataDismiss="MODAL" ui:field="cancelCreateProgressButton">
+                    Cancel
+                </b:Button>
+            </b:ModalFooter>
+       </b:Modal>
+       
+        <b:Modal title='' b:id="deleteProgressDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="deleteProgressDialog">
+            <b:ModalHeader>
+                <b:Heading size="H3">
+                    <b.html:Text text="Deleting Published Course..." ui:field='deleteProgressDialogHeading'/>
+                </b:Heading>
+            </b:ModalHeader>
+            <b:ModalBody>
+                <!-- The java class determins which icon to make visible based on the type of dialog is being shown -->
+                 <b:Row>
+                    <b:Column size="MD_12">                    
+                       <g:FlowPanel>
+                               <wb:ProgressBarListEntry ui:field='deleteOverallProgress'/>
+                       </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+            </b:ModalBody>
+            <b:ModalFooter>
+            </b:ModalFooter>
+       </b:Modal>
+       
+       <b:Modal title='' b:id="startExportCourseDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="startExportCourseDialog">
+            <b:ModalHeader>
+                <b:Heading size="H3">
+                    <b.html:Text text="Export Published Course"/>
+                </b:Heading>
+            </b:ModalHeader>
+           <b:ModalBody>
+                 <b:Row>
+                    <b:Column size="MD_12">
+                        <g:FlowPanel>                        
+                            <p:ExperimentCourseExportSummaryWidget ui:field='startCourseExportSummary'/>                            
+                        </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+            </b:ModalBody>
+            <b:ModalFooter>
+                <b:Button type="PRIMARY" ui:field="confirmStartCourseExportButton">
+                    Start Export
+                </b:Button>
+                <b:Button type="DANGER" dataDismiss="MODAL">
+                    Cancel
+                </b:Button>
+            </b:ModalFooter>
+       </b:Modal>
+       
+       <b:Modal title='' b:id="exportCourseProgressDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="exportCourseProgressDialog">
+            <b:ModalHeader>
+                <b:Heading size="H3">
+                    <b.html:Text text="Exporting Published Course..." ui:field='exportCourseProgressDialogHeading'/>
+                </b:Heading>
+            </b:ModalHeader>
+            <b:ModalBody>
+                <!-- The java class determins which icon to make visible based on the type of dialog is being shown -->
+                 <b:Row>
+                    <b:Column size="MD_12">                    
+                       <g:FlowPanel>
+                               <wb:ProgressBarListEntry ui:field='exportCourseSubtaskProgress'/>
+                               <wb:ProgressBarListEntry ui:field='exportCourseOverallProgress'/>                               
+                       </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+            </b:ModalBody>
+            <b:ModalFooter>
+                <b:Button type="DANGER" dataDismiss="MODAL" ui:field="cancelExportCourseProgressButton">
+                    Cancel
+                </b:Button>
+            </b:ModalFooter>
+       </b:Modal>
+       
+       <b:Modal title='' b:id="startExportRawDataDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="startExportRawDataDialog">
+            <b:ModalHeader>
+                <b:Heading size="H3">
+                    <b.html:Text text="Export Raw Data"/>
+                </b:Heading>
+            </b:ModalHeader>
+           <b:ModalBody>
+                 <b:Row>
+                    <b:Column size="MD_12">
+                        <g:FlowPanel>                        
+                            <p:ExperimentRawDataExportSummaryWidget ui:field='startRawDataExportSummary'/>                            
+                        </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+            </b:ModalBody>
+            <b:ModalFooter>
+            	<b:CheckBox text="Convert binary logs to human-readable format" ui:field="convertLogCheckBox" addStyleNames="{style.convertBinaryLogCheckBox}"/>
+                <b:Button type="PRIMARY" ui:field="confirmStartRawDataExportButton">
+                    Start Export
+                </b:Button>
+                <b:Button type="DANGER" dataDismiss="MODAL">
+                    Cancel
+                </b:Button>
+            </b:ModalFooter>
+       </b:Modal>
+       
+       <b:Modal title='' b:id="exportDataProgressDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="exportRawDataProgressDialog">
+            <b:ModalHeader>
+                <b:Heading size="H3">
+                    <b.html:Text text="Exporting Raw Data..." ui:field='exportRawDataProgressDialogHeading'/>
+                </b:Heading>
+            </b:ModalHeader>
+            <b:ModalBody>
+                <!-- The java class determins which icon to make visible based on the type of dialog is being shown -->
+                 <b:Row>
+                    <b:Column size="MD_12">                    
+                       <g:FlowPanel>
+                               <wb:ProgressBarListEntry ui:field='exportRawDataSubtaskProgress'/>
+                               <wb:ProgressBarListEntry ui:field='exportRawDataOverallProgress'/>                               
+                       </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+            </b:ModalBody>
+            <b:ModalFooter>
+                <b:Button type="DANGER" dataDismiss="MODAL" ui:field="cancelExportRawDataProgressButton">
+                    Cancel
+                </b:Button>
+            </b:ModalFooter>
+       </b:Modal>
+       
+       <b:Modal title='' b:id="editExperimentDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="editDialog" 
+                   addStyleNames="experimentEditDialog">
+            <b:ModalHeader>
+                <b:Heading size="H3">
+                    <b.html:Text text="Edit Published Course"/>
+                </b:Heading>
+            </b:ModalHeader>
+           <b:ModalBody>
+                 <b:Row>
+                    <b:Column size="MD_12">
+                        <g:FlowPanel>
+                        
+                            <g:HTML addStyleNames='{style.experimentNameLabel}'>
+                                Published Course Name:
+                            </g:HTML>
+                            <wb:ManagedTooltip placement='BOTTOM' ui:field='editNameTextBoxTooltip'>
+                            	<g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                	<g:TextBox width='100%' ui:field='editNameTextBox'/>
+                                </g:FlowPanel>                                	
+                             </wb:ManagedTooltip>
+                        
+                            <g:HTML addStyleNames='{style.experimentNameLabel}'>
+                                Description (Optional):
+                            </g:HTML>
+                            <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                <g:TextArea width='100%' height='100px' ui:field='editDescriptionTextBox'/>
+                            </g:FlowPanel>                            
+                            
+                        </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+            </b:ModalBody>
+            <b:ModalFooter>
+                <b:Button type="PRIMARY" ui:field="saveEditButton">
+                    Save Changes
+                </b:Button>
+                <b:Button type="DANGER" dataDismiss="MODAL" ui:field="cancelEditButton">
+                    Cancel
+                </b:Button>
+            </b:ModalFooter>
+       </b:Modal>
+       
+       <p:ExperimentBuildReportDialogWidget ui:field='reportDialog'/>
+       
+       <wb:BsLoadingDialogWidget ui:field='loadingDialog'/>
+    
+    </g:FlowPanel>
+</ui:UiBinder> 

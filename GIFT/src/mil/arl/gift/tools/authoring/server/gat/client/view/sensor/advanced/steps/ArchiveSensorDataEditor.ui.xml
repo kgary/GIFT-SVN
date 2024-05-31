@@ -1,0 +1,106 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+	xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:input="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.sensor.input"
+	xmlns:widgets="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.sensor.widgets">
+	
+	<ui:style>
+		.pad{
+			padding: 15px;
+		}	
+		.padSides{
+			padding: 0px 5px;
+		}
+		.padTop{
+			margin-top: 5px;
+		}
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.largePadBottom{
+			margin-bottom: 10px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}
+		.tabbed{
+			margin-left: 30px;
+		}		
+		.doubleTabbed{
+			margin-left: 60px;
+		}
+		.rightTabbed{
+			padding-right: 30px;
+		}
+		.rightDoubleTabbed{
+			padding-right: 60px;
+		}
+		.textBoxPad{
+			padding: 7px 5px !important; /* Nick: Marking as important since something higher up seems to screw up the padding */
+		}
+		.grayBorder{
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(150,150,150);
+		}
+		.minWidth{
+			min-width: 400px;
+		}
+		.cellTableBorder{
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(185,185,185);
+			border-radius: 3px;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+			background-color: rgb(250,250,250);
+		}
+	</ui:style>
+	
+	<g:HTMLPanel width='100%' >
+		<div
+			style="border:solid 1px #AAAAAA; 
+							position:relative; 
+							padding:10px; 
+							margin: 10px; 
+							margin-bottom: 15px; 
+							box-shadow: 3px 3px 5px rgba(0,0,0,0.3)
+						">
+			<div
+				style="font-weight: bold; 
+				      			position:absolute; 
+				      			top:-10px; 
+				      			left: 40px; 
+				      			margin-left:-35px; 
+				      			padding-right: 5px; 
+				      			padding-left: 5px; 
+				      			background-color:rgb(237,237,237);
+				      		">
+				<g:HTML ui:field='caption'/>
+			</div>
+			<g:FlowPanel width="100%">
+			
+				<g:HTML addStyleNames='{style.tabbed} {style.padTop} {style.smallPadBottom}'>
+					Archive Type:
+				</g:HTML>
+				<g:FlowPanel addStyleNames='{style.doubleTabbed} {style.rightDoubleTabbed} {style.padBottom}'>
+					<g:FlowPanel addStyleNames='{style.padBottom}'>
+						<widgets:WriterTypeValueListBox width="100%" ui:field="writerTypeListBox"/>
+					</g:FlowPanel>
+					<g:FlowPanel>
+						<input:GenericSensorDelimitedWriterEditor width="100%" ui:field="genericSensorDelimitedWriterEditor" visible="false"/>
+						<input:KinectSensorWriterEditor width="100%" ui:field="kinectSensorWriterEditor" visible="false"/>
+					</g:FlowPanel>				
+				</g:FlowPanel>
+				<g:Label ui:field="initializationWarningLabel">
+					Warning: The archive type was paired with inappropriate initialization data, which means the file was most likely created outside of the web tool. We've taken the liberty of replacing the inappropriate initialization data. Saving will make this change permanent.
+				</g:Label>
+				<g:Label ui:field="referenceWarningLabel">
+					Warning: These fields belong to a Writer object that is referenced by multiple Sensors and/or Filters. Therefore, any changes you make to these fields will impact all of the Sensors and/or Filters that reference this Writer.
+				</g:Label>
+			</g:FlowPanel>
+		</div>
+	</g:HTMLPanel>
+	
+</ui:UiBinder> 

@@ -1,0 +1,65 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ProtobufMessageProto";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "UserSession.proto";
+import "AbstractEnumObject.proto";
+
+/* This message serves as the base implementation for all protobuf messages. */
+message ProtobufMessage {
+	/* The message's sequence number. */
+	google.protobuf.Int32Value sequence_number = 1;
+	
+	/* The message's sourceEventId. This id is unique to the sender and shared between multiple messages
+     * sent from the same sender and is used to distinguish duplicate messages in the ERT. */
+	google.protobuf.Int32Value source_event_id = 2;
+	
+	/* The sequence number of a message this message is a reply too. */
+	google.protobuf.Int32Value reply_to_seq_num = 3;
+	
+	/* The message's domain session ID which is used to determine if the message is part of 
+       an existing domain session or not. If this field is not populated, then the message represents 
+	   either a User Session message or a base message. */
+	google.protobuf.Int32Value domain_session_id = 4;
+	
+	/* The date/time this message was created. */
+	google.protobuf.Timestamp time_stamp = 5;
+	
+	/* Value that determines whether the message is expecting an ACK response. */
+	google.protobuf.BoolValue needs_ack = 6;
+	
+	/* Field that determines the message type of the message, defined in the 
+	   enumerations above. */
+	AbstractEnumObject message_type = 7;
+	
+	/* The enumerated type of module sending the message. */
+	google.protobuf.StringValue sender_module_type = 8;
+	
+	/* The module's name sending the message. */
+	google.protobuf.StringValue sender_module_name = 9;
+	
+	/* The module's queue name sending the message. */
+	google.protobuf.StringValue sender_queue_name = 10;
+	
+	/* The name of the destination queue the message is being sent too. */
+	google.protobuf.StringValue destination_queue_name = 11;
+	
+	/* Information about a user session that the message belongs to. */
+	UserSession user_session = 12;
+	
+	/* At most one of these fields will be set at a time upon message creation. 
+	   Whenever a new message type is created, the message is added here to show 
+	   the contents of the message. */
+	google.protobuf.Any payload = 13;
+}
+

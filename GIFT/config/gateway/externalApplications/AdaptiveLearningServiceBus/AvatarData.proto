@@ -1,0 +1,19 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "AvatarDataProto";
+
+/* 	
+ *	This message contains information of the avatar to display, such as the 
+ *	avatar size and location. 
+ */
+message AvatarData {
+	int32 height = 1;
+	int32 width = 2;
+	string url = 3;
+}

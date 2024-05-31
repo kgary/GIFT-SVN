@@ -1,0 +1,5025 @@
+{
+  "id" : "https://xapinet.org/xapi/stetmt/its",
+  "@context" : "https://w3id.org/xapi/profiles/context",
+  "type" : "Profile",
+  "conformsTo" : "https://w3id.org/xapi/profiles#1.0",
+  "prefLabel" : {
+    "en" : "GIFT xAPI Profile"
+  },
+  "definition" : {
+    "en" : "xAPI Profile containing the concepts and templates describing the GIFT xAPI Instrumentation"
+  },
+  "seeAlso" : "https://www.gifttutoring.org/projects/gift/wiki/Overview",
+  "versions" : [
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "generatedAtTime" : "2022-06-23T16:10:11.796135Z"
+    }
+  ],
+  "author" : {
+    "url" : "https://www.yetanalytics.com/",
+    "name" : "Yet Analytics",
+    "type" : "Organization"
+  },
+  "concepts" : [
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/Verb#predicted",
+      "type" : "Verb",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Predicted"
+      },
+      "definition" : {
+        "en" : "Indicates that the actor has had a Learner State Attribute predicted by the ITS"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/Verb#demonstrated",
+      "type" : "Verb",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Demonstrated"
+      },
+      "definition" : {
+        "en" : "clearly show the existence or truth of (something) by giving proof or evidence"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/Verb#started",
+      "type" : "Verb",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Started"
+      },
+      "definition" : {
+        "en" : "Indicates that the actor has started a domain session"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/Verb#closed",
+      "type" : "Verb",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Closed"
+      },
+      "definition" : {
+        "en" : "Indicates that the actor has ended a domain session"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.affective",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Affective Learner State"
+      },
+      "definition" : {
+        "en" : "Activity indicates that the Learner State Attribute tracked within this statement was categorized as part of the Actor's Affective Learner State"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Assessment Node"
+      },
+      "definition" : {
+        "en" : "An assessment within a DKF at some level within the hierarchy"
+      },
+      "relatedMatch" : [
+        "https://w3id.org/xapi/tla/activity-types/assessment"
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.cognitive",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Cognitive Learner State"
+      },
+      "definition" : {
+        "en" : "Activity indicates that the Learner State Attribute tracked within this statement was categorized as part of the Actor's Cognitive Learner State."
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Concept Assessment"
+      },
+      "definition" : {
+        "en" : "A DKF concept which is assessed during a domain session and associated with a competency"
+      },
+      "broadMatch" : [
+        "https://w3id.org/xapi/tla/activity-types/assessment"
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#course.record",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Course Record"
+      },
+      "definition" : {
+        "en" : "Activity represents a grouping of assessment results calculated at the end of a DKF instance based on the Actors performance during the instance."
+      },
+      "relatedMatch" : [
+        "https://w3id.org/xapi/tla/activity-types/assessment"
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#domain",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Domain"
+      },
+      "definition" : {
+        "en" : "Activity represents the course in which the containing statement was generated"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Domain Session"
+      },
+      "definition" : {
+        "en" : "Activity represents the instance of the course in which the containing statement was generated"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept.intermediate",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Intermediate Concept Assessment"
+      },
+      "definition" : {
+        "en" : "A collection of Concept Assessments that allows for arbitrary nesting of Concept Assessments"
+      },
+      "broadMatch" : [
+        "https://w3id.org/xapi/tla/activity-types/assessment"
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.attribute",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Learner State Attribute"
+      },
+      "definition" : {
+        "en" : "Activity represents one of the Learner State Attributes tracked within an ITS"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.task",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Task Assessment"
+      },
+      "definition" : {
+        "en" : "A possibly heterogeneous collection of Concept Assessment(s) and Intermediate Concept Assessment(s)"
+      },
+      "broadMatch" : [
+        "https://w3id.org/xapi/tla/activity-types/assessment"
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Team Role"
+      },
+      "definition" : {
+        "en" : "Activity represents the position / role of an xAPI Agent"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.individual",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Individual Knowledge Session"
+      },
+      "definition" : {
+        "en" : "Activity that represents a Knowledge Session that only contains the host user"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.team",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Team Knowledge Session"
+      },
+      "definition" : {
+        "en" : "Activity that represents a Knowledge Session that includes the host and possibly other users"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Knowledge Session Type"
+      },
+      "definition" : {
+        "en" : "Activity indicates that a Knowledge Session (Team or Individual) is active (normal, live session) or active playback (live session but the course object is playing a log file)"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Team Echelon"
+      },
+      "definition" : {
+        "en" : "Activity represents the level of a team within a military hierarchy of team structure"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Activity represents a pedagogical strategy experienced during course runtime"
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ActivityType#training.application",
+      "type" : "ActivityType",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Training Application"
+      },
+      "definition" : {
+        "en" : "The Application being used to execute a training scenario."
+      }
+    },
+    {
+      "id" : "activityId:uri/its/learner.state.affective",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.affective",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Affective Learner State"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/learner.state.cognitive",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.cognitive",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Cognitive Learner State"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/knowledge.session.playback/active",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Active Knowledge Session"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/knowledge.session.playback/active.playback",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Active Playback Knowledge Session"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/overcast",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Overcast Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/fog",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Fog Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/rain",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Rain Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/midnight",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Midnight Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/dawn",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Dawn Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/midday",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Midday Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/dusk",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Dusk Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/script",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Script Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/fatigue.recovery",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Fatigue Recovery Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/endurance",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Endurance Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/teleport",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Teleport Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/create.actors",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Create Actors Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/remove.actors",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Remove Actors Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/highlight.objects",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Highlight Objects Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/remove.highlight",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Remove Highlight Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/create.breadcrumbs",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Create Breadcrumbs Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "activityId:uri/its/environment.adaptation/remove.breadcrumbs",
+      "type" : "Activity",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "activityDefinition" : {
+        "type" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+        "@context" : "https://w3id.org/xapi/profiles/activity-context",
+        "name" : {
+          "en" : "Remove Breadcrumbs Environment Adaptation"
+        }
+      }
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.hierarchy",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Concept Assessment Hierarchy"
+      },
+      "definition" : {
+        "en" : "Map of index keys and assessment node activity values that represents the family line of parent Concept Assessment(s)"
+      },
+      "recommendedVerbs" : [
+        "https://w3id.org/xapi/tla/verbs/assessed"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"patternProperties\":{\"^\\\\d*$\":{\"type\":\"object\",\"additionalProperties\":false,\"properties\":{\"id\":{\"type\":\"string\"},\"objectType\":{\"type\":\"string\",\"enum\":[\"Activity\"]},\"definition\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"object\",\"properties\":{\"en-US\":{\"type\":\"string\"}}},\"description\":{\"type\":\"object\",\"properties\":{\"en-US\":{\"type\":\"string\"}}},\"type\":{\"type\":\"string\",\"enum\":[\"https://w3id.org/xapi/tla/activity-types/assessment\"]}}}}}}}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.to.id",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Graded Score Node Source Ids"
+      },
+      "definition" : {
+        "en" : "Statement level mapping of Graded Score Node Activity id to numeric identifier for the Graded Score Node."
+      },
+      "recommendedVerbs" : [
+        "https://w3id.org/xapi/tla/verbs/assessed"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"patternProperties\":{\"^activityId:uri/its/course.concept/\":{\"type\":\"string\"}},\"additionalProperties\":false}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.evaluation",
+      "type" : "ResultExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Assessment Concept Evaluation"
+      },
+      "definition" : {
+        "en" : "Represents the evaluation metrics used to derive the assessment result."
+      },
+      "recommendedVerbs" : [
+        "https://w3id.org/xapi/tla/verbs/assessed"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\"},\"name\":{\"type\":\"string\"},\"units\":{\"type\":\"string\"},\"value\":{\"type\":\"string\"},\"assessment\":{\"type\":\"string\"}}}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.performance.measure",
+      "type" : "ResultExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Assessment Concept Performance Measure"
+      },
+      "definition" : {
+        "en" : "Represents an instance of a performance measurement for a Concept Assessment."
+      },
+      "recommendedVerbs" : [
+        "https://xapinet.org/xapi/stetmt/its/Verb#demonstrated"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"confidence\":{\"type\":\"number\"},\"id\":{\"type\":\"string\"},\"competence\":{\"type\":\"number\"},\"assessedTeamOrgEntities\":{\"type\":\"object\",\"patternProperties\":{\"^activityId:uri/its/team.role/\":{\"type\":\"string\"}}},\"predicted\":{\"type\":\"object\",\"properties\":{\"assessment\":{\"type\":\"string\"},\"timestamp\":{\"type\":\"string\"}}},\"scenarioSupport\":{\"type\":\"boolean\"},\"longTerm\":{\"type\":\"object\",\"properties\":{\"assessment\":{\"type\":\"string\"},\"timestamp\":{\"type\":\"string\"}}},\"shortTerm\":{\"type\":\"object\",\"properties\":{\"assessment\":{\"type\":\"string\"},\"timestamp\":{\"type\":\"string\"}}},\"state\":{\"type\":\"string\",\"enum\":[\"UNACTIVATED\",\"ACTIVE\",\"DEACTIVATED\",\"FINISHED\"]},\"explanation\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"trend\":{\"type\":\"number\"},\"hasObservedAssessment\":{\"type\":\"boolean\"}}}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ResultExtension#learner.state.attribute.measure",
+      "type" : "ResultExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Learner State Attribute Measure"
+      },
+      "definition" : {
+        "en" : "Represents an instance of a Learner State Attribute measurement."
+      },
+      "recommendedVerbs" : [
+        "https://xapinet.org/xapi/stetmt/its/Verb#predicted"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"predicted\":{\"type\":\"object\",\"properties\":{\"assessment\":{\"type\":\"string\"},\"timestamp\":{\"type\":\"string\"}}},\"shortTerm\":{\"type\":\"object\",\"properties\":{\"assessment\":{\"type\":\"string\"},\"timestamp\":{\"type\":\"string\"}}},\"longTerm\":{\"type\":\"object\",\"properties\":{\"assessment\":{\"type\":\"string\"},\"timestamp\":{\"type\":\"string\"}}}}}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#mission.metadata",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Mission Metadata"
+      },
+      "definition" : {
+        "en" : "Information about the current mission"
+      },
+      "recommendedVerbs" : [
+        "https://xapinet.org/xapi/stetmt/its/Verb#started"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"goals\":{\"type\":\"string\"},\"weaponPosture\":{\"type\":\"string\"},\"condition\":{\"type\":\"string\"},\"met\":{\"type\":\"string\"},\"task\":{\"type\":\"string\"},\"source\":{\"type\":\"string\"},\"situation\":{\"type\":\"string\"},\"roe\":{\"type\":\"string\"},\"threatWarning\":{\"type\":\"string\"},\"weaponStatus\":{\"type\":\"string\"}}}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Team Structure"
+      },
+      "definition" : {
+        "en" : "Flattended representation of a potentially nested Team structure which indicates (per level of nesting) the name, echelon, depth, parent hierarchy and team roles (with possibly assigned team members). An item's name and depth are required, all other fields are optional. If a field is not found within an item, it means it was not set by/within the ITS. Team members represent team roles and if an ITS user is assigned to the role, their mbox IFI will be found at the 'assigned' key. Based on the statement kind, the full team structure OR the subset of relevant items from the team structure will be found in this extension. Statements which use the 'started' verb should contain the full team structure representaion where as statements with other verbs  should only contain the subset of relevant items."
+      },
+      "recommendedVerbs" : [
+        "https://w3id.org/xapi/tla/verbs/assessed",
+        "https://xapinet.org/xapi/stetmt/its/Verb#started",
+        "https://xapinet.org/xapi/stetmt/its/Verb#demonstrated"
+      ],
+      "inlineSchema" : "{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"echelon\":{\"type\":\"string\",\"pattern\":\"^activityId:uri/its/echelon/\"},\"depth\":{\"type\":\"integer\"},\"parent\":{\"type\":\"string\"},\"members\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"playable\":{\"type\":\"boolean\"},\"identifier\":{\"type\":\"string\",\"pattern\":\"^activityId:uri/its/team.role/\"},\"assigned\":{\"type\":\"string\",\"pattern\":\"^mailto:\"}},\"additionalProperties\":false,\"required\":[\"playable\",\"identifier\"]},\"uniqueItems\":true}},\"additionalProperties\":false,\"required\":[\"name\",\"depth\"]},\"uniqueItems\":true}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.weather",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Weather Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Information about the weather condition being experienced within the scenario"
+      },
+      "recommendedVerbs" : [
+        "http://adlnet.gov/expapi/verbs/experienced"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"duration\":{\"type\":\"number\"},\"value\":{\"type\":\"number\"},\"color\":{\"type\":\"object\",\"properties\":{\"red\":{\"type\":\"number\"},\"green\":{\"type\":\"number\"},\"blue\":{\"type\":\"number\"}},\"additionalProperties\":false},\"density\":{\"type\":\"number\"}},\"additionalProperties\":false}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.coordinate",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Adaptation Coordinate(s)"
+      },
+      "definition" : {
+        "en" : "Location(s) within virtual environment relevant to the adaptation"
+      },
+      "recommendedVerbs" : [
+        "http://adlnet.gov/expapi/verbs/experienced"
+      ],
+      "inlineSchema" : "{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"GCC\":{\"type\":\"object\",\"properties\":{\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"},\"z\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"x\",\"y\",\"z\"]},\"GDC\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\"},\"longitude\":{\"type\":\"number\"},\"elevation\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"latitude\",\"longitude\",\"elevation\"]},\"AGL\":{\"type\":\"object\",\"properties\":{\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"},\"elevation\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"x\",\"y\",\"elevation\"]}},\"additionalProperties\":false}}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#evaluator.observation",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Evaluator Observation"
+      },
+      "definition" : {
+        "en" : "Indicates that an evaluator provided feedback as a comment or via recorded media"
+      },
+      "recommendedVerbs" : [
+        "https://w3id.org/xapi/tla/verbs/assessed",
+        "http://id.tincanapi.com/verb/bookmarked",
+        "https://xapinet.org/xapi/stetmt/its/Verb#demonstrated"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"comment\":{\"type\":\"string\"},\"media\":{\"type\":\"string\"}},\"additionalProperties\":false}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ResultExtension#environment.adaptation.coordinate",
+      "type" : "ResultExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Adaptation Coordinate(s)"
+      },
+      "definition" : {
+        "en" : "Location(s) within virtual environment which are the result of the adaptation"
+      },
+      "recommendedVerbs" : [
+        "http://adlnet.gov/expapi/verbs/experienced"
+      ],
+      "inlineSchema" : "{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"GCC\":{\"type\":\"object\",\"properties\":{\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"},\"z\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"x\",\"y\",\"z\"]},\"GDC\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\"},\"longitude\":{\"type\":\"number\"},\"elevation\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"latitude\",\"longitude\",\"elevation\"]},\"AGL\":{\"type\":\"object\",\"properties\":{\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"},\"elevation\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"x\",\"y\",\"elevation\"]}},\"additionalProperties\":false}}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.create.actor",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Created Actor Adaptation"
+      },
+      "definition" : {
+        "en" : "Metadata about the NPC created within the virtual environment"
+      },
+      "recommendedVerbs" : [
+        "http://adlnet.gov/expapi/verbs/experienced"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"type\":{\"type\":\"string\"},\"side\":{\"type\":\"string\",\"enum\":[\"civilian\",\"blufor\",\"opfor\"]},\"actorTypeCategory\":{\"type\":\"string\",\"enum\":[\"Vehicle\",\"Person\",\"Other\"]},\"heading\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"type\",\"side\"]}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.highlight",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Highlight Object"
+      },
+      "definition" : {
+        "en" : "Metadata about the applied highlight"
+      },
+      "recommendedVerbs" : [
+        "http://adlnet.gov/expapi/verbs/experienced"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"offset\":{\"type\":\"object\",\"properties\":{\"right\":{\"type\":\"number\"},\"front\":{\"type\":\"number\"},\"up\":{\"type\":\"number\"}},\"additionalProperties\":false},\"color\":{\"type\":\"string\",\"enum\":[\"red\",\"green\",\"blue\"]},\"duration\":{\"type\":\"number\"}},\"additionalProperties\":false}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ResultExtension#environment.adaptation.location",
+      "type" : "ResultExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Location"
+      },
+      "definition" : {
+        "en" : "Location within virtual environment which a highlight or breadcrumbs was applied to"
+      },
+      "recommendedVerbs" : [
+        "http://adlnet.gov/expapi/verbs/experienced"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"placeOfInterest\":{\"type\":\"string\"},\"coordinate\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"GCC\":{\"type\":\"object\",\"properties\":{\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"},\"z\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"x\",\"y\",\"z\"]},\"GDC\":{\"type\":\"object\",\"properties\":{\"latitude\":{\"type\":\"number\"},\"longitude\":{\"type\":\"number\"},\"elevation\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"latitude\",\"longitude\",\"elevation\"]},\"AGL\":{\"type\":\"object\",\"properties\":{\"x\":{\"type\":\"number\"},\"y\":{\"type\":\"number\"},\"elevation\":{\"type\":\"number\"}},\"additionalProperties\":false,\"required\":[\"x\",\"y\",\"elevation\"]}},\"additionalProperties\":false}}},\"additionalProperties\":false,\"required\":[\"placeOfInterest\"]}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Chain of Custody"
+      },
+      "definition" : {
+        "en" : "Metadata regarding where the data (used to generate the xAPI statement) is stored"
+      },
+      "recommendedVerbs" : [
+        "https://w3id.org/xapi/tla/verbs/assessed",
+        "http://adlnet.gov/expapi/verbs/experienced",
+        "https://xapinet.org/xapi/stetmt/its/Verb#predicted",
+        "https://xapinet.org/xapi/stetmt/its/Verb#demonstrated",
+        "https://xapinet.org/xapi/stetmt/its/Verb#started",
+        "https://xapinet.org/xapi/stetmt/its/Verb#closed",
+        "http://id.tincanapi.com/verb/bookmarked",
+        "http://adlnet.gov/expapi/verbs/completed",
+        "http://adlnet.gov/expapi/verbs/voided"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"releaseDate\":{\"type\":\"string\"},\"versionName\":{\"type\":\"string\"},\"buildDate\":{\"type\":\"string\"},\"ip\":{\"type\":\"string\"},\"logFilePath\":{\"type\":\"string\"},\"logFileNames\":{\"type\":\"array\",\"items\":{\"type\":\"string\"},\"uniqueItems\":true},\"dkfFileNames\":{\"type\":\"array\",\"items\":{\"type\":\"string\"},\"uniqueItems\":true}},\"additionalProperties\":false,\"required\":[\"releaseDate\",\"versionName\",\"buildDate\",\"ip\",\"logFilePath\"]}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics",
+      "type" : "ContextExtension",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Performance Characteristics"
+      },
+      "definition" : {
+        "en" : "Metadata describing the performance characteristic attribute(s) attached to condition(s) and/or task(s). These attributes are factored into competency level determination."
+      },
+      "recommendedVerbs" : [
+        "https://w3id.org/xapi/tla/verbs/assessed",
+        "http://adlnet.gov/expapi/verbs/experienced",
+        "https://xapinet.org/xapi/stetmt/its/Verb#demonstrated",
+        "https://xapinet.org/xapi/stetmt/its/Verb#predicted"
+      ],
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"conditions\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"stress\":{\"type\":\"number\"},\"stressReason\":{\"type\":\"string\"},\"difficulty\":{\"type\":\"number\"},\"difficultyReason\":{\"type\":\"string\"},\"stressCategory\":{\"type\":\"string\",\"enum\":[\"Environmental\",\"Cognitive\",\"Physiological\"]},\"condition\":{\"type\":\"string\",\"pattern\":\"^activityId:uri/its/environment.adaptation/\"}},\"required\":[\"condition\"]},\"uniqueItems\":true},\"tasks\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"stress\":{\"type\":\"number\"},\"stressReason\":{\"type\":\"string\"},\"difficulty\":{\"type\":\"number\"},\"difficultyReason\":{\"type\":\"string\"},\"task\":{\"type\":\"string\",\"pattern\":\"^activityId:uri/its/course.concept/\"}},\"required\":[\"task\"]},\"uniqueItems\":true}}}"
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/AgentProfileResource#lsa.cache",
+      "type" : "AgentProfileResource",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Learner State Attribute(s) cache"
+      },
+      "definition" : {
+        "en" : "Keeps track of the Learner State Attribute Activity names found within Statements that contain the Agent as the Actor."
+      },
+      "contentType" : "application/json",
+      "inlineSchema" : "{\"type\":\"object\",\"properties\":{\"attributes\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}}}"
+    }
+  ],
+  "templates" : [
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#summative.assessment",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Summative assessment of performance"
+      },
+      "definition" : {
+        "en" : "Actor's (Group of members) overall performance on an assessment (expected to be associated with one or more externally defined competencies) derived from all instances of the actor being evaluated on said assessment over some period of time. If the assessment belongs to a hierarchy (has n parent assessment(s)), those parents will be tracked via context extension. The overall grade for the performance assessment is found within result response and the finer grain details are tracked via result extension. If the Actor Agent(s) was/were assigned a Team Role during evaluation, the Team Role(s) and the echelon of the team are represented as category context activities. The alignment between Team Role and Agent is tracked via context extension."
+      },
+      "verb" : "https://w3id.org/xapi/tla/verbs/assessed",
+      "objectActivityType" : "https://w3id.org/xapi/tla/activity-types/assessment",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.evaluation']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.hierarchy']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.to.id']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#course.record",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#training.application"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#summative.assessment.replacement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Replacement Summative assessment of performance"
+      },
+      "definition" : {
+        "en" : "Actor's (Group of members) overall performance on an assessment (expected to be associated with one or more externally defined competencies) derived from all instances of the actor being evaluated on said assessment over some period of time. If the assessment belongs to a hierarchy (has n parent assessment(s)), those parents will be tracked via context extension. The overall grade for the performance assessment is found within result response and the finer grain details are tracked via result extension. If the Actor Agent(s) was/were assigned a Team Role during evaluation, the Team Role(s) and the echelon of the team are represented as category context activities. The alignment between Team Role and Agent is tracked via context extension."
+      },
+      "verb" : "https://w3id.org/xapi/tla/verbs/assessed",
+      "objectActivityType" : "https://w3id.org/xapi/tla/activity-types/assessment",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.evaluation']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.hierarchy']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.to.id']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#course.record",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#training.application"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.revision",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.context.instructor.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.mbox",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#evaluator.observation']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#summative.assessment.team",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Summative assessment of Team performance"
+      },
+      "definition" : {
+        "en" : "Actor's (Group of members) overall performance on an assessment (expected to be associated with one or more externally defined competencies) derived from all instances of the actor being evaluated on said assessment over some period of time. If the assessment belongs to a hierarchy (has n parent assessment(s)), those parents will be tracked via context extension. The overall grade for the performance assessment is found within result response and the finer grain details are tracked via result extension. If the Actor Agent(s) was/were assigned a Team Role during evaluation, the Team Role(s) and the echelon of the team are represented as category context activities. The alignment between Team Role and Agent is tracked via context extension."
+      },
+      "verb" : "https://w3id.org/xapi/tla/verbs/assessed",
+      "objectActivityType" : "https://w3id.org/xapi/tla/activity-types/assessment",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.evaluation']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.hierarchy']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.to.id']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#course.record",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#training.application"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#summative.assessment.team.replacement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Replacement summative assessment of Team performance"
+      },
+      "definition" : {
+        "en" : "Actor's (Group of members) overall performance on an assessment (expected to be associated with one or more externally defined competencies) derived from all instances of the actor being evaluated on said assessment over some period of time. If the assessment belongs to a hierarchy (has n parent assessment(s)), those parents will be tracked via context extension. The overall grade for the performance assessment is found within result response and the finer grain details are tracked via result extension. If the Actor Agent(s) was/were assigned a Team Role during evaluation, the Team Role(s) and the echelon of the team are represented as category context activities. The alignment between Team Role and Agent is tracked via context extension."
+      },
+      "verb" : "https://w3id.org/xapi/tla/verbs/assessed",
+      "objectActivityType" : "https://w3id.org/xapi/tla/activity-types/assessment",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.evaluation']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.hierarchy']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.to.id']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#course.record",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#training.application"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.revision",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.context.instructor.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.mbox",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#evaluator.observation']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#summative.assessment.individual",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Summative assessment of Individual's performance"
+      },
+      "definition" : {
+        "en" : "Actor's (Group of members) overall performance on an assessment (expected to be associated with one or more externally defined competencies) derived from all instances of the actor being evaluated on said assessment over some period of time. If the assessment belongs to a hierarchy (has n parent assessment(s)), those parents will be tracked via context extension. The overall grade for the performance assessment is found within result response and the finer grain details are tracked via result extension. If the Actor Agent(s) was/were assigned a Team Role during evaluation, the Team Role(s) and the echelon of the team are represented as category context activities. The alignment between Team Role and Agent is tracked via context extension."
+      },
+      "verb" : "https://w3id.org/xapi/tla/verbs/assessed",
+      "objectActivityType" : "https://w3id.org/xapi/tla/activity-types/assessment",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.evaluation']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.hierarchy']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.to.id']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#course.record",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#training.application"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#summative.assessment.individual.replacement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Replacement summative assessment of Individual's performance"
+      },
+      "definition" : {
+        "en" : "Actor's (Group of members) overall performance on an assessment (expected to be associated with one or more externally defined competencies) derived from all instances of the actor being evaluated on said assessment over some period of time. If the assessment belongs to a hierarchy (has n parent assessment(s)), those parents will be tracked via context extension. The overall grade for the performance assessment is found within result response and the finer grain details are tracked via result extension. If the Actor Agent(s) was/were assigned a Team Role during evaluation, the Team Role(s) and the echelon of the team are represented as category context activities. The alignment between Team Role and Agent is tracked via context extension."
+      },
+      "verb" : "https://w3id.org/xapi/tla/verbs/assessed",
+      "objectActivityType" : "https://w3id.org/xapi/tla/activity-types/assessment",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.evaluation']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.hierarchy']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#assessment.node.to.id']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#course.record",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#training.application"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.revision",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.context.instructor.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.mbox",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#evaluator.observation']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#voided.summative.assessment",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Void Summative Assessment"
+      },
+      "definition" : {
+        "en" : "Matches against voiding statements that target an Individual or Team Summative Assessment statement"
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/voided",
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#summative.assessment",
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#summative.assessment.team",
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#summative.assessment.individual"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#predicted.lsa",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Predicted Learner State Attribute"
+      },
+      "definition" : {
+        "en" : "The value for an Actor's Learner State Attribute has been predicted to be at some level. When the Learner State Attribute is associated with an Assessment, the corresponding Assessment Activity is found within other contextActivities. The categorization of the Learner State Attribute (Affective vs Cognitive) is represented by Activity within category contextActivities."
+      },
+      "verb" : "https://xapinet.org/xapi/stetmt/its/Verb#predicted",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.attribute",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#learner.state.attribute.measure']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.affective",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.cognitive",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept.intermediate",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.task"
+          ],
+          "location" : "$.context.contextActivities.other[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#predicted.lsa.replacement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Replacement Predicted Learner State Attribute"
+      },
+      "definition" : {
+        "en" : "The value for an Actor's Learner State Attribute has been predicted to be at some level. When the Learner State Attribute is associated with an Assessment, the corresponding Assessment Activity is found within other contextActivities. The categorization of the Learner State Attribute (Affective vs Cognitive) is represented by Activity within category contextActivities."
+      },
+      "verb" : "https://xapinet.org/xapi/stetmt/its/Verb#predicted",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.attribute",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#learner.state.attribute.measure']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.affective",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#learner.state.cognitive",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept.intermediate",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.task"
+          ],
+          "location" : "$.context.contextActivities.other[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.revision",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.context.instructor.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.mbox",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#voided.predicted.lsa",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Void Predicted Learner State Attribute"
+      },
+      "definition" : {
+        "en" : "Matches against voiding statements that target Predicted Learner State Attribute statement"
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/voided",
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#predicted.lsa"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#demonstrated.psa",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Demonstrated Performance State Attribute"
+      },
+      "definition" : {
+        "en" : "The Actor has performed an action which was assessed with respect to an assessment node (concept, intermediate concept or task). When the assessment node has a parent, that assessment node activity is found within parent contextActivities. The assessment result is reported via result extension."
+      },
+      "verb" : "https://xapinet.org/xapi/stetmt/its/Verb#demonstrated",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept.intermediate",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.task"
+          ],
+          "location" : "$.object.definition.type",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.performance.measure']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept.intermediate",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.task"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#demonstrated.psa.replacement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Replacement Demonstrated Performance State Attribute"
+      },
+      "definition" : {
+        "en" : "The Actor has performed an action which was assessed with respect to an assessment node (concept, intermediate concept or task). When the assessment node has a parent, that assessment node activity is found within parent contextActivities. The assessment result is reported via result extension."
+      },
+      "verb" : "https://xapinet.org/xapi/stetmt/its/Verb#demonstrated",
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept.intermediate",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.task"
+          ],
+          "location" : "$.object.definition.type",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#assessment.node.performance.measure']",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.concept.intermediate",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#assessment.node.task"
+          ],
+          "location" : "$.context.contextActivities.parent[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.revision",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.context.instructor.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.mbox",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#evaluator.observation']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#voided.demonstrated.psa",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Void Demonstrated Performance State Attribute"
+      },
+      "definition" : {
+        "en" : "Matches against voiding statements that target Demonstrated Performance State Attribute statement"
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/voided",
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#demonstrated.psa"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#started.domain.session",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Started Domain Session"
+      },
+      "definition" : {
+        "en" : "The Agent Actor began a new Domain Session"
+      },
+      "verb" : "https://xapinet.org/xapi/stetmt/its/Verb#started",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#closed.domain.session",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Closed Domain Session"
+      },
+      "definition" : {
+        "en" : "The Agent Actor ended an active Domain Session"
+      },
+      "verb" : "https://xapinet.org/xapi/stetmt/its/Verb#closed",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#started.knowledge.session.individual",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Started Individual Knowledge Session"
+      },
+      "definition" : {
+        "en" : "The Agent Actor started a Knowledge Session by themselves"
+      },
+      "verb" : "https://xapinet.org/xapi/stetmt/its/Verb#started",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.individual",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#mission.metadata']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#training.application"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#started.knowledge.session.team",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Started Team Knowledge Session"
+      },
+      "definition" : {
+        "en" : "The Agent Actor started a Knowledge Session which other users are expected to join"
+      },
+      "verb" : "https://xapinet.org/xapi/stetmt/its/Verb#started",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.team",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#mission.metadata']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#training.application"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#bookmarked",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Bookmarked"
+      },
+      "definition" : {
+        "en" : "An Observer Controller created a bookmark which consists of possibly a comment and/or a media file."
+      },
+      "verb" : "http://id.tincanapi.com/verb/bookmarked",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#domain",
+      "contextGroupingActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#evaluator.observation']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#completed.lesson",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Completed Lesson"
+      },
+      "definition" : {
+        "en" : "The lesson was completed with indication of reason for the completion"
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/completed",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#domain",
+      "contextGroupingActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.weather",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Weather Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced a change in weather during a scenario"
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/overcast",
+            "activityId:uri/its/environment.adaptation/fog",
+            "activityId:uri/its/environment.adaptation/rain"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.weather']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.time",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Time of day Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced a change in time of day during a scenario"
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/midnight",
+            "activityId:uri/its/environment.adaptation/dawn",
+            "activityId:uri/its/environment.adaptation/midday",
+            "activityId:uri/its/environment.adaptation/dusk"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.script",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Script Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced a change within the scenario based on the execution of a code script"
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/script"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.player.status.actor",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Player Status Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced a change within their fatigue recovery or endurance status."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.score.raw",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/fatigue.recovery",
+            "activityId:uri/its/environment.adaptation/endurance"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.player.status.agent.substatement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Player Status Environment Adaptation Substatement"
+      },
+      "definition" : {
+        "en" : "Actor experienced a change within their fatigue recovery or endurance status which was experienced by another Agent."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "rules" : [
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.score.raw",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/fatigue.recovery",
+            "activityId:uri/its/environment.adaptation/endurance"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.player.status.agent",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Player Status Environment Adaptation Nested"
+      },
+      "definition" : {
+        "en" : "Actor experienced a change within the fatigue recovery or endurance status of another Agent."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.player.status.agent.substatement"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.teleport.actor",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Teleport Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced a change of location within virtual environment"
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/teleport"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#environment.adaptation.coordinate']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.teleport.agent.substatement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Teleport Environment Adaptation Substatement"
+      },
+      "definition" : {
+        "en" : "Actor experienced a change of location within virtual environment which was experienced by another Agent."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "rules" : [
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/teleport"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.teleport.agent",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Teleport Environment Adaptation Nested"
+      },
+      "definition" : {
+        "en" : "Actor experienced a change of location within virtual environment of another Agent."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.teleport.agent.substatement"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#environment.adaptation.coordinate']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.create.actors",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Create Actors Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced the creation of NPC within virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/create.actors"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.coordinate']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.create.actor']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.remove.actors",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Remove Actors Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced the removal of player(s) from the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/remove.actors"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.instructor.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Removed Actors"
+          ],
+          "location" : "$.context.instructor.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.instructor.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.coordinate']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.highlight.location",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Highlight Location Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced application of a highlight to a location within the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/highlight.objects"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#environment.adaptation.location']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.highlight']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.highlight.actor",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Highlight Actor Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced application of a highlight to themselves within the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/highlight.objects"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.highlight']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.highlight.agent.substatement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Highlight Agent Environment Adaptation Substatement"
+      },
+      "definition" : {
+        "en" : "Actor experienced application of a highlight to themselves within virtual environment which was experienced by another Agent."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "rules" : [
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/highlight.objects"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.highlight.agent",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Highlight Agent Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced application of a highlight to another Agent within virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.highlight.agent.substatement"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#environment.adaptation.highlight']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.highlight.remove",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Remove Highlight Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced removal of a highlight within the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.response",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/remove.highlight"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.actor",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Actor Breadcrumbs Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced application of breadcrumbs to themselves within the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/create.breadcrumbs"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#environment.adaptation.location']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.agent.substatement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Agent Breadcrumbs Environment Adaptation Substatement"
+      },
+      "definition" : {
+        "en" : "Actor experienced application of breadcrumbs to themselves within virtual environment which was experienced by another Agent."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "rules" : [
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/create.breadcrumbs"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.agent",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Agent Breadcrumbs Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Agent actor experienced the application of breadcrumbs to another agent within the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.agent.substatement"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#environment.adaptation.location']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.group.substatement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Group Breadcrumbs Environment Adaptation Substatement"
+      },
+      "definition" : {
+        "en" : "Group actor experienced application of breadcrumbs to themselves within virtual environment which was experienced by another Agent."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "rules" : [
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/create.breadcrumbs"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.group",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Group Breadcrumbs Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Agent actor experienced the application of breadcrumbs to a group within the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.group.substatement"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.result.extensions['https://xapinet.org/xapi/stetmt/its/ResultExtension#environment.adaptation.location']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.actor.remove",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Actor Remove Breadcrumbs Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Actor experienced removal of breadcrumbs from themselves within the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/remove.breadcrumbs"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.agent.remove.substatement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Agent Remove Breadcrumbs Environment Adaptation Substatement"
+      },
+      "definition" : {
+        "en" : "Actor experienced removal of breadcrumbs from themselves within virtual environment which was experienced by another Agent."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "rules" : [
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/remove.breadcrumbs"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.agent.remove",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Agent Remove Breadcrumbs Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Agent actor experienced the removal of breadcrumbs from another agent within the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.agent.remove.substatement"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.group.remove.substatement",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Group Remove Breadcrumbs Environment Adaptation Substatement"
+      },
+      "definition" : {
+        "en" : "Group actor experienced removal of breadcrumbs from themselves within virtual environment which was experienced by another Agent."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "objectActivityType" : "https://xapinet.org/xapi/stetmt/its/ActivityType#environment.adaptation",
+      "rules" : [
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "activityId:uri/its/environment.adaptation/remove.breadcrumbs"
+          ],
+          "location" : "$.object.id",
+          "presence" : "included"
+        }
+      ]
+    },
+    {
+      "id" : "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.group.remove",
+      "type" : "StatementTemplate",
+      "inScheme" : "https://xapinet.org/xapi/stetmt/its/v0.0.1",
+      "prefLabel" : {
+        "en" : "Group Remove Breadcrumbs Environment Adaptation"
+      },
+      "definition" : {
+        "en" : "Agent actor experienced the removal of breadcrumbs from a group within the virtual environment."
+      },
+      "verb" : "http://adlnet.gov/expapi/verbs/experienced",
+      "contextParentActivityType" : [
+        "https://xapinet.org/xapi/stetmt/its/ActivityType#domain"
+      ],
+      "objectStatementRefTemplate" : [
+        "https://xapinet.org/xapi/stetmt/its/StatementTemplate#environment.adaptation.breadcrumbs.group.remove.substatement"
+      ],
+      "rules" : [
+        {
+          "location" : "$.id",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.timestamp",
+          "presence" : "included"
+        },
+        {
+          "any" : [
+            "1.0.3"
+          ],
+          "location" : "$.version",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.verb.display",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#knowledge.session.playback",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.role"
+          ],
+          "location" : "$.context.contextActivities.category[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#domain.session",
+            "https://xapinet.org/xapi/stetmt/its/ActivityType#team.echelon"
+          ],
+          "location" : "$.context.contextActivities.grouping[*].definition.type",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Agent"
+          ],
+          "location" : "$.actor.objectType",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.name",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.actor.mbox",
+          "presence" : "included"
+        },
+        {
+          "location" : "$.context.registration",
+          "presence" : "recommended"
+        },
+        {
+          "any" : [
+            "Group"
+          ],
+          "location" : "$.context.team.objectType",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.name",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.team.member",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#team.structure']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#chain.of.custody']",
+          "presence" : "recommended"
+        },
+        {
+          "location" : "$.context.extensions['https://xapinet.org/xapi/stetmt/its/ContextExtension#performance.characteristics']",
+          "presence" : "recommended"
+        }
+      ]
+    }
+  ]
+}

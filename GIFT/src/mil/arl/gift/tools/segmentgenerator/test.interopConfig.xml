@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<InteropConfig>
+  <interfaceConfigurations>
+    <InteropInterfaceConfig refID="1">
+     <available>true</available>
+      <impl>gateway.interop.dis.DISInterface</impl>
+      <name>DIS Adapter 1</name>
+      <DIS>
+          <exerciseID>1</exerciseID>
+          <!-- NOTE: networkPort should be set to a different value if running GatewayModule on same host as ToolGatewayModule -->
+	      <networkPort>3000</networkPort>
+	      <siteID>89</siteID>
+	      <applicationID>18</applicationID>
+	      <networkAddress>10.1.21.255</networkAddress>
+      </DIS>
+    </InteropInterfaceConfig>
+  </interfaceConfigurations>
+</InteropConfig>

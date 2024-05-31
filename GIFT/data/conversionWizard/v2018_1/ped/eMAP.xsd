@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" version="8.0" xmlns:common="http://GIFT.com/common" xmlns:fg="http://www.FGolubov.com/XMLEditor" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://GIFT.com/common" schemaLocation="../domain/common.xsd"/>
+    <xs:element name="EMAP">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="EMAP">
+                    <fg:message>This is the root node of the Engine for Management of Adaptive Pedagogy (EMAP) which contains domain independent pedagogy information.  Look for other helpful information by clicking on a node.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Rule"/>
+                <xs:element ref="Example"/>
+                <xs:element ref="Recall"/>
+                <xs:element ref="Practice"/>
+            </xs:sequence>
+            <xs:attribute name="version" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="File Version">
+                            <fg:message>The version of this file.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Rule">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Rule">
+                    <fg:message>This is the Rule (Tell) node of the eMAP.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Attributes"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Example">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Example">
+                    <fg:message>This is the Example (Show) node of the eMAP.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Attributes"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Recall">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Recall">
+                    <fg:message>This is the Recall (Ask) node of the eMAP.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Attributes"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Practice">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Practice">
+                    <fg:message>This is the Practice (do) node of the eMAP.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Attributes"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Attributes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Attribute"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Attribute">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Learner State Attribute">
+                    <fg:message>A learner state attribute and how it relates to metadata attributes.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="value">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeValueDialog" exposed="true" message="Attribute Value">
+                                <fg:message>Specify the learner state attribute value.</fg:message>
+                                <fg:param name="attributeValueNodeName">value</fg:param>
+                                <fg:param name="attributeTypeNodeName">type</fg:param>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element ref="MetadataAttributes"/>
+            </xs:sequence>
+            <xs:attribute name="type" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeTypeDialog" exposed="true" message="Attribute Type">
+                            <fg:message>Specify the learner state attribute type.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MetadataAttributes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="MetadataAttribute"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MetadataAttribute">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="value">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.pcat.custnodes.MetadataAttributeSelectionDialog" exposed="true" message="Metadata Attribute Value">
+                                <fg:message>Specify the metadata attribute value that should be used for a particular learner state.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

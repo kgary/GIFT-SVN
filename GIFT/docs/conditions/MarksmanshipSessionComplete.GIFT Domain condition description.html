@@ -1,0 +1,43 @@
+﻿<body>
+<p><strong>Marksmanship Session Complete Condition</strong></p>
+<p>This condition checks whether the expected number of shots were received for 
+each shot result in the provided list.&nbsp; The expected number of shots is 
+required as input.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span></li><li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: the default value</li>
+		<li>case: the number of shots is greater than or equal to expected</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the number of shots is less than expected</li>
+	</ul>
+	</li>
+	<li>Unknown</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of times when the expected number of shots is reached.&nbsp; 
+	This can happen multiple times if the current number of shots provided by 
+	the application is reset.</li>
+	<li>provides the amount of time it took to get to the expected number of 
+	shots</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition completes when the expected number of shots is reached</li>
+	<li>the condition can be repeated as long as the current number of shots is 
+	reset at some point</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>Marksmanship</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Rifle Shot</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.MarksmanshipSessionCompleteCondition</em></p>
+</body>

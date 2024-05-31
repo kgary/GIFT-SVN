@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<project name="GIFT Common GWT" default="compile">
+    
+    <property name="root.path" value="../../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.common.gwt"/>
+    <property name="source.path" value="mil/arl/gift/common/gwt"/>
+    <property name="jarfile.ext.path" value="gift-commongwt"/>
+    <property name="jarfile.name" value="gift-commongwt.jar"/>
+    <property name="gift.build.properties" value="${root.path}/config/build.properties"/>
+    <!-- This defines the version of gwtbootstrap jarfile we are using -->
+    <property name="gwtbootstrap.lib" value="gwtbootstrap3-1.0.1.jar"/>
+    <property name="gwtbootstrapextras.lib" value="gwtbootstrap3-extras-1.0.1.jar"/>
+    
+    <property name="gwt.extensions" value="${root.path}/external/gwt/extensions" />
+    <property name="gwt.sdk" value="${root.path}/external/gwt/gwt-2.9.0"/>
+    <property name="gwt.args" value=""/>
+	
+	<property name="jaxb.generated.jar" value="jaxb_generated.jar" />
+	
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+    
+    <property file="${gift.build.properties}"/>
+
+    <path id="classpath">
+        <fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+        <fileset dir="${root.path}/external" includes="**/json_simple-1.1.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/redmine/*.jar"/>
+        <fileset dir="${root.path}/external" includes="**/orgjson.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/jetty-9.4.41/lib/jetty-server-*.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/jetty-9.4.41/lib/keycloak/*"/>
+        <fileset dir="${root.path}/external" includes="**/jetty-9.4.41/lib/websocket/*"/>
+    </path>
+    
+    <path id="gwtClasspath">
+        <pathelement location="${war.path}/WEB-INF/classes"/>
+        <pathelement location="${gwt.sdk}/gwt-user.jar"/>
+        <pathelement location="${gwt.sdk}/gwt-dev.jar"/>
+        <pathelement location="${gwt.extensions}/gwt-slider-bar-1.0.jar"/>
+    	<pathelement location="${gwt.extensions}/eventbinder-1.0.2.jar" />
+        <pathelement location="${gwt.extensions}/gwt-d3-api-1.1.1.jar"/>
+        <fileset dir="${root.path}/external"  includes="**/commons-io-2.3.jar"/>
+        <fileset dir="${root.path}/external"  includes="**/commons-fileupload-1.2.2.jar"/>
+        <fileset dir="${root.path}/external" includes="gwtbootstrap/${gwtbootstrap.lib}"/>
+        <fileset dir="${root.path}/external" includes="gwtbootstrap/${gwtbootstrapextras.lib}"/>
+    	<fileset dir="${root.path}/bin" includes="${jaxb.generated.jar}"/>
+    </path>
+    
+    <target name="checkForUpdates">
+        <uptodate property="sourceChanged" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}"/>
+            <srcfiles dir="client" includes="${update.includes}"/>
+            <srcfiles dir="client/survey" includes="${update.includes}"/>
+            <srcfiles dir="client/widgets" includes="${update.includes}"/>
+            <srcfiles dir="client/widgets/bootstrap" includes="${update.includes}"/>
+            <srcfiles dir="server" includes="${update.includes}"/>
+            <srcfiles dir="shared" includes="${update.includes}"/>
+        </uptodate>
+        
+        <uptodate property="buildPropertiesChanged" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles file="${gift.build.properties}"/>
+        </uptodate>
+        
+        <condition property="build.required">
+            <and>
+                <isset property="sourceChanged" />
+                <isset property="buildPropertiesChanged" />
+            </and>
+        </condition>
+    </target>	
+
+    <target name="compileCore" unless="build.required">
+    	<echo message="Compiling common GWT"/>
+        <javac srcdir="." encoding="utf-8"
+               destdir="${root.path}/build/classes"
+               source="1.8" target="1.8" nowarn="true"
+               debug="true" debuglevel="lines,vars,source"
+               includeAntRuntime="false">
+            <classpath>
+                <path refid="classpath" />
+                <path refid="gwtClasspath" />
+            </classpath>
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <copy todir="${root.path}/build/classes/${source.path}">
+            <fileset dir=".">
+                <include name="**/*.png"/>
+                <include name="**/*.gwt.xml"/>
+            </fileset>
+        </copy>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" includes="${source.path}/**"/>
+    </target>
+    
+    <target name="compile" depends="checkForUpdates,compileCore"/>
+	
+    <target name="clean">
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+    </target>
+	
+</project>

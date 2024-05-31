@@ -1,0 +1,39 @@
+/* 
+ * version 1.0 [July 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+ 
+/*	This line specifies the version of protobuf used to 
+ *	encode the messages. As of now, this is the current version. */
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "CourseRecordRefProto";
+ 
+import "google/protobuf/wrappers.proto";
+
+ 
+ /* A reference to a course records stored in an LMS/LRS/database that the LMS module has a connection to.
+ *  Useful for retrieving specific records for review during a course. */
+message CourseRecordRef {
+    
+	oneof instance {
+	
+		IntCourseRecordRef intId = 1;
+		
+		UUIDCourseRecordRefs uuids = 2;
+ 	}	
+ }
+ 
+ /* A single integer id mapped to a course record. */
+ message IntCourseRecordRef{
+ 
+ 	google.protobuf.Int32Value recordId = 1;
+ }
+ 
+ /* A collection of UUIDs for zero or more course records. */
+ message UUIDCourseRecordRefs{
+	
+		repeated string recordId = 6;
+ }

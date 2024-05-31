@@ -1,0 +1,22 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainOptionsRequestProto";
+
+import "WebClientInformation.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a request for a domain option. */
+message DomainOptionsRequest {
+	/* The list of domain options. */
+	WebClientInformation client_info = 1;
+	
+	/* The LMS User name to use to query for LMS records for a GIFT user. */
+	google.protobuf.StringValue LMS_username = 2;
+}

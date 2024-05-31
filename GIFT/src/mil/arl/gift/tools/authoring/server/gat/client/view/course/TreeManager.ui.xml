@@ -1,0 +1,47 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:tree="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.tree"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	
+	<ui:style>
+		.treeBreadcrumbs{
+		    display: inline-block;
+		    border-top-left-radius: 0px;
+		    border-top-right-radius: 0px;				    
+		    background-image: linear-gradient(white 60%, rgb(200,200,200) 100%);
+		    box-shadow: 3px 3px 5px rgba(0,0,0,0.25);
+		    margin: 0px;
+		}
+	</ui:style>
+	<g:DockLayoutPanel ui:field='mainDock'>
+	
+		<g:center>
+			<g:DeckLayoutPanel animationDuration='500' animationVertical='false' addStyleNames='courseTreePanel' ui:field='treeDeck'>
+				
+				<tree:CourseTree height="100%" width="100%" ui:field='courseTree'/>
+				
+				<!-- Branch trees go here -->
+				
+			</g:DeckLayoutPanel>
+		</g:center>
+		
+		<g:south size="45">
+			<g:ScrollPanel ui:field='breadcrumbsPanel'>
+					<g:FlowPanel>
+			                <wb:ManagedTooltip ui:field='breadcrumbTooltip' title='Use this to navigate between branches' placement='TOP' trigger='MANUAL' showDelayMs='3000' hideDelayMs='4000'>
+								<b:Breadcrumbs addStyleNames='{style.treeBreadcrumbs}' ui:field='treeBreadcrumbs'>
+											<b:AnchorListItem ui:field='courseBreadcrumb'>
+												Main Course
+											</b:AnchorListItem>
+									<!-- Branch breadcrumbs go here -->
+									
+								</b:Breadcrumbs>
+							</wb:ManagedTooltip> 
+					</g:FlowPanel>
+			</g:ScrollPanel>
+		</g:south>
+		
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

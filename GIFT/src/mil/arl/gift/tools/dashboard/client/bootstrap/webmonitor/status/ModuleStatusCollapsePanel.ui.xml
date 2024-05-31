@@ -1,0 +1,125 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style type="mil.arl.gift.tools.dashboard.client.bootstrap.webmonitor.status.ModuleStatusCollapsePanel.Style">
+	   .mainPanel {
+		    padding: 0px;
+		    border: 1px solid #ccc !important;
+		    border-radius: 0px;
+		    background-color: #eee;
+		    margin: 5px;
+		    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+		}
+	   .body{
+            margin: 0px;
+            padding: 0px;
+	   }
+	   .heading {
+            text-align: left;
+            color: black;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #fafafa;
+            background-image: linear-gradient(transparent 50%, rgba(0,0,0,0.08));
+        }
+        .heading:hover {
+            background-color: #eef;
+        }
+        .indicator {
+            float: right;
+            background-color: #f66;
+		    color: white;
+		    border-radius: 50%;
+		    padding: 7px;
+		    height: 31px;
+		    width: 31px;
+		    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+		    background-image: linear-gradient(transparent, rgba(0,0,0,0.25));
+		    margin-top: -6px;
+        }
+        .on{}
+        .indicator.on{
+	        background-color: lightgreen;
+            box-shadow: 0px 0px 5px 3px #b0eeb0;
+	    }
+	    .indicator:active{
+            margin-top: -4px;
+	    }
+        @external .list-group .list-group-item;
+        .collapseStyle .list-group {
+            margin-bottom: 0px;
+            min-width: 100%;
+            display: inline-block;
+            white-space: nowrap;
+            user-select: none;
+            padding: 0px;
+        }
+        @external .hoverStyle;
+        .collapseStyle .hoverStyle .list-group-item:hover {
+            border: solid darkgray 2px;
+            border-radius: 4px;
+            box-shadow: 0px 0px 14px black;
+            z-index: 1;
+        }
+        @external .atExpectation .belowExpectation;
+        .collapseStyle .atExpectation {
+            background-color: rgba(0,140,0,0.8);
+            color: white;
+        }
+        .collapseStyle .belowExpectation {
+            background-color: rgba(200,0,0,0.8);
+            color: white;
+        }
+        .headerLabelBtnPanel{
+            float: right;
+            margin-right: -15px;
+        }
+        .noQueuesMessage{
+            background-color: white;
+            border-top: 1px solid #ccc;
+            padding: 10px 15px;
+	    }
+	    .queueList{}
+	    .queueList > *{
+            padding-right: 25px;
+            border-radius: 0px !important;
+	    }
+	    .queueList > *{
+            display: flex;
+            align-items: center;
+            word-break: break-word;
+            white-space: normal;
+        }
+	    .queueList > *:nth-child\(even\){
+            background-color: #fafaff;
+        }
+	    .queueList > *:hover{
+            background-color: #eef;
+        }
+        .queueList span{
+            flex: 1;
+        }
+        .queueList i{
+            cursor: pointer;
+            float: right;
+        }
+	</ui:style>
+	<b:PanelHeader addStyleNames='{style.mainPanel}'>
+        <b:Heading size="H4" text="UMS" addStyleNames="{style.heading}" ui:field="heading">
+            <b:Tooltip title="Click to stop this module if it is running" container='body'>
+                <b:Icon type="POWER_OFF" size="LARGE" addStyleNames="{style.indicator}" ui:field="statusIndicator"/>
+            </b:Tooltip>
+        </b:Heading>
+        <b:PanelCollapse addStyleNames="{style.collapseStyle}" ui:field="collapse">
+            <b:PanelBody addStyleNames="{style.body}">
+                <g:DeckPanel animationEnabled='true' ui:field='queueDeck'>
+                    <b:ListGroup addStyleNames='{style.queueList}' ui:field="queueListGroup"/>
+                    <g:HTML addStyleNames="{style.noQueuesMessage}" ui:field='noQueueMessage'>
+                        No instances of this module are currently running
+                    </g:HTML>
+                </g:DeckPanel>
+            </b:PanelBody>
+        </b:PanelCollapse>
+    </b:PanelHeader>
+</ui:UiBinder> 

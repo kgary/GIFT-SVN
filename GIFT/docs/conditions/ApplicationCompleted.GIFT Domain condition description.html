@@ -1,0 +1,52 @@
+﻿<body>
+<p><strong>Application Completed Condition</strong></p>
+<p>This condition checks whether the currently running application (e.g. VBS, 
+PowerPoint, Unity) has stopped or finished.&nbsp; The external application 
+communicates this by sending on the supported simulation management message 
+(SIMAN) listed below.&nbsp; Completing this condition is a useful way to 
+determine when GIFT performance assessments should end.&nbsp; The condition can 
+provide a single assessment based on the ideal amount of time it should take to 
+finish the application.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li style="color: #008000">Above Expectation</li>
+	<li><span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: a Siman.Stop_Freeze message is received and that message 
+		represents a stop and not a freeze/pause.</li>
+	</ul>
+	</li>
+		<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the amount of time defined in the optional ideal completion 
+		duration parameter has elapsed and the external application is still 
+		running.&nbsp; This condition will not include the amount of time the 
+		application was paused against this idea completion duration as long as 
+		the application provided the appropriate Siman.Stop_Freeze message to 
+		GIFT indicating when the pause took place.</li>
+	</ul>
+	</li>
+	<li>Unknown</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of times this condition completes, i.e. the number of 
+	times the condition receives the Siman.Stop_Freeze and is not a freeze/pause 
+	notification.</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition completes when a Siman.Stop_Freeze messsage is received 
+	and it is not a freeze/pause.</li>
+	<li>the condition is not meant to be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can produce Siman messages</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Start Resume</li>
+	<li>GIFT Stop Freeze</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.ApplicationCompletedCondition</em></p>
+</body>

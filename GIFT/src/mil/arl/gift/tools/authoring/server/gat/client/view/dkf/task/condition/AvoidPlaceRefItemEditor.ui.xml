@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style>
+    	.numberSpinner {
+            margin: 10px 10px 15px 5px;
+            min-width: 75px;
+            vertical-align: middle;
+        }
+    </ui:style>
+    <g:HTMLPanel>
+        <shared:PlaceOfInterestPicker label='Place that the learner should avoid:' ui:field='avoidPlacePicker' />
+        
+        <g:FlowPanel ui:field='distancePanel'>
+            <g:InlineHTML text="Minimum expected distance: " />
+            <w:DecimalNumberSpinner ui:field="minDistance" addStyleNames="{style.numberSpinner}" />
+            <g:InlineHTML text="meter(s)" />
+        </g:FlowPanel>
+    </g:HTMLPanel>
+</ui:UiBinder> 

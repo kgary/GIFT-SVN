@@ -1,0 +1,37 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AuthorizeStrategiesRequestProto";
+
+import "google/protobuf/wrappers.proto";
+import "StrategyToApply.proto";
+
+/* This message represents the message payload for an AuthorizeStrategiesRequest message. */
+message AuthorizeStrategiesRequest {
+	/* The name of the evaluator making the request. */
+	google.protobuf.StringValue evaluator = 1;
+	
+	/* Request reasons to the list of strategies (string) that has been requested for that reason. 
+	* Legacy as of Feb 2022 #5174 - use requests below instead.
+	*/
+	map<string, StringList> requestsLegacy = 2;
+	
+	/* a mapping of unique strategy request reason to the collection of strategies to apply */
+	map<string, StrategyToApplyList> requests = 3;
+}
+
+/* This message represents a list of strings, placed in a container message so it can be mapped. */
+message StringList {
+	repeated string strategies = 1;
+}
+
+/* This message represents a list of StrategyToApply, placed in a container message so it can be mapped. */
+message StrategyToApplyList {
+	repeated StrategyToApply strategiesToApply = 1;
+}

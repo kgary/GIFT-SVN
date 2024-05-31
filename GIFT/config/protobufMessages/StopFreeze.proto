@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "StopFreezeProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the stop/freeze Simulation Event. */
+message StopFreeze {
+	/* The real time. */
+	google.protobuf.Int64Value real_time = 1;
+	
+	/* The request id. */
+	google.protobuf.Int64Value request_id = 2;
+	
+	/* The reason. */
+	google.protobuf.Int32Value reason = 3;
+	
+	/* The frozen behavior. */
+	google.protobuf.Int32Value frozen_behavior = 4;
+}

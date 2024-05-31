@@ -1,0 +1,2037 @@
+{
+  "VisibleToUserNames": ["tflowers"],
+  "EditableToUserNames": ["tflowers"],
+  "Survey_Pages": [
+    {
+      "Survey_Page_Id": 0,
+      "Survey_Page_Survey_Id": 0,
+      "Survey_Page_Name": "Unique Page 1",
+      "Elements": [
+        {
+          "Type": "TextElement",
+          "Survey_Page_Id": 0,
+          "ID": 0,
+          "Properties": {
+            "Question_Image_Width": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "100" }
+            },
+            "Question_Image_Position": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "0" }
+            },
+            "Display_Question_Image": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "false" }
+            },
+            "Text": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": {
+                "StringPayload": "<p>Unique 1 Informative Text<br></p>"
+              }
+            }
+          }
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "Unique 1 Free Response<br>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "FillInTheBlank",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Response_Field_Types": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Free Text,Free Text" }
+              },
+              "Response_Field_Labels": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "U1F1|" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.FreeResponseReplyWeights",
+                "Property_Value": { "REPLY_WEIGHTS": [[[]], [[]]] }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Response_Fields_Per_Line": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "2" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Is_Answer_Field_Text_Box": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "true" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-326" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 1 Multiple Choice<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "MultipleChoice",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Reply_Feedback": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Reply_Option_Set": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    {
+                      "Option_List_Id": 0,
+                      "Text": "U1 Choice 1",
+                      "Id": 0
+                    },
+                    {
+                      "Option_List_Id": 0,
+                      "Text": "U1 Choice 2",
+                      "Id": 0
+                    },
+                    { "Option_List_Id": 0, "Text": "U1 Choice 3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Minimum_Selections_Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Randomize": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0,0,0" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Multi_Select_Enabled": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-372" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Maximum_Selections_Allowed": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Use_Existing_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 1 Matrix<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "MatrixOfChoices",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Use_Existing_Row_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Row_Options": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "U1R1", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U1R2", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U1R3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Use_Existing_Column_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.MatrixOfChoicesReplyWeights",
+                "Property_Value": {
+                  "REPLY_WEIGHTS": [
+                    [0.0, 0.0, 0.0],
+                    [0.0, 0.0, 0.0],
+                    [0.0, 0.0, 0.0]
+                  ]
+                }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-378" }
+              },
+              "Column_Options": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "U1C1", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U1C2", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U1C3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 1 Slider<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "SliderBar",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Right_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "U2 Right" }
+              },
+              "Left_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "U1 Left" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": true, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-381" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "ValueBounds": {
+                "Property_Class": "mil.arl.gift.common.survey.SliderRange",
+                "Property_Value": { "MAX_VALUE": 100.0, "MIN_VALUE": 0.0 }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 1 Essay<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "FillInTheBlank",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Is_Answer_Field_Text_Box": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-385" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 1 TF<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "MultipleChoice",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Reply_Feedback": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Reply_Option_Set": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "True", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "False", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "True/False"
+                }
+              },
+              "Randomize": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-406" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Use_Existing_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 1 Rating<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "RatingScale",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Display_Scale_Labels": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Reply_Feedback": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Scale_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Use_Bar_Layout": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Reply_Option_Set": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "U1O1", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U1O2", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U1O3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Right_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Left_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Mid_Point_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Randomize": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Hide_Reply_Option_Labels": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0,0,0" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Scale_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-411" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Use_Existing_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        }
+      ],
+      "Properties": {}
+    },
+    {
+      "Survey_Page_Id": 0,
+      "Survey_Page_Survey_Id": 0,
+      "Survey_Page_Name": "Unique Page 2",
+      "Elements": [
+        {
+          "Type": "TextElement",
+          "Survey_Page_Id": 0,
+          "ID": 0,
+          "Properties": {
+            "Question_Image_Width": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "100" }
+            },
+            "Question_Image_Position": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "0" }
+            },
+            "Display_Question_Image": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "false" }
+            },
+            "Text": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": {
+                "StringPayload": "<p>Unique 2 Informative Text<br></p>"
+              }
+            },
+            "Question_Widget_ID": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "gwt-uid-544" }
+            }
+          }
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 2 Free Response<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "FillInTheBlank",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Response_Field_Types": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Free Text,Free Text" }
+              },
+              "Response_Field_Labels": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "U2F1|U2F2" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.FreeResponseReplyWeights",
+                "Property_Value": { "REPLY_WEIGHTS": [[[]], [[]]] }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Response_Fields_Per_Line": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "2" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Is_Answer_Field_Text_Box": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "true" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-549" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 2 Multiple Choice<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "MultipleChoice",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Reply_Feedback": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Reply_Option_Set": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    {
+                      "Option_List_Id": 0,
+                      "Text": "U2 Choice 1",
+                      "Id": 0
+                    },
+                    {
+                      "Option_List_Id": 0,
+                      "Text": "U2 Choice 2",
+                      "Id": 0
+                    },
+                    { "Option_List_Id": 0, "Text": "U2 Choice 3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Minimum_Selections_Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Randomize": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0,0,0" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Multi_Select_Enabled": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-573" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Maximum_Selections_Allowed": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Use_Existing_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 2 Matrix<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "MatrixOfChoices",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Use_Existing_Row_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Row_Options": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "U2R1", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U2R2", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U2R3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Use_Existing_Column_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.MatrixOfChoicesReplyWeights",
+                "Property_Value": {
+                  "REPLY_WEIGHTS": [
+                    [0.0, 0.0, 0.0],
+                    [0.0, 0.0, 0.0],
+                    [0.0, 0.0, 0.0]
+                  ]
+                }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-579" }
+              },
+              "Column_Options": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "U2C1", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U2C2", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U2C3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 2 Slider<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "SliderBar",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Right_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "U2 Right" }
+              },
+              "Left_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "U2 Left" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": true, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-582" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "ValueBounds": {
+                "Property_Class": "mil.arl.gift.common.survey.SliderRange",
+                "Property_Value": { "MAX_VALUE": 100.0, "MIN_VALUE": 0.0 }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 2 Essay<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "FillInTheBlank",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Is_Answer_Field_Text_Box": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-586" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 2 TF<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "MultipleChoice",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Reply_Feedback": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Reply_Option_Set": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "True", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "False", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "True/False"
+                }
+              },
+              "Randomize": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-607" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Use_Existing_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 2 Rating<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "RatingScale",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Display_Scale_Labels": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Reply_Feedback": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Scale_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Use_Bar_Layout": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Reply_Option_Set": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "U2O1", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U2O2", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U2O3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Right_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Left_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Mid_Point_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Randomize": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Hide_Reply_Option_Labels": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0,0,0" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Scale_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-618" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Use_Existing_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        }
+      ],
+      "Properties": {}
+    },
+    {
+      "Survey_Page_Id": 0,
+      "Survey_Page_Survey_Id": 0,
+      "Survey_Page_Name": "Unique Page 3",
+      "Elements": [
+        {
+          "Type": "TextElement",
+          "Survey_Page_Id": 0,
+          "ID": 0,
+          "Properties": {
+            "Question_Image_Width": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "100" }
+            },
+            "Question_Image_Position": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "0" }
+            },
+            "Display_Question_Image": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "false" }
+            },
+            "Text": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": {
+                "StringPayload": "<p>Unique 3 Informative Text<br></p>"
+              }
+            },
+            "Question_Widget_ID": {
+              "Property_Class": "java.lang.String",
+              "Property_Value": { "StringPayload": "gwt-uid-623" }
+            }
+          }
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 3 Free Response<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "FillInTheBlank",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Response_Field_Types": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Free Text,Free Text" }
+              },
+              "Response_Field_Labels": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "U3F1|" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.FreeResponseReplyWeights",
+                "Property_Value": { "REPLY_WEIGHTS": [[[]], [[]]] }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Response_Fields_Per_Line": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "2" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Is_Answer_Field_Text_Box": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "true" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-628" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 3 Multiple Choice<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "MultipleChoice",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Reply_Feedback": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Reply_Option_Set": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    {
+                      "Option_List_Id": 0,
+                      "Text": "U3 Choice 1",
+                      "Id": 0
+                    },
+                    {
+                      "Option_List_Id": 0,
+                      "Text": "U3 Choice 2",
+                      "Id": 0
+                    },
+                    { "Option_List_Id": 0, "Text": "U3 Choice 3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Minimum_Selections_Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Randomize": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0,0,0" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Multi_Select_Enabled": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-652" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Maximum_Selections_Allowed": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Use_Existing_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 3 Matrix<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "MatrixOfChoices",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Use_Existing_Row_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Row_Options": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "U3R1", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U3R2", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U3R3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Use_Existing_Column_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.MatrixOfChoicesReplyWeights",
+                "Property_Value": {
+                  "REPLY_WEIGHTS": [
+                    [0.0, 0.0, 0.0],
+                    [0.0, 0.0, 0.0],
+                    [0.0, 0.0, 0.0]
+                  ]
+                }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-658" }
+              },
+              "Column_Options": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "U3C1", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U3C2", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U3C3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 3 Slider<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "SliderBar",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Right_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "U3 Right" }
+              },
+              "Left_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "U3 Left" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": true, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-661" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "ValueBounds": {
+                "Property_Class": "mil.arl.gift.common.survey.SliderRange",
+                "Property_Value": { "MAX_VALUE": 100.0, "MIN_VALUE": 0.0 }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 3 Essay<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "FillInTheBlank",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Is_Answer_Field_Text_Box": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-665" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 3 TF<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "MultipleChoice",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Reply_Feedback": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Reply_Option_Set": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "True", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "False", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "True/False"
+                }
+              },
+              "Randomize": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-686" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Use_Existing_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        },
+        {
+          "Type": "QuestionElement",
+          "Survey_Page_Id": 0,
+          "Question": {
+            "Question_Text": "<p>Unique 3 Rating<br></p>",
+            "VisibleToUserNames": ["tflowers"],
+            "EditableToUserNames": ["tflowers"],
+            "Type": "RatingScale",
+            "Categories": [],
+            "Id": 0,
+            "Properties": {
+              "Display_Scale_Labels": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Reply_Feedback": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Scale_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Image_Position": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Use_Bar_Layout": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Reply_Option_Set": {
+                "Property_Class": "mil.arl.gift.common.survey.OptionList",
+                "Property_Value": {
+                  "VisibleToUserNames": ["tflowers"],
+                  "EditableToUserNames": ["tflowers"],
+                  "List_Options": [
+                    { "Option_List_Id": 0, "Text": "U3O1", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U3O2", "Id": 0 },
+                    { "Option_List_Id": 0, "Text": "U3O3", "Id": 0 }
+                  ],
+                  "Id": 0,
+                  "isShared": false,
+                  "Name": "Custom Answer Set"
+                }
+              },
+              "Right_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Left_Extreme_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Mid_Point_Label": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Randomize": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Hide_Reply_Option_Labels": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Question_Difficulty": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "Easy" }
+              },
+              "Answer_Weights": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0,0,0" }
+              },
+              "Question_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "100" }
+              },
+              "Scale_Image_Width": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "0" }
+              },
+              "Required": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Scorers": {
+                "Property_Class":
+                  "mil.arl.gift.common.survey.score.QuestionScorer",
+                "Property_Value": { "Total": false, "Attribute_Scorers": [] }
+              },
+              "Help_String": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Display_Question_Image": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              },
+              "Tag": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Question_Widget_ID": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "gwt-uid-691" }
+              },
+              "Associated_Concepts": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "" }
+              },
+              "Use_Existing_Answer_Set": {
+                "Property_Class": "java.lang.String",
+                "Property_Value": { "StringPayload": "false" }
+              }
+            }
+          },
+          "ID": 0,
+          "Properties": {}
+        }
+      ],
+      "Properties": {}
+    }
+  ],
+  "Id": 0,
+  "Properties": {
+    "Survey_Go_Back_Enabled": {
+      "Property_Class": "java.lang.String",
+      "Property_Value": { "StringPayload": "true" }
+    },
+    "Survey_Type": {
+      "Property_Class": "java.lang.String",
+      "Property_Value": { "StringPayload": "COLLECTINFO_SCORED" }
+    },
+    "Scorers": {
+      "Property_Class": "mil.arl.gift.common.survey.score.SurveyScorer",
+      "Property_Value": {
+        "Total_Scorer": {
+          "Attribute_Properties": [
+            {
+              "Type": "Knowledge",
+              "Return_Conditions": [
+                {
+                  "Value": 87.0,
+                  "Sign": "GreaterThanEquals",
+                  "Return_Value": "Expert",
+                  "Return_Value_Class":
+                    "mil.arl.gift.common.enums.ExpertiseLevelEnum"
+                },
+                {
+                  "Value": 66.0,
+                  "Sign": "GreaterThanEquals",
+                  "Return_Value": "Journeyman",
+                  "Return_Value_Class":
+                    "mil.arl.gift.common.enums.ExpertiseLevelEnum"
+                },
+                {
+                  "Value": 0.0,
+                  "Sign": "GreaterThanEquals",
+                  "Return_Value": "Novice",
+                  "Return_Value_Class":
+                    "mil.arl.gift.common.enums.ExpertiseLevelEnum"
+                }
+              ]
+            }
+          ]
+        },
+        "Attribute_Scorers": []
+      }
+    },
+    "Hide_Survey_Question_Numbers": {
+      "Property_Class": "java.lang.String",
+      "Property_Value": { "StringPayload": "false" }
+    },
+    "Survey_Next_Page_Button_Label": {
+      "Property_Class": "java.lang.String",
+      "Property_Value": { "StringPayload": "" }
+    },
+    "Hide_Survey_Name": {
+      "Property_Class": "java.lang.String",
+      "Property_Value": { "StringPayload": "false" }
+    },
+    "Survey_Complete_Survey_Button_Label": {
+      "Property_Class": "java.lang.String",
+      "Property_Value": { "StringPayload": "" }
+    }
+  },
+  "Name": "Unique Survey"
+}

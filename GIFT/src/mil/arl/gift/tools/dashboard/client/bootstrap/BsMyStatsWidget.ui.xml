@@ -1,0 +1,102 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+             xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+             xmlns:w='urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap'
+             xmlns:c='urn:import:mil.arl.gift.common.gwt.client.widgets'>
+	<ui:style>
+        .mainContainer{
+			padding: 0px;
+		}
+		.padSides{
+			padding: 0px 20px;
+		}
+		.searchBox{
+			float: right;
+		}
+		.searchBox::-ms-clear {
+			display: none;
+			width : 0;
+  			height: 0;
+		}
+		.noSearchText{
+			text-align: center;
+		}
+	</ui:style>
+    <!-- This UI Binder uses gwtbootstrap3.  For more information on GwtBootstrap3 see:  https://github.com/gwtbootstrap3/gwtbootstrap3
+         The UI Binder should drive the 'layout' of the widget and typically will be wrapped in a 'container' object.   
+         
+         It is best practice to not specify 'pixels', direct width, height, etc, but rather allow the bootstrap framework "Grid" system and widgets to manage
+         resizing and laying themselves out.  This makes it flexible to support other devices such as mobile.  Also it is best practice
+         to keep the 'layout' logic in these UI Binder files rather than in the widget java class.  The widget java class should drive the 
+         logic for the widget (but not the layout). It is also best practice to not mix old gwt widgets and bootstrap widgets together as the older widgets don't necessarily handle
+         resizing, etc well in the bootstrap framework.
+    -->
+    
+    <b:Container fluid="true" addStyleNames="{style.mainContainer}"> 
+    
+        <b:Navbar ui:field="ctrlCourseSubHeader" addStyleNames="subHeader">
+            
+                <b:NavbarHeader>
+                    <b:NavbarBrand>My Stats</b:NavbarBrand>
+                    <b:NavbarCollapseButton dataTarget="#navbar-collapse-subheader"/>
+                </b:NavbarHeader>
+
+                <b:NavbarCollapse b:id="navbar-collapse-subheader">
+                    
+                    <b:NavbarForm pull="RIGHT">
+                       <!-- $TODO$ nblomberg 
+                             Sample of buttons that can be in the subheader.
+                             Hide the button for now.  In the future we may have sub options such as graphs, reports, etc.
+                        <b:Button type="DEFAULT" text="Print Report" enabled="false"/>
+                        -->         
+                        <b:TextBox width='200px' addStyleNames='{style.searchBox}' placeholder='Search...' ui:field='searchBox'/>
+                    </b:NavbarForm>
+
+                </b:NavbarCollapse>
+        </b:Navbar>
+        
+        <g:FlowPanel addStyleNames="subHeaderContents ctrlCourseHistoryContainer giftBackgroundColor" ui:field="mainPanel">
+            <!-- This element is hidden dynamically, but can be displayed if the user has no courses -->
+            <b:Heading size="H4" addStyleNames="giftBackgroundText" text="" ui:field="ctrlNoHistoryMessage"/>
+            
+            <b.html:Paragraph ui:field="ctrlLoadPanel" alignment="CENTER">
+                <b:Heading size="H2" addStyleNames="giftBackgroundText" text="Retrieving the course history.  Please wait."/>
+                <w:BsLoadingIcon type="SPINNER" size="TIMES5" ui:field="ctrlLoadIcon"/>
+            </b.html:Paragraph>
+            
+            <b:Container fluid="true" addStyleNames="statsBox giftBackgroundColor giftBackgroundText" ui:field="ctrlCourseHistoryContainer">
+              
+               	<c:DynamicHeaderScrollPanel width='100%' height='100%'>
+               	
+               		<c:north>
+               			<g:FlowPanel>	
+                			<b.html:Paragraph alignment="CENTER">
+                             	<w:BsLoadingIcon type="SPINNER" size="LARGE" ui:field="ctrlLoadMoreIcon"/>
+                         	</b.html:Paragraph>
+                        </g:FlowPanel>   
+               		</c:north>
+               		 
+               		<c:center>
+               			<g:ScrollPanel width='100%' height='100%'>
+               				<g:FlowPanel addStyleNames='courseFilterListSize {style.padSides}'>
+               				
+	                    		<g:FlowPanel ui:field="courseFilterList"/>
+	                    		
+	                    		<b:Heading size="H4" addStyleNames="giftBackgroundText {style.noSearchText}" visible='false' ui:field='noSearchText' text="
+	                    			No courses were found containing the given search text
+	                    		"/>
+	                    		
+                    		</g:FlowPanel>
+                    	</g:ScrollPanel>
+                    </c:center>
+                   
+               	</c:DynamicHeaderScrollPanel>
+               
+            </b:Container>
+        </g:FlowPanel>
+        
+        
+    </b:Container>
+</ui:UiBinder> 

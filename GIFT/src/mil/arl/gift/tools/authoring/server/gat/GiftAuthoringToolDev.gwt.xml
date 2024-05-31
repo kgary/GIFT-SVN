@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module rename-to='gat'>
+
+	<inherits name="mil.arl.gift.tools.authoring.server.gat.GiftAuthoringTool" />
+
+	<!-- ref: http://bear-z.com/gwt/patching-google-web-toolkit-for-compiling-chrome-permutation/ -->
+	<!-- Note: safari == chrome -->
+	<set-property name="user.agent" value="safari" />
+
+</module>

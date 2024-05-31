@@ -1,0 +1,6 @@
+{
+    "remoteServerURL" :"https://vht.gifttutoringclouddev.org/tutor/vhuman",
+    "localServerURL" : "http://localhost:8090/tutor/vhuman",
+    "runLocal": false,
+    "useASPServer" : false
+}

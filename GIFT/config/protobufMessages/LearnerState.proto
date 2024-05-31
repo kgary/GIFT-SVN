@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LearnerStateProto";
+
+import "AbstractLearnerState.proto";
+import "PerformanceState.proto";
+
+/* This message contains the base information of a learner state. */
+message LearnerState {
+	/* The performance state. */
+	PerformanceState performance_state = 1;
+	
+	/* The cognitive state. */
+	CognitiveState cognitive_state = 2;
+	
+	/* The affective state. */
+	AffectiveState affective_state = 3;
+}

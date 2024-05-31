@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Navigate to the appropriate working directory if this script was invoked by another script
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$parent_path"
+
+# Launch GIFT's normal ActiveMQ message bus
+"./launchActiveMQ" &
+
+# Wait for ActiveMQ to start and establish its connection
+sleep 10
+
+# Launch GIFT's modules as separate processes
+"./launchProcess" start ums &
+"./launchProcess" start lms &
+"./launchProcess" start domain &
+"./launchProcess" start learner &
+"./launchProcess" start ped &
+"./launchProcess" start sensor &
+"./launchProcess" start gateway &
+"./launchProcess" start tutor &
+
+# Launch the GIFT Dashboard
+"../tools/launchGAS" &

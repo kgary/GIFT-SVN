@@ -1,0 +1,36 @@
+<!--
+	Uncomment the configurations below to have GIFT use Keycloak authentication to protect its webpages 
+	using Keycloak's user role management.
+	
+	If Keycloak is enabled, it will supercede GIFT's default authentication to the GIFT Portal and any local
+	accounts that have been specified, basically making it the primary authenticator.
+	
+	Additionally, enabling Keycloak will bypass GIFT's normal login page and use the login page provided by the 
+	Keycloak server in its place. 
+	
+	This configuration does nothing on its own but is inherited by the Jetty web application XML files that are 
+	used to configure all of GIFT's servers. This allows the Keycloak settings to be specified in one file rather
+	than repeated for each server.
+	
+	The settings bellow add a new security handler to GIFT's web applications to use the KeycloakJettyAuthenticator.
+	Within this authenticator, GIFT specifies the realm, client, and authentication URL that's needed to perform
+	a request to the appropriate authenticator within Keycloak. It also disables SSL to allow Keycloak to be used with
+	localhost over an HTTP connection and uses the preferred username of a user to identify them.
+-->
+<!--
+<Get name="securityHandler">
+    <Set name="authenticator">
+        <New class="org.keycloak.adapters.jetty.KeycloakJettyAuthenticator">
+        <Set name="adapterConfig">
+            <New class="org.keycloak.representations.adapters.config.AdapterConfig">
+                <Set name="realm">STEELRCloud</Set>
+                <Set name="resource">gift</Set>
+                <Set name="authServerUrl">http://localhost:7080/auth/</Set>
+                <Set name="sslRequired">none</Set>
+                <Set name="principalAttribute">preferred_username</Set>
+            </New>
+        </Set>
+        </New>
+    </Set>
+</Get>
+-->

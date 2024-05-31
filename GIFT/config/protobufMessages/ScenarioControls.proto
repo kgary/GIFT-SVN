@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ScenarioControlsProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information for scenario controls. */
+message ScenarioControls {
+	/* The value indicating whether the manual stop should be prevented. */
+	google.protobuf.BoolValue prevent_manual_stop = 1;
+}

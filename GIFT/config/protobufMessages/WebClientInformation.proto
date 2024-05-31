@@ -1,0 +1,22 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "WebClientInformationProto";
+
+import "MobileAppProperties.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about a GIFT web-based client (e.g. TUI browser). */
+message WebClientInformation {
+	/* The address of the tutor client (e.g. IPv4 address). */
+	google.protobuf.StringValue client_address = 1;
+	
+	/* Properties of the mobile device, if launched on one. */
+	MobileAppProperties mobile_app_properties = 2;
+}

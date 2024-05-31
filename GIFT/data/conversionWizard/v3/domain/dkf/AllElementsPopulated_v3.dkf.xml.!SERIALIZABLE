@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Domain Knowledge File (DKF) Authoring Tool (DAT).
+	It contains information on how to assess a lesson (e.g. training application instance/scenario) in a GIFT course.
+-->
+<Scenario name="name string" version="3.0.1" xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <description>description string</description>
+    <learnerId>
+        <startLocation>
+            <coordinate>
+                <ns2:GCC>
+                    <ns2:x>1</ns2:x>
+                    <ns2:y>2</ns2:y>
+                    <ns2:z>3</ns2:z>
+                </ns2:GCC>
+            </coordinate>
+        </startLocation>
+    </learnerId>
+    <resources>
+        <ns2:surveyContext>4</ns2:surveyContext>
+        <AvailableLearnerActions>
+            <ns3:LearnerActionsList>
+                <ns3:learnerAction>
+                    <ns3:type>Explosive Hazard Spot Report</ns3:type>
+                    <ns3:displayName>display name string</ns3:displayName>
+                </ns3:learnerAction>
+                <ns3:learnerAction>
+                    <ns3:type>Nine Line Report</ns3:type>
+                    <ns3:displayName>display name string</ns3:displayName>
+                </ns3:learnerAction>
+                <ns3:learnerAction>
+                    <ns3:type>Spot Report</ns3:type>
+                    <ns3:displayName>display name string</ns3:displayName>
+                </ns3:learnerAction>
+                <ns3:learnerAction>
+                    <ns3:type>Radio</ns3:type>
+                    <ns3:displayName>display name string</ns3:displayName>
+                </ns3:learnerAction>
+            </ns3:LearnerActionsList>
+        </AvailableLearnerActions>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="name string" nodeId="1">
+                <startTriggers>
+                    <entityLocation>
+                        <startLocation>
+                            <coordinate>
+                                <ns2:GCC>
+                                    <ns2:x>3</ns2:x>
+                                    <ns2:y>2</ns2:y>
+                                    <ns2:z>1</ns2:z>
+                                </ns2:GCC>
+                            </coordinate>
+                        </startLocation>
+                        <triggerLocation>
+                            <coordinate>
+                                <ns2:GCC>
+                                    <ns2:x>1</ns2:x>
+                                    <ns2:y>2</ns2:y>
+                                    <ns2:z>3</ns2:z>
+                                </ns2:GCC>
+                            </coordinate>
+                        </triggerLocation>
+                    </entityLocation>
+                    <learnerLocation>
+                        <coordinate>
+                            <ns2:GCC>
+                                <ns2:x>1</ns2:x>
+                                <ns2:y>2</ns2:y>
+                                <ns2:z>3</ns2:z>
+                            </ns2:GCC>
+                        </coordinate>
+                    </learnerLocation>
+                    <conceptEnded nodeId="2"/>
+                </startTriggers>
+                <endTriggers>
+                    <entityLocation>
+                        <startLocation>
+                            <coordinate>
+                                <ns2:GDC>
+                                    <ns2:latitude>100</ns2:latitude>
+                                    <ns2:longitude>200</ns2:longitude>
+                                    <ns2:elevation>300</ns2:elevation>
+                                </ns2:GDC>
+                            </coordinate>
+                        </startLocation>
+                        <triggerLocation>
+                            <coordinate>
+                                <ns2:GCC>
+                                    <ns2:x>1</ns2:x>
+                                    <ns2:y>2</ns2:y>
+                                    <ns2:z>3</ns2:z>
+                                </ns2:GCC>
+                            </coordinate>
+                        </triggerLocation>
+                    </entityLocation>
+                    <learnerLocation>
+                        <coordinate>
+                            <ns2:GDC>
+                                <ns2:latitude>3</ns2:latitude>
+                                <ns2:longitude>2</ns2:longitude>
+                                <ns2:elevation>1</ns2:elevation>
+                            </ns2:GDC>
+                        </coordinate>
+                    </learnerLocation>
+                    <conceptEnded nodeId="2"/>
+                </endTriggers>
+                <concepts>
+                    <concept name="name string" nodeId="2">
+                        <concepts>
+                            <concept name="name string" nodeId="3">
+                                <conditions>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+                                        <input>
+                                            <ApplicationCompletedCondition/>
+                                        </input>
+                                        <scoring>
+                                            <count name="name string 1" units="count">
+                                                <evaluators>
+                                                    <evaluator assessment="BelowExpectation" operator="LessThan" value="1"/>
+                                                </evaluators>
+                                            </count>
+                                            <completion_time name="name string 3" units="count">
+                                                <evaluators>
+                                                    <evaluator assessment="BelowExpectation" operator="LessThan" value="1"/>
+                                                </evaluators>
+                                            </completion_time>
+                                            <violation_time name="name string 4" units="hh:mm:ss">
+                                                <evaluators>
+                                                    <evaluator assessment="BelowExpectation" operator="LessThan" value="00:00:01"/>
+                                                </evaluators>
+                                            </violation_time>
+                                        </scoring>
+                                        <default assessment="BelowExpectation"/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+                                        <input>
+                                            <AvoidLocationCondition>
+                                                <waypointRef distance="2.0" value="waypoint"/>
+                                            </AvoidLocationCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.CheckpointProgressCondition</conditionImpl>
+                                        <input>
+                                            <CheckpointProgressCondition>
+                                                <checkpoint atTime="00:00:10" waypoint="waypoint" windowOfTime="10"/>
+                                            </CheckpointProgressCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.CheckpointPaceCondition</conditionImpl>
+                                        <input>
+                                            <CheckpointPaceCondition>
+                                                <checkpoint atTime="00:00:10" waypoint="waypoint" windowOfTime="10"/>
+                                            </CheckpointPaceCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.CorridorBoundaryCondition</conditionImpl>
+                                        <input>
+                                            <CorridorBoundaryCondition>
+                                                <bufferWidthPercent>10</bufferWidthPercent>
+                                                <path>
+                                                    <segment name="name string">
+                                                        <width>10</width>
+                                                        <bufferWidthPercent>10</bufferWidthPercent>
+                                                        <start waypoint="waypoint"/>
+                                                        <end waypoint="waypoint"/>
+                                                    </segment>
+                                                </path>
+                                            </CorridorBoundaryCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.CorridorPostureCondition</conditionImpl>
+                                        <input>
+                                            <CorridorPostureCondition>
+                                                <postures>
+                                                    <posture>Standing</posture>
+                                                </postures>
+                                                <path>
+                                                    <segment name="name string">
+                                                        <width>10</width>
+                                                        <bufferWidthPercent>20</bufferWidthPercent>
+                                                        <start waypoint="waypoint"/>
+                                                        <end waypoint="waypoint"/>
+                                                    </segment>
+                                                </path>
+                                            </CorridorPostureCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.EliminateHostilesCondition</conditionImpl>
+                                        <input>
+                                            <EliminateHostilesCondition>
+                                                <entities>
+                                                    <startLocation>
+                                                        <coordinate>
+                                                            <ns2:GCC>
+                                                                <ns2:x>3</ns2:x>
+                                                                <ns2:y>2</ns2:y>
+                                                                <ns2:z>1</ns2:z>
+                                                            </ns2:GCC>
+                                                        </coordinate>
+                                                    </startLocation>
+                                                </entities>
+                                            </EliminateHostilesCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.EnterAreaCondition</conditionImpl>
+                                        <input>
+                                            <EnterAreaCondition>
+                                                <entrance assessment="BelowExpectation" name="name string">
+                                                    <outside proximity="10" waypoint="waypoint"/>
+                                                    <inside proximity="10" waypoint="waypoint"/>
+                                                </entrance>
+                                            </EnterAreaCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.ExplosiveHazardSpotReportCondition</conditionImpl>
+                                        <input>
+                                            <ExplosiveHazardSpotReportCondition/>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.IdentifyPOIsCondition</conditionImpl>
+                                        <input>
+                                            <IdentifyPOIsCondition>
+                                                <pois>
+                                                    <waypointRef distance="6" value="waypoint"/>
+                                                </pois>
+                                            </IdentifyPOIsCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.LifeformTargetAccuracyCondition</conditionImpl>
+                                        <input>
+                                            <LifeformTargetAccuracyCondition>
+                                                <entities>
+                                                    <startLocation>
+                                                        <coordinate>
+                                                            <ns2:GCC>
+                                                                <ns2:x>1</ns2:x>
+                                                                <ns2:y>2</ns2:y>
+                                                                <ns2:z>3</ns2:z>
+                                                            </ns2:GCC>
+                                                        </coordinate>
+                                                    </startLocation>
+                                                </entities>
+                                            </LifeformTargetAccuracyCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.NineLineReportCondition</conditionImpl>
+                                        <input>
+                                            <NineLineReportCondition/>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.PowerPointUnderDwellCondition</conditionImpl>
+                                        <input>
+                                            <PowerPointDwellCondition>
+                                                <default>
+                                                    <timeInSeconds>5.0</timeInSeconds>
+                                                </default>
+                                                <slides>
+                                                    <slide index="10">
+                                                        <timeInSeconds>1.0</timeInSeconds>
+                                                    </slide>
+                                                </slides>
+                                            </PowerPointDwellCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.PowerPointOverDwellCondition</conditionImpl>
+                                        <input>
+                                            <PowerPointDwellCondition>
+                                                <default>
+                                                    <timeInSeconds>10.0</timeInSeconds>
+                                                </default>
+                                                <slides>
+                                                    <slide index="2">
+                                                        <timeInSeconds>20.0</timeInSeconds>
+                                                    </slide>
+                                                </slides>
+                                            </PowerPointDwellCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.RulesOfEngagementCondition</conditionImpl>
+                                        <input>
+                                            <RulesOfEngagementCondition>
+                                                <wcs value="Hold"/>
+                                            </RulesOfEngagementCondition>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.SpotReportCondition</conditionImpl>
+                                        <input>
+                                            <SpotReportCondition/>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                    <condition>
+                                        <conditionImpl>domain.knowledge.condition.UseRadioCondition</conditionImpl>
+                                        <input>
+                                            <UseRadioCondition/>
+                                        </input>
+                                        <scoring/>
+                                    </condition>
+                                </conditions>
+                                <assessments>
+                                    <survey>
+                                        <ns2:GIFTSurveyKey>MidLesson</ns2:GIFTSurveyKey>
+                                        <questions>
+                                            <question key="35">
+                                                <reply key="16" result="BelowExpectation"/>
+                                            </question>
+                                        </questions>
+                                    </survey>
+                                </assessments>
+                            </concept>
+                        </concepts>
+                        <assessments>
+                            <survey>
+                                <ns2:GIFTSurveyKey>MidLesson</ns2:GIFTSurveyKey>
+                                <questions>
+                                    <question key="35">
+                                        <reply key="16" result="BelowExpectation"/>
+                                    </question>
+                                </questions>
+                            </survey>
+                        </assessments>
+                    </concept>
+                </concepts>
+                <assessments>
+                    <survey>
+                        <ns2:GIFTSurveyKey>MidLesson</ns2:GIFTSurveyKey>
+                        <questions>
+                            <question key="35">
+                                <reply key="17" result="BelowExpectation"/>
+                            </question>
+                        </questions>
+                    </survey>
+                </assessments>
+            </task>
+        </tasks>
+        <objects>
+            <waypoints>
+                <waypoint name="waypoint">
+                    <coordinate>
+                        <ns2:VBS2_AGL>
+                            <ns2:x>100</ns2:x>
+                            <ns2:y>200</ns2:y>
+                            <ns2:z>300</ns2:z>
+                        </ns2:VBS2_AGL>
+                    </coordinate>
+                </waypoint>
+            </waypoints>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition>
+                <LogicalExpression>
+                    <ns4:LearnerStateTransitionEnum attribute="Arousal">
+                        <ns4:previous>Unknown</ns4:previous>
+                        <ns4:current>Low</ns4:current>
+                    </ns4:LearnerStateTransitionEnum>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="name string 1"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition>
+                <LogicalExpression>
+                    <performanceNode name="name string" nodeId="1">
+                        <previous>BelowExpectation</previous>
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="name string 2"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="name string 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>feedback message</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="name string 2">
+                <performanceAssessment nodeId="3">
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                </performanceAssessment>
+            </strategy>
+            <strategy name="name string 3">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:pair type="typestring" value="valuestring"/>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+</Scenario>

@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "StrategyToApplyProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message describes a strategy that should be applied within a domain session. */
+message StrategyToApply {
+	/* The reason the strategy is being applied. */
+	google.protobuf.StringValue trigger = 1;
+	
+	/* The strategy to apply. */
+	google.protobuf.StringValue strategy = 2;
+	
+	/* The username of the person making the request. */
+	google.protobuf.StringValue evaluator = 3;
+	
+	/* optional collection of DKF XML node (Task/concept) ids that caused this strategy to be requested (added Feb 2022) */
+	repeated int32 taskConceptIds = 7;
+}

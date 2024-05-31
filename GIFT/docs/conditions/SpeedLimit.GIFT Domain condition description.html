@@ -1,0 +1,72 @@
+﻿
+<head>
+<style type="text/css">
+.auto-style1 {
+	margin-left: 80px;
+}
+.auto-style3 {
+	text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+<p><strong>Speed Limit Condition</strong></p>
+<p>This condition checks whether the object/player controlled by the learner is 
+violating a speed limit.&nbsp; The 
+condition must be configured with a speed limit (mph).&nbsp; </p>
+<p>YOU MUST ASSIGN AN ENTITY TO THE LEARNER IN THIS DKF FOR THIS CONDITION TO 
+WORK.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<p>&nbsp;&nbsp;&nbsp; Default:&nbsp;</p>
+<ul class="auto-style1">
+	<li style="color: #008000">Above Expectation</li>
+	<li><span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: the speed is below the speed limit (one At Expectation assessment will occur for 
+		each change in state from violating to not violating the condition)</li>
+		<li>case: the default, starting value for this condition</li>
+	</ul>
+	</li>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the current speed is greater than the speed limit (one Below Expectation assessment will occur for 
+		each change in state from not violating to violating the condition)</li>
+	</ul>
+	</li>
+	<li>Unknown</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp; Customize:</p>
+<ul class="auto-style1">
+	<li>
+	<span class="auto-style3">count</span> : an 
+	evaluation event happens each time the learner is above the speed limit.&nbsp;
+	</li>
+	<li>
+	<span class="auto-style3">time</span>
+	: amount of time the learner is violating the speed limit.</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of violations (going from At to Below Expecation)</li>
+	<li>sums the duration of time in Below Expectation</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition never completes</li>
+	<li>YOU MUST ASSIGN AN ENTITY TO THE LEARNER IN THIS DKF FOR THIS CONDITION 
+	TO WORK.</li>
+	<li>for each change in violation of the condition only a single assessment 
+	is sent (see Assessment Evaluations above)</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can cause GIFT Entity state messages to be created</li>
+	<li>GIFT Mobile app</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+	<li>GIFT Geolocation</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.SpeedLimitCondition</p>
+</body>

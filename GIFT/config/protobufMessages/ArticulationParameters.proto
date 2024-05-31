@@ -1,0 +1,17 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ArticulationParametersProto";
+
+import "ArticulationParameter.proto";
+
+/* This message represents a list of articulation parameters. */
+message ArticulationParameters {
+	repeated ArticulationParameter articulation_parameters = 1;
+}

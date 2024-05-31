@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:tw="urn:import:mil.arl.gift.tutor.client.coursewidgets">
+	<ui:style>
+	</ui:style>
+	<g:FlowPanel height="100%" width="100%">
+	    <g:DeckPanel ui:field="deckPanel" height="100%">
+	    	<tw:ContentWidget ui:field="contentWidget"/>
+	    	<tw:SlideShowWidget ui:field="slideShowWidget"/>
+	    </g:DeckPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

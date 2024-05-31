@@ -1,0 +1,360 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:s="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.survey"
+	xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util"
+	xmlns:d="urn:import:mil.arl.gift.common.gwt.client.widgets"
+	xmlns:bd="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:dw="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.dialog"
+	xmlns:ta="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.ta">
+	<ui:style type="mil.arl.gift.tools.authoring.server.gat.client.view.course.survey.PresentSurveyViewImpl.UiStyle">
+	.pad {
+		padding: 15px;
+	}
+	
+	.padSides {
+		padding: 0px 5px;
+	}
+	
+	.padTop {
+		margin-top: 5px;
+	}
+	
+	.padBottom {
+		margin-bottom: 10px;
+	}
+	
+	.smallPadBottom {
+		margin-bottom: 5px;
+	}
+	
+	.tabbed {
+		margin-left: 30px;
+	}
+	
+	.rightTabbed {
+		padding-right: 30px;
+	}
+	
+	.doubleTabbed {
+		margin-left: 60px;
+	}
+	
+	.rightDoubleTabbed {
+		padding-left: 60px;
+	}
+	
+	.grayBorder {
+		border-style: solid;
+		border-Width: 1px;
+		border-color: rgb(150, 150, 150);
+	}
+	
+	.smallPadTop {
+		margin-top: 5px;
+	}
+	
+	.smallPadLeft {
+		margin-left: 5px;
+	}
+	
+	.smallPadRight {
+		margin-right: 5px;
+	}
+	
+	.inline {
+		display: inline;
+	}
+	
+	.smallPad {
+		margin: 5px;
+	}
+	
+	.disclosurePanelInner {
+		margin-right: 5px
+	}
+	
+	.cellTableBorder {
+		border-style: solid;
+		border-Width: 1px;
+		border-color: rgb(185, 185, 185);
+		border-radius: 3px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+		background-color: rgb(250, 250, 250);
+	}
+	
+	.requiredFieldLabelContainer {
+		text-align: right;
+	}
+	
+	.selectButton {
+		border-style: dashed;
+		border-radius: 6px;
+		padding: 6px 30px;
+		border-color: rgb(138, 153, 169);
+		color: #3E4F63;
+	}
+	
+	.editLabel {
+		color: #4378B1;
+		cursor: pointer;
+		text-decoration: underline;
+		font-size: 14px;
+	}
+	
+	.pointer {
+		cursor: pointer;
+	}
+	
+	.bold {
+		font-weight: bold;
+	}	
+	.cellTableScroller{
+			min-height: 50px;
+			max-height: 400px;
+	}
+	.surveyChoiceInner{
+		color: black;
+		background-color: white;
+		border: 1px solid rgb(200, 200, 200);
+		border-radius: 3px;
+		margin: 5px 0px 10px;
+		padding: 7px;
+		font-weight: bold;
+	}
+	.cellTableInset {
+			box-sizing: content-box;
+			border-collapse: separate;
+			width: 100%;
+	}
+	.container{
+		padding: 10px;
+	}
+	.largePadBottom {
+		margin-bottom: 15px;
+	}
+    
+    .optionsTableMandatoryInvisible .mandatoryControlsRow {
+	    display: none;
+    }
+	
+	.mandatoryControlsRow {
+	    
+    }
+	
+	.mandatoryBehaviorComboBox {
+	    vertical-align: middle;
+    }
+	
+	.learnerStateShelfLifeSpinner {
+	    width: 50px;
+	    margin-left:4px;
+	    margin-right: 4px;
+	    vertical-align: middle;
+    }
+    
+	.learnerStateShelfLifeContainer {
+	    display: inline;
+    }
+    
+    .helpLink{
+        padding-left: 5px;          
+        color: rgb(100,100,200);
+        font-weight: normal;
+    }
+    
+    .warningPanel{
+        padding: 7px;
+        margin: 10px;
+        border: 1px solid rgb(150, 150, 150);
+        border-radius: 5px;
+        background: repeating-linear-gradient(
+          45deg,
+          rgb(50,50,50),
+          rgb(50,50,50) 5px,
+          rgb(255,255,150) 5px,
+          rgb(255,255,150) 10px
+        );
+    }
+    .warningInner{
+        padding: 7px 5px;
+        background: rgb(255,255,150);
+    }
+    
+	</ui:style>
+
+	<g:FlowPanel addStyleNames='{style.container}'>
+
+		<g:DeckPanel animationEnabled='true' addStyleNames='{style.padBottom}' ui:field='surveyTypeDeckPanel'>
+
+			<s:AutoTutorSessionChoicePanel ui:field='autoTutorSessionChoicePanel' />
+		
+			<u:SurveyPicker addStyleNames='{style.padBottom}' ui:field='surveyChoicePanel'/>			
+												
+			<g:FlowPanel ui:field='questionBankPanel'>							  	
+							
+                <u:SurveyPickerQuestionBank addStyleNames='{style.largePadBottom} {style.padTop}' ui:field='surveyPickerQuestionBank'/>
+                                           
+				<g:FlowPanel width='100%' addStyleNames='{style.largePadBottom}'>
+					<g:Label addStyleNames='{style.smallPadBottom}'>
+						Concepts to cover:
+					</g:Label>
+					<g:FlowPanel addStyleNames='{style.largePadBottom}'>
+						<g:ScrollPanel addStyleNames='{style.cellTableScroller} {style.cellTableBorder}'>
+							<c:CellTable addStyleNames='{style.cellTableInset}' ui:field='conceptCellTable'/>
+						</g:ScrollPanel>
+					</g:FlowPanel>
+					
+					<s:KnowledgeAssessmentQuestionsPanel ui:field="questionsPanel"/>
+												
+				</g:FlowPanel>
+							
+				<g:DisclosurePanel animationEnabled='true' width='100%' ui:field='knowledgeAssessmentOptionsPanel'>
+				
+					<g:header>
+						Advanced
+					</g:header>
+					
+					<g:FlowPanel addStyleNames='{style.smallPadBottom} {style.rightTabbed} {style.disclosurePanelInner}'>
+						<g:FlowPanel width='100%'>
+							<g:FlowPanel addStyleNames='{style.smallPad}'>
+						
+								<g:CheckBox ui:field='useResultsCheckBox'>
+									Use results to influence course flow
+								</g:CheckBox>
+							
+							</g:FlowPanel>																
+						</g:FlowPanel>
+					</g:FlowPanel>
+				</g:DisclosurePanel>														
+		  	</g:FlowPanel>
+
+			<ta:RealTimeAssessmentPanel ui:field="conversationTreeSelectPanel" />
+			</g:DeckPanel>
+
+		<g:FlowPanel addStyleNames='{style.padBottom}'>						
+			<g:FlowPanel>						
+				<g:DisclosurePanel animationEnabled='true' width='100%' ui:field='surveyOptionsPanel' >
+				
+					<g:header>
+						Options
+					</g:header>
+					
+					<g:FlowPanel addStyleNames='{style.smallPadBottom} {style.rightTabbed} {style.disclosurePanelInner}'>
+						<g:FlowPanel width='100%'>
+						  <g:HTMLPanel ui:field="optionTablePanel">
+                            <table style='width: 100%;'>
+                                <tr style='width: 100%;'>
+                                    <td style='vertical-align: top; width: 10px'>
+                                       <g:CheckBox ui:field='fullScreenCheckBox'/>                         
+                                    </td>
+                                    <td style='vertical-align: top;'>
+                                        <g:Label addStyleNames='{style.padSides}'>Display in full screen mode</g:Label>                              
+                                    </td>
+                                 </tr>
+                                 <tr style='width: 10px;'>
+                                    <td style='vertical-align: top; width: 10px'>
+                                    <g:CheckBox ui:field='showResponsesCheckBox'/>  
+                                    </td>
+                                    <td style='vertical-align: top;'>
+                                        <g:Label ui:field='showResponsesLabel' addStyleNames='{style.padSides}'>Show responses and scoring information in the next Structured Review.</g:Label>                              
+                                    </td>
+                                 </tr>
+                                 <tr style='width: 100%;'>
+                                    <td style='vertical-align: top; width: 10px'>
+                                       <g:CheckBox ui:field='disabled'/>                         
+                                    </td>
+                                    <td style='vertical-align: top;'>
+                                    	<bd:ManagedTooltip title="Disabled means this will not be shown to the learner and not checked for authoring errors.">
+                                        	<g:Label addStyleNames='{style.padSides}'>Disable course object</g:Label>  
+                                        </bd:ManagedTooltip>                            
+                                    </td>
+                                 </tr>
+                                 <tr class="{style.mandatoryControlsRow}" style='width: 100%;'>
+                                    <td style='vertical-align: top; width: 10px'>
+                                       <g:CheckBox ui:field='mandatoryCheckBox'/>                         
+                                    </td>
+                                    <td style='vertical-align: top;'>
+                                        <g:InlineLabel addStyleNames='{style.padSides}'>Make survey mandatory</g:InlineLabel>
+                                        <g:ValueListBox ui:field="mandatoryBehaviorSelector"/>
+                                        <g:FlowPanel ui:field="learnerStateShelfLifePanel" addStyleNames="{style.learnerStateShelfLifeContainer}">
+	                                        <g:InlineLabel>the learner state is</g:InlineLabel>
+	                                        <d:NumberSpinner ui:field="learnerStateShelfLife" addStyleNames="{style.learnerStateShelfLifeSpinner}" minValue="1"/>
+	                                        <g:InlineLabel>days old</g:InlineLabel>
+                                        </g:FlowPanel>
+                                        <bd:HelpLink helpCaption='Survey Mandatory Behavior'>
+						                    <bd:linkWidget>
+						                        <b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE'/>
+						                    </bd:linkWidget>
+						                    <bd:helpBody>
+						                        <g:HTML>
+						                            <p>
+							                            The mandatory behavior options are used to specify when a learner should be given the opportunity 
+							                            to skip a survey. The following options
+						                            </p>
+					                                <h3>None</h3>
+				                                    <p>
+					                                    If the checkbox isn't checked this indicates that the learner should always be given the opportunity
+					                                    to skip the survey if values can be found for all the learner state attributes covered by the survey.
+				                                    </p>
+				                                    <p>
+				                                        <b>Example 1:</b> If the survey to be taken covers only 'Anxious' and the learner state has already been 
+				                                        collected for 'Anxious', 'Motivation', and 'Grit', then the user is given the choice to skip the survey.
+				                                    </p>
+				                                    <p>
+				                                        <b>Example 2:</b> If the survey to be taken covers 'Anxious', 'Motivation', and 'Grit' but learner state 
+				                                        has only been collected for 'Anxious', the user has to take the survey.
+				                                    </p>
+					                                <h3>Checked, Always</h3>
+				                                    <p>						                                    
+				                                        If the checkbox is checked and the drop down menu has selected 'Always', the learner will never be given 
+				                                        the option to skip the survey regardless of their current learner state.
+				                                    </p>
+					                                <h3>Checked, After</h3>
+				                                    <p>
+				                                        If the checkbox is checked and the drop down menu has selected 'After', the learner will be given the 
+				                                        opportunity to skip the survey if values can be found for all the learner state attributes covered by 
+				                                        the survey and the values for the learner state attributes were collected within the number of days 
+				                                        indicated by the number spinner control.
+				                                    </p>
+				                                    
+				                                    <p>
+				                                        <b>Example 1:</b> If the survey to be taken covers only 'Anxious' and the learner state has already been 
+                                                              collected for 'Anxious', 'Motivation', and 'Grit' 2 days before and the number of days for the mandatory 
+                                                              behavior has been set to 3 days, then the user is given the choice to skip the survey.
+				                                    </p>
+				                                    
+				                                    <p>
+			                                            <b>Example 2:</b> If the survey to be taken covers only 'Anxious' and the learner state has already been 
+                                                              collected for 'Anxious', 'Motivation', and 'Grit' 2 days before and the number of days for the mandatory 
+                                                              behavior has been set to 1 day, then the user has to take the survey.
+			                                        </p>
+			                                        
+			                                        <p>
+			                                            <b>Example 3:</b> If the survey to be taken covers 'Anxious', 'Motivation', and 'Grit' but learner state 
+                                                              has only been collected for 'Anxious', the user has to take the survey.
+			                                        </p>
+						                        </g:HTML>
+						                    </bd:helpBody>
+						                        
+						                </bd:HelpLink>
+                                    </td>
+                                 </tr>
+                              </table>
+							</g:HTMLPanel>
+							
+                        </g:FlowPanel>
+					</g:FlowPanel>
+				</g:DisclosurePanel>
+			</g:FlowPanel>
+		</g:FlowPanel>
+		<g:FlowPanel addStyleNames='{style.warningPanel}' visible='false' ui:field='warningPanel'>
+            <g:HTML addStyleNames='{style.warningInner}' ui:field='warningText'>
+                <!-- Warning text goes here -->
+            </g:HTML>
+        </g:FlowPanel>
+		<dw:CourseObjectModal ui:field="editorDialog" />
+	</g:FlowPanel>
+
+</ui:UiBinder> 

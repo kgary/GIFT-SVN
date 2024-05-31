@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file contains ICAP Policy information for ICAP pedagogical model.
+	It adheres to the ICAPPolicy.xsd
+-->
+<ICAPPolicy version="11.0.1" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+	<StateAttributes>
+		<ConceptPretestAboveNovice>
+			<falseValue>0</falseValue>
+			<trueValue>1</trueValue>
+		</ConceptPretestAboveNovice>
+		<ConceptRemediationCount>
+			<falseValue>0</falseValue>
+			<trueValue>1</trueValue>
+			<trueCondition operator="LessThan" value="2" />
+		</ConceptRemediationCount>
+	</StateAttributes>
+	<Policies>
+		<DefaultAction ActionChoice="Passive" />
+		<Policy ActionChoice="Constructive">
+			<StateAttributeValue>
+				<value>0</value>
+				<value>0</value>
+			</StateAttributeValue>
+		</Policy>
+		<Policy ActionChoice="Passive">
+			<StateAttributeValue>
+				<value>0</value>
+				<value>1</value>
+			</StateAttributeValue>
+		</Policy>
+		<Policy ActionChoice="Active">
+			<StateAttributeValue>
+				<value>1</value>
+				<value>0</value>
+			</StateAttributeValue>
+		</Policy>
+		<Policy ActionChoice="Active">
+			<StateAttributeValue>
+				<value>1</value>
+				<value>1</value>
+			</StateAttributeValue>
+		</Policy>
+	</Policies>
+</ICAPPolicy>

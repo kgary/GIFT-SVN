@@ -1,0 +1,26 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "MarkedTeamMemberProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a team member whose assigned learner is identified by a 
+   unique marker given to an entity in a training application. */
+message MarkedTeamMember {
+	/* Unique name identifying the object. */
+	google.protobuf.StringValue team_name = 1;
+	
+	/* The identifying object that is used to determine which learner this team 
+	   member role should be applied to. */
+	google.protobuf.StringValue identifier_name = 2;
+	
+	/* Value indicating whether the team member is playable. */
+	google.protobuf.BoolValue playable = 3;
+}

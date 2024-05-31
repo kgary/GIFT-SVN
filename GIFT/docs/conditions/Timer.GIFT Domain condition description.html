@@ -1,0 +1,47 @@
+﻿<body>
+<p><strong>Timer Condition</strong></p>
+<p>This condition is useful for sequencing assessments or instructional 
+strategies by using the fact that this condition will result in an At 
+Expectation assessment as well as be completed after the defined duration.&nbsp; 
+The author can also choose to have the timer repeat until the parent concept is 
+no longer in an active task.&nbsp; While configured to repeat, the condition 
+will not end.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span></li><li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: everytime the timer reaches zero</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span></li>
+	<li>Unknown<ul>
+		<li>case: the default value</li>
+		<li>case: everytime the timer starts again</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>count - the number of times the timer has expired.&nbsp; If the 
+	condition doesn't repeat this value will be 0 or 1, for timer did not expire 
+	and timer expired respectively.</li>
+	<li>time - if the condition doesn't repeat the time value will be the amount 
+	of time the timer was set to by the author.</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition will complete if not authored to repeat</li>
+	<li>the condition can repeat </li>
+	<li>the condition can loop if authored to do so (by choosing to repeat the 
+	timer)</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can produce simulation management (Siman) messages</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Siman </li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.TimerCondition</em></p>
+</body>

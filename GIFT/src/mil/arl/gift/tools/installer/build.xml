@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<project name="Installer" default="compile">
+    
+    <property name="root.path" value="../../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.tools.installer"/>
+    <property name="installer.source.path" value="mil/arl/gift/tools/installer"/>
+	<property name="common.source.path" value="mil/arl/gift/common"/>
+	<property name="gateway.source.path" value="mil/arl/gift/gateway"/>
+    <property name="jarfile.ext.path" value="gift-installer"/>
+    <property name="jarfile.name" value="gift-installer.jar"/>
+	<property name="gift.common.jar" value="gift-common.jar"/>
+	
+    <property name="build.excludes" value="**/gwt/**,**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.dll,**/*.txt,**/*.TXT,**/*.ini,**/*.properties"/>
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+        
+    <path id="classpath">
+    	<fileset dir="${root.path}/bin" includes="${gift.common.jar}"/>
+        <fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-compress-1.4.1.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-cli-1.2.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-io-2.3.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/CJWizards-0.2.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/jna-3.5.1.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/jna-platform-3.5.1.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-lang-2.4.jar"/>
+    	<fileset dir="${root.path}/bin" includes="**/jaxb_generated.jar"/>
+		<fileset dir="${root.path}/external" includes="**/jdk-11/jaxb-ri/mod/jaxb-api-2.3.1.GIFT.jar"/>
+		<fileset dir="${root.path}/external" includes="**/javafx-sdk-11.0.2/lib/*"/>
+		<fileset dir="${root.path}/external" includes="**/zip4j-1.3.2/zip4j-1.3.2.jar"/>
+		
+    </path>
+    
+    <target name="checkForChanges">
+    	
+        <uptodate property="upToDateWithCommon.ifSet" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+    	
+        <uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="${build.excludes}"/>
+        </uptodate>
+    	
+        <uptodate property="upToDateWithGatewayInstaller.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="${root.path}/src" 
+            	includes=
+            	"${gateway.source.path}/installer/TrainingApplicationInstallPage.java,
+				${gateway.source.path}/installer/InstallThread.java,
+                ${gateway.source.path}/interop/ppt/FindOfficeInstallation.java,
+            	${gateway.source.path}/interop/InteropConfigFileHandler.java,
+            	${gateway.source.path}/GatewayModuleProperties.java" 
+            	excludes="${build.excludes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <or>
+            	<not>
+                	<isset property="upToDateWithCommon.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithIncludes.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithGatewayInstaller.ifSet"/>
+            	</not>
+            </or>
+        </condition>
+    	
+    	<!-- DEBUG
+    	<echo message="upToDateWithCommon.ifSet = ${upToDateWithCommon.ifSet}, 
+    		upToDateWithIncludes.ifSet = ${upToDateWithIncludes.ifSet}, 
+    		upToDateWithGatewayInstaller.ifSet = ${upToDateWithGatewayInstaller.ifSet}"/>
+    	-->
+    	
+    </target>
+    
+    <target name="compileCore" if="build.required">
+    	<echo message="Compiling Installer Tool"/>
+        <javac debug="on" srcDir="${root.path}/src" destdir="${root.path}/build/classes"         	
+        	includeAntRuntime="false" classpathref="classpath" includeDestClasses="false" excludes="${build.excludes}">
+        	<compilerarg value="-Xlint"/>
+        	<include name="${installer.source.path}/**"/>
+        	<include name="${gateway.source.path}/installer/TrainingApplicationInstallPage.java"/>
+        	<include name="${gateway.source.path}/installer/InstallThread.java"/>
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" 
+        	basedir="${root.path}/build/classes/" 
+        	includes="${installer.source.path}/**,${common.source.path}/**,
+        	${gateway.source.path}/installer/TrainingApplicationInstallPage*.class,
+        	${gateway.source.path}/installer/InstallThread*.class,
+        	${gateway.source.path}/interop/ppt/FindOfficeInstallation*.class,
+        	${gateway.source.path}/interop/InteropConfigFileHandler*.class,
+        	${gateway.source.path}/GatewayModuleProperties.class"
+        	excludes="${build.excludes}"/>
+    </target>
+
+    <target name="compile" depends="checkForChanges, compileCore">        
+    </target>
+    	
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

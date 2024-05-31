@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EMAP version="11.0.1">
+    <Rule>
+        <Attributes>
+            <Attribute type="Anxious">
+                <value>Medium</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Animation</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Rule>
+    <Example>
+        <Attributes>
+            <Attribute type="Anxious">
+                <value>Medium</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Animation</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Example>
+    <Recall>
+        <Attributes>
+            <Attribute type="Anxious">
+                <value>Medium</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Animation</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Recall>
+    <Practice>
+        <Attributes>
+            <Attribute type="Anxious">
+                <value>Medium</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Duration: Long</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Practice>
+</EMAP>

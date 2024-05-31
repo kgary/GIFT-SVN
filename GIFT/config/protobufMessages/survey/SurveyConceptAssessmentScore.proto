@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyConceptAssessmentScoreProto";
+
+import "survey/ConceptOverallDetails.proto";
+
+/*  
+ *	This is the protobuf message that contains the representation of a survey concept
+ *	assessment score.
+ */ 
+message SurveyConceptAssessmentScore {
+	/* The concept details corresponding to the survey concept assessment score. */
+	map<string, ConceptOverallDetails> concept_details = 1;
+}

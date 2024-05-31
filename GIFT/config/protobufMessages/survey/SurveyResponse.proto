@@ -1,0 +1,54 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyResponseProto";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
+import "survey/Survey.proto";
+import "survey/SurveyPageResponse.proto";
+import "survey/SurveyScorer.proto";
+
+/* This message represents a completed survey. */
+message SurveyResponse {
+	
+	/* The id of the survey. */
+	google.protobuf.Int32Value survey_id = 1;
+	
+	/* The id of the survey response. */
+	google.protobuf.Int32Value survey_response_id = 2;
+	
+	/* The id of the survey context. */
+	google.protobuf.Int32Value survey_context_id = 3;
+	
+	/* Value that represents if the survey has a fill in the blank question with 
+	   an answer ideal to the survey. */
+	google.protobuf.BoolValue has_fill_in_the_blank_question_with_ideal_answer = 4;
+	
+	/* The time the survey was started. */
+	google.protobuf.Timestamp start_time = 5;
+	
+	/* The time the survey was completed. */
+	google.protobuf.Timestamp end_time = 6;
+	
+	/* The gift key of the survey response. */
+	google.protobuf.StringValue gift_key = 7;
+	
+	/* Name of the survey. */
+	google.protobuf.StringValue survey_name = 8;
+	
+	/* Survey type. */
+	google.protobuf.StringValue survey_type = 9;
+	
+	/* List of responses for the survey questions completed. */
+	repeated SurveyPageResponse survey_page_responses = 10;
+	
+	/* The scorer used for the survey. */
+	SurveyScorer survey_scorer = 11;
+}

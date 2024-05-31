@@ -1,0 +1,34 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "TutorUserInterfaceFeedbackPayloadProto";
+
+import "ClearTextAction.proto";
+import "DisplayTextAction.proto";
+import "DisplayAvatarAction.proto";
+import "DisplayHTMLFeedbackAction.proto";
+import "PlayAudioAction.proto";
+
+/* This message contains the parameters of the feedback to display in the Tutor User Interface. */
+message TutorUserInterfaceFeedbackPayload {
+	/* The object that signifies that the text currently displayed in the TUI will be cleared. */
+	ClearTextAction clear_text_action = 1;
+	
+	/* The text feedback to display. */
+	DisplayTextAction display_text_action = 2;
+	
+	/* The avatar to display as part of the feedback. */
+	DisplayAvatarAction display_avatar_action = 3;
+	
+	/* The HTML to display as part of the feedback. */
+	DisplayHTMLFeedbackAction display_html_feedback_action = 4;
+	
+	/* The audio to play as feedback. */
+	PlayAudioAction play_audio_action = 5;
+}

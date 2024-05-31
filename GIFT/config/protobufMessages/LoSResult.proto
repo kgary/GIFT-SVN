@@ -1,0 +1,35 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LoSResultProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message is used to provide LoS query results. */
+message LoSResult {
+	/* The username of a GIFT user. */
+	google.protobuf.StringValue	request_id = 1;
+	
+	/* The collection of locations to conduct a LoS query on. */
+	map<string, VisibilityResultList> entity_results = 2;
+}
+
+/* This message contains information about a line of sight ray result. */
+message VisibilityResult {
+	/* The index from the LoSRequest of the target point for a line of sightray that has the given visibility percent. */
+	google.protobuf.Int32Value point_index = 1;
+	
+	/* The [0, 1.0] value of visibility the ray had. */
+	google.protobuf.DoubleValue visibility = 2;
+}
+
+/* Message representing a list of visibility results to be encoded as the value for the map. */
+message VisibilityResultList {
+	repeated VisibilityResult visibility_result = 1;
+}

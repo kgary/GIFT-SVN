@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared">
+    <ui:style>
+        .mainPanel {
+            padding-top: 5px;
+            margin-bottom: 5px;
+        }
+    </ui:style>
+    <g:DeckPanel addStyleNames='{style.mainPanel}' ui:field='mainDeck'>
+    
+        <shared:EditableTeamPicker label='Learners roles that should be assessed:' ui:field='teamPicker' />
+        
+	    <g:HTML ui:field='emptyPanel'>
+	       This condition has nothing to author.
+	    </g:HTML>
+        
+    </g:DeckPanel>
+</ui:UiBinder> 

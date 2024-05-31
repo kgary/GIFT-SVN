@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package vrengage.pb;
+option java_package  = "com.dignitas.vrengage.protobuf";
+option java_outer_classname = "VrEngageLOS";
+
+import "VrEngageCommon.proto";
+
+message LosRequest {
+    int32 entityId = 1;
+	Vector3d location = 2;
+}
+
+message LosResponse {
+    double visibility = 1;
+}

@@ -1,0 +1,16 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "DomainSessionProto";
+
+/* This message contains information about a domain session. */
+message DomainSession {
+	int32 domain_session_id = 1;
+	string domain_name = 2;
+	string username = 3;
+}

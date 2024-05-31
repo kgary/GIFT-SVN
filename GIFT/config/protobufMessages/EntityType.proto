@@ -1,0 +1,40 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "EntityTypeProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents an entity type. */
+message EntityType {
+
+	/* The ID of the entity's kind. */
+	google.protobuf.Int32Value entity_kind = 1;
+	
+	/* The ID of the entity's domain. */
+	google.protobuf.Int32Value domain = 2;
+	
+	/* The ID of the entity's country. */
+	google.protobuf.Int32Value country = 3;
+	
+	/* The ID of the entity's category. */
+	google.protobuf.Int32Value category = 4;
+	
+	/* The ID of the entity's subcategory. */
+	google.protobuf.Int32Value subcategory = 5;
+	
+	/* The value of the entity's specific field. */
+	google.protobuf.Int32Value specific = 6;
+	
+	/* The value of the entity's extra field. */
+	google.protobuf.Int32Value extra = 7;
+	
+	/* The value of the entity's echelon. */
+	google.protobuf.Int32Value echelon = 8;
+}

@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "RifleShotMessageProto";
+
+import "Point3D.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about a rifle shot event. */
+message RifleShotMessage {
+	/* The location of the shot. */
+	Point3D location = 1;
+	
+	/* The result of the message. */
+	google.protobuf.FloatValue result = 2;
+	
+	/* The shot number. */
+	google.protobuf.Int32Value shot_number = 3;
+}

@@ -1,0 +1,29 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "InitializeInteropConnectionsProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message is used to initialize/enable specific interop interfaces for alesson/domain-session. */
+message InitializeInteropConnections {
+	/* The list of interops. */
+	repeated string interops = 1;
+	
+	/* The address of the domain server (currently jetty) that hosts domain content. */
+	google.protobuf.StringValue content_server_addr = 2;
+	
+	/* The name of the observer controller requesting these interop connections via 
+	   the Game Master interface.  */
+	google.protobuf.StringValue requesting_observer = 3;
+	
+	/* Value indicating whether a playback of a domain session log is currently happening 
+	    which could have implicationson how interop plugins handle messages going in/out. */
+	google.protobuf.BoolValue playback = 4;
+}

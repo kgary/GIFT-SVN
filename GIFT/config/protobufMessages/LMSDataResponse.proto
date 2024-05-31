@@ -1,0 +1,26 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LMSDataResponseProto";
+
+import "AbstractScale.proto";
+import "AbstractEnumObject.proto";
+import "LMSCourseRecord.proto";
+
+/* This message contains all data that can be retrieved from the LMS. */
+message LMSDataResponse {
+	/* The list of LMS records. */
+	repeated LMSCourseRecord course_history = 1;
+	
+	/* The map of assessments. */
+	map<string, AbstractEnumObject> assessments = 2;
+	
+	/* The list of state attributes for the response. */
+	repeated AbstractScale learner_state_attributes = 3;
+}

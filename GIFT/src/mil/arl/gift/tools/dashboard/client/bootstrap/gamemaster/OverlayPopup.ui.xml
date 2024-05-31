@@ -1,0 +1,23 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <ui:style>
+    	.outerPanel {
+            position: relative;
+            height: 0px;
+            width: 0px;
+            z-index: 1000;
+        }
+        .innerPanelContainer {
+            position: absolute;
+            border: 2px solid black;
+            border-radius: 8px;
+            background-color: rgb(255, 255, 150);
+            padding: 4px 8px;
+        }
+    </ui:style>
+    <g:SimplePanel ui:field="outerPanel" addStyleNames="{style.outerPanel}" visible="false">
+        <g:FlowPanel ui:field="innerPanel" addStyleNames="{style.innerPanelContainer}" />
+    </g:SimplePanel>
+</ui:UiBinder> 

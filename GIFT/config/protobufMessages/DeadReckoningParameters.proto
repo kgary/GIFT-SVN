@@ -1,0 +1,19 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DeadReckoningParametersProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents an entity appearance. */
+message DeadReckoningParameters {
+	
+	/* Indicates the type of dead reckoning algorithm used by an entity. */
+	google.protobuf.Int32Value algorithm = 1;
+}

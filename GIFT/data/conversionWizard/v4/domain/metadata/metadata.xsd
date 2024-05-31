@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" version="4.1" xmlns:fg="http://www.FGolubov.com/XMLEditor" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Metadata">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Metadata">
+                    <fg:message>This is the root node of the metadata which contains information about a domain content filea.  Look for other helpful information by clicking on a node.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ContentFile">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableFileSelectionDialog" exposed="true" message="Domain Content File">
+                                <fg:message>The content/resource file that this metadata is associated with.</fg:message>
+                                <fg:param name="title">Select Domain content file</fg:param>
+                                <fg:param name="information">Please select the domain content file this metadata file describes.</fg:param>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="4"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element ref="Attributes"/>
+            </xs:sequence>
+            <xs:attribute name="version" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="File Version">
+                            <fg:message>The version of this file.  This is auto-incremented if using the MAT to save.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!--
+  <xs:element name="MerrillQuadrants">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="MerrillQuadrant" maxOccurs="unbounded"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  -->
+    <xs:element name="MerrillQuadrant">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.mat.custnodes.MerrillQuadrantSelectionDialog" exposed="true" message="Merrill Quadrant">
+                    <fg:message>The Merrill Quadrant the content file is associated with.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="4"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="Attributes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="Attribute"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Attribute">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Attribute">
+                    <fg:message>A relationship metadata attribute.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="MerrillQuadrant"/>
+                <xs:element name="value">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.MetadataAttributeSelectionDialog" exposed="true" message="Attribute Value">
+                                <fg:message>Specify the attribute value that describes the content this metadata references.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

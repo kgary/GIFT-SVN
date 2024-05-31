@@ -1,0 +1,164 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:b3="urn:import:org.gwtbootstrap3.extras.slider.client.ui"
+    xmlns:cw="urn:import:mil.arl.gift.common.gwt.client.widgets">
+	
+    <ui:style>
+		.centerAlign {
+           text-align:center;
+        }
+        .noviceStyle {
+            background: linear-gradient(#73BB5C, #307B18);
+            color:#ffffff;
+        }        
+        .journeymanStyle {
+            background: linear-gradient(#CCD86B, #828E1C);
+            color:#ffffff;
+        }
+        .expertStyle {
+            background: linear-gradient(#7E8AB4, #536196);
+            color:#ffffff;
+        }
+		.scoringRules {
+            margin: 0px;
+			padding: 8px 8px 0px;
+        }
+		.headerPanel {
+    		padding: 6px 0px 6px 25px;
+    		color: #333333;
+    		border-radius: 4px 4px 0 0;
+    		background: linear-gradient(#f3f7fb, #dce1e6);
+			cursor: pointer;
+			word-break: break-all;
+			font-size: 18px;
+		}
+		.exHeaderPanel {
+    		padding: 6px 0px 6px 25px;
+    		color: white;
+    		border-radius: 4px 4px 0 0;
+    		background: linear-gradient(#f50000, #650000);
+			word-break: break-all;
+			font-size: 18px;
+		}
+		.headerIcon {
+			margin: 5px 8px -0px -17px;
+			float: left;
+			font-size: 14px;
+		}
+		.exHeaderIcon {
+			margin: 5px 8px -0px -17px;
+			float: left;
+			font-size: 16px;
+		}
+		.closeIcon {
+			font-size: 16px;
+			float: right;
+			color: white;
+			padding: 0px;
+			margin-top: -3px;
+			margin-right: 6px;			
+		}
+		.closeIcon:hover {
+			color: white;
+		}
+		.exHeaderLabel {
+    		width: 85%;
+			display: inline-block;
+		}
+		.sideColumn {
+			width: 30%;
+			display: inline;
+			float: left;
+			max-height: 70px;
+		}
+		.centerColumn {
+			width: 40%;
+			display: inline;
+			float: left;
+			max-height: 65px;
+		}
+		.slider {
+			margin: 4px auto;
+			text-align: center;
+			padding: 0px 5px;
+			position: relative;
+		}
+		.sliderPanel {
+			background: linear-gradient(#ffffff, #e8e8e8 97%);
+    		border: solid 1px #b8b8b8;
+    		border-radius: 4px;
+    		margin: 5px 0px;
+    		width: 100%;	
+			padding: 0px;
+		}
+		.leftSliderBuffer {
+			margin: -15px 0px 0px;
+			border-radius: 4px;
+			background: linear-gradient(rgb(115, 187, 92), rgb(48, 123, 24));
+		}
+		.rightSliderBuffer {
+			margin: -10px 0px 0px;
+			border-radius: 4px;
+			background: linear-gradient(#7e8ab4, #536196);
+			float: right;
+		}
+		.disabledPanel {
+			top: 2px !important;
+			bottom: -6px !important;
+			z-index: 1 !important;
+		}
+	</ui:style>
+       
+    <b:Container addStyleNames="sliderScoredStyle {style.sliderPanel}" fluid="true">
+        <g:DeckPanel ui:field="headerDeckPanel">
+	        <g:FocusPanel ui:field="headerButton">
+	            <g:FlowPanel addStyleNames="{style.headerPanel}" ui:field="headerPanel">
+	                <b:Icon type="MINUS_CIRCLE" ui:field="headerIcon" addStyleNames="{style.headerIcon}"/>
+	        		<g:HTML ui:field="conceptNameLabel"/>
+	        	</g:FlowPanel>
+	        </g:FocusPanel>
+            <g:FlowPanel addStyleNames="{style.exHeaderPanel}">
+                <b:Icon type="EXCLAMATION_TRIANGLE" addStyleNames="{style.exHeaderIcon}"/>
+                <b:Tooltip title="This concept does not exist in the course. Please add the missing concept or delete this item.">
+	        		<g:HTML addStyleNames="{style.exHeaderLabel}" ui:field="extraneousConceptNameLabel"/>
+	        	</b:Tooltip>
+	        	<b:Button ui:field="deleteButton" icon="TIMES" type="LINK" addStyleNames="{style.closeIcon}"/>
+	        </g:FlowPanel>
+        </g:DeckPanel>
+        
+        <g:FlowPanel ui:field="contentPanel">
+	        <b:Tooltip ui:field="disabledTooltip">
+	        	<b:Container addStyleNames="sliderScoredStyle {style.slider}" fluid="true">
+	        		<b3:RangeSlider ui:field="slider" min="0" max="100" step="1" value="[50,50]" tooltipSplit="false" width="85%"/>
+	        		<g:FlowPanel height="10px" width="50%" addStyleNames="{style.leftSliderBuffer}"></g:FlowPanel>
+	        		<g:FlowPanel height="10px" width="50%" addStyleNames="{style.rightSliderBuffer}"></g:FlowPanel>
+	        		<cw:BlockerPanel ui:field="blockerPanel" showDisabled="true" addStyleNames="{style.disabledPanel}"/>
+	        	</b:Container>
+	        </b:Tooltip>
+	        
+	        <b:Row addStyleNames="{style.scoringRules}">
+	        	<g:FlowPanel addStyleNames="{style.centerAlign} {style.sideColumn}">
+	            	<b:Description>
+	                	<b:DescriptionTitle text="Novice" addStyleNames="{style.noviceStyle}"/>
+	                	<b:DescriptionData ui:field="noviceText" text="0 correct"/>
+	             	</b:Description>
+				</g:FlowPanel>
+	            <g:FlowPanel addStyleNames="{style.centerAlign} {style.centerColumn}">   
+	            	<b:Description>
+	                	<b:DescriptionTitle text="Journeyman" addStyleNames="{style.journeymanStyle}"/>
+	                    <b:DescriptionData ui:field="journeymanText" text="Unused"/>
+	                </b:Description>
+				</g:FlowPanel>
+	            <g:FlowPanel addStyleNames="{style.centerAlign} {style.sideColumn}">   
+	            	<b:Description>
+	                	<b:DescriptionTitle text="Expert" addStyleNames="{style.expertStyle}"/>
+	                    <b:DescriptionData ui:field="expertText" text="1 correct"/>
+					</b:Description>
+				</g:FlowPanel>
+	        </b:Row>  
+        </g:FlowPanel>              
+    </b:Container>
+    
+</ui:UiBinder> 

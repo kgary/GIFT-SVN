@@ -1,0 +1,32 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyContextProto";
+
+import "survey/SurveyContextSurvey.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a survey context. Similar in nature to Survey.proto.*/
+message SurveyContext {
+
+	/* The id the survey belongs to. */
+	google.protobuf.Int32Value survey_context_id = 1;
+	
+	/* The name of the survey context. */
+	google.protobuf.StringValue survey_context_name = 2;
+	
+	/* The list of surveys that are inside the context. */
+	repeated SurveyContextSurvey survey_context_surveys = 3;
+	
+	/* The usernames that can see the question shown. */
+	repeated string visible_to_user_names = 4;
+	
+	/* The usernames that can edit the question shown. */
+	repeated string editable_to_user_names = 5;
+}

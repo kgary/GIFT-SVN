@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package vrengage.pb;
+option java_package  = "com.dignitas.vrengage.protobuf";
+option java_outer_classname = "VrEngageEnvironment";
+
+import "VrEngageCommon.proto";
+import "google/protobuf/duration.proto";
+
+enum CloudState {
+    CLEAR = 0;
+    MOSTLY_CLEAR = 1;
+    CLOUDY = 2;
+    PARTLY_CLOUDY = 3;
+    MOSTLY_CLOUDY = 4;
+	OVERCAST = 5;
+	THUNDERSTORM = 6;
+	SAND_STORM = 7;
+}
+
+message Overcast {
+    CloudState state = 1;
+    google.protobuf.Duration duration = 2;
+}
+
+message Rain {
+    double intensity = 1;
+    google.protobuf.Duration duration = 2;
+}
+
+message Fog{
+    double density = 1;
+    Vector3d colorRgb = 2;
+    google.protobuf.Duration duration = 3;
+}
+
+message Teleport {
+    string entityMarking = 1;
+    Vector3d location = 2;
+    double heading = 3;
+}
+
+message TimeOfDay {
+    google.protobuf.Duration timePastMidnight = 1;
+}
+
+message RemoveActors{
+    repeated string entityMarking = 1;
+}
+
+enum ActorSide {
+    FRIENDLY = 0;
+    ENEMY = 1;
+    CIVILIAN = 2;
+}
+
+message CreateActor{
+    string type = 1;
+    ActorSide side = 2;
+    Vector3d location = 3;
+}
+
+message RunScript{
+    string scriptText = 1;
+}

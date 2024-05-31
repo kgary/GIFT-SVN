@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<project name="ExportTool" default="export">
+
+	<!-- Exports neccessary GIFT components to launch GIFT. This
+		 script assumes GIFT is already built and configured. -->
+	<target name="export">
+		<property name="output.path" value="."/>
+		<property name="base.path" value="."/>
+		<!--
+		<copy todir="${output.path}/GIFT" overwrite="false">
+			<fileset dir="..">
+			
+				<include name="bin/**"/>
+				<include name="config/**"/>
+				<include name="data/**"/>
+				<include name="external/**"/>
+				<include name="generated/**"/>
+				<include name="output/**"/>
+				<include name="scripts/**"/>
+			
+		
+			<include name="**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="${output.path}/Domain" overwrite="false">
+			<fileset dir="../../Domain"/>
+		</copy>
+		<copy todir="${output.path}/Training.Apps" overwrite="false">
+			<fileset dir="../../Training.Apps"/>
+		</copy>
+		-->
+		<zip destfile="${output.path}" basedir="${base.path}" includes="**/*" />
+	</target>
+</project>

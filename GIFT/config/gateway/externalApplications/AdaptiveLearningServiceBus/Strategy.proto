@@ -1,0 +1,95 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "StrategyProto";
+
+import "Coordinate.proto";
+import "EnvironmentAdaptation.proto";
+import "InTutor.proto";
+import "TeamMemberRef.proto";
+import "TeamRef.proto";
+
+message Strategy {
+	string name = 1;
+	repeated Activity activities = 2;
+}
+
+message Activity {
+	oneof type {
+		InstructionalIntervention instructional_intervention = 1;
+		MidLessonMedia mid_lesson_media = 2;
+		ScenarioAdaptation scenario_adaptation = 3;
+	}
+}
+
+message InstructionalIntervention {
+	int64 delay = 1;
+	Feedback feedback = 2;
+	bool mandatory = 3;
+}
+
+message Feedback {
+    FeedbackPresentation presentation = 1;
+	string affective_feedback_type = 2;
+	string feedback_specificity_type = 3;
+	int64 duration = 4;
+	repeated TeamRef teamRef = 5;
+}
+
+message FeedbackPresentation {
+	oneof type {
+	    FeedbackMessage message = 1;
+	    Audio audio = 2;
+	    FeedbackFile file = 3;
+	}
+}
+
+message FeedbackMessage {
+	message Delivery {
+		ToObserverController to_observer_controller = 1;
+		InTutor in_tutor = 2;
+		InTrainingApplication in_training_application = 3;
+	}
+
+	string content = 1;
+	Delivery delivery = 2;
+}
+
+message ToObserverController {
+	string value = 1;
+}
+
+message InTrainingApplication {
+	bool enabled = 1;
+	MobileOption mobile_option = 2;
+}
+
+message MobileOption {
+	bool vibrate = 1;
+}
+
+message Audio {
+	ToObserverController to_observer_controller = 1;
+	string ogg_file = 2;
+	string mp3_file = 3;
+}
+
+message FeedbackFile {
+	string html = 1;
+}
+
+message MidLessonMedia {
+	/* TODO */
+}
+
+message ScenarioAdaptation {
+	int64 delay_after_strategy = 1;
+	EnvironmentAdaptation environment_adaptation = 2;
+	string description = 3;
+	bool mandatory = 4;
+}

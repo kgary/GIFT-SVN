@@ -1,0 +1,23 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LtiUserIdProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This contains information for an LTI user, storing the key and id. */
+message LtiUserID {
+
+	/* The consumer key of the lti user. */
+	google.protobuf.StringValue consumer_key = 1;
+	
+	/* The consumer id of the lti user. */
+	google.protobuf.StringValue consumer_id = 2;
+}
+

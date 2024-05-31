@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Pedagogy Configuration Authoring Tool (PCAT).
+	This file contains configuration information for pedagogical models (e.g. eM2AP).
+-->
+<EMAP version="3.0.1" xmlns:c0="http://GIFT.com/common" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <Rule>
+        <Attributes>
+            <Attribute type="Motivation">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Visual</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Animation</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Motivation">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Visual with Text</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI2</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="PriorKnowledge">
+                <value>Journeyman</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI2</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Medium Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Medium User Control</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Concept Progression As Needed</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Rule>
+    <Example>
+        <Attributes>
+            <Attribute type="Motivation">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Graphic</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Animation</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI2</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Motivation">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Case Study</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI2</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="PriorKnowledge">
+                <value>Journeyman</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>IMI2</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Medium Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Medium User Control</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Concept Progression As Needed</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Example>
+    <Recall>
+        <Attributes>
+            <Attribute type="Motivation">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Multiple Choice</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Item Response</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Feedback Frequency Question by Question</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Motivation">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Short Response</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>LSA</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Feedback Frequency Following All Items</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="PriorKnowledge">
+                <value>Journeyman</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Hard Difficulty</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Recall>
+    <Practice>
+        <Attributes>
+            <Attribute type="Motivation">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Medium Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI3</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Training Type Problem Solving</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Training Feedback Realtime</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Hints</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Assertions</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Motivation">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Hard Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI4</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Training Type Procedure Execution</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Training Feedback AAR</value>
+                        <isQuadrantSpecific>true</isQuadrantSpecific>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Prompts</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Reflection</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="PriorKnowledge">
+                <value>Journeyman</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Medium Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Hard Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI3</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI4</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Practice>
+</EMAP>

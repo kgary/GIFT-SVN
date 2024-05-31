@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DisplayCourseInitInstructionsRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information that displays a course initialization request. */
+message DisplayCourseInitInstructionsRequest {
+	/* The authorable title of the view. */
+	google.protobuf.StringValue gw_state = 1;
+	
+	/* The collection of asset URLs. */
+	repeated string asset_urls = 2;
+}

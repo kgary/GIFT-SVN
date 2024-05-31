@@ -1,0 +1,60 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:common="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:c="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:gallery="urn:import:org.gwtbootstrap3.extras.gallery.client.ui">
+
+    <ui:style>
+        .teamPicker {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .distanceSpinner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .angleSpinner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .notAvailableLabel{
+			color: red;
+			font-style: italic;
+			padding-top:5px;
+		}
+    </ui:style>
+
+    <g:HTMLPanel>
+    
+        <div>
+	        <gallery:Gallery thumbnailWidth="100px" thumbnailHeight="100px">
+	            <gallery:GalleryImage url="images/help/muzzleFlag.png" />
+	        </gallery:Gallery>
+        </div>
+        
+        <span>Assess when any of the weapons of</span>
+        <shared:EditableTeamPicker ui:field="teamPicker" addStyleNames="{style.teamPicker}" />
+        <span>are pointing at each other within a threshold</span>
+        <common:DecimalNumberSpinner ui:field="angleSpinner" addStyleNames="{style.angleSpinner}" />
+        <span>degrees.</span>
+
+        <!-- Optional Maximum Distance Spinner -->
+        <g:HTMLPanel>        	
+            <cb:ToggleButton ui:field="useMaxDistanceCheckBox" postLabel="Ignore muzzle flagging based on distance" width="auto" />            	
+            <common:DecimalNumberSpinner ui:field="maxDistanceSpinner" addStyleNames="{style.distanceSpinner}" />
+            <g:InlineLabel ui:field='maxDistanceLabel'>meters</g:InlineLabel>
+        </g:HTMLPanel>
+        
+        <g:FlowPanel>
+           	<g:Label ui:field="weaponSafetyNotAvailableLabel" visible="false" addStyleNames="{style.notAvailableLabel}" text='Using weapon safety value is not available during playback mode'/>
+           	<cb:ToggleButton ui:field="useWeaponSafetyButton" postLabel="Use weapon safety value" width="auto" />
+        </g:FlowPanel>
+
+        <c:RealTimeAssessmentScoringRulesPanel ui:field="rtaRulesPanel" />
+    </g:HTMLPanel>
+</ui:UiBinder>

@@ -1,0 +1,90 @@
+window.DefaultAvatar_Dir = {
+	width:250, height:200, presenting:false, fps:12, version:"5.3.5.0",
+	items:{
+		Scene1:{
+			type:"scene", name:"Scene 1",
+			items:{
+				Char1:{type:"character", left:0, top:2, width:250, height:200, artwidth:500, artheight:400, mode:"infront"},
+				MsgChar1Idle:{
+					type:"message", idle:true, character:"Char1", frames:69,
+					onframe:{
+						"0":"ctl.load('Img1','4BA7D61D4402DA755E37DFAA0C223999.js',6120,7920,7920,1);ctl.load('Img10','519F0211CBFB05071DD807E8461A5B6D.js',6120,7920,7920,1);ctl.load('Img11','207878E526C15902BADA01465AF046FF.js',6120,7920,7920,56);ctl.load('Img2','45D04DE94E6609CA92417849516BB380.js',6120,7920,7920,1);ctl.load('Img3','65D8F341E07A083F6C3E562EA9C6FE06.js',6120,7920,7920,1);ctl.load('Img4','E07541A2AEE9154B5252742A5C3E63F6.js',6120,7920,7920,1);ctl.load('Img5','D62EF79552479DECA7338044AF758651.js',6120,7920,7920,1);ctl.load('Img6','65EC09A1FD3D233991B9D4172697BABA.js',6120,7920,7920,1);ctl.load('Img7','BF28F2DF94B477FCB894344DCE4AD28A.js',6120,7920,7920,1);ctl.load('Img8','DEA71439134920CB1DBC1B843B7015F6.js',6120,7920,7920,1);ctl.load('Img9','2D9E87CA38E7FEE79C9186B1FC7456A4.js',6120,7920,7920,1);",
+						"1":"ctl.add('Img1',0,0,1,0,0,0);ctl.add('Img2',0,1250,1,0,0,0);ctl.add('Img3',0,1250,1,0,0,0);ctl.add('Img4',0,0,1,0,0,0);ctl.add('Img5',0,0,1,0,0,0);ctl.add('Img6',970,1260,1,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"4":"ctl.rec('69');",
+						"7":"ctl.rec('69');",
+						"10":"ctl.rec('69');",
+						"13":"ctl.rec('69');",
+						"16":"ctl.rec('69');",
+						"19":"ctl.rec('69');",
+						"22":"ctl.rec('69');",
+						"25":"ctl.rec('69');",
+						"28":"ctl.rec('69');",
+						"31":"ctl.rec('69');",
+						"34":"ctl.rec('69');",
+						"37":"ctl.rec('69');",
+						"40":"ctl.rec('69');",
+						"43":"ctl.rec('69');",
+						"46":"ctl.rec('69');",
+						"49":"ctl.rec('69');",
+						"52":"ctl.rec('69');",
+						"56":"ctl.rem('Img9');ctl.rem('Img10');ctl.add('Img11',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"57":"ctl.update('Img11',2);",
+						"58":"ctl.update('Img11',1);",
+						"59":"ctl.rem('Img11');ctl.rem('Img10');ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"60":"ctl.rec('69');",
+						"63":"ctl.rec('69');",
+						"67":"ctl.stop()",
+						"69":"ctl.add('Img1',0,0,1,0,0,0);ctl.add('Img2',0,1250,1,0,0,0);ctl.add('Img3',0,1250,1,0,0,0);ctl.add('Img4',0,0,1,0,0,0);ctl.add('Img5',0,0,1,0,0,0);ctl.add('Img6',970,1260,1,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);ctl.stop()"
+					}
+				},
+				Msg1:{type:"message", name:"Speak", external:true, url:"http://localhost:8090/tutor/cs/cs.exe?template=Library%2FTemplates%2FServer%2FSpeech.xml&character=TashaHead&addons=&voice=Microsoft%20Anna&size=250,200&autoactionlevel=2&customhair=tashahair&customtop=shirt1&flashversion=9&actionscript=3", method:"get", addvariables:"Text", character:"Char1"},
+				Msg2:{
+					type:"message", name:"TestAction", file:"DefaultAvatarMsg2.mp3", altfile:"DefaultAvatarMsg2.ogv", character:"Char1", frames:70,
+					onframe:{
+						"0":"ctl.load('Img1','4BA7D61D4402DA755E37DFAA0C223999.js',6120,7920,7920,1);ctl.load('Img10','519F0211CBFB05071DD807E8461A5B6D.js',6120,7920,7920,1);ctl.load('Img11','828BAB9D9C9BB25464B9AEF5E9D6F960.js',6120,7920,7920,2);ctl.load('Img12','9EFC38D0B8547CC93DF74B406D7A0B0B.js',6120,7920,7920,20);ctl.load('Img13','207878E526C15902BADA01465AF046FF.js',6120,7920,7920,54);ctl.load('Img2','45D04DE94E6609CA92417849516BB380.js',6120,7920,7920,1);ctl.load('Img3','65D8F341E07A083F6C3E562EA9C6FE06.js',6120,7920,7920,1);ctl.load('Img4','E07541A2AEE9154B5252742A5C3E63F6.js',6120,7920,7920,1);ctl.load('Img5','D62EF79552479DECA7338044AF758651.js',6120,7920,7920,1);ctl.load('Img6','65EC09A1FD3D233991B9D4172697BABA.js',6120,7920,7920,1);ctl.load('Img7','BF28F2DF94B477FCB894344DCE4AD28A.js',6120,7920,7920,1);ctl.load('Img8','DEA71439134920CB1DBC1B843B7015F6.js',6120,7920,7920,1);ctl.load('Img9','2D9E87CA38E7FEE79C9186B1FC7456A4.js',6120,7920,7920,1);",
+						"1":"ctl.add('Img1',0,0,1,0,0,0);ctl.add('Img2',0,1250,1,0,0,0);ctl.add('Img3',0,1250,1,0,0,0);ctl.add('Img4',0,0,1,0,0,0);ctl.add('Img5',0,0,1,0,0,0);ctl.add('Img6',970,1260,1,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"2":"ctl.rem('Img6');ctl.rem('Img7');ctl.rem('Img8');ctl.rem('Img9');ctl.rem('Img10');ctl.add('Img11',970,1260,4,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"4":"ctl.rec('70');",
+						"5":"ctl.update('Img11',1);",
+						"6":"ctl.update('Img11',4);",
+						"7":"ctl.rec('70');",
+						"8":"ctl.rem('Img11');ctl.rem('Img7');ctl.rem('Img8');ctl.rem('Img9');ctl.rem('Img10');ctl.add('Img6',970,1260,1,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"9":"ctl.rem('Img6');ctl.rem('Img7');ctl.rem('Img8');ctl.rem('Img9');ctl.rem('Img10');ctl.add('Img11',970,1260,4,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"10":"ctl.rec('70');",
+						"11":"ctl.update('Img11',1);",
+						"13":"ctl.update('Img11',4);ctl.rec('70');",
+						"14":"ctl.update('Img11',1);",
+						"15":"ctl.rem('Img11');ctl.rem('Img7');ctl.rem('Img8');ctl.rem('Img9');ctl.rem('Img10');ctl.add('Img6',970,1260,1,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"16":"ctl.rec('70');",
+						"19":"ctl.rem('Img6');ctl.rem('Img7');ctl.rem('Img8');ctl.rem('Img9');ctl.rem('Img10');ctl.add('Img11',970,1260,4,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"20":"ctl.update('Img11',3);ctl.updatetween('Img9','Img12',25);",
+						"21":"ctl.update('Img11',4);ctl.updatetween('Img9','Img12',75);",
+						"22":"ctl.rem('Img9');ctl.rem('Img10');ctl.update('Img11',8);ctl.add('Img12',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"23":"ctl.update('Img11',1);",
+						"24":"ctl.update('Img11',4);",
+						"28":"ctl.update('Img11',6);",
+						"29":"ctl.update('Img11',4);",
+						"31":"ctl.rem('Img11');ctl.rem('Img7');ctl.rem('Img8');ctl.rem('Img12');ctl.rem('Img10');ctl.add('Img6',970,1260,1,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img12',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"35":"ctl.rem('Img6');ctl.rem('Img7');ctl.rem('Img8');ctl.rem('Img12');ctl.rem('Img10');ctl.add('Img11',970,1260,6,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.addtween('Img9','Img12',790,730,75,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"36":"ctl.update('Img11',4);ctl.updatetween('Img9','Img12',25);",
+						"37":"ctl.update('Img9',1);",
+						"38":"ctl.update('Img11',2);",
+						"40":"ctl.update('Img11',4);",
+						"44":"ctl.update('Img11',8);",
+						"45":"ctl.update('Img11',7);",
+						"46":"ctl.update('Img11',4);",
+						"49":"ctl.update('Img11',1);",
+						"50":"ctl.update('Img11',4);",
+						"54":"ctl.rem('Img9');ctl.rem('Img10');ctl.add('Img13',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"55":"ctl.update('Img13',2);",
+						"56":"ctl.rem('Img11');ctl.rem('Img7');ctl.rem('Img8');ctl.rem('Img13');ctl.rem('Img10');ctl.add('Img6',970,1260,1,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img13',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"57":"ctl.rem('Img13');ctl.rem('Img10');ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);",
+						"68":"ctl.stop()",
+						"70":"ctl.add('Img1',0,0,1,0,0,0);ctl.add('Img2',0,1250,1,0,0,0);ctl.add('Img3',0,1250,1,0,0,0);ctl.add('Img4',0,0,1,0,0,0);ctl.add('Img5',0,0,1,0,0,0);ctl.add('Img6',970,1260,1,0,0,0);ctl.add('Img7',790,730,1,0,0,0);ctl.add('Img8',790,730,1,0,0,0);ctl.add('Img9',790,730,1,0,0,0);ctl.add('Img10',0,0,1,0,0,0);ctl.stop()"
+					}
+				}
+			}
+		}
+	}
+};
+msDocLoaded();

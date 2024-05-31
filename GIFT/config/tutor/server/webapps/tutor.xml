@@ -1,0 +1,194 @@
+<?xml version="1.0"  encoding="ISO-8859-1"?>
+<!DOCTYPE doc [
+    <!ENTITY Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+    <!ENTITY keycloakWebAppConfig SYSTEM "config/tools/gas/auth/keycloak/webapp.xml">
+  ]>
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+	<Set name="contextPath">/tutor</Set>
+	<Set name="throwUnavailableOnStartupException">true</Set>
+	
+	<!-- assign an explicit temporary directory to avoid leaving Jetty's auto-generated ones behind -->
+	<Set name="tempDirectory"><SystemProperty name="gift.home" default="."/>/temp/jetty-gift-tutor</Set>
+	
+	<!-- 
+       If dev mode is being used, then the war target needs to point to the uncompressed WAR folder in build/war 
+       rather than the .war file in bin, otherwise some files needed for dev mode to work cannot be overridden.
+       
+       This is handled by allowing dev mode to set a target.war property to override where this configuration grabs
+       the WAR content from. If this property is not set, this config will default to using the compressed .war.
+    -->
+    <Set name="war">
+       <SystemProperty name="gift.home" default="."/><SystemProperty name="target.war" default="/bin/gift-tutor.war"/>
+    </Set>
+
+    <!-- System classes are classes that cannot be replaced by
+        the web application, and they are *always* loaded via
+        system classloader.
+        https://github.com/eclipse/jetty.project/blob/jetty-7/jetty-webapp/src/main/java/org/eclipse/jetty/webapp/WebAppContext.java
+    -->
+	<Set name="systemClasses">
+		<Array type="String">
+			<Item>java.</Item>
+			<Item>javax.servlet.</Item>
+			<Item>javax.xml.</Item>
+			<Item>org.eclipse.</Item>
+			<Item>org.xml.</Item>
+			<Item>org.w3c.</Item>
+            <Item>org.eclipse.jetty.websocket.servlet.WebSocketServlet</Item>      <!-- don't hide websocketservlet , note the '-' character here! -->
+            <Item>org.eclipse.jetty.websocket.servlet.WebSocketCreator</Item>
+            <Item>org.eclipse.jetty.servlet.DefaultServlet</Item> <!-- webapp cannot change default servlets  -->
+            <Item>org.eclipse.jetty.jndi.InitialContextFactory</Item>
+		</Array>
+	</Set>
+
+    <!-- Server classes are classes that are hidden from being
+         loaded by the web application using system classloader,
+        so if web application needs to load any of such classes,
+        it has to include them in its distribution.
+        https://github.com/eclipse/jetty.project/blob/jetty-7/jetty-webapp/src/main/java/org/eclipse/jetty/webapp/WebAppContext.java
+    -->
+	<Set name="serverClasses">
+		<Array type="String">
+            <Item>-org.eclipse.jetty.websocket.servlet.WebSocketServlet</Item>      <!-- don't hide websocketservlet , note the '-' character here! -->
+            <Item>-org.eclipse.jetty.websocket.servlet.WebSocketCreator</Item>
+            <Item>-org.eclipse.jetty.servlet.DefaultServlet</Item>          <!-- don't hide default servlet, note the '-' character here! -->
+			<Item>org.eclipse.jetty.plus.jaas.</Item>
+			<Item>org.slf4j.</Item>
+		</Array>
+	</Set>
+
+	<Call name="getMimeTypes">
+		<Call name="addMimeMapping">
+			<Arg>ogv</Arg>
+			<Arg>video/ogg</Arg>
+		</Call>
+	</Call>
+	
+	<!-- Ensure static files can be fetched inside a Windows symlink context -->
+	<Call name="addAliasCheck">
+        <Arg>
+            <New class="org.eclipse.jetty.server.SameFileAliasChecker"/>
+        </Arg>
+    </Call>
+
+	<Set name="extraClasspath">
+	   <SystemProperty name="gift.home" default="."/>/config/tutor/
+	</Set>
+	
+	<!-- Optional Keycloak authentication settings shared between GIFT's web apps -->
+    &keycloakWebAppConfig;
+
+	<!-- Change the URL below to the location of the Virtual Human character server REST API -->
+	<!-- GIFT uses this to check if Virtual Human character server is running (see GiftServletUtils.java) -->
+	<New id="isVirtualHumanCharacterServerOnline" class="java.lang.String">
+		<Arg>
+			<Call class="mil.arl.gift.common.gwt.server.GiftServletUtils" name="checkVHCharacterServer">
+				<Arg type="java.lang.String">localhost:8088</Arg>
+			</Call>
+		</Arg>
+	</New>
+
+	<!-- Change the paths below or add a new path item below that contains the path to where the Media Semantics Character Server is installed (if different) -->
+	<!-- GIFT uses this to check if Media Semantics character server is running (see GiftServletUtils.java) -->
+	<!-- For more information on installing the Media Semantics Character Server please refer to GIFT documentation, specifically the Media Semantics Character Server instructions -->
+	<!-- If you wish to disable using the Media Semantics character server please do ONE OR MORE of the following:
+			1) remove all "<Item>...</Item>" elements for the LocalMediaSemanticsCharacterServerDirectory's "Arg Array" element below 
+			2) Comment/Remove the following XML content until you reach the first "End Character Server" line of text below.
+	-->	
+	<New id="LocalMediaSemanticsCharacterServerDirectory" class="java.lang.String">
+		<Arg>
+			<Call class="mil.arl.gift.common.gwt.server.GiftServletUtils" name="getValidMSCDirectory">
+				<Arg>
+					<Array type="java.lang.String">
+						<Item>C:/Program Files (x86)/Character Server</Item> <!-- the default location for 64 bit Windows (MS is a 32 bit application) -->
+						<Item>C:/Program Files/Character Server</Item>       <!-- the default location for 32 bit Windows -->
+					</Array>
+				</Arg>
+				<Arg type="java.lang.String"><Ref id="isVirtualHumanCharacterServerOnline"/></Arg>
+			</Call>
+		</Arg>
+	</New>
+
+	<Call name="setInitParameter">
+		<Arg type="String">LocalMediaSemanticsCharacterServerDirectory</Arg>
+		<Arg type="String"><Ref id="LocalMediaSemanticsCharacterServerDirectory"/></Arg>
+	</Call>
+		
+	<Call name="setInitParameter">
+		<Arg type="String">isVirtualHumanCharacterServerOnline</Arg>
+		<Arg type="String"><Ref id="isVirtualHumanCharacterServerOnline"/></Arg>
+	</Call>
+		
+	<Call name="addServlet">
+		<Arg>
+			<New class="org.eclipse.jetty.servlet.ServletHolder">
+				<Arg>CharacterServer_CGI</Arg>
+				<Arg><New class="org.eclipse.jetty.servlets.CGI"/></Arg>
+				<Call name="setInitParameter">
+					<Arg>cgibinResourceBase</Arg>
+					<Arg><Ref id="LocalMediaSemanticsCharacterServerDirectory"/>/CS</Arg>
+				</Call>
+				<Set name="asyncSupported">true</Set>
+			</New>
+		</Arg>
+		<Arg>/cs/*</Arg>
+	</Call>
+	
+	<Call name="addServlet">
+		<Arg>
+			<New class="org.eclipse.jetty.servlet.ServletHolder">
+				<Arg>CharacterServer_HTML</Arg>
+				<Arg><New class="mil.arl.gift.common.gwt.server.FileServlet" /></Arg>
+				<Call name="setInitParameter">
+					<Arg>File_Path</Arg>
+					<Arg><Ref id="LocalMediaSemanticsCharacterServerDirectory"/>/HTML</Arg>
+				</Call>
+			</New>
+		</Arg>
+		<Arg>/cshtml/*</Arg>
+	</Call>
+	<!-- End Character Server -->
+
+	<!-- Character Server is on a remote host -->
+	<!-- Uncomment the block below to enable the Character Server -->
+	<!-- Modify this string to point to the URL where the Character Server is at -->
+	<!--
+	<New id="RemoteMediaSemanticsCharacterServerUrl" class="java.lang.String"><Arg>http://127.0.0.1:8090/tutor</Arg></New>
+
+	<Call name="setInitParameter">
+		<Arg type="String">RemoteMediaSemanticsCharacterServerUrl</Arg>
+		<Arg type="String"><Ref id="RemoteMediaSemanticsCharacterServerUrl"/></Arg>
+	</Call>
+	
+	<Call name="addServlet">
+		<Arg>
+			<New class="org.eclipse.jetty.servlet.ServletHolder">
+				<Arg>CharacterServer_HTML_Proxy</Arg>
+				<Arg><New class="org.eclipse.jetty.servlets.ProxyServlet$Transparent"/></Arg>
+				<Call name="setInitParameter">
+					<Arg>ProxyTo</Arg>
+					<Arg><Ref id="RemoteMediaSemanticsCharacterServerUrl"/></Arg>
+				</Call>
+			</New>
+		</Arg>
+		<Arg>/cs/*</Arg>
+	</Call>
+
+	<Call name="addServlet">
+		<Arg>
+			<New class="org.eclipse.jetty.servlet.ServletHolder">
+				<Arg>CharacterServer_HTML_Proxy</Arg>
+				<Arg><New class="org.eclipse.jetty.servlets.ProxyServlet$Transparent"/></Arg>
+				<Call name="setInitParameter">
+					<Arg>ProxyTo</Arg>
+					<Arg><Ref id="RemoteMediaSemanticsCharacterServerUrl"/></Arg>
+				</Call>
+			</New>
+		</Arg>
+		<Arg>/cshtml/*</Arg>
+	</Call>
+	-->
+	<!-- End of uncomment block -->
+	<!-- End Character Server -->
+
+</Configure>

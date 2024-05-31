@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DisplayMediaCollectionRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information about media that needs to be displayed by the Tutor. */
+message DisplayMediaCollectionRequest {
+	/* The lesson material to display. */
+	google.protobuf.StringValue lesson_material = 1;
+	
+	/* The reference to the content to be displayed that is unique to this course. */
+	google.protobuf.StringValue content_ref = 2;
+}

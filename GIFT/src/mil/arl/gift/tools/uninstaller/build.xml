@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<project name="Uninstaller" default="compile">
+    
+    <property name="root.path" value="../../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.tools.uninstaller"/>
+    <property name="uninstaller.source.path" value="mil/arl/gift/tools/uninstaller"/>
+	<property name="common.source.path" value="mil/arl/gift/common"/>
+	<property name="gateway.source.path" value="mil/arl/gift/gateway"/>
+    <property name="jarfile.ext.path" value="gift-uninstaller"/>
+    <property name="jarfile.name" value="gift-uninstaller.jar"/>
+	<property name="gift.common.jar" value="gift-common.jar"/>
+	
+    <property name="build.excludes" value="**/gwt/**,**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.dll,**/*.txt,**/*.TXT,**/*.ini,**/*.properties"/>
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+        
+    <path id="classpath">
+    	<fileset dir="${root.path}/bin" includes="${gift.common.jar}"/>
+        <fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-compress-1.4.1.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-cli-1.2.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-io-2.3.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/CJWizards-0.2.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/jna-3.5.1.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/jna-platform-3.5.1.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/commons-lang-2.4.jar"/>
+		<fileset dir="${root.path}/bin" includes="**/jaxb_generated.jar"/>
+		<fileset dir="${root.path}/external" includes="**/jdk-11/jaxb-ri/mod/jaxb-api.jar"/>
+		<fileset dir="${root.path}/external" includes="**/javafx-sdk-11.0.2/lib/*"/>
+    </path>
+    
+    <target name="checkForChanges">
+    	
+        <uptodate property="upToDateWithCommon.ifSet" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+    	
+        <uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="${build.excludes}"/>
+        </uptodate>
+    	
+        <uptodate property="upToDateWithGatewayInstaller.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="${root.path}/src" 
+            	includes=
+            	"${gateway.source.path}/uninstaller/TrainingApplicationUninstallPage.java,
+				${gateway.source.path}/uninstaller/UninstallThread.java"
+            	excludes="${build.excludes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <or>
+            	<not>
+                	<isset property="upToDateWithCommon.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithIncludes.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithGatewayInstaller.ifSet"/>
+            	</not>
+            </or>
+        </condition>
+    	
+    	<!-- DEBUG
+    	<echo message="upToDateWithCommon.ifSet = ${upToDateWithCommon.ifSet}, 
+    		upToDateWithIncludes.ifSet = ${upToDateWithIncludes.ifSet}, 
+    		upToDateWithGatewayInstaller.ifSet = ${upToDateWithGatewayInstaller.ifSet}"/>
+    	-->
+    	
+    </target>
+    
+    <target name="compileCore" if="build.required">
+    	<echo message="Compiling Uninstaller Tool"/>
+        <javac debug="on" srcDir="${root.path}/src" destdir="${root.path}/build/classes"         	
+        	includeAntRuntime="false" classpathref="classpath" includeDestClasses="false" excludes="${build.excludes}">
+        	<compilerarg value="-Xlint"/>
+        	<include name="${uninstaller.source.path}/**"/>
+        	<include name="${gateway.source.path}/uninstaller/TrainingApplicationUninstallPage.java"/>
+        	<include name="${gateway.source.path}/uninstaller/UninstallThread.java"/>
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" 
+        	basedir="${root.path}/build/classes/" 
+        	includes="${uninstaller.source.path}/**,${common.source.path}/**,
+        	${gateway.source.path}/uninstaller/TrainingApplicationUninstallPage*.class,
+        	${gateway.source.path}/uninstaller/UninstallThread*.class"
+        	excludes="${build.excludes}"/>
+    </target>
+
+    <target name="compile" depends="checkForChanges, compileCore">        
+    </target>
+    	
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

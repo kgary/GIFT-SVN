@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<project name="DomainModule" default="compile">
+    <property name="root.path" value="../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.domain"/>
+    <property name="source.path" value="mil/arl/gift/domain"/>
+    <property name="jarfile.ext.path" value="gift-domain"/>
+    <property name="module.jarfile.name" value="gift-domain.jar"/>
+	<property name="services.jarfile.name" value="gift-domain-services.jar"/>
+    <property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="gift.services.jar" value="gift-services.jar"/>
+	<property name="gift.authoring.conversion.jar" value="gift-authoring-conversion.jar"/>
+	<property name="gift.build.properties" value="${root.path}/config/build.properties"/>
+	<property name="build.dependencies" value="${root.path}/config/build.dependencies"/>
+	<property name="build.excludes" value="**/gwt/**,**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.dll,**/*.txt,**/*.TXT,**/*.ini"/>
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+
+   <loadfile property="build.dependencies.domain" srcFile="${build.dependencies}">
+        <filterchain>
+            <linecontains>
+                <contains value="@domain@"/>
+            </linecontains>
+            <replacetokens>
+                <token key="domain" value=""/>
+            </replacetokens>
+        </filterchain>
+    </loadfile>
+	
+    <path id="classpath">
+        <fileset dir="${root.path}" includes="${build.dependencies.domain}" excludes="${build.excludes}"/>
+    </path>
+    
+	
+	<!-- checking for changes in dependencies needed to compile ${module.jarfile.name} -->
+    <target name="checkForChanges.Core">
+    	
+    	<!-- has the common jar changed since the last jar creation (true = no change, not set = common jar is newer) -->
+    	<uptodate property="upToDateWithCommon.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+    	
+    	<!-- has the services jar changed since the last jar creation (true = no change, not set = common jar is newer) -->
+    	<uptodate property="upToDateWithServices.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}" srcfile="${root.path}/bin/${gift.services.jar}"/>
+        
+    	<!-- has the authoring common jar changed since the last jar creation (true = no change, not set = authoring common jar is newer) -->
+		<uptodate property="upToDateWithAuthoringCommon.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}" srcfile="${root.path}/bin/${gift.authoring.conversion.jar}"/>
+
+    	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
+    	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}"/>
+        </uptodate>
+    	
+    	<!-- has the build properties file changed since the last jar creation (true = no change, not set = properties have changed) -->
+        <uptodate property="buildPropertiesUpToDate.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}">
+            <srcfiles dir="." includes="${gift.build.properties}" excludes="${src.excludes}"/>
+        </uptodate>
+    
+    	<!-- set property if:
+    		1) the build properties have changed
+    		or
+    		2) the common jar has changed
+    		or
+    		3) the domain jar source has changed
+    		or
+    		4) the services jar source has changed
+    	-->
+        <condition property="buildCore.required">
+            <or>
+            	<not>
+            		<isset property="buildPropertiesUpToDate.ifSet" />
+            	</not>
+            	<not>
+                	<isset property="upToDateWithCommon.ifSet"/>
+            	</not>
+            	<not>
+            		<isset property="upToDateWithAuthoringCommon.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithIncludes.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithServices.ifSet"/>
+            	</not>
+            </or>
+        </condition>
+    </target>
+	
+	<!-- checking for changes in dependencies needed to compile ${services.jarfile.name} -->
+    <target name="checkForChanges.Services">
+    	
+    	<!-- has the common jar changed since the last jar creation (true = no change, not set = common jar is newer) -->
+    	<uptodate property="upToDateWithCommon.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+
+    	<!-- has the authoring common jar changed since the last jar creation (true = no change, not set = authoring common jar is newer) -->
+		<uptodate property="upToDateWithAuthoringCommon.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}" srcfile="${root.path}/bin/${gift.authoring.conversion.jar}"/>
+
+    	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
+    	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}"/>
+        </uptodate>
+    	
+    	<!-- has the build properties file changed since the last jar creation (true = no change, not set = properties have changed) -->
+        <uptodate property="buildPropertiesUpToDate.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}">
+            <srcfiles dir="." includes="${gift.build.properties}" excludes="${src.excludes}"/>
+        </uptodate>
+    
+    	<!-- set property if:
+    		1) the build properties have changed
+    		or
+    		2) the common jar has changed
+    		or
+    		3) the domain jar source has changed
+    	-->
+        <condition property="buildServices.required">
+            <or>
+            	<not>
+            		<isset property="buildPropertiesUpToDate.ifSet" />
+            	</not>
+            	<not>
+                	<isset property="upToDateWithCommon.ifSet"/>
+            	</not>
+            	<not>
+            		<isset property="upToDateWithAuthoringCommon.ifSet"/>
+            	</not>
+            	<not>
+                	<isset property="upToDateWithIncludes.ifSet"/>
+            	</not>
+            </or>
+        </condition>
+    </target>
+
+    <target name="compileDomainCore" if="buildCore.required">
+    	<echo message="Compiling Domain"/>
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+            <compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
+        </javac>
+    	
+    	<!-- create domain module core jar -->
+        <jar destfile="${root.path}/bin/${module.jarfile.name}" basedir="${root.path}/build/classes" includes="${source.path}/**" excludes="${build.excludes}"/>
+    	
+    </target>
+    
+    <target name="compile" depends="checkForChanges.Core, compileDomainCore"/>
+	
+	<!-- create domain module services jar -->
+	<target name="compileDomainServices" depends="checkForChanges.Services" if="buildServices.required">
+	
+		<property name="domainServices.class.includes" 
+			value="
+			${source.path}/DomainCourseFileHandler*.class,
+			${source.path}/DomainDKFHandler*.class,
+			${source.path}/DomainModuleProperties*.class,
+			${source.path}/DomainKnowledgeManager*.class,
+			${source.path}/AbstractPedagogicalRequestHandler*.class,
+			${source.path}/knowledge/**,
+			${source.path}/lessonmaterial/**,
+			${source.path}/learneraction/**,
+			${source.path}/knowledge/KnowledgeSessionManager*.class,
+			${source.path}/knowledge/strategy/DefaultStrategyHandler*.class,
+			${source.path}/EntityTable*.class,
+			${source.path}/DeadReckonedEntityMessageHandler*.class"/>
+
+    	<echo message="Compiling Domain Services"/>
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+            <compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
+        	<include name="DomainCourseFileHandler.java"/>
+        	<include name="DomainDKFHandler.java"/>
+    		<include name="DomainModuleProperties.java"/>
+    		<include name="DomainKnowledgeManager.java"/>
+        	<include name="DomainKnowledgeActionInterface.java"/>
+    		<include name="AbstractPedagogicalRequestHandler.java"/>
+    		<include name="knowledge/**"/>
+        	<include name="lessonmaterial/**"/>
+            <include name="learneraction/**"/>
+        	<include name="knowledge/KnowledgeSessionManager.java"/>
+        	<include name="EntityTable.java"/>
+        	<include name="DeadReckonedEntityMessageHandler.java"/>
+        </javac>
+    	
+        <jar destfile="${root.path}/bin/${services.jarfile.name}" 
+        	basedir="${root.path}/build/classes" 
+        	includes="${domainServices.class.includes}" 
+        	excludes="${build.excludes}"/>
+	</target>
+	
+    <target name="clean">
+        <delete file="${root.path}/bin/${module.jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

@@ -1,0 +1,34 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DisplayChatWindowUpdateRequestProto";
+
+import "DisplayAvatarAction.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the information that displays a chat window update request. */
+message DisplayChatWindowUpdateRequest {
+	/* Value indicating whether the chat window is closed or not. */
+	google.protobuf.BoolValue closed = 1;
+	
+	/* Id of the update request. */
+	google.protobuf.Int32Value id = 2;
+	
+	/* The action for the request. */
+	DisplayAvatarAction action = 3;
+	
+	/* Text for the request. */
+	google.protobuf.StringValue text = 4;
+	
+	/* Choices available for the request. */
+	repeated string choices = 5;
+	
+	/* Value indicating whether the chat window allows the learner to provide a free response answer. */
+	google.protobuf.BoolValue free_response = 6;
+}

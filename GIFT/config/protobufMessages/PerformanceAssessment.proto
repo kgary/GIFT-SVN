@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "PerformanceAssessmentProto";
+
+import "AbstractAssessment.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about assessments of a learner for a domain. */
+message PerformanceAssessment {
+	/* The task assessments for this performance assessment. */
+	repeated TaskAssessment tasks = 1;
+	
+	/* The evaluator for the assessment. */
+	google.protobuf.StringValue evaluator = 2;
+	
+	/* The observer controller (OC) comment. */
+	google.protobuf.StringValue observer_comment = 3;
+	
+	/* The reference to a media file attached to this assessment by an observer controller (OC). */
+	google.protobuf.StringValue observer_media = 4;
+}

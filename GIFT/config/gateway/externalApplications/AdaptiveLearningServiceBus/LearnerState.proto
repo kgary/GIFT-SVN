@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "LearnerStateProto";
+
+import "PerformanceState.proto";
+import "CognitiveState.proto";
+import "AffectiveState.proto";
+
+/* A representation of the current state of a learner as reported by the ITS. */
+message LearnerState {
+	PerformanceState performance_state = 1;
+	CognitiveState cognitive_state = 2;
+	AffectiveState affective_state = 3;
+	
+	/* The unique identifier of the course execution within which this learner 
+	 * state was generated. */
+	int32 domain_session_id = 4;
+}

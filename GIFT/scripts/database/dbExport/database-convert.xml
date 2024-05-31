@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<project name="database-convert" default="convert">
+
+	<property environment="env"/>
+	
+	<path id="runtime-classpath">
+		<fileset dir="../../../external">
+			<include name="**/mysql-connector-java.jar"/>
+		</fileset>
+		<fileset dir="../../../external/ddlutils">
+			<include name="**/*.jar"/>
+			<include name="**/*.zip"/>
+		</fileset>
+		<fileset dir="${env.JAVA_HOME}/db/lib">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="checkProperties">
+		<condition property="propertiesAreSet">
+            <and>
+				<isset property="mySqlUrl" />
+                <isset property="username" />
+                <isset property="password" />
+				<isset property="output.dir" />
+            </and>
+        </condition>
+	</target>
+
+	<target name="lms-dump" depends="checkProperties" if="propertiesAreSet" description="Dumps LMS database structure">
+		<taskdef name="databaseToDdl"
+			classname="org.apache.ddlutils.task.DatabaseToDdlTask">
+			<classpath refid="runtime-classpath"/>
+		</taskdef>
+		<mkdir dir="${output.dir}"/>
+		<echo>Starting LMS dump: url = ${mySqlUrl}/gift_lms, username = ${username}, password = ${password}</echo>
+		<databaseToDdl>
+			<database url="${mySqlUrl}/gift_lms"
+					  driverClassName="com.mysql.jdbc.Driver"
+					  username="${username}"
+					  password="${password}"/>
+			<writeSchemaToFile outputFile="${output.dir}/lms-schema.xml"/>
+			<writeDataToFile outputFile="${output.dir}/lms-data.xml"/>
+		</databaseToDdl>
+	</target>
+	
+	<target name="ums-dump" depends="checkProperties" if="propertiesAreSet" description="Dumps UMS database structure">
+		<taskdef name="databaseToDdl"
+			classname="org.apache.ddlutils.task.DatabaseToDdlTask">
+			<classpath refid="runtime-classpath"/>
+		</taskdef>
+		<mkdir dir="${output.dir}"/>
+		<echo>Starting UMS dump: url = ${mySqlUrl}/gift_ums, username = ${username}, password = ${password}</echo>
+		<databaseToDdl>
+			<database url="${mySqlUrl}/gift_ums"
+					  driverClassName="com.mysql.jdbc.Driver"
+					  username="${username}"
+					  password="${password}"/>
+			<writeSchemaToFile outputFile="${output.dir}/ums-schema.xml"/>
+			<writeDataToFile outputFile="${output.dir}/ums-data.xml"/>
+		</databaseToDdl>
+	</target>
+	
+	<target name="lms-import" depends="checkProperties" if="propertiesAreSet" description="Imports lms-schema.xml into GiftLms Derby Database">
+		<taskdef classname="org.apache.ddlutils.task.DdlToDatabaseTask"
+				 name="ddlToDatabase"
+				 classpathref="runtime-classpath"/>
+				
+		<ddlToDatabase schemafile="${output.dir}/lms-schema.xml">
+			<database driverclassname="org.apache.derby.jdbc.EmbeddedDriver"
+					  url="jdbc:derby:${output.dir}/zip/derbyDb/GiftLms"/>
+			<createdatabase failonerror="false"/>
+			<writeschematodatabase alterdatabase="false"
+								   failonerror="true"/>
+		</ddlToDatabase>
+	</target>
+	
+	<target name="ums-import" depends="checkProperties" if="propertiesAreSet" description="Imports ums-schema.xml and ums-data.xml into GiftUms Derby Database">
+		<taskdef classname="org.apache.ddlutils.task.DdlToDatabaseTask"
+				 name="ddlToDatabase"
+				 classpathref="runtime-classpath"/>
+		
+		<ddlToDatabase schemafile="${output.dir}/ums-schema.xml">
+			<database driverclassname="org.apache.derby.jdbc.EmbeddedDriver"
+					  url="jdbc:derby:${output.dir}/zip/derbyDb/GiftUms"/>
+			<createdatabase failonerror="true"/>
+			<writeschematodatabase alterdatabase="false"
+								   failonerror="true"/>
+			<writedatatodatabase datafile="${output.dir}/ums-data.xml"
+								 failonerror="true"/>
+		</ddlToDatabase>
+	</target>
+	
+	<target name="zip-db" if="propertiesAreSet">
+		<zip destfile="${output.dir}/GiftDatabases.zip" basedir="${output.dir}/zip"/>
+	</target>
+	
+	<target name="convert" description="Dumps LMS and UMS data structures" depends="lms-dump,ums-dump,lms-import,ums-import,zip-db"/>
+</project>

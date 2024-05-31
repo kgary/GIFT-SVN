@@ -1,0 +1,163 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractKnowledgeSessionProto";
+
+import "AbstractEnumObject.proto";
+import "AbstractTeamUnit.proto";
+import "Mission.proto";
+import "SessionMember.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+/* This represents the base information for an abstract knowledge session. */
+message AbstractKnowledgeSession {
+	oneof type {
+		/* Information about a knowledge session designed for an individual, not a team. */
+		IndividualKnowledgeSession individial_knowledge_session = 1;
+		
+		/* Contains information about a knowledge session designed for a team. */
+		TeamKnowledgeSession team_knowledge_session = 2;
+	}
+}
+
+message IndividualKnowledgeSession {
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue course_id = 1;
+	
+	/* Unique id of the course that is authored being executed. */
+	google.protobuf.StringValue course_source_id = 2;
+	
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue name_of_session = 3;
+	
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue description = 4;
+	
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue course_name = 5;
+	
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue experiment_name = 6;
+
+	/* The information about the host of this knowledge session. */
+	SessionMember host_session_member = 7;
+	
+	/* The mapping of the task and concept node ids to their respective names. */
+	map<string, string> node_id_to_name_map = 8;
+	
+	/* The type of training application used for the session. */
+	AbstractEnumObject training_app_type = 9;
+	
+	/* The structure of the team for this knowledge session. */
+	Team team_structure = 10;
+	
+	/* The playback type for the knowledge session. */
+	google.protobuf.StringValue session_play_type = 11;
+	
+	/* Time that the session starts. */
+	google.protobuf.Timestamp session_start_time = 12;
+	
+	/* Time that the session ends. */
+	google.protobuf.Timestamp session_end_time = 13;
+	
+	/* The course domain session log file this knowledge session is from. */
+	google.protobuf.StringValue ds_logfile_name = 14;
+	
+	/* The URL of the audio file that should be played when notifying the user of good performance. */
+	google.protobuf.StringValue good_performance_audio = 15;
+	
+	/* The URL of the audio file that should be played when notifying the user of poor performance. */
+	google.protobuf.StringValue poor_performance_audio = 16;
+	
+	/* The workspace-relative path to the file containing the audio captured for this session. */
+	google.protobuf.StringValue captured_audio = 17;	
+	
+	/* The ID for unique ID of the service being used to play back the session.  */
+	google.protobuf.StringValue playback_id = 18;
+	
+	/* The mission data for the session. */
+	Mission mission = 19;
+}
+
+message TeamKnowledgeSession {
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue course_id = 1;
+	
+	/* Unique id of the course that is authored being executed. */
+	google.protobuf.StringValue course_source_id = 2;
+	
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue name_of_session = 3;
+	
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue description = 4;
+	
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue course_name = 5;
+	
+	/* Unique id of the course being executed. */
+	google.protobuf.StringValue experiment_name = 6;
+
+	/* The information about the host of this knowledge session. */
+	SessionMember host_session_member = 7;
+	
+	/* The mapping of the task and concept node ids to their respective names. */
+	map<string, string> node_id_to_name_map = 8;
+	
+	/* The type of training application used for the session. */
+	AbstractEnumObject training_app_type = 9;
+	
+	/* The structure of the team for this knowledge session. */
+	Team team_structure = 10;
+	
+	/* The playback type for the knowledge session. */
+	google.protobuf.StringValue session_play_type = 11;
+	
+	/* Time that the session starts. */
+	google.protobuf.Timestamp session_start_time = 12;
+	
+	/* Time that the session ends. */
+	google.protobuf.Timestamp session_end_time = 13;
+	
+	/* The course domain session log file this knowledge session is from. */
+	google.protobuf.StringValue ds_logfile_name = 14;
+	
+	/* The URL of the audio file that should be played when notifying the user of good performance. */
+	google.protobuf.StringValue good_performance_audio = 15;
+	
+	/* The URL of the audio file that should be played when notifying the user of poor performance. */
+	google.protobuf.StringValue poor_performance_audio = 16;
+	
+	/* The workspace-relative path to the file containing the audio captured for this session. */
+	google.protobuf.StringValue captured_audio = 17;
+	
+	/* The ID for unique ID of the service being used to play back the session.  */
+	google.protobuf.StringValue playback_id = 18;
+
+	/*
+	 * The following fields below represent information specific to a TeamKnowledgeSession message. 
+	 *
+	 * The number of members that the session can support. 
+	 */
+	 google.protobuf.Int32Value allowed_memeber_cnt = 19;
+	 
+	 /* The team members that have joined the session. */
+	 map<int32, SessionMember> team_members = 20;
+	 
+	 /* The list of available team roles for this team session. */
+	 repeated string team_roles = 21;
+	 
+	 /* The mission data for the session. */
+	 Mission mission = 22;
+}
+	 
+	 
+	 
+	 

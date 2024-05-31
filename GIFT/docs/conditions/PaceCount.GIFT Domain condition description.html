@@ -1,0 +1,80 @@
+﻿
+<head>
+<style type="text/css">
+.auto-style1 {
+	text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+<p><strong>Pace Count Condition</strong></p>
+<p>This condition checks whether the object/player controlled by the learner has 
+moved a specified distance.&nbsp; The learner must indicate the starting and 
+stoping point for this distance check by using the Start and Stop pace count 
+learner actions accordingly.&nbsp; The 
+condition must be configured with an ideal distance in meters.&nbsp; In addition a 
+threshold in meters can be authored to provide flexibility on how exact the distance 
+traveled must be to the ideal distance.&nbsp; </p>
+<p>YOU MUST ASSIGN AN ENTITY TO THE LEARNER IN THIS DKF FOR THIS CONDITION TO 
+WORK. [Except when using a mobile device and the mobile events course object]</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span>
+	<ul>
+		<li>case: the distance traveled from when the start pace count learner 
+		action button was pressed until the end pace count learner action button 
+		was pressed is <span class="auto-style1">within</span> the ideal 
+		distance authored +/- the threshold distance.</li>
+	</ul>
+	</li>
+	<li><span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: the distance traveled from when the start pace count learner 
+		action button was pressed to the current learner location is within the 
+		ideal distance authored +/- the threshold distance.&nbsp; This is useful 
+		for debugging purposes as an instructional strategy (e.g. feedback) can 
+		be shown to indicate that the correct distance has been reached.&nbsp; 
+		This At Expectation value will be sent for every location update while 
+		the learner is within the threshold distance from the ideal distance 
+		traveled.</li>
+	</ul>
+	</li>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the distance traveled from when the start pace count learner 
+		action button was pressed until the end pace count learner action button 
+		was pressed is <span class="auto-style1">outside</span> of the ideal 
+		distance authored +/- the threshold distance.</li>
+	</ul>
+	</li>
+	<li>Unknown<ul>
+		<li>case: the default, starting value for this condition</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>the total amount of time between pressing the start and stop pace count 
+	learner action buttons</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition completes when the stop pace count learner action button 
+	is pressed</li>
+	<li>YOU MUST ASSIGN AN ENTITY TO THE LEARNER IN THIS DKF FOR THIS CONDITION 
+	TO WORK.&nbsp; [Except when using a mobile device and the mobile events 
+	course object]</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can cause GIFT Entity state or Geo Location messages to be created 
+	(e.g. Virtual BattleSpace (VBS) and GIFT mobile app, respectively)</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+	<li>Geo Location</li>
+	<li>Learner Tutor Action</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.PaceCountCondition</em></p>
+</body>

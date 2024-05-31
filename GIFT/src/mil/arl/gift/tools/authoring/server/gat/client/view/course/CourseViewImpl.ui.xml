@@ -1,0 +1,990 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui" 
+    xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+    xmlns:course="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course"
+    xmlns:tree="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.tree"
+    xmlns:header="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.header"
+    xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view"
+    xmlns:d="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.dialog"
+    xmlns:c="urn:import:mil.arl.gift.common.gwt.client.widgets" 
+    xmlns:cv="urn:import:com.google.gwt.user.cellview.client"
+    xmlns:s="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.surveyeditor"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui" 
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:m="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.media"
+    xmlns:lti="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.header.lti"
+	xmlns:ltip="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.header.lti.provider"
+	xmlns:ltic="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.header.lti.consumer">
+    <ui:style>
+    .diskSpaceText {
+        color: #ccc;
+        font-family: Arial;
+        font-size: 14px;
+        font-weight: bold;
+        margin: 9px 0px 10px 8px;
+    }
+    
+    .inlineBlock {
+        display: inline-block;
+    }
+    
+    .tabbed {
+        padding-left: 10px;
+    }
+    
+    .propertyHeader {
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #345578;
+    }
+    
+    .propertyText {
+        font-size: 13px;
+        cursor: pointer;
+        margin-bottom: 5px;
+    }
+    
+    .propertyText:hover {
+        background: rgb(242, 245, 248);
+        border-radius: 10px;
+        border: solid 2px rgb(212, 224, 237);
+        color: #30556F;
+        margin-bottom: 1px;
+    }
+    
+    .iconPadding {
+        padding-right: 4px;
+    }
+    
+    .toolbarWrapper {
+        position: absolute;
+        top: 0px;
+    }
+    
+    .inlineBlock {
+        display: inline-block;
+    }
+    
+    .separator {
+        height: 27px;
+        position: absolute;
+        border-right: solid 1px lightgray;
+    }
+    
+    .readOnlyText {
+        height: 22px;
+        font-size: 14px;
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 0px 4px 0px 11px;
+        color: #345578;
+    }
+    
+    .readOnlyTextSuffix {
+        height: 22px;
+        font-size: 14px;
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 0px 0px 0px 3px;
+        color: #345578;
+    }
+    
+    .leftPad {
+        padding-left: 10px;
+    }
+    
+    .smallPadding {
+        padding: 5px 5px 5px 10px;
+    }
+    
+    .padding {
+        margin: 6px 0px 8px 9px;
+    }
+    
+    .pathText {
+        padding: 0px 6px;
+        white-space: nowrap;
+        color: rgb(11, 11, 11);
+        font-size: 14px;
+    }
+    
+    .courseHelpOuter {
+        padding: 5px 0px 5px 5px;
+    }
+    
+    .courseHelp {
+        overflow: auto;
+        padding: 5px 5px 5px 5px;
+    }
+    
+    .objectEditorPanel {
+        background-color: #323232;
+        background-image: linear-gradient(rgba(100, 100, 100, 1) 50%, #323232);
+    }
+    
+    .helpLink {
+        padding-left: 5px;
+        color: rgb(100, 100, 200);
+        font-weight: normal;
+    }
+    
+    .notBold {
+        font-weight: normal;
+    }
+    
+    .bold {
+        font-weight: bold;
+    }
+    .subPropertiesFooter{
+        padding: 5px;
+        text-align: center;
+    }
+    .propertyLink{
+        padding-left: 5px;
+    }
+    .propertyLink:hover{
+        background-color: rgb(225, 225, 255);
+        cursor: pointer;
+    }
+    .propertyLinkIcon{
+        padding: 5px 10px !important;
+    }
+    .propertySubLink{
+        margin-left: 35px;
+    }
+    .advancedPanel{
+
+    }
+    .subPropertiesPanel{
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-right-color: #e1e1ff;
+        background-color: white;
+        background-image: linear-gradient(to right, #e1e1ff, white 25px);
+    }
+    
+    .lockIconStyle {
+        font-size:24px;
+    }
+	.previewButton {
+    	border: none;
+		border-radius: 5px;
+    	padding: 2px 7px;
+    	vertical-align: top;
+    	margin-left: 1px;
+    	background: transparent;
+    	color: #376fab;
+    	font-size: 19px;
+    	margin-bottom: -10px;
+    	margin-top: -2px;
+	}
+	.previewButton:hover {
+		border: solid 1px #c8c8c8;
+    	color: #376fab;
+    	margin-top: -4px;
+    	padding: 3px 6px 1px;
+    	background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(200, 200, 200, 0.32));
+	}
+	.previewButton:active, .previewButton:focus {
+    	border: solid 1px #c8c8c8;
+    	color: #376fab !important;
+    	margin-top: -4px;
+    	padding: 3px 6px 1px;
+    	background-image: linear-gradient(rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0));
+	}
+	.legacyAdaptiveCourseflow {
+		font-size: 12px;
+	}
+
+    </ui:style>
+
+    <g:DeckLayoutPanel ui:field='mainDeck'>
+
+        <g:DockLayoutPanel ui:field='mainSplitterPanel'>
+        
+            <g:center>
+                <g:LayoutPanel ui:field='uiDeck'>
+
+                    <g:layer top='0px' height='100%'>
+                        <g:DockLayoutPanel ui:field='simpleGatPanel'>
+                            <g:center>
+                                <g:SplitLayoutPanel addStyleNames='courseMainSplitter'
+                                    ui:field='courseMainSplitter'>
+                                    <g:west size="300">
+                                        <g:SplitLayoutPanel addStyleNames='courseStackSplitter'>
+
+                                            <g:center>
+                                                <g:StackLayoutPanel unit='EM'
+                                                    addStyleNames='courseStackPanel' ui:field='courseStackPanel'>
+
+                                                    <g:stack>
+                                                        <g:header size='2.3'>
+                                                            <i class='fa fa-cog' style='padding: 5px 5px;' />
+                                                            Course Properties
+                                                        </g:header>                                                      
+                                                        <g:LayoutPanel ui:field='propertiesDeck'>
+                                                            
+                                                            <g:layer top='0px' bottom='0px'>
+                                                                <g:ScrollPanel ui:field='propertiesPanelContainer'>
+                                                                    <g:FlowPanel width='100%' height='100%' ui:field="propertiesPanel">     
+                                                                    
+                                                                        <g:HTML>
+                                                                            <hr style='margin: 7px 10px; border-top: 1px solid rgb(210, 210, 210);'/>
+                                                                        </g:HTML>
+                                                                    
+                                                                        <b:Tooltip title='Click to Expand' container='body' placement='RIGHT'>
+                                                                            <g:FocusPanel addStyleNames="{style.propertyLink}" ui:field='advancedPanel'>
+                                                                                <g:HTMLPanel>
+                                                                                    <table style='width: 100%;'>
+                                                                                        <tr style='width: 100%;'>
+                                                                                            <td>
+                                                                                                <b:Icon addStyleNames='{style.propertyLinkIcon}' ui:field="arrowIcon" type="CHEVRON_RIGHT"/>
+                                                                                            </td>
+                                                                                            <td style='width: 100%; font-weight: bold; padding: 8px 0px;'>
+                                                                                                Advanced
+                                                                                            </td>            
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </g:HTMLPanel>
+                                                                            </g:FocusPanel>
+                                                                        </b:Tooltip>
+                                                                        
+                                                                        <b:Collapse toggle='false' ui:field='advancedCollapse'>
+                                                                             <g:HTML>
+                                                                                 <hr style='margin: 7px 10px; border-top: 1px dashed rgb(210, 210, 210);'/>
+                                                                             </g:HTML>
+                                                                             <g:FlowPanel addStyleNames='{style.advancedPanel}' ui:field="advancedContent">
+                                                                             
+                                                                                 <g:FlowPanel>
+                                                                                     <b:Tooltip title='Click to View' container='body' placement='RIGHT'>
+                                                                                        <g:FocusPanel addStyleNames="{style.propertyLink}" ui:field='pathPanel'>
+                                                                                            <g:HTMLPanel>
+                                                                                                <table style='width: 100%;'>
+                                                                                                    <tr style='width: 100%;'>
+                                                                                                        <td>
+                                                                                                            <b:Icon addStyleNames='{style.propertyLinkIcon}' type="FOLDER"/>
+                                                                                                        </td>
+                                                                                                        <td style='width: 100%; font-weight: bold; padding: 8px 0px;'>
+                                                                                                            Course Location
+                                                                                                        </td>            
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </g:HTMLPanel>
+                                                                                        </g:FocusPanel>
+                                                                                    </b:Tooltip>
+                                                                                    <b:Collapse addStyleNames='{style.propertySubLink}' toggle='false' ui:field='pathCollapse'>
+                                                                                          <g:Label addStyleNames="{style.pathText}" ui:field="coursePathLabel"></g:Label>
+                                                                                    </b:Collapse>
+                                                                                </g:FlowPanel>
+                                                                                
+                                                                                <g:FlowPanel>
+                                                                                     <b:Tooltip title='Click to View' container='body' placement='RIGHT'>
+                                                                                        <g:FocusPanel addStyleNames="{style.propertyLink}" ui:field='configurationsButton'>
+                                                                                            <g:HTMLPanel>
+                                                                                                <table style='width: 100%;'>
+                                                                                                    <tr style='width: 100%;'>
+                                                                                                        <td>
+                                                                                                            <b:Icon addStyleNames='{style.propertyLinkIcon}' type="COGS"/>
+                                                                                                        </td>
+                                                                                                        <td style='width: 100%; font-weight: bold; padding: 8px 0px;'>
+                                                                                                            Configurations
+                                                                                                        </td>            
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </g:HTMLPanel>
+                                                                                        </g:FocusPanel>
+                                                                                    </b:Tooltip>
+                                                                                </g:FlowPanel>
+                                                                                
+                                                                                <g:FlowPanel>
+                                                                                     <b:Tooltip title='Click to View' container='body' placement='RIGHT'>
+                                                                                        <g:FocusPanel addStyleNames="{style.propertyLink}" ui:field='ltiPropertiesButton'>
+                                                                                            <g:HTMLPanel>
+                                                                                                <table style='width: 100%;'>
+                                                                                                    <tr style='width: 100%;'>
+                                                                                                        <td>
+                                                                                                            <b:Icon addStyleNames='{style.propertyLinkIcon}' type="PLUG"/>
+                                                                                                        </td>
+                                                                                                        <td style='width: 100%; font-weight: bold; padding: 8px 0px;'>
+                                                                                                            Learning Tools Interoperability (LTI)
+                                                                                                        </td>            
+                                                                                                    </tr>
+                                                                                                </table>
+                                                                                            </g:HTMLPanel>
+                                                                                        </g:FocusPanel>
+                                                                                    </b:Tooltip>
+                                                                                </g:FlowPanel>
+                                                                                
+                                                                            </g:FlowPanel>
+                                                                             <g:HTML>
+                                                                                 <hr style='margin: 7px 10px; border-top: 1px dashed rgb(210, 210, 210);'/>
+                                                                             </g:HTML>
+                                                                        </b:Collapse>
+    
+                                                                        <g:TextBox ui:field="bugTextBox" />
+                                                                    </g:FlowPanel>
+                                                                  </g:ScrollPanel>
+                                                              </g:layer>
+            
+                                                            <g:layer top='0px' bottom='0px' right='0px' width='0px'>
+                                                                 <g:ScrollPanel height='100%' width='100%' 
+                                                                 addStyleNames='{style.subPropertiesPanel}' ui:field='propertiesLvl2Panel'>
+                                                                 
+                                                                    <g:DeckPanel ui:field='propertiesLvl2Deck' >
+	                                                                    <g:HTMLPanel width='100%' ui:field="ltiPropertiesPanel" visible="false">
+
+																			<g:FlowPanel>
+																				<b:Tooltip title='Click to View' container='body' placement='RIGHT'>
+																					<g:FocusPanel addStyleNames="{style.propertyLink}" ui:field='ltiConsumerButton'>
+																						<g:HTMLPanel>
+																							<table style='width: 100%;'>
+																								<tr style='width: 100%;'>
+																									<td>
+																										<b:Icon addStyleNames='{style.propertyLinkIcon}' type="OBJECT_GROUP" />
+																									</td>
+																									<td style='width: 100%; font-weight: bold; padding: 8px 0px;'>
+																										Consumer
+																									</td>
+																								</tr>
+																							</table>
+																						</g:HTMLPanel>
+																					</g:FocusPanel>
+																				</b:Tooltip>
+																			</g:FlowPanel>
+																	
+																			<g:FlowPanel>
+																				<b:Tooltip title='Click to View' container='body' placement='RIGHT'>
+																					<g:FocusPanel addStyleNames="{style.propertyLink}" ui:field='ltiProviderButton'>
+																						<g:HTMLPanel>
+																							<table style='width: 100%;'>
+																								<tr style='width: 100%;'>
+																									<td>
+																										<b:Icon addStyleNames='{style.propertyLinkIcon}' type="SIGN_OUT" />
+																									</td>
+																									<td style='width: 100%; font-weight: bold; padding: 8px 0px;'>
+																										Provider
+																									</td>
+																								</tr>
+																							</table>
+																						</g:HTMLPanel>
+																					</g:FocusPanel>
+																				</b:Tooltip>
+																			</g:FlowPanel>
+																	
+																		</g:HTMLPanel>
+                                                                    </g:DeckPanel>
+                                                                                                               
+                                                                   </g:ScrollPanel>
+                                                               </g:layer>
+                                                               
+                                                               <g:layer top='0px' bottom='0px' right='0px' width='0px'>
+                                                                 <g:ScrollPanel height='100%' width='100%' 
+                                                                 addStyleNames='{style.subPropertiesPanel}' ui:field='propertiesLvl3Panel'>
+                                                                 
+                                                                    <g:DeckPanel ui:field='propertiesLvl3Deck' />
+                                                                    
+                                                                 </g:ScrollPanel>
+                                                               </g:layer>
+                                                           
+                                                           </g:LayoutPanel>                                                           
+                                                    </g:stack>
+
+                                                    <g:stack>
+                                                        <g:header size='2.3'>
+                                                            <i class='fa fa-sitemap' style='padding: 5px 5px;' />
+                                                            Course Objects
+                                                        </g:header>
+                                                        <c:DynamicHeaderScrollPanel>
+
+                                                            <c:center>
+                                                                <g:FlowPanel width='100%' height='100%'>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='guidanceButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/guidance.png' />
+                                                                            <g:HTML>
+                                                                                Information as Text
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='imageButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/image_icon.png' />
+                                                                            <g:HTML>
+                                                                                Image
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                    
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='videoButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/video_icon.png' />
+                                                                            <g:HTML>
+                                                                                Local Video
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                    
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='webAddressButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/web_icon.png' />
+                                                                            <g:HTML>
+                                                                                Web Address
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                    
+                                                                     <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='localWebpageButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/file.png' />
+                                                                            <g:HTML>
+                                                                                Local Webpage
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                    
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='pdfButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/pdf_icon.png' />
+                                                                            <g:HTML>
+                                                                                PDF
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                                                                                        
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='youtubeButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/youtube_icon.png' />
+                                                                            <g:HTML>
+                                                                                YouTube Video
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='slideShowButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/slideshow_icon.png' />
+                                                                            <g:HTML>
+                                                                                Slide Show
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='taButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/PowerPoint.png' />
+                                                                            <g:HTML>
+                                                                                PowerPoint
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='surveyButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/survey.png' />
+                                                                            <g:HTML>
+                                                                                Survey/Test
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='autoTutorButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/survey.png' />
+                                                                            <g:HTML>
+                                                                                AutoTutor Conversation
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='conversationTreeButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/survey.png' />
+                                                                            <g:HTML>
+                                                                                Conversation Tree
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='questionBankButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/survey.png' />
+                                                                            <g:HTML>
+                                                                                Question Bank
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='lmButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/lm.png' />
+                                                                            <g:HTML>
+                                                                                Media Collection
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>                                                                    
+                                                                                                                                        
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='mbpButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/mbp.png' />
+                                                                            <g:HTML>
+                                                                                Adaptive Courseflow
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='aarButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/aar-2.png' />
+                                                                            <g:HTML>
+                                                                                Structured Review
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='authoredBranchButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/authored_branch.png' />
+                                                                            <g:HTML>
+                                                                                Authored Branch
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                    
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='ltiButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/lti.png' />
+                                                                            <g:HTML>
+                                                                                LTI Provider
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                    
+                                                                     <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='vbsButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/VBS3.png' />
+                                                                            <g:HTML>
+                                                                                Virtual Battle Space
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='tc3Button'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/vmedic_icon.png' />
+                                                                            <g:HTML>
+                                                                                TC3
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='testbedButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/Excavator.png' />
+                                                                            <g:HTML>
+                                                                                DE Testbed
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='aresButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/ARES.png' />
+                                                                            <g:HTML>
+                                                                                ARES
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                    
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='unityStandaloneButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/Unity.png' />
+                                                                            <g:HTML>
+                                                                                Unity
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                    
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                    	title='drag to add to course' ui:field='unityButton'>
+                                                                   		<g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                   			<img draggable='false' width='24px' height='24px'
+                                                                   				src='images/Unity.png' />
+                                                                 			<g:HTML>
+                                                                 				Unity WebGL
+                                                                 			</g:HTML>
+                                                                   		</g:HTMLPanel>
+                                                                   	</g:FlowPanel>
+                                                                   	
+                                                                   	<g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='mobileAppButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/mobile-app.png' />
+                                                                            <g:HTML>
+                                                                                Mobile Events
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+                                                                    
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='vrEngageButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/Engage.png' />
+                                                                            <g:HTML>
+                                                                                VR-Engage
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+																	
+																	<g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='havenButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/seSandbox_Logo.png' />
+                                                                            <g:HTML>
+                                                                                SE Sandbox
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+																	
+																	<g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='rideButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/RIDE_Logo.png' />
+                                                                            <g:HTML>
+                                                                                RIDE
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <g:FlowPanel addStyleNames='courseTransitionObject'
+                                                                        title='drag to add to course' ui:field='exampleAppButton'>
+                                                                        <g:HTMLPanel addStyleNames='courseTransitionObjectInner'>
+                                                                            <img draggable='false' width='24px' height='24px'
+                                                                                src='images/transitions/ta.png' />
+                                                                            <g:HTML>
+                                                                                Demo Application
+                                                                            </g:HTML>
+                                                                        </g:HTMLPanel>
+                                                                    </g:FlowPanel>
+
+                                                                    <d:CourseObjectModal ui:field="coursePropertiesReuseDialog" />
+                                                                    <d:GiftWrapModal ui:field="giftWrapDialog" />
+                                                                    <m:MediaManagementDialog
+                                                                        ui:field="mediaDialog" />
+                                                                </g:FlowPanel>
+                                                            </c:center>
+
+                                                            <c:south>
+                                                                <g:FlowPanel ui:field='courseObjectPanelInstructions'>
+                                                                    <g:HTML>
+                                                                    	<span style='text-align: center; color: rgb(150,150,150); padding: 3px 3px 5px 3px;'>
+                                                                    		Drag objects onto the course flow area to add
+                                                                    		them to your course.
+                                                                    	</span>
+                                                                   	</g:HTML>
+                                                                </g:FlowPanel>
+                                                            </c:south>
+
+                                                        </c:DynamicHeaderScrollPanel>
+                                                    </g:stack>
+
+                                                    <g:stack>
+                                                        <g:header size='2.3'>
+                                                            <i class='fa fa-files-o' style='padding: 5px 5px;' />
+                                                            Media
+                                                        </g:header>
+                                                        <c:DynamicHeaderScrollPanel ui:field="stackMediaPanel">
+                                                            <c:center>
+                                                                <g:ScrollPanel height="100%">
+                                                                    <g:FlowPanel addStyleNames="{style.tabbed}"
+                                                                        width='100%'>
+                                                                        <g:InlineHTML addStyleNames="{style.propertyHeader}">Content Files</g:InlineHTML>
+                                                                        <g:DeckPanel ui:field="contentDeckPanel">
+																			<g:FlowPanel ui:field="contentLoadingPanel">
+																				<g:HTMLPanel>
+																					<table width="100%" height="100%">
+																						<tr>
+																							<td align="center" valign="center">
+																								<g:Image width="25px" height="25px" url="images/loading.gif" />
+																							</td>
+																						</tr>
+																					</table>
+																				</g:HTMLPanel>
+																			</g:FlowPanel>
+																			<g:FlowPanel
+																				addStyleNames="{style.smallPadding} {style.propertyText}"
+																				width='97%' ui:field="mediaSummaryPanel">
+																				<cv:CellTable height="25px" width='100%'
+																					ui:field="mediaListCellTable" />
+																			</g:FlowPanel>
+																		</g:DeckPanel>
+                                                                    </g:FlowPanel>
+                                                                </g:ScrollPanel>
+                                                            </c:center>
+                                                        </c:DynamicHeaderScrollPanel>
+                                                    </g:stack>
+
+                                                </g:StackLayoutPanel>
+                                            </g:center>
+
+                                            <g:south size="150">
+                                                <g:FlowPanel width='100%' height='100%'>
+
+                                                    <c:DynamicHeaderScrollPanel
+                                                        width='100%' height='100%'>
+
+                                                        <c:center>
+                                                            <g:FlowPanel width='100%' height='100%'
+                                                                addStyleNames='{style.courseHelpOuter}'>
+                                                                <g:FlowPanel width='100%' height='100%'
+                                                                    addStyleNames='courseHelpPanel'>
+                                                                    <g:FlowPanel width='100%' height='100%'
+                                                                        addStyleNames='{style.courseHelp}'>
+                                                                        <g:HTML ui:field='helpTextHtml'>
+                                                                            <!-- Help text goes here -->
+                                                                        </g:HTML>
+                                                                    </g:FlowPanel>
+                                                                </g:FlowPanel>
+                                                            </g:FlowPanel>
+                                                        </c:center>
+
+                                                        <c:south>
+                                                            <g:FlowPanel>
+                                                                <g:HTML ui:field="diskSpaceLabel" addStyleNames='{style.diskSpaceText}'>
+                                                                    Remaining Space: Calculating...
+                                                                </g:HTML>
+                                                                <g:FlowPanel visible="false">
+                                                                    <header:HeaderViewImpl height="100%"
+                                                                        width="100%" ui:field="courseHeaderEditor" /> 
+                                                                </g:FlowPanel>
+                                                            </g:FlowPanel>
+                                                        </c:south>
+
+                                                    </c:DynamicHeaderScrollPanel>
+
+                                                </g:FlowPanel>
+                                            </g:south>
+
+                                        </g:SplitLayoutPanel>
+                                    </g:west>
+                                    <g:center>
+                                        <g:SplitLayoutPanel addStyleNames='courseMainSplitter courseStackSplitter'
+                                            ui:field='courseTreeSplitter'>
+
+                                            <g:center>
+                                                <g:FlowPanel>
+
+
+                                                    <course:CollaboratorsTableModal ui:field="userAccessModal" />
+                                                    <g:SimpleLayoutPanel height="100%"
+                                                        width="100%">
+                                                        <course:TreeManager height="100%"
+                                                            width="100%" ui:field='treeManager' />
+                                                    </g:SimpleLayoutPanel>
+
+                                                    <g:FlowPanel addStyleNames='{style.toolbarWrapper}'
+                                                        height='40px'>
+                                                        <g:FlowPanel addStyleNames='courseTreeToolbar'>
+
+															<b:Tooltip title="Save Course" placement='RIGHT'>
+	                                                            <g:FlowPanel addStyleNames='toolbarButton'
+	                                                                ui:field="saveCourseButton">
+	                                                                <g:Image width='24px' height='24px'
+	                                                                    url='images/save.png' ui:field='saveCourseImage' />
+	                                                            </g:FlowPanel>
+	                                                        </b:Tooltip>
+
+															<b:Tooltip title="Validate Course" placement='BOTTOM'>
+	                                                            <g:FlowPanel addStyleNames='toolbarButton'
+	                                                                ui:field='validateCourseButton'>
+	                                                                <g:Image width='24px' height='24px' 
+	                                                                    url='images/clean.png' ui:field='validateCourseImage' />
+	                                                            </g:FlowPanel>
+	                                                        </b:Tooltip>
+
+															<b:Tooltip title="Revert to last save" placement='BOTTOM'>
+	                                                            <g:FlowPanel addStyleNames='toolbarButton'
+	                                                                ui:field="refreshCourseButton">
+	                                                                <g:Image width='24px' height='24px'
+	                                                                    url='images/refresh_save.png'
+	                                                                    ui:field='refreshCourseImage' />
+	                                                            </g:FlowPanel>
+	                                                        </b:Tooltip>
+                                                            
+                                                            <g:FlowPanel addStyleNames="toolbarButton" ui:field='lockedCourseButton'>
+                                                            <!-- NOTE: place this tooltip inside the flowpanel so the tooltip can be hidden when the icon is hidden -->
+                                                            	<b:Tooltip title="Unlock to edit this published course" placement='BOTTOM'>
+                                                                	<b:Icon type='LOCK' fixedWidth="true" addStyleNames='{style.lockIconStyle}' ui:field='lockedCourseIcon'/>
+                                                               	</b:Tooltip>
+                                                            </g:FlowPanel>
+
+															<b:Tooltip title="Preview" placement='BOTTOM'>
+                                                            	<b:Button addStyleNames='{style.previewButton}' type='DEFAULT' icon='EYE' ui:field='previewCourseButton' />
+															</b:Tooltip>
+															
+                                                            <g:FlowPanel ui:field="accessTableButton" addStyleNames='toolbarButton'>
+                                                            	<b:Tooltip title="Show Current Collaborators" placement='BOTTOM'>
+                                                                	<b:Icon ui:field="accessTableIcon" type='USER' fixedWidth="true" addStyleNames='{style.lockIconStyle}' />
+                                                               	</b:Tooltip>
+                                                            </g:FlowPanel>
+
+                                                            <g:FlowPanel addStyleNames="{style.separator} {style.inlineBlock}"></g:FlowPanel>
+
+                                                            
+                                                            
+                                                            <g:FlowPanel addStyleNames="{style.inlineBlock}"
+                                                                ui:field='readOnlyLabel'>
+
+                                                                <g:InlineHTML addStyleNames='{style.readOnlyText}'>
+                                                                    (Read-Only
+                                                                </g:InlineHTML>
+
+                                                                <cb:HelpLink helpCaption='Why is this Read-Only?'
+                                                                    addStyleNames='{style.notBold}'>
+
+                                                                    <cb:linkWidget>
+                                                                        <b:Icon title="Why is this Read-Only?"
+                                                                            addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+                                                                    </cb:linkWidget>
+
+                                                                    <cb:helpBody>
+                                                                        <g:HTMLPanel>
+                                                                            A course can be read-only for any of the following
+                                                                            reasons:
+                                                                            <br />
+                                                                            <br />
+                                                                            <ol>
+                                                                                <li>The course is locked with the (<b:Icon type='LOCK'/>) icon.  
+                                                                                    This means that the course has dependencies with data collection. 
+                                                                                    The course author can unlock the course to resume editing, but must be aware
+                                                                                    that it may invalidate the results of the data collection.</li>
+                                                                                <li>The course is currently being edited. It may be
+                                                                                    open in another browser window on this computer.</li>
+                                                                                <li>
+                                                                                    The course was open for editing and wasn't closed
+                                                                                    gracefully.
+                                                                                    The lock will be released in three minutes and then
+                                                                                    this page can be refreshed in order to edit the
+                                                                                    course.
+                                                                                    <br />
+                                                                                    To gracefully close a course, either leave the
+                                                                                    course creator
+                                                                                    by going to another page (e.g. 'Take a Course') or
+                                                                                    sign-out of GIFT.
+                                                                                </li>
+                                                                                <li>You don't have permission to edit the course.</li>
+                                                                            </ol>
+
+                                                                        </g:HTMLPanel>
+                                                                    </cb:helpBody>
+
+                                                                </cb:HelpLink>
+
+                                                                <g:InlineHTML addStyleNames='{style.readOnlyTextSuffix}'>
+                                                                    )
+                                                                </g:InlineHTML>
+
+                                                            </g:FlowPanel>
+
+                                                            <cb:EditableInlineLabel
+                                                                addStyleNames='toolbarButtonLabel' tooltipPlacement='BOTTOM'
+                                                                ui:field="courseNameButton" />
+
+                                                        </g:FlowPanel>
+                                                    </g:FlowPanel>
+
+
+
+                                                </g:FlowPanel>
+
+                                            </g:center>
+
+                                            <g:east size="300">
+                                                <g:SimpleLayoutPanel ui:field='objectEditorRightPanel'>
+                                                    <!-- Course object editor goes here when oriented to the right -->
+                                                </g:SimpleLayoutPanel>
+                                            </g:east>
+
+                                            <g:south size="300">
+                                                <g:SimpleLayoutPanel ui:field='objectEditorBottomPanel'>
+                                                    <!-- Course object editor goes here when oriented to the bottom -->
+                                                </g:SimpleLayoutPanel>
+                                            </g:south>
+
+                                        </g:SplitLayoutPanel>
+                                    </g:center>
+                                </g:SplitLayoutPanel>
+                            </g:center>
+                        </g:DockLayoutPanel>
+                    </g:layer>
+
+                </g:LayoutPanel>
+
+            </g:center>
+        </g:DockLayoutPanel>
+
+        <g:SimpleLayoutPanel addStyleNames="{style.objectEditorPanel}"
+            ui:field='objectEditorFullScreenPanel'>
+            
+            <!-- Course object editor goes here when shown in full screen -->
+        </g:SimpleLayoutPanel>
+
+    </g:DeckLayoutPanel>
+
+
+</ui:UiBinder> 

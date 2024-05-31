@@ -1,0 +1,36 @@
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import mil.arl.gift.tools.authoring.gat.shared.action.dkf.%ACTION_NAME%;
+import mil.arl.gift.tools.authoring.gat.shared.action.dkf.%ACTION_NAME%Result;
+
+
+private void do%ACTION_NAME%() {
+    
+    final String msg = "do%ACTION_NAME%";
+    logger.info(msg);
+    
+    AsyncCallback<%ACTION_NAME%Result> callback = new AsyncCallback<%ACTION_NAME%Result>() {
+        
+        @Override
+        public void onFailure(Throwable t) {
+            showWaiting(false);     
+            handleCallbackFailure(logger, msg, t);
+        }
+        
+        @Override
+        public void onSuccess(%ACTION_NAME%Result result) {                     
+            showWaiting(false);            
+            if(result.isSuccess()) {                                    
+                logSuccess(logger, msg);                          
+                //Get any values from the result and do something with them on the client.
+            }
+            else {                                    
+                handleServerSideFailure(logger, msg, result);
+            }
+        }
+    };    
+ 
+    %ACTION_NAME% action = new %ACTION_NAME%();
+    //TODO: fill in the action with any information needed by the server to fulfill the request.       
+    showWaiting(true);    
+    dispatchService.execute(action, callback);      
+}

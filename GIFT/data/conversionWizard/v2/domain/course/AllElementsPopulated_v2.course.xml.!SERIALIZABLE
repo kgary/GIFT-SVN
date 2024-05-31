@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Course name="name string" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <description>description string</description>
+    <surveyContext>1</surveyContext>
+    <transitions>
+        <Guidance>
+            <message>message string</message>
+            <displayTime>5.1</displayTime>
+        </Guidance>
+        <PresentSurvey>
+            <GIFTSurveyKey>PreLesson</GIFTSurveyKey>
+        </PresentSurvey>
+        <AAR/>
+        <TrainingApplication>
+            <dkfRef>
+                <file>simplest.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <VBS2InteropInputs>
+                            <loadArgs>
+                                <ScenarioName>scenario name string</ScenarioName>
+                            </loadArgs>
+                        </VBS2InteropInputs>
+                    </InteropInputs>
+                </interop>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <DISInteropInputs>
+                            <loadArgs/>
+                        </DISInteropInputs>
+                    </InteropInputs>
+                </interop>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <PowerPointInteropInputs>
+                            <loadArgs>
+                                <ShowFile>Hemorrhage Control Lesson\LessonMaterial\HemorrhageControlPart1.ppsm</ShowFile>
+                            </loadArgs>
+                        </PowerPointInteropInputs>
+                    </InteropInputs>
+                </interop>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <CustomInteropInputs>
+                            <loadArgs>
+                                <nvpair>
+                                    <name>name string</name>
+                                    <value>value string</value>
+                                </nvpair>
+                            </loadArgs>
+                        </CustomInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <Guidance>
+                <message>message string</message>
+                <displayTime>6.1</displayTime>
+            </Guidance>
+            <finishedWhen>Loaded</finishedWhen>
+        </TrainingApplication>
+        <LessonMaterial>
+            <LessonMaterialList>
+                <media>
+                    <name>name string</name>
+                    <uri>www.google.com</uri>
+                    <PDFProperties/>
+                </media>
+                <media>
+                    <name>name string</name>
+                    <uri>www.google.com</uri>
+                    <WebpageProperties/>
+                </media>
+                <media>
+                    <name>name string</name>
+                    <uri>www.youtube.com</uri>
+                    <YoutubeVideoProperties>
+                        <size>
+                            <width>420</width>
+                            <height>315</height>
+                        </size>
+                        <allowFullScreen>true</allowFullScreen>
+                    </YoutubeVideoProperties>
+                </media>
+                <media>
+                    <name>name string</name>
+                    <uri>www.google.com</uri>
+                    <ImageProperties/>
+                </media>
+            </LessonMaterialList>
+        </LessonMaterial>
+    </transitions>
+</Course>

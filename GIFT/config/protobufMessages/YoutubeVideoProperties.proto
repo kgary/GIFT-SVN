@@ -1,0 +1,33 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "YoutubeVideoPropertiesProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This represents the properties for a Youtube video. */
+message YoutubeVideoProperties {
+	/* Width of the video. */
+	google.protobuf.FloatValue width = 1;
+	
+	/* Height of the video. */
+	google.protobuf.FloatValue height = 2;
+	
+	/* Units of the width. */
+	google.protobuf.StringValue width_units = 3;
+	
+	/* Units of the height. */
+	google.protobuf.StringValue height_units = 4;
+	
+	/* Value indicating if the video should constrain to the screen. */
+	google.protobuf.StringValue constrain_to_screen = 5;
+	
+	/* Value indicating if the video should allow full screen. */
+	google.protobuf.StringValue full_screen = 6;
+}

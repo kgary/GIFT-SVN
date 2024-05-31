@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="11.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fg="http://www.FGolubov.com/XMLEditor" elementFormDefault="qualified">
+  <xs:element name="LMSConnections">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="LMS Connections"> 
+			<fg:message>This is the root node of the LMSConnections.  Look for other helpful information by clicking on a node.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Connection" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Connection">
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element name="enabled" type="xs:boolean" default="true" minOccurs="0">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Is Enabled"> 
+					<fg:message>Whether this connection is enabled for use by this LMS module (Default is true)</fg:message>
+					<fg:message>A connection might be unavailable if the server part of the system is not available (e.g. no internet connection, database not configured, no credentials).</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>			
+		</xs:element>
+          <xs:element name="impl">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Implementation"> 
+					<fg:message>Specify the class that contains the logic for this connection (e.g. "lms.impl.LmsDatabase").</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+        <xs:element name="name">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Name"> 
+					<fg:message>The unique name of the connection.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		  </xs:element>
+		<xs:element ref="Parameters" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Parameters">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Parameters"> 
+			<fg:message>Configuration parameters for the connection.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element name="networkAddress" minOccurs="0">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Network Address"> 
+					<fg:message>A network IP address (no port information) used for connection purposes. E.g. 127.0.0.1</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+        <xs:element name="networkPort" type="xs:integer" minOccurs="0">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Network Port"> 
+					<fg:message>A network port number used for connection purposes. E.g. 12345</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:element>
+		<xs:element name="username" minOccurs="0">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="User Name"> 
+					<fg:message>A user name to use as credentials to access the connection</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+		<xs:element name="password" minOccurs="0">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Password"> 
+					<fg:message>A password to use as credentials to access the connection</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+		<xs:element name="profileServer" minOccurs="0">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Profile Server"> 
+					<fg:message>Define connection information for a profile server that can be used by an LMS connection instance.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="endPoint">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info message="EndPoint"> 
+								<fg:message>Location information for the profile server (e.g. URL, IP address)</fg:message>
+								</fg:node-info> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="apiKey">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info message="API Key"> 
+								<fg:message>Credential needed to access the profile server.</fg:message>
+								</fg:node-info> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element name="NameValuePair" minOccurs="0" maxOccurs="unbounded">
+			<xs:annotation>
+				<xs:appinfo>
+					<fg:node-info message="Name Value Pair"> 
+					<fg:message>This is a generic configuration parameter that offers flexibility by allowing new parameters to be authored without having to edit the XML schema.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="name">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="value">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:minLength value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+ </xs:schema>

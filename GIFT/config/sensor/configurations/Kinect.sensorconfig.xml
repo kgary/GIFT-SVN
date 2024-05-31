@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Sensor Configuration Authoring Tool (SCAT).
+	This file contains the configuration for sensors for the sensor module.
+	Multiple sensors, filters and writers can be configured using this file.
+	For specific sensor configuration examples look at the various sensor configuration xml files (e.g. SensorConfiguration.Mouse.xml).
+-->
+<SensorsConfiguration version="11.0.1" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <Sensors>
+        <Sensor id="1">
+            <name>KinectSensor</name>
+            <sensorImpl>sensor.impl.KinectSensor</sensorImpl>
+            <distributeExternally>false</distributeExternally>
+            <sensorInput>
+                <KinectSensor>
+                    <colorSampleInterval>5</colorSampleInterval>
+                    <depthSampleInterval>5</depthSampleInterval>
+                </KinectSensor>
+            </sensorInput>
+            <filterInstance>2</filterInstance>
+            <writerInstance>3</writerInstance>
+        </Sensor>
+    </Sensors>
+    <Filters>
+        <Filter id="2">
+            <name>KinectSensorFilter</name>
+            <filterImpl>sensor.filter.KinectSensorFilter</filterImpl>
+            <distributeExternally>true</distributeExternally>
+            <writerInstance>4</writerInstance>
+            <filterInput/>
+        </Filter>
+    </Filters>
+    <Writers>
+        <Writer id="3">
+            <name>UnfilteredKinectWriter</name>
+            <writerImpl>sensor.writer.KinectSensorWriter</writerImpl>
+            <writerInput>
+                <KinectSensorWriter>
+                    <directoryToWrite>output/sensor</directoryToWrite>
+                    <filePrefix>unfilteredKinect</filePrefix>
+                    <ColorCompression>LZ4</ColorCompression>
+                    <DepthCompression>LZ4</DepthCompression>
+                </KinectSensorWriter>
+            </writerInput>
+        </Writer>
+        <Writer id="4">
+            <name>FilteredKinectWriter</name>
+            <writerImpl>sensor.writer.GenericSensorDelimitedWriter</writerImpl>
+            <writerInput>
+                <GenericSensorDelimitedWriter>
+                    <directoryToWrite>output/sensor</directoryToWrite>
+                    <filePrefix>filteredKinect</filePrefix>
+                </GenericSensorDelimitedWriter>
+            </writerInput>
+        </Writer>
+    </Writers>
+</SensorsConfiguration>

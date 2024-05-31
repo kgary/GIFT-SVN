@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package ares.pb;
+option java_package  = "com.dignitas.ares.protobuf";
+option java_outer_classname = "AresMessageConfig";
+
+import "AresViewer.proto";
+
+// Configuration options for the sand table
+message TableConfiguration {
+    ContoursParameters contours_params = 1;    
+    CalibrationParameters calibration_params = 2;
+    HypsometricParameters hypsometric_params = 3;
+    LightingParameters lighting_params = 4;
+    GridLinesParameters grid_lines_parameters = 5;
+    HeightLabelParameters height_label_parameters = 6;
+}

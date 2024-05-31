@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view">
+	<ui:style>
+	.logger {
+		background-color: white;
+		padding-left: 10px;
+	}
+	
+	.scroller {
+		margin: 10px;
+	}
+	
+	</ui:style>
+	<g:ScrollPanel styleName='{style.scroller}' ui:field="scrollPanel">
+		<g:VerticalPanel styleName='{style.logger}' width="100%"
+			ui:field="logDisplay" />
+	</g:ScrollPanel>
+
+</ui:UiBinder> 

@@ -1,0 +1,105 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style type="mil.arl.gift.tools.authoring.server.gat.client.view.course.header.ResourceDataWidget.Style">
+	   .mainPanel{
+            padding: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+            margin-bottom: 5px;
+            cursor: pointer;
+            background-color: white;
+            background-image: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.2));
+            border-radius: 5px;
+       
+	   }
+	   .importButton{
+	       visibility: hidden;
+	       pointer-events: none;
+       }
+	   .mainPanel:hover{
+	       background-color: #ffffc8;
+	   }
+	   .mainPanel:hover .importButton{
+           visibility: visible;
+           pointer-events: all;
+	   }
+	   .headerPanel{
+	       display: flex;
+	       align-items: center;
+       }
+       .name{
+           flex: 1;
+	   }
+	   .checkPanel{
+           padding: 10px;
+           height: 100%;
+           cursor: pointer;
+           border-right: solid 1px #ccc;
+           margin-right: 10px;
+	   }
+	   .checkPanel *{
+           pointer-events: none;
+	   }
+	   .resourceSelected{
+           background-color: #eef !important;
+           border-color: blue !important;
+       }
+       .resourceSelected:hover{
+           background-color: #ddf !important;
+       }
+       .detailsPanel{
+           padding: 0px 5px;
+           font-size: 11pt;
+	   }
+	   .descriptionLabel{
+           margin-bottom: 5px;
+	   }
+	   .ellipsis{
+           overflow: hidden;
+           text-overflow: ellipsis;
+           white-space: nowrap;
+       }
+	   .detailsButton{
+           margin-left: 10px;
+           visibility: hidden;
+           pointer-events: none;
+	   }
+	   .mainPanel:hover .detailsButton{
+           visibility: visible;
+           pointer-events: all;
+       }
+	</ui:style>
+	<g:FlowPanel addStyleNames="{style.mainPanel}">
+	   <cb:ManagedTooltip title='Click to see the details of this resource' container='body' ui:field='mainTooltip'>
+		   <g:FlowPanel>
+			   <g:FlowPanel addStyleNames='{style.headerPanel}'>
+			       <cb:ManagedTooltip title='Click to select this resource to be imported' container='body'>
+				       <g:FlowPanel addStyleNames='{style.checkPanel}' ui:field='selectedPanel'>
+		                  <g:CheckBox ui:field='selectedBox'/>
+		               </g:FlowPanel>
+	               </cb:ManagedTooltip>
+	               <cb:ManagedTooltip title='Click to view other resources within this resource' container='body'>
+	               <g:InlineLabel ui:field="nameLabel"/>
+	               </cb:ManagedTooltip>
+	               <g:FlowPanel addStyleNames='{style.name}'>
+	                   <cb:ManagedTooltip title='Click to view other resources within this resource' container='body'>
+			              <b:Button addStyleNames='{style.detailsButton}' icon="ELLIPSIS_H" ui:field='detailsButton'/>
+			           </cb:ManagedTooltip>
+			       </g:FlowPanel>
+			       <cb:ManagedTooltip title='Click to create a concept associated with this resource' container='body' ui:field='importTooltip'>
+				       <b:Button addStyleNames='{style.importButton}' type='PRIMARY' ui:field='importButton'>
+				           Import
+				       </b:Button>
+			       </cb:ManagedTooltip>
+			   </g:FlowPanel>
+			   <g:FlowPanel addStyleNames='{style.detailsPanel}'>
+				   <g:Label addStyleNames='{style.descriptionLabel} {style.ellipsis}' ui:field="descriptionLabel"/>
+				   <g:Anchor ui:field="idLabel" visible='false' target='_blank'/>
+			   </g:FlowPanel>
+		   </g:FlowPanel>
+	   </cb:ManagedTooltip>
+	</g:FlowPanel>
+</ui:UiBinder> 

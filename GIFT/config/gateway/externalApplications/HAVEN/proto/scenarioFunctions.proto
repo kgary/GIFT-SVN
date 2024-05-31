@@ -1,0 +1,130 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "proto/entity.proto";
+import "proto/entityEvents.proto";
+
+option csharp_namespace = "Cta.Tmt.Protobuf";
+option java_generic_services = true;
+option java_package = "cta.tmt.protobuf";
+
+package scenario;
+
+
+// Service for handling functions pertaining to the scenario
+service ScenarioService {
+	
+	// define the coordinate systems that will be used
+	rpc SetOutputCoordinateSystem(SetCoordinateSystemRequest) returns (SetCoordinateSystemResponse) {}
+	
+	// TMT controller can inject feedback to one or more trainees
+	rpc ProvideFeedback(ProvideFeedbackRequest) returns (ProvideFeedbackResponse) {} 
+	
+	rpc SetWeather(SetWeatherRequest) returns (SetWeatherResponse) {}
+	
+	rpc SetTimeOfDay(SetTimeOfDayRequest) returns (SetTimeOfDayResponse) {}
+	
+	rpc GetTimeOfDay(GetTimeOfDayRequest) returns (GetTimeOfDayResponse) {}
+	
+	// get the audio clips loaded in the simulation
+	rpc GetAudioClips(GetAudioClipsRequest) returns (GetAudioClipsResponse) {}
+	
+	rpc GetHumanPlayers(GetHumanPlayersRequest) returns (GetHumanPlayersResponse) {}
+	
+	// Set the vision filter for a player
+	rpc SetScreenFilter(SetScreenFilterRequest) returns (SetScreenFilterResponse) {}
+	
+	// get the positions and locations of agents in the scenario
+	rpc GetAgentTransforms(GetAgentTransformsRequest) returns (GetAgentTransformsResponse) {}	
+	
+	// get combat events such as weapon firing and effective shooting
+	rpc GetCombatEvents(GetCombatEventsRequest) returns (GetCombatEventsResponse) {}
+}
+
+message SetCoordinateSystemRequest {
+	CoordinateSystem system = 1;
+}
+
+message SetCoordinateSystemResponse {
+	bool success = 1;
+}
+
+message ProvideFeedbackRequest {
+	string message = 1; 
+	float duration = 2;
+	CommunicationType feedbackType = 3;
+	ReceiverType receiverType = 4;
+	int32 receiver = 5;
+}
+
+message ProvideFeedbackResponse {
+	
+}
+
+message SetWeatherRequest {
+	WeatherType weather = 1; 
+}
+
+message SetWeatherResponse {
+	
+}
+
+message SetTimeOfDayRequest {
+	google.protobuf.Timestamp timeOfDay = 1;
+}
+
+message SetTimeOfDayResponse {
+	
+}
+
+message GetTimeOfDayRequest {
+	
+}
+
+message GetTimeOfDayResponse {
+	google.protobuf.Timestamp timeOfDay = 1;
+	
+	// should be between -12 and 14 inclusive in order to adjust for UTC
+	float timeZone = 2;
+}
+
+message GetAudioClipsRequest {
+	
+}
+
+message GetAudioClipsResponse {
+	repeated string clips = 1; 
+}
+
+message GetHumanPlayersRequest {
+	
+}
+
+message GetHumanPlayersResponse {
+	repeated Entity players = 1;
+}
+
+message SetScreenFilterRequest {
+	int32 player = 1;
+	ScreenFilterType filter = 2;
+}
+
+message SetScreenFilterResponse {
+	Response response = 1;
+}
+
+message GetAgentTransformsRequest {
+	
+}
+
+message GetAgentTransformsResponse {
+	repeated EntityTransform agents = 1; 
+}
+
+message GetCombatEventsRequest {
+	
+}
+
+message GetCombatEventsResponse {
+	repeated EntityFireWeaponMessage fireWeaponEvents = 1;
+	repeated EntitySuppressMessage suppressEvents = 2;
+}

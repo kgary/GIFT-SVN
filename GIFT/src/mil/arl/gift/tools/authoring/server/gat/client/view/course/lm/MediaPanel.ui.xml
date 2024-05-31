@@ -1,0 +1,945 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+	xmlns:lm="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.course.lm"
+	xmlns:uw="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.widgets"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:summer="urn:import:org.gwtbootstrap3.extras.summernote.client.ui"
+	xmlns:b3s="urn:import:org.gwtbootstrap3.extras.slider.client.ui"
+	xmlns:b3t="urn:import:org.gwtbootstrap3.extras.toggleswitch.client.ui"
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:gallery="urn:import:org.gwtbootstrap3.extras.gallery.client.ui"
+	xmlns:select="urn:import:org.gwtbootstrap3.extras.select.client.ui">
+	<ui:style type="mil.arl.gift.tools.authoring.server.gat.client.view.course.lm.MediaPanel.Style">
+		.sectionName {
+			font-weight: bold;
+			margin: -10px 0px 10px
+		}
+		.sectionName {
+			font-weight: bold;
+			margin: -10px 0px 10px
+		}
+	
+		.smallPadBottom {
+			margin-bottom: 5px;
+		}
+	
+		.padLeft {
+			margin-left: 10px;
+		}
+		
+		.helpLink {
+			padding-left: 5px;
+			color: rgb(100, 100, 200);
+			font-weight: normal;
+		}
+		
+		.cellTableBorder {
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(185, 185, 185);
+			border-radius: 3px;
+			box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+			background-color: rgb(250, 250, 250);
+		}
+		
+		.cellTableScroller{
+			min-height: 50px;
+			max-height: 400px;
+		}
+		
+		.cellTableInset {
+			box-sizing: content-box;
+			border-collapse: separate;
+			width: 100%;
+		}
+	
+		.choiceIcon{
+			font-size: 16px;
+			vertical-align: middle;
+		}
+		.rightButton {
+			padding: 4px 8px 5px;
+			margin-right: -20px
+		}
+		
+		.padTop{
+			padding-top: 5px;
+		}
+		
+		.largePadTop{
+			padding-top: 10px;
+		}
+		
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		
+		.tabbed{
+			padding: 0px 30px;
+		}
+		
+		.spaceRight{
+			padding-right: 10px;
+		}
+		
+		.inline{
+			display: inline-block;
+		}
+		
+		.smallPad{
+			margin: 5px;
+		}
+		
+		.contentTypePanelInner{
+		    margin-top: 3px;
+		}
+
+		.smallMarginRight{
+			margin-right: 5px;
+		}
+		
+		.smallMarginLeft{
+			margin-left: 5px;
+		}
+		
+		.positionRelative{
+			position: relative;
+		}
+
+        .unselectedPanel {
+            cursor: pointer;
+            padding: 20px 15px;
+            border-radius: 5px;
+        }
+        .unselectedHeader {
+            font-weight: bold;
+            color: white;
+        }
+        .selectedHeader {
+            font-weight: bold;
+            font-size: larger;
+            color: #2b2b2b;
+            min-width: 100px;
+            width: 100%;
+            margin-right: -59px;
+            display: inline-block;
+            padding: 5px 0px 0px 0px;
+        }
+        .selectedPanel {
+            padding: 3px 13px 13px 13px;
+            background-color: #f1f1f1;
+            background-image: none;
+            border: 1px solid;
+            border-color: #c1c1c1;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+        }
+        .buttons {
+            padding: 0px 5px;
+        }
+		.checkBox > label {
+			display: inline;
+		}
+		.messageButton {
+			margin-top: 20px;
+			margin-bottom: 10px;
+			cursor: pointer;
+		}
+		.messageIcon {
+			margin-right: 8px;
+			font-size: 15px;
+		}
+		.panelButton {
+			display: inline;
+			padding: 5px 8px;
+			box-shadow: none;
+			margin: 0px;
+    		color: #404040;
+			background-color: transparent;
+			border-color: transparent;
+		}
+		
+		.saveImg {
+			width: 24px;
+			height: 24px;
+			position: absolute;
+			margin-left: -22px;
+			margin-top: -27px;
+		}
+		.block {
+			display: block;
+		}
+		.topMargin {
+			margin-top: 15px;
+		}
+        
+        .unitBox {
+            width: 75%;
+            display: inline-block;
+        }
+		.youTubeDwellFeedback{
+			border: 1px solid #c8c8c8;
+			border-radius: 5px;
+		}
+		.youTubeDwellFeedbackInner{
+			margin-top: -10px;
+			margin-right: -3px;
+		}
+		
+		.note{
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(185,185,185);
+			border-radius: 3px;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+			background-color: rgb(255, 255, 200);
+			padding: 5px;
+			margin-left: 5px;
+		}
+		
+		.centerAlign {
+           text-align:center;
+        }
+        .sideColumn {
+			width: 30%;
+			display: inline;
+			float: left;
+			max-height: 70px;
+		}
+		.centerColumn {
+			width: 40%;
+			display: inline;
+			float: left;
+			max-height: 65px;
+		}
+        .noviceStyle {
+            background: linear-gradient(#73BB5C, #307B18);
+            color:#ffffff;
+        }        
+        .journeymanStyle {
+            background: linear-gradient(#CCD86B, #828E1C);
+            color:#ffffff;
+        }
+        .expertStyle {
+            background: linear-gradient(#7E8AB4, #536196);
+            color:#ffffff;
+        }
+		.scoringRules {
+            margin: 0px;
+			padding: 8px 8px 0px;
+        }
+        .slider {
+			margin: 4px auto;
+			text-align: center;
+			padding: 0px 5px;
+			position: relative;
+		}
+        .sliderPanel {
+			background: linear-gradient(#ffffff, #e8e8e8 97%);
+    		border: solid 1px #b8b8b8;
+    		border-radius: 4px;
+    		margin: 5px 0px;
+    		width: 100%;	
+			padding: 0px;
+		}
+		.smallFont {
+			font-size: small;
+		}
+		.groupLabel{
+			font-weight: bold;
+			color: black;
+			font-size: 13px;
+		}
+		.ltiAttributeButton {
+			width: 100px;
+	    }
+	    .thumbnail {
+	       margin: 10px 0 10px 0;
+	    }
+	    .flex {
+	       display: flex;
+	    }
+	</ui:style>
+	<g:HTMLPanel addStyleNames='{style.positionRelative}'>
+	
+		<g:DeckPanel ui:field='mainDeck'>
+			
+			<g:FlowPanel addStyleNames='contentBorder' ui:field="mediaWrapper">
+			    <g:FlowPanel ui:field="iconPanel">
+					<b:Icon type="FILE_PDF_O" addStyleNames='{style.choiceIcon} {style.smallMarginRight}' ui:field="mediaIcon"/>
+					<g:InlineHTML ui:field="mediaTypeHtml"/>			
+				</g:FlowPanel>	
+			    
+			    <g:FlowPanel addStyleNames='{style.contentTypePanelInner} contentBorder' ui:field="borderPanel">
+				
+			        <g:FlowPanel ui:field="titlePanel">
+					     <g:InlineHTML addStyleNames='{style.largePadTop} {style.spaceRight}'> 
+				   			Media Title:<span style='color: red'>*</span>
+				   		</g:InlineHTML>
+				   		<wb:HelpLink helpCaption='Media Title'>
+				   			
+				   			<wb:helpBody>
+				   				<g:HTML>
+					   				When lesson material is shown to the learner, media resources are presented with a title. 
+					   				<br/><br/>
+					   				Modifying this text box will change the text of the title that is presented with this media to the learner.
+				   				</g:HTML>
+				   			</wb:helpBody>
+				   			
+				   		</wb:HelpLink>
+				   		<g:TextBox width='100%' addStyleNames='{style.padBottom}' ui:field='linkBox'/>
+		   		   	</g:FlowPanel>
+			   		   	
+			   		<g:DeckPanel ui:field="mediaDeckPanel">
+			   		    <g:FlowPanel ui:field='pdfPanel'>
+			   		        <g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectPDFFilePanel'>
+			                    <g:FlowPanel>
+			                        <g:Label ui:field='selectPDFFileLabel' addStyleNames='{style.unselectedHeader}'>
+			                            Select PDF
+			                        </g:Label>
+			                    </g:FlowPanel>
+			                </g:FocusPanel>
+			                <g:FlowPanel ui:field='pdfSelectedPanel'>
+			                    <g:HTMLPanel addStyleNames='{style.selectedPanel}'>
+			                        <table style='width: 100%'>
+			                            <tr>
+			                                <td>
+			                                    <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons}' ui:field='removePDFButton' >
+			                                         Remove
+			                                    </b:Button>
+			                                </td>
+			                             </tr>
+			                            <tr style='width: 100%'>
+			                                <td style='width: 100%'>
+			                                    <g:Label ui:field='pdfFileLabel' addStyleNames='{style.selectedHeader}'></g:Label>
+			                                </td>
+			                             </tr>  
+			                        </table>
+			                    </g:HTMLPanel>                        
+			                </g:FlowPanel> 
+			   		    </g:FlowPanel>
+			   		    
+			   		    <g:FlowPanel ui:field='localWebpagePanel'>
+						    <g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectLocalWebpagePanel'>
+		                        <g:FlowPanel>
+		                            <g:Label ui:field='selectLocalWebpageLabel' addStyleNames='{style.unselectedHeader}'>
+		                                Select Webpage
+		                            </g:Label>
+		                        </g:FlowPanel>
+		                    </g:FocusPanel>
+		                    <g:FlowPanel ui:field='localWebpageSelectedPanel'>
+		                        <g:HTMLPanel addStyleNames='{style.selectedPanel}'>
+		                            <table style='width: 100%'>
+		                                <tr>
+		                                    <td>
+		                                        <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons}' ui:field='removeLocalWebpageButton' >
+		                                             Remove
+		                                        </b:Button>
+		                                    </td>
+		                                 </tr>
+		                                <tr style='width: 100%'>
+		                                    <td style='width: 100%'>
+		                                        <g:Label ui:field='localWebpageFileLabel' addStyleNames='{style.selectedHeader}'></g:Label>
+		                                    </td>
+		                                 </tr>  
+		                            </table>
+		                        </g:HTMLPanel>                        
+		                    </g:FlowPanel>
+						</g:FlowPanel>
+						
+						<g:FlowPanel ui:field='localVideoPanel'>
+						    <g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectLocalVideoPanel'>
+		                        <g:FlowPanel>
+		                            <g:Label ui:field='selectLocalVideoLabel' addStyleNames='{style.unselectedHeader}'>
+		                                Select Video
+		                            </g:Label>
+		                        </g:FlowPanel>
+		                    </g:FocusPanel>
+		                    <g:FlowPanel ui:field='localVideoSelectedPanel'>
+		                        <g:HTMLPanel addStyleNames='{style.selectedPanel}'>
+		                            <table style='width: 100%'>
+		                                <tr>
+		                                    <td>
+		                                        <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons}' ui:field='removeLocalVideoButton' >
+		                                             Remove
+		                                        </b:Button>
+		                                    </td>
+		                                 </tr>
+		                                <tr style='width: 100%'>
+		                                    <td style='width: 100%'>
+		                                        <g:Label ui:field='localVideoFileLabel' addStyleNames='{style.selectedHeader}'></g:Label>
+		                                        <gallery:Gallery ui:field='localVideoGallery' addStyleNames='{style.thumbnail}' thumbnailWidth="200px" thumbnailHeight="200px">
+		                                        </gallery:Gallery>
+		                                    </td>
+		                                 </tr>  
+		                            </table>
+		                        </g:HTMLPanel>                        
+		                    </g:FlowPanel>
+		                    <g:FlowPanel>
+		                    	<g:FlowPanel addStyleNames='{style.padBottom}'>   		
+						      		<b:CheckBox ui:field='localVideoSizeCheck' addStyleNames="{style.checkBox}">
+						      			Display the video with a custom size
+						      		</b:CheckBox>
+						      		<g:FlowPanel visible='false' addStyleNames='{style.tabbed}' ui:field='localVideoSizePanel'>
+						      		
+						      			<g:InlineHTML addStyleNames='{style.largePadTop}'> 
+								   			Width:<span style='color: red'>*</span>
+								   		</g:InlineHTML>							   		
+								   		<g:FlowPanel addStyleNames='{style.padBottom}'>
+								   			<g:TextBox width='25%' ui:field='localVideoWidthBox'/>
+                                            <b:ListBox width='75%' addStyleNames='{style.unitBox}' ui:field='localVideoUnitWidth'>
+                                                
+                                            </b:ListBox>
+								   		</g:FlowPanel>
+
+								   		<g:InlineHTML addStyleNames='{style.largePadTop}'> 
+								   			Height:<span style='color: red'>*</span>
+								   		</g:InlineHTML>							   		
+								   		<g:FlowPanel addStyleNames='{style.padBottom}'>
+								   			<g:TextBox width='25%' ui:field='localVideoHeightBox'/>
+                                            <b:ListBox width='75%' addStyleNames='{style.unitBox}' ui:field='localVideoUnitHeight'>
+                                                
+                                            </b:ListBox>
+								   		</g:FlowPanel>
+                                        	
+                                        <g:FlowPanel addStyleNames='{style.padBottom}'>
+                                            <b:CheckBox ui:field='localConstrainToScreenCheck' addStyleNames="{style.checkBox}">
+                                                Constrain size to screen
+                                            </b:CheckBox>
+                                        </g:FlowPanel>
+						      		</g:FlowPanel>
+						      	</g:FlowPanel>
+						      	
+						      	<g:FlowPanel addStyleNames='{style.padBottom}' >   		
+						      		<b:CheckBox ui:field='localVideoFullScreenCheck' addStyleNames="{style.checkBox}">
+						      			Allow full screen
+						      		</b:CheckBox>
+						      	</g:FlowPanel>
+						      	
+						      	<g:FlowPanel addStyleNames='{style.padBottom}'>   		
+						      		<b:CheckBox ui:field='localVideoAutoPlayCheck' addStyleNames="{style.checkBox}">
+						      			Start the video automatically
+						      		</b:CheckBox>
+						      	</g:FlowPanel>
+		                    </g:FlowPanel>
+						</g:FlowPanel>
+						
+						<g:FlowPanel ui:field='localImagePanel'>
+					   		<g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectLocalImagePanel'>
+		                        <g:FlowPanel>
+		                            <g:Label ui:field='selectLocalImageLabel' addStyleNames='{style.unselectedHeader}'>
+		                                Select Image
+		                            </g:Label>
+		                        </g:FlowPanel>
+		                    </g:FocusPanel>
+		                    <g:FlowPanel ui:field='localImageSelectedPanel'>
+		                        <g:HTMLPanel addStyleNames='{style.selectedPanel}'>
+		                            <table style='width: 100%'>
+		                                <tr>
+		                                    <td>
+		                                        <b:Button type='DEFAULT' icon='TIMES' addStyleNames='{style.buttons}' ui:field='removeLocalImageButton' >
+		                                             Remove
+		                                        </b:Button>
+		                                    </td>
+		                                 </tr>
+		                                <tr style='width: 100%'>
+		                                    <td style='width: 100%'>
+		                                        <g:Label ui:field='localImageFileLabel' addStyleNames='{style.selectedHeader}'></g:Label>
+		                                        <gallery:Gallery ui:field='localImageGallery' addStyleNames='{style.thumbnail}' thumbnailWidth="200px" thumbnailHeight="200px">
+		                                        </gallery:Gallery>
+		                                    </td>
+		                                 </tr>  
+		                            </table>
+		                        </g:HTMLPanel>                        
+		                    </g:FlowPanel>
+						</g:FlowPanel>
+			
+						<g:FlowPanel ui:field='webAddressPanel'>
+							<g:FlowPanel>
+								<g:HTML>
+									Address URL:<span style='color: red'>*</span>
+								</g:HTML>
+								<g:HorizontalPanel width="100%">
+									<g:TextBox width="100%" ui:field="urlTextBox"/>
+									<b:Button type="DEFAULT" size="EXTRA_SMALL" icon="GLOBE" iconSize="LARGE" 
+									    ui:field="urlPreviewButton" addStyleNames='{style.rightButton}' title="Preview URL"/>
+								</g:HorizontalPanel>
+							</g:FlowPanel>
+						</g:FlowPanel>
+				
+						<g:FlowPanel ui:field='youTubePanel'>
+				      		<g:FlowPanel addStyleNames='{style.padTop} {style.padBottom}'>
+					      		<g:FlowPanel>
+					      		
+					      			<g:HTML>
+						      			Video URL:<span style='color: red'>*</span>
+						      		</g:HTML>
+									<g:FlowPanel addStyleNames='{style.flex}'>
+										  <g:TextBox width='100%' ui:field='videoTextBox'/>
+										  <b:Button icon="GLOBE" addStyleNames='{style.panelButton}' ui:field='previewYoutubeButton' />
+						      		</g:FlowPanel>
+									<gallery:Gallery ui:field='youtubeGallery' addStyleNames='{style.thumbnail}' thumbnailWidth="200px" thumbnailHeight="150px">
+									</gallery:Gallery>
+	  								
+								</g:FlowPanel>
+							</g:FlowPanel>
+							
+							<g:FlowPanel addStyleNames='{style.padBottom}' ui:field='videoDurationLabel'>
+		      					<g:HTML>
+					      			Length:
+					      		</g:HTML>
+								<g:HorizontalPanel>
+								
+					      			<wb:FormattedTimeBox readOnly='true' value='0' ui:field='videoDurationBox'/>
+
+		      						<b:Tooltip title='Calculates the length of the YouTube video of the given URL and, if needed, updates any fields that rely on it.'>
+			      						<b:Button ui:field='videoDurationButton'>
+			      							Calculate Length
+			      						</b:Button>
+		      						</b:Tooltip>
+		      						
+		      						<g:HTML addStyleNames='{style.note}'>
+										<b>Note:</b> Please enter an embeddable YouTube video URL before calculating the length. 
+										Calculating the length for other URLs will require you to re-enter the course creator.
+									</g:HTML>
+		      						
+								</g:HorizontalPanel>
+				      		
+				      		</g:FlowPanel>      				
+							
+							<g:FlowPanel>
+								<g:FlowPanel addStyleNames='{style.padBottom}'>   		
+						      		<b:CheckBox ui:field='videoSizeCheck' addStyleNames="{style.checkBox}">
+						      			Display this video with a custom size
+						      		</b:CheckBox>
+						      		<g:FlowPanel visible='false' addStyleNames='{style.tabbed}' ui:field='videoSizePanel'>
+						      		
+						      			<g:InlineHTML addStyleNames='{style.largePadTop}'> 
+								   			Width:<span style='color: red'>*</span>
+								   		</g:InlineHTML>							   		
+								   		<g:FlowPanel addStyleNames='{style.padBottom}'>
+								   			<g:TextBox width='25%' ui:field='videoWidthBox'/>
+                                            <b:ListBox width='75%' addStyleNames='{style.unitBox}' ui:field='videoUnitWidth'>
+                                                
+                                            </b:ListBox>
+								   		</g:FlowPanel>
+
+								   		<g:InlineHTML addStyleNames='{style.largePadTop}'> 
+								   			Height:<span style='color: red'>*</span>
+								   		</g:InlineHTML>							   		
+								   		<g:FlowPanel addStyleNames='{style.padBottom}'>
+								   			<g:TextBox width='25%' ui:field='videoHeightBox'/>
+                                            <b:ListBox width='75%' addStyleNames='{style.unitBox}' ui:field='videoUnitHeight'>
+                                                
+                                            </b:ListBox>
+								   		</g:FlowPanel>
+                                        	
+                                        <g:FlowPanel addStyleNames='{style.padBottom}'>
+                                            <b:CheckBox ui:field='constrainToScreenCheck' addStyleNames="{style.checkBox}">
+                                                Constrain size to screen
+                                            </b:CheckBox>
+                                        </g:FlowPanel>
+						      		</g:FlowPanel>
+						      	</g:FlowPanel>
+						      	
+						      	<g:FlowPanel addStyleNames='{style.padBottom}' >   		
+						      		<b:CheckBox ui:field='videoFullScreenCheck' addStyleNames="{style.checkBox}">
+						      			Allow YouTube's Full Screen Option
+						      		</b:CheckBox>
+						      	</g:FlowPanel>
+						      	
+						      	<g:FlowPanel addStyleNames='{style.padBottom}'>   		
+						      		<b:CheckBox ui:field='videoAutoPlayCheck' addStyleNames="{style.checkBox}">
+						      			Automatically start the video when selected by the learner
+						      		</b:CheckBox>
+						      	</g:FlowPanel>
+						      	
+						      	<b:Collapse visible='false' ui:field='videoAssessmentCollapse'>
+						      	
+						      	<g:FlowPanel addStyleNames='{style.padBottom}'>   		
+						      		<b:CheckBox ui:field='videoUnderDwellCheck' addStyleNames="{style.checkBox}">
+						      			Display a feedback message if the learner doesn't spend enough time watching this video
+						      		</b:CheckBox>
+						      		<b:Collapse toggle='false' ui:field='videoUnderDwellCollapse'>
+						      			<g:FlowPanel addStyleNames='{style.tabbed}'>
+						      			
+						      				<b:Form type="INLINE">
+										  		<b:FieldSet>
+										    		<b:FormGroup>
+										    			<g:InlineHTML addStyleNames='{style.spaceRight}'>
+										      				Minimum Viewing Time: 
+										      			</g:InlineHTML>
+										    		</b:FormGroup>
+										    		<b:FormGroup>
+										    			<wb:FormattedTimeBox ui:field='videoMinimumTimeBox'/>
+										    		</b:FormGroup>
+										    	</b:FieldSet>
+										    </b:Form>
+						      			
+						      				<g:HTML>
+						      					Feedback Message:
+						      				</g:HTML>
+						      				<g:FlowPanel addStyleNames='{style.youTubeDwellFeedback}'>
+							      				<wb:EditableHTML addStyleNames='{style.youTubeDwellFeedbackInner}' 
+							      					placeholder='Enter your feedback message here' ui:field='videoUnderDwellFeedback'/>
+								      			</g:FlowPanel>
+							      			
+							      			</g:FlowPanel>
+						      		</b:Collapse>
+						      	</g:FlowPanel>
+							      	
+						      	<g:FlowPanel addStyleNames='{style.padBottom}'>   		
+						      		<b:CheckBox ui:field='videoOverDwellCheck' addStyleNames="{style.checkBox}">
+						      			Display a feedback message if the learner spends too much time watching this video
+						      		</b:CheckBox>
+						      		<b:Collapse toggle='false' ui:field='videoOverDwellCollapse'>
+						      			<g:FlowPanel addStyleNames='{style.tabbed}'>
+						      				
+						      				<g:RadioButton ui:field='videoOverDwellPercentButton'>
+						      					Use percentage of video length
+						      				</g:RadioButton>
+						      				
+						      				<g:RadioButton ui:field='videoOverDwellFixedButton'>
+						      					Use fixed duration
+						      				</g:RadioButton>
+							      			
+							      			<g:DeckPanel animationEnabled='true' ui:field='videoOverDwellDeck'>
+								      			
+								      			<b:Form type="INLINE" ui:field="videoOverDwellPercentPanel">
+											  		<b:FieldSet>
+											    		<b:FormGroup>
+											    			<g:InlineHTML addStyleNames='{style.spaceRight}'>
+											      				Maximum Viewing Percentage: 
+											      			</g:InlineHTML>
+											    		</b:FormGroup>
+											    		<b:FormGroup>
+											    			<g:FlowPanel addStyleNames='{style.smallMarginRight}'>
+											    				<w:NumberSpinner width='80px' ui:field='videoPercentDurationBox'/>
+											    			</g:FlowPanel>
+											    		</b:FormGroup>
+											    		<b:FormGroup>
+											    			<g:InlineHTML>
+											      				% of video length (
+											      			</g:InlineHTML>
+											      		</b:FormGroup>
+											    		<b:FormGroup>
+											      			<wb:FormattedTimeBox readOnly='true' ui:field='videoCalculatedPercentBox'/>
+											      		</b:FormGroup>
+											    		<b:FormGroup>
+											      			<g:InlineHTML>
+											      				)
+											      			</g:InlineHTML>
+											    		</b:FormGroup>
+											    	</b:FieldSet>
+											    </b:Form>
+											    
+											    <b:Form type="INLINE" ui:field="videoOverDwellFixedPanel">
+											  		<b:FieldSet>
+											    		<b:FormGroup>
+											    			<g:InlineHTML addStyleNames='{style.spaceRight}'>
+											      				Maximum Viewing Time:
+											      			</g:InlineHTML>
+											    		</b:FormGroup>
+											    		<b:FormGroup>
+											    			<wb:FormattedTimeBox ui:field='videoMaximumTimeBox'/>
+											    		</b:FormGroup>
+											    	</b:FieldSet>
+											    </b:Form>
+										    
+										    </g:DeckPanel>
+							      			
+							      			<g:HTML>
+						      					Feedback Message:
+						      				</g:HTML>
+						      				<g:FlowPanel addStyleNames='{style.youTubeDwellFeedback}'>
+							      				<wb:EditableHTML addStyleNames='{style.youTubeDwellFeedbackInner}' 
+							      					placeholder='Enter your feedback message here' ui:field='videoOverDwellFeedback'/>
+							      			</g:FlowPanel>
+							      			
+						      			</g:FlowPanel>
+						      		</b:Collapse>
+						      	</g:FlowPanel>
+						      	
+						      	</b:Collapse>
+						      	
+					      	</g:FlowPanel>
+				      	</g:FlowPanel>
+						
+						<g:FlowPanel ui:field='slideShowPanel'>
+						 	<g:DeckPanel ui:field='slideshowDeck'>
+						 	    <g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectPptPanel'>
+						 	        <g:FlowPanel>
+						 	            <b:Tooltip title='The course will be saved after a SlideShow is uploaded.' placement="RIGHT">
+							 	        	<g:Image url='images/save.png' addStyleNames='{style.saveImg}'/>
+							 	        </b:Tooltip>
+							 	        <g:Label ui:field='selectPptLabel' addStyleNames='{style.unselectedHeader}'>
+							 	            Select PowerPoint Show
+							 	        </g:Label>
+						 	        </g:FlowPanel>
+						 	    </g:FocusPanel>
+						 	    
+						 	    <g:FlowPanel ui:field='pptSelectedPanel'>
+							 	    <g:FlowPanel addStyleNames='{style.selectedPanel}'>
+							 	        <g:Label ui:field='slideNumberLabel' addStyleNames='{style.selectedHeader}'></g:Label>
+							 	        <b:Tooltip title='Replace these slides' placement='BOTTOM'>
+							 	        	<b:Button type='PRIMARY' icon='REFRESH' addStyleNames='{style.panelButton}' ui:field='replaceSlideShowButton' />
+							 	        </b:Tooltip>
+							 	        <b:Tooltip title='Remove this slide show' placement='BOTTOM'>
+							 	        	<b:Button type='PRIMARY' icon='TIMES' addStyleNames='{style.panelButton}' ui:field='removePptButton' />
+							 	        </b:Tooltip>
+							 	    </g:FlowPanel>
+							 	    
+							 	    <g:DisclosurePanel ui:field="optionsPanel" addStyleNames='{style.topMargin}'>
+										<g:header>
+										    Options
+										</g:header>
+										<g:FlowPanel>
+										     <b:Tooltip title='Whether to allow the learner to visit previously shown slides.' placement='BOTTOM'>
+			                                    <b:CheckBox addStyleNames='{style.block}' ui:field='previousCheckbox'>Display previous slide button</b:CheckBox>
+			                                </b:Tooltip>
+			                                <b:Tooltip title='Whether to show the continue button that allows the learner to move to the next course object before viewing all slides.' placement='BOTTOM'>
+											    <b:CheckBox ui:field='continueCheckbox'>Keep 'Continue' button available</b:CheckBox>
+											</b:Tooltip>
+										</g:FlowPanel>
+									</g:DisclosurePanel>   
+							 	    
+						 	    </g:FlowPanel>   
+						 	</g:DeckPanel>
+				        	<g:HTMLPanel ui:field="slideShowWarning">
+				        	    <div style='margin: 10px 2px 2px; font-weight: bold; border: solid 1px #bfbfbf; background: #f3f3f3; border-radius: 5px; padding: 10px 10px 10px 30px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);'>
+								    <i class="fa fa-lightbulb-o" style="font-size: 30px; float: left; margin: -9px -27px; color: rgb(88, 88, 88); background: radial-gradient(rgb(254, 255, 166), transparent 55%);"></i>
+						      		The following will be removed from the slide show:
+						      		<ul>
+						      		    <li>Hyperlinks</li>
+						      		    <li>Videos</li>
+						      		    <li>Animations</li>
+						      		    <li>Audio</li>
+						      		    <li>Transitions</li>
+						      		    <li>Macros</li>
+						      		</ul>
+						      		If you wish to keep these elements, please select 'PowerPoint' from the Course Objects list
+						      	</div>
+							</g:HTMLPanel>
+							<g:HTMLPanel>
+								<div style='margin: 10px 2px 2px; font-weight: bold; border: solid 1px #bfbfbf; background: #f3f3f3; border-radius: 5px; padding: 10px 10px 10px 30px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15); color: rgb(68, 68, 68);'>
+								    <i class="fa fa-lightbulb-o" style="font-size: 30px; float: left; margin: -9px -27px; color: rgb(88, 88, 88); background: radial-gradient(rgb(254, 255, 166), transparent 55%);"></i>
+						      		To change the image size, set the Slide Size in PowerPoint
+						      	</div>
+							</g:HTMLPanel>    
+				        </g:FlowPanel>
+				        
+				        
+				        <g:FlowPanel ui:field='ltiPanel'>
+								
+							<g:HTMLPanel>
+								<hr style='border-color: rgb(200,200,200);' />
+									
+								<g:HTML addStyleNames='{style.sectionName}'>
+									LTI Parameters
+								</g:HTML>
+							</g:HTMLPanel>	
+								
+
+							<g:FlowPanel addStyleNames='{style.smallPadBottom} {style.smallMarginRight}'>
+								
+								<g:InlineHTML addStyleNames='{style.spaceRight}'> 
+			 						LTI Identifier:<span style='color: red'>*</span>
+			 					</g:InlineHTML>
+			 					<wb:HelpLink helpCaption='LTI Identifier'>
+									<wb:linkWidget>
+										<b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+									</wb:linkWidget>
+									<wb:helpBody>
+										<g:HTML>
+											Select the LTI identifier for the trusted LTI provider that was created in Course Properties > Advanced > Learning Tools Interoperability (LTI) > Consumer.
+											<br/><br/>
+											This will enable the URL to be encrypted with the specified client key and shared secret.
+											<br/><br/>
+											If there are no options, follow the path listed above to create a new trusted LTI provider.
+							  			</g:HTML>
+									</wb:helpBody>
+								</wb:HelpLink>
+								<g:FlowPanel addStyleNames='{style.padBottom}'>
+	                            	<select:MultipleSelect width="100%" ui:field="ltiIdentifierDropdown" dropupAuto="false" maxOptions="1" title="Select one of the following..."/>
+	                            </g:FlowPanel>
+													   
+								<g:InlineHTML addStyleNames='{style.spaceRight}'> 
+									LTI URL:<span style='color: red'>*</span>
+								</g:InlineHTML>
+								<wb:HelpLink helpCaption='LTI URL'>
+									<wb:linkWidget>
+										<b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+									</wb:linkWidget>
+									<wb:helpBody>
+										<g:HTML>
+											Enter the fully qualified URL of the external tool that this component launches.
+								 		</g:HTML>
+									</wb:helpBody>
+								</wb:HelpLink>
+								<g:TextBox width="100%" ui:field="ltiURL" addStyleNames='{style.padBottom}'/>
+				   
+								<g:InlineHTML addStyleNames='{style.spaceRight}'> 
+									LTI Custom Parameters:
+								</g:InlineHTML>
+								<wb:HelpLink helpCaption='LTI Custom Parameters'>
+									<wb:linkWidget>
+										<b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+									</wb:linkWidget>
+									<wb:helpBody>
+										<g:HTML>
+											Add the key/value pair for any custom parameters that the LTI provider requires, such as the course id, data set id, etc...
+											<br/><br/>
+											The pairs are comma separated and need to be in the format: key1=value1,key2=value2, etc... 
+						 				</g:HTML>
+									</wb:helpBody>
+								</wb:HelpLink>
+								<uw:NameValuePairEditor ui:field="ltiCustomParametersTable" width="100%" addStyleNames='{style.padBottom} {style.smallFont}'/>
+								
+							</g:FlowPanel>
+							
+							<g:FlowPanel ui:field="scoringPropertiesPanel">
+								<g:HTMLPanel>
+									<hr style='border-color: rgb(200,200,200);' />
+										
+									<g:HTML addStyleNames='{style.sectionName}'>
+										Scoring Properties
+									</g:HTML>
+								</g:HTMLPanel>		
+								
+					            <b:CheckBox ui:field="allowScore" addStyleNames='{style.inline}'>
+					              Allow LTI provider to return score
+					            </b:CheckBox>
+					            <wb:HelpLink helpCaption='Allow Score'>
+									<wb:linkWidget>
+										<b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+									</wb:linkWidget>
+									<wb:helpBody>
+										<g:HTML>
+											If this is selected, a score will be returned to this course if and only if the provider chooses to return one.
+											<br/>
+											The provider may want to return a status on how the learner performed and that score will be used to update the learner state for the selected attribute and concepts.
+											<br/><br/>
+											If this is not selected, the LTI provider cannot return a score to this course.
+						   				</g:HTML>
+									</wb:helpBody>
+								</wb:HelpLink>
+								
+								<g:FlowPanel ui:field="allowScorePanel">
+								    <g:FlowPanel ui:field="ltiLearnerStateAttributePanel">
+										<g:HTML addStyleNames='{style.spaceRight}'> 
+									   		Learner State Attribute:<span style='color: red'>*</span>
+									   	</g:HTML>
+										<g:FlowPanel addStyleNames='{style.padBottom}'>
+											<b:ButtonGroup dataToggle="BUTTONS">
+												<b:RadioButton name="ltiAttributeGroup" addStyleNames='{style.ltiAttributeButton}' active="true" ui:field="knowledgeTypeButton">Knowledge</b:RadioButton>
+												<b:RadioButton name="ltiAttributeGroup" addStyleNames='{style.ltiAttributeButton}' ui:field="skillTypeButton">Skill</b:RadioButton>
+											</b:ButtonGroup>										    
+									    </g:FlowPanel>
+									</g:FlowPanel>
+										
+									<g:FlowPanel ui:field="ltiConceptPanel">
+										<g:HTML addStyleNames='{style.spaceRight}'> 
+								   			Select the concept(s) that will be tested for this LTI:<span style='color: red'>*</span>
+								   		</g:HTML>
+								   		<g:FlowPanel addStyleNames='{style.padBottom}'>
+											<g:ScrollPanel addStyleNames='{style.cellTableScroller} {style.cellTableBorder}'>
+												<c:CellTable addStyleNames='{style.cellTableInset}' ui:field='conceptCellTable'/>
+											</g:ScrollPanel>
+										</g:FlowPanel>
+									</g:FlowPanel>
+									
+									
+									<g:HTML addStyleNames='{style.spaceRight}'> 
+							   			Score needed to reach a particular expertise level on each concept:
+							   		</g:HTML>
+									<b:Container addStyleNames="sliderScoredStyle {style.sliderPanel} {style.slider}" fluid="true">
+						        		<b3s:RangeSlider ui:field="scoreSlider" min="0" max="100" step="1" value="[25,75]" tooltipSplit="false" width="95%"/>					        	
+						        	
+							        	<b:Row addStyleNames="{style.scoringRules}">
+								        	<g:FlowPanel addStyleNames="{style.centerAlign} {style.sideColumn}">
+								            	<b:Description>
+								                	<b:DescriptionTitle text="Novice" addStyleNames="{style.noviceStyle}"/>
+								                	<b:DescriptionData ui:field="noviceText" text="0-24%"/>
+								             	</b:Description>
+											</g:FlowPanel>
+								            <g:FlowPanel addStyleNames="{style.centerAlign} {style.centerColumn}">   
+								            	<b:Description>
+								                	<b:DescriptionTitle text="Journeyman" addStyleNames="{style.journeymanStyle}"/>
+								                    <b:DescriptionData ui:field="journeymanText" text="25-74%"/>
+								                </b:Description>
+											</g:FlowPanel>
+								            <g:FlowPanel addStyleNames="{style.centerAlign} {style.sideColumn} addStyleNames='{style.padBottom}'">   
+								            	<b:Description>
+								                	<b:DescriptionTitle text="Expert" addStyleNames="{style.expertStyle}"/>
+								                    <b:DescriptionData ui:field="expertText" text="75-100%"/>
+												</b:Description>
+											</g:FlowPanel>
+								        </b:Row>
+							        </b:Container>
+						            
+								</g:FlowPanel>
+							</g:FlowPanel>
+							
+							<g:HTMLPanel>
+								<hr style='border-color: rgb(200,200,200);' />
+									
+								<g:HTML addStyleNames='{style.sectionName}'>
+									Display Properties
+								</g:HTML>
+							</g:HTMLPanel>		
+							
+							<g:InlineHTML addStyleNames='{style.spaceRight}'> 
+					   			Display Mode:<span style='color: red'>*</span>
+					   		</g:InlineHTML>
+							<wb:HelpLink helpCaption='Display Mode'>
+								<wb:linkWidget>
+									<b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+								</wb:linkWidget>
+								<wb:helpBody>
+									<g:HTML>
+										Inline: The LTI content will open in the current page.
+										<br/><br/>
+										Modal: The LTI content will open in a modal window in the current page.
+										<br/><br/>
+										New Window: The LTI content will open in a new browser window.
+					 				</g:HTML>
+								</wb:helpBody>
+							</wb:HelpLink>
+					        <g:ValueListBox width="100%" ui:field="displayModeDropdown" addStyleNames='{style.padBottom}'/>
+					    	
+						</g:FlowPanel>
+			   		</g:DeckPanel>
+			   	</g:FlowPanel>
+			</g:FlowPanel>
+		</g:DeckPanel>
+		
+		<g:FlowPanel ui:field="messagePanel" visible="false">	
+			<g:FlowPanel>
+				<g:FocusPanel ui:field="messageButton" addStyleNames="{style.messageButton} {style.inline}">
+					<g:FlowPanel>
+						<b:Icon type="PLUS_SQUARE" ui:field="messageIcon" addStyleNames="{style.messageIcon}"/>
+						<g:InlineHTML addStyleNames='{style.spaceRight}'>Show Message</g:InlineHTML>
+					</g:FlowPanel>
+				</g:FocusPanel>
+				<wb:HelpLink helpCaption='Message'>
+					<wb:helpBody>
+						<g:HTML>
+							A message can be displayed to provide useful information such as instructions, reminders, general hints, misconceptions, etc. for all learners that see this content.
+							<br/><br/>
+							This message will be shown immediately when the content is presented and can be accessed again at the learners discrection.
+						</g:HTML>
+					</wb:helpBody>
+				</wb:HelpLink>
+			</g:FlowPanel>
+		    <g:FlowPanel ui:field="editorPanel" visible="false">
+				<summer:Summernote ui:field="richTextEditor"/>
+			</g:FlowPanel>		
+		</g:FlowPanel>
+		
+		<w:BlockerPanel showDisabled='true' ui:field='inputBlocker'/>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

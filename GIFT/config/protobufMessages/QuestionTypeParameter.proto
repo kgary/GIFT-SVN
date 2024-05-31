@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "QuestionTypeParameterProto";
+
+import "AbstractEnumObject.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a parameter for a question type. */
+message QuestionTypeParameter {
+	/* The number of questions. */
+	google.protobuf.Int32Value number_questions = 1;
+	
+	/* The property value for the question. */
+	google.protobuf.StringValue property_value = 2;
+	
+	/* The value of the question property. */
+	AbstractEnumObject question_prop = 3;
+}

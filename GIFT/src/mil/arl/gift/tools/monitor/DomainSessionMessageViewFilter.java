@@ -1,0 +1,36 @@
+/**
+ * Copyright Dignitas Technologies, LLC
+ * 
+ * This file and its contents are governed by one or more distribution and
+ * copyright statements as described in the LICENSE.txt file distributed with
+ * this work.
+ */
+package mil.arl.gift.tools.monitor;
+
+import mil.arl.gift.net.api.message.DomainSessionMessage;
+import mil.arl.gift.net.api.message.Message;
+
+/**
+ * This filter accepts domain session messages.
+ * 
+ * @author mhoffman
+ *
+ */
+public class DomainSessionMessageViewFilter extends MessageViewFilter {
+
+    @Override
+    public boolean acceptMessage(Message msg) {
+        
+        boolean isSelected = super.acceptMessage(msg);
+        if(!isSelected && !rawList.contains(msg.getMessageType())){
+            //message type is not in the filter's list
+            
+            if(msg instanceof DomainSessionMessage){
+                //add the new domain session message type to the list
+                rawList.addElement(msg.getMessageType());
+            }
+        }
+        
+        return isSelected;
+    }
+}

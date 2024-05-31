@@ -1,0 +1,29 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_outer_classname = "TeamMemberRoleAssignmentRequestProto";
+option java_package = "generated.proto.gateway";
+
+message TeamMemberRoleAssignmentRequest {
+    Team root_team = 1;
+    int32 domain_session_id = 2;
+}
+
+message Team {
+    repeated TeamElement team_elements = 1;
+}
+
+message TeamElement {
+    oneof type {
+        TeamMember member = 1;
+        Team sub_team = 2;
+    }
+}
+
+message TeamMember {
+    string role_name = 1;
+}

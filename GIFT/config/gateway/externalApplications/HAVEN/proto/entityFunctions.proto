@@ -1,0 +1,87 @@
+syntax = "proto3";
+//import "google/protobuf/timestamp.proto";
+import "proto/entity.proto";
+
+option csharp_namespace = "Cta.Tmt.Protobuf";
+option java_generic_services = true;
+option java_package = "cta.tmt.protobuf";
+
+package entity;
+
+
+// Service for handling functions pertaining to entities
+service EntityService {
+	
+	// get the DIS type of entity
+	rpc GetDisType(GetDisTypeRequest) returns (GetDisTypeResponse) {}
+	
+	// Create an entity in the simulation
+	rpc CreateEntity(CreateEntityRequest) returns (CreateEntityResponse) {}
+	
+	// Sets the position of the entity
+	rpc SetPosition(SetPositionRequest) returns (SetPositionResponse) {}
+	
+	// Sets the entity as highlighted or not
+	rpc SetHighlight(SetHighlightRequest) returns (SetHighlightResponse) {}
+	
+	// get the entities in the simulation that have a simulation ID
+	rpc GetSimulationEntities(GetSimulationEntitiesRequest) returns (GetSimulationEntitiesResponse) { }
+}
+
+message GetDisTypeRequest {
+	int32 entity = 1;
+}
+
+message GetDisTypeResponse {
+	EntityDisRepresentation dis = 1;
+	ForceType force = 2;
+}
+
+message CreateEntityRequest {
+	
+	// the force that the entity is on
+	ForceType force = 1;
+	
+	// world position
+	Vector3 position = 2;
+	
+	// world rotation
+	Vector3 rotation = 3;
+}
+
+message CreateEntityResponse {
+	
+	// the created entity 
+	EntityTransform entity = 1;
+}
+
+message SetPositionRequest {
+	int32 entity = 1;
+	
+	// the world position in your coordinate system
+	Vector3 position = 2;
+	
+	// the coordinate system that the position is in
+	GlobalCoordinateSystem positionGcs = 3;
+}
+
+message SetPositionResponse {
+	
+}
+
+message SetHighlightRequest {
+	int32 entity = 1;
+	bool highlight = 2;
+}
+
+message SetHighlightResponse {
+	
+}
+
+message GetSimulationEntitiesRequest {
+	
+}
+
+message GetSimulationEntitiesResponse {
+	repeated Entity entities = 1;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:b='urn:import:org.gwtbootstrap3.client.ui'
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.inlineBlock {
+			display: inline-block;
+		}
+		.button {
+			font-size: 24px;
+    		margin: -10px -4px -10px 1px;;
+   		 	padding: 0px;
+    		width: 50px;
+    		height: 36px;
+    		color: #ebfffd;
+    		border: solid 1px rgb(78, 93, 90);
+    		border-radius: 5px;
+    		background: linear-gradient(#9db1ae, #647b7a);
+		}
+		.button:hover, .button:focus {
+			background: linear-gradient(rgb(168, 187, 185), rgb(90, 110, 109)) !important;
+    		color: rgb(219, 243, 240);
+			border: solid 1px rgb(78, 93, 90);
+		}
+		.button:active {
+            background: linear-gradient(#647b7a,#9db1ae) !important;
+            color: rgb(219, 243, 240);
+            border: solid 1px rgb(78, 93, 90);
+            padding-top: 3px;
+        }
+		.button:disabled {
+			color: rgb(94, 100, 100);
+			background: rgb(118, 138, 136);
+		}
+		.caret>i {
+			font-size: 30px;
+    		padding-top: 2px;
+		}
+		.title{
+			padding: 0px 10px 0px 0px;
+			display: inline;
+			vertical-align: middle;
+			color: #ebfffd;
+		}
+		.title a{
+			text-decoration: none;
+			color: #ebfffd;
+		}
+		.title a:hover{
+			text-decoration: none;
+			color: #ebfffd;
+		}
+		.anchorButton, .anchorButtor:hover, .anchorButton:focus, .anchorButton:active {
+			border: none !important;
+			color: #ebfffd !important;
+			text-decoration: none !important;
+			font-size: 18px;
+			padding: 0px;
+		}
+		.dropDown {
+			background-color: rgb(108, 140, 137);
+    		border: solid 1px #526563;
+		}
+		.dropDown>li>a {
+			color: #192322;
+			font-weight: bold;
+		}
+		.dropDown>.active>a {
+			background-color: #416995 !important;
+		}
+		.spinner {
+			color: rgba(94, 125, 123, 1);
+			font-size: 30px;
+			margin: 10px;
+			vertical-align: middle;
+			position: absolute;
+		}
+		.warnIcon {
+			padding-right: 10px;
+			display: inline;
+		}
+		.infoButton{
+            border-radius: 50%;
+            height: 40px;
+            width: 42px;
+	    }
+	    .buttonSplit{
+            margin-right: 15px;
+        }
+        .buttonPanel{
+            display: inline-block;
+            float: right;
+	    }
+	    .previousButton{
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            margin-right: -1px;
+	    }
+	    .nextButton{
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+        }
+	</ui:style>
+	<g:HTMLPanel addStyleNames="centerText">
+		<g:HTMLPanel addStyleNames="headerPanel">
+			<g:DeckPanel ui:field ="titleDeckPanel" addStyleNames="{style.inlineBlock}">
+			    <b:Icon ui:field="warningIcon" type="WARNING" addStyleNames="{style.warnIcon}"/>
+		    	<g:Label ui:field="nameLabel" addStyleNames="{style.title}"></g:Label>
+			    <b:ButtonGroup ui:field="dropDownWidget">
+			        <b:Button ui:field="dropDownLabel" dataToggle="DROPDOWN" toggleCaret="false" icon="CARET_DOWN" type="LINK" addStyleNames="{style.title} {style.anchorButton}"/>
+				    <b:DropDownMenu ui:field="dropDownMenu" addStyleNames="{style.dropDown}">
+				    </b:DropDownMenu>
+			    </b:ButtonGroup>
+			</g:DeckPanel> 
+			
+			<g:FlowPanel addStyleNames='{style.buttonPanel}'>
+			    <b:Button type="LINK" icon="INFO_CIRCLE" ui:field="infoButton" visible="false" addStyleNames="{style.button} {style.infoButton} {style.buttonSplit}"></b:Button>
+		        <b:Tooltip title='Previous' ui:field="previousButtonTooltip" placement="BOTTOM">
+                    <b:Button type="LINK" icon="CARET_LEFT" ui:field="previousButton" visible="false" addStyleNames="{style.button} {style.caret} {style.previousButton}"></b:Button>
+                </b:Tooltip>
+                <b:Tooltip title='Next' ui:field="nextButtonTooltip" placement="BOTTOM">
+                    <b:Button type="LINK" icon="CARET_RIGHT" ui:field="nextButton" visible="false" addStyleNames="{style.button} {style.caret} {style.nextButton} {style.buttonSplit}"></b:Button>
+                </b:Tooltip>
+                <b:Popover ui:field="continuePopup" placement="BOTTOM" content="Click this button to continue" trigger="MANUAL">
+                    <b:Button type="LINK" icon="ARROW_RIGHT" ui:field="continueButton" addStyleNames="{style.button}"></b:Button>
+                </b:Popover>
+		    </g:FlowPanel>
+		</g:HTMLPanel>
+		<b:Icon ui:field="loadingIcon" type="SPINNER" addStyleNames="{style.spinner}"/>
+	</g:HTMLPanel>
+</ui:UiBinder> 

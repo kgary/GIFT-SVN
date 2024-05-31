@@ -1,0 +1,15 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <ui:style>
+        .experimentButton {
+            margin: 8px 0px;
+            width: 100%;
+            font-size: 28px;
+            padding: 2px;
+            white-space: normal;
+        }
+    </ui:style>
+    <b:Button ui:field="experimentButton" type="PRIMARY" size="LARGE" addStyleNames="{style.experimentButton}" />
+</ui:UiBinder>

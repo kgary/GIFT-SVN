@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+	This sample illustrates the various fields in the sensor configuration file.
+-->
+<SensorsConfiguration version="11.0.1" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+
+    <!-- list of sensors -->
+    <Sensors>
+
+	<!-- must have a unique id (in this file)-->
+        <Sensor id="1">
+
+	    <!-- unique name for the sensor -->
+            <name>SineWave</name>
+
+	    <!-- (optional) how long the sensor sleeps between checks in seconds, integer.  If not provided sensor is check as quickly as possible -->
+            <interval>0.5</interval>
+
+            <!-- implementation class to instantiate with these sensor attributes-->
+            <sensorImpl>sensor.impl.SineWaveSensor</sensorImpl>
+
+	    <!-- whether the implementation class will need to register for sending its attributes over the network -->
+            <distributeExternally>false</distributeExternally>
+
+            <!-- sensor specific configuration inputs-->
+            <sensorInput>
+			
+				<SineWaveSensor>
+					<amplitude>150</amplitude>
+					<period>180</period>
+				</SineWaveSensor>
+				
+            </sensorInput>
+            
+            <!-- (optional) a filter instance for this sensor's data  -->
+            <filterInstance>2</filterInstance>
+            
+           	<!-- (optional) a writer instance for this sensor's data -->
+            <writerInstance>3</writerInstance>
+
+        </Sensor>
+    </Sensors>
+    <Filters>
+
+	<!-- must have a unique id (in this file)-->
+        <Filter id="2">
+
+            <!-- unique name for the filter -->
+            <name>SineWaveEngagementFilter</name>
+
+            <!-- implementation class to instantiate with these filter attributes-->
+            <filterImpl>sensor.filter.SineWaveSensorFilter</filterImpl>
+
+	    	<!-- whether the implementation class will need to register for sending its attributes over the network -->
+            <distributeExternally>true</distributeExternally>
+
+			<!-- (optional) a writer instance for this filter's data -->
+            <writerInstance>4</writerInstance>
+			
+			<!-- (optional) inputs to configure this filter instance -->
+			<filterInput/>
+            
+        </Filter>
+    </Filters>
+    <Writers>
+
+	<!-- must have a unique id (in this file)-->
+        <Writer id="3">
+		
+			<name>RawSelfAssessmentWriter</name>
+
+            <!-- implementation class to instantiate with these writer attributes-->
+            <writerImpl>sensor.writer.GenericSensorDelimitedWriter</writerImpl>
+
+			<!--  configuration input for the writer -->
+            <writerInput>            
+            	
+				<GenericSensorDelimitedWriter>
+				
+					<!-- directory name to write the data too -->
+					<directoryToWrite>output/sensor</directoryToWrite>
+
+					<!-- prefix to use in the file name created by this writer -->
+					<filePrefix>rawSelfAssessment</filePrefix>
+					
+				</GenericSensorDelimitedWriter>
+            	
+            </writerInput>
+        </Writer>
+    </Writers>
+</SensorsConfiguration>

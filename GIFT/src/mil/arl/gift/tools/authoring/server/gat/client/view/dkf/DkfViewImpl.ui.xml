@@ -1,0 +1,30 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:d="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.dialog"
+	xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view"
+	xmlns:dkf="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf"
+	xmlns:o="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.outline">
+	<ui:style>
+	.outline {
+		border: 1px solid rgb(187, 187, 187);
+		background-color: white;
+		overflow: auto;
+        margin: 4px;
+	}
+	</ui:style>
+	<g:FlowPanel width='100%' height='100%'>
+		<d:CourseObjectModal ui:field="dkfTransitionDialog" />
+		<g:SplitLayoutPanel height="100%" addStyleNames='courseMainSplitter'
+			ui:field="editorPanel">
+			<g:center>
+				<dkf:ScenarioObjectEditorPanel ui:field="objectEditorPanel"/>
+			</g:center>
+			<g:west size="320">
+				<g:SimplePanel width='100%' height='100%' addStyleNames='{style.outline}'>
+                    <o:ScenarioOutlineEditor height='100%' ui:field="outlineWidget" />
+                </g:SimplePanel>
+			</g:west>
+		</g:SplitLayoutPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

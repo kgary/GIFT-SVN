@@ -1,0 +1,41 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractReportProto";
+
+import "LearnerAction.proto";
+
+/* This message represents the learner tutor action of starting a pace count. */
+message AbstractReport {
+	oneof type {
+		/* Explosive hazard spot report. */
+		ExplosiveHazardSpotReport explosive_hazard_spot_report = 1;
+		
+		/* 9-line report. */
+		NineLineReport nine_line_report = 2;
+		
+		/* Spot report. */
+		SpotReport spot_report = 3;
+	}
+}
+
+message ExplosiveHazardSpotReport {
+	/* The learner action. */
+	LearnerAction learner_action = 1;
+}
+
+message NineLineReport {
+	/* The learner action. */
+	LearnerAction learner_action = 1;
+}
+
+message SpotReport {
+	/* The learner action. */
+	LearnerAction learner_action = 1;
+}

@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "EntityAppearanceProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents an entity appearance. */
+message EntityAppearance {
+
+	/* The damage value of this entity appearance. */
+	google.protobuf.StringValue damage = 1;
+	
+	/* The posture value of this entity appearance. */
+	google.protobuf.StringValue posture = 2;
+	
+	/* Flag used to indicate if this entity is active or deactivated. */
+	google.protobuf.BoolValue active = 3;
+}

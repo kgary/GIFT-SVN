@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 	version="5.1" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:fg="http://www.FGolubov.com/XMLEditor" 
+			targetNamespace="http://GIFT.com/learnerActions" 
+			xmlns="http://GIFT.com/learnerActions" 
+			elementFormDefault="qualified">
+  <xs:element name="LearnerActionsList">  
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Learner Actions List"> 
+			<fg:message>This is the root node of learner actions list which contains a list of learner actions.  Look for other helpful information by clicking on a node.</fg:message>
+			<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:element ref="learnerAction" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="learnerAction">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="type" type="LearnerActionEnumType"/>
+			<xs:element name="displayName" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Display Name"> 
+						<fg:message>The display name that will appear for this action on the TUI.</fg:message>
+						<fg:message>Refer to "Help" for more information.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>  
+  <xs:simpleType name="LearnerActionEnumType">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="Explosive Hazard Spot Report"/>
+			<xs:enumeration value="Nine Line Report"/>
+			<xs:enumeration value="Spot Report"/>
+			<xs:enumeration value="Radio"/>
+		</xs:restriction>
+	  </xs:simpleType>
+</xs:schema>

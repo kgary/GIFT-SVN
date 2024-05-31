@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Domain Knowledge File (DKF) Authoring Tool (DAT).
+	It contains information on how to assess a lesson (e.g. training application instance/scenario) in a GIFT course.
+-->
+<Scenario name="name string" version="6.0.2"
+    xmlns:ns2="http://GIFT.com/common"
+    xmlns:ns3="http://GIFT.com/learnerActions"
+    xmlns:ns4="http://GIFT.com/pedagogicalStrategy" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <description>description string</description>
+    <learnerId>
+        <startLocation>
+            <coordinate>
+                <ns2:GCC xmlns:ns2="http://GIFT.com/common">
+                    <ns2:x>1</ns2:x>
+                    <ns2:y>2</ns2:y>
+                    <ns2:z>3</ns2:z>
+                </ns2:GCC>
+            </coordinate>
+        </startLocation>
+    </learnerId>
+    <resources>
+        <ns2:surveyContext xmlns:ns2="http://GIFT.com/common">4</ns2:surveyContext>
+        <AvailableLearnerActions>
+            <ns3:LearnerActionsList xmlns:ns3="http://GIFT.com/learnerActions">
+                <ns3:learnerAction>
+                    <ns3:type>Explosive Hazard Spot Report</ns3:type>
+                    <ns3:displayName>display name string</ns3:displayName>
+                </ns3:learnerAction>
+                <ns3:learnerAction>
+                    <ns3:type>Nine Line Report</ns3:type>
+                    <ns3:displayName>display name string</ns3:displayName>
+                </ns3:learnerAction>
+                <ns3:learnerAction>
+                    <ns3:type>Spot Report</ns3:type>
+                    <ns3:displayName>display name string</ns3:displayName>
+                </ns3:learnerAction>
+                <ns3:learnerAction>
+                    <ns3:type>Radio</ns3:type>
+                    <ns3:displayName>display name string</ns3:displayName>
+                </ns3:learnerAction>
+            </ns3:LearnerActionsList>
+            <LearnerActionsFiles>
+                <file>TSP 07-GFT-0137 Vignettes\LearnerActions\TSP.learnerActions.xml</file>
+            </LearnerActionsFiles>
+        </AvailableLearnerActions>
+    </resources>
+    <endTriggers>
+        <trigger>
+            <entityLocation>
+                <startLocation>
+                    <coordinate>
+                        <ns2:VBS_AGL xmlns:ns2="http://GIFT.com/common">
+                            <ns2:x>3</ns2:x>
+                            <ns2:y>2</ns2:y>
+                            <ns2:z>1</ns2:z>
+                        </ns2:VBS_AGL>
+                    </coordinate>
+                </startLocation>
+                <triggerLocation>
+                    <coordinate>
+                        <ns2:VBS_AGL xmlns:ns2="http://GIFT.com/common">
+                            <ns2:x>1</ns2:x>
+                            <ns2:y>2</ns2:y>
+                            <ns2:z>3</ns2:z>
+                        </ns2:VBS_AGL>
+                    </coordinate>
+                </triggerLocation>
+            </entityLocation>
+        </trigger>
+    </endTriggers>
+    <assessment>
+        <tasks>
+            <task name="name string" nodeId="1">
+                <startTriggers>
+                    <trigger>
+                        <entityLocation>
+                            <startLocation>
+                                <coordinate>
+                                    <ns2:GCC xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:x>3</ns2:x>
+                                    <ns2:y>2</ns2:y>
+                                    <ns2:z>1</ns2:z>
+                                    </ns2:GCC>
+                                </coordinate>
+                            </startLocation>
+                            <triggerLocation>
+                                <coordinate>
+                                    <ns2:GCC xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:x>1</ns2:x>
+                                    <ns2:y>2</ns2:y>
+                                    <ns2:z>3</ns2:z>
+                                    </ns2:GCC>
+                                </coordinate>
+                            </triggerLocation>
+                        </entityLocation>
+                    </trigger>
+                    <trigger>
+                        <learnerLocation>
+                            <coordinate>
+                                <ns2:GCC xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:x>1</ns2:x>
+                                    <ns2:y>2</ns2:y>
+                                    <ns2:z>3</ns2:z>
+                                </ns2:GCC>
+                            </coordinate>
+                        </learnerLocation>
+                    </trigger>
+                    <trigger>
+                        <conceptEnded nodeId="2"/>
+                    </trigger>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+                    </trigger>
+                    <trigger>
+                        <taskEnded nodeId="1"/>
+                    </trigger>
+                    <trigger>
+                        <conceptAssessment concept="2" result="AtExpectation"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <entityLocation>
+                            <startLocation>
+                                <coordinate>
+                                    <ns2:GDC xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:latitude>100</ns2:latitude>
+                                    <ns2:longitude>200</ns2:longitude>
+                                    <ns2:elevation>300</ns2:elevation>
+                                    </ns2:GDC>
+                                </coordinate>
+                            </startLocation>
+                            <triggerLocation>
+                                <coordinate>
+                                    <ns2:GCC xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:x>1</ns2:x>
+                                    <ns2:y>2</ns2:y>
+                                    <ns2:z>3</ns2:z>
+                                    </ns2:GCC>
+                                </coordinate>
+                            </triggerLocation>
+                        </entityLocation>
+                    </trigger>
+                    <trigger>
+                        <learnerLocation>
+                            <coordinate>
+                                <ns2:GDC xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:latitude>3</ns2:latitude>
+                                    <ns2:longitude>2</ns2:longitude>
+                                    <ns2:elevation>1</ns2:elevation>
+                                </ns2:GDC>
+                            </coordinate>
+                        </learnerLocation>
+                    </trigger>
+                    <trigger>
+                        <conceptEnded nodeId="2"/>
+                    </trigger>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+                    </trigger>
+                    <trigger>
+                        <taskEnded nodeId="1"/>
+                    </trigger>
+                    <trigger>
+                        <conceptAssessment concept="3" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="name string" nodeId="2">
+                        <concepts>
+                            <concept name="name string" nodeId="3">
+                                <conditions>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+                                    <input>
+                                    <ApplicationCompletedCondition>
+                                    <IdealCompletionDuration>10:10:10</IdealCompletionDuration>
+                                    </ApplicationCompletedCondition>
+                                    </input>
+                                    <scoring>
+                                    <count name="name string 1" units="count">
+                                    <evaluators>
+                                    <evaluator
+                                    assessment="BelowExpectation"
+                                    operator="LessThan" value="1"/>
+                                    </evaluators>
+                                    </count>
+                                    <completion_time
+                                    name="name string 3" units="count">
+                                    <evaluators>
+                                    <evaluator
+                                    assessment="BelowExpectation"
+                                    operator="LessThan" value="1"/>
+                                    </evaluators>
+                                    </completion_time>
+                                    <violation_time
+                                    name="name string 4" units="hh:mm:ss">
+                                    <evaluators>
+                                    <evaluator
+                                    assessment="BelowExpectation"
+                                    operator="LessThan" value="00:00:01"/>
+                                    </evaluators>
+                                    </violation_time>
+                                    </scoring>
+                                    <default assessment="BelowExpectation"/>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.autotutor.AutoTutorWebServiceInterfaceCondition</conditionImpl>
+                                    <input>
+                                    <AutoTutorConditionInput>
+                                    <ATRemoteSKO>
+                                    <URL>
+                                    <address>www.url.com</address>
+                                    </URL>
+                                    </ATRemoteSKO>
+                                    </AutoTutorConditionInput>
+                                    </input>
+                                    <scoring>
+                                    <count name="name" units="count">
+                                    <evaluators>
+                                    <evaluator
+                                    assessment="AtExpectation"
+                                    operator="GreaterThanEquals" value="1"/>
+                                    </evaluators>
+                                    </count>
+                                    </scoring>
+                                    <default assessment="AtExpectation"/>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+                                    <input>
+                                    <AvoidLocationCondition>
+                                    <waypointRef
+                                    distance="2.0" value="waypoint"/>
+                                    </AvoidLocationCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.CheckpointProgressCondition</conditionImpl>
+                                    <input>
+                                    <CheckpointProgressCondition>
+                                    <checkpoint
+                                    atTime="00:00:10"
+                                    waypoint="waypoint" windowOfTime="10"/>
+                                    </CheckpointProgressCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.CheckpointPaceCondition</conditionImpl>
+                                    <input>
+                                    <CheckpointPaceCondition>
+                                    <checkpoint
+                                    atTime="00:00:10"
+                                    waypoint="waypoint" windowOfTime="10"/>
+                                    </CheckpointPaceCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.CorridorBoundaryCondition</conditionImpl>
+                                    <input>
+                                    <CorridorBoundaryCondition>
+                                    <bufferWidthPercent>10</bufferWidthPercent>
+                                    <path>
+                                    <segment name="name string">
+                                    <width>10</width>
+                                    <bufferWidthPercent>10</bufferWidthPercent>
+                                    <start waypoint="waypoint"/>
+                                    <end waypoint="waypoint"/>
+                                    </segment>
+                                    </path>
+                                    </CorridorBoundaryCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.CorridorPostureCondition</conditionImpl>
+                                    <input>
+                                    <CorridorPostureCondition>
+                                    <postures>
+                                    <posture>Standing</posture>
+                                    </postures>
+                                    <path>
+                                    <segment name="name string">
+                                    <width>10</width>
+                                    <bufferWidthPercent>20</bufferWidthPercent>
+                                    <start waypoint="waypoint"/>
+                                    <end waypoint="waypoint"/>
+                                    </segment>
+                                    </path>
+                                    </CorridorPostureCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.EliminateHostilesCondition</conditionImpl>
+                                    <input>
+                                    <EliminateHostilesCondition>
+                                    <entities>
+                                    <startLocation>
+                                    <coordinate>
+                                    <ns2:GCC xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:x>3</ns2:x>
+                                    <ns2:y>2</ns2:y>
+                                    <ns2:z>1</ns2:z>
+                                    </ns2:GCC>
+                                    </coordinate>
+                                    </startLocation>
+                                    </entities>
+                                    </EliminateHostilesCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.EnterAreaCondition</conditionImpl>
+                                    <input>
+                                    <EnterAreaCondition>
+                                    <entrance
+                                    assessment="BelowExpectation" name="name string">
+                                    <outside
+                                    proximity="10" waypoint="waypoint"/>
+                                    <inside
+                                    proximity="10" waypoint="waypoint"/>
+                                    </entrance>
+                                    </EnterAreaCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.ExplosiveHazardSpotReportCondition</conditionImpl>
+                                    <input>
+                                    <ExplosiveHazardSpotReportCondition/>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.IdentifyPOIsCondition</conditionImpl>
+                                    <input>
+                                    <IdentifyPOIsCondition>
+                                    <pois>
+                                    <waypointRef
+                                    distance="6" value="waypoint"/>
+                                    </pois>
+                                    </IdentifyPOIsCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.LifeformTargetAccuracyCondition</conditionImpl>
+                                    <input>
+                                    <LifeformTargetAccuracyCondition>
+                                    <entities>
+                                    <startLocation>
+                                    <coordinate>
+                                    <ns2:GCC xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:x>1</ns2:x>
+                                    <ns2:y>2</ns2:y>
+                                    <ns2:z>3</ns2:z>
+                                    </ns2:GCC>
+                                    </coordinate>
+                                    </startLocation>
+                                    </entities>
+                                    </LifeformTargetAccuracyCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.NineLineReportCondition</conditionImpl>
+                                    <input>
+                                    <NineLineReportCondition/>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.PowerPointUnderDwellCondition</conditionImpl>
+                                    <input>
+                                    <PowerPointDwellCondition>
+                                    <default>
+                                    <timeInSeconds>5.0</timeInSeconds>
+                                    </default>
+                                    <slides>
+                                    <slide index="10">
+                                    <timeInSeconds>1.0</timeInSeconds>
+                                    </slide>
+                                    </slides>
+                                    </PowerPointDwellCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.PowerPointOverDwellCondition</conditionImpl>
+                                    <input>
+                                    <PowerPointDwellCondition>
+                                    <default>
+                                    <timeInSeconds>10.0</timeInSeconds>
+                                    </default>
+                                    <slides>
+                                    <slide index="2">
+                                    <timeInSeconds>20.0</timeInSeconds>
+                                    </slide>
+                                    </slides>
+                                    </PowerPointDwellCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.RulesOfEngagementCondition</conditionImpl>
+                                    <input>
+                                    <RulesOfEngagementCondition>
+                                    <wcs value="Hold"/>
+                                    </RulesOfEngagementCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.SpotReportCondition</conditionImpl>
+                                    <input>
+                                    <SpotReportCondition/>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
+                                    <input>
+                                    <GenericConditionInput>
+                                    <ns2:nvpair xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:name>Name</ns2:name>
+                                    <ns2:value>Value</ns2:value>
+                                    </ns2:nvpair>
+                                    </GenericConditionInput>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.UseRadioCondition</conditionImpl>
+                                    <input>
+                                    <UseRadioCondition/>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.autotutor.AutoTutorWebServiceInterfaceCondition</conditionImpl>
+                                    <input>
+                                    <AutoTutorConditionInput>
+                                    <ATRemoteSKO>
+                                    <URL>
+                                    <address>www.google.com</address>
+                                    </URL>
+                                    </ATRemoteSKO>
+                                    </AutoTutorConditionInput>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.autotutor.AutoTutorWebServiceInterfaceCondition</conditionImpl>
+                                    <input>
+                                    <AutoTutorConditionInput>
+                                    <LocalSKO>
+                                    <File>AutoTutorSession.example.dkf.xml</File>
+                                    </LocalSKO>
+                                    </AutoTutorConditionInput>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.MarksmanshipPrecisionCondition</conditionImpl>
+                                    <input>
+                                    <MarksmanshipPrecisionCondition>
+                                    <ExpectedNumberOfShots>10</ExpectedNumberOfShots>
+                                    </MarksmanshipPrecisionCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.MarksmanshipSessionCompleteCondition</conditionImpl>
+                                    <input>
+                                    <MarksmanshipSessionCompleteCondition>
+                                    <ExpectedNumberOfShots>100</ExpectedNumberOfShots>
+                                    </MarksmanshipSessionCompleteCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.NumberOfShotsFiredCondition</conditionImpl>
+                                    <input>
+                                    <NumberOfShotsFiredCondition>
+                                    <ExpectedNumberOfShots>2</ExpectedNumberOfShots>
+                                    </NumberOfShotsFiredCondition>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.HasMovedExcavatorComponentCondition</conditionImpl>
+                                    <input>
+                                    <hasMovedExcavatorComponentInput>
+                                    <component>
+                                    <componentType>bucket</componentType>
+                                    <anyDirection>2.0</anyDirection>
+                                    </component>
+                                    <maxAssessments>3</maxAssessments>
+                                    </hasMovedExcavatorComponentInput>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.simile.SIMILEInterfaceCondition</conditionImpl>
+                                    <input>
+                                    <SIMILEConditionInput>
+                                    <configurationFile>Explicit Feedback within Game-Based Training\TC3_Scenario.ixs</configurationFile>
+                                    <conditionKey>apply_bandage</conditionKey>
+                                    </SIMILEConditionInput>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.HasCollidedCondition</conditionImpl>
+                                    <input>
+                                    <GenericConditionInput>
+                                    <ns2:nvpair xmlns:ns2="http://GIFT.com/common">
+                                    <ns2:name>name</ns2:name>
+                                    <ns2:value>value</ns2:value>
+                                    </ns2:nvpair>
+                                    </GenericConditionInput>
+                                    </input>
+                                    </condition>
+                                    <condition>
+                                    <conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+                                    <input>
+                                    <TimerConditionInput>
+                                    <repeatable>false</repeatable>
+                                    <interval>10</interval>
+                                    </TimerConditionInput>
+                                    </input>
+                                    </condition>
+                                </conditions>
+                                <assessments>
+                                    <survey>
+                                    <ns2:GIFTSurveyKey xmlns:ns2="http://GIFT.com/common">MidLesson</ns2:GIFTSurveyKey>
+                                    <questions>
+                                    <question key="35">
+                                    <reply key="16" result="BelowExpectation"/>
+                                    </question>
+                                    </questions>
+                                    </survey>
+                                </assessments>
+                            </concept>
+                        </concepts>
+                        <assessments>
+                            <survey>
+                                <ns2:GIFTSurveyKey xmlns:ns2="http://GIFT.com/common">MidLesson</ns2:GIFTSurveyKey>
+                                <questions>
+                                    <question key="35">
+                                    <reply key="16" result="BelowExpectation"/>
+                                    </question>
+                                </questions>
+                            </survey>
+                        </assessments>
+                    </concept>
+                </concepts>
+                <assessments>
+                    <survey>
+                        <ns2:GIFTSurveyKey xmlns:ns2="http://GIFT.com/common">MidLesson</ns2:GIFTSurveyKey>
+                        <questions>
+                            <question key="35">
+                                <reply key="17" result="BelowExpectation"/>
+                            </question>
+                        </questions>
+                    </survey>
+                </assessments>
+            </task>
+        </tasks>
+        <objects>
+            <waypoints>
+                <waypoint name="waypoint">
+                    <coordinate>
+                        <ns2:VBS_AGL xmlns:ns2="http://GIFT.com/common">
+                            <ns2:x>100</ns2:x>
+                            <ns2:y>200</ns2:y>
+                            <ns2:z>300</ns2:z>
+                        </ns2:VBS_AGL>
+                    </coordinate>
+                </waypoint>
+            </waypoints>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="opt name">
+                <LogicalExpression>
+                    <ns4:LearnerStateTransitionEnum
+                        xmlns:ns4="http://GIFT.com/pedagogicalStrategy" attribute="Arousal">
+                        <ns4:previous>Unknown</ns4:previous>
+                        <ns4:current>Low</ns4:current>
+                    </ns4:LearnerStateTransitionEnum>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="name string 1"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="opt name">
+                <LogicalExpression>
+                    <performanceNode name="name string" nodeId="1">
+                        <previous>BelowExpectation</previous>
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="name string 2"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="name string 1">
+                <ns4:instructionalIntervention xmlns:ns4="http://GIFT.com/pedagogicalStrategy">
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>feedback message</ns4:content>
+                            <ns4:Delivery>
+                                <ns4:InTutor>
+                                    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+                                    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+                                </ns4:InTutor>
+                                <ns4:InTrainingApplication>
+                                    <ns4:enabled>true</ns4:enabled>
+                                </ns4:InTrainingApplication>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="name string 2">
+                <performanceAssessment nodeId="3">
+                    <ns4:strategyHandler xmlns:ns4="http://GIFT.com/pedagogicalStrategy">
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                </performanceAssessment>
+            </strategy>
+            <strategy name="name string 3">
+                <ns4:scenarioAdaptation xmlns:ns4="http://GIFT.com/pedagogicalStrategy">
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:pair type="typestring" value="valuestring"/>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="name string 4">
+                <ns4:instructionalIntervention xmlns:ns4="http://GIFT.com/pedagogicalStrategy">
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>feedback message 2</ns4:content>
+                            <ns4:Delivery>
+                                <ns4:InTutor>
+                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                </ns4:InTutor>
+                                <ns4:InTrainingApplication>
+                                    <ns4:enabled>false</ns4:enabled>
+                                </ns4:InTrainingApplication>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="name string 5">
+                <ns4:instructionalIntervention xmlns:ns4="http://GIFT.com/pedagogicalStrategy">
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                        <ns4:params>
+                            <ns2:nvpair xmlns:ns2="http://GIFT.com/common">
+                                <ns2:name>name</ns2:name>
+                                <ns2:value>value</ns2:value>
+                            </ns2:nvpair>
+                        </ns4:params>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>feedbck message 3</ns4:content>
+                            <ns4:Delivery>
+                                <ns4:InTutor>
+                                    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+                                    <ns4:MessagePresentation>AvatarOnly</ns4:MessagePresentation>
+                                </ns4:InTutor>
+                                <ns4:InTrainingApplication>
+                                    <ns4:enabled>true</ns4:enabled>
+                                </ns4:InTrainingApplication>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:AffectiveFeedbackType>Negative</ns4:AffectiveFeedbackType>
+                        <ns4:FeedbackSpecificityType>Assert</ns4:FeedbackSpecificityType>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="name string 6">
+                <ns4:instructionalIntervention xmlns:ns4="http://GIFT.com/pedagogicalStrategy">
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>feedback message 4</ns4:content>
+                            <ns4:Delivery>
+                                <ns4:InTutor>
+                                    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+                                    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+                                </ns4:InTutor>
+                                <ns4:InTrainingApplication>
+                                    <ns4:enabled>true</ns4:enabled>
+                                </ns4:InTrainingApplication>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:AffectiveFeedbackType>Motivation</ns4:AffectiveFeedbackType>
+                        <ns4:FeedbackSpecificityType>Pump</ns4:FeedbackSpecificityType>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="AutoTutor strategy - (generated) 1404137908758">
+                <performanceAssessment nodeId="3">
+                    <ns4:strategyHandler xmlns:ns4="http://GIFT.com/pedagogicalStrategy">
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                        <ns4:params>
+                            <ns2:nvpair xmlns:ns2="http://GIFT.com/common">
+                                <ns2:name>name</ns2:name>
+                                <ns2:value>value</ns2:value>
+                            </ns2:nvpair>
+                        </ns4:params>
+                    </ns4:strategyHandler>
+                </performanceAssessment>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+</Scenario>

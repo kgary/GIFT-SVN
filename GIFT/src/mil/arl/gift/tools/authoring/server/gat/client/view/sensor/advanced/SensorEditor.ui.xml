@@ -1,0 +1,26 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:p1="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:steps="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.sensor.advanced.steps">
+	
+    <ui:style>
+	.hint {
+		font-size: 14px;
+		padding: 10px;
+	}
+	</ui:style>
+	
+	<g:DeckPanel height='100%' width='100%' ui:field='deckPanel'>
+		<g:SimplePanel height='100%' width='100%'/>
+		<g:FlowPanel height="100%" width="100%" ui:field="verticalPanel">
+		    <g:HTML addStyleNames='{style.hint}' ui:field='requiredFieldLabel'/>
+			<steps:SensorNameAndInputEditor ui:field="sensorNameAndInputEditor"/>
+			<steps:TransmitSensorDataEditor ui:field="transmitSensorDataEditor"/>
+			<steps:ArchiveSensorDataEditor ui:field="archiveSensorDataEditor"/>
+			<steps:FilterSensorDataEditor ui:field="filterSensorDataEditor"/>
+			<steps:TransmitFilteredDataEditor ui:field="transmitFilteredDataEditor"/>
+			<steps:ArchiveFilteredDataEditor ui:field="archiveFilteredDataEditor"/>
+		</g:FlowPanel>
+	</g:DeckPanel>
+</ui:UiBinder> 

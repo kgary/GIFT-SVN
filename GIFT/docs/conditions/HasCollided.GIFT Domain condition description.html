@@ -1,0 +1,41 @@
+﻿<body>
+<p><strong>Has Collided Condition</strong></p>
+<p>This condition checks whether the learner has collided with another object by 
+analyzing collision messages. </p>
+<p>Currently if any collision message is received it will cause an assessment 
+event, even if the collision was not caused by the learner.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span></li><li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: each time a collision message is received (ignoring multiple 
+		collision events within a 1 second window of the first collision event)</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span></li>
+	<li>Unknown<ul>
+		<li>case: the default value</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>count - the number of collisions</li>
+	<li>time - not used (because the condition does not complete)</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition does not complete</li>
+	<li>the condition can be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>applications that use the DIS GIFT Gateway interop plugin</li>
+	<li>applications that can produce the GIFT Collision message</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Collision</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.HasCollidedCondition</em></p>
+</body>

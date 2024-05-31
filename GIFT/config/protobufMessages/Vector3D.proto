@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "Vector3DProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a Vector 3D point. */
+message Vector3D {
+
+	/* Coordinate point at 'x'. */
+	google.protobuf.DoubleValue x = 1;
+	
+	/* Coordinate point at 'y'. */
+	google.protobuf.DoubleValue y = 2;
+	
+	/* Coordinate point at 'z'. */
+	google.protobuf.DoubleValue z = 3;
+}

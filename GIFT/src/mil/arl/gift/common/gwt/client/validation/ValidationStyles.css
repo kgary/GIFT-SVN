@@ -1,0 +1,7 @@
+/* Validation error boxes */
+.invalidWidgetStyle {
+    box-shadow: 0px 0px 0px 3px red !important;
+}
+.invalidWidgetStyle:hover {
+    box-shadow: 0px 0px 0px 3px red !important;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:s="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.surveyeditor"
+    xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	
+    <ui:style type='mil.arl.gift.tools.authoring.server.gat.client.view.surveyeditor.SurveyEditorHeaderWidget.Style'>
+		.wellStyle {
+            margin-left:-15px;
+            margin-right:-15px;
+            margin-top:2px;
+            margin-bottom:10px;
+            padding-top:5px;
+            padding-right:10px;
+            padding-bottom:3px;
+            padding-left:0px;
+            background: linear-gradient(#f0f0f0, #fafafa, #f0f0f0, #d2d2d2 70%, #e6e6e6 90%);
+        }
+        
+        .centerAlign {
+           text-align:center;
+        }
+        
+        .rightAlign {
+           text-align:right;
+        }
+        
+        .buttonMargin {
+           margin-right:10px;
+        }
+        
+        .inlineStyle {
+            display:inline;
+        }
+        
+        .inlineBlockStyle {
+            display:inline-block;
+        }
+        
+        .formGroup{
+			margin-bottom: 0px;
+		}
+		
+		.requiredField {
+	        color: red;
+            font-size: 20px;
+        }
+        
+        .active, .active:active, .active:focus {
+        	background-color: #337ab7;
+        }
+        
+        .inactive {
+        	background-color: #285e8d;
+        }
+        
+        .modeButtons{
+			font-size:small;
+			padding: 6px;
+		}
+		
+		.modeButtonsContainer{
+			padding-right:0px;
+		}
+		
+		.mainFunctionalityButtonsContainer{
+			padding-right:0px;
+		}
+
+	</ui:style>
+    
+   
+    <b:Container fluid="true">
+    
+        <b:Well addStyleNames="{style.wellStyle}">
+            <b:Row>
+                <b:Column size="XS_4">
+                    <b:FormGroup addStyleNames='{style.formGroup}'>
+                        <b:Tooltip title="Survey Type: Collect Learner Information (Not Actionable)" placement="RIGHT">
+                            <b:IconStack addStyleNames="{style.buttonMargin}" ui:field="iconStackCollectInfo" size="LARGE">
+                                <b:Icon type="CLONE" stackBase="true"/>
+                            </b:IconStack>
+                        </b:Tooltip>
+                        <b:Tooltip title="Survey Type: Collect Learner Information (Actionable)" placement="RIGHT">
+                            <b:IconStack addStyleNames="{style.buttonMargin}" ui:field="iconStackCollectInfoScored" size="LARGE">
+                                <b:Icon type="SQUARE_O" stackBase="true"/>
+                                <b:Icon type="BOLT" stackTop="true"/>
+                            </b:IconStack>
+                        </b:Tooltip>
+                        <b:Tooltip title="Survey Type: Assess Learner Knowledge" placement="RIGHT">
+                            <b:IconStack addStyleNames="{style.buttonMargin}" ui:field="iconStackAssessKnowledge" size="LARGE">
+                                <b:Icon type="SQUARE_O" stackBase="true"/>
+                                <b:Icon type="REORDER" stackTop="true"/>
+                            </b:IconStack>
+                        </b:Tooltip>
+                        <b:Tooltip title="Survey Type: Question Bank" placement="RIGHT">
+                            <b:IconStack addStyleNames="{style.buttonMargin}" ui:field="iconStackQuestionBank" size="LARGE">
+                                <b:Icon type="SQUARE_O" stackBase="true"/>
+                                <b:Icon type="SITEMAP" stackTop="true"/>
+                            </b:IconStack>
+                        </b:Tooltip>
+                        <b:FormLabel ui:field="surveyNameLabel">Survey Name:</b:FormLabel>
+						<b:Tooltip title="" ui:field="surveyNameTooltip">
+							<g:FlowPanel addStyleNames="{style.inlineBlockStyle}">
+								<cb:EditableInlineLabel ui:field="surveyNameBox" placeholder="Enter Survey Name" />
+							</g:FlowPanel>
+						</b:Tooltip>
+                        <b:FormLabel ui:field="surveyNameRequiredLabel" addStyleNames="{style.requiredField}">*</b:FormLabel>
+                    </b:FormGroup>
+                </b:Column>   
+                
+				<!-- Mode buttons -->
+                <b:Column size="XS_3" addStyleNames="{style.centerAlign} {style.modeButtonsContainer}">
+                        <b:Button type="SUCCESS" icon="EDIT" ui:field="writingModeButton" addStyleNames="{style.buttonMargin} {style.modeButtons}">Writing Mode</b:Button>
+                        <b:Button type="PRIMARY" icon="GRADUATION_CAP" ui:field="scoringModeButton" addStyleNames="{style.modeButtons}">Scoring Mode</b:Button>
+                </b:Column>
+                
+                <!-- Main functionality buttons  -->
+                <b:Column size="XS_5" addStyleNames="{style.rightAlign} {style.mainFunctionalityButtonsContainer}">
+                    <b:Tooltip title="Filter">
+                        <g:FlowPanel addStyleNames="{style.inlineStyle}">
+                            <b:Button type="PRIMARY" icon="SEARCH" addStyleNames="{style.buttonMargin} {style.active}" ui:field="filterButton" />
+                        </g:FlowPanel>
+                    </b:Tooltip>
+                    <b:Tooltip title="" ui:field="saveTooltip">
+                        <g:FlowPanel addStyleNames="{style.inlineStyle}">
+                            <b:Button type="PRIMARY" icon="SAVE" addStyleNames="{style.buttonMargin}" ui:field="saveButton" />
+                        </g:FlowPanel>
+                    </b:Tooltip>
+                    <b:Tooltip title="Survey Properties">
+                        <g:FlowPanel addStyleNames="{style.inlineStyle}">
+                            <b:Button type="PRIMARY" icon="GEAR" addStyleNames="{style.buttonMargin}" ui:field="surveyPropertiesButton" />
+                        </g:FlowPanel>
+                    </b:Tooltip>
+                    <b:Tooltip title="Preview">
+                        <g:FlowPanel addStyleNames="{style.inlineStyle}">
+                            <b:Button type="PRIMARY" icon="EYE" addStyleNames="{style.buttonMargin}" ui:field="previewButton" />
+                        </g:FlowPanel>
+                    </b:Tooltip>
+                    <b:Tooltip title="Close">
+                        <g:FlowPanel addStyleNames="{style.inlineStyle}">
+                            <b:Button type="PRIMARY" icon="TIMES_CIRCLE" addStyleNames="{style.buttonMargin}" ui:field="closeButton" />
+                        </g:FlowPanel>
+                    </b:Tooltip>
+                </b:Column>
+            </b:Row>
+        </b:Well>
+    </b:Container>
+    
+</ui:UiBinder> 

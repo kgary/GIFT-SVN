@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.icon{
+			padding-right: 10px;
+		}
+		.label{
+			font-size: 16px;
+		}
+	</ui:style>
+	<g:HTMLPanel addStyleNames='courseTransitionHeader'>
+		<g:HorizontalPanel verticalAlignment='ALIGN_MIDDLE' horizontalAlignment='ALIGN_CENTER'>
+			<g:Image addStyleNames='{style.icon}' height='24px' ui:field='editorIcon' />
+			<g:Label addStyleNames='{style.label}' ui:field='editorLabel' >
+				<!-- Editor name goes here -->
+			</g:Label>
+		</g:HorizontalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

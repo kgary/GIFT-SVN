@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+ 
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainModuleStatusProto";
+
+import "ModuleStatus.proto";
+
+/* Represents a domain module's status. */
+message DomainModuleStatus {
+	
+	/* The base status from which to create the Domain module status. Cannot be null. */
+	ModuleStatus module_status = 1;
+	
+	/* The topics that the Domain module is currently using for 
+     * log playback. Can be null. */
+	repeated string log_playback_topics = 2;
+	
+}

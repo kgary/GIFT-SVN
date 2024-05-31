@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "NACKProto";
+import "google/protobuf/wrappers.proto";
+
+/*  
+ *	This message represents a Not Acknowledged (NACK) message. It contains information such as
+ * 	the message and the reason for non-acknowledgment. 
+ */
+message NACK {
+
+	/* An enumerated error that categorizes the reason for the NACK message. */
+    google.protobuf.StringValue error_enum = 1;
+    
+    /* A message describing the reason for the 'not acknowledged'. */
+    google.protobuf.StringValue error_message = 2;
+    
+    /* Information to help fix or work-around the issue causing this NACK (optional). */
+	google.protobuf.StringValue error_help = 3;
+}

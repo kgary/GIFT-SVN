@@ -1,0 +1,35 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	
+    <ui:style>   
+		.displayText{	
+			padding: 5px 5px 0px 5px;
+		}		
+		.displayText:hover{
+			border: solid 2px rgb(200, 200, 255);
+			border-radius: 5px;
+			margin: -2px;
+		}		
+		.displayTextCollapse{	
+			position: relative;
+		}		
+		.container{
+			padding: 0px;
+			margin-top: 10px;
+		}
+		.editorPanel > div{
+			margin: 0px;
+		}
+	</ui:style>
+    
+   
+    <b:Container fluid="true" addStyleNames='{style.container}' ui:field="summerNoteContainer">
+       		
+       	<g:FlowPanel ui:field='editorPanel' addStyleNames='{style.editorPanel}'>
+    		<!-- Summernote editor goes here -->
+    	</g:FlowPanel>
+       		
+    </b:Container>
+</ui:UiBinder> 

@@ -1,0 +1,107 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractScoreNodeProto";
+
+import "AbstractRawScore.proto";
+import "google/protobuf/wrappers.proto";
+
+/*  
+ *	This is the protobuf message that contains the details of a score node.
+ */ 
+message AbstractScoreNode {
+	/* The score node can either represent a graded score node or raw score node. */
+	oneof type {
+		GradedScoreNode graded_score_node = 1;
+		RawScoreNode raw_score_node = 2;
+		TaskScoreNode task_score_node = 3;
+	}
+}
+
+/* 
+ *	Message definition for a graded score node that contains the grade and 
+ *	information of the score per student.
+ */
+message GradedScoreNode {
+	google.protobuf.StringValue grade = 1;
+	
+	/* The list of child nodes specific to the graded node. */
+	repeated AbstractScoreNode children = 2;
+	
+	/* The performance node id corresponding to the node, which can 
+	   be null. */
+	google.protobuf.Int32Value performance_node_id = 3;
+	
+	/* Name of the score node, which cannot be null. */
+	google.protobuf.StringValue name = 4;
+	
+	/* The user name of the observer controller that evaluated this score, which can be null */
+    google.protobuf.StringValue evaluator = 5;
+    
+    /* A comment added by the evaluator of this score to describe why the score was applied, which can be null */
+    google.protobuf.StringValue observerComment = 6;
+    
+    /* A file reference to a media recording that the evaluator used to describe why the score was applied, which can be null */
+    google.protobuf.StringValue observerMedia = 7;
+}
+
+/* Message definition for a raw score node that has the assessment and ungraded score. */
+message RawScoreNode {
+    enum AssessmentLevel {
+		UNKNOWN_ASSESSMENTLEVEL = 0;
+        BELOW_EXPECTATION = 1;
+        AT_EXPECTATION = 2;
+        ABOVE_EXPECTATION = 3;
+		UNKNOWN = 4;
+    }
+
+	/* Enumeration of the various levels of assessment. */
+	AssessmentLevel assessment_level = 1;
+	
+	/* Units-based implementation of a RawScore. */
+	AbstractRawScore raw_score = 2;
+	
+	/* Value indicating who is being scored at this node. */
+	repeated string who = 3;
+	
+	/* Name of the score node, which cannot be null. */
+	google.protobuf.StringValue name = 4;
+			
+	/* The performance node id corresponding to the node, which can 
+	   be null. */
+	google.protobuf.Int32Value performance_node_id = 5;
+	
+	/* The user name of the observer controller that evaluated this score, which can be null */
+    google.protobuf.StringValue evaluator = 6;
+    
+    /* A comment added by the evaluator of this score to describe why the score was applied, which can be null */
+    google.protobuf.StringValue observerComment = 7;
+    
+    /* A file reference to a media recording that the evaluator used to describe why the score was applied, which can be null */
+    google.protobuf.StringValue observerMedia = 8;
+}
+
+/* specific attributes of a task score (different than a concept score) */
+message TaskScoreNode {
+
+	/* contains common score node attributes as well as possible descendants in a hierarchy */
+	GradedScoreNode graded_score_node = 1;
+	
+	/* optional - difficulty value for this task over the same data set used to calculate the task score */
+	google.protobuf.DoubleValue difficulty = 2;
+
+	/* optional - the reason for the difficulty value for this task over the same data set used to calculate the task score */
+	google.protobuf.StringValue difficultyReason = 3;
+
+	/* optional - stress value for this task over the same data set used to calculate the task score */
+	google.protobuf.DoubleValue stress = 4;
+
+	/* optional - the reason for the stress value for this task over the same data set used to calculate the task score */
+	google.protobuf.StringValue stressReason = 5;
+}

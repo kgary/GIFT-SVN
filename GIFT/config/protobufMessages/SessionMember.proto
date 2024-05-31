@@ -1,0 +1,60 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "SessionMemberProto";
+
+import "MarkedTeamMember.proto";
+import "LocatedTeamMember.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This represents the base implementation of a member for a session. */
+message SessionMember {
+	/* Domain session id for the member. */
+	google.protobuf.Int32Value ds_id = 1;
+	
+	/* The user id assigned to the member. */
+	google.protobuf.Int32Value user_id = 2;
+	
+	/* Value of the experiment id. */
+	google.protobuf.StringValue experiment_id = 3;
+	
+	/* The information about the type of membership this session member is using. */
+	SessionMembership session_membership = 4;
+}
+
+message SessionMembership {
+	oneof session_membership {
+		/* Used to group one or more individuals into a single session member. */
+		GroupMembership group_membership = 1;
+		
+		/* Represents a single individual in a knowledge session. */
+		IndividualMembership individual_membership = 2;
+	}
+}
+
+message GroupMembership {
+	/*  the username of the user hosting the team knowledge session. */
+	google.protobuf.StringValue username = 1;
+	
+	/* Represents a list of individuals in a group. */
+	repeated IndividualMembership members = 2;
+}
+
+message IndividualMembership {
+	/* the username of the user hosting the knowledge session. */
+	google.protobuf.StringValue username = 1;
+	
+	oneof team_member {
+		/* A learner who is assigned a mark to be located. */
+		MarkedTeamMember marked_team_member = 2;
+		
+		/* A learner who is assigned a location to be located. */
+		LocatedTeamMember located_team_member = 3;
+	}
+}

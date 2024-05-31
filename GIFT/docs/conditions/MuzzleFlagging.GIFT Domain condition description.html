@@ -1,0 +1,54 @@
+<body>
+<p><strong>Muzzle Flagging Condition</strong></p>
+<p>This condition checks whether the entity controlled by a player is pointing their
+weapon at another entity which is being assessed by this condition. The threshold
+in degrees for how closely a weapon is allowed to be pointed at an entity can be configured
+within the condition. </p>
+<p>Optionally, the condition can also be configured to only assess entities
+who are within a certain range of one another and whether the assessed member's 
+weapon safety value should be considered.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li style="color: #008000">Above Expectation</li>
+	<li><span style="color : #0000FF">At Expectation</span>
+		<ul>
+			<li>case: No assessed entities are pointing their weapons closer
+			than the configured angle threshold at any other assessed entity
+			within the distance optional distance threshold (if authored).</li>
+		</ul>
+	</li>
+	<li><span style="color : #FF0000">Below Expectation</span>
+		<ul>
+			<li>case: At least one assessed entity is pointing their weapon at another
+			assessed entity within the angle threshold, weapon safety is off, and 
+			the two entities are within the distance threshold
+			(if authored).</li>
+		</ul>
+	</li>
+	<li>Unknown
+		<ul>
+			<li>case: The default initial value of this condition. This default value will remain until at least one
+			entity state for two of the assessed entities is received.</li>
+		</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of violations (going from At to Below Expecation)</li>
+	<li>sums the duration of time in Below Expectation</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>this condition does not complete</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can produce entity state messages</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+	<li>Variables State Result</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>mil.arl.gift.domain.knowledge.condition.MuzzleFlaggingCondition</em></p>
+</body>

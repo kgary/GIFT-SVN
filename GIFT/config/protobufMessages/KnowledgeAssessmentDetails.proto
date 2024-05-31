@@ -1,0 +1,38 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "KnowledgeAssessmentDetailsProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This represents assessment details from a knowledge session. */
+message KnowledgeAssessmentDetails {
+	
+	repeated KnowledgeSessionVariable variable = 1;
+}
+
+/* This represents an assessment variable within a knowledge session */
+message KnowledgeSessionVariable {
+
+	/* The name of the variable */
+	google.protobuf.StringValue name = 1;
+	
+	/* The variable's value */
+	google.protobuf.StringValue value = 2;
+	
+	/* The units used to measure the variable's value */
+	google.protobuf.StringValue units = 3;
+	
+	/* The actor that the variable is targeting */
+	google.protobuf.StringValue actor = 4;
+}
+	 
+	 
+	 
+	 

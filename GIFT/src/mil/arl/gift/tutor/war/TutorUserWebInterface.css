@@ -1,0 +1,675 @@
+/** Add css rules here for your application. */
+
+.right {
+    float:right;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.smallMargin {
+    margin: 5px;
+}
+
+.smallPadding {
+    padding: 5px;
+}
+
+.mediumMargin {
+    margin: 10px;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.noWordWrap {
+    white-space: nowrap;
+}
+
+.mediaLinks {
+    white-space: nowrap;
+    font-size: 16pt;
+    color: rgb(128, 43, 10);
+}
+
+.serverResponseError {
+    color: #ff0000;
+}
+
+.documentArticle {
+    margin: 5px;
+}
+
+.documentSideBarMode {
+    margin-left: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.documentFooter {
+    border-top: 1px #bbbbbb double;
+    padding-top: 10px;
+    margin: 10px 0px;
+    font-weight: bold;
+    font-variant: small-caps; 
+    bottom: 0px;
+    position: absolute;
+}
+
+img.middle {
+    vertical-align:middle;
+    margin: 5px;
+}
+
+.feedbackText {
+}
+
+.chatWhom {
+    font-weight: bold;
+    margin-right: 12px;
+    font-size: 14px;
+}
+
+.chatText {
+    padding-left: 10px;
+    padding-bottom: 15px;
+    font-size: 14px;
+}
+
+.articleContainer {
+    padding: 5px;
+    border-right: 1px #cccccc solid;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    text-align: center;
+}
+
+.articleContainerHeader {
+    padding: 5px;
+    border-right: 1px #cccccc solid;
+    top: 50px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    position: absolute;
+    text-align: center;
+}
+
+.oldFeedbackText {
+    color: #999999;
+}
+
+/** Example rules used by the template application (remove for your app) */
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: #777777;
+    margin: 40px 0px 70px;
+    text-align: center;
+}
+
+.sendButton {
+    display: block;
+    font-size: 16pt;
+}
+
+.flashBackground {
+    background-color: #FFFF00;
+}
+
+.mouseOverUserAction {
+    background-color: #ADDEFF;
+}
+
+.userActionMouseDown {
+    border: 2px solid black;
+}
+
+.centeredButton {
+    margin: 10px auto;
+}
+
+.guidanceText {
+	font-size: 14pt;
+	padding-bottom: 30px;
+	min-height: 300px;
+}
+
+/** the panel under the guidance that contains the continue button and optional supplementary message */
+.guidanceContinuePanel {
+    margin: 10px auto;
+}
+
+/** used on the message shown near the continue button for a guidance page */
+.guidanceSupplementMessageLabel {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/** used when Guidance in the form of an HTML file is given and NO supplementary message is provided */
+.htmlGuidanceContinueButton {
+    font-size: 30px;
+}
+
+/** the guidance continue panel under the guidance page's content */
+.guidanceContinuePanel {
+    width: 100%;
+    height: 45px;
+    display: inline-block;
+}
+
+/** the guidance text */
+.guidanceMessage {
+	display: inline-block;
+	width: 100%;
+	zoom: 1;
+}
+
+/** the continue button under the guidance page's content */
+.continueButton {
+	padding: 6px 25px;
+	background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+}
+
+/** the next & previous slide buttons for slide shows on the Display Media Widget */
+.slideButton {
+	font-size: 150px;
+    color: rgb(88, 131, 177);
+    text-shadow: -1px -1px 0 #3e648d, 1px -1px 0 #3e648d, -1px 1px 0 #3e648d, 1px 1px 0 #3e648d;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.slideButton:focus, .slideButton:active:focus{
+	outline: none;
+}
+
+.slideButton:disabled, .slideButton[disabled]{
+	color: rgb(137, 160, 185);
+    text-shadow: -1px -1px 0 #6a7e94, 1px -1px 0 #6a7e94, -1px 1px 0 #6a7e94, 1px 1px 0 #6a7e94;
+}
+
+/** the default guidance styling */
+.contentPanel {
+    display: inline-block;
+    text-align: center;
+    min-width: 350px;
+    width: 60%;
+    background: #EFEFEF;
+    box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 30px;
+    border: rgb(132, 145, 152) solid 1px;
+    border-radius: 15px;
+    color: #2B3A42;
+    min-height: 27%;
+    margin: 25px auto;
+    padding: 20px 20px 0;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/** styles applied when the browser width is 1000px or less */
+@media(max-width: 1000px) {
+	.contentPanel {
+		width: 70% !important;
+	} 
+}
+
+/** styles applied when the browser width is 768px or less */
+@media(max-width: 768px) {
+	.contentPanel {
+		width: 90% !important;
+	}
+}
+
+/** style for guidance html pages */
+.guidanceFill {
+    border: rgb(132, 145, 152) solid 1px;
+    height: 100%;
+}
+
+/** the media continue panel under the media page's content */
+.mediaContinuePanel {
+    margin: 10px auto;
+}
+
+/** the media widget continue button in the media continue panel */
+.mediaContinueButton {
+    padding-left: 75px;
+    padding-right: 75px;
+}
+
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+    width: 400px;
+}
+
+.dialogVPanel {
+    margin: 5px;
+}
+
+.border {
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    border-right-color: #999999;
+    border-left-color: #999999;
+    border-bottom-color: #999999;
+    border-top-color: #999999;
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.padded-loadingdialog {
+    padding-bottom: 25px;
+    padding-top: 25px;    
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeButton {
+    margin: 15px 6px 6px;
+}
+
+.courseCell {
+	padding: 15px;
+	border:1px solid;
+	border-radius:5px;
+	border-color: rgb(150,150,150);
+	margin-bottom: 5px;
+	background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(230, 230, 255, 0.5));
+}
+
+.courseName {
+	font-weight: bold;
+}
+
+.courseDescription {
+	margin-left: 12px;
+}
+
+.courseRecommendation {
+	margin-left: 12px;
+	color: red;
+}
+
+/*** Headers *****/
+
+.recommendedHeader {
+	color: green;
+}
+
+.otherCoursesHeader {
+	color: rgb(0,0,0);
+}
+
+.notRecommendedHeader {
+	color: rgb(0,0,255);
+}
+
+.unavailableHeader {
+	color: rgb(175,0,0);
+}
+
+.commonCourseHeaderText {
+	margin-left: 10px;
+	font-size: 14px;
+	/**font-variant: small-caps;*/
+}
+
+/*****end Headers ***/
+
+.availableCoursesLabel {
+	font-size: 18px;	
+	background: linear-gradient(white, rgb(239, 239, 239));
+    padding: 16px;
+    border: solid 1px #C7C7C7;
+    color: rgb(111, 111, 111);
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.lmsCell{
+	padding: 5px;
+	border:1px solid;
+	border-radius:5px;
+	background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(230, 230, 255, 0.5));
+	border-color: rgb(150,150,150);
+}
+
+.lmsMenuText{
+	font-family: veranda;
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+/** The margin-top was removed here because it was causing unncessary vertical scrollbar due to the margin calculation. */
+.courseListProgressImage {
+	margin-left:5px;
+	max-height:25px;
+	max-width:25px;
+}
+.courseListPlaceholderText {
+	margin-top:5px;	
+}
+
+/** Root of all GWT components */
+.rootContainer {
+	background-size: cover;
+}
+
+/** Container of all GWT components */
+.documentPanel {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	overflow: auto;
+}
+
+/** All GWT DecoratorPanel middle panels*/
+.gwt-DecoratorPanel .middleCenter{
+	border-style: outset;
+	box-shadow: 10px 10px 30px rgba(0,0,0,0.50);
+	border-radius: 10px;
+	border-color: rgb(255,255,255);
+}
+
+.get-DecoratorPanel .middleCenter .middleCenterInner{
+	background: linear-gradient(rgb(225, 255, 255), rgb(200, 230, 230));
+	background-color: rgb(225, 255, 255); /** For browsers that do not support gradients (i.e. IE8, IE9) */
+}
+
+iframe{
+	border: none;
+}
+
+.gwt-DecoratorPanel .topLeft{
+	background: none;
+	border-color: #bbb;
+	border-top-style: solid;
+	border-left-style: solid;
+	border-width: 1px;
+	border-top-left-radius: 10px;
+}
+
+.gwt-DecoratorPanel .topRight{
+	background: none;
+	border-color: #bbb;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-width: 1px;
+	border-top-right-radius: 10px;
+}
+
+.gwt-DecoratorPanel .bottomLeft{
+	background: none;
+	border-color: #bbb;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-width: 1px;
+	border-bottom-left-radius: 10px;
+}
+
+.gwt-DecoratorPanel .bottomRight{
+	background: none;
+	border-color: #bbb;
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-width: 1px;
+	border-bottom-right-radius: 10px;
+}
+
+.gwt-SplitLayoutPanel-HDragger {
+    background-color: #CCD5DD;
+}
+
+table td {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.tutor-radio-button {
+	text-shadow: none;
+    font-size: 15px;
+	white-space: normal;
+	background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d);
+}
+
+.tutor-radio-button:hover{
+	background-image: linear-gradient(#5f8ab9, #3e648d 50%, #385a7f)
+}
+
+.tutorMeButton {
+	background: linear-gradient(rgb(205, 223, 227), rgb(183, 204, 212), rgb(161, 185, 192));
+    border-radius: 10px;
+    border: solid 1px #8CABA8;
+    border-collapse: separate;
+	color: #37434C;
+    display: inline-table;
+    padding: 3px 0px;
+    margin-top: 10px;
+    float: left;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: left;
+    vertical-align: middle;
+    width: 100%;
+    user-select: none;
+}
+
+.tutorMeButton:hover {
+    background: linear-gradient(rgb(215, 233, 237), rgb(193, 214, 222), rgb(171, 195, 202));
+    cursor: pointer;
+}
+
+.tutorMeButton:active {
+    background: linear-gradient(rgb(161, 185, 192), rgb(205, 223, 227), rgb(183, 204, 212));
+    padding: 4px 0px 2px;
+}
+
+.infoButton {
+	font-size: 12px;
+    float: right;
+	padding: 2px 3px;
+    margin-right: 8px;
+    background: transparent;
+    border-color: transparent;
+    line-height: 0;
+    color: #465C6B;
+}
+		
+.infoButton > i {
+	border: solid 3px #435B6B;
+    border-radius: 50%;
+    padding: 1px 5px;
+}
+
+.infoButton:hover {
+	background: linear-gradient(#A5BCC3, #CADDE1);
+    border-color: #8CABA8;
+    color: #465C6B;
+}
+
+.conversationDetails {
+    font-size: 16px;
+    min-width: 470px;
+    overflow: auto;
+    max-width: 660px;
+    max-height: 400px;
+    margin: -15px;
+    padding: 15px;
+}
+
+.detailsDialog {
+	margin-top: -50px;
+	max-width: 670px;
+}
+.buttonPadding {
+	padding: 6px 18px;
+	border-radius: 5px;
+}
+.footerPanel {
+    padding-top: 7px;
+    background: #EFEFEF;
+    width: 60%;
+    margin: auto;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.2);
+    border: rgb(132, 145, 152) solid 1px;
+    border-radius: 10px;
+}
+
+.headerPanel {
+	display: inline-block;
+	min-width: 35%;
+	text-align: left;
+	background-color: rgba(0, 0, 0, 0.48);
+	color: #ebfffd;
+	font-size: 18px;			
+	padding: 10px;
+}
+
+.headerPanel > div > .popover {
+	background-color: rgba(42, 49, 49, 0.89);
+	color: white;
+	font-size: 16px;
+}
+
+.headerPanel > div > .popover.bottom .arrow:after {
+	border-bottom-color: rgba(42, 49, 49, 0.89);
+}
+
+.messageModal {
+	padding-top: 5%;
+}
+
+.messageModal>.modal-dialog {
+	background-color: transparent;
+	height: 85%;
+	overflow: hidden;
+}
+
+.messageModal>.modal-dialog>.modal-content {
+	background: linear-gradient(rgb(245, 245, 245), rgb(224, 224, 222));
+    min-height: 225px;
+    padding-bottom: 29px;
+    color: #183130;
+    border: solid 1px rgb(73, 139, 208);
+    border-radius: 10px;
+}
+
+.messageModal>.modal-dialog>.modal-content>.modal-header {
+	border: none;
+	margin-bottom: -20px;
+	margin-top: -10px;
+	margin-right: -8px;
+}
+
+.messageModal>.modal-dialog>.modal-content>.modal-header>button {
+    padding: 1px 7px;
+    float: right;
+    margin-right: -2px;
+    margin-top: -1px;
+    opacity: 1;
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    border-radius: 4px;
+    font-family: Arial Unicode MS, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.messageModal>.modal-dialog>.modal-content>.modal-header>button:hover {
+	background: linear-gradient(#e64642, #b52121);
+}
+
+.messageModal>.modal-dialog>.modal-content>.modal-header>.modal-title {
+	display: none;
+}
+
+.videoContentConstrainSize {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/** The following styles are related and used in the tutor TeamSessionWidget to show mouse over for certain items or change styling when items 
+    are selected. 
+*/
+/** Team Session Styles Start */
+.teamSessionTreeTeamItem {
+    font-size: 14px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.teamSessionTreeTeamItem:hover{
+    border: solid 2px rgb(200, 200, 255);
+    border-radius: 5px;
+    margin: -2px;
+}
+
+.teamSessionTreeUserItem {
+    font-size: 14px;
+    text-align: left;
+}
+.teamSessionTreeUserItem:hover{
+    border: solid 2px rgb(200, 200, 255);
+    background-color: rgba(200, 200, 255, 0.5);
+    border-radius: 5px;
+    margin: -2px;
+}
+ 
+.gwt-TreeItem-selected>.teamSessionTreeUserItem {
+    background: rgba(200,255,200,0.5);
+}
+
+.gwt-TreeItem-selected>.teamSessionTreeUserItem:hover {
+    border: solid 2px rgb(200, 255, 200);
+    background-color: rgba(200, 255, 200, 0.8);
+}
+
+.giftBackgroundText {
+    color: white;
+}
+
+/* This is used to override the documentPanel style while on the team session widget. */
+.teamSessionDocumentPanel {
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	overflow: auto;
+}
+
+.teamSessionUser {
+    text-align:left;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    min-height: 33px;
+    color: black;
+}
+
+.teamSessionUserLocal {
+    text-align:left;
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    min-height: 33px;
+    color: #0088fd;
+}
+
+/** Team Session Styles End */
+
+
+

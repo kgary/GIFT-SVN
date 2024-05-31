@@ -1,0 +1,70 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:common="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:c="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:list="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list"
+    xmlns:gallery="urn:import:org.gwtbootstrap3.extras.gallery.client.ui">
+
+    <ui:style>
+        .teamPicker {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .distanceSpinner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .angleSpinner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .distancePanel{
+			padding-top:5px;
+		}
+    </ui:style>
+
+    <g:HTMLPanel>
+          
+        <gallery:Gallery thumbnailWidth="100px" thumbnailHeight="100px">
+          	<gallery:GalleryImage url="images/help/detectTargets.Parameters.png" />
+          	<gallery:GalleryImage url="images/help/detectTargets.assessment.png" />
+   		</gallery:Gallery> 
+        <span>Assess when </span>
+        <shared:EditableTeamPicker ui:field="teamPicker" addStyleNames="{style.teamPicker}" />
+        <span> orients towards an object/location that falls within a </span>
+        <common:NumberSpinner ui:field="fovAngleSpinner" addStyleNames="{style.angleSpinner}" />
+        <span>degree field of view.</span>
+        <br/>
+        <span>Object/Location is detected when it falls within a detection cone of </span>
+        <common:NumberSpinner ui:field="orientAngleSpinner" addStyleNames="{style.angleSpinner}" />
+        <span>degrees.</span>
+        <br/>
+        <span><b>Above Expectation</b> for orienting towards target/location within </span>
+        <common:DecimalNumberSpinner ui:field="aboveExpectationTimeSpinner" addStyleNames="{style.angleSpinner}"/><span> seconds.</span>
+		<br/>
+		<span><b>At Expectation</b> for orienting towards target/location within </span>
+        <common:DecimalNumberSpinner ui:field="atExpectationTimeSpinner" addStyleNames="{style.angleSpinner}"/><span> seconds.</span>
+		<br/>
+
+        <br/>
+        <!-- Optional Maximum Distance Spinner -->
+        <g:HTMLPanel addStyleNames="{style.distancePanel}">
+            <cb:ToggleButton ui:field="useMaxDistanceCheckBox" postLabel="Ignore targets/locations beyond" width="auto" />
+            <common:NumberSpinner ui:field="maxDistanceSpinner" addStyleNames="{style.distanceSpinner}" />
+            <g:InlineLabel ui:field='maxDistanceLabel'>meters.</g:InlineLabel>
+        </g:HTMLPanel>
+        <br/>
+        <span>Who to detect:</span>
+        <shared:EditableTeamPicker ui:field="membersToDetectTeamPicker" addStyleNames="{style.teamPicker}" />
+        <br/>
+        <list:ItemListEditor ui:field="pointsToDetectLocationListEditor" />
+
+		<br/>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

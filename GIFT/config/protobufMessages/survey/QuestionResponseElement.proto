@@ -1,0 +1,54 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "QuestionResponseElementProto";
+
+import "google/protobuf/timestamp.proto";
+import "survey/OptionList.proto";
+import "survey/ListOption.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents data about a single element of a survey 
+   question response. */
+message QuestionResponseElement {
+
+	/* The unique id assigned to the question response, which is not 
+	   initialized until the survey database creates the id. */
+	google.protobuf.Int32Value response_id = 1;
+	
+	/* Index of the response for the column selected, which should not be null 
+	   for matrix of choice, rating scale, and multiple choice questions. */
+	google.protobuf.Int32Value column_choice_list_option_index = 2;
+	
+	/* Index of the row selected only for matrix of choice questions, will be 
+	   null for all other question types. */
+	google.protobuf.Int32Value row_choice_list_option_index = 3;
+	
+	/* The time the answer was generated for the question. */
+	google.protobuf.Timestamp answer_time = 4;
+	
+	/* The text of the question response. */
+	google.protobuf.StringValue text = 5;
+	
+	/* The row text of the question response. */
+	google.protobuf.StringValue row_text = 6;
+	
+	/* List of choices for the multiple choice, matrix of choices, or rating scale question. */
+	OptionList text_option_list = 7;
+	
+	/* Contains all choices only for a matrix of choices question. */
+	OptionList row_text_option_list = 8;
+	
+	/* Contains a possible choice for a multiple choice, matrix of choices, or 
+	   rating scale question. */
+	ListOption choice_list_option = 9;
+	
+	/* Contains a possible choice only for a matrix of choices question. */
+	ListOption row_choice_list_option = 10;
+}

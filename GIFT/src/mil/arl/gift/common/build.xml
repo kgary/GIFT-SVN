@@ -1,0 +1,603 @@
+<?xml version="1.0" ?>
+<project name="GIFT Common" default="compile">
+
+	<property name="build.sysclasspath" value="last" />
+	<property name="root.path" value="../../../../.." />
+	<property name="package.name" value="mil.arl.gift" />
+	<property name="source.path" value="mil/arl/gift" />
+	<property name="jarfile.ext.path" value="gift-common" />
+	<property name="jarfile.name" value="gift-common.jar" />
+	<property name="remote.build.path" value="bin/war/remote/bin" />
+	<property name="protobuf.generated.jar" value="protobuf_generated.jar" />
+	<property name="json.generated.jar" value="json_generated.jar" />
+	<property name="jaxb.generated.jar" value="jaxb_generated.jar" />
+	<property name="gift.build.properties" value="${root.path}/config/build.properties" />
+	<property name="build.dependencies" value="${root.path}/config/build.dependencies" />
+    <property name="update.includes" value="**/*.java,**/*.js,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+
+	<property name="build.excludes" value="**/gwt/**,**/*.htm,**/*.inf,**/*.jar_HIDE,**/*.war,**/*.dll,**/*.txt,**/*.TXT,**/*.ini" />
+
+	<property file="${gift.build.properties}" />
+
+	<loadfile property="build.dependencies.common" srcFile="${build.dependencies}">
+		<filterchain>
+			<linecontains>
+				<contains value="@common@" />
+			</linecontains>
+			<replacetokens>
+				<token key="common" value="" />
+			</replacetokens>
+		</filterchain>
+	</loadfile>
+
+	<path id="classpath">
+		<fileset dir="${root.path}" includes="${build.dependencies.common}" excludes="${build.excludes}" />
+	</path>
+
+	<target name="checkForUpdates">
+
+		<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
+		<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+			<srcfiles dir="." includes="${update.includes}" excludes="${build.excludes}" />
+			<srcfiles dir="../net/api" includes="${update.includes}" />
+			<srcfiles dir="../net/dis" includes="${update.includes}" />
+			<srcfiles dir="../net/embedded" includes="${update.includes}" />
+			<srcfiles dir="../net/nuxeo" includes="${update.includes}" />
+			<srcfiles dir="../net/rest" includes="${update.includes}" />
+			<srcfiles dir="../net/socket" includes="${update.includes}" />
+			<srcfiles dir="../net/util" includes="${update.includes}" />
+			<srcfiles dir="../net/xmlrpc" includes="${update.includes}" />
+		</uptodate>
+
+		<!-- has the build properties file changed since the last jar creation (true = no change, not set = properties have changed) -->
+		<uptodate property="buildPropertiesUpToDate.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
+			<srcfiles file="${gift.build.properties}" />
+		</uptodate>
+
+		<!-- have the GIFT schemas changed since the last jar creation (true = no change, not set = files have changed) -->
+		<uptodate property="jaxb_generated.schemaChanged.ifSet" targetfile="${root.path}/bin/${jaxb.generated.jar}">
+			<srcfiles dir="${root.path}" includes="${schema.files}" />
+		</uptodate>
+
+		<!-- checks if the common jar is newer than the remote common jar - also handles case where remote common jar is missing -->
+		<uptodate property="remote.upToDateWithIncludes.ifSet" targetfile="${root.path}/${remote.build.path}/${jarfile.name}">
+			<srcfiles file="${root.path}/bin/${jarfile.name}" />
+		</uptodate>
+
+		<!-- have the GIFT protobuf files changed since the last jar creation (true = no change, not set = files have changed) -->
+        <uptodate property="protobuf_generated.filesChanged.ifSet" targetfile="${root.path}/bin/${protobuf.generated.jar}">
+            <srcfiles dir="${root.path}" includes="${protobuf.files}"/>
+        </uptodate>
+		
+		<!-- have the GIFT JSON schema files changed since the last jar creation (true = no change, not set = files have changed) -->
+		<uptodate property="json_generated.schemaChanged.ifSet" targetfile="${root.path}/bin/${json.generated.jar}">
+            <srcfiles dir="${root.path}" includes="${root.path}/config/tools/authoring/json/**" />
+        </uptodate>
+
+        <!-- set property if:
+    		1) the build properties have changed
+    		OR
+    		2) the GIFT protobuf (.proto) files have changed
+    	-->
+        <condition property="protobuf_generated.build.required">
+            <or>
+            	<not>
+                	<isset property="buildPropertiesUpToDate.ifSet" />
+            	</not>
+            	<not>
+                	<isset property="protobuf_generated.filesChanged.ifSet" />
+            	</not>
+            </or>
+        </condition>
+		
+		<!-- set property if:
+            1) the build properties have changed
+            OR
+            2) the JSON schema files have changed
+        -->
+        <condition property="json_generated.build.required">
+            <or>
+                <not>
+                    <isset property="buildPropertiesUpToDate.ifSet" />
+                </not>
+                <not>
+                    <isset property="json_generated.schemaChanged.ifSet" />
+                </not>
+            </or>
+        </condition>
+
+		<!-- set property if:
+    		1) the build properties have changed
+    		OR
+    		2) the GIFT schemas have changed
+    	-->
+		<condition property="jaxb_generated.build.required">
+			<or>
+				<not>
+					<isset property="buildPropertiesUpToDate.ifSet" />
+				</not>
+				<not>
+					<isset property="jaxb_generated.schemaChanged.ifSet" />
+				</not>
+			</or>
+		</condition>
+
+		<!-- set property if:
+    		1) the included files have changed
+    		OR
+    		2) the build properties have changed
+    		OR
+    		3) the generated jar needs to be built    		
+    	-->
+		<condition property="build.required">
+			<or>
+				<not>
+					<isset property="upToDateWithIncludes.ifSet" />
+				</not>
+				<not>
+					<isset property="buildPropertiesUpToDate.ifSet" />
+				</not>
+				<isset property="jaxb_generated.build.required" />
+			</or>
+		</condition>
+
+		<!-- set property if:
+    		1) the core is being built
+    		OR
+    		2) the common jar is newer than the remote common jar 
+    	-->
+		<condition property="build.remote.common.required">
+			<or>
+				<isset property="build.required" />
+				<not>
+					<isset property="remote.upToDateWithIncludes.ifSet" />
+				</not>
+			</or>
+		</condition>
+	</target>
+
+	<!-- generate the jaxb jar if the schemas have updated or the JAR does not exist -->
+	<target name="generate_jaxb" if="jaxb_generated.build.required" depends="createGeneratedJar">
+
+		<echo message="Copying jaxb_generated.jar for remote Gateway Module launch from ${root.path}/bin/${jaxb.generated.jar} to ${root.path}/${remote.build.path}" />
+
+		<!-- copy the generated jar for remote Gateway Module launch -->
+		<copy file="${root.path}/bin/${jaxb.generated.jar}" todir="${root.path}/${remote.build.path}" />
+
+	</target>
+
+    <!-- Generates protocol buffers. -->
+	<target name="generate_protobuf"  if="protobuf_generated.build.required">
+		<echo message="Running protobuf compiler"/>
+	
+		<!-- gets the fully qualified path to the proto source folder -->
+		<path id="proto.src.path" path="${root.path}/config/protobufMessages" />
+		<pathconvert property="proto.srcs" refid="proto.src.path"></pathconvert>
+		
+		<!-- create directory to place protobuf generated classes -->
+		<mkdir dir="${root.path}/generated/proto"/>
+		
+		<!-- get all the protobuf files -->
+        <fileset id="protobufFileSet" dir="${root.path}">
+			<include name="config/protobufMessages/**/*.proto" />
+		</fileset>
+		<pathconvert property="protobufInputFiles" refid="protobufFileSet" pathsep="&quot; &quot;" />
+		
+		<!-- Use the appropriate protobuf executable depending on the OS platform -->
+		<condition property="protocExec" value="protoc" else="protoc.exe">
+            <os family="unix" />
+        </condition>
+
+		<!-- create the java classes -->
+		<!-- the build path is specified to generated/proto/generated/proto since protobuf files, when generated, create package generated/proto.
+		     If changed to generated/proto, the output directory would need to be the root, which is dangerous if .proto files get created without 
+			 the generated/proto package. To safeguard this, all protobuf generated classes will be placed inside the generated/proto folder. -->
+		<exec executable="external/protobuf/bin/${protocExec}" resolveexecutable="true" dir="${root.path}" failonerror="true">
+			<arg value="--java_out=generated/proto" />
+			<arg value="-I=${proto.srcs}" />
+			<arg line="&quot;${protobufInputFiles}&quot;" />
+		</exec>
+
+		<!-- compile those classes and create jar -->
+		<!-- srcdir is /generated/proto because that is the folder created that contains all of the protobuf java files -->
+		<echo message="Create GIFT protobuf jar"/>
+		<javac debug="on" srcdir="${root.path}/generated/proto" destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+			<compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
+        </javac>
+        <jar destfile="${root.path}/bin/${protobuf.generated.jar}" basedir="${root.path}/build/classes" includes="generated/proto/common/**" excludes="${build.excludes}"/>
+		
+		<echo message="Copying protobuf_generated.jar for remote from ${root.path}/bin/${protobuf.generated.jar} to ${root.path}/${remote.build.path}" />
+
+		<!-- copy the generated jar for remote GW launch -->
+		<copy file="${root.path}/bin/${protobuf.generated.jar}" todir="${root.path}/${remote.build.path}"/>
+	</target>
+	
+	<!-- Generates POJO classes from any JSON schemas that GIFT understands -->
+	<target name="generate_json"  if="json_generated.build.required">
+        <echo message="Running json compiler"/>
+    
+        <!-- gets the fully qualified path to the proto source folder -->
+        <property name="json.src.path" location="${root.path}/config/tools/authoring/json/xtsp-schema-draft-v0.9.7.5.json" />
+        <property name="json.output.folder" location="${root.path}"/>
+        
+        <!-- create directory to place protobuf generated classes -->
+        <mkdir dir="${root.path}/generated/json"/>
+        
+        <!-- Use the appropriate protobuf executable depending on the OS platform -->
+        <condition property="jsonSchemaExec" value="jsonschema2pojo" else="jsonschema2pojo.bat">
+            <os family="unix" />
+        </condition>
+
+        <!-- create the java classes -->
+        <exec executable="external/jsonschema2pojo/bin/${jsonSchemaExec}" resolveexecutable="true" dir="${root.path}" failonerror="true">
+        	<arg value="-idg" />
+        	<arg value="-ids" />
+        	<arg value="--include-type-info" />
+            <arg value="--source" />
+        	<arg value="${json.src.path}" />
+            <arg value="--target" />
+        	<arg value="${json.output.folder}" />
+        	<arg value="--package" />
+        	<arg value="generated.json" />
+        </exec>
+
+        <!-- compile those classes and create jar -->
+        <!-- srcdir is /generated/json because that is the folder created that contains all of the JSON schema java files -->
+        <echo message="Create GIFT JSON schema jar"/>
+        <javac debug="on" srcdir="${root.path}" includes="generated/json/*.java" destdir="${root.path}" 
+        	includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+            <compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
+        </javac>
+        <jar destfile="${root.path}/bin/${json.generated.jar}" basedir="${root.path}" includes="generated/json/**" excludes="${build.excludes}"/>
+    </target>
+
+	<target name="signProtobufJWSJarWithTSA" if="sign.protobuf.JWS.WithTSA.required">
+		<echo message="Signing JWS Protobuf jar"/>
+		<signjar jar="${root.path}/${jws.build.path}/${protobuf.generated.jar}"
+			tsaurl="${tsaurl}"
+			keystore="${keystore}"
+			storepass="${keystorePW}"
+			alias="${keystoreAlias}" />
+	</target>
+
+	<target name="signProtobufJWSJarWithoutTSA" if="sign.protobuf.JWS.WithoutTSA.required">
+		<echo message="Signing JWS Protobuf jar - without TSA since it isn't reachable right now"/>
+		<signjar jar="${root.path}/${jws.build.path}/${protobuf.generated.jar}"
+			keystore="${keystore}"
+			storepass="${keystorePW}"
+			alias="${keystoreAlias}" />
+	</target>
+
+    <!-- Always call this first. Need to make sure these folders exist. -->
+	<target name="mkCommonDirs">
+	    <mkdir dir="${root.path}/build/classes" />
+		<mkdir dir="${root.path}/bin" />
+	</target>
+
+	<target name="compileCore" if="build.required">
+		<echo message="Compiling common" />
+		<javac debug="on" destdir="${root.path}/build/classes" includeAntRuntime="false" classpathref="classpath" includeDestClasses="false" excludes="${build.excludes}">
+			<src path="." />
+			<src path="../net/api" />
+			<src path="../net/dis" />
+			<src path="../net/embedded" />
+			<src path="../net/json" />
+			<src path="../net/proto" />
+			<src path="../net/nuxeo" />
+			<src path="../net/rest" />
+			<src path="../net/socket" />
+			<src path="../net/util" />
+			<src path="../net/xmlrpc" />
+			<!-- NOTE: the following 'add-exports' compiler arguments below are needed to export packages sun.security.validator 
+			     and sun.security.provider.certpath to common file UriUtil.java for checking the exception type thrown
+				 (SunCertPathBuilderException)
+			-->
+			<compilerarg line="--add-exports java.base/sun.security.validator=ALL-UNNAMED"/>
+			<compilerarg line="--add-exports java.base/sun.security.provider.certpath=ALL-UNNAMED"/>
+			<compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
+			<compilerarg value="-XDignore.symbol.file"/> <!-- needed to silence warnings about APIs being removed from future release -->			
+		</javac>
+
+		<!-- copy all needed images to common jar -->
+		<!-- TODO: what about other image files besides png??? -->
+		<copy todir="${root.path}/build/classes/${source.path}/common">
+			<fileset dir="." excludes="${build.excludes}">
+				<include name="**/*.png" />
+			</fileset>
+		</copy>
+    	
+    	<!-- Copy over the splash screen image into the bin directory to use when running GIFT (for when src/ is removed in some versions of GIFT) -->    	
+    	<property file="${root.path}/config/images.properties"/>
+        <copy todir="${root.path}/build/classes/">
+            <fileset dir="${root.path}/src" excludes="${build.excludes}">
+            	<include name="${App_Loading}" />
+			</fileset>
+		</copy>
+    	<!-- in case the image is different than the default, update the JWS JNLP version as well --> 
+        <copy todir="${root.path}/bin/images" flatten="true">
+            <fileset dir="${root.path}/src" excludes="${build.excludes}">
+            	<include name="${App_Loading}" />
+            </fileset>
+        </copy>
+    	<!-- in case the image is different than the default, update the JWS JNLP version as well --> 
+        <copy todir="${root.path}/bin/images" flatten="true">
+            <fileset dir="${root.path}/src" excludes="${build.excludes}">
+            	<include name="${App_Loading}" />
+            </fileset>
+        </copy>
+        <jar destfile="${root.path}/bin/${jarfile.name}" 
+            basedir="${root.path}/build/classes" 
+            includes="${source.path}/common/**,
+        	${source.path}/net/util/**,
+        	${source.path}/net/api/**,
+			${source.path}/net/proto/**,
+        	${source.path}/net/xmlrpc/**,
+        	${source.path}/net/nuxeo/**,
+        	${source.path}/net/rest/**, 
+        	${source.path}/net/socket/**,
+        	${source.path}/net/embedded/**,
+        	${source.path}/net/json/**,
+        	${source.path}/net/dis/**"
+            excludes="${build.excludes}"/>
+	</target>
+
+	<!--
+		This target creates the GIFT common jar for remote Gateway module application
+	-->
+	<target name="compileRemoteCore" if="build.remote.common.required">
+		<echo message="Compiling Remote common" />
+        <jar destfile="${root.path}/${remote.build.path}/${jarfile.name}" 
+            basedir="${root.path}/build/classes" 
+            includes="${source.path}/common/**,
+        	${source.path}/net/api/**,
+        	${source.path}/net/proto/**,
+        	${source.path}/net/dis/**,
+        	${source.path}/net/embedded/message/**,
+        	${source.path}/net/json/**,
+        	${source.path}/net/nuxeo/**,
+        	${source.path}/net/rest/**,
+        	${source.path}/net/socket/**
+        	${source.path}/net/util/**,
+        	${source.path}/net/xmlrpc/**" 
+            excludes="${build.excludes},${source.path}/common/gwt/override/**">
+        </jar>
+	</target>
+
+	<target name="compile" depends="mkCommonDirs, checkForUpdates,generate_jaxb, generate_protobuf, generate_json, compileCore,compileRemoteCore">
+		<ant dir="gwt" inheritAll="false" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${root.path}/generated/dkf" defaultexcludes="false" />
+		<delete dir="${root.path}/generated/sensor" defaultexcludes="false" />
+		<delete dir="${root.path}/generated/learner" defaultexcludes="false" />
+		<delete dir="${root.path}/generated/bin" />
+		<delete dir="${root.path}/build/classes/${source.path}/common" />
+		<delete dir="${root.path}/build/classes/${source.path}/net/util" />
+		<delete dir="${root.path}/build/classes/${source.path}/net/api" />
+        <delete dir="${root.path}/build/classes/${source.path}/net/proto" />
+		<delete dir="${root.path}/build/classes/${source.path}/net/xmlrpc" />
+		<delete dir="${root.path}/build/classes/${source.path}/net/nuxeo" />
+		<delete dir="${root.path}/build/classes/${source.path}/net/rest" />
+		<delete dir="${root.path}/build/classes/${source.path}/net/socket" />
+		<delete file="${root.path}/bin/${jarfile.name}" />
+		<ant dir="gwt" target="clean" inheritAll="false" />
+
+		<!-- moving this to end of list because sometimes Eclipse IDE has jaxb_generated opened -->
+		<delete file="${root.path}/bin/${jaxb.generated.jar}" failonerror="false" />
+	</target>
+	
+	
+	<!-- 
+		This target generates classes based on the GIFT schemas
+		1) generates classes in GIFT\generated\
+		2) compile generated classes
+		3) create jar of classes
+		4) place jar in bin
+	-->
+	<target name="createGeneratedJar" if="jaxb_generated.build.required">
+        <property name="BaseDir" location="${root.path}"/>
+		
+		<!-- set java home to static path to GIFT provided JDK -->
+        <property name="JAVA_HOME" location="${java.home}"/>
+		
+		<!-- note: the path to JAXB and the jars are explicitly set here to allow xjc to generate the classes without spawning a command prompt from calling the script directly -->
+        <property name="JAXB_HOME" location="${JAVA_HOME}/jaxb-ri"/>
+
+        <!-- Set this when creating generated jar to use for conversion wizard -->
+        <!-- 
+            <property name="conversionWizardVersion" value="7"/> 
+            <property name="conversionWizardPackage" value="${conversionWizardVersion}."/>
+            <property name="conversionWizardFolder" value="${conversionWizardVersion}/"/>
+        -->
+        <property name="conversionWizardVersion" value=""/>
+        <property name="conversionWizardPackage" value=""/>
+        <property name="conversionWizardFolder" value=""/>
+            
+        <echo message="Removing previously generated classes"/>
+        <echo/>
+        <delete dir="${BaseDir}/generated" quiet="true"/>
+        
+        <!-- generate classes in GIFT\generated\ -->
+        <echo/>
+        
+        <path id="JAXB_CLASSPATH">
+        	<fileset dir="${JAXB_HOME}/mod" includes="*"/>
+        </path>
+	
+        <property name="XJC_MAIN" value="com.sun.tools.xjc.XJCFacade"/>
+        <property name="COMMON_OPTS" value="-quiet -b"/>
+	
+        
+        <echo message="Generating dkf java classes..."/>
+	
+        <property name="DKF_OPTS" 
+        	value="&quot;${BaseDir}/config/domain/dkf/dkfBinding.xml&quot; &quot;${BaseDir}/config/domain/dkf/dkf.xsd&quot; -p generated.${conversionWizardPackage}dkf"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${DKF_OPTS}"/>
+        </java>
+        
+        <echo message="Generating cource java classes..."/>
+	
+        <property name="COURSE_OPTS" 
+        	value="&quot;${BaseDir}/config/domain/course/binding.xml&quot; &quot;${BaseDir}/config/domain/course/course.xsd&quot; -p generated.${conversionWizardPackage}course"/>
+	    <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${COURSE_OPTS}"/>
+        </java>
+	
+	    <echo message="Generating video java classes..."/>
+	
+	    <property name="VIDEO_OPTS" 
+            value="&quot;${BaseDir}/config/tools/video/binding.xml&quot; &quot;${BaseDir}/config/tools/video/imsmd_strict_v1p3p2.xsd&quot; -p generated.${conversionWizardPackage}video"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${VIDEO_OPTS}"/>
+        </java>
+	
+        <echo message="Generating metadata java classes..."/>
+	
+        <property name="METADATA_OPTS" 
+            value="&quot;${BaseDir}/config/domain/metadata/binding.xml&quot; &quot;${BaseDir}/config/domain/metadata/metadata.xsd&quot; -p generated.${conversionWizardPackage}metadata"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${METADATA_OPTS}"/>
+        </java>
+	
+	    <echo message="Generating lesson material java classes..."/>		
+	
+	    <property name="LM_COURSE_OPTS" 
+            value="&quot;${BaseDir}/config/domain/lessonMaterial/binding.xml&quot; &quot;${BaseDir}/config/domain/lessonMaterial/lessonMaterial.xsd&quot; -p generated.${conversionWizardPackage}course"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${LM_COURSE_OPTS}"/>
+        </java>
+	    <property name="LM_DKF_OPTS" 
+            value="&quot;${BaseDir}/config/domain/lessonMaterial/binding.xml&quot; &quot;${BaseDir}/config/domain/lessonMaterial/lessonMaterial.xsd&quot; -p generated.${conversionWizardPackage}dkf"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${LM_DKF_OPTS}"/>
+        </java>
+	
+	    <echo message="Generating LMS connections java classes..."/>
+	        
+        <property name="LMS_OPTS" 
+            value="&quot;${BaseDir}/config/lms/binding.xml&quot; &quot;${BaseDir}/config/lms/LMSConnections.xsd&quot; -p generated.${conversionWizardPackage}lms"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${LMS_OPTS}"/>
+        </java>
+	
+	    <echo message="Generating interop config java classes..."/>
+	                
+        <property name="INTEROP_OPTS" 
+            value="&quot;${BaseDir}/config/gateway/binding.xml&quot; &quot;${BaseDir}/config/gateway/interopConfig.xsd&quot; -p generated.${conversionWizardPackage}gateway"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${INTEROP_OPTS}"/>
+        </java>
+	
+	    <echo message="Generating sensor config java classes..."/>
+	                
+        <property name="SENSOR_OPTS" 
+            value="&quot;${BaseDir}/config/sensor/binding.xml&quot; &quot;${BaseDir}/config/sensor/sensorConfig.xsd&quot; -p generated.${conversionWizardPackage}sensor"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${SENSOR_OPTS}"/>
+        </java>
+	
+	    <echo message="Generating learner config java classes..."/>
+	                
+        <property name="LEARNER_OPTS" 
+            value="&quot;${BaseDir}/config/learner/binding.xml&quot; &quot;${BaseDir}/config/learner/learnerConfig.xsd&quot; -p generated.${conversionWizardPackage}learner"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${LEARNER_OPTS}"/>
+        </java>
+	
+	    <echo message="Generating pedagogy config java classes..."/>
+	    
+        <property name="EMAP_OPTS" 
+            value="&quot;${BaseDir}/config/ped/eMAP.binding.xml&quot; &quot;${BaseDir}/config/ped/eMAP.xsd&quot; -p generated.${conversionWizardPackage}ped"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${EMAP_OPTS}"/>
+        </java>   
+        <property name="ICAP_OPTS" 
+            value="&quot;${BaseDir}/config/ped/ICAPPolicy.binding.xml&quot; &quot;${BaseDir}/config/ped/ICAPPolicy.xsd&quot; -p generated.${conversionWizardPackage}ped"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${ICAP_OPTS}"/>
+        </java>
+        
+	    <echo message="Generating conversation tree java classes..."/>
+	                
+        <property name="CONVERSATION_OPTS" 
+            value="&quot;${BaseDir}/config/domain/conversationTree/binding.xml&quot; &quot;${BaseDir}/config/domain/conversationTree/conversationTree.xsd&quot; -p generated.${conversionWizardPackage}conversation"/>
+        <java failonerror="true" fork="true" classpathref="JAXB_CLASSPATH" classname="${XJC_MAIN}" dir="${root.path}">
+            <arg line="${COMMON_OPTS} ${CONVERSATION_OPTS}"/>
+        </java>
+        
+        <echo message="Classes generated"/>
+        
+        <!-- compile generated classes -->
+        <echo/>
+        <echo message="Compiling classes..."/>
+        
+        <mkdir dir="${BaseDir}/generated/bin"/>
+        <property name="GeneratedDir" location="${BaseDir}/generated"/>
+        
+        <echo message="Compiling dkf classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}dkf/*.java" destdir="${BaseDir}" 
+        	includeAntRuntime="false" includeDestClasses="false"/>
+        
+        <echo message="Compiling course classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}course/*.java" destdir="${BaseDir}"
+        	includeAntRuntime="false" includeDestClasses="false"/>
+	
+	    <echo message="Compiling metadata classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}metadata/*.java" destdir="${BaseDir}" 
+            includeAntRuntime="false" includeDestClasses="false"/>
+	
+	    <echo message="Compiling LMS classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}lms/*.java" destdir="${BaseDir}" 
+            includeAntRuntime="false" includeDestClasses="false"/>
+        
+	    <echo message="Compiling gateway classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}gateway/*.java" destdir="${BaseDir}" 
+            includeAntRuntime="false" includeDestClasses="false"/>
+	
+	    <echo message="Compiling sensor classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}sensor/*.java" destdir="${BaseDir}" 
+            includeAntRuntime="false" includeDestClasses="false"/>
+	
+	    <echo message="Compiling pedagogy classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}ped/*.java" destdir="${BaseDir}" 
+            includeAntRuntime="false" includeDestClasses="false"/>
+	
+	    <echo message="Compiling learner classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}learner/*.java" destdir="${BaseDir}" 
+            includeAntRuntime="false" includeDestClasses="false"/>
+	
+	    <echo message="Compiling conversation tree classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}conversation/*.java" destdir="${BaseDir}" 
+            includeAntRuntime="false" includeDestClasses="false"/>
+	
+	    <echo message="Compiling video classes"/>
+        <javac classpathref="JAXB_CLASSPATH" srcdir="${BaseDir}" includes="generated/${conversionWizardFolder}video/*.java" destdir="${BaseDir}" 
+            includeAntRuntime="false" includeDestClasses="false"/>
+        
+        <echo message="Finished compilation..."/>
+        
+        <copy todir="${GeneratedDir}" overwrite="true">
+            <fileset dir="${BaseDir}/src/mil/arl/gift/common/" includes="GwtGenerated*.gwt.xml"/>
+        </copy>
+        <copy todir="${BaseDir}" overwrite="true">
+            <fileset dir="${BaseDir}/src/mil/arl/gift/common/" includes="GwtGenerated*.gwt.xml"/>
+        </copy>
+        
+        <echo/>
+		
+		<!-- create jar for use in bin -->
+        <echo message="Creating jar..."/>
+        
+        <condition property="JAR_NAME" value="jaxb_generated.jar" else="jaxb_${conversionWizardVersion}_generated.jar">
+            <equals arg1="${conversionWizardVersion}" arg2=""/>
+        </condition>
+        
+        <jar destfile="${root.path}/bin/${JAR_NAME}" 
+            basedir="${root.path}" 
+            includes="generated/**,GwtGenerated*.gwt.xml" />
+        
+    </target>
+
+</project>

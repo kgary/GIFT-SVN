@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AfterActionReviewCourseEventProto";
+
+import "AbstractScoreNode.proto";
+import "google/protobuf/wrappers.proto";
+
+/*  
+ *	This is the protobuf message that contains the course event to display after an 
+ * 	After Action Review.
+ */ 
+message AfterActionReviewCourseEvent {
+    /* The name of the course, which should not be null. */
+	google.protobuf.StringValue course_object_name = 1;
+
+    /* ScoreNode that contains a graded value. */
+	GradedScoreNode graded_score_node = 2;
+}

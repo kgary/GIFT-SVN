@@ -1,0 +1,245 @@
+<!DOCTYPE html> 
+<html> 
+  <head>
+    <title>
+      Mil Symbology Renderer Test Widget
+    </title>
+    <link rel="stylesheet" href="css/jquery-ui-1.8.23.custom.css" />
+    <link href="js/skin-vista/ui.dynatree.css" rel="stylesheet" type="text/css" />
+    <script src="js/json2.js" type="text/javascript" ></script>
+    <script type="text/javascript" src="/owf/js-min/owf-widget-min.js"></script>
+    <script src="js/jquery-1.8.0.min.js" type="text/javascript" ></script>
+    <script src="js/jquery-ui-1.8.23.custom.min.js" type="text/javascript" ></script>
+    <script src="js/jquery.dynatree.min.js" type="text/javascript"></script>
+    <script src='js/mil-symbology-api-validation.js' type="text/javascript"> </script>
+    <style type="text/css">
+        /*demo page css*/
+        body 
+        {
+            font: 62.5% "Trebuchet MS", sans-serif; 
+            margin: 0px;
+            height:100%;
+            background: #464b52;
+            margin: 5px;
+        }
+
+        ul.dynatree-container {
+
+                background-color: transparent;
+        }
+        ul.dynatree-container a {
+                color: white;
+                border: 1px solid transparent;
+                background-color: transparent;
+        }
+        ul.dynatree-container a:hover {
+                background-color: transparent;
+        }
+        ul.dynatree-container a:focus, span.dynatree-focused a:link {
+                background-color: gray;
+        }
+
+    </style>
+    <script type="text/javascript">
+        var symRenderer = {
+            symbolIndex : 0,
+            selectedSymbolB : null,
+            selectedNameB : "",
+            affiliationB : "F",
+            isPresentB : "P",
+            selectedSymbolC : null,
+            selectedNameC : "",
+            affiliationC : "F",
+            isPresentC : "P"
+
+        };
+        function requestSymbolB(plot){
+                symRenderer.affiliationB = $('#affiliation-select-2525b').val();
+                symRenderer.isPresentB = $('#present-select-2525b').val();
+                symbology.validation.test_requestIcon('2525b', symRenderer.selectedSymbolB, symRenderer.affiliationB, symRenderer.isPresentB);
+                symbology.validation.test_requestFeature('2525b', symRenderer.selectedSymbolB, symRenderer.affiliationB, symRenderer.isPresentB);
+                if(plot === true){
+                    symbology.validation.test_symbolPlot('2525b', symRenderer.selectedSymbolB, symRenderer.affiliationB, symRenderer.isPresentB);
+                }
+            }
+
+            function requestSymbolC(plot){
+                symRenderer.affiliationC = $('#affiliation-select-2525c').val();
+                symRenderer.isPresentC = $('#present-select-2525c').val();
+                symbology.validation.test_requestIcon('2525c', symRenderer.selectedSymbolC, symRenderer.affiliationC, symRenderer.isPresentC);
+                symbology.validation.test_requestFeature('2525c', symRenderer.selectedSymbolC, symRenderer.affiliationC, symRenderer.isPresentC);
+                 if(plot === true){
+                    symbology.validation.test_symbolPlot('2525c', symRenderer.selectedSymbolC, symRenderer.affiliationC, symRenderer.isPresentC);
+                }
+            }
+        $(document).ready(function () {
+            $('#dataCreateAccordion').accordion({ heightStyle: "content", collapsible: true });
+            symbology.validation.test_addOverlay();
+            $("input:submit, a, button", ".ui-widget").button();
+            $("#treeB").dynatree({
+                onDblClick: function (node) {
+                    if (node.data.drawCategory != 0) {
+                        symRenderer.selectedNameB = node.data.title;
+                        symRenderer.selectedSymbolB = node.data.symbolCode;
+                        symRenderer.symbolIndex += 1;
+                        requestSymbolB(true);
+                        symbology.validation.test_symbolPlot('2525b',symRenderer.selectedSymbolB, symRenderer.affiliationB, symRenderer.isPresentB);
+                    }
+                },
+                onActivate: function (node) {
+                    if (node.data.drawCategory != 0) {
+                        symRenderer.selectedNameB = node.data.title;
+                        symRenderer.selectedSymbolB = node.data.symbolCode;
+                        requestSymbolB();
+                     }
+                }
+            });
+            $("#treeC").dynatree({
+                onDblClick: function (node) {
+                    if (node.data.drawCategory != 0) {
+                        symRenderer.selectedNameC = node.data.title;
+                        symRenderer.selectedSymbolC = node.data.symbolCode;
+                        symRenderer.symbolIndex += 1;
+                        requestSymbolC(true);
+                        symbology.validation.test_symbolPlot('2525c',symRenderer.selectedSymbolC, symRenderer.affiliationC, symRenderer.isPresentC);
+                    }
+                },
+                onActivate: function (node) {
+                    if (node.data.drawCategory != 0) {
+                        symRenderer.selectedNameC = node.data.title;
+                        symRenderer.selectedSymbolC = node.data.symbolCode;
+                        requestSymbolC();
+                    }
+                }
+            });
+            $('#present-select-2525b').change(function () {
+                requestSymbolB();
+
+            });
+            $('#affiliation-select-2525b').change(function () {
+                requestSymbolB();
+            });
+            $('#present-select-2525c').change(function () {
+                requestSymbolC();
+            });
+            $('#affiliation-select-2525c').change(function () {
+                requestSymbolC();
+            });
+            symbology.symbolExplorer.parseXMLString('treeB', '2525b');
+            symbology.symbolExplorer.parseXMLString('treeC', '2525c');
+        });
+
+    </script>	
+  </head>
+    <body>
+        <div id="dataCreateAccordion">
+            <h3><a href="#" >MIL-STD-2525 B Symbols</a></h3>
+            <div>
+                <div>
+                    <span>Select Symbol:</span>
+                    <select id="present-select-2525b">
+                        <option value="P">Present</option>
+                        <option value="A">Anticipated</option>
+                    </select>
+                    <select id="affiliation-select-2525b">
+                        <option value="F">Friendly</option>
+                        <option value="H">Hostile</option>
+                        <option value="N">Neutral</option>
+                        <option value="U">Unknown</option>
+                    </select>
+                 </div>
+                <div id="treeB" style="height: 150px;"></div >  
+                <hr style="width: 100%;" />
+                <div style="width:100%;">  
+                    <button style="float: right;"  onclick="requestSymbolB(true)" title="Plot feature to map" >Plot Symbol</button>          
+                </div>
+                <br/>
+                KML Output:
+                <br/>
+                <textarea id="symbolKmlB" rows="3" cols="30"></textarea>
+                <br/>
+                Applet URL Output:
+                <br/>
+                <textArea id="iconBLocal" rows="2" cols="30"></textarea>
+                <img id="iconImgB" alt="" src="foo.png"  />
+                <br/>
+                REST Service URL Output:
+                <br/>
+                <textArea id="iconBServer" rows="2" cols="30"></textarea>
+                <img id="iconImgB2" alt="" src="foo.png"  />
+            </div>
+            <h3><a href="#" >MIL-STD-2525 C Symbols</a></h3>
+            <div>
+                <div>
+                    <span>Select Symbol:</span>
+                    <select id="present-select-2525c">
+                        <option value="P">Present</option>
+                        <option value="A">Anticipated</option>
+                    </select>
+                    <select id="affiliation-select-2525c">
+                        <option value="F">Friendly</option>
+                        <option value="H">Hostile</option>
+                        <option value="N">Neutral</option>
+                        <option value="U">Unknown</option>
+                    </select>
+                 </div>
+                <div id="treeC" style="height: 150px;"></div >  
+                <hr style="width: 100%;" />
+                <div style="width:100%;">  
+                    <button style="float: right;"  onclick="requestSymbolC(true)" title="Plot feature to map" >Plot Symbol</button>          
+                </div>
+                <br/>
+                KML Output:
+                <br/>
+                <textarea id="symbolKmlC" rows="3" cols="30"></textarea>
+                <br/>
+                Applet URL Output:
+                <br/>
+                <textArea id="iconCLocal" rows="2" cols="30"></textarea>
+            
+                <img id="iconImgC" alt="" src="foo.png"  />
+                <br/>
+                REST Service URL Output:
+                <br/>
+                <textArea id="iconCServer" rows="2" cols="30"></textarea>
+           
+                <img id="iconImgC2" alt="" src="foo.png"  />
+            </div>
+            <h3><a href="#" >MIL-STD-2525 Airtrack Update Load Test</a></h3>
+            <div>
+                <div class="ui-widget" >
+                    <label for="numPointsTxt" >Number or Points: </label>
+                    <input type="text" value="50" id="numPointsTxt" title="Enter the number of total points to add for the load test" /> 
+                    <br />
+                    <br />
+                    <label for="numUpdatesTxt" >Updates Per Interval: </label>
+		            <input type="text" value="25" id="numUpdatesTxt" title="Enter the number of points to update on each interval" /> 
+                    <br />
+                    <br />
+                    <label for="intervalTxt" >Update Interval in Miliseconds: </label>
+		            <input type="text" value="1000" id="intervalTxt" title="Enter the number of miliseconds to wait between each interval" /> 
+                    <br />
+                    <br />
+		    <button onclick="symbology.validation.test_updateMilStdPointBatch(parseInt(document.getElementById('numPointsTxt').value, 10),parseInt(document.getElementById('numUpdatesTxt').value, 10),parseInt(document.getElementById('intervalTxt').value, 10))" >Begin</button>
+                    <button onclick="symbology.validation.stop_updateMilStdPointBatch()" >Stop</button>
+                </div>
+            </div>
+			<h3><a href="#" >Renderer Plugin Icon Tester</a></h3>
+            <div>
+                <div class="ui-widget" >
+                    <label for="pluginIdTxt" >Renderer Plugin ID: </label>
+                    <input type="text" value="50" id="pluginIdTxt" title="Enter the number of total points to add for the load test" /> 
+                    <br />
+                    <br />
+                    <label for="pluginSymbolId" >Symbol ID: </label>
+		            <input type="text" value="25" id="pluginSymbolId" title="Enter the number of points to update on each interval" /> 
+                    <br />
+                    <br />
+
+		    <button onclick="symbology.validation.test_symbolPlot(document.getElementById('pluginIdTxt').value, document.getElementById('pluginSymbolId').value, 'H', true)" >Plot</button>
+ 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

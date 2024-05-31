@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This file was created with the GIFT Learner Configuration Authoring Tool (LCAT).
+It contains configuration information for how to translate incoming sensor data into learner state attributes.-->
+<LearnerConfiguration version="5.0.1" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <inputs>
+        <input>
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.ArousalClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.ArousalPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <producer sensorType="BIOHARNESS"/>
+            </producers>
+        </input>
+    </inputs>
+</LearnerConfiguration>

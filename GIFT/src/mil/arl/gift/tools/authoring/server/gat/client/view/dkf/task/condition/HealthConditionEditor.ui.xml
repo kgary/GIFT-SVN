@@ -1,0 +1,15 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+	xmlns:cc="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common">
+	<ui:style>
+	   .scoringRulePadding {
+            padding-top: 5px;
+        }
+	</ui:style>
+	<g:FlowPanel>
+	   <shared:EditableTeamPicker label='Learners roles that should be assessed:' ui:field='teamPicker' />
+	   <cc:RealTimeAssessmentScoringRulesPanel ui:field="rtaRulesPanel" addStyleNames="{style.scoringRulePadding}" />
+	</g:FlowPanel>
+</ui:UiBinder> 

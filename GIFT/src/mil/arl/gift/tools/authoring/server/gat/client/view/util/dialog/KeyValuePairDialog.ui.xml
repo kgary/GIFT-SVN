@@ -1,0 +1,32 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.spaceRight{
+			padding-right: 10px;
+		}
+		.tabbed{
+			padding: 0px 30px;
+		}
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.largePadTop{
+			padding-top: 10px;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:InlineHTML addStyleNames='{style.largePadTop} {style.spaceRight}' ui:field='identifierLabel'/> 
+   		<g:FlowPanel addStyleNames='{style.tabbed} {style.padBottom}'>
+   			<g:TextBox width='100%' ui:field='identifierTextBox'/>
+   		</g:FlowPanel>
+   		<g:InlineHTML addStyleNames='{style.largePadTop} {style.spaceRight}' ui:field='keyLabel'/> 
+   		<g:FlowPanel addStyleNames='{style.tabbed} {style.padBottom}'>
+   			<g:TextBox width='100%' ui:field='keyTextBox'/>
+   		</g:FlowPanel>
+   		<g:InlineHTML addStyleNames='{style.largePadTop} {style.spaceRight}' ui:field='valueLabel'/> 
+   		<g:FlowPanel addStyleNames='{style.tabbed} {style.padBottom}'>
+   			<g:TextBox width='100%' ui:field='valueTextBox'/>
+   		</g:FlowPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

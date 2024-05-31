@@ -1,0 +1,53 @@
+﻿<body>
+<p><strong>String Matching Condition</strong></p>
+<p>This condition is used to match a single key value pair provided to the 
+condition as input.&nbsp; For example, the key maybe "opened" and the value 
+might be "door A" to indicate that the learner opened door A in the application.&nbsp; 
+The abstract nature of this condition allows you to easily assess events 
+communicated by your application using with minimal software development in the 
+GIFT domain module.&nbsp; </p>
+<p>This condition is talked about in the GIFT Software Developer guide.&nbsp; It 
+is also used by multiple training applications that are already integrated with 
+GIFT (see Training Applications section).</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span></li><li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: when the key value pair in the condition matches the key value 
+		pair provided</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: when the key value pair in the condition does NOT match the 
+		key value pair provided</li>
+	</ul>
+	</li>
+	<li>Unknown<ul>
+		<li>case: the default value</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of times the key value pair matches</li>
+	<li>provides the amount of time it took to reach At Expectation, i.e. the 
+	key value pair matched</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition does not complete</li>
+	<li>the condition can be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>Unity (w/ the GIFT Unity SDK)</li>
+	<li>GIFT Demo Application (a C# desktop application that is to be used with 
+	the GIFT software developer guide)</li>
+	<li>any application that can produce the Simple Example State message</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Simple Example State</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.StringMatchingCondition</em></p>
+</body>

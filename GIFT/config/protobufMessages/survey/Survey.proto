@@ -1,0 +1,38 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyProto";
+
+import "survey/SurveyPage.proto";
+import "survey/SurveyItemPropertyValue.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a survey of questions. */
+message Survey {
+	/* The id the survey belongs to. */
+	google.protobuf.Int32Value id = 1;
+	
+	/* Survey name. */
+	google.protobuf.StringValue name = 2;
+	
+	/* The folder the survey is located in. */
+	google.protobuf.StringValue folder = 3;
+	
+	/* Pages of the survey. */
+	repeated SurveyPage survey_pages = 4;
+	
+	/* Survey properties. */
+	map<string, SurveyItemPropertyValue> properties = 5;
+	
+	/* The usernames that can see the question shown. */
+	repeated string visible_to_user_names = 6;
+	
+	/* The usernames that can edit the question shown. */
+	repeated string editable_to_user_names = 7;
+}

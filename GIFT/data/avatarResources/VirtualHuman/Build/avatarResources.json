@@ -1,0 +1,13 @@
+{
+"companyName": "ICT",
+"productName": "GIFT-VHtoolkit",
+"dataUrl": "avatarResources.data.unityweb",
+"asmCodeUrl": "avatarResources.asm.code.unityweb",
+"asmMemoryUrl": "avatarResources.asm.memory.unityweb",
+"asmFrameworkUrl": "avatarResources.asm.framework.unityweb",
+"TOTAL_MEMORY": 536870912,
+"graphicsAPI": ["WebGL 2.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}

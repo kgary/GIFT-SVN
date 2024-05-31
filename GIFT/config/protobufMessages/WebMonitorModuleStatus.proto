@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+ 
+option java_package = "generated.proto.common";
+option java_outer_classname = "WebMonitorModuleStatusProto";
+
+import "ModuleStatus.proto";
+
+/* Represents a Web monitor's module's status. */
+message WebMonitorModuleStatus {
+	
+	/* The set of domain session ids to which the web monitor is attached. Can't be null. Can be
+     * empty. */
+	repeated int32 attached_domain_session = 1;
+	
+	/* The ModuleStatus from which to construct the
+     * WebMonitorModuleStatus. Can't be null. */
+	ModuleStatus module_status = 2;
+	
+}

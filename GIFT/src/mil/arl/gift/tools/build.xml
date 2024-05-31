@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<project name="GIFTTools" default="compile">
+
+    <target name="compile">
+    	<echo message="Compiling Tools"/>
+		<ant dir="remote" inheritAll="false"/>  <!-- required by monitor -->
+    	
+    	<ant dir="authoring/common" inheritAll="true" /> <!-- needed by services -->
+		<ant dir="export" inheritAll="false" /> <!-- needed by services -->
+    	<ant dir="importer" inheritAll="false" /> <!-- needed by services -->
+		<ant dir="services" inheritAll="false" /> <!-- needed by dashboard -->  
+    	<ant dir="map" inheritAll="false" /> <!-- needed by dashboard -->
+    	
+    	<ant target="compileMonitorServices" dir="monitor"/>
+    	
+    	<parallel threadcount="8">       	
+    		<ant dir="dbio" inheritAll="false"/>	    	
+	    	<ant dir="monitor" inheritAll="false"/>
+	    	<ant dir="segmentgenerator" inheritAll="false"/>
+	    	<ant dir="spl" inheritAll="false"/>
+	    	<ant dir="export/desktop" inheritAll="false" />
+    		<ant dir="controlpanel" inheritAll="false" />    	
+    		<ant dir="dashboard" inheritAll="true" />
+    	</parallel>   
+    	<ant dir="authoring" inheritAll="false"/> <!-- needs to come after dashboard (see https://gifttutoring.org/issues/2214) -->
+    </target>
+    	
+    <target name="clean">
+    	<echo message="Cleaning Tools"/>
+    	<ant dir="dbio" target="clean" inheritAll="false"/>
+    	<ant dir="authoring" target="clean" inheritAll="false"/>
+    	<ant dir="monitor" target="clean" inheritAll="false"/>
+    	<ant dir="remote" target="clean" inheritAll="false"/>
+    	<ant dir="segmentgenerator" target="clean" inheritAll="false"/>
+    	<ant dir="spl" target="clean" inheritAll="false"/>
+    	<ant dir="export/desktop" target="clean" inheritAll="false" />
+    	<ant dir="export" target="clean" inheritAll="false" />
+    	<ant dir="importer" target="clean" inheritAll="false" />
+    	<ant dir="controlpanel" target="clean" inheritAll="false" />
+        <ant dir="dashboard" target="clean" inheritAll="false" />
+    	<ant dir="map" target="clean" inheritAll="false" />
+    	<ant dir="services" target="clean" inheritAll="false" />
+    	<!-- The installer should be a pre-built, consistent application, therefore
+			removing it from the top-level 'clean' command logic.  
+			To clean use the appropriate target at the top-level.
+		<ant dir="installer" target="clean" inheritAll="false" /> 
+		-->
+    </target>
+    
+    <target name="installer">
+        <echo message="Compiling GIFT Installer"/>
+        <ant dir="installer" inheritAll="false" />        
+    </target>
+	
+	<target name="uninstaller">
+        <echo message="Compiling GIFT Uninstaller"/>
+        <ant dir="uninstaller" inheritAll="false" />        
+    </target>
+	
+</project>

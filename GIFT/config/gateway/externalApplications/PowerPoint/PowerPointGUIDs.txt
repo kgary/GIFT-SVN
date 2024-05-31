@@ -1,0 +1,17 @@
+# GUIDS associated with PowerPoint as mentioned on these sites
+#
+#      http://support.microsoft.com/kb/234788 (for up to and including Office 2010)
+#      http://social.msdn.microsoft.com/Forums/office/en-US/017c43e2-05be-4ffd-b6ab-9b3bb5751609/component-guids-for-office-2013
+#
+# These GUIDS are used to find the path for the Microsoft Office PowerPoint application
+#
+# 32 bit - Doesn't work on 'Click2Run' (C2R) Office Installation [GIFT will use PowerPointRegistryPaths.txt for C2R]
+#PowerPoint2013-32x={813139AD-6DAB-4DDD-8C6D-0CA30D073B41}
+# 64 bit - Doesn't work on 'Click2Run' (C2R) Office Installation [GIFT will use PowerPointRegistryPaths.txt for C2R]
+#PowerPoint2013-64x={05758318-BCFD-4288-AD8D-81185841C235}
+# 32 bit - Doesn't work on 'Click2Run' (C2R) Office Installation [GIFT will use PowerPointRegistryPaths.txt for C2R]
+PowerPoint2010-32x={E72E0D20-0D63-438B-BC71-92AB9F9E8B54}
+# 64 bit - Doesn't work on 'Click2Run' (C2R) Office Installation [GIFT will use PowerPointRegistryPaths.txt for C2R]
+PowerPoint2010-64x={EE8D8E0A-D905-401D-9BC3-0D20156D5E30}
+PowerPoint2007={0638C49D-BB8B-4CD1-B191-053E8F325736}
+PowerPoint2003={C86C0B92-63C0-4E35-8605-281275C21F97}

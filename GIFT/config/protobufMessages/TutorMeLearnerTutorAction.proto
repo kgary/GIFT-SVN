@@ -1,0 +1,22 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "TutorMeLearnerTutorActionProto";
+
+import "LearnerAction.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the learner tutor action of a set attribute. */
+message TutorMeLearnerTutorAction {
+	/* The name of the learner action. */
+	google.protobuf.StringValue action_name = 1;
+	
+	/* The learner action. */
+	LearnerAction learner_action = 2;
+}

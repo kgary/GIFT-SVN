@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<SensorsConfiguration version="11.0.1">
+    <Sensors>
+        <Sensor id="1">
+            <name>BioHarness Sensor</name>
+            <interval>1</interval>
+            <sensorImpl>sensor.impl.zephyr.BioHarnessSensor</sensorImpl>
+            <distributeExternally>false</distributeExternally>
+            <sensorInput>
+                <BioHarnessSensor/>
+            </sensorInput>
+        </Sensor>
+    </Sensors>
+    <Filters/>
+    <Writers/>
+</SensorsConfiguration>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Course Authoring Tool (CAT).
+	It contains information about the flow of a course in GIFT.
+-->
+<Course name="name string" version="5.0.2" xmlns:ns2="http://GIFT.com/common" xmlns:p0="http://GIFT.com/pedagogicalStrategy" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <description>description string</description>
+    <exclude>false</exclude>
+    <ns2:surveyContext>1</ns2:surveyContext>
+    <concepts>
+        <list>
+            <concept name="name"/>
+        </list>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>guidance1</transitionName>
+            <message>
+                <content>message string</content>
+            </message>
+            <displayTime>5.1</displayTime>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <PresentSurvey>
+            <transitionName>opt name</transitionName>
+            <ns2:GIFTSurveyKey>PreLesson</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+        </PresentSurvey>
+        <AAR>
+            <transitionName>AAR1</transitionName>
+            <fullScreen>true</fullScreen>
+        </AAR>
+        <TrainingApplication>
+            <transitionName>TrainingApp1</transitionName>
+            <dkfRef>
+                <file>simplest.dkf.xml</file>
+            </dkfRef>
+            <options>
+                <disableInstInterImpl>true</disableInstInterImpl>
+                <showAvatarInitially>
+                    <mediaSemantics>
+                        <Avatar>Explicit Feedback within Game-Based Training\Condition 1 - TC3 Team Member\tc3_teammember.html</Avatar>
+                    </mediaSemantics>
+                </showAvatarInitially>
+                <fullScreen>false</fullScreen>
+            </options>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <VBS2InteropInputs>
+                            <loadArgs>
+                                <ScenarioName>scenario name string</ScenarioName>
+                            </loadArgs>
+                        </VBS2InteropInputs>
+                    </InteropInputs>
+                </interop>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <DISInteropInputs>
+                            <loadArgs/>
+                        </DISInteropInputs>
+                    </InteropInputs>
+                </interop>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <PowerPointInteropInputs>
+                            <loadArgs>
+                                <ShowFile>Hemorrhage Control Lesson\LessonMaterial\HemorrhageControlPart1.ppsm</ShowFile>
+                            </loadArgs>
+                        </PowerPointInteropInputs>
+                    </InteropInputs>
+                </interop>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <CustomInteropInputs>
+                            <loadArgs>
+                                <ns2:nvpair>
+                                    <ns2:name>name string</ns2:name>
+                                    <ns2:value>value string</ns2:value>
+                                </ns2:nvpair>
+                            </loadArgs>
+                        </CustomInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <Guidance>
+                <transitionName>optional name</transitionName>
+                <message>
+                    <content>message string</content>
+                </message>
+                <displayTime>6.1</displayTime>
+                <fullScreen>false</fullScreen>
+            </Guidance>
+            <finishedWhen>Loaded</finishedWhen>
+        </TrainingApplication>
+        <LessonMaterial>
+            <transitionName>LessonMaterial1</transitionName>
+            <LessonMaterialList>
+                <media>
+                    <name>name string</name>
+                    <uri>www.google.com</uri>
+                    <PDFProperties/>
+                </media>
+                <media>
+                    <name>name string</name>
+                    <uri>www.google.com</uri>
+                    <WebpageProperties/>
+                </media>
+                <media>
+                    <name>name string</name>
+                    <uri>www.google.com</uri>
+                    <YoutubeVideoProperties>
+                        <size>
+                            <width>420</width>
+                            <height>315</height>
+                        </size>
+                        <allowFullScreen>true</allowFullScreen>
+                        <allowAutoPlay>false</allowAutoPlay>
+                    </YoutubeVideoProperties>
+                </media>
+                <media>
+                    <name>name string</name>
+                    <uri>www.google.com</uri>
+                    <ImageProperties/>
+                </media>
+            </LessonMaterialList>
+            <lessonMaterialFiles>
+                <file>VBS2.PresencePatrol.Scenario\Presence Patrol.lessonMaterial.xml</file>
+            </lessonMaterialFiles>
+        </LessonMaterial>
+        <MerrillsBranchPoint>
+            <transitionName>opt name</transitionName>
+            <Concepts>
+                <concept>name</concept>
+            </Concepts>
+            <Quadrants>
+                <Rule/>
+                <transitions>
+                    <AAR>
+                        <transitionName>opt name</transitionName>
+                        <fullScreen>true</fullScreen>
+                    </AAR>
+                </transitions>
+                <Example/>
+                <transitions>
+                    <PresentSurvey>
+                        <transitionName>opt name</transitionName>
+                        <ns2:GIFTSurveyKey>PostAAR</ns2:GIFTSurveyKey>
+                        <fullScreen>true</fullScreen>
+                    </PresentSurvey>
+                </transitions>
+                <Recall>
+                    <PresentSurvey>
+                        <ConceptSurvey>
+                            <GIFTSurveyKey>Knowledge Assessment Question Bank</GIFTSurveyKey>
+                            <ConceptQuestions name="name">
+                                <QuestionTypes>
+                                    <Easy>1</Easy>
+                                    <Medium>1</Medium>
+                                    <Hard>1</Hard>
+                                </QuestionTypes>
+                                <AssessmentRules>
+                                    <AboveExpectation>
+                                        <NumberCorrect>3</NumberCorrect>
+                                    </AboveExpectation>
+                                    <AtExpectation>
+                                        <NumberCorrect>2</NumberCorrect>
+                                    </AtExpectation>
+                                    <BelowExpectation>
+                                        <NumberCorrect>0</NumberCorrect>
+                                    </BelowExpectation>
+                                </AssessmentRules>
+                            </ConceptQuestions>
+                        </ConceptSurvey>
+                        <fullScreen>true</fullScreen>
+                    </PresentSurvey>
+                    <AllowedAttempts>3</AllowedAttempts>
+                </Recall>
+                <transitions>
+                    <Guidance>
+                        <transitionName>opt name</transitionName>
+                        <message>
+                            <content>content message</content>
+                        </message>
+                        <displayTime>10</displayTime>
+                        <fullScreen>true</fullScreen>
+                    </Guidance>
+                </transitions>
+                <Practice>
+                    <PracticeConcepts>
+                        <CourseConcept>name</CourseConcept>
+                    </PracticeConcepts>
+                    <AllowedAttempts>3</AllowedAttempts>
+                </Practice>
+            </Quadrants>
+        </MerrillsBranchPoint>
+    </transitions>
+</Course>

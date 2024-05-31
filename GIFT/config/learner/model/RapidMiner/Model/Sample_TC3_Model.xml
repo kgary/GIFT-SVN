@@ -1,0 +1,1391 @@
+<object-stream>
+  <WekaClassifier id="1" serialization="custom">
+    <com.rapidminer.operator.AbstractIOObject>
+      <default>
+        <source>W-JRip (2)</source>
+      </default>
+    </com.rapidminer.operator.AbstractIOObject>
+    <com.rapidminer.operator.ResultObjectAdapter>
+      <default>
+        <annotations id="2">
+          <keyValueMap id="3"/>
+        </annotations>
+      </default>
+    </com.rapidminer.operator.ResultObjectAdapter>
+    <com.rapidminer.operator.AbstractModel>
+      <default>
+        <headerExampleSet id="4" serialization="custom">
+          <com.rapidminer.operator.ResultObjectAdapter>
+            <default>
+              <annotations id="5">
+                <keyValueMap id="6">
+                  <entry>
+                    <string>Source</string>
+                    <string>C:\Luc\ARL Data\Round 4\domainsession-v48-36gen-filteredstudents-crossvalidation-resampled-anxious.csv</string>
+                  </entry>
+                </keyValueMap>
+              </annotations>
+            </default>
+          </com.rapidminer.operator.ResultObjectAdapter>
+          <com.rapidminer.example.set.AbstractExampleSet>
+            <default>
+              <idMap id="7"/>
+              <statisticsMap id="8"/>
+            </default>
+          </com.rapidminer.example.set.AbstractExampleSet>
+          <com.rapidminer.example.set.HeaderExampleSet>
+            <default>
+              <attributes class="SimpleAttributes" id="9">
+                <attributes class="linked-list" id="10">
+                  <AttributeRole id="11">
+                    <special>true</special>
+                    <specialName>label</specialName>
+                    <attribute class="BinominalAttribute" id="12" serialization="custom">
+                      <com.rapidminer.example.table.AbstractAttribute>
+                        <default>
+                          <annotations id="13">
+                            <keyValueMap id="14"/>
+                          </annotations>
+                          <attributeDescription id="15">
+                            <name>ANXIOUS</name>
+                            <valueType>6</valueType>
+                            <blockType>1</blockType>
+                            <defaultValue>0.0</defaultValue>
+                            <index>8</index>
+                          </attributeDescription>
+                          <constructionDescription>ANXIOUS</constructionDescription>
+                          <statistics class="linked-list" id="16">
+                            <NominalStatistics id="17">
+                              <mode>-1</mode>
+                              <maxCounter>0</maxCounter>
+                            </NominalStatistics>
+                            <UnknownStatistics id="18">
+                              <unknownCounter>0</unknownCounter>
+                            </UnknownStatistics>
+                          </statistics>
+                          <transformations id="19"/>
+                        </default>
+                      </com.rapidminer.example.table.AbstractAttribute>
+                      <BinominalAttribute>
+                        <default>
+                          <nominalMapping class="BinominalMapping" id="20">
+                            <firstValue>0</firstValue>
+                            <secondValue>1</secondValue>
+                          </nominalMapping>
+                        </default>
+                      </BinominalAttribute>
+                    </attribute>
+                  </AttributeRole>
+                  <AttributeRole id="21">
+                    <special>true</special>
+                    <specialName>batch</specialName>
+                    <attribute class="NumericalAttribute" id="22" serialization="custom">
+                      <com.rapidminer.example.table.AbstractAttribute>
+                        <default>
+                          <annotations id="23">
+                            <keyValueMap id="24"/>
+                          </annotations>
+                          <attributeDescription id="25">
+                            <name>Group</name>
+                            <valueType>3</valueType>
+                            <blockType>1</blockType>
+                            <defaultValue>0.0</defaultValue>
+                            <index>50</index>
+                          </attributeDescription>
+                          <constructionDescription>Group</constructionDescription>
+                          <statistics class="linked-list" id="26">
+                            <NumericalStatistics id="27">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <valueCounter>0</valueCounter>
+                            </NumericalStatistics>
+                            <WeightedNumericalStatistics id="28">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <totalWeight>0.0</totalWeight>
+                              <count>0.0</count>
+                            </WeightedNumericalStatistics>
+                            <com.rapidminer.example.MinMaxStatistics id="29">
+                              <minimum>Infinity</minimum>
+                              <maximum>-Infinity</maximum>
+                            </com.rapidminer.example.MinMaxStatistics>
+                            <UnknownStatistics id="30">
+                              <unknownCounter>0</unknownCounter>
+                            </UnknownStatistics>
+                          </statistics>
+                          <transformations id="31"/>
+                        </default>
+                      </com.rapidminer.example.table.AbstractAttribute>
+                    </attribute>
+                  </AttributeRole>
+                  <AttributeRole id="32">
+                    <special>true</special>
+                    <specialName>id</specialName>
+                    <attribute class="NumericalAttribute" id="33" serialization="custom">
+                      <com.rapidminer.example.table.AbstractAttribute>
+                        <default>
+                          <annotations id="34">
+                            <keyValueMap id="35"/>
+                          </annotations>
+                          <attributeDescription id="36">
+                            <name>20s-obs-id</name>
+                            <valueType>3</valueType>
+                            <blockType>1</blockType>
+                            <defaultValue>0.0</defaultValue>
+                            <index>0</index>
+                          </attributeDescription>
+                          <constructionDescription>20s-obs-id</constructionDescription>
+                          <statistics class="linked-list" id="37">
+                            <NumericalStatistics id="38">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <valueCounter>0</valueCounter>
+                            </NumericalStatistics>
+                            <WeightedNumericalStatistics id="39">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <totalWeight>0.0</totalWeight>
+                              <count>0.0</count>
+                            </WeightedNumericalStatistics>
+                            <com.rapidminer.example.MinMaxStatistics id="40">
+                              <minimum>Infinity</minimum>
+                              <maximum>-Infinity</maximum>
+                            </com.rapidminer.example.MinMaxStatistics>
+                            <UnknownStatistics id="41">
+                              <unknownCounter>0</unknownCounter>
+                            </UnknownStatistics>
+                          </statistics>
+                          <transformations id="42"/>
+                        </default>
+                      </com.rapidminer.example.table.AbstractAttribute>
+                    </attribute>
+                  </AttributeRole>
+                  <AttributeRole id="43">
+                    <special>false</special>
+                    <attribute class="NumericalAttribute" id="44" serialization="custom">
+                      <com.rapidminer.example.table.AbstractAttribute>
+                        <default>
+                          <annotations id="45">
+                            <keyValueMap id="46"/>
+                          </annotations>
+                          <attributeDescription id="47">
+                            <name>Average of BloodVolume</name>
+                            <valueType>4</valueType>
+                            <blockType>1</blockType>
+                            <defaultValue>0.0</defaultValue>
+                            <index>37</index>
+                          </attributeDescription>
+                          <constructionDescription>Average of BloodVolume</constructionDescription>
+                          <statistics class="linked-list" id="48">
+                            <NumericalStatistics id="49">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <valueCounter>0</valueCounter>
+                            </NumericalStatistics>
+                            <WeightedNumericalStatistics id="50">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <totalWeight>0.0</totalWeight>
+                              <count>0.0</count>
+                            </WeightedNumericalStatistics>
+                            <com.rapidminer.example.MinMaxStatistics id="51">
+                              <minimum>Infinity</minimum>
+                              <maximum>-Infinity</maximum>
+                            </com.rapidminer.example.MinMaxStatistics>
+                            <UnknownStatistics id="52">
+                              <unknownCounter>0</unknownCounter>
+                            </UnknownStatistics>
+                          </statistics>
+                          <transformations id="53"/>
+                        </default>
+                      </com.rapidminer.example.table.AbstractAttribute>
+                    </attribute>
+                  </AttributeRole>
+                  <AttributeRole id="54">
+                    <special>false</special>
+                    <attribute class="NumericalAttribute" id="55" serialization="custom">
+                      <com.rapidminer.example.table.AbstractAttribute>
+                        <default>
+                          <annotations id="56">
+                            <keyValueMap id="57"/>
+                          </annotations>
+                          <attributeDescription id="58">
+                            <name>Min of HeartRate</name>
+                            <valueType>4</valueType>
+                            <blockType>1</blockType>
+                            <defaultValue>0.0</defaultValue>
+                            <index>43</index>
+                          </attributeDescription>
+                          <constructionDescription>Min of HeartRate</constructionDescription>
+                          <statistics class="linked-list" id="59">
+                            <NumericalStatistics id="60">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <valueCounter>0</valueCounter>
+                            </NumericalStatistics>
+                            <WeightedNumericalStatistics id="61">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <totalWeight>0.0</totalWeight>
+                              <count>0.0</count>
+                            </WeightedNumericalStatistics>
+                            <com.rapidminer.example.MinMaxStatistics id="62">
+                              <minimum>Infinity</minimum>
+                              <maximum>-Infinity</maximum>
+                            </com.rapidminer.example.MinMaxStatistics>
+                            <UnknownStatistics id="63">
+                              <unknownCounter>0</unknownCounter>
+                            </UnknownStatistics>
+                          </statistics>
+                          <transformations id="64"/>
+                        </default>
+                      </com.rapidminer.example.table.AbstractAttribute>
+                    </attribute>
+                  </AttributeRole>
+                  <AttributeRole id="65">
+                    <special>false</special>
+                    <attribute class="NumericalAttribute" id="66" serialization="custom">
+                      <com.rapidminer.example.table.AbstractAttribute>
+                        <default>
+                          <annotations id="67">
+                            <keyValueMap id="68"/>
+                          </annotations>
+                          <attributeDescription id="69">
+                            <name>Sum of takeCoverAction</name>
+                            <valueType>3</valueType>
+                            <blockType>1</blockType>
+                            <defaultValue>0.0</defaultValue>
+                            <index>27</index>
+                          </attributeDescription>
+                          <constructionDescription>Sum of takeCoverAction</constructionDescription>
+                          <statistics class="linked-list" id="70">
+                            <NumericalStatistics id="71">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <valueCounter>0</valueCounter>
+                            </NumericalStatistics>
+                            <WeightedNumericalStatistics id="72">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <totalWeight>0.0</totalWeight>
+                              <count>0.0</count>
+                            </WeightedNumericalStatistics>
+                            <com.rapidminer.example.MinMaxStatistics id="73">
+                              <minimum>Infinity</minimum>
+                              <maximum>-Infinity</maximum>
+                            </com.rapidminer.example.MinMaxStatistics>
+                            <UnknownStatistics id="74">
+                              <unknownCounter>0</unknownCounter>
+                            </UnknownStatistics>
+                          </statistics>
+                          <transformations id="75"/>
+                        </default>
+                      </com.rapidminer.example.table.AbstractAttribute>
+                    </attribute>
+                  </AttributeRole>
+                  <AttributeRole id="76">
+                    <special>false</special>
+                    <attribute class="NumericalAttribute" id="77" serialization="custom">
+                      <com.rapidminer.example.table.AbstractAttribute>
+                        <default>
+                          <annotations id="78">
+                            <keyValueMap id="79"/>
+                          </annotations>
+                          <attributeDescription id="80">
+                            <name>Sum of isSafe</name>
+                            <valueType>3</valueType>
+                            <blockType>1</blockType>
+                            <defaultValue>0.0</defaultValue>
+                            <index>30</index>
+                          </attributeDescription>
+                          <constructionDescription>Sum of isSafe</constructionDescription>
+                          <statistics class="linked-list" id="81">
+                            <NumericalStatistics id="82">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <valueCounter>0</valueCounter>
+                            </NumericalStatistics>
+                            <WeightedNumericalStatistics id="83">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <totalWeight>0.0</totalWeight>
+                              <count>0.0</count>
+                            </WeightedNumericalStatistics>
+                            <com.rapidminer.example.MinMaxStatistics id="84">
+                              <minimum>Infinity</minimum>
+                              <maximum>-Infinity</maximum>
+                            </com.rapidminer.example.MinMaxStatistics>
+                            <UnknownStatistics id="85">
+                              <unknownCounter>0</unknownCounter>
+                            </UnknownStatistics>
+                          </statistics>
+                          <transformations id="86"/>
+                        </default>
+                      </com.rapidminer.example.table.AbstractAttribute>
+                    </attribute>
+                  </AttributeRole>
+                  <AttributeRole id="87">
+                    <special>false</special>
+                    <attribute class="NumericalAttribute" id="88" serialization="custom">
+                      <com.rapidminer.example.table.AbstractAttribute>
+                        <default>
+                          <annotations id="89">
+                            <keyValueMap id="90"/>
+                          </annotations>
+                          <attributeDescription id="91">
+                            <name>Sum of firedweaponaction</name>
+                            <valueType>3</valueType>
+                            <blockType>1</blockType>
+                            <defaultValue>0.0</defaultValue>
+                            <index>34</index>
+                          </attributeDescription>
+                          <constructionDescription>Sum of firedweaponaction</constructionDescription>
+                          <statistics class="linked-list" id="92">
+                            <NumericalStatistics id="93">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <valueCounter>0</valueCounter>
+                            </NumericalStatistics>
+                            <WeightedNumericalStatistics id="94">
+                              <sum>0.0</sum>
+                              <squaredSum>0.0</squaredSum>
+                              <totalWeight>0.0</totalWeight>
+                              <count>0.0</count>
+                            </WeightedNumericalStatistics>
+                            <com.rapidminer.example.MinMaxStatistics id="95">
+                              <minimum>Infinity</minimum>
+                              <maximum>-Infinity</maximum>
+                            </com.rapidminer.example.MinMaxStatistics>
+                            <UnknownStatistics id="96">
+                              <unknownCounter>0</unknownCounter>
+                            </UnknownStatistics>
+                          </statistics>
+                          <transformations id="97"/>
+                        </default>
+                      </com.rapidminer.example.table.AbstractAttribute>
+                    </attribute>
+                  </AttributeRole>
+                </attributes>
+              </attributes>
+            </default>
+          </com.rapidminer.example.set.HeaderExampleSet>
+        </headerExampleSet>
+      </default>
+    </com.rapidminer.operator.AbstractModel>
+    <WekaClassifier>
+      <default>
+        <classifier class="weka.classifiers.rules.JRip" id="98">
+          <m__Debug defined-in="weka.classifiers.Classifier">false</m__Debug>
+          <m__Class id="99">
+            <m__Name>ANXIOUS</m__Name>
+            <m__Type>1</m__Type>
+            <m__Values id="100">
+              <m__Objects id="101">
+                <string>1</string>
+                <string>0</string>
+              </m__Objects>
+              <m__Size>2</m__Size>
+              <m__CapacityIncrement>1</m__CapacityIncrement>
+              <m__CapacityMultiplier>2</m__CapacityMultiplier>
+            </m__Values>
+            <m__Hashtable id="102">
+              <entry>
+                <string>1</string>
+                <int>0</int>
+              </entry>
+              <entry>
+                <string>0</string>
+                <int>1</int>
+              </entry>
+            </m__Hashtable>
+            <m__Index>5</m__Index>
+            <m__Metadata id="103" serialization="custom">
+              <unserializable-parents/>
+              <hashtable>
+                <default>
+                  <loadFactor>0.75</loadFactor>
+                  <threshold>8</threshold>
+                </default>
+                <int>11</int>
+                <int>0</int>
+              </hashtable>
+              <weka.core.ProtectedProperties>
+                <default>
+                  <closed>true</closed>
+                </default>
+              </weka.core.ProtectedProperties>
+            </m__Metadata>
+            <m__Ordering>0</m__Ordering>
+            <m__IsRegular>false</m__IsRegular>
+            <m__IsAveragable>false</m__IsAveragable>
+            <m__HasZeropoint>false</m__HasZeropoint>
+            <m__Weight>1.0</m__Weight>
+            <m__LowerBound>0.0</m__LowerBound>
+            <m__LowerBoundIsOpen>false</m__LowerBoundIsOpen>
+            <m__UpperBound>0.0</m__UpperBound>
+            <m__UpperBoundIsOpen>false</m__UpperBoundIsOpen>
+          </m__Class>
+          <m__Ruleset id="104">
+            <m__Objects id="105">
+              <weka.classifiers.rules.JRip_-RipperRule id="106">
+                <m__Consequent>0.0</m__Consequent>
+                <m__Antds id="107">
+                  <m__Objects id="108">
+                    <weka.classifiers.rules.JRip_-NumericAntd id="109">
+                      <att id="110">
+                        <m__Name>Average of BloodVolume</m__Name>
+                        <m__Type>0</m__Type>
+                        <m__Index>0</m__Index>
+                        <m__Metadata id="111" serialization="custom">
+                          <unserializable-parents/>
+                          <hashtable>
+                            <default>
+                              <loadFactor>0.75</loadFactor>
+                              <threshold>8</threshold>
+                            </default>
+                            <int>11</int>
+                            <int>0</int>
+                          </hashtable>
+                          <weka.core.ProtectedProperties>
+                            <default>
+                              <closed>true</closed>
+                            </default>
+                          </weka.core.ProtectedProperties>
+                        </m__Metadata>
+                        <m__Ordering>1</m__Ordering>
+                        <m__IsRegular>true</m__IsRegular>
+                        <m__IsAveragable>true</m__IsAveragable>
+                        <m__HasZeropoint>true</m__HasZeropoint>
+                        <m__Weight>1.0</m__Weight>
+                        <m__LowerBound>-Infinity</m__LowerBound>
+                        <m__LowerBoundIsOpen>false</m__LowerBoundIsOpen>
+                        <m__UpperBound>Infinity</m__UpperBound>
+                        <m__UpperBoundIsOpen>false</m__UpperBoundIsOpen>
+                      </att>
+                      <value>1.0</value>
+                      <maxInfoGain>0.0</maxInfoGain>
+                      <accuRate>NaN</accuRate>
+                      <cover>NaN</cover>
+                      <accu>NaN</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>4990.000000</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <weka.classifiers.rules.JRip_-NumericAntd id="112">
+                      <att reference="110"/>
+                      <value>0.0</value>
+                      <maxInfoGain>0.0</maxInfoGain>
+                      <accuRate>NaN</accuRate>
+                      <cover>NaN</cover>
+                      <accu>NaN</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>5500.000000</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                  </m__Objects>
+                  <m__Size>2</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Antds>
+                <outer-class reference="98"/>
+              </weka.classifiers.rules.JRip_-RipperRule>
+              <weka.classifiers.rules.JRip_-RipperRule id="113">
+                <m__Consequent>0.0</m__Consequent>
+                <m__Antds id="114">
+                  <m__Objects id="115">
+                    <weka.classifiers.rules.JRip_-NumericAntd id="116">
+                      <att reference="110"/>
+                      <value>1.0</value>
+                      <maxInfoGain>83.2256826610578</maxInfoGain>
+                      <accuRate>0.5851648351648352</accuRate>
+                      <cover>363.0</cover>
+                      <accu>212.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>4988.715088</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <weka.classifiers.rules.JRip_-NumericAntd id="117">
+                      <att reference="110"/>
+                      <value>0.0</value>
+                      <maxInfoGain>36.334995938724326</maxInfoGain>
+                      <accuRate>1.0</accuRate>
+                      <cover>47.0</cover>
+                      <accu>47.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>4988.715088</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                  </m__Objects>
+                  <m__Size>2</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Antds>
+                <outer-class reference="98"/>
+              </weka.classifiers.rules.JRip_-RipperRule>
+              <weka.classifiers.rules.JRip_-RipperRule id="118">
+                <m__Consequent>0.0</m__Consequent>
+                <m__Antds id="119">
+                  <m__Objects id="120">
+                    <weka.classifiers.rules.JRip_-NumericAntd id="121">
+                      <att reference="110"/>
+                      <value>1.0</value>
+                      <maxInfoGain>85.55854205034093</maxInfoGain>
+                      <accuRate>0.6107142857142858</accuRate>
+                      <cover>279.0</cover>
+                      <accu>170.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>4992.397461</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <weka.classifiers.rules.JRip_-NumericAntd id="122">
+                      <att id="123">
+                        <m__Name>Min of HeartRate</m__Name>
+                        <m__Type>0</m__Type>
+                        <m__Index>1</m__Index>
+                        <m__Metadata id="124" serialization="custom">
+                          <unserializable-parents/>
+                          <hashtable>
+                            <default>
+                              <loadFactor>0.75</loadFactor>
+                              <threshold>8</threshold>
+                            </default>
+                            <int>11</int>
+                            <int>0</int>
+                          </hashtable>
+                          <weka.core.ProtectedProperties>
+                            <default>
+                              <closed>true</closed>
+                            </default>
+                          </weka.core.ProtectedProperties>
+                        </m__Metadata>
+                        <m__Ordering>1</m__Ordering>
+                        <m__IsRegular>true</m__IsRegular>
+                        <m__IsAveragable>true</m__IsAveragable>
+                        <m__HasZeropoint>true</m__HasZeropoint>
+                        <m__Weight>1.0</m__Weight>
+                        <m__LowerBound>-Infinity</m__LowerBound>
+                        <m__LowerBoundIsOpen>false</m__LowerBoundIsOpen>
+                        <m__UpperBound>Infinity</m__UpperBound>
+                        <m__UpperBoundIsOpen>false</m__UpperBoundIsOpen>
+                      </att>
+                      <value>1.0</value>
+                      <maxInfoGain>32.563927268142386</maxInfoGain>
+                      <accuRate>0.7337278106508875</accuRate>
+                      <cover>168.0</cover>
+                      <accu>123.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>46.890224</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <weka.classifiers.rules.JRip_-NumericAntd id="125">
+                      <att reference="123"/>
+                      <value>0.0</value>
+                      <maxInfoGain>36.550372703637706</maxInfoGain>
+                      <accuRate>0.9885057471264368</accuRate>
+                      <cover>86.0</cover>
+                      <accu>85.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>46.892811</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <null/>
+                    <null/>
+                    <null/>
+                  </m__Objects>
+                  <m__Size>3</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Antds>
+                <outer-class reference="98"/>
+              </weka.classifiers.rules.JRip_-RipperRule>
+              <weka.classifiers.rules.JRip_-RipperRule id="126">
+                <m__Consequent>0.0</m__Consequent>
+                <m__Antds id="127">
+                  <m__Objects id="128">
+                    <weka.classifiers.rules.JRip_-NumericAntd id="129">
+                      <att reference="110"/>
+                      <value>0.0</value>
+                      <maxInfoGain>0.0</maxInfoGain>
+                      <accuRate>NaN</accuRate>
+                      <cover>NaN</cover>
+                      <accu>NaN</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>4514.43457</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <weka.classifiers.rules.JRip_-NumericAntd id="130">
+                      <att reference="110"/>
+                      <value>1.0</value>
+                      <maxInfoGain>0.0</maxInfoGain>
+                      <accuRate>NaN</accuRate>
+                      <cover>NaN</cover>
+                      <accu>NaN</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>4488.497925</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <weka.classifiers.rules.JRip_-NumericAntd id="131">
+                      <att id="132">
+                        <m__Name>Sum of isSafe</m__Name>
+                        <m__Type>0</m__Type>
+                        <m__Index>3</m__Index>
+                        <m__Metadata id="133" serialization="custom">
+                          <unserializable-parents/>
+                          <hashtable>
+                            <default>
+                              <loadFactor>0.75</loadFactor>
+                              <threshold>8</threshold>
+                            </default>
+                            <int>11</int>
+                            <int>0</int>
+                          </hashtable>
+                          <weka.core.ProtectedProperties>
+                            <default>
+                              <closed>true</closed>
+                            </default>
+                          </weka.core.ProtectedProperties>
+                        </m__Metadata>
+                        <m__Ordering>1</m__Ordering>
+                        <m__IsRegular>true</m__IsRegular>
+                        <m__IsAveragable>true</m__IsAveragable>
+                        <m__HasZeropoint>true</m__HasZeropoint>
+                        <m__Weight>1.0</m__Weight>
+                        <m__LowerBound>-Infinity</m__LowerBound>
+                        <m__LowerBoundIsOpen>false</m__LowerBoundIsOpen>
+                        <m__UpperBound>Infinity</m__UpperBound>
+                        <m__UpperBoundIsOpen>false</m__UpperBoundIsOpen>
+                      </att>
+                      <value>1.0</value>
+                      <maxInfoGain>0.0</maxInfoGain>
+                      <accuRate>NaN</accuRate>
+                      <cover>NaN</cover>
+                      <accu>NaN</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>4.0</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <null/>
+                    <null/>
+                    <null/>
+                  </m__Objects>
+                  <m__Size>3</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Antds>
+                <outer-class reference="98"/>
+              </weka.classifiers.rules.JRip_-RipperRule>
+              <weka.classifiers.rules.JRip_-RipperRule id="134">
+                <m__Consequent>0.0</m__Consequent>
+                <m__Antds id="135">
+                  <m__Objects id="136">
+                    <weka.classifiers.rules.JRip_-NumericAntd id="137">
+                      <att reference="123"/>
+                      <value>0.0</value>
+                      <maxInfoGain>109.28999895817343</maxInfoGain>
+                      <accuRate>0.43892045454545453</accuRate>
+                      <cover>703.0</cover>
+                      <accu>308.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>46.828465</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <weka.classifiers.rules.JRip_-NumericAntd id="138">
+                      <att reference="123"/>
+                      <value>1.0</value>
+                      <maxInfoGain>51.082649401515674</maxInfoGain>
+                      <accuRate>1.0</accuRate>
+                      <cover>43.0</cover>
+                      <accu>43.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>46.828465</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                  </m__Objects>
+                  <m__Size>2</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Antds>
+                <outer-class reference="98"/>
+              </weka.classifiers.rules.JRip_-RipperRule>
+              <weka.classifiers.rules.JRip_-RipperRule id="139">
+                <m__Consequent>0.0</m__Consequent>
+                <m__Antds id="140">
+                  <m__Objects id="141">
+                    <weka.classifiers.rules.JRip_-NumericAntd id="142">
+                      <att reference="110"/>
+                      <value>0.0</value>
+                      <maxInfoGain>125.03672517300075</maxInfoGain>
+                      <accuRate>0.4316860465116279</accuRate>
+                      <cover>687.0</cover>
+                      <accu>296.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>4104.267871</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <weka.classifiers.rules.JRip_-NumericAntd id="143">
+                      <att reference="110"/>
+                      <value>1.0</value>
+                      <maxInfoGain>49.68977098995462</maxInfoGain>
+                      <accuRate>1.0</accuRate>
+                      <cover>41.0</cover>
+                      <accu>41.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>4104.267871</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                  </m__Objects>
+                  <m__Size>2</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Antds>
+                <outer-class reference="98"/>
+              </weka.classifiers.rules.JRip_-RipperRule>
+              <weka.classifiers.rules.JRip_-RipperRule id="144">
+                <m__Consequent>0.0</m__Consequent>
+                <m__Antds id="145">
+                  <m__Objects id="146">
+                    <weka.classifiers.rules.JRip_-NumericAntd id="147">
+                      <att reference="123"/>
+                      <value>0.0</value>
+                      <maxInfoGain>174.18810698726804</maxInfoGain>
+                      <accuRate>0.38511749347258484</accuRate>
+                      <cover>765.0</cover>
+                      <accu>294.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>46.946251</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                    <weka.classifiers.rules.JRip_-NumericAntd id="148">
+                      <att reference="123"/>
+                      <value>1.0</value>
+                      <maxInfoGain>57.81843638238165</maxInfoGain>
+                      <accuRate>1.0</accuRate>
+                      <cover>42.0</cover>
+                      <accu>42.0</accu>
+                      <outer-class defined-in="weka.classifiers.rules.JRip$Antd" reference="98"/>
+                      <splitPoint>46.946251</splitPoint>
+                      <outer-class reference="98"/>
+                    </weka.classifiers.rules.JRip_-NumericAntd>
+                  </m__Objects>
+                  <m__Size>2</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Antds>
+                <outer-class reference="98"/>
+              </weka.classifiers.rules.JRip_-RipperRule>
+              <weka.classifiers.rules.JRip_-RipperRule id="149">
+                <m__Consequent>1.0</m__Consequent>
+                <m__Antds id="150">
+                  <m__Objects id="151"/>
+                  <m__Size>0</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Antds>
+                <outer-class reference="98"/>
+              </weka.classifiers.rules.JRip_-RipperRule>
+              <null/>
+              <null/>
+              <null/>
+              <null/>
+              <null/>
+              <null/>
+              <null/>
+              <null/>
+            </m__Objects>
+            <m__Size>8</m__Size>
+            <m__CapacityIncrement>1</m__CapacityIncrement>
+            <m__CapacityMultiplier>2</m__CapacityMultiplier>
+          </m__Ruleset>
+          <m__Distributions id="152">
+            <m__Objects id="153">
+              <double-array id="154">
+                <double>0.07547169811320754</double>
+                <double>0.9245283018867925</double>
+              </double-array>
+              <double-array id="155">
+                <double>0.0</double>
+                <double>1.0</double>
+              </double-array>
+              <double-array id="156">
+                <double>0.007874015748031496</double>
+                <double>0.9921259842519685</double>
+              </double-array>
+              <double-array id="157">
+                <double>0.05263157894736842</double>
+                <double>0.9473684210526315</double>
+              </double-array>
+              <double-array id="158">
+                <double>0.0</double>
+                <double>1.0</double>
+              </double-array>
+              <double-array id="159">
+                <double>0.0</double>
+                <double>1.0</double>
+              </double-array>
+              <double-array id="160">
+                <double>0.0</double>
+                <double>1.0</double>
+              </double-array>
+              <double-array id="161">
+                <double>0.7735170760934691</double>
+                <double>0.22648292390653085</double>
+              </double-array>
+              <null/>
+              <null/>
+              <null/>
+              <null/>
+              <null/>
+              <null/>
+            </m__Objects>
+            <m__Size>8</m__Size>
+            <m__CapacityIncrement>1</m__CapacityIncrement>
+            <m__CapacityMultiplier>2</m__CapacityMultiplier>
+          </m__Distributions>
+          <m__Optimizations>2</m__Optimizations>
+          <m__Random id="162" serialization="custom">
+            <java.util.Random>
+              <default>
+                <seed>229144456242203</seed>
+                <nextNextGaussian>0.0</nextNextGaussian>
+                <haveNextNextGaussian>false</haveNextNextGaussian>
+              </default>
+            </java.util.Random>
+          </m__Random>
+          <m__Total>2512.0</m__Total>
+          <m__Seed>1</m__Seed>
+          <m__Folds>3</m__Folds>
+          <m__MinNo>2.0</m__MinNo>
+          <m__Debug>false</m__Debug>
+          <m__CheckErr>true</m__CheckErr>
+          <m__UsePruning>true</m__UsePruning>
+          <m__Filter class="weka.filters.supervised.attribute.ClassOrder" id="163">
+            <m__OutputFormat id="164">
+              <m__RelationName>LearningInstances-weka.filters.supervised.attribute.ClassOrder-R-1460333394-C0</m__RelationName>
+              <m__Attributes id="165">
+                <m__Objects id="166">
+                  <weka.core.Attribute reference="110"/>
+                  <weka.core.Attribute reference="123"/>
+                  <weka.core.Attribute id="167">
+                    <m__Name>Sum of takeCoverAction</m__Name>
+                    <m__Type>0</m__Type>
+                    <m__Index>2</m__Index>
+                    <m__Metadata id="168" serialization="custom">
+                      <unserializable-parents/>
+                      <hashtable>
+                        <default>
+                          <loadFactor>0.75</loadFactor>
+                          <threshold>8</threshold>
+                        </default>
+                        <int>11</int>
+                        <int>0</int>
+                      </hashtable>
+                      <weka.core.ProtectedProperties>
+                        <default>
+                          <closed>true</closed>
+                        </default>
+                      </weka.core.ProtectedProperties>
+                    </m__Metadata>
+                    <m__Ordering>1</m__Ordering>
+                    <m__IsRegular>true</m__IsRegular>
+                    <m__IsAveragable>true</m__IsAveragable>
+                    <m__HasZeropoint>true</m__HasZeropoint>
+                    <m__Weight>1.0</m__Weight>
+                    <m__LowerBound>-Infinity</m__LowerBound>
+                    <m__LowerBoundIsOpen>false</m__LowerBoundIsOpen>
+                    <m__UpperBound>Infinity</m__UpperBound>
+                    <m__UpperBoundIsOpen>false</m__UpperBoundIsOpen>
+                  </weka.core.Attribute>
+                  <weka.core.Attribute reference="132"/>
+                  <weka.core.Attribute id="169">
+                    <m__Name>Sum of firedweaponaction</m__Name>
+                    <m__Type>0</m__Type>
+                    <m__Index>4</m__Index>
+                    <m__Metadata id="170" serialization="custom">
+                      <unserializable-parents/>
+                      <hashtable>
+                        <default>
+                          <loadFactor>0.75</loadFactor>
+                          <threshold>8</threshold>
+                        </default>
+                        <int>11</int>
+                        <int>0</int>
+                      </hashtable>
+                      <weka.core.ProtectedProperties>
+                        <default>
+                          <closed>true</closed>
+                        </default>
+                      </weka.core.ProtectedProperties>
+                    </m__Metadata>
+                    <m__Ordering>1</m__Ordering>
+                    <m__IsRegular>true</m__IsRegular>
+                    <m__IsAveragable>true</m__IsAveragable>
+                    <m__HasZeropoint>true</m__HasZeropoint>
+                    <m__Weight>1.0</m__Weight>
+                    <m__LowerBound>-Infinity</m__LowerBound>
+                    <m__LowerBoundIsOpen>false</m__LowerBoundIsOpen>
+                    <m__UpperBound>Infinity</m__UpperBound>
+                    <m__UpperBoundIsOpen>false</m__UpperBoundIsOpen>
+                  </weka.core.Attribute>
+                  <weka.core.Attribute reference="99"/>
+                </m__Objects>
+                <m__Size>6</m__Size>
+                <m__CapacityIncrement>1</m__CapacityIncrement>
+                <m__CapacityMultiplier>2</m__CapacityMultiplier>
+              </m__Attributes>
+              <m__Instances id="171">
+                <m__Objects id="172"/>
+                <m__Size>0</m__Size>
+                <m__CapacityIncrement>1</m__CapacityIncrement>
+                <m__CapacityMultiplier>2</m__CapacityMultiplier>
+              </m__Instances>
+              <m__ClassIndex>5</m__ClassIndex>
+              <m__Lines>0</m__Lines>
+              <attIdx4Randomization>-1</attIdx4Randomization>
+            </m__OutputFormat>
+            <m__OutputQueue id="173">
+              <m__Size>0</m__Size>
+            </m__OutputQueue>
+            <m__OutputStringAtts id="174">
+              <m__AllowedIndices id="175">
+                <int>0</int>
+                <int>1</int>
+                <int>2</int>
+                <int>3</int>
+                <int>4</int>
+                <int>5</int>
+              </m__AllowedIndices>
+              <m__Attributes id="176">
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </m__Attributes>
+              <m__Locators id="177">
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </m__Locators>
+              <m__Type>2</m__Type>
+              <m__Data id="178">
+                <m__RelationName>LearningInstances</m__RelationName>
+                <m__Attributes reference="165"/>
+                <m__Instances id="179">
+                  <m__Objects id="180"/>
+                  <m__Size>0</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Instances>
+                <m__ClassIndex>5</m__ClassIndex>
+                <m__Lines>0</m__Lines>
+                <attIdx4Randomization>-1</attIdx4Randomization>
+              </m__Data>
+              <m__Indices id="181"/>
+              <m__LocatorIndices id="182"/>
+            </m__OutputStringAtts>
+            <m__InputStringAtts id="183">
+              <m__AllowedIndices id="184">
+                <int>0</int>
+                <int>1</int>
+                <int>2</int>
+                <int>3</int>
+                <int>4</int>
+                <int>5</int>
+              </m__AllowedIndices>
+              <m__Attributes id="185">
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </m__Attributes>
+              <m__Locators id="186">
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </m__Locators>
+              <m__Type>2</m__Type>
+              <m__Data id="187">
+                <m__RelationName>LearningInstances</m__RelationName>
+                <m__Attributes id="188">
+                  <m__Objects id="189">
+                    <weka.core.Attribute reference="110"/>
+                    <weka.core.Attribute reference="123"/>
+                    <weka.core.Attribute reference="167"/>
+                    <weka.core.Attribute reference="132"/>
+                    <weka.core.Attribute reference="169"/>
+                    <weka.core.Attribute id="190">
+                      <m__Name>ANXIOUS</m__Name>
+                      <m__Type>1</m__Type>
+                      <m__Values id="191">
+                        <m__Objects id="192">
+                          <string>0</string>
+                          <string>1</string>
+                        </m__Objects>
+                        <m__Size>2</m__Size>
+                        <m__CapacityIncrement>1</m__CapacityIncrement>
+                        <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                      </m__Values>
+                      <m__Hashtable id="193">
+                        <entry>
+                          <string>1</string>
+                          <int>1</int>
+                        </entry>
+                        <entry>
+                          <string>0</string>
+                          <int>0</int>
+                        </entry>
+                      </m__Hashtable>
+                      <m__Index>5</m__Index>
+                      <m__Metadata reference="103"/>
+                      <m__Ordering>0</m__Ordering>
+                      <m__IsRegular>false</m__IsRegular>
+                      <m__IsAveragable>false</m__IsAveragable>
+                      <m__HasZeropoint>false</m__HasZeropoint>
+                      <m__Weight>1.0</m__Weight>
+                      <m__LowerBound>0.0</m__LowerBound>
+                      <m__LowerBoundIsOpen>false</m__LowerBoundIsOpen>
+                      <m__UpperBound>0.0</m__UpperBound>
+                      <m__UpperBoundIsOpen>false</m__UpperBoundIsOpen>
+                    </weka.core.Attribute>
+                  </m__Objects>
+                  <m__Size>6</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Attributes>
+                <m__Instances id="194">
+                  <m__Objects id="195"/>
+                  <m__Size>0</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Instances>
+                <m__ClassIndex>5</m__ClassIndex>
+                <m__Lines>0</m__Lines>
+                <attIdx4Randomization>-1</attIdx4Randomization>
+              </m__Data>
+              <m__Indices id="196"/>
+              <m__LocatorIndices id="197"/>
+            </m__InputStringAtts>
+            <m__OutputRelAtts id="198">
+              <m__AllowedIndices id="199">
+                <int>0</int>
+                <int>1</int>
+                <int>2</int>
+                <int>3</int>
+                <int>4</int>
+                <int>5</int>
+              </m__AllowedIndices>
+              <m__Attributes id="200">
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </m__Attributes>
+              <m__Locators id="201">
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </m__Locators>
+              <m__Type>4</m__Type>
+              <m__Data id="202">
+                <m__RelationName>LearningInstances</m__RelationName>
+                <m__Attributes reference="165"/>
+                <m__Instances id="203">
+                  <m__Objects id="204"/>
+                  <m__Size>0</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Instances>
+                <m__ClassIndex>5</m__ClassIndex>
+                <m__Lines>0</m__Lines>
+                <attIdx4Randomization>-1</attIdx4Randomization>
+              </m__Data>
+              <m__Indices id="205"/>
+              <m__LocatorIndices id="206"/>
+            </m__OutputRelAtts>
+            <m__InputRelAtts id="207">
+              <m__AllowedIndices id="208">
+                <int>0</int>
+                <int>1</int>
+                <int>2</int>
+                <int>3</int>
+                <int>4</int>
+                <int>5</int>
+              </m__AllowedIndices>
+              <m__Attributes id="209">
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+                <boolean>false</boolean>
+              </m__Attributes>
+              <m__Locators id="210">
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+                <null/>
+              </m__Locators>
+              <m__Type>4</m__Type>
+              <m__Data id="211">
+                <m__RelationName>LearningInstances</m__RelationName>
+                <m__Attributes reference="188"/>
+                <m__Instances id="212">
+                  <m__Objects id="213"/>
+                  <m__Size>0</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Instances>
+                <m__ClassIndex>5</m__ClassIndex>
+                <m__Lines>0</m__Lines>
+                <attIdx4Randomization>-1</attIdx4Randomization>
+              </m__Data>
+              <m__Indices id="214"/>
+              <m__LocatorIndices id="215"/>
+            </m__InputRelAtts>
+            <m__InputFormat id="216">
+              <m__RelationName>LearningInstances</m__RelationName>
+              <m__Attributes reference="188"/>
+              <m__Instances id="217">
+                <m__Objects id="218"/>
+                <m__Size>0</m__Size>
+                <m__CapacityIncrement>1</m__CapacityIncrement>
+                <m__CapacityMultiplier>2</m__CapacityMultiplier>
+              </m__Instances>
+              <m__ClassIndex>5</m__ClassIndex>
+              <m__Lines>0</m__Lines>
+              <attIdx4Randomization>-1</attIdx4Randomization>
+            </m__InputFormat>
+            <m__NewBatch>true</m__NewBatch>
+            <m__FirstBatchDone>false</m__FirstBatchDone>
+            <m__Seed>-1460333394</m__Seed>
+            <m__Random id="219" serialization="custom">
+              <java.util.Random>
+                <default>
+                  <seed>37381229743890</seed>
+                  <nextNextGaussian>0.0</nextNextGaussian>
+                  <haveNextNextGaussian>false</haveNextNextGaussian>
+                </default>
+              </java.util.Random>
+            </m__Random>
+            <m__Converter id="220">
+              <int>1</int>
+              <int>0</int>
+            </m__Converter>
+            <m__ClassAttribute reference="190"/>
+            <m__ClassOrder>0</m__ClassOrder>
+            <m__ClassCounts id="221">
+              <double>1323.0</double>
+              <double>1335.0</double>
+            </m__ClassCounts>
+          </m__Filter>
+          <m__RulesetStats id="222">
+            <m__Objects id="223">
+              <weka.classifiers.rules.RuleStats id="224">
+                <m__Ruleset id="225">
+                  <m__Objects id="226">
+                    <weka.classifiers.rules.JRip_-RipperRule reference="106"/>
+                    <weka.classifiers.rules.JRip_-RipperRule reference="113"/>
+                    <weka.classifiers.rules.JRip_-RipperRule reference="118"/>
+                    <weka.classifiers.rules.JRip_-RipperRule reference="126"/>
+                    <weka.classifiers.rules.JRip_-RipperRule reference="134"/>
+                    <weka.classifiers.rules.JRip_-RipperRule reference="139"/>
+                    <weka.classifiers.rules.JRip_-RipperRule reference="144"/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                  </m__Objects>
+                  <m__Size>7</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Ruleset>
+                <m__SimpleStats id="227">
+                  <m__Objects id="228">
+                    <double-array id="229">
+                      <double>477.0</double>
+                      <double>2181.0</double>
+                      <double>441.0</double>
+                      <double>1299.0</double>
+                      <double>36.0</double>
+                      <double>882.0</double>
+                    </double-array>
+                    <double-array id="230">
+                      <double>63.0</double>
+                      <double>2118.0</double>
+                      <double>63.0</double>
+                      <double>1299.0</double>
+                      <double>0.0</double>
+                      <double>819.0</double>
+                    </double-array>
+                    <double-array id="231">
+                      <double>127.0</double>
+                      <double>1991.0</double>
+                      <double>126.0</double>
+                      <double>1298.0</double>
+                      <double>1.0</double>
+                      <double>693.0</double>
+                    </double-array>
+                    <double-array id="232">
+                      <double>133.0</double>
+                      <double>1858.0</double>
+                      <double>126.0</double>
+                      <double>1291.0</double>
+                      <double>7.0</double>
+                      <double>567.0</double>
+                    </double-array>
+                    <double-array id="233">
+                      <double>63.0</double>
+                      <double>1795.0</double>
+                      <double>63.0</double>
+                      <double>1291.0</double>
+                      <double>0.0</double>
+                      <double>504.0</double>
+                    </double-array>
+                    <double-array id="234">
+                      <double>63.0</double>
+                      <double>1732.0</double>
+                      <double>63.0</double>
+                      <double>1291.0</double>
+                      <double>0.0</double>
+                      <double>441.0</double>
+                    </double-array>
+                    <double-array id="235">
+                      <double>63.0</double>
+                      <double>1669.0</double>
+                      <double>63.0</double>
+                      <double>1291.0</double>
+                      <double>0.0</double>
+                      <double>378.0</double>
+                    </double-array>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                  </m__Objects>
+                  <m__Size>7</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__SimpleStats>
+                <m__Total>2512.0</m__Total>
+                <MDL__THEORY__WEIGHT>1.0</MDL__THEORY__WEIGHT>
+                <m__Distributions id="236">
+                  <m__Objects id="237">
+                    <double-array id="238">
+                      <double>0.9245283018867925</double>
+                      <double>0.07547169811320754</double>
+                    </double-array>
+                    <double-array id="239">
+                      <double>1.0</double>
+                      <double>0.0</double>
+                    </double-array>
+                    <double-array id="240">
+                      <double>0.9921259842519685</double>
+                      <double>0.007874015748031496</double>
+                    </double-array>
+                    <double-array id="241">
+                      <double>0.9473684210526315</double>
+                      <double>0.05263157894736842</double>
+                    </double-array>
+                    <double-array id="242">
+                      <double>1.0</double>
+                      <double>0.0</double>
+                    </double-array>
+                    <double-array id="243">
+                      <double>1.0</double>
+                      <double>0.0</double>
+                    </double-array>
+                    <double-array id="244">
+                      <double>1.0</double>
+                      <double>0.0</double>
+                    </double-array>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                    <null/>
+                  </m__Objects>
+                  <m__Size>7</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Distributions>
+              </weka.classifiers.rules.RuleStats>
+              <weka.classifiers.rules.RuleStats id="245">
+                <m__Ruleset id="246">
+                  <m__Objects id="247">
+                    <weka.classifiers.rules.JRip_-RipperRule reference="149"/>
+                    <null/>
+                  </m__Objects>
+                  <m__Size>1</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Ruleset>
+                <m__SimpleStats id="248">
+                  <m__Objects id="249">
+                    <double-array id="250">
+                      <double>1669.0</double>
+                      <double>0.0</double>
+                      <double>1291.0</double>
+                      <double>0.0</double>
+                      <double>378.0</double>
+                      <double>0.0</double>
+                    </double-array>
+                    <null/>
+                  </m__Objects>
+                  <m__Size>1</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__SimpleStats>
+                <m__Total>2512.0</m__Total>
+                <MDL__THEORY__WEIGHT>1.0</MDL__THEORY__WEIGHT>
+                <m__Distributions id="251">
+                  <m__Objects id="252">
+                    <double-array id="253">
+                      <double>0.22648292390653085</double>
+                      <double>0.7735170760934691</double>
+                    </double-array>
+                    <null/>
+                  </m__Objects>
+                  <m__Size>1</m__Size>
+                  <m__CapacityIncrement>1</m__CapacityIncrement>
+                  <m__CapacityMultiplier>2</m__CapacityMultiplier>
+                </m__Distributions>
+              </weka.classifiers.rules.RuleStats>
+            </m__Objects>
+            <m__Size>2</m__Size>
+            <m__CapacityIncrement>1</m__CapacityIncrement>
+            <m__CapacityMultiplier>2</m__CapacityMultiplier>
+          </m__RulesetStats>
+        </classifier>
+        <name>W-JRip</name>
+      </default>
+    </WekaClassifier>
+  </WekaClassifier>
+</object-stream>

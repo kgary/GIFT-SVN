@@ -1,0 +1,50 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractAnswerScoreProto";
+import "google/protobuf/wrappers.proto";
+
+/*  
+ *	This is the protobuf message that contains the base implementations for answer scores.
+ *  Note that all of the message types following will have an AbstractAnswerScore message to
+ *	store the message's highest possible points and total earned points.
+ */ 
+message AbstractAnswerScore {
+	/* The score can either represent a question answer type, a reply answer type, or a 
+	 *	survey answer type. */
+	oneof type {
+		SurveyAnswerScore survey_answer_score = 1;
+		QuestionAnswerScore question_answer_score = 2;
+		ReplyAnswerScore reply_answer_score = 3;
+	}
+}
+
+/* Container class to hold the point details for the answer scores */
+message PointDetails {
+    google.protobuf.DoubleValue highest_possible_points = 1;
+    google.protobuf.DoubleValue total_earned_points = 2;
+}
+
+/* Message definition for a question answer score that contains a list of question answer.
+ *	scores. */
+message SurveyAnswerScore {
+    PointDetails point_details = 1;
+	repeated QuestionAnswerScore question_scores = 2;
+}
+
+/* Message definition for a question answer score that contains a list of reply scores. */
+message QuestionAnswerScore {
+    PointDetails point_details = 1;
+	repeated ReplyAnswerScore reply_scores = 2;
+}
+
+/* Message definition for a reply answer score. */
+message ReplyAnswerScore {
+    PointDetails point_details = 1;
+}

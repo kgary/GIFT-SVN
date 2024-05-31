@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package ares.pb;
+option java_package  = "com.dignitas.ares.protobuf";
+option java_outer_classname = "AresMessageAssessment";
+
+enum AssessmentType {
+    UNKNOWN_ASSESSMENT = 0;
+    BELOW_EXPECTATION = 1;
+    AT_EXPECTATION = 2;
+    ABOVE_EXPECTATION = 3;
+    VISUAL_ONLY = 4;
+}
+
+message AssessmentUpdate {
+    map<string, AssessmentType> assessment = 1; // string = unit_id
+}

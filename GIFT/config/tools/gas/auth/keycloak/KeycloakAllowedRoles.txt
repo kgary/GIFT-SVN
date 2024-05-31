@@ -1,0 +1,23 @@
+#
+# A comma delimited list of user roles in Keycloak that 
+# are allowed to login as admins to the GIFT instance that uses this file
+#
+# An empty list means that no users will be able to login as admins.
+#
+# e.g. "admin"
+#
+# This is used by mil.arl.gift.common.gwt.server.authentication.KeycloakUserAuthentication.java 
+# 
+ADMIN_ROLES=admin
+
+#
+# A comma delimited list of user roles in Keycloak that 
+# are allowed to login to the GIFT instance that uses this file
+#
+# An empty list means that no users will be able to login.
+#
+# e.g. "admin"
+#
+# This is used by mil.arl.gift.common.gwt.server.authentication.KeycloakUserAuthentication.java 
+# 
+USER_ROLES=user

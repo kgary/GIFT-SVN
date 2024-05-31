@@ -1,0 +1,72 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	.surveyChoiceInner {
+		color: black;
+		background-color: white;
+		border: 1px solid rgb(200, 200, 200);
+		border-radius: 3px;
+		padding: 7px;
+		font-weight: bold;
+	}
+	
+	.surveyChoiceHeader {
+		font-weight: bold;
+	}
+	
+	.surveyChoiceButton {
+		margin-right: 10px;
+		margin-bottom: 10px;
+		background-color: rgba(66, 137, 197, 1);
+		box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+	}
+	
+	.surveyChoiceInnerButton {
+		margin-left: 5px;
+		padding: 0px 5px;
+	}
+	
+	.surveyChoiceInnerPanel{
+		margin-bottom: 5px;
+	}
+	
+	</ui:style>
+	<g:HTMLPanel>
+		<g:FlowPanel addStyleNames='presentSurveyChoice' ui:field='surveyChoicePanel'>	
+			<b:Button type='PRIMARY' icon='PLUS' addStyleNames='{style.surveyChoiceButton}'
+				ui:field="addSurveyButton">
+				Create New
+			</b:Button>
+			<b:Button type='PRIMARY' icon='SEARCH' addStyleNames='{style.surveyChoiceButton}'
+				ui:field='selectExistingButton'>
+				Select Existing
+			</b:Button>		
+			<g:FlowPanel addStyleNames='{style.surveyChoiceInner}'>
+			
+				<g:FlowPanel addStyleNames='{style.surveyChoiceInnerPanel}'>
+				
+					<b:Tooltip title='Edit this Survey' container='body'>
+						<b:Button visible='false' type='DEFAULT' icon='PENCIL'
+							addStyleNames='{style.surveyChoiceInnerButton}' ui:field="editSurveyButton">
+							Edit
+						</b:Button>
+					</b:Tooltip>
+					
+					<b:Tooltip title='Remove this Survey' container='body'>
+						<b:Button visible='false' type='DEFAULT' icon='TIMES'
+							addStyleNames='{style.surveyChoiceInnerButton}' ui:field="removeSurveyButton">
+							Remove
+						</b:Button>
+					</b:Tooltip>
+					
+				</g:FlowPanel>
+				
+				<g:InlineHTML ui:field='surveyKeyText'>
+					<!-- Survey key goes here -->
+				</g:InlineHTML>
+				
+			</g:FlowPanel>			
+		</g:FlowPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 

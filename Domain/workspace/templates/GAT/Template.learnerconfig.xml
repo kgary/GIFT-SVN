@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LearnerConfiguration version="11.0.1">
+    <inputs>
+        <input name="Anxious Interpreter">
+            <translator>
+                <translatorImpl>learner.clusterer.data.DefaultTranslator</translatorImpl>
+            </translator>
+            <classifier>
+                <classifierImpl>learner.clusterer.AnxiousClassifier</classifierImpl>
+            </classifier>
+            <predictor>
+                <predictorImpl>learner.predictor.GenericPredictor</predictorImpl>
+            </predictor>
+            <producers>
+                <sensor type="MOUSE_TEMP_HUMIDITY"/>
+            </producers>
+        </input>
+    </inputs>
+</LearnerConfiguration>

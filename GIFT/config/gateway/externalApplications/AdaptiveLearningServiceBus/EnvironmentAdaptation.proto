@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "EnvironmentAdaptationProto";
+
+import "Coordinate.proto";
+import "TeamMemberRef.proto";
+
+message EnvironmentAdaptation {
+	oneof type {
+		Overcast overcast = 1;
+		Fog fog = 2;
+		Rain rain = 3;
+		TimeOfDay time_of_day = 4;
+		CreateActors create_actors = 5;
+		RemoveActors remove_actors = 6;
+		Teleport teleport = 7;
+		FatigueRecovery fatigue_recovery = 8;
+		Endurance endurance = 9;
+		Script script = 10;
+	}
+}
+
+message Overcast {
+	int64 duration = 1;
+	double value = 2;
+}
+
+message Fog {
+	message Color {
+		int32 red = 1;
+		int32 green = 2;
+		int32 blue = 3;
+	}
+	
+	int64 duration = 1;
+	Color color = 2;
+	double density = 3;
+}
+
+message Rain {
+	int64 duration = 1;
+	double value = 2;
+}
+
+message TimeOfDay {
+	/* An enumeration of times of day. */
+	enum Time {
+		MIDNIGHT = 0;
+		DAWN = 1;
+		MIDDAY = 2;
+		DUSK = 3;
+	}
+	
+	Time time = 1;
+}
+
+message CreateActors {
+	/* An enumeration of the sides to which an actor can belong. */	
+	enum Side {
+		CIVILIAN = 0;
+		BLUFOR = 1;
+		OPFOR = 2;
+	}
+	
+	/* The location at which the created actor should be spawned. */
+	Coordinate coordinate = 1;
+	
+	/* A descriptor of the type of actor that should be created. */
+	string type = 2;
+	
+	/* The faction to which the created actor should belong. */
+	Side side = 3;
+	
+	/* the category of the actor type being created (e.g. Vehicle, Person, Other) */
+	string typeCategory = 4;
+	
+	/* the orientation of the actor being created (expected value 0-360) */
+	Heading heading = 5;
+}
+
+message Heading {
+	int32 value = 1;
+}
+
+message RemoveActors {
+	oneof type {
+		string name = 1;
+		Coordinate location = 2;
+	}
+	
+	/* the category of the actor type being removed (e.g. Vehicle, Person, Other) */
+	string typeCategory = 3;
+}
+
+message Teleport {
+	Coordinate coordinate = 1;
+	Heading heading = 2;
+	TeamMemberRef reference = 3;
+}
+
+message FatigueRecovery {
+	TeamMemberRef team_member_reference = 1;
+	double rate = 2;
+}
+
+message Endurance {
+	TeamMemberRef team_member_reference = 1;
+	double value = 2;
+}
+
+/* A custom script to execute within the training environment */
+message Script {
+	string value = 1;
+}

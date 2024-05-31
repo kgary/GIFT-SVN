@@ -1,0 +1,71 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractScaleProto";
+
+import "google/protobuf/timestamp.proto";
+import "AbstractEnumObject.proto";
+import "survey/AttributeScorerProperties.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This is the protobuf message that contains the base implementations for all scale types. */ 
+message AbstractScale {
+	/* The abstract scale can contain either a SurveyScale, 
+	   QuestionScale, or ConceptStateRecord, which holds information about the scaling of 
+	   the scores. */
+    oneof type {
+        SurveyScale survey_scale = 1;
+        QuestionScale question_scale = 2;
+		ConceptStateRecord concept_state_record = 3;
+    }
+}
+
+message SurveyScale {
+	/* Attribute for the scale. */
+    AbstractEnumObject attribute = 1;
+	
+	/* Scale value. */
+    google.protobuf.DoubleValue raw_value = 2;
+	
+	/* Time when the scale was computed. */
+    google.protobuf.Timestamp time_stamp = 3;
+	
+	/* Enum value, wrapped in an object. This object contains the 
+	   name of the enum as well as the value associated with. */
+    AbstractEnumObject value = 4;
+}
+
+message QuestionScale {
+    /* Attribute for the scale. */
+    AbstractEnumObject attribute = 1;
+	
+	/* Scale value. */
+    google.protobuf.DoubleValue raw_value = 2;
+	
+	/* Time when the scale was computed. */
+    google.protobuf.Timestamp time_stamp = 3;
+	
+	/* Enum value, wrapped in an object. This object contains the 
+	   name of the enum as well as the value associated with. */
+    AbstractEnumObject value = 4;
+}
+
+message ConceptStateRecord {
+	/* The unique name of a course concept this record describes state information about. */
+	google.protobuf.StringValue concept = 1;
+	
+	/* Attribute for the scale record. */
+	AbstractEnumObject attribute = 2;
+	
+	/* Scale record value. */
+	AbstractEnumObject value = 3;
+	
+	/* Time when the scale was computed. */
+    google.protobuf.Timestamp time_stamp = 4;
+}

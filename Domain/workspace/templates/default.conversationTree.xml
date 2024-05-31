@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<conversation xmlns="http://GIFT.com/conversationTree" name="Default Conversation Tree" version="11.0.1">
+    <authorsDescription>A conversation to tutor learners about a concept.</authorsDescription>
+    <learnersDescription>This conversation will help you learn about a concept.</learnersDescription>
+    <startNodeId>1</startNodeId>
+    <messages>
+        <message nodeId="1">
+            <text>I see that you are creating a conversation tree. Click this node to get started.</text>
+            <childNodeId>6</childNodeId>
+        </message>
+    </messages>
+    <questions/>
+    <choices/>
+    <ends>
+        <end nodeId="6"/>
+    </ends>
+</conversation>

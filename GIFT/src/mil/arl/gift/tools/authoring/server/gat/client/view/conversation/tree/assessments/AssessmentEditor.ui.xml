@@ -1,0 +1,156 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style>
+		.container {
+			padding: 10px;
+		}
+		.titlePanel {
+			margin-top: 0px;
+			border-bottom: solid 3px lightgray;
+		}
+        .title {
+            font-size:20pt;
+        }
+        .extraneousTableTitle {
+            font-size:12pt;
+            margin-left:10px;
+        }
+		.label {
+			margin: 18px 0 6px;
+			text-align: right;
+		}
+		.input {
+			margin: 10px 5px 0px;
+		}
+		.inline {
+			display: inline;
+		}
+		.textArea {
+			height: 100px;
+			margin-bottom: 15px;
+		}
+        .textPanel {
+            margin-top:20px;
+        }
+		.cellTableFix{
+			border-collapse: separate;
+		}
+		.scrollPanel{
+			min-height: 50px;
+			max-height: 180px;
+		}
+        .extraneousPanel{
+            border:solid 1px red; 
+                    position:relative; 
+                    padding:10px 0px; 
+                    margin-top: 20px; 
+                    margin-bottom: 15px; 
+        }
+		.addButton{
+			float: right;
+			z-index: 2; /* Needed to make tooltip show */
+		}
+		.editButton{
+			margin-bottom: 5px;
+            margin-left: 5px;
+			z-index: 2;
+		}
+
+        .LinkWidget {
+            color: rgb(100, 100, 200);
+            font-weight: normal;
+            font-size: 22px;
+            margin-top:14px;
+        }
+
+        .extraneousLinkWidget{
+            margin-right:10px;
+        }
+    
+        .helplink {
+            font-weight: normal;
+            float:right;
+            margin-top: -5px;
+        }
+	</ui:style>
+	<g:HTMLPanel width='680px' height='100%' addStyleNames="{style.container}">		
+	    
+	    <g:FlowPanel addStyleNames='{style.titlePanel}'>
+            <g:InlineHTML addStyleNames='{style.title}' ui:field='heading'>
+                Choice Assessment
+            </g:InlineHTML>
+	        	        
+	        <w:HelpLink helpCaption='Conversation Assessment'
+	             addStyleNames='{style.helplink}'>
+	
+	            <w:linkWidget>
+	                <b:Icon title="What's this?" addStyleNames='{style.LinkWidget}'
+	                    type='QUESTION_CIRCLE'/>
+	            </w:linkWidget>
+	
+	            <w:helpBody>
+	                <g:HTML ui:field='assessmentTooltip'>
+	
+	                </g:HTML>
+	            </w:helpBody>
+	
+	        </w:HelpLink>
+	    </g:FlowPanel>
+		
+		<g:FlowPanel addStyleNames="{style.textPanel}" ui:field='textPanel'>
+			<b:Heading size="H4" addStyleNames="{style.inline}" text="Text" />
+			<g:Image addStyleNames='{style.editButton}' ui:field='editTextImage' title='Click here to edit the choice text.'/>
+			<b:TextArea ui:field="msgTextArea"></b:TextArea>
+		</g:FlowPanel>
+		
+
+		    <g:FlowPanel addStyleNames='{style.extraneousPanel}' ui:field="extraneousPanel">
+		        
+		            <g:InlineHTML addStyleNames='{style.extraneousTableTitle}'>
+		                Extraneous concept assessments
+		                
+		            </g:InlineHTML>
+		                        
+		            <w:HelpLink helpCaption='Extraneous Concept Assessments'
+		                 addStyleNames='{style.helplink}'>
+		    
+		                <w:linkWidget>
+		                    <b:Icon title="What's this?" addStyleNames='{style.extraneousLinkWidget} {style.LinkWidget}'
+		                        type='QUESTION_CIRCLE'/>
+		                </w:linkWidget>
+		    
+		                <w:helpBody>
+		                    <g:HTML>
+		                          These concepts are not in this course and need to be removed.
+		                    </g:HTML>
+		                </w:helpBody>
+		    
+		            </w:HelpLink>
+	               <g:ScrollPanel addStyleNames='{style.scrollPanel}' >    
+	                   <c:CellTable height='50px' width='100%' addStyleNames='{style.cellTableFix}' ui:field='extraneousAssessmentsCellTable'/>
+	               </g:ScrollPanel>
+            </g:FlowPanel>
+        
+		<div style="border:solid 1px lightgray; 
+		        position:relative; 
+		        padding:10px 0px; 
+		        margin-top: 20px; 
+		        margin-bottom: 15px; 
+		    ">
+			<g:FlowPanel>
+				<g:Image addStyleNames='{style.addButton}' ui:field='addAssessmentImage' title='Click here to create and add a new choice assessment.'/>
+
+				<g:ScrollPanel addStyleNames='{style.scrollPanel}' >				      		
+					<c:CellTable height='50px' width='100%' addStyleNames='{style.cellTableFix}' ui:field='assessmentsCellTable'/>
+				</g:ScrollPanel>
+			</g:FlowPanel>
+			
+
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

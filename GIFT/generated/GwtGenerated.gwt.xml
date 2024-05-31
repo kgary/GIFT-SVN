@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module>
+	<source path="course"></source> 
+	<source path="conversation"></source> 
+	<source path="authoring"></source>
+	<source path="sensor"></source>
+	<source path="learner"></source>
+	<source path="metadata"></source>
+	<source path="ped"></source>
+	<source path="gateway"></source>
+</module>

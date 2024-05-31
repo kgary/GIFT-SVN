@@ -1,0 +1,16 @@
+# Navigate to the appropriate working directory if this script was invoked by another script
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$parent_path"
+
+AbsBaseDir=$(pwd)
+
+jdkDir="${AbsBaseDir}/external/jdk-11"
+
+#Check if the JDK has been extracted
+if [ -d "${jdkDir}" ] ; then
+   JAVA_HOME="${jdkDir}"
+   export JAVA_HOME
+fi
+
+# Run the Ant clean task
+"${AbsBaseDir}/external/ant/bin/ant" clean

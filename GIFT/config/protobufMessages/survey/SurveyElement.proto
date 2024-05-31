@@ -1,0 +1,33 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyElementProto";
+
+import "AbstractEnumObject.proto";
+import "survey/SurveyItemPropertyValue.proto";
+import "survey/Question.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents an element of a survey. */
+message SurveyElement { 
+	/* Id of the survey element. */
+	google.protobuf.Int32Value id = 1;
+	
+	/* Id of the corresponding survey page. */
+	google.protobuf.Int32Value survey_page_id = 2;
+	
+	/* Survey element type. */
+	AbstractEnumObject type = 3;
+	
+	/* Question that the survey corresponds to. */
+	Question question = 4;
+	
+	/* The properties of the survey element, which cannot be null. */
+	map<string, SurveyItemPropertyValue> properties = 5;
+}

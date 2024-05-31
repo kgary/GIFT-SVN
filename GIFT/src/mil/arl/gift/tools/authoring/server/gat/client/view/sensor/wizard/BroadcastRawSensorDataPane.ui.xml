@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+	xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:input="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.sensor.input"
+	xmlns:widgets="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.sensor.widgets">
+	
+	<ui:style>	
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}	
+	</ui:style>
+	
+	<g:FlowPanel width="100%">
+	
+		<g:HTML addStyleNames='{style.smallPadBottom}'>
+			Would you like to broadcast raw sensor data to GIFT modules?
+		</g:HTML>
+		<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+			<widgets:YesNoListBox width="100%" ui:field="broadcastRawSensorDataListBox"/>
+		</g:FlowPanel>
+	</g:FlowPanel>
+	
+</ui:UiBinder> 

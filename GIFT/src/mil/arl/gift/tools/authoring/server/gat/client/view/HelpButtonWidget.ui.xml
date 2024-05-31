@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.menuStyle {
+			float: right;
+			border-left-width: 0px;
+		}
+		.fileNameMenuItem{
+			color: black !important; <!-- marking as important so that text appears black rather than grayed-out -->
+			max-width: 400px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	</ui:style>
+	<g:MenuBar height='50px' addStyleNames='{style.menuStyle}'>
+		<g:MenuItem enabled='false' addStyleNames='{style.fileNameMenuItem}' ui:field='fileNameMenuItem' />
+		<g:MenuItem ui:field="helpItem"/>
+	</g:MenuBar>
+</ui:UiBinder> 

@@ -1,0 +1,23 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractEnumObjectProto";
+import "google/protobuf/wrappers.proto";
+
+/*
+* Contains the value and class of the abstract enum
+*/
+message AbstractEnumObject {
+
+	/* Used to specify the name of the enumeration. Cannot be null. */
+	google.protobuf.StringValue enum_name = 1;
+	
+	/* Used to specify the name of the class. */
+	google.protobuf.StringValue class_name = 2;
+}

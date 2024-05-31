@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LearnerTutorActionProto";
+
+import "AbstractLearnerTutorAction.proto";
+
+/* This message represents a learner tutor action that has been completed by the learner on the tutor. */
+message LearnerTutorAction {
+	/* The learner tutor action. */
+	AbstractLearnerTutorAction action = 1;
+}

@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LtiGetProviderUrlRequestProto";
+
+import "NvPair.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message encapsulates the data needed to request an OAuth LTIprovider URL. */
+message LtiGetProviderUrlRequest {
+	/* The LTI id. */
+	google.protobuf.StringValue lti_id = 1;
+	
+	/* The value of the nvpair property. . */
+	repeated NvPair custom_parameters = 2;
+	
+	/* The url of the get request. */
+	google.protobuf.StringValue url = 3;
+	
+	/* The domain session id for the request. */
+	google.protobuf.Int32Value domain_session_id = 4;
+}

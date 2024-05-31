@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" version="11.0" xmlns:fg="http://www.FGolubov.com/XMLEditor" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ICAPPolicy">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="ICAP Policy">
+                    <fg:message>This is the root node of the Interactive-Constructive-Active-Passive (ICAP) Policy.  An ICAP policy contains domain independent state attributes that can be
+					checked against a set of policies to determine the appropriate ICAP remediation action to apply to a learner.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="StateAttributes"/>
+                <xs:element ref="Policies"/>
+            </xs:sequence>
+            <xs:attribute name="version" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="File Version">
+                            <fg:message>The version of this file which is used to determine which schema the file adheres too.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="StateAttributes">
+		<xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="State Attributes">
+                    <fg:message>Contains state attributes which define the features or variables that will be used in policy conditions (e.g. remediation count)</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+		<xs:complexType>
+            <xs:sequence>
+			<!-- the order of these elements in the XML file at this location must correspond to the policy state attribute ordering. -->
+                <xs:element name="ConceptPretestAboveNovice" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Concept Pretest Above Novice">
+								<fg:message>The feature for whether the current pretest score for a concept is above Novice expertise level (e.g. Journeyman and Expert)</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="falseValue" type="xs:string" fixed="0"/>
+							<xs:element name="trueValue" type="xs:string" fixed="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ConceptRemediationCount" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Concept Remediation Count">
+								<fg:message>The feature for tracking the number of remediations on a concept</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="falseValue" type="xs:string" fixed="0"/>
+							<xs:element name="trueValue" type="xs:string" fixed="1"/>
+							<xs:element name="trueCondition">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="True Condition">
+											<fg:message>The expression for determining whether the current concept remediation count has reached the threshold for this feature.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="operator" use="required">
+										<xs:annotation>
+											<xs:appinfo>
+												<fg:node-info exposed="true" message="Operator">
+													<fg:message>The operator (e.g. less than, greater than) to apply to the logic of - "when the {current concept remediation count} is {operator} than {value} the feature is true (1)".</fg:message>
+												</fg:node-info>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="LessThan" />
+												<xs:enumeration value="GreaterThan" />
+												<xs:enumeration value="Equals" />
+												<xs:enumeration value="LessThanEquals" />
+												<xs:enumeration value="GreaterThanEquals" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="value" use="required">
+										<xs:annotation>
+											<xs:appinfo>
+												<fg:node-info exposed="true" message="Value">
+													<fg:message>The number of current concept remediation count to use as the threshold in the expression with the operator.</fg:message>
+												</fg:node-info>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:integer">
+											  <xs:minInclusive value="0"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Policies">
+		<xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Policies">
+                    <fg:message>Contains the policies to evaluate and act on.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+		<xs:complexType>
+            <xs:sequence>
+				<xs:element name="DefaultAction">
+					<xs:complexType>
+						<xs:attribute name="ActionChoice" use="required" type="ActionEnum" />						
+					</xs:complexType>
+				</xs:element>
+                <xs:element name="Policy" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Policy">
+								<fg:message>Contains a set of state attribute (feature) values to evaluate and a corresponding action to apply when the evaluation is true.  The state attribute order matches the StateAttributes element.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="StateAttributeValue">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Policy">
+											<fg:message>Contains a set of state attribute (feature) values to evaluate and a corresponding action to apply when the evaluation is true.  The state attribute order matches the StateAttributes element.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice maxOccurs="unbounded">
+											<xs:element name="value">
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+													  <xs:minLength value="1"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>					
+										</xs:choice>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ActionChoice" use="required" type="ActionEnum" >
+							<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info message="Action Choice">
+									<fg:message>The ICAP remediation action to deliver if the state defined by this policy is the current state for the learner.</fg:message>
+								</fg:node-info>
+							</xs:appinfo>
+						</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- the enumerated type of ICAP actions available -->
+	<xs:simpleType name="ActionEnum">
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="Interactive"/>
+            <xs:enumeration value="Constructive"/>
+			<xs:enumeration value="Active"/>
+			<xs:enumeration value="Passive"/>
+			<xs:enumeration value="None"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

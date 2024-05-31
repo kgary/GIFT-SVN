@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+    <!-- This filter prevents caching of GWT *.nocache.* files. -->
+    <filter> 
+       <filter-name>GwtCacheControlFilter</filter-name>
+       <filter-class>mil.arl.gift.common.gwt.server.GwtCacheControlFilter</filter-class>
+       <async-supported>true</async-supported> <!-- needed for Media Semantics -->
+    </filter>
+         
+    <filter-mapping>      
+       <filter-name>GwtCacheControlFilter</filter-name>              
+       <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!-- 
+        Note: This filter was originally part of GIFT/config/tutor/server/contexts/tutor.xml. It has been moved to this
+        file because the WebAppContextWithReload class that GWT uses to reload web app contexts in Dev mode uses an
+        older version of WebAppContext that does not support the addFilter method, which prevents the filter from
+        being added when tutor.xml is copied to the deployed dev mode server.
+    -->
+    <filter> 
+       <filter-name>ModifyCgiRequestFilter</filter-name>
+       <filter-class>mil.arl.gift.common.gwt.server.ModifyCgiRequestFilter</filter-class>
+       <async-supported>true</async-supported> <!-- needed for Media Semantics -->
+    </filter>    
+    <filter-mapping>      
+       <filter-name>ModifyCgiRequestFilter</filter-name>              
+       <url-pattern>/cs/*</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+       <filter-name>cross-origin</filter-name>
+              <filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
+              <init-param>
+           <param-name>allowedOrigins</param-name>
+           <param-value>*</param-value>
+       </init-param>
+       <init-param>
+           <param-name>allowedMethods</param-name>
+           <param-value>GET,POST,HEAD,OPTIONS</param-value>
+       </init-param>
+       <init-param>
+             <param-name>allowedHeaders</param-name>
+           <param-value>X-Requested-With,Content-Type,Accept,Origin</param-value>
+       </init-param>
+       <async-supported>true</async-supported> <!-- needed for Media Semantics -->
+    </filter>
+    <filter-mapping>
+        <filter-name>cross-origin</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+
+    <!-- Servlets -->
+    <!-- Web Tutor User Interface Servlet -->
+    <servlet>
+        <servlet-name>tutorUserInterfaceServlet</servlet-name>
+        <servlet-class>mil.arl.gift.tutor.server.TutorUserInterfaceServiceImpl</servlet-class>
+        <load-on-startup>1</load-on-startup> 
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>tutorUserInterfaceServlet</servlet-name>
+        <url-pattern>/tutoruserwebinterface/tutoruserinterface</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>tutorTestServlet</servlet-name>
+        <servlet-class>mil.arl.gift.tutor.server.TutorTestServiceImpl</servlet-class>
+        <load-on-startup>1</load-on-startup> 
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>tutorTestServlet</servlet-name>
+        <url-pattern>/tutortest/tutortest</url-pattern>
+    </servlet-mapping>
+    
+    <!-- websocket servlet -->
+    <servlet>
+        <servlet-name>tutorWebSocketServlet</servlet-name>
+        <servlet-class>mil.arl.gift.tutor.server.websocket.TutorWebSocketServlet</servlet-class>
+      
+        
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>tutorWebSocketServlet</servlet-name>
+        <url-pattern>/tuiws</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Survey Images Servlet -->
+    <servlet>
+        <servlet-name>surveyFileServlet</servlet-name>
+        <servlet-class>mil.arl.gift.common.gwt.server.FileServlet</servlet-class>
+      
+        <init-param>
+            <param-name>File_Path</param-name>
+            <param-value>data/surveyWebResources</param-value>
+        </init-param>
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>surveyFileServlet</servlet-name>
+        <url-pattern>/surveyWebResources/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Avatars Servlet -->
+    <servlet>
+        <servlet-name>avatarFileServlet</servlet-name>
+        <servlet-class>mil.arl.gift.common.gwt.server.FileServlet</servlet-class>
+      
+        <init-param>
+            <param-name>File_Path</param-name>
+            <param-value>data/avatarResources</param-value>
+        </init-param>
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>avatarFileServlet</servlet-name>
+        <url-pattern>/avatarResources/*</url-pattern>
+    </servlet-mapping>
+    
+        
+    <!-- FAQ Resources Servlet -->
+    <servlet>
+        <servlet-name>faqFileServlet</servlet-name>
+        <servlet-class>mil.arl.gift.common.gwt.server.FileServlet</servlet-class>
+      
+        <init-param>
+            <param-name>File_Path</param-name>
+            <param-value>data/faqResources</param-value>
+        </init-param>
+    </servlet>
+  
+    <servlet-mapping>
+        <servlet-name>faqFileServlet</servlet-name>
+        <url-pattern>/faqResources/*</url-pattern>
+    </servlet-mapping>
+    
+    <!-- Default page to serve -->
+    <welcome-file-list>
+        <welcome-file>TutorUserWebInterface.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>

@@ -1,0 +1,43 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DetonationProto";
+
+import "AbstractEnumObject.proto";
+import "BurstDescriptor.proto";
+import "EventIdentifier.proto";
+import "EntityIdentifier.proto";
+import "Vector3D.proto";
+
+/* This message represents the information specific to a detonation. */
+message Detonation {
+	/* The type of detonation result. */
+	AbstractEnumObject detonation_result = 1;
+	
+	/* The unique id for the detonation. */
+	EventIdentifier event_id = 2;
+	
+	/* The id of the entity that fired. */
+	EntityIdentifier firing_entity_id = 3;
+	
+	/* Location of the detonation. */
+	Vector3D location = 4;
+	
+	/* The description of the detonation's burst. */
+	BurstDescriptor burst_descriptor = 5;
+	
+	/* Unique id of the munition. */
+	EntityIdentifier munition_id = 6;
+	
+	/* Unique id of the target. */
+	EntityIdentifier target_entity_id = 7;
+	
+	/* The velocity of the munition at detonation. */
+	Vector3D velocity = 8;
+}

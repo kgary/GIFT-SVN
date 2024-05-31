@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Pedagogy Configuration Authoring Tool (PCAT).
+	This file contains configuration information for pedagogical models (e.g. eMAP).
+-->
+<EMAP version="5.0.1" xmlns:c0="http://GIFT.com/common" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <Rule>
+        <Attributes>
+            <Attribute type="Motivation">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Visual</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Animation</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Motivation">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Visual with Text</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI2</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Knowledge">
+                <value>Journeyman</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI2</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Medium Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Visual</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Textual</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Animation</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Knowledge">
+                <value>Novice</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Visual with Text</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Graphic</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Video</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Easy Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Self-Regulatory Ability">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Low User Control</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Self-Regulatory Ability">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Medium User Control</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>High User Control</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Grit">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Duration: Short</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Grit">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Duration: Medium</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Duration: Long</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Rule>
+    <Example>
+        <Attributes>
+            <Attribute type="Motivation">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Graphic</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Animation</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Video</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Duration: Short</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Duration: Medium</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Motivation">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Case Study</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Video</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Visual with Text</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Duration: Medium</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Duration: Long</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Knowledge">
+                <value>Journeyman</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>IMI2</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI3</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Medium Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Animation</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Case Study</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Visual with Text</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Knowledge">
+                <value>Novice</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Easy Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Worked Example</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Video</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Graphic</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI1</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI2</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Self-Regulatory Ability">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Low User Control</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Self-Regulatory Ability">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Medium User Control</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>High User Control</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Grit">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Duration: Short</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Grit">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Duration: Medium</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Duration: Long</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Example>
+    <Recall>
+        <Attributes>
+            <Attribute type="Motivation">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Multiple Choice</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Item Response</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Feedback Frequency Question by Question</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Motivation">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Short Response</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>LSA</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Feedback Frequency Following All Items</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Knowledge">
+                <value>Journeyman</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Hard Difficulty</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Recall>
+    <Practice>
+        <Attributes>
+            <Attribute type="Motivation">
+                <value>Low</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Medium Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI3</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Training Type Problem Solving</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Training Feedback Realtime</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Hints</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Assertions</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Motivation">
+                <value>High</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Hard Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI4</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Prompts</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Reflection</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Skill">
+                <value>Novice</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Easy Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI3</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI4</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Training Feedback Realtime</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Hints</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Assertions</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Skill">
+                <value>Journeyman</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Medium Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Hard Difficulty</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI3</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>IMI4</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Training Feedback Realtime</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Prompts</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Pumps</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Skill">
+                <value>Expert</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Training Feedback AAR</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Reflection</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Negative Affect</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Hard Difficulty</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Goal Orientation">
+                <value>Mastery</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Guidance Reflection</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+            <Attribute type="Goal Orientation">
+                <value>Performance</value>
+                <MetadataAttributes>
+                    <MetadataAttribute>
+                        <value>Guidance Praise</value>
+                    </MetadataAttribute>
+                    <MetadataAttribute>
+                        <value>Guidance Positive Affect</value>
+                    </MetadataAttribute>
+                </MetadataAttributes>
+            </Attribute>
+        </Attributes>
+    </Practice>
+</EMAP>

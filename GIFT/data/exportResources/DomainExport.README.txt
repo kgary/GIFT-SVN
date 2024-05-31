@@ -1,0 +1,17 @@
+This is an export of GIFT Domain content selected from a GIFT instance using the GIFT export tool.  
+It contains one or more exported courses (listed at the bottom of this README) that should be imported
+into an existing full GIFT installation.
+
+Quick Start
+
+To import this domain content into an existing GIFT installation, you will need to:
+1. Login to GIFT through the login webpage
+2. Click Import on the GIFT Dashboard Take a Course webpage run the Import tool
+3. select this zip file and follow any instructions.
+
+GIFT Resources
+
+For more information on GIFT or to collaborate with the GIFT
+community, visit gifttutoring.org
+
+Exported Domain Content 

@@ -1,0 +1,112 @@
+05-30-2024 21:41:09 [Gateway Single Process Thread] WARN  mil.arl.gift.gateway.interop.InteropConfigFileHandler - Not instantiating interop interface named DE Testbed DIS Adapter with id of 8 because the 'isAvailable' value is false.
+05-30-2024 21:41:09 [Gateway Single Process Thread] WARN  mil.arl.gift.gateway.interop.InteropConfigFileHandler - Not instantiating interop interface named DE Testbed XMLRPC Adapter with id of 9 because the 'isAvailable' value is false.
+05-30-2024 21:41:12 [Gateway module Shutdown Hook] ERROR mil.arl.gift.net.api.MessageClient - Caught JMSException while disconnecting the message client broker connection
+javax.jms.JMSException: Disposed due to prior exception
+	at org.apache.activemq.util.JMSExceptionSupport.create(JMSExceptionSupport.java:67) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.ActiveMQConnection.syncSendPacket(ActiveMQConnection.java:1465) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.ActiveMQConnection.close(ActiveMQConnection.java:729) ~[activemq-all-5.18.3.jar:5.18.3]
+	at mil.arl.gift.net.api.MessageClient.terminateConnection(MessageClient.java:989) [gift-common.jar:?]
+	at mil.arl.gift.net.api.MessageClient.disconnect(MessageClient.java:876) [gift-common.jar:?]
+	at mil.arl.gift.net.api.NetworkSession.cleanup(NetworkSession.java:3199) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.cleanup(AbstractModule.java:1124) [gift-common.jar:?]
+	at mil.arl.gift.gateway.GatewayModule.cleanup(GatewayModule.java:1587) [gift-gateway.jar:?]
+	at mil.arl.gift.gateway.GatewayModule$5.run(GatewayModule.java:1692) [gift-gateway.jar:?]
+Caused by: org.apache.activemq.transport.TransportDisposedIOException: Disposed due to prior exception
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:125) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:346) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportSupport.onException(TransportSupport.java:96) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.run(TcpTransport.java:219) ~[activemq-all-5.18.3.jar:5.18.3]
+	at java.lang.Thread.run(Thread.java:834) ~[?:?]
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:397) ~[?:?]
+	at org.apache.activemq.openwire.OpenWireFormat.unmarshal(OpenWireFormat.java:280) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.readCommand(TcpTransport.java:240) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.doRun(TcpTransport.java:232) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.run(TcpTransport.java:215) ~[activemq-all-5.18.3.jar:5.18.3]
+	at java.lang.Thread.run(Thread.java:834) ~[?:?]
+05-30-2024 21:41:12 [Gateway module Shutdown Hook] ERROR mil.arl.gift.net.api.MessageClient - Failed to destroy the destination of 'Gateway_Queue_10.203.43.114'.
+mil.arl.gift.common.io.DetailedException: Failed to invoke the 'removeQueue' operation on 'Gateway_Queue_10.203.43.114' through JMX connection.  Does that destination exist? Check the ActiveMQ Console (e.g. http://localhost:8161/admin/index.jsp). The error reads:
+org.apache.activemq:BrokerName=localhost,Type=Broker
+	at mil.arl.gift.net.api.MessageClient.attemptDestroy(MessageClient.java:446) ~[gift-common.jar:?]
+	at mil.arl.gift.net.api.MessageClient.attemptDestroy(MessageClient.java:497) ~[gift-common.jar:?]
+	at mil.arl.gift.net.api.MessageClient.terminateConnection(MessageClient.java:1010) [gift-common.jar:?]
+	at mil.arl.gift.net.api.MessageClient.disconnect(MessageClient.java:876) [gift-common.jar:?]
+	at mil.arl.gift.net.api.NetworkSession.cleanup(NetworkSession.java:3199) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.cleanup(AbstractModule.java:1124) [gift-common.jar:?]
+	at mil.arl.gift.gateway.GatewayModule.cleanup(GatewayModule.java:1587) [gift-gateway.jar:?]
+	at mil.arl.gift.gateway.GatewayModule$5.run(GatewayModule.java:1692) [gift-gateway.jar:?]
+Caused by: javax.management.InstanceNotFoundException: org.apache.activemq:BrokerName=localhost,Type=Broker
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getMBean(DefaultMBeanServerInterceptor.java:1083) ~[?:?]
+	at com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.getClassLoaderFor(DefaultMBeanServerInterceptor.java:1421) ~[?:?]
+	at com.sun.jmx.mbeanserver.JmxMBeanServer.getClassLoaderFor(JmxMBeanServer.java:1322) ~[?:?]
+	at javax.management.remote.rmi.RMIConnectionImpl$6.run(RMIConnectionImpl.java:1363) ~[?:?]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:?]
+	at javax.management.remote.rmi.RMIConnectionImpl.getClassLoaderFor(RMIConnectionImpl.java:1360) ~[?:?]
+	at javax.management.remote.rmi.RMIConnectionImpl.invoke(RMIConnectionImpl.java:811) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:359) ~[?:?]
+	at sun.rmi.transport.Transport$1.run(Transport.java:200) ~[?:?]
+	at sun.rmi.transport.Transport$1.run(Transport.java:197) ~[?:?]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:?]
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:196) ~[?:?]
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:562) ~[?:?]
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:796) ~[?:?]
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:677) ~[?:?]
+	at java.security.AccessController.doPrivileged(Native Method) ~[?:?]
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:676) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[?:?]
+	at java.lang.Thread.run(Thread.java:834) ~[?:?]
+	at sun.rmi.transport.StreamRemoteCall.exceptionReceivedFromServer(StreamRemoteCall.java:283) ~[?:?]
+	at sun.rmi.transport.StreamRemoteCall.executeCall(StreamRemoteCall.java:260) ~[?:?]
+	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:161) ~[?:?]
+	at jdk.jmx.remote.internal.rmi.PRef.invoke(Unknown Source) ~[?:?]
+	at javax.management.remote.rmi.RMIConnectionImpl_Stub.invoke(Unknown Source) ~[?:?]
+	at javax.management.remote.rmi.RMIConnector$RemoteMBeanServerConnection.invoke(RMIConnector.java:1021) ~[?:?]
+	at mil.arl.gift.net.api.MessageClient.attemptDestroy(MessageClient.java:423) ~[gift-common.jar:?]
+	... 7 more
+05-30-2024 21:41:16 [Gateway Single Process Thread] WARN  mil.arl.gift.gateway.GatewayModule - The following gateway interops are not being used in this instance because they are either set to 'not' available or a configuration is missing in config/gateway/configurations/default.interopConfig.xml:
+mil.arl.gift.gateway.interop.detestbedplugin.DETestbedPluginXMLRPCInterface
+
+05-30-2024 21:41:17 [Heartbeat:Gateway_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Gateway_Discovery_Topic, therefore unable to send the payload = [GatewayModuleStatus: topicName = Gateway_Topic_10.203.43.114, , ipAddressess =
+[172.20.32.1, 172.23.192.1, 127.0.0.1, 10.203.43.114],
+[ModuleStatus: moduleName = Gateway_Module, queueName = Gateway_Queue_10.203.43.114_Inbox, moduleType = Gateway_Module, moduleState = Unknown]] for message type GatewayModuleStatus
+05-30-2024 21:41:17 [Heartbeat:Gateway_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type GatewayModuleStatus with payload = [GatewayModuleStatus: topicName = Gateway_Topic_10.203.43.114, , ipAddressess =
+[172.20.32.1, 172.23.192.1, 127.0.0.1, 10.203.43.114],
+[ModuleStatus: moduleName = Gateway_Module, queueName = Gateway_Queue_10.203.43.114_Inbox, moduleType = Gateway_Module, moduleState = Unknown]].
+java.lang.Exception: Unable to find a message client for subject name Gateway_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.gateway.GatewayModule.sendModuleStatus(GatewayModule.java:1124) [gift-gateway.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 21:41:18 [Heartbeat:Gateway_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Gateway_Discovery_Topic, therefore unable to send the payload = [GatewayModuleStatus: topicName = Gateway_Topic_10.203.43.114, , ipAddressess =
+[172.20.32.1, 172.23.192.1, 127.0.0.1, 10.203.43.114],
+[ModuleStatus: moduleName = Gateway_Module, queueName = Gateway_Queue_10.203.43.114_Inbox, moduleType = Gateway_Module, moduleState = Unknown]] for message type GatewayModuleStatus
+05-30-2024 21:41:18 [Heartbeat:Gateway_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type GatewayModuleStatus with payload = [GatewayModuleStatus: topicName = Gateway_Topic_10.203.43.114, , ipAddressess =
+[172.20.32.1, 172.23.192.1, 127.0.0.1, 10.203.43.114],
+[ModuleStatus: moduleName = Gateway_Module, queueName = Gateway_Queue_10.203.43.114_Inbox, moduleType = Gateway_Module, moduleState = Unknown]].
+java.lang.Exception: Unable to find a message client for subject name Gateway_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.gateway.GatewayModule.sendModuleStatus(GatewayModule.java:1124) [gift-gateway.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 21:41:20 [Heartbeat:Gateway_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Gateway_Discovery_Topic, therefore unable to send the payload = [GatewayModuleStatus: topicName = Gateway_Topic_10.203.43.114, , ipAddressess =
+[172.20.32.1, 172.23.192.1, 127.0.0.1, 10.203.43.114],
+[ModuleStatus: moduleName = Gateway_Module, queueName = Gateway_Queue_10.203.43.114_Inbox, moduleType = Gateway_Module, moduleState = Unknown]] for message type GatewayModuleStatus
+05-30-2024 21:41:20 [Heartbeat:Gateway_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type GatewayModuleStatus with payload = [GatewayModuleStatus: topicName = Gateway_Topic_10.203.43.114, , ipAddressess =
+[172.20.32.1, 172.23.192.1, 127.0.0.1, 10.203.43.114],
+[ModuleStatus: moduleName = Gateway_Module, queueName = Gateway_Queue_10.203.43.114_Inbox, moduleType = Gateway_Module, moduleState = Unknown]].
+java.lang.Exception: Unable to find a message client for subject name Gateway_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.gateway.GatewayModule.sendModuleStatus(GatewayModule.java:1124) [gift-gateway.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]

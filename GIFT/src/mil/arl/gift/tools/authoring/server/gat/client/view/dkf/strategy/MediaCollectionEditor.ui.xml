@@ -1,0 +1,48 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:s="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.padTop {
+			padding-top: 5px;
+		}
+		.smallPadBottom {
+			margin-bottom: 5px;
+		}
+		.note {
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(185, 185, 185);
+			border-radius: 3px;
+			box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+			background-color: rgb(255, 255, 200);
+            padding: 5px;
+		}
+		.validateMediaButton {
+			margin-bottom: 5px !important;
+			float: right;
+		}
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.padTop} {style.smallPadBottom}'>
+	    <b:Tooltip title='Click here to check access to each media element.'>
+		    <b:Button type='WARNING' icon='CHECK' addStyleNames='{style.validateMediaButton}' ui:field='validateMediaButton'>
+		        Check Media
+		    </b:Button>
+	    </b:Tooltip>
+        <s:ItemListEditor ui:field="mediaList" 
+            placeholder="No media items have been added, so no media will be displayed."
+            draggable="true" />
+		<g:HTMLPanel addStyleNames='{style.note}'>
+			<b>Note:</b>
+			Each time this activity is executed, every media item in this
+			list will be presented to the user sequentially.
+			<br />
+			<br />
+			The order in which media is presented is determined by the order
+			of this list, starting from the top. You can
+			change the order in which media is presented by dragging and dropping
+			media items on top of each other.
+		</g:HTMLPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,33 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "FilteredSensorDataProto";
+
+import "AbstractEnumObject.proto";
+import "AbstractSensorAttributeValue.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+/* This message represents filtered sensor data. */
+message FilteredSensorData {
+	/* The experiment's id. */
+	map<string, AbstractSensorAttributeValue> attribute_values = 1;
+	
+	/* The name of the filter. */
+	google.protobuf.StringValue filter_name = 2;
+	
+	/* The name of the sensor. */
+	google.protobuf.StringValue sensor_name = 3;
+	
+	/* The type of sensor. */
+	AbstractEnumObject sensor_type = 4;
+	
+	/* The elapsed time passed. */
+	google.protobuf.Timestamp elapsed_time = 5;
+}

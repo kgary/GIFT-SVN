@@ -1,0 +1,40 @@
+﻿<body>
+<p><strong>Number of Shots Fired Condition</strong></p>
+<p>This condition checkes if the expected number of shots were fired.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span></li><li>
+	<span style="color : #0000FF">At Expectation</span><ul>
+		<li>case: the learner fires the expected number of shots, no less, no 
+		more</li>
+	</ul>
+	<li><span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the default value</li>
+		<li>case: if the number of shots fired does NOT equal the expected 
+		number</li>
+	</ul>
+	</li>
+	<li>Unknown</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>count - the number of shots fired</li>
+	<li>time - the time it takes to fire the expected number of shots</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition completes once the number of expected shots is reached</li>
+	<li>the condition can not be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>Marksmanship</li>
+	<li>any application that can produce GIFT Rifle Shot messages</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Rifle Shot </li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.NumberOfShotsFiredCondition</em></p>
+</body>

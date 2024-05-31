@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.0
+Created-By: 1.7.0_17-b02 (Oracle Corporation)
+Specification-Title: RapidMiner
+Specification-Version: 5.3.013
+Implementation-Title: RapidMiner
+Implementation-Version: 5.3.013-WIN64
+Implementation-Vendor: Rapid-I
+Specification-Vendor: Rapid-I
+Implementation-URL: http://www.rapidminer.com
+Main-Class: com.rapidminer.gui.RapidMinerGUI
+Class-Path: launcher.jar SassyReader-0.5.jar encog.jar jep.jar joone-engine.jar jxl.jar launcher.jar poi-3.8-20120326.jar poi-ooxml-3.8-20120326.jar rapidminer.jar vldocking.jar xmlpull.jar xpp3.jar xstream.jar

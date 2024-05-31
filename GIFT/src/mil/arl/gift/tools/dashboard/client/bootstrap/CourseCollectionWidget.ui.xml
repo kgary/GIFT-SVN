@@ -1,0 +1,162 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    <ui:style>
+    	.collectionNameLabel {
+            font-weight: bold;
+            padding: 5px;
+            display: inline;
+        }
+        .collectionButtons {
+            display: inline;
+            float: right;            
+        }
+        .tabbed {
+            padding: 0px 20px;
+        }
+        .marginBottom {
+            margin-bottom: 10px;
+        }
+        .inline {
+            display: inline;
+        }
+        .panelButton {
+            font-size: 1.5em;
+            padding: 0px;
+            margin: -7px 5px 0px 5px;
+            color: #ffffff;
+        }
+        .panelButton:hover {
+            color: #fff;
+            text-shadow: 0px 0px 7px white;
+        }
+        .panelButton:focus {
+            color: #ffffff;
+            text-shadow: 0px 0px 7px white;
+        }
+        .center {
+            text-align: center;
+        }
+        .clickable {
+            cursor: pointer;
+        }
+        /* For some reason, adding overflow:auto fixes the problem where floating elements go outside their parent's height.*/
+        .fixFloat {
+            overflow: auto;
+        }
+        .descriptionText {
+            max-height: 100px;
+            overflow: auto;
+            white-space: pre-wrap;
+        }
+        .typeIconStyle {
+            margin-left: 20px;
+            margin-right: 0px;
+        }
+        .copyUrlButton {
+            padding: 0px 12px;
+        }
+    </ui:style>
+    <g:FlowPanel>
+        <g:FlowPanel addStyleNames='experimentPanel experimentCollectionPanel' ui:field='rootPanel'>
+            <g:FocusPanel addStyleNames='{style.clickable}' ui:field='header'>        
+                <g:FlowPanel addStyleNames='{style.fixFloat}'>
+                    <b:Icon type='CHEVRON_CIRCLE_RIGHT' ui:field='headerCollapseIcon'/>
+                    <b:Icon type='LIST_OL' addStyleNames='{style.typeIconStyle}'/>
+                    <g:Label addStyleNames='{style.collectionNameLabel}' ui:field='headerText'/>
+                    
+                    <g:FlowPanel addStyleNames='{style.collectionButtons}'>                    
+                        <wb:ManagedTooltip title="Add a new published course to this collection">
+                            <b:Button ui:field="addNewCourseButton" type="LINK" icon="PLUS" addStyleNames="{style.panelButton}" />
+                        </wb:ManagedTooltip>
+                        <wb:ManagedTooltip title="Edits the metadata of this collection">
+                          <b:Button ui:field="editCollectionButton" type="LINK" icon="PENCIL" addStyleNames="{style.panelButton}" />
+                        </wb:ManagedTooltip>
+                        <wb:ManagedTooltip title="Refreshes the collection metadata.">
+                            <b:Button ui:field='refreshCollectionButton' type="LINK" icon='REFRESH' addStyleNames='{style.panelButton}' />
+                        </wb:ManagedTooltip>
+                        <wb:ManagedTooltip title="Delete this collection and all of the published courses it contains">
+                            <b:Button ui:field="deleteCollectionButton" type="LINK" icon="TRASH" addStyleNames="{style.panelButton}" />
+                        </wb:ManagedTooltip>
+                    </g:FlowPanel>
+                </g:FlowPanel>
+            </g:FocusPanel>  
+    
+            <g:FlowPanel>
+                <g:DeckPanel animationEnabled='true' ui:field='contentDeck'>
+                    <g:SimplePanel ui:field='noContentPanel' />
+                    <g:FlowPanel addStyleNames='experimentContent' ui:field='contentPanel'>
+                        <g:HTML addStyleNames='{style.collectionNameLabel}'>
+                            Description
+                        </g:HTML>
+                        <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                            <b.html:Paragraph addStyleNames='{style.descriptionText}' ui:field='descriptionText'/>
+                        </g:FlowPanel>
+                        
+                        <g:HTML addStyleNames='{style.collectionNameLabel}'>
+                            URL
+                        </g:HTML>
+                        <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                            <g:Label width='100%' addStyleNames='{style.inline}' ui:field='urlLabel'/>
+                            <wb:ManagedTooltip title="Copy the URL to the Clipboard">
+                                <b:Button ui:field='copyUrlButton' type='LINK' icon='COPY' addStyleNames='{style.copyUrlButton}' />
+                            </wb:ManagedTooltip>
+                        </g:FlowPanel>
+                        <g:HTMLPanel>
+                            <hr style='border-top: 1px solid #AAAAAA; margin-top: 10px; margin-bottom: 10px;' />
+                        </g:HTMLPanel>
+                        <g:SimplePanel ui:field="experimentSimplePanel" />
+                        
+                        <g:FocusPanel addStyleNames='{style.center} {style.clickable}' ui:field='footerPanel'>
+                            <g:FlowPanel>
+                                <g:HTML>
+                                    <hr style='border-color: rgb(175, 175, 175); margin: 0px;'/>
+                                </g:HTML>
+                                <b:Icon type='ANGLE_DOUBLE_DOWN' size='TIMES2' ui:field='footerCollapseIcon'/>
+                            </g:FlowPanel>
+                        </g:FocusPanel>
+                        
+                    </g:FlowPanel>
+                </g:DeckPanel>    
+            </g:FlowPanel>
+        </g:FlowPanel>
+            
+        <b:Modal title='' b:id="editCollectionDialog" ui:field="editDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" addStyleNames="editCollectionDialogHeader">
+            <b:ModalHeader>
+                <b:Heading size="H3">
+                    <b.html:Text text="Edit Collection"/>
+                </b:Heading>
+            </b:ModalHeader>
+           <b:ModalBody>
+                 <b:Row>
+                    <b:Column size="MD_12">
+                        <g:FlowPanel>
+                        
+                            <g:HTML addStyleNames='{style.collectionNameLabel}'>
+                                Collection Name:
+                            </g:HTML>
+                            <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                <g:TextBox width='100%' ui:field='editNameTextBox'/>
+                            </g:FlowPanel>
+                        
+                            <g:HTML addStyleNames='{style.collectionNameLabel}'>
+                                Description (Optional):
+                            </g:HTML>
+                            <g:FlowPanel addStyleNames='{style.tabbed} {style.marginBottom}'>
+                                <g:TextArea width='100%' height='100px' ui:field='editDescriptionTextBox'/>
+                            </g:FlowPanel>                           
+                            
+                        </g:FlowPanel>
+                    </b:Column>
+                </b:Row>
+            </b:ModalBody>
+            <b:ModalFooter>
+                <b:Button type="PRIMARY" ui:field="saveEditButton" text="Save Changes" />
+                <b:Button type="DANGER" dataDismiss="MODAL" text="Cancel" />
+            </b:ModalFooter>
+       </b:Modal>
+    </g:FlowPanel>
+</ui:UiBinder> 

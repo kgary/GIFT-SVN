@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractUserSessionDetailsProto";
+
+import "LtiUserSessionDetails.proto";
+
+/*  
+ *	This is the protobuf message that can be used in a user session to
+ *	provide additional details based on the session type.
+ */ 
+message AbstractUserSessionDetails {
+	/* 
+	 *	An AbstractUserSession can only contain an LtiUserSessionDetails message. 
+	 *	 
+	 */
+	oneof item {
+		LtiUserSessionDetails lti_user_session_details = 2;
+	}
+}
+

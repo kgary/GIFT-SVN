@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "PublishLessonScoreResponseProto";
+
+import "LMSConnectionInfo.proto";
+import "CourseRecordRef.proto";
+
+/* This message contains a response to a publish lesson score request. */
+message PublishLessonScoreResponse {
+	/* The collection that contains the unique identifier for the score record for each LMS connection. */
+	repeated PublishedRecord records = 1;
+}
+
+/* Custom map structure used to support the map type for a PublishLessonScoreResponse. Note that 
+   the key field is the LMSConnectionInfo and the value returned is an integer corresponding to 
+   the LMSConnectionInfo. */
+message PublishedRecord {
+	LMSConnectionInfo key = 1;
+	CourseRecordRef value = 2;
+}

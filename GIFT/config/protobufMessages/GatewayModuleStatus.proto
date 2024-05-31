@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+ 
+option java_package = "generated.proto.common";
+option java_outer_classname = "GatewayModuleStatusProto";
+
+import "google/protobuf/wrappers.proto";
+import "ModuleStatus.proto";
+
+/* Represents a gateway module's status. */
+message GatewayModuleStatus {
+	
+	/* The topic name the gateway sends simulation message too.  Can't be null or empty. */
+	google.protobuf.StringValue topic_name = 1;
+	
+	/* One or more IP addresses of the machine running the Gateway module.  Can't be null or empty.
+     * Can contain localhost equivalents. */
+	repeated string ip_addresses = 2;
+	
+	/* A module's status information. Can't be null. */
+	ModuleStatus module_status = 3;
+	
+}

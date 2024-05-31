@@ -1,0 +1,81 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:widgets="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.pedagogy.widgets"
+	xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view">
+	
+	<ui:style>
+		.border{
+			border-style: solid;
+			border-width: 1px;
+			border-color: rgb(200,200,200);
+		}
+		.mainPanel{
+			border-style: solid none;
+			border-width: 1px;
+			border-color: rgb(200,200,200);
+		}
+		.whiteBackground{
+			background-color: white;
+		}
+	</ui:style>
+	
+	<g:DockLayoutPanel>
+	
+		<g:north size="0">
+		    <g:HorizontalPanel width="100%">
+			<g:MenuBar ui:field="mainMenu" width="400%"
+				focusOnHoverEnabled="false">
+				
+				<g:MenuItem ui:field='editorIcon' />
+				
+				<g:MenuItem text="File" ui:field="fileMenu">
+					<g:MenuBar vertical="true">
+						<g:MenuItem text="New" ui:field="fileNewMenuItem"/>
+						<g:MenuItem text="Save" ui:field="fileSaveMenuItem" />
+						<g:MenuItem text="Save and Validate" ui:field="fileSaveAndValidateMenuItem" />
+						<g:MenuItem text="Save-As" ui:field="fileSaveAsMenuItem" />	
+					</g:MenuBar>
+				</g:MenuItem>
+				<g:MenuItem text="Edit" ui:field="editMenu">
+				    <g:MenuBar vertical="true">
+                        <g:MenuItem text="Add Pedagogical Data" ui:field="addMenuItem"/>
+                        <g:MenuItem text="Delete Pedagogical Data" ui:field="deleteMenuItem" />
+                        <g:MenuItemSeparator />
+                        <g:MenuItem text="Discard Changes" ui:field="fileDiscardChangesMenuItem" />
+                    </g:MenuBar>
+				</g:MenuItem>
+			</g:MenuBar>
+			<u:HelpButtonWidget ui:field="helpButton"/>
+            <g:TextBox ui:field="bugTextBox"/>
+		  </g:HorizontalPanel>
+		</g:north>
+
+		<g:center>
+		    <g:SplitLayoutPanel>	
+					
+				<g:west size="250">
+					<g:ScrollPanel addStyleNames='{style.border} {style.whiteBackground}'>				
+						<g:DeckPanel ui:field='treePanel'>
+						
+							<g:HTML ui:field='treeEmptyLabel'>
+								<div style='text-align: center; color:red; font-weight: bold; padding-top: 10px;'>
+									Please add some pedagogical data.
+								</div>
+							</g:HTML>
+							
+							<widgets:PedagogyTree ui:field="pedagogyTree"/>
+						</g:DeckPanel>
+					</g:ScrollPanel>
+				</g:west>
+				
+				<g:center>
+					<g:ScrollPanel addStyleNames='{style.mainPanel}'>
+						<widgets:MetadataAttributesEditor ui:field="metadataAttributesEditor"/>
+					</g:ScrollPanel>
+				</g:center>
+			</g:SplitLayoutPanel>
+		</g:center>
+		
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

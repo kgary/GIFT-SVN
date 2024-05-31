@@ -1,0 +1,33 @@
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\ExampleTrainingApplication.exe.config
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\ExampleTrainingApplication.exe
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\ExampleTrainingApplication.pdb
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\CookComputing.XmlRpcV2.dll
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\IStateName.dll
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\SimpleExampleTrainingApplication.csprojResolveAssemblyReference.cache
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.Form1.resources
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.Properties.Resources.resources
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\SimpleExampleTrainingApplication.csproj.GenerateResource.Cache
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.exe
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.pdb
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\ExampleTrainingApplication.exe.config
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.exe
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.pdb
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\ExampleTrainingApplication.exe
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\ExampleTrainingApplication.pdb
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\CookComputing.XmlRpcV2.dll
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\IStateName.dll
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\SimpleExampleTrainingApplication.csprojResolveAssemblyReference.cache
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.Form1.resources
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.Properties.Resources.resources
+D:\work\lite svn\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\SimpleExampleTrainingApplication.csproj.GenerateResource.Cache
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\ExampleTrainingApplication.exe.config
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\ExampleTrainingApplication.exe
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\ExampleTrainingApplication.pdb
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\CookComputing.XmlRpcV2.dll
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Release\IStateName.dll
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\SimpleExampleTrainingApplication.csprojResolveAssemblyReference.cache
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.Form1.resources
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.Properties.Resources.resources
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\SimpleExampleTrainingApplication.csproj.GenerateResource.Cache
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.exe
+C:\GIFT\tags\release_5.0_2014-2_08.01.2014\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Release\ExampleTrainingApplication.pdb

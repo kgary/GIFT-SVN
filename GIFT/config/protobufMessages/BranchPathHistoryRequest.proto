@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "BranchPathHistoryRequestProto";
+
+import "BranchPathHistory.proto";
+
+/* This message contains a list of branch path history requests. */
+message BranchPathHistoryRequest {
+	/* The paths for the branch history. */
+	repeated BranchPathHistory paths = 1;
+}

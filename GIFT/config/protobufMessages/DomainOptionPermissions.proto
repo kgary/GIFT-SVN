@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainOptionPermissionsProto";
+
+import "AbstractEnumObject.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains permission information for this domain option. */
+message DomainOptionPermissions {
+	/* The user name of the person granted permission. */
+	google.protobuf.StringValue permission_user = 1;
+	
+	/* Value indicating the permission for the user. */
+	AbstractEnumObject permission_type = 2;
+	
+	/* The value indicating if the user is the owner of the domain option. */
+	google.protobuf.BoolValue permission_is_owner = 3;
+}

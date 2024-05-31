@@ -1,0 +1,10 @@
+#
+# This file contains the list of camera's for the monitor to display
+#
+# Format: "<camera display name>=<ip-address>"
+# 
+# Comments: start line with "#" character
+#
+#camera1=10.1.21.70
+#camera2=10.1.21.70
+#camera3=10.1.21.70

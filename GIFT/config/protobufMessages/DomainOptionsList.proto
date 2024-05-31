@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainOptionsListProto";
+
+import "DomainOption.proto";
+
+/* This message represents the list of domain options. */
+message DomainOptionsList {
+	/* The list of domain options. */
+	repeated DomainOption domain_options = 1;
+}

@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 	version="8.0" 
+			xmlns:common="http://GIFT.com/common"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:fg="http://www.FGolubov.com/XMLEditor" 
+			elementFormDefault="qualified">
+  <xs:import namespace="http://GIFT.com/common" schemaLocation="../common.xsd"/>
+  <xs:element name="LessonMaterialList">  
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Lesson Material List"> 
+			<fg:message>This is the root node of lesson material list which contains a list of lesson material references.  Look for other helpful information by clicking on a node.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="media"/>
+		</xs:choice>
+		<xs:element name="Assessment" minOccurs="0">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="UnderDwell" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="duration">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Under-Dwell Duration">
+												<fg:message>Amount of time in seconds the learner must dwell on this content in order to not receive feedback.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:integer">
+											<xs:minInclusive value="0"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="feedback">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Under-Dwell Feedback Message">
+												<fg:message>A message to display to the learner when the under-dwell logic is violated.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="OverDwell" minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:element>
+		<xs:element minOccurs="0" ref="isCollection"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OverDwell">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="duration">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Over-Dwell Duration">
+								<fg:message>Amount of time it takes for the over-dwell logic to trigger causing the feedback to be delivered.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice>
+								<xs:element name="durationTime">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Over-Dwell Time">
+												<fg:message>Amount of time in seconds it takes for the over-dwell logic to trigger causing the feedback to be delivered.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:integer">
+											<xs:minInclusive value="0"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="durationPercent" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Over-Dwell Duration Percentage">
+												<fg:message>Percent of the duration Amount of time in seconds it takes for the over-dwell logic to trigger causing the feedback to be delivered.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="time">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Ideal Time">
+															<fg:message>Ideal duration of time in seconds the learner needs to interact with the content.  
+															This is used with the percent value to calculate the amount of time in seconds it takes for the over-dwell logic to trigger causing the feedback to be delivered.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:integer">
+														<xs:minInclusive value="0"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+											<xs:element name="percent">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Over-Dwell Duration Percentage">
+															<fg:message>Percent of the time in seconds it takes for the over-dwell logic to trigger causing the feedback to be delivered.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:integer">
+														<xs:minInclusive value="0"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>										
+				<xs:element name="feedback">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Over-Dwell Feedback Message">
+								<fg:message>A message to display to the learner when the over-dwell logic is violated.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+  <xs:element name="media">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Media"> 
+				<fg:message>A reference to training material media for a course or lesson.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+    <xs:complexType>
+		<xs:sequence>
+			<xs:element ref="name"/>
+			<xs:element ref="uri"/>
+			<xs:element minOccurs="0" ref="message"/>
+			<xs:choice>
+				<xs:element ref="PDFProperties"/>
+				<xs:element ref="WebpageProperties"/>
+				<xs:element ref="YoutubeVideoProperties"/>
+				<!--MH: not supported in Tutor yet - <xs:element ref="VideoProperties"/>-->
+				<xs:element ref="ImageProperties"/>
+				<xs:element ref="SlideShowProperties"/>
+				<xs:element ref="LtiProperties"/>
+			</xs:choice>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PDFProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="PDF Properties"> 
+				<fg:message>Represents the properties for displaying a PDF.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="WebpageProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Webpage Properties"> 
+				<fg:message>Represents the properties for displaying a Webpage.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="YoutubeVideoProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="YoutubeVideo Properties"> 
+				<fg:message>Represents the properties for displaying a YoutubeVideo.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element ref="size" minOccurs="0"/>
+			<xs:element ref="allowFullScreen" minOccurs="0"/>
+			<xs:element ref="allowAutoPlay" minOccurs="0"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VideoProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Video Properties"> 
+				<fg:message>Represents the properties for displaying a Video.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="ImageProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Image Properties"> 
+				<fg:message>Represents the properties for displaying a Image.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="SlideShowProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Slide Show Properties"> 
+				<fg:message>Represents the properties for displaying a SlideShow.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="slideRelativePath" type="xs:string"
+				default="" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="displayPreviousSlideButton" type="common:booleanEnum"></xs:element>
+			<xs:element name="keepContinueButton" type="common:booleanEnum"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="LtiProperties">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="LTI Properties"> 
+				<fg:message>Represents the properties for displaying an LTI tool.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="ltiIdentifier">
+		        <xs:annotation>
+		            <xs:appinfo>
+		                <fg:node-info exposed="true" message="Identifier">
+		                    <fg:message>The LTI identifier associated with the client key and client secret.</fg:message>
+		                </fg:node-info>
+		            </xs:appinfo>
+		        </xs:annotation>
+		        <xs:simpleType>
+		            <xs:restriction base="xs:string">
+		                <xs:minLength value="1"/>
+		            </xs:restriction>
+		        </xs:simpleType>
+		    </xs:element>
+		    <xs:element minOccurs="0" ref="customParameters">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Custom Parameters">
+							<fg:message>This is a container for a list of key/value pairs used to store any custom parameters for the LTI provider. </fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="allowScore" type="common:booleanEnum" default="true">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Allow LTI provider to return score">
+							<fg:message>Allows the LTI provider to return a score between 0 and 1 inclusive. The default is true, meaning the LTI provider is allowed to, but not guaranteed to, return a score if possible.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="sliderMinValue" default="25">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Minimum Slider Value">
+							<fg:message>Minimum score between 0 and 100 (inclusive) to receive a 'Journeyman' rating.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="sliderMaxValue" default="75">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Maximum Slider Value">
+							<fg:message>Minimum score between 0 and 100 (inclusive) to receive a 'Expert' rating.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" ref="ltiConcepts"/>
+			<xs:element minOccurs="0" name="isKnowledge" type="common:booleanEnum" default="true">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Learner State Attribute"> 
+							<fg:message>The Knowledge or Skill learner state attribute for the LTI course object.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="displayMode" type="common:DisplayModeEnum" default="Inline">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Display Mode"> 
+							<fg:message>The type of display mode in which to present the LTI tool.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+  </xs:element>
+  <xs:element name="ltiConcepts">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="LTI Concepts">
+					<fg:message>Specifies the selected concepts for the LTI provider.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+			    <xs:element maxOccurs="unbounded" name="concepts">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="List containing the LTI concepts."> 
+								<fg:message>The list of selected LTI concepts.</fg:message>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+  <xs:element name="size">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Size"> 
+			<fg:message>The display size of the material.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="width" type="xs:decimal" default="420"/>
+			<xs:element name="height" type="xs:decimal" default="315"/>
+            <xs:element name="widthUnits" type="xs:string" default="px" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="heightUnits" type="xs:string" default="px" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="constrainToScreen" type="common:booleanEnum" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="allowFullScreen" type="common:booleanEnum">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Allow Full Screen"> 
+			<fg:message>Whether to allow the user to show the material in full screen mode.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+  </xs:element>
+   <xs:element name="allowAutoPlay" type="common:booleanEnum">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Allow AutoPlay"> 
+			<fg:message>Whether to allow the material to begin playing as soon as it loads.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+  </xs:element>
+  <xs:element name="name">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Display Name"> 
+			<fg:message>The display name of the material as shown on the TUI.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="uri">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Uniform Resource Identifier (URI) "> 
+			<fg:message>Identifies the location of a lesson material resource (e.g. .pdf, index.html, youtube.com).</fg:message>
+			<fg:message>If the resource is a local file, specify the relative path from the Domain\TrainingMaterial directory.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+	<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="isCollection" type="common:booleanEnum">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Is Collection"> 
+			<fg:message>Whether or not this lesson material contains a collection.</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+  </xs:element>
+  <xs:element name="message" type="xs:string">
+	<xs:annotation>
+	  <xs:appinfo>
+		<fg:node-info message="Message"> 
+			<fg:message>A description of the lesson material</fg:message>
+		</fg:node-info> 
+	  </xs:appinfo>
+	</xs:annotation> 
+  </xs:element>
+  <xs:element name="customParameters">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info message="LTI Custom Parameters">
+					<fg:message>Specifies the custom parameters used by the LTI provider for this course.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" ref="common:nvpair"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<project name="Learner Config Authoring Tool" default="compile">
+    <property name="root.path"         value="../../../../../.."/>
+    <property name="package.name"      value="mil.arl.gift.tools.spl"/>
+    <property name="source.path"       value="mil/arl/gift/tools/spl"/>
+    <property name="jarfile.ext.path" value="gift-spl"/>
+    <property name="jarfile.name" value="gift-spl.jar"/>
+    <property name="gift.common.jar" value="gift-common.jar"/>
+    <property name="gift.domain.jar" value="gift-domain.jar"/>
+    <property name="gift.ums.jar" value="gift-ums.jar"/>
+    <property name="gift.lms.jar" value="gift-lms.jar"/>
+    <property name="gift.ped.jar" value="gift-pedagogical.jar"/>
+    <property name="gift.learner.jar" value="gift-learner.jar"/>
+    <property name="gift.sensor.jar" value="gift-sensor.jar"/>
+    <property name="gift.gateway.jar" value="gift-gateway.jar"/>
+    
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+	    
+    <path id="classpath">
+    	<fileset dir="${root.path}/bin" includes="gift-common.jar"/>
+    	<fileset dir="${root.path}/external/activemq" includes="activemq-all-5.18.3.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+		<fileset dir="${root.path}/external/protobuf/bin" includes="**/protobuf-java-3.7.0.jar"/>
+    </path>
+    
+    <target name="checkForChanges">
+        <uptodate property="rebuild.common.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+    	<uptodate property="rebuild.domain.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.domain.jar}"/>
+    	<uptodate property="rebuild.ums.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.ums.jar}"/>
+		<uptodate property="rebuild.lms.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.lms.jar}"/>
+		<uptodate property="rebuild.ped.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.ped.jar}"/>
+		<uptodate property="rebuild.learner.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.learner.jar}"/>
+		<uptodate property="rebuild.sensor.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.sensor.jar}"/>
+		<uptodate property="rebuild.gateway.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.gateway.jar}"/>
+        <uptodate property="build.notRequired" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <and>
+                <isset property="rebuild.common.required"/>
+            	<isset property="rebuild.domain.required"/>
+            	<isset property="rebuild.ums.required"/>
+        		<isset property="rebuild.lms.required"/>
+            	<isset property="rebuild.ped.required"/>
+    			<isset property="rebuild.learner.required"/>
+            	<isset property="rebuild.sensor.required"/>
+        		<isset property="rebuild.gateway.required"/>
+                <isset property="build.notRequired"/>
+            </and>
+        </condition>
+    </target>
+
+    <target name="compileCore" unless="build.required">
+    	<echo message="Compiling SPL"/>
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+    	<javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+    	            <compilerarg value="-Xlint"/>
+    	</javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" includes="${source.path}/**"/>
+    </target>
+    
+    <target name="compile" depends="checkForChanges, compileCore"/>
+		
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

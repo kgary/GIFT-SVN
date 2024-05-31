@@ -1,0 +1,47 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.timeTextBox{
+			padding: 3px;
+			margin: 0px 3px;
+			text-align: center;
+		}
+		.inline{
+			display: inline-block;
+		}
+		.button{
+			height: 25px;
+			text-align: center;
+		}
+	</ui:style>
+	<g:HTMLPanel addStyleNames='{style.inline}'>
+		
+		<table>
+			<tr>
+				<td>
+					<b:TextBox placeholder='hh' width='30px' addStyleNames='{style.timeTextBox}' ui:field='hoursBox'/>
+				</td>
+				<td>
+					<g:Button addStyleNames='{style.button}' ui:field='hoursUpButton'/>
+					<g:Button addStyleNames='{style.button}' ui:field='hoursDownButton'/>
+				</td>
+				<td>
+					:
+				</td>
+				<td>
+					<b:TextBox placeholder='mm' width='30px' addStyleNames='{style.timeTextBox}' ui:field='minutesBox'/>
+				</td>
+				<td>
+					<g:Button addStyleNames='{style.button}' ui:field='minutesUpButton'/>
+					<g:Button addStyleNames='{style.button}' ui:field='minutesDownButton'/>
+				</td>
+				<td>
+					<g:Button ui:field='dayNightSwitch'/>
+				</td>
+			</tr>
+		</table>
+		
+	</g:HTMLPanel>
+</ui:UiBinder> 

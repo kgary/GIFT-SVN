@@ -1,0 +1,74 @@
+.border {
+  fill: none;
+  shape-rendering: crispEdges;
+  stroke: #aaa;
+}
+
+.node {
+  cursor: pointer;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.selectedNodeRect{
+	stroke: rgb(100,100,255) ! important;
+	stroke-width: 5px !important;
+	stroke-dasharray: 10 5; /** Breaks the border into dashed lines with the given length in pixels */
+  	animation: 
+  		dash /** Invokes the "dash" animation */
+  		40s /** Sets the duration of the animation. Lower values will make the animation faster */
+  		linear; 
+  	animation-iteration-count: infinite; /** Makes the animation repeat*/
+}
+
+.selectableNodeRect{
+	fill: rgb(210, 210, 255) !important;
+}
+
+.link {
+  fill: none;
+  stroke: darkgray;
+  stroke-width: 1.5px;
+}
+
+.link:hover {
+  stroke-width: 3.5px;
+  stroke: rgb(100,100,255);
+  cursor: pointer;
+}
+
+.multiLink {
+  fill: none;
+  stroke: darkgray;
+  stroke-width: 4px;
+}
+
+.multiLink:hover {
+  stroke-width: 6px;
+  stroke: rgb(100,100,255);
+  cursor: pointer;
+}
+
+.icon {
+	font-size: 24px;
+	font-family: FontAwesome;
+}
+
+.assessmentIcon {
+	font-size: 16px;
+	font-family: FontAwesome;
+}
+
+.text {
+	font-size: 20px;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000; /** Moves the offset of the border dashes each frame, making them move */
+  }
+}

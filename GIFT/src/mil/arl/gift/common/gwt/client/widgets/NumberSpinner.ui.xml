@@ -1,0 +1,49 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	    .rootPanel {
+	        display: inline-table;
+	    }
+	
+		.buttonStyle {
+			height: 100%;
+			padding: 0px 5px;	
+			font-size: 7pt;
+			border-radius: 0px;
+		}
+		
+		.bottomButton {
+			vertical-align: top;
+		}
+		
+		.rootPanel > table > tbody > tr > td > .textBoxStyle {
+			margin-bottom: 0px;
+			font: normal 12px/12px "Times New Roman", Times, serif;
+		}
+	</ui:style>
+
+		<g:HTMLPanel addStyleNames="{style.rootPanel}">
+			<table style='width: 100%;'>
+		        <tr style='width: 100%;'>
+		            <td style='width: 100%;'>
+		                <g:TextBox width='100%' ui:field='inputBox' addStyleNames="{style.textBoxStyle}" />
+		            </td>
+		            <td>
+		                <table>
+		                    <tr>
+		                        <td>
+		                            <g:Button ui:field='incrementButton' addStyleNames="{style.buttonStyle}">&#x25B2;</g:Button>
+		                        </td>
+		                    </tr>
+		                    <tr>
+		                        <td>
+		                            <g:Button ui:field='decrementButton' addStyleNames="{style.buttonStyle} {style.bottomButton}">&#x25BC;</g:Button>
+		                        </td>
+		                    </tr>
+		                </table>
+		            </td>
+		        </tr>
+		    </table>
+	    </g:HTMLPanel>
+</ui:UiBinder>

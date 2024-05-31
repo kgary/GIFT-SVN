@@ -1,0 +1,207 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client"
+	xmlns:m="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.shared"
+	xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.hidden{
+			display: none;
+		}
+		.assessmentHeader{
+			color: rgb(50,50,50); 
+			font-weight: bold; 
+			font-size: 16px; 
+			text-shadow: 2px 2px 3px rgba(0,0,0,0.25);
+			padding-bottom: 10px;
+		}
+		.radioButtonPanel{
+			border-style: solid; 
+			border-width: 1px; 
+			border-radius: 10px; 
+			border-color: #ccc;
+			max-width: 400px;
+		}
+		.questionBoxStyle{
+			min-width: 200px;
+		}
+		.center{
+			margin: auto;
+		}
+		.pad{
+			padding: 10px;
+		}
+		.padTop{
+			padding-top: 5px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.largePadBottom{
+			margin-bottom: 20px;
+		}
+		.tabbed{
+			padding: 0px 30px;
+		}
+		.scrolls{
+			overflow: auto;
+		}
+		.note{
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(185,185,185);
+			border-radius: 3px;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+			background-color: rgb(255, 255, 200);
+		}
+		.largePadTop{
+			padding-top: 10px;
+		}
+		.tabLeft{
+			padding-left: 30px;
+		}
+		.cellTableBorder{
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(185,185,185);
+			border-radius: 3px;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+			background-color: rgb(250,250,250);
+		}
+		.cellTableScroller{
+			min-height: 50px;
+			max-height: 400px;
+		}
+		.helpLink{
+			font-size: 16px;			
+			color: rgb(100,100,200);
+			font-weight: normal;
+		}
+		.notBold{
+			font-weight: normal;
+		}
+	</ui:style>
+	 <g:HTMLPanel addStyleNames='{style.padTop}'>
+
+		<div style="border:solid 1px #AAAAAA; 
+				position:relative; 
+				padding:10px; 
+				margin: 10px; 
+				margin-bottom: 15px; 
+				box-shadow: 3px 3px 5px rgba(0,0,0,0.3)
+			">
+	      	<div style="font-weight: bold; 
+	      			position:absolute; 
+	      			top:-10px; 
+	      			left: 40px; 
+	      			margin-left:-35px; 
+	      			padding-right: 5px; 
+	      			padding-left: 5px; 
+	      			background-color:rgb(237,237,237);
+	      		">
+	      		Additional Assessment Options:
+			</div>
+			<g:FlowPanel addStyleNames='{style.padTop}'>
+				<g:FlowPanel addStyleNames='{style.tabbed}'>
+				
+					<g:DeckPanel width='100%' ui:field='containerDeckLayoutPanel'>
+				
+						<g:FlowPanel ui:field='assessmentPanel'>
+						
+							<g:FlowPanel addStyleNames='{style.padBottom}'>
+					      		<g:CheckBox ui:field='noAssessmentRadioInput'>
+					      			This task/concept should perform additional assessment logic
+					      		</g:CheckBox>
+				      		</g:FlowPanel>
+				      		
+				      		<g:DeckPanel animationEnabled='true' addStyleNames='{style.tabbed}' ui:field='hasAssessmentDeck'>	
+				      		
+				      			<g:HTMLPanel ui:field='nonePanel'>
+									<!-- This panel should be empty -->
+								</g:HTMLPanel>
+				      		
+				      			<g:FlowPanel ui:field='hasAssessmentPanel'>
+					      		
+						      		<g:FlowPanel addStyleNames='{style.padBottom}'>
+							      		<g:RadioButton name='assessment' ui:field='conditionAssessmentRadioInput'>
+							      			<b>
+							      				Assess the learner's performance by notifying this task/concept's conditions to automatically perform additional assessment logic
+							      			</b>
+							      		</g:RadioButton>
+							      		<w:HelpLink helpCaption='Condition Assessment' addStyleNames='{style.notBold}'>
+												
+											<w:linkWidget>
+												<b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE'/>
+											</w:linkWidget>
+																				
+											<w:helpBody>
+												<g:HTML>
+													Selecting this assessment option will prompt this task or concept to perform additional assessment logic by notifying any 
+													descendant performance nodes for additional supplementary assessing.  
+													<br/><br/>
+													This is often triggered by a request for additional performance assessment by the Pedagogical Module.
+													<br/><br/>
+													If any additional assessment is performed by the decendant performance nodes, then the resulting assessment 
+													will be applied to this task or concept.
+												</g:HTML>
+											</w:helpBody>
+										
+										</w:HelpLink>
+						      		</g:FlowPanel>
+						      		
+						      		<g:FlowPanel addStyleNames='{style.padBottom}'>
+							      		<g:RadioButton name='assessment' ui:field='surveyAssessmentRadioInput'>
+							      			<b>
+							      				Assess the learner's performance using a survey
+							      			</b>
+							      		</g:RadioButton>
+						      		</g:FlowPanel>
+						      		
+						      		<g:DeckPanel animationEnabled='true' addStyleNames='{style.tabLeft}' ui:field='assessmentDeckPanel'>
+										
+										<g:VerticalPanel width='100%' height='100%' horizontalAlignment='center' verticalAlignment='middle' ui:field='conditionPanel'>
+											<!-- <g:HTMLPanel addStyleNames='{style.center}'>
+											Requests for performance assessment by the Pedagogical Module will be satisfied using the standard Concept/Condition hierarchy roll-up approach
+											</g:HTMLPanel>  -->
+										</g:VerticalPanel>
+										
+										<m:SurveyAssessmentPanel ui:field='surveyPanel'/>
+										
+									</g:DeckPanel>
+					      		
+					      		</g:FlowPanel>
+					      		
+							</g:DeckPanel>	
+							
+							<g:FlowPanel addStyleNames='{style.tabbed}'>
+			      				<g:HTMLPanel addStyleNames='{style.note}'>
+					      			<div style='padding: 5px;'>
+				      					<b>Note:</b> By default, the conditions belonging to this task/concept will be evaluated in order to
+				      					determine the user's performance. In addition to this logic, other assessment options can be authored here 
+				      					to allow additional assessment to be performed in conjunction with the default logic.					      					
+				      				</div>
+				      			</g:HTMLPanel>
+			      			</g:FlowPanel>					
+						
+						</g:FlowPanel>
+						
+						<g:VerticalPanel width='100%' horizontalAlignment='center' verticalAlignment='middle' ui:field='disabledWarningLabel'>
+							<g:HTMLPanel addStyleNames='{style.center}'>
+								The selected performance node contains multiple performance assessments, however, this editor currently only supports a single performance assessment. <br/>
+								<br/>
+								Please use the standard DKF Authoring Tool (DAT) to make any required changes.
+							</g:HTMLPanel>
+						</g:VerticalPanel>
+					
+					</g:DeckPanel>
+					
+				</g:FlowPanel>
+			</g:FlowPanel>
+		</div>
+	</g:HTMLPanel>
+	
+</ui:UiBinder> 

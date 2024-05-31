@@ -1,0 +1,48 @@
+<body>
+<p><strong>Negligent Discharge Condition</strong></p>
+<p>This condition assesses whether one or more team members fired their weapon 
+towards an object.</p>
+<p>The author can define the objects to avoid, and weapon cone 
+as inputs to the assessment algorithm.&nbsp; Only targets that are 
+healthy will be considered for assessment.&nbsp; This prevents being assessed 
+against objects that are dead/incapacitated.</p>
+<p>The goal of this condition is to not assess every possible situation.&nbsp; 
+Hopefully it provides an initial assessment result that can be used by 
+observers/trainers to make additional assessments or over-rides.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li style="color: #008000">Above Expectation</li>
+	<li><span style="color : #0000FF">At Expectation</span>
+		<ul>
+			<li>case: default</li>
+		</ul>
+	</li>
+	<li><span style="color : #FF0000">Below Expectation</span>
+		<ul>
+			<li>case: [Negligent Discharge] assessed team member fires their 
+			weapon when an object to avoid is in the weapon cone.</li>
+		</ul>
+	</li>
+	<li>Unknown
+		</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of violations (going from At to Below Expecation)</li>
+	<li>sums the duration of time in Below Expectation</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>this condition does not complete</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can produce entity state and weapon fire messages</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+	<li>GIFT Weapon Fire</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>mil.arl.gift.domain.knowledge.condition.NegligentDischargeCondition</em></p>
+</body>

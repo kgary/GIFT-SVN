@@ -1,0 +1,113 @@
+/* This is a template .proto file that contains various common fields that
+ * are used. Once the new proto file is complete, save this file 
+ * within config/protobufMessages. 
+ * See the documentation at https://confluence.dignitastech.com/display/GIFT/Protobuf+Messaging 
+ * for more information. */
+ 
+/*	This line specifies the version of protobuf used to 
+ *	encode the messages. As of now, this is the current version. */
+syntax = "proto3";
+
+/* !ACTION REQUIRED!
+ * 1. Verify the java package is correct. Look at other protobuf files in the directory this 
+ * file will go to see what the correct package should be. This default value is the top
+ * level directory. 
+ * 2. Replace <ChangeMe> with the class name. E.g. ACK message will have "ACKProto" outer classname. */
+option java_package = "generated.proto.common";
+option java_outer_classname = "<ChangeMe>Proto";
+
+/* !ACTION REQUIRED!
+ * Insert any necessary imports here.
+ * Any external protobuf messages created are referenced using import statements. 
+ * Syntax is import "<Protobuf File Name>.proto"; */
+ 
+/* NOTE: Instead of using primitive values, the built-in wrapper classes should be used.
+ * This is because the primitives will default to a value even if none was set. The import
+ * for these wrappers are found here:
+ * import "google/protobuf/wrappers.proto"; */
+ 
+/* Date/Time values can be imported like so: 
+ * import "google/protobuf/timestamp.proto";
+ */
+
+/* !ACTION REQUIRED!
+ * 1. Replace <ChangeMe> in the comment below to add a class javadoc
+ * 2. Replace the <ChangeMe> in the message class declaration to be the class name.
+ * This should be the same as the <ChangeMe> portion of the java_outer_classname above.
+ * 
+ * All fields that will be part of the new message type are defined within the
+ * message block. Ensure that the message name is consistent with the .proto file name.
+ * For example ACK.proto should be "message ACK { ... }".
+ *
+ * NOTE: Field numbers can be any value but the number set is 1-based and they must be unique. Once a field number is
+ * assigned, it can not be reused.
+ */
+ 
+ /* <ChangeMe> */
+message <ChangeMe> {
+    /* Below are common field declarations. Each field declaration should have a javadoc above it (also provided below).
+     * The javadoc should give a brief description of what the field is used for, if it is mandatory, etc... 
+	 * !Important!
+	 * Remember that for the following wrapper-primitive types, google/protobuf/wrappers.proto should be imported 
+	 * before the declaration of the new message type. */
+
+	/* The wrapper class for a primitive int32 value. */
+	google.protobuf.Int32Value int32_field_name = 1;
+
+	/* The wrapper class for a primitive long or int64 value. */
+	google.protobuf.Int64Value int64_field_name = 2;
+
+	/* The wrapper class for a primitive double value. */
+	google.protobuf.DoubleValue double_field_name = 3;
+
+	/* The wrapper class for a primitive float value. */
+	google.protobuf.FloatValue float_field_name = 4;
+
+	/* The wrapper class for a primitive boolean value. */
+	google.protobuf.BoolValue bool_field_name = 5;
+
+	/* The wrapper class for a String value. In protobuf, strings are considered 'primitive'. */
+	google.protobuf.StringValue string_field_name = 6;
+
+	/* The Date/time value. 
+	 *
+	 * !Important!
+	 * If using the Date/Time values, verify that google/protobuf/timestamp.proto is imported 
+	 * before the new message type. */
+	google.protobuf.Timestamp time_field_name = 7;
+
+	/* 	List defined in protobuf. Note that the values inside the list 
+     *	do not utilize the wrappers.proto classes. This is because the list
+	 * 	is the main object and the primitives are it's type. */
+	repeated <[int32/int64/double/float/bool/string)> list_field_name = 8;
+ 	
+	/* Map defined in protobuf.
+	 * The key_type can be any integral or string type (so, any scalar type except for 
+	 * floating point types and bytes). Enum is NOT a valid key_type. 
+	 * The value_type can be any type except another map. */
+	map<[key_type], [value_type]> map_field_name = 9;
+ 	
+ 	/* Oneof. Used to represent a single object that can store various types. Any field type can
+	 * be defined inside a oneof, but only one field may be set at a time. Setting one of the oneOf 
+	 * fields will unset the previously set field. 
+	 *
+	 * !Important!
+	 * The field numbers inside oneOf are not independent of the field numbers in the rest of the message 
+	 * (e.g. must not be a duplicate of a field number used elsewhere in the message). */
+	oneof oneof_field_name {
+ 		/* <field_type> <field_name> = <current_field_number + 1>; */
+ 	}
+ 	
+	/* Protobuf enum. ALWAYS create an UNKNOWN_field_name enum type at position 0. This is because if no 
+	 * enum is set, the 0th position enum will be set by default and we don't want it to automatically set
+	 * a valid enum. 
+	 *
+	 * !Important!
+     * The field numbers inside enum are 0-based and INDEPENDENT of the field numbers in the rest of the message 
+     * (e.g. start at 0 regardless of the rest of the message.) */
+ 	enum <enum_field_name> {
+ 		UNKNOWN_<enum_field_name> = 0;
+		ENUM_ONE = 1;
+		ENUM_TWO = 2;
+ 	}	
+ }

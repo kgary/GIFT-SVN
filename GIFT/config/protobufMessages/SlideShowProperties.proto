@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "SlideShowPropertiesProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This represents the properties that may be observed for a slide show. */
+message SlideShowProperties {
+	/* Value indicating if the previous button should be displayed. */
+	google.protobuf.StringValue display_previous_button = 1;
+	
+	/* Value indicating if the continue button should be kept. */
+	google.protobuf.StringValue keep_continue_button = 2;
+	
+	/* The slide paths. */
+	repeated string slide_paths = 3;
+}

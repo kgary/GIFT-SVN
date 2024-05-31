@@ -1,0 +1,15 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "ActiveDomainSessionsRequestProto";
+
+/* This message is used to retrieve the currently running sessions in the ITS. 
+ * A ActiveDomainSessionsReply is returned by the ITS as a response.
+ */
+message ActiveDomainSessionsRequest {
+}

@@ -1,0 +1,26 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "FreeResponseReplyWeightsProto";
+
+/* This message contains scoring weights for a free response. */
+message FreeResponseReplyWeights {
+	/* The list of scoring weights for the free response reply. */
+	repeated ReplyWeightsTier2 reply_weights = 1;
+}
+
+message ReplyWeightsTier1 {
+	/* The list of scoring weights for the matrix of choices reply. */
+	repeated double row_reply_weights = 1;
+}
+
+message ReplyWeightsTier2 {
+	/* The list of scoring weights for the matrix of choices reply. */
+	repeated ReplyWeightsTier1 row_reply_weights = 1;
+}

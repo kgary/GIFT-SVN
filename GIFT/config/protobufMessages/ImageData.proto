@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ImageDataProto";
+
+import "AbstractEnumObject.proto";
+import "google/protobuf/wrappers.proto";
+
+/* Image definition, which contains the width, height, the data, and the picture format. */
+message ImageData {
+	/* Width of image. */
+	google.protobuf.Int32Value width = 1;
+	
+	/* Height of image. */
+	google.protobuf.Int32Value height = 2;
+	
+	/* Data of image. */
+	google.protobuf.StringValue data = 3;
+	
+	/* Image format. */
+	AbstractEnumObject format = 4;
+}

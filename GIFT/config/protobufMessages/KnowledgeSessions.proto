@@ -1,0 +1,22 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "KnowledgeSessionsProto";
+
+import "AbstractKnowledgeSession.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains knowledge session information based on possible filters in the knowledge session request. */
+message KnowledgeSessions {
+	/*  The collection of knowledge sessions from a domain module. */
+	map<int32, AbstractKnowledgeSession> session_map = 1;
+	
+	/* Value indicating whether the domain session can host a knowledge session. */
+	google.protobuf.BoolValue can_host = 2;
+}

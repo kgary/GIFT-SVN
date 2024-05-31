@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ExperimentSubjectIdProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a RPC-safe and client-safe representation of an experiment subject ID. */
+message ExperimentSubjectId {
+	/* The subject's id. */
+	google.protobuf.Int32Value subject_id = 1;
+	
+	/* The experiment's id. */
+	google.protobuf.StringValue experiment_id = 2;
+}

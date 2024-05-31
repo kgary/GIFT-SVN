@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/GIFT/src/mil/arl/gift/tools/authoring/lcat/LCAT.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="mil.arl.gift.tools.authoring.lcat.LCAT"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="GIFT"/>
+</launchConfiguration>

@@ -1,0 +1,629 @@
+Object Player
+{
+	String Id
+	String Name
+	String Role
+	Integer outOfCoverTime
+	Boolean hasRequestedSecuritySweep
+	Boolean hasFiredWeapon
+	Boolean hasCommunicated
+	Boolean hasAppliedTourniquet
+	Boolean hasAppliedBandage
+	Boolean hasRolledCasualtyOver
+	Boolean hasRequestedHelp
+	Boolean hasRemovedTourniquet
+	Boolean hasExposedWound
+	Boolean AppliedTourniquets
+	Boolean hashCheckedAirway
+	Boolean hasAdministeredHextend
+	Boolean hasDoneBloodSweep
+	Boolean hasCheckedBreathing
+	Boolean underFire
+	Boolean underTacticalFieldCare
+	Boolean hasRequestedCasevac
+	Boolean hasRequestedCover
+	Boolean isUnderCover
+	Boolean withUnit
+}
+
+Enum PartOfBody
+{
+	Head
+	Neck
+	LeftChest
+	RightChest
+	Leftback
+	RightBack
+	LowerLeftArm
+	LowerRightArm
+	UpperLeftArm
+	UpperRightArm
+	LowerLeftLeg
+	LowerRightLeg
+	UpperLeftLeg
+	UpperRightLeg
+	Abdomen
+}
+
+Enum TypeOfInjury
+{
+	Amputated
+	Trauma
+	BulletEntry
+	BulletExit
+	Burned
+}
+
+Object GiftSim
+{
+	Integer time
+}
+
+Object Injury
+{
+	TypeOfInjury injuryType
+	PartOfBody BodyPart
+}
+
+Object Casualty
+{
+	String Name
+	Double HeartRate
+	Double BloodVolume
+	Double BleedRate
+	Double Systolic
+	Double Amount
+	Double LeftLungEfficiency
+	Double RightLungEfficiency
+	String Units
+	Integer tourniquetsApplied
+	Boolean hextendAdministered
+	Boolean vitalsChecked
+	Boolean isAmputee
+	Boolean isBulletWound
+	Boolean bandageApplied
+	Boolean bloodSweep
+	Boolean breathingChecked
+	Boolean isSafe
+	Boolean woundExposed
+	Boolean tourniquetRemoved
+	Boolean rolled
+	String Injuries
+}
+
+CreateObjects
+{
+	GiftSim(Id = Simulation time = 0)
+
+}
+
+Rule "amputee_administer_hextend_below_expectation"
+{
+	Concept( KeyName = "amputee_administer_hextend" Transition = "below_expectation" Default = "unknown" )
+	
+	if( Casualty.BloodVolume < 4250.0 and Casualty.hextendAdministered == false and Casualty.isAmputee == true )	
+	{
+		Output( "amputee_administer_hextend" )
+	}
+}
+
+Rule "amputee_administer_hextend_at_expectation"
+{
+	Concept( KeyName = "amputee_administer_hextend" Transition = "at_expectation" Default = "unknown" )
+	
+	if( Casualty.BloodVolume >= 4250.0 and Casualty.hextendAdministered == true and Casualty.isAmputee == true )	
+	{
+		Output( "at_expectation_amputee_administer_hextend" )
+	}
+}
+
+Rule "amputee_apply_bandage_below_expectation"
+{
+	Concept( KeyName = "amputee_apply_bandage" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 120 and Player.underTacticalFieldCare == true and Casualty.bandageApplied == false and Casualty.isAmputee == true )
+	{	
+		Output( "amputee_apply_bandage" )
+	}
+}
+
+Rule "amputee_apply_bandage_at_expectation"
+{
+	Concept( KeyName = "amputee_apply_bandage" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 120 and Player.underTacticalFieldCare == true and Casualty.bandageApplied == true and Casualty.isAmputee == true )
+	{
+		Output( "at_expectation_amputee_apply_bandage" )
+	}
+}
+
+Rule "amputee_check_vitals_below_expectation"
+{
+	Concept( KeyName = "amputee_check_vitals" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 140 and Player.underTacticalFieldCare == true and Casualty.vitalsChecked == false and Casualty.isAmputee == true )
+	{
+		Output( "amputee_check_vitals" )
+	}
+}
+
+Rule "amputee_check_vitals_at_expectation"
+{
+	Concept( KeyName = "amputee_check_vitals" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 140 and Player.underTacticalFieldCare == true and Casualty.vitalsChecked == true and Casualty.isAmputee == true )
+	{
+		Output( "at_expectation_amputee_check_vitals" )
+	}
+}
+
+Rule "apply_bandage_below_expectation"
+{
+	Concept( KeyName = "apply_bandage" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 25 and Player.underTacticalFieldCare == true and Casualty.bandageApplied == false and Casualty.isBulletWound == true )
+	{
+		Output( "apply_bandage" )
+	}
+}
+
+Rule "apply_bandage_at_expectation"
+{
+	Concept( KeyName = "apply_bandage" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 25 and Player.underTacticalFieldCare == true and Casualty.bandageApplied == true and Casualty.isBulletWound == true )
+	{
+		Output( "at_expectation_apply_bandage" )
+	}
+}
+
+Rule "apply_tourniquet_below_expectation"
+{
+	Concept( KeyName = "apply_tourniquet" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 40 and Player.underFire == true and Casualty.tourniquetsApplied <= 0 and Casualty.isAmputee == true )
+	{
+		Output( "apply_tourniquet" )
+	}
+}
+
+Rule "apply_tourniquet_at_expectation"
+{
+	Concept( KeyName = "apply_tourniquet" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 40 and Player.underFire == true and Casualty.tourniquetsApplied > 0 and Casualty.isAmputee == true )
+	{
+		Output( "at_expectation_apply_tourniquet" )
+	}
+}
+
+Rule "bulletwound_blood_sweep_below_expectation"
+{
+	Concept( KeyName = "bulletwound_blood_sweep" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 180 and Player.underTacticalFieldCare == true and Casualty.bloodSweep == false and Casualty.isBulletWound == true )
+	{
+		Output( "bulletwound_blood_sweep" )
+	}
+}
+
+Rule "bulletwound_blood_sweep_at_expectation"
+{
+	Concept( KeyName = "bulletwound_blood_sweep" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 180 and Player.underTacticalFieldCare == true and Casualty.bloodSweep == true and Casualty.isBulletWound == true )
+	{
+		Output( "at_expectation_bulletwound_blood_sweep" )
+	}
+}
+
+Rule "bulletwound_check_breathing_below_expectation"
+{
+	Concept( KeyName = "bulletwound_check_breathing" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 210 and Player.underTacticalFieldCare == true and Casualty.breathingChecked == false and Casualty.isBulletWound == true )
+	{
+		Output( "bulletwound_check_breathing" )
+	}
+}
+
+Rule "bulletwound_check_breathing_at_expectation"
+{
+	Concept( KeyName = "bulletwound_check_breathing" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 210 and Player.underTacticalFieldCare == true and Casualty.breathingChecked == true and Casualty.isBulletWound == true )
+	{
+		Output( "at_expectation_bulletwound_check_breathing" )
+	}
+}
+
+Rule "bulletwound_check_vitals_below_expectation"
+{
+	Concept( KeyName = "bulletwound_check_vitals" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 160 and Player.underTacticalFieldCare == true and Casualty.vitalsChecked == false and Casualty.isBulletWound == true )
+	{
+		Output( "bulletwound_check_vitals" )
+	}
+}
+
+Rule "bulletwound_check_vitals_at_expectation"
+{
+	Concept( KeyName = "bulletwound_check_vitals" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 160 and Player.underTacticalFieldCare == true and Casualty.vitalsChecked == true and Casualty.isBulletWound == true)
+	{
+		Output( "at_expectation_bulletwound_check_vitals" )
+	}
+}
+
+Rule "check_exit_wound_below_expectation"
+{
+	Concept( KeyName = "check_exit_wound" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 35 and Player.underTacticalFieldCare == true and Casualty.rolled == false and Casualty.isBulletWound == true )
+	{
+		Output( "check_exit_wound" )
+	}
+}
+
+Rule "check_exit_wound_at_expectation"
+{
+	Concept( KeyName = "check_exit_wound" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 35 and Player.underTacticalFieldCare == true and Casualty.rolled == true and Casualty.isBulletWound == true )
+	{
+		Output( "at_expectation_check_exit_wound" )
+	}
+}
+
+Rule "communicate_with_casualty_below_expectation"
+{
+	Concept( KeyName = "communicate_with_casualty" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 20 and Player.underFire == true and Player.hasCommunicated == false )
+	{
+		Output( "communicate_with_casualty" )
+	}
+}
+
+Rule "communicate_with_casualty_at_expectation"
+{
+	Concept( KeyName = "communicate_with_casualty" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 20 and Player.underFire == true and Player.hasCommunicated == true )
+	{
+		Output( "at_expectation_communicate_with_casualty" )
+	}
+}
+
+Rule "expose_wound_below_expectation"
+{
+	Concept( KeyName = "expose_wound" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 100 and Player.underTacticalFieldCare == true and Casualty.woundExposed == false and Casualty.isAmputee == true )
+	{
+		Output( "expose_wound" )
+	}
+}
+
+Rule "expose_wound_at_expectation"
+{
+	Concept( KeyName = "expose_wound" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 100 and Player.underTacticalFieldCare == true and Casualty.woundExposed == true and Casualty.isAmputee == true )
+	{
+		Output( "at_expectation_expose_wound" )
+	}
+}
+
+Rule "move_casualties_to_safety_below_expectation"
+{
+	Concept( KeyName = "move_casualties_to_safety" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 50 and Player.underTacticalFieldCare == true and Casualty.isSafe == false and Casualty.isBulletWound == true )
+	{
+		Output( "move_casualties_to_safety" )
+	}
+}
+
+Rule "move_casualties_to_safety_at_expectation"
+{
+	Concept( KeyName = "move_casualties_to_safety" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 50 and Player.underTacticalFieldCare == true and Casualty.isSafe == true and Casualty.isBulletWound == true )
+	{
+		Output( "at_expectation_move_casualties_to_safety" )
+	}
+}
+
+Rule "move_to_safe_zone_below_expectation"
+{
+	Concept( KeyName = "move_to_safe_zone" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 50 and Player.underFire == true and Casualty.isSafe == false and Casualty.isAmputee == true )
+	{
+		Output( "move_to_safe_zone" )
+	}
+}
+
+Rule "move_to_safe_zone_at_expectation"
+{
+	Concept( KeyName = "move_to_safe_zone" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 50 and Player.underFire == true and Casualty.isSafe == true and Casualty.isAmputee == true )
+	{
+		Output( "at_expectation_move_to_safe_zone" )
+	}
+}
+
+Rule "move_under_cover_below_expectation"
+{
+	Concept( KeyName = "move_under_cover" Transition = "below_expectation" Default = "at_expectation" )
+	
+	if( GiftSim.time > 15 and Player.underFire == false and Player.underTacticalFieldCare == false and Player.isUnderCover == false and Player.outOfCoverTime > 10 )
+	{
+		Output( "move_under_cover" )
+	}
+}
+
+Rule "move_under_cover_at_expectation"
+{
+	Concept( KeyName = "move_under_cover" Transition = "at_expectation" Default = "below_expectation" )
+	
+	if( GiftSim.time <= 15 and Player.underFire == false and Player.underTacticalFieldCare == false and Player.isUnderCover == true and Player.outOfCoverTime <= 10 )
+	{
+		Output( "at_expectation_move_under_cover" )
+	}
+}
+
+Rule "reapply_tourniquet_below_expectation"
+{
+	Concept( KeyName = "reapply_tourniquet" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 110 and Player.underTacticalFieldCare == true and Casualty.tourniquetsApplied < 2 and Casualty.isAmputee == true )
+	{
+		Output( "reapply_tourniquet" )
+	}
+}
+
+Rule "reapply_tourniquet_at_expectation"
+{
+	Concept( KeyName = "reapply_tourniquet" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 110 and Player.underTacticalFieldCare == true and Casualty.tourniquetsApplied >= 2 and Casualty.isAmputee == true )
+	{
+		Output( "at_expectation_reapply_tourniquet" )
+	}
+}
+
+Rule "reassess_injuries_below_expectation"
+{
+	Concept( KeyName = "reassess_injuries" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 90 and Player.underTacticalFieldCare == true and Casualty.tourniquetRemoved == false and Casualty.isAmputee == true )
+	{
+		Output( "reassess_injuries" )
+	}
+}
+
+Rule "reassess_injuries_at_expectation"
+{
+	Concept( KeyName = "reassess_injuries" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 90 and Player.underTacticalFieldCare == true and Casualty.tourniquetRemoved == true and Casualty.isAmputee == true )
+	{
+		Output( "at_expectation_reassess_injuries" )
+	}
+}
+
+Rule "request_casevac_below_expectation"
+{
+	Concept( KeyName = "request_casevac" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 260 and Player.underTacticalFieldCare == true and Player.hasRequestedCasevac == false )
+	{
+		Output( "request_casevac" )
+	}
+}
+
+Rule "request_casevac_at_expectation"
+{
+	Concept( KeyName = "request_casevac" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 260 and Player.underTacticalFieldCare == true and Player.hasRequestedCasevac == true )
+	{
+		Output( "at_expectation_request_casevac" )
+	}
+}
+
+Rule "request_cover_below_expectation"
+{
+	Concept( KeyName = "request_cover" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 30 and Player.underFire == true and Player.hasRequestedCover == false )
+	{
+		Output( "request_cover" )
+	}
+}
+
+Rule "request_cover_at_expectation"
+{
+	Concept( KeyName = "request_cover" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 30 and Player.underFire == true and Player.hasRequestedCover == true )
+	{
+		Output( "at_expectation_request_cover" )
+	}
+}
+
+Rule "request_help_below_expectation"
+{
+	Concept( KeyName = "request_help" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 60 and Player.underTacticalFieldCare == true and Player.hasRequestedHelp == false )
+	{
+		Output( "request_help" )
+	}
+}
+
+Rule "request_help_at_expectation"
+{
+	Concept( KeyName = "request_help" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 60 and Player.underTacticalFieldCare == true and Player.hasRequestedHelp == true )
+	{
+		Output( "at_expectation_request_help executed" )
+	}
+}
+
+Rule "request_security_sweep_below_expectation"
+{
+	Concept( KeyName = "request_security_sweep" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 15 and Player.underTacticalFieldCare == true and Player.hasRequestedSecuritySweep == false )
+	{
+		Output( "request_security_sweep" )
+	}
+}
+
+Rule "request_security_sweep_at_expectation"
+{
+	Concept( KeyName = "request_security_sweep" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 15 and Player.underTacticalFieldCare == true and Player.hasRequestedSecuritySweep == true )
+	{
+		Output( "at_expectation_request_security_sweep" )
+	}
+}
+
+Rule "return_fire_below_expectation"
+{
+	Concept( KeyName = "return_fire" Transition = "below_expectation" Default = "unknown" )
+	
+	if( GiftSim.time > 10 and Player.underFire == true and Player.hasFiredWeapon == false )
+	{
+		Output( "return_fire" )
+	}
+}
+
+Rule "return_fire_at_expectation"
+{
+	Concept( KeyName = "return_fire" Transition = "at_expectation" Default = "unknown" )
+	
+	if( GiftSim.time <= 10 and Player.underFire == true and Player.hasFiredWeapon == true )
+	{
+		Output( "at_expectation_return_fire" )
+	}
+}
+
+Rule "seeking_cover_below_expectation"
+{
+	Concept( KeyName = "seeking_cover" Transition = "below_expectation" Default = "at_expectation" )
+	
+	if( Player.underFire == true and Player.isUnderCover == false and Player.outOfCoverTime >= 20 )
+	{
+		Output( "seeking_cover" )
+	}
+}
+
+Rule "seeking_cover_at_expectation"
+{
+	Concept( KeyName = "seeking_cover" Transition = "at_expectation" Default = "below_expectation" )
+	
+	if( Player.underFire == true and Player.isUnderCover == true and Player.outOfCoverTime < 20 )
+	{
+		Output( "at_expectation_seeking_cover" )
+	}
+}
+
+Rule "stay_with_unit_below_expectation"
+{
+	Concept( KeyName = "stay_with_unit" Transition = "below_expectation" Default = "at_expectation" )
+	
+	if( Player.underFire == false and Player.underTacticalFieldCare == false and Player.withUnit == false )
+	{
+		Output( "stay_with_unit" )
+	}
+}
+
+Rule "stay_with_unit_at_expectation"
+{
+	Concept( KeyName = "stay_with_unit" Transition = "at_expectation" Default = "below_expectation" )
+	
+	if( Player.Id str-equal "Player1" && Player.underFire == false and Player.underTacticalFieldCare == false and Player.withUnit == true )
+	{
+		Output( "at_expectation_stay_with_unit" )
+	}
+}
+
+Tactic(KeyName = "administer hextend" Message = "AdministerHextend" Type = Feedback Parent = "amputee administer hextend" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "to avoid infection" Message = "BandageAllExposedWounds" Type = Hint Parent = "amputee apply bandage" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "check his vitals" Message = "CheckVitals" Type = Hint Parent = "amputee check vitals" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "do not forget to address" Message = "BandageAllExposedWounds" Type = Hint Parent = "apply bandage" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "apply tourniquets" Message = "AmputeeApplyTourniquet" Type = Hint Parent = "apply tourniquet" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "perform a blood sweep" Message = "PerformBloodSweep" Type = Hint Parent = "bulletwound blood sweep" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "check the breathing" Message = "CheckBreathing" Type = Hint Parent = "bulletwound check breathing" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "examine vitals" Message = "ExamineVitals" Type = Hint Parent = "bulletwound check vitals" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "check for an exit wound" Message = "CheckForExitWound" Type = Hint Parent = "check exit wound" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "if you cannot reach the wounded" Message = "CommunicateToTheWounded" Type = Hint Parent = "communicate with casualty" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "remove clothing from a wound" Message = "RemoveClothingFromWound" Type = Hint Parent = "expose wound" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "enemy could still be around" Message = "MoveCasualtiesToSafePlace" Type = Hint Parent = "move casualties to safety" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "get out of there" Message = "MoveCasualtiestoSafePlace" Type = Hint Parent = "move to safe zone" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "you are too exposed" Message = "StayOutOfSight" Type = Hint Parent = "move under cover" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "if you remove a tourniquet" Message = "ReapplyTourniquet" Type = Hint Parent = "reapply tourniquet" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "in tactical field care" Message = "ReassessInjuries" Type = Hint Parent = "reassess injuries" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "request casevac" Message = "RequestCasevac" Type = Hint Parent = "request casevac" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "do you need cover" Message = "GetToSafeZone" Type = Hint Parent = "request cover" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "doc do you need help" Message = "DoYouNeedHelp" Type = Hint Parent = "request help" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "should you make sure" Message = "IsAreaSecure" Type = Hint Parent = "request security sweep" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "we need to neutralize" Message = "ReturnFire" Type = Hint Parent = "return fire" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "we are under attack" Message = "SeekCover" Type = Hint Parent = "seeking cover" DKFStrategyHandler = "" DKFKeyName = "" )
+Tactic (KeyName = "you are part of a unit" Message = "StayClose" Type = Hint Parent = "stay with unit" DKFStrategyHandler = "" DKFKeyName = "" )
+
+StateTransition( Parent = "amputee administer hextend" FromState = "unknown" ToState = "at_expectation" TransTac = "administer hextend" )
+StateTransition( Parent = "amputee administer hextend" FromState = "unknown" ToState = "below_expectation" TransTac = "administer hextend" )
+StateTransition( Parent = "amputee apply bandage" FromState = "unknown" ToState = "at_expectation" TransTac = "to avoid infection" )
+StateTransition( Parent = "amputee apply bandage" FromState = "unknown" ToState = "below_expectation" TransTac = "to avoid infection" )
+StateTransition( Parent = "amputee check vitals" FromState = "unknown" ToState = "at_expectation" TransTac = "check his vitals" )
+StateTransition( Parent = "amputee check vitals" FromState = "unknown" ToState = "below_expectation" TransTac = "check his vitals" )
+StateTransition( Parent = "apply bandage" FromState = "unknown" ToState = "at_expectation" TransTac = "do not forget to address" )
+StateTransition( Parent = "apply bandage" FromState = "unknown" ToState = "below_expectation" TransTac = "do not forget to address" )
+StateTransition( Parent = "apply tourniquet" FromState = "unknown" ToState = "at_expectation" TransTac = "apply tourniquets" )
+StateTransition( Parent = "apply tourniquet" FromState = "unknown" ToState = "below_expectation" TransTac = "apply tourniquets" )
+StateTransition( Parent = "bulletwound blood sweep" FromState = "unknown" ToState = "at_expectation" TransTac = "perform a blood sweep" )
+StateTransition( Parent = "bulletwound blood sweep" FromState = "unknown" ToState = "below_expectation " TransTac = "perform a blood sweep" )
+StateTransition( Parent = "bulletwound check breathing" FromState = "unknown" ToState = "below_expectation" TransTac = "check the breathing" )
+StateTransition( Parent = "bulletwound check breathing" FromState = "unknown" ToState = "at_expectation" TransTac = "check the breathing" )
+StateTransition( Parent = "bulletwound check vitals" FromState = "unknown" ToState = "at_expectation" TransTac = "examine vitals" )
+StateTransition( Parent = "bulletwound check vitals" FromState = "unknown" ToState = "below_expectation" TransTac = "examine vitals" )
+StateTransition( Parent = "check exit wound" FromState = "unknown" ToState = "at_expectation" TransTac = "check for an exit wound" )
+StateTransition( Parent = "check exit wound" FromState = "unknown" ToState = "below_expectation" TransTac = "check for an exit wound" )
+StateTransition( Parent = "communicate with casualty" FromState = "unknown" ToState = "at_expectation" TransTac = "if you cannot reach the wounded" )
+StateTransition( Parent = "communicate with casualty" FromState = "unknown" ToState = "below_expectation" TransTac = "if you cannot reach the wounded" )
+StateTransition( Parent = "expose wound" FromState = "unknown" ToState = "at_expectation" TransTac = "remove clothing from a wound" )
+StateTransition( Parent = "expose wound" FromState = "unknown" ToState = "below_expectation" TransTac = "remove clothing from a wound" )
+StateTransition( Parent = "move casualties to safety" FromState = "unknown" ToState = "at_expectation" TransTac = "enemy could still be around" )
+StateTransition( Parent = "move casualties to safety" FromState = "unknown" ToState = "below_expectation" TransTac = "enemy could still be around" )
+StateTransition( Parent = "move to safe zone" FromState = "unknown" ToState = "at_expectation" TransTac = "get out of there" )
+StateTransition( Parent = "move to safe zone" FromState = "unknown" ToState = "below_expectation" TransTac = "get out of there" )
+StateTransition( Parent = "move under cover" FromState = "unknown" ToState = "at_expectation" TransTac = "you are too exposed" )
+StateTransition( Parent = "move under cover" FromState = "unknown" ToState = "below_expectation" TransTac = "you are too exposed" )
+StateTransition( Parent = "reapply tourniquet" FromState = "unknown" ToState = "at_expectation" TransTac = "if you remove a tourniquet" )
+StateTransition( Parent = "reapply tourniquet" FromState = "unknown" ToState = "below_expectation" TransTac = "if you remove a tourniquet" )
+StateTransition( Parent = "reassess injuries" FromState = "unknown" ToState = "at_expectation" TransTac = "in tactical field care" )
+StateTransition( Parent = "reassess injuries" FromState = "unknown" ToState = "below_expectation" TransTac = "in tactical field care" )
+StateTransition( Parent = "request casevac" FromState = "unknown" ToState = "at_expectation" TransTac = "request casevac" )
+StateTransition( Parent = "request casevac" FromState = "unknown" ToState = "below_expectation" TransTac = "request casevac" )
+StateTransition( Parent = "request cover" FromState = "unknown" ToState = "at_expectation" TransTac = "do you need cover" )
+StateTransition( Parent = "request cover" FromState = "unknown" ToState = "below_expectation" TransTac = "do you need cover" )
+StateTransition( Parent = "request help" FromState = "unknown" ToState = "at_expectation" TransTac = "doc do you need help" )
+StateTransition( Parent = "request help" FromState = "unknown" ToState = "below_expectation" TransTac = "doc do you need help" )
+StateTransition( Parent = "request security sweep" FromState = "unknown" ToState = "at_expectation" TransTac = "should you make sure" )
+StateTransition( Parent = "request security sweep" FromState = "unknown" ToState = "below_expectation" TransTac = "should you make sure" )
+StateTransition( Parent = "return fire" FromState = "unknown" ToState = "at_expectation" TransTac = "we need to neutralize" )
+StateTransition( Parent = "return fire" FromState = "unknown" ToState = "below_expectation" TransTac = "we need to neutralize" )
+StateTransition( Parent = "seeking cover" FromState = "unknown" ToState = "at_expectation" TransTac = "we are under attack" )
+StateTransition( Parent = "seeking cover" FromState = "unknown" ToState = "below_expectation" TransTac = "we are under attack" )
+StateTransition( Parent = "stay with unit" FromState = "unknown" ToState = "at_expectation" TransTac = "you are part of a unit" )
+StateTransition( Parent = "stay with unit" FromState = "unknown" ToState = "below_expectation" TransTac = "you are part of a unit" )

@@ -1,0 +1,191 @@
+syntax = "proto3";
+
+package ares.pb;
+option java_package  = "com.dignitas.ares.protobuf";
+option java_outer_classname = "AresMessageScenario";
+
+import "AresCommon.proto";
+import "AresViewer.proto";
+
+// Single map image and the area it covers
+// Could be a cropped version of another Map
+message TerrainTemplate {
+    string id = 1;
+    string name = 2;
+    string file = 3;
+    Bounds bounds = 4;
+    HeightMap height_map = 5;
+    string original_map_id = 6;
+    string description = 7;
+    map<string, string> attributes = 8;
+}
+
+
+
+message TableMessage {
+   oneof MessageType {
+       TableScenario scenario = 1;
+       TableScenarioUpdate scenario_update = 2;
+   }
+}
+
+message TableScenario {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    repeated TerrainTemplate terrain_template = 4;
+    repeated Unit unit = 5;
+    repeated TacticalGraphic tactical_graphic = 6;
+    repeated TacticalGeometry tactical_geometry = 7;
+    repeated TextBox text_box = 8;
+}
+
+message Update {
+
+   enum UpdateType {
+       Add = 0;
+       Modify = 1;
+       Delete = 2;
+   }
+
+   UpdateType update_type = 1;
+
+   oneof UpdateData {
+    Unit unit = 4;
+    TerrainTemplate terrain_template = 5;
+    TacticalGraphic tactical_graphic = 6;
+    TacticalGeometry tactical_geometry = 7;
+    TextBox text_box = 8;
+    Los los = 9;
+   }
+}
+
+message TableScenarioUpdate {
+    repeated Update update = 1;
+}
+
+message Unit {
+    string id = 1;
+    string name = 2;
+    Symbol symbol = 3;
+    Location location = 4;    
+}
+message TacticalGraphic {
+    string id = 1;
+    string name = 2;
+    Symbol symbol = 3;
+    repeated Location location = 4;    
+}
+
+message TacticalGeometry {
+    string id = 1;
+    string name = 2;
+    repeated Location location = 3;
+    oneof GeometryType {
+        TacticalGeometryLinear linear = 4;    
+        TacticalGeometryAreal areal = 5;    
+    }
+}
+
+message TacticalGeometryLinear {
+   IntType width = 1;    
+   Color color = 2;
+}
+message TacticalGeometryAreal {
+   Color fill_color = 1;    
+   Color line_color = 2;
+   StringType texture = 3;
+   IntType line_width = 4;    
+}
+
+message TextBox {
+    string id = 1;
+    string text = 2;
+    Bounds bounds = 3;
+    Color text_color = 4;
+    Color backdrop_color = 5;
+}
+
+message Symbol {
+    string sidc = 1;
+    map<string, string> attributes = 2;
+    map<string, string> modifiers = 3;    
+}
+
+message AttenuationModel {
+  oneof Model {
+    LightAttenuation light_attenuation = 1;
+    FogAttenuation fog_attenuation = 2;
+  }
+}
+
+message LightAttenuation {
+   // Attenuation Factor is calculated by
+   // 
+   // 1.0 / (constant_attenuation + linear_attenuation * d + quadratic_attenuation * d * d)
+   //
+   // This equation is generally used to determine how a point light will illuminate a scene
+
+   float constant_attenuation = 1;
+   float linear_attenuation = 2;
+   float quadratic_attenuation = 3; 
+}
+
+message FogAttenuation {
+    // Linear: FogFactor = 1.0 - clamp ( (begin_distance - distance) / (end_distance -  distance), 0, 1)
+    // Exp : FogFactor = clamp(1.0 - e^(-density*distance),0,1)
+    // Exp2 : FogFactor = clamp(1 - e^-(density*distance*density*distance),0,1)
+    enum FogEquation {
+       LINEAR = 0;
+       EXP = 1;
+       EXP2 = 2;
+    }
+    FogEquation equation = 1;
+
+    // Distance from eye point that fog begins
+    float begin_distance = 2;
+
+    // Distance from eye point that fog ends  (somewhere between 0.0 and 0.1)
+    float end_distance = 3;
+
+    // Density used in the Exp and Exp2 equations (somewhere between 0.0 and 0.05)
+    float density = 4;
+}
+
+message LosFan {
+    oneof Range {
+       Location end_point = 1;    
+       Vector3f local_vector = 2;
+    }
+    float fov_degrees = 3;
+
+    // If clamped, the end_point or local vector end will
+    // be clamped to the terrain
+    bool clamped = 4;
+    float terrain_offset_meters = 5;
+}
+
+message AreaIntervisibility {
+    float fov_degrees = 1;
+    float range_meters = 2;
+    AttenuationModel attenuation_model = 3; 
+}
+
+message Los {
+    string id = 1;
+
+    oneof Origin {
+       Location eye_point = 2;
+       string unit_id = 3;
+    }
+
+    // If clamped, the terrain_offset will be used to set the elevation
+    // of the start location.
+    bool clamped = 4;
+    float terrain_offset_meters = 5;
+
+    oneof LosStyle {
+        LosFan los_fan = 6;
+        AreaIntervisibility area_intervisibility = 7;
+    }
+}

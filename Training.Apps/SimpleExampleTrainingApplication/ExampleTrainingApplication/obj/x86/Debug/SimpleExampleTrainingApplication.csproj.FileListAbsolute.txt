@@ -1,0 +1,9 @@
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Debug\ExampleTrainingApplication.exe.config
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Debug\ExampleTrainingApplication.exe
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\bin\Debug\ExampleTrainingApplication.pdb
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\SimpleExampleTrainingApplication.csprojResolveAssemblyReference.cache
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.Form1.resources
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.Properties.Resources.resources
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\SimpleExampleTrainingApplication.csproj.GenerateResource.Cache
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.exe
+D:\work\lite svn\trunk\Training.Apps\SimpleExampleTrainingApplication\ExampleTrainingApplication\obj\x86\Debug\ExampleTrainingApplication.pdb

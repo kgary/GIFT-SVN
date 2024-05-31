@@ -1,0 +1,2117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" version="6.0" xmlns:common="http://GIFT.com/common" xmlns:fg="http://www.FGolubov.com/XMLEditor" xmlns:la="http://GIFT.com/learnerActions" xmlns:ped="http://GIFT.com/pedagogicalStrategy" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:import namespace="http://GIFT.com/pedagogicalStrategy" schemaLocation="../ped/pedagogicalStrategy.xsd"/>
+    <xs:import namespace="http://GIFT.com/common" schemaLocation="../common.xsd"/>
+    <xs:import namespace="http://GIFT.com/learnerActions" schemaLocation="../learnerAction/learnerActions.xsd"/>
+    <xs:element name="Scenario">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Scenario">
+                    <fg:message>This is the root node of the DKF.  Look for other helpful information by clicking on a node.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="description" type="xs:string"/>
+                <xs:element minOccurs="0" ref="learnerId"/>
+                <xs:element ref="resources"/>
+				<xs:element minOccurs="0" name="endTriggers">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="End Triggers">
+                                <fg:message>Defines additional criteria for when the scenario will stop assessmening.</fg:message>
+                                <fg:message>Note: providing zero triggers means that the default logic will be used, i.e. End only when all Tasks are not running and have finished.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+							<xs:element name="trigger" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice>
+											<xs:element ref="entityLocation"/>
+											<xs:element ref="learnerLocation"/>
+											<xs:element ref="conceptEnded"/>
+											<xs:element ref="taskEnded"/>
+											<xs:element ref="conceptAssessment"/>
+										</xs:choice>
+										<xs:element ref="triggerDelay" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="assessment"/>                
+                <xs:element ref="actions"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="Scenario Name">
+                            <fg:message>A display name for the scenario being assessed.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="version" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="File Version">
+                            <fg:message>The version of this file.  This is auto-incremented if using the DAT to save.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="learnerId">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Learner Identification">
+                    <fg:message>Provides information on how to identify the learner in the Training Application.  For example, when using VBS the learner's actor in the scenario will start at a specific location.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="startLocation"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="resources">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Domain/Scenario Resources">
+                    <fg:message>The resources element contains information used to reference resources used by this Domain. It can also contain configuration information such as the list of available learner actions presented on the TUI..</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="common:surveyContext"/>
+                <xs:element ref="AvailableLearnerActions"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AvailableLearnerActions">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Available Learner Actions">
+                    <fg:message>Learner Actions are actions (e.g. buttons) available to the Learner on the Tutor during the execution of a training application (e.g. Use Radio, Spot Report).</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="la:LearnerActionsList"/>
+                <xs:element minOccurs="0" ref="LearnerActionsFiles"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="LearnerActionsFiles">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Learner Actions Files">
+                    <fg:message>List of Learner Action files with references to available learner actions to present on the TUI.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="file">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.LearnerActionSelectionDialog" message="File name">
+                                <fg:message>The relative Learner Action file name from the Domain directory as specified by the domain properties.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="assessment">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tasks"/>
+                <xs:element ref="objects"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="tasks">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="task"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="task">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="startTriggers"/>
+                <xs:element ref="endTriggers"/>
+                <xs:element ref="concepts">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true"/>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element minOccurs="0" ref="assessments"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true">
+							<fg:message>Note: The name must be unique among all Tasks and Concepts (aka Performance Assessment Nodes).</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="nodeId" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.IdGenerator" exposed="true" message="Node Id">
+                            <fg:message>Unique id for this performance assessment node in this scenario.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="startTriggers">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Start/End Triggers">
+                    <fg:message>Define when a performance assessment node will start it's assessment process for this scenario.</fg:message>
+                    <fg:message>Note: not providing at least one trigger means that the default logic will be used, i.e. Start automatically/immediately.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+				<xs:element name="trigger" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice>
+								<xs:element ref="entityLocation"/>
+								<xs:element ref="learnerLocation"/>
+								<xs:element ref="conceptEnded"/>
+								<xs:element ref="childConceptEnded"/>
+								<xs:element ref="taskEnded"/>
+								<xs:element ref="conceptAssessment"/>
+							</xs:choice>
+							<xs:element ref="triggerDelay" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="endTriggers">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="End Triggers">
+                    <fg:message>Define when a performance assessment node will end it's assessment process for this scenario.</fg:message>
+                    <fg:message>Note: not providing at least one trigger means that the default logic will be used, i.e. End only when other logic causes an ending condition.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+				<xs:element name="trigger" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice>
+								<xs:element ref="entityLocation"/>
+								<xs:element ref="learnerLocation"/>
+								<xs:element ref="conceptEnded"/>
+								<xs:element ref="childConceptEnded"/>
+								<xs:element ref="taskEnded"/>
+								<xs:element ref="conceptAssessment"/>
+							</xs:choice>
+							<xs:element ref="triggerDelay" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="triggerDelay">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Trigger Delay">
+                    <fg:message>Amount of time (seconds) to wait before firing this trigger.  This can be useful for many situations including delaying the end of a scenario to allow feedback to be presented and read.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>        
+		<xs:simpleType>
+			<xs:restriction base="xs:decimal">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+    </xs:element>
+    <xs:element name="entityLocation">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Entity Location Trigger">
+                    <fg:message>Fire this trigger when the entity that started the scenario at the start location reaches the trigger location.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="startLocation"/>
+                <xs:element ref="triggerLocation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conceptEnded">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Concept Ended Trigger">
+                    <fg:message>Fire this trigger when the specified concept ends.  All created concepts will be in the list for selection.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="nodeId" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.PerformanceNodeDialog" exposed="true" message="Node Id">
+                            <fg:message>Unique id of a concept performance assessment node in the hierarchy that which when finished will cause this trigger to fire.</fg:message>
+                            <fg:param name="noTasks">true</fg:param>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="childConceptEnded">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Concept Ended Trigger">
+                    <fg:message>Fire this trigger when the specified concept ends.  Only child concepts of this task will be in the list for selection.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="nodeId" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.ConceptEndedNodeDialog" exposed="true" message="Node Id">
+                            <fg:message>Unique id of a descendent concept performance assessment node to this task that which when finished will cause this trigger to fire.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="taskEnded">
+		<xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Task Ended Trigger">
+                    <fg:message>Fire this trigger when the specified task ends.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+		<xs:complexType>
+            <xs:attribute name="nodeId" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.TaskEndedNodeDialog" exposed="true" message="Node Id">
+                            <fg:message>Unique id of a task performance assessment node in the hierarchy that which when finished will cause this trigger to fire.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+	</xs:element>
+    <xs:element name="concepts">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true"/>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:annotation>
+                <xs:appinfo>
+                    <fg:node-info exposed="true"/>
+                </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="concept"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="concept">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="conditions"/>
+                    <xs:element ref="concepts"/>
+                </xs:choice>
+                <xs:element minOccurs="0" ref="assessments"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true">
+							<fg:message>Note: The name must be unique among all Tasks and Concepts (aka Performance Assessment Nodes).</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="nodeId" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.IdGenerator" exposed="true" message="Node Id">
+                            <fg:message>Unique id for this performance assessment node in this scenario.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="priority" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true" message="Priority">
+                            <fg:message>Defines the (initial) importance of the concept compared to the other concepts.</fg:message>
+                            <fg:message>The highest priority is 1</fg:message>
+                            <fg:message>The value may change during the execution of the course and can be used to help filter instructional strategy choices.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conditions">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Conditions">
+                    <fg:message>List of conditions for a concept.  A condition contains assessment logic.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="condition"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="condition">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="conditionImpl"/>
+                <xs:element ref="input"/>
+                <xs:element minOccurs="0" ref="scoring"/>
+                <xs:element minOccurs="0" ref="default"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="conditionImpl">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.ConditionDialog" message="Condition Implementation">
+                    <fg:message>Specify the class path to the Condition Implementation that contains the logic to assess this condition.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="input">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Condition Input">
+                    <fg:message>Input to the condition implementation.  Note: the condition implementation class must have a constructor that takes the input class as its only parameter.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="ApplicationCompletedCondition"/>
+                    <xs:element ref="AutoTutorConditionInput"/>
+                    <xs:element ref="AvoidLocationCondition"/>
+                    <xs:element ref="CheckpointPaceCondition"/>
+                    <xs:element ref="CheckpointProgressCondition"/>
+                    <xs:element ref="CorridorBoundaryCondition"/>
+                    <xs:element ref="CorridorPostureCondition"/>
+                    <xs:element ref="EliminateHostilesCondition"/>
+                    <xs:element ref="EnterAreaCondition"/>
+                    <xs:element ref="ExplosiveHazardSpotReportCondition"/>
+                    <xs:element ref="GenericConditionInput"/>
+					<xs:element ref="hasMovedExcavatorComponentInput"/>
+                    <xs:element ref="IdentifyPOIsCondition"/>
+                    <xs:element ref="LifeformTargetAccuracyCondition"/>
+                    <xs:element ref="MarksmanshipPrecisionCondition"/>
+                    <xs:element ref="MarksmanshipSessionCompleteCondition"/>
+                    <xs:element ref="NineLineReportCondition"/>
+                    <xs:element ref="NumberOfShotsFiredCondition"/>
+                    <xs:element ref="PowerPointDwellCondition"/>
+                    <xs:element ref="RulesOfEngagementCondition"/>
+                    <xs:element ref="SIMILEConditionInput"/>
+                    <xs:element ref="SpotReportCondition"/>
+					<xs:element ref="TimerConditionInput"/>
+                    <xs:element ref="UseRadioCondition"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="TimerConditionInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Timer Condition Input">
+                    <fg:message>This input is used to configure the Timer condition for assessment.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="repeatable" type="common:booleanEnum" default="false">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Repeatable">
+								<fg:message>Whether the time based assessment should be repeated every 'interval' milliseconds.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="interval">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Time Interval (sec)">
+								<fg:message>The amount of time in seconds before the condition assessment happens.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal">
+							<xs:minExclusive value="0.0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="hasMovedExcavatorComponentInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="has Moved Excavator Component Condition Input">
+                    <fg:message>This input is used to configure the hasMovedExcavatorComponent condition for assessment.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                    <xs:element name="component" maxOccurs="4">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="componentType" type="common:ExcavatorComponentEnum">
+                                    <xs:annotation>
+                                        <xs:appinfo>
+                                            <fg:node-info exposed="true" message="Excavator Component Type">
+                                                <fg:message>The enumerated type of Excavator component whose movement is being assessed with this condition.</fg:message>
+                                            </fg:node-info>
+                                        </xs:appinfo>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:choice minOccurs="0">
+                                    <xs:element name="anyDirection">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <fg:node-info exposed="true" message="Any direction message">
+                                                    <fg:message>Specify how many total degrees of rotation the user must move the component in order to satisfy this condition.</fg:message>
+                                                    <fg:message>Direction of rotation does not matter. To specify specific directions, use the bidirectional choice.</fg:message>
+                                                </fg:node-info>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:double">
+                                                <xs:minInclusive value="0.0"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="bidirectional">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <fg:node-info exposed="true" message="Bidirectional message">
+                                                    <fg:message>Specify how many degrees of rotation the user must move the component in each direction in order to satisfy this condition.</fg:message>
+                                                </fg:node-info>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="positiveRotation">
+                                                <xs:annotation>
+                                                    <xs:appinfo>
+                                                        <fg:node-info exposed="true" message="Positive direction message">
+                                                            <fg:message>Specify how many degrees of rotation the user must move the component in the positive direction in order to satisfy this condition.</fg:message>
+                                                        </fg:node-info>
+                                                    </xs:appinfo>
+                                                </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:double">
+                                                            <xs:minInclusive value="0.0"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element name="negativeRotation">
+                                                    <xs:annotation>
+                                                        <xs:appinfo>
+                                                            <fg:node-info exposed="true" message="Negative direction message">
+                                                                <fg:message>Specify how many degrees of rotation the user must move the component in the negative direction in order to satisfy this condition.</fg:message>
+                                                            </fg:node-info>
+                                                        </xs:appinfo>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:double">
+                                                            <xs:minInclusive value="0.0"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:choice>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+				<xs:element name="maxAssessments" minOccurs="0" default="1">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Maximum Number of Assessments">
+								<fg:message>The maximum number of times the condition can be assessed.  Once the value has been reached the condition is completed.  A value of 0 indicates that the condition won't complete.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<!-- TODO not fully implemented
+				<xs:element name="resetAssessmentAfter" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Reset after message">
+								<fg:message>How many seconds will pass until this condition's assessment is reset.  If not set then the assessment will never reset.</fg:message>
+								<fg:message>Refer to "Help" for more information.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				-->
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GenericConditionInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Generic Condition Input">
+                    <fg:message>This input is provide as a generic wrapper for inputs needed by newly developed conditions.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="common:nvpair"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AvoidLocationCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Avoid Location Condition">
+                    <fg:message>This condition checks whether the learner is avoiding a location.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="waypointRef"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AutoTutorConditionInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="AutoTutor Condition Input">
+                    <fg:message>This input is used to configure an AutoTutor session condition implementation class which uses the AutoTutor webservice to calculate assessments.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice>
+			<!-- 02/24/14 : Not currently supporting this selection (for now)
+                <xs:element name="ATLocalSKO">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Auto Tutor Local Script">
+                                <fg:message>Specify an Auto Tutor Shared Knowledge Object (SKO) script that is local to the webservice and that contains the parameters needs to run an Auto Tutor session.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ScriptName">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.AutoTutorScriptSelectionDialog" exposed="true" message="Auto Tutor Local Script">
+                                            <fg:message>Specify an Auto Tutor Shared Knowledge Object (SKO) script that is local to the webservice and that contains the parameters needs to run an Auto Tutor session.</fg:message>
+                                        </fg:node-info>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+				-->
+                <xs:element name="ATRemoteSKO">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Auto Tutor Remote Script">
+                                <fg:message>Specify an Auto Tutor Shared Knowledge Object (SKO) script URL and that contains the parameters needs to run an Auto Tutor session.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="URL">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="address">
+                                            <xs:annotation>
+                                                <xs:appinfo>
+                                                    <fg:node-info message="URL Address">
+                                                        <fg:message>Note: the address must contain the URL scheme prefix such as http://.</fg:message>
+                                                    </fg:node-info>
+                                                </xs:appinfo>
+                                            </xs:annotation>
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:minLength value="4"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+				<xs:element name="LocalSKO">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Local Script">
+                                <fg:message>Specify an Auto Tutor Shared Knowledge Object (SKO) script file that is on this machine and that contains the parameters needs to run an Auto Tutor session.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="File">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableFileSelectionDialog" exposed="true" message="AT SKO XML File">
+                                            <fg:message>The AT SKO file that contains the parameters needed to run an AutoTutor session in GIFT.</fg:message>
+                                            <fg:param name="title">Select the AutoTutor SKO XML file</fg:param>
+                                            <fg:param name="extension">xml</fg:param>
+                                            <fg:param name="information">Please select the AutoTutor SKO XML file that contains the parameters needed to run an AutoTutor session in GIFT.</fg:param>
+                                        </fg:node-info>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="5"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SIMILEConditionInput">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="SIMILE Condition Input">
+                    <fg:message>This input is used to configure a SIMILE condition implementation class which uses the SIMILE assessment engine to calculate assessments.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="configurationFile">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.SIMILEConfigurationFileDialog" message="Configuration File">
+                                <fg:message>The SIMILE configuration file (relative to the Domain directory) used to configure assessment logic for this condition.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="conditionKey">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.SIMILEConditionKey" message="Condition Key">
+                                <fg:message>A unique identifier used to link SIMILE condition(s) to this DKF condition in order to map SIMILE assessment results appropriately.</fg:message>
+                                <fg:message>The key should be in the configuration file specified in the configurationFile element.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CheckpointPaceCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Checkpoint Pace Condition">
+                    <fg:message>This condition checks whether the learner is maintaining pace along a series of checkpoints.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="checkpoint"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CheckpointProgressCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Checkpoint Progress Condition">
+                    <fg:message>This conditions checks whether the learner is progressing through a series of checkpoints.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="checkpoint"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CorridorBoundaryCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Corridor Boundary Condition">
+                    <fg:message>This condition checks whether the learner is staying within a corridor of segments.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="bufferWidthPercent"/>
+                <xs:element ref="path"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CorridorPostureCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Corridor Posture Condition">
+                    <fg:message>This condition checks whether the learner is in the correct posture within a corridor of segments.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="postures"/>
+                <xs:element ref="path"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="postures">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="posture"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="posture" type="common:PostureEnumType"/>
+    <xs:element name="EliminateHostilesCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Eliminate Hostiles Condition">
+                    <fg:message>This condition checks whether the learner has eliminated all specified hostile entities.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="entities"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="default">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Default Assessment">
+                    <fg:message>The default assessment for this condition.  This assessment value can be used as the first value, the value that is used when no other assessment logic is valid, etc.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="assessment" type="common:AssessmentLevelEnumType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="EnterAreaCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Enter Area Condition">
+                    <fg:message>This condition checks whether the learner has entered an area correctly.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="entrance"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="entrance">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="outside"/>
+                <xs:element ref="inside"/>
+            </xs:sequence>
+            <xs:attribute name="assessment" type="common:AssessmentLevelEnumType" use="required"/>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="outside">
+        <xs:complexType>
+            <xs:attribute name="proximity" type="xs:decimal" use="required"/>
+            <xs:attribute name="waypoint" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.WaypointSelectionDialog" message="Waypoint">
+                            <fg:message>Select an existing waypoint.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="inside">
+        <xs:complexType>
+            <xs:attribute name="proximity" type="xs:decimal" use="required"/>
+            <xs:attribute name="waypoint" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.WaypointSelectionDialog" message="Waypoint">
+                            <fg:message>Select an existing waypoint.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ExplosiveHazardSpotReportCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Explosive Hazard Spot Report Condition">
+                    <fg:message>This condition checks whether the learner has filled out the Explosive Hazard Spot Report.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="IdentifyPOIsCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Identify POIs Condition">
+                    <fg:message>This condition checks whether the learner has identify specified points-of-interest.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="pois"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="pois">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="waypointRef"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="LifeformTargetAccuracyCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Lifeform Target Accuracy Condition">
+                    <fg:message>This condition checks the learner's accuracy using a weapon on lifeforms.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="entities"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RulesOfEngagementCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Rule of Engagement Condition">
+                    <fg:message>This condition checks whether the learner is following the ROE for this scenario.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="wcs"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="wcs">
+        <xs:complexType>
+            <xs:attribute name="value" type="common:WeaponControlStatusEnum" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true" message="Weapon Control Status">
+                            <fg:message>A weapon control status</fg:message>
+                            <fg:message>Tight - fire at targets recognized as hostile.</fg:message>
+                            <fg:message>Hold - fire in self-defense or when ordered.</fg:message>
+                            <fg:message>Free - fire at any target not positively recognized as friendly.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SpotReportCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Spot Report Condition">
+                    <fg:message>This condition checks whether the learner filled out a spot report.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="NineLineReportCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Nine Line Report Condition">
+                    <fg:message>This condition checks whether the learner filled out a 9-Line report.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ApplicationCompletedCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Application Completed Condition">
+                    <fg:message>This condition checks whether the application has completed.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="IdealCompletionDuration">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Ideal Completion Duration">
+                                <fg:message>The ideal amount of simulation time (hh:mm:ss) it takes the learner to complete the lesson in the training application.</fg:message>
+                                <fg:message>Note: because this parameter focuses on simulation time rather than wall clock time, a pause in the lesson/scenario will not count against the duration.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="8"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MarksmanshipPrecisionCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Marksmanship Precision Condition">
+                    <fg:message>This condition checks whether the marksmanship precision condition was met.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="ExpectedNumberOfShots">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Expected Number of Shots">
+                                <fg:message>The expected number of shots per marksmanship training session.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MarksmanshipSessionCompleteCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Marksmanship Session Completed Condition">
+                    <fg:message>This condition checks whether the marksmanship session has completed.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="ExpectedNumberOfShots">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Expected Number of Shots">
+                                <fg:message>The expected number of shots per marksmanship training session.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="NumberOfShotsFiredCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Number of Shots Fired Condition">
+                    <fg:message>This condition checks whether the expected number of shots have been fired.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="ExpectedNumberOfShots">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Expected Number of Shots">
+                                <fg:message>The expected number of shots per marksmanship training session.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PowerPointDwellCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="PowerPoint Dwell Condition">
+                    <fg:message>This condition checks whether the learner stays on a particular PowerPoint slide long enough to have at least read/see/hear the content.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="default">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Default for all Slides">
+                                <fg:message>The default condition configuration for those slides not uniquely identified in this condition.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="timeInSeconds"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="slides">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="slide">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element ref="timeInSeconds"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="index" use="required">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <fg:node-info exposed="true" message="Slide Index">
+                                                    <fg:message>The index of a slide in a PowerPoint show.</fg:message>
+                                                    <fg:message>Refer to "Help" for more information.</fg:message>
+                                                </fg:node-info>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:integer">
+                                                <xs:minInclusive value="1"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="timeInSeconds">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Time in seconds">
+                    <fg:message>Amount of time in seconds.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:double">
+                <xs:minInclusive value="0.0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="UseRadioCondition">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Use Radio Condition">
+                    <fg:message>This condition checks whether the learner used the radio.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="objects">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="waypoints"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="waypoints">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="waypoint"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="startLocation">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Start Location">
+                    <fg:message>Specifies the start location of an entity.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="coordinate"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="triggerLocation">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Trigger Location">
+                    <fg:message>Specifies the location of a trigger.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="coordinate"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="coordinate">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Coordinate">
+                    <fg:message>Choose the appropriate coordinate system to provide value(s) for.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="common:GCC"/>
+                    <xs:element ref="common:GDC"/>
+                    <xs:element ref="common:VBS_AGL"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="learnerLocation">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Learner Location Trigger">
+                    <fg:message>Fire this trigger when the learner reaches the specified location.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="coordinate"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="waypoint">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="coordinate"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true" message="Location">
+                            <fg:message>Unique name of this waypoint among all other waypoints in this DKF.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="waypointRef">
+        <xs:complexType>
+            <xs:attribute name="distance">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="Distance From Waypoint Location">
+                            <fg:message>The distance (meters) from the waypoint location to use to determine if the waypoint has been reached.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="value" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.WaypointSelectionDialog" message="Waypoint">
+                            <fg:message>Select an existing waypoint.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="scoring">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Scoring">
+                    <fg:message>Specifies the various types of scoring logic for this condition.  Scores are calculated at the end of the lesson, are shown in AAR and are stored in the LMS.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element ref="count"/>
+                    <xs:element ref="completion_time"/>
+                    <xs:element ref="violation_time"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="count">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Count Scorer">
+                    <fg:message>Maintains a count of an event during a lesson for a condition.  The evaluators evaluation of the count value determines the resulting score.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="evaluators"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="units" type="common:UnitsEnumType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="completion_time">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Completion Time Scorer">
+                    <fg:message>Contains the amount of time it took to complete a condition.  The evaluators evaluation of the count value determines the resulting score.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="evaluators"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="units" type="common:UnitsEnumType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="violation_time">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Violation Time Scorer">
+                    <fg:message>Contains the total amount of time the learner violated a condition.  The evaluators evaluation of the count value determines the resulting score.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="evaluators"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="units" type="common:UnitsEnumType" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="bufferWidthPercent">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Buffer Width Percent">
+                    <fg:message>A buffer value (usually around a corridor) as a percent of the width of the corridor.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:minInclusive value="0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="path">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="segment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="segment">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="width"/>
+                <xs:element minOccurs="0" ref="bufferWidthPercent"/>
+                <xs:element ref="start"/>
+                <xs:element ref="end"/>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="width">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Width (meters)">
+                    <fg:message>The width (usually or a segment) in meters.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:minInclusive value="0.01"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="start">
+        <xs:complexType>
+            <xs:attribute name="waypoint" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.WaypointSelectionDialog" message="Waypoint">
+                            <fg:message>Select an existing waypoint.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="end">
+        <xs:complexType>
+            <xs:attribute name="waypoint" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.WaypointSelectionDialog" message="Waypoint">
+                            <fg:message>Select an existing waypoint.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="checkpoint">
+        <xs:complexType>
+            <xs:attribute name="atTime" type="xs:NMTOKEN" use="required"/>
+            <xs:attribute name="waypoint" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.WaypointSelectionDialog" message="Waypoint">
+                            <fg:message>Select an existing waypoint.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="windowOfTime" type="xs:decimal" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="entities">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="startLocation"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="assessments">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Assessments">
+                    <fg:message>Assessments are additional ways a performance node can be assessed beyond the conditions it contains.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="survey">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Survey">
+                                <fg:message>This provides additional assessment logic in the form of a survey.  The survey's results are scored or assessed based on the rules defined.  That assessment is applied to the associated performance node.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="common:GIFTSurveyKey"/>
+                            <xs:element ref="questions"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="conditionAssessment">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Condition Assessment">
+                                <fg:message>This provides additional assessment logic in the form of notifying any descendant performance nodes for additional supplementary assessing.  This is often triggered by a request for additional performance assessment by the Pedagogical Module.  The assessmen is applied to the associated performance node.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:restriction base="xs:anyType"/>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="questions">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Questions">
+                    <fg:message>List of questions whose answers will be assessed.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="question"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="question">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Question">
+                    <fg:message>Specifies how the results of a question from a survey assessment are score or assessed for a performance node survey assessment.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="reply"/>
+            </xs:sequence>
+            <xs:attribute name="key" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.SurveyQuestionDialog" message="key">
+                            <fg:message>The survey question's unique id in the survey authoring system database.</fg:message>
+                            <fg:message>Note: this is not the question id but rather the survey question id. Refer to the Survey Authoring System documentation for more information.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="reply">
+        <xs:complexType>
+            <xs:attribute name="key" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.SurveyReplyDialog" message="key">
+                            <fg:message>The reply's unique id in the survey authoring system database.  The referenced reply id should be a possible reply to the question for the survey for this assessment to be even considered during runtime. Refer to the Survey Authoring System documentation for more information.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="result" type="common:AssessmentLevelEnumType" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="result">
+                            <fg:message>The resulting assessment level if this reply is selected for the question in the survey.  Refer to the Survey Authoring System documentation for more information.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="above">
+        <xs:complexType>
+            <xs:attribute name="operator" type="common:OperatorEnumType" use="required"/>
+            <xs:attribute name="value" type="xs:NMTOKEN" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="at">
+        <xs:complexType>
+            <xs:attribute name="operator" type="common:OperatorEnumType" use="required"/>
+            <xs:attribute name="value" type="xs:NMTOKEN" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="below">
+        <xs:complexType>
+            <xs:attribute name="operator" type="common:OperatorEnumType" use="required"/>
+            <xs:attribute name="value" type="xs:NMTOKEN" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="evaluators">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="evaluator"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="evaluator">	
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info exposed="true" message="Evaluator">
+					<fg:message>An evaluator contains a scoring rule which can be used to assess the learner's overall performance on a condition.</fg:message>
+				</fg:node-info>
+			</xs:appinfo>
+		</xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="assessment" type="common:AssessmentLevelEnumType" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info exposed="true" message="Assessment">
+							<fg:message>The score to give when the evaluation is true based on the 'operator' and 'value' authored.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+                </xs:annotation>
+			</xs:attribute>
+            <xs:attribute name="operator" type="common:OperatorEnumType" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info exposed="true" message="Operator">
+							<fg:message>Choose an operator to apply to the logic of - "when the {scoring event value} is {operator} than {value} the score is {assessment}".</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+                </xs:annotation>
+			</xs:attribute>
+            <xs:attribute name="value" type="xs:NMTOKEN" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info exposed="true" message="Value">
+							<fg:message>Choose a value that makes sense based on the units (e.g. a value of 3 makes sense for units of 'count', while a value of '00:01:23' makes sense for units of 'hh:mm:ss').</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+                </xs:annotation>
+			</xs:attribute>
+        </xs:complexType>
+    </xs:element>
+	
+	    <xs:element name="conceptAssessment">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Concept Assessment Trigger">
+                    <fg:message>Fire this trigger when the assessment of the specified concept matches the authored assessment value.</fg:message> 
+					<fg:message>All created concepts will be in the list for selection.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="concept" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.ConceptAssessmentNodeDialog" exposed="true" message="Node Id">
+                            <fg:message>Unique id of a concept node in the hierarchy that will cause this trigger to fire if its assessment matches the authored result.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+			<xs:attribute name="result" type="common:AssessmentLevelEnumType" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="result">
+                            <fg:message>The resulting assessment level that will cause the trigger to fire.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+	
+    <!-- Start of Pedagogy related items -->
+    <xs:element name="actions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="stateTransitions">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="State Transitions">
+                                <fg:message>A state transitions corresponds to a change in a learner state from the current value to the next value.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="stateTransition">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="LogicalExpression">
+                                            <xs:annotation>
+                                                <xs:appinfo>
+                                                    <fg:node-info message="State Logical Expression">
+                                                        <fg:message>Allows for the creation of a logical expression on learner state attribute transitions.  This allows for more complex and fine tuned instructional strategy selection.</fg:message>
+                                                        <fg:message>Note: For now every attribute transition child is analyzed with an AND operator.</fg:message>
+                                                    </fg:node-info>
+                                                </xs:appinfo>
+                                            </xs:annotation>
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:choice maxOccurs="unbounded">
+                                                        <xs:element ref="ped:LearnerStateTransitionEnum"/>
+                                                        <xs:element ref="performanceNode"/>
+                                                    </xs:choice>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="strategyChoices">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element maxOccurs="unbounded" ref="strategyRef"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+									<xs:attribute name="name" use="optional">
+										<xs:annotation>
+											<xs:appinfo>
+												<fg:node-info exposed="true">
+													<fg:message>A display name for this state transition definition.</fg:message>
+												</fg:node-info>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="instructionalStrategies">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Instructional Strategies">
+                                <fg:message>Specifies the various instructional strategies available for this scenario.</fg:message>
+                                <fg:message>Refer to "Help" for more information.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" ref="strategy"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="strategyRef">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Strategy Reference">
+                    <fg:message>References the unique name of an instructional strategy in the strategies list.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.StrategyReferenceDialog" exposed="true" message="Strategy Name">
+                            <fg:message>Unique name of an instructional strategy.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="performanceNode">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Performance Node State Transition">
+                    <fg:message>Represents a change in a learner state that is associated with a performance node.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="previous" type="common:AssessmentLevelEnumType">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Previous Assessment Value">
+                                <fg:message>The previous assessment value for the referenced performance assessment node in a learner state.</fg:message>
+                                <fg:message>If the 'previous' value is not provided it will be treated as a wild card.  In this case the 'current' value must be provided.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element minOccurs="0" name="current" type="common:AssessmentLevelEnumType">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info message="Current Assessment Value">
+                                <fg:message>The current assessment value for this performance assessment node in a learner state.</fg:message>
+                                <fg:message>If the 'current' value is not provided it will be treated as a wild card.  In this case the 'previous' value must be provided.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="nodeId" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.PerformanceNodeDialog" exposed="true" message="Node Id">
+                            <fg:message>Unique id for a performance assessment node (e.g. task, concept) in this scenario that this state transition is associated with. In other words if the performance assessment node's assessment value changes from the "previous" to "current" values that this transition's instructional strategies should be considered by the Pedagogical module.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="strategy">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element ref="ped:instructionalIntervention"/>
+                    <xs:element ref="performanceAssessment"/>
+                    <xs:element ref="ped:scenarioAdaptation"/>
+					<xs:element ref="ped:doNothingInstStrategy"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="name" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true" message="Strategy Name">
+                            <fg:message>Unique name of an instructional strategy.</fg:message>
+                            <fg:message>Note: The strategy name can be used to reference this strategy by the Default Pedagogical engine.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="performanceAssessment">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info exposed="true" message="Performance Assessment Instructional Strategy">
+                    <fg:message>Contents of a request for performance assessment on a particular performance assessment node.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ped:strategyHandler"/>
+            </xs:sequence>
+            <xs:attribute name="nodeId" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info editor-class="mil.arl.gift.tools.authoring.dat.custnodes.PerformanceNodeDialog" exposed="true" message="Node Id">
+                            <fg:message>Unique id for a performance assessment node (e.g. task, concept) in this scenario that this request for performance assessment strategy is associated with.</fg:message>
+                            <fg:message>Refer to "Help" for more information.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- End of Pedagogy related items -->
+</xs:schema>

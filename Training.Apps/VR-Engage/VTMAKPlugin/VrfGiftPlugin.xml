@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="9">
+<DtVrfPluginRecord class_id="0" tracking_level="0" version="1">
+	<myPluginData class_id="1" tracking_level="0" version="0">
+		<count>1</count>
+		<item_version>0</item_version>
+		<item class_id="2" tracking_level="0" version="0">
+			<first>vrfSim</first>
+			<second class_id="3" tracking_level="0" version="0">
+				<count>1</count>
+				<item_version>0</item_version>
+				<item class_id="4" tracking_level="0" version="0">
+					<first>Windows64</first>
+					<second class_id="5" tracking_level="0" version="0">
+						<count>1</count>
+						<item_version>0</item_version>
+						<item class_id="6" tracking_level="0" version="0">
+							<first>Release</first>
+							<second class_id="7" tracking_level="0" version="0">
+								<count>1</count>
+								<item_version>0</item_version>
+								<item class_id="8" tracking_level="0" version="0">
+									<first>DIS</first>
+									<second class_id="9" tracking_level="0" version="0">
+										<count>1</count>
+										<item_version>0</item_version>
+										<item class_id="10" tracking_level="0" version="0">
+											<first>plugin</first>
+											<second>../plugins64/vrForces/release/VrfGiftPluginDIS.dll</second>
+										</item>
+									</second>
+								</item>
+							</second>
+						</item>
+					</second>
+				</item>
+			</second>
+		</item>
+	</myPluginData>
+	<myLoad>1</myLoad>
+</DtVrfPluginRecord>
+</boost_serialization>
+

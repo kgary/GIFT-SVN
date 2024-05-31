@@ -1,0 +1,8 @@
+This is a summary of a GIFT Domain Content only import using the GIFT import domain content tool.  
+It contains one or more successfully imported domains (listed at the bottom of this README).
+
+GIFT Resources
+
+For more information on GIFT or to collaborate with the GIFT
+community, visit gifttutoring.org
+

@@ -1,0 +1,13 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ClearTextActionProto";
+
+/* This message represents an action that signals that all text will be cleared. */
+message ClearTextAction {}

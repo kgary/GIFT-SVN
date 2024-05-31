@@ -1,0 +1,33 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.spaceRight{
+			padding-right: 10px;
+		}
+		.tabbed{
+			padding: 0px 30px;
+		}
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.largePadTop{
+			padding-top: 10px;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<b:Form ui:field="form" >
+			<b:FieldSet>
+				<b:FormGroup>
+					<b:FormLabel ui:field='nameLabel' for="nameTextBox" addStyleNames='{style.largePadTop} {style.spaceRight}' />
+					<b:InlineHelpBlock iconType="EXCLAMATION_TRIANGLE" />
+			   		<g:FlowPanel addStyleNames='{style.tabbed} {style.padBottom}'>
+			   			<b:TextBox width='100%' ui:field='nameTextBox' />
+			   		</g:FlowPanel>
+			   		<g:HTML addStyleNames='{style.spaceRight}' ui:field='additionalInfoLabel' visible='false' /> 
+				</b:FormGroup>
+			</b:FieldSet>
+		</b:Form>
+	</g:HTMLPanel>
+</ui:UiBinder> 

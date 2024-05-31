@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LtiGetProviderUrlResponseProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the response to the LtiGetProviderUrlResponse as a string. */
+message LtiGetProviderUrlResponse {
+	/* The url of the get request. */
+	google.protobuf.StringValue url = 1;
+}

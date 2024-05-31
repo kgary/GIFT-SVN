@@ -1,0 +1,32 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainSelectionRequestProto";
+
+import "AbstractRuntimeParameters.proto";
+import "WebClientInformation.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents information about a domain selection request. */
+message DomainSelectionRequest {
+	/* Domain name for the request. */
+	google.protobuf.StringValue domain_name = 1;
+	
+	/* Source id for the domain. */
+	google.protobuf.StringValue domain_source_id = 2;
+	
+	/* The LMS username. */
+	google.protobuf.StringValue lms_username = 3;
+	
+	/* The information about the client making the request. */
+	WebClientInformation client_info = 4;
+	
+	/* Runtime parameters for the request. */
+	AbstractRuntimeParameters runtime_params = 5;
+}

@@ -1,0 +1,64 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractRemediationConceptProto";
+
+import "AbstractEnumObject.proto";
+import "MetadataAttributeItem.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the base message for all remediation concepts. */
+message AbstractRemediationConcept {
+	oneof type {
+		/* This inner class contains passive remediation information for a specific concept 
+		   in a specific phase (e.g. Example). For example, Concept "A" needs remediation in the 
+		   form of the Merrill's Rule quadrant. */
+		PassiveRemediationConcept passive_remediation_concept = 1;
+		
+		/* This inner class contains active remediation information for a specific concept. */
+		ActiveRemediationConcept active_remediation_concept = 2;
+		
+		/* This inner class contains constructive remediation information for a specific concept. */
+		ConstructiveRemediationConcept constructive_remediation_concept = 3;
+		
+		/* This inner class contains interactive remediation information for a specific concept. */
+		InteractiveRemediationConcept interactive_remediation_concept = 4;
+	}
+}
+
+message PassiveRemediationConcept {
+	/* The quadrant to execute for the correct level of remediation for 
+	   the concept. */
+	google.protobuf.StringValue concept = 1;
+	
+	/* The quadrant to execute for the correct level of remediation for 
+	   the concept. */
+	AbstractEnumObject remediation_concept = 2;
+	
+	/* The attributes used to help determine what content to present. */
+	repeated MetadataAttributeItem attributes = 3;
+}
+
+message ActiveRemediationConcept {
+	/* The quadrant to execute for the correct level of remediation for 
+	   the concept. */
+	google.protobuf.StringValue concept = 1;
+}
+
+message ConstructiveRemediationConcept {
+	/* The quadrant to execute for the correct level of remediation for 
+	   the concept. */
+	google.protobuf.StringValue concept = 1;
+}
+
+message InteractiveRemediationConcept {
+	/* The quadrant to execute for the correct level of remediation for 
+	   the concept. */
+	google.protobuf.StringValue concept = 1;
+}

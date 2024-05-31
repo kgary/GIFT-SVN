@@ -1,0 +1,72 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style  type="mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster.sessionfilter.OverallAssessmentDialog.Style">
+	   .overallAssessmentBody{
+            max-width: 800px;
+	   }
+	   .treeArea{
+		   padding-top:5px;
+           overflow: auto;
+           max-width: 100%;
+           max-height: 500px;
+           display: flex;
+	   }
+	   .itemContainer{ 
+            display: flex;
+            align-items: center;
+            cursor: default;
+            position: relative;
+            cursor: pointer;
+        }
+        .itemContainer:hover{
+            background-color: rgba(230,230,255, 1);
+            border-radius: 5px;
+        }
+        .barData{
+            padding-left: 10px;
+            margin-left: 10px;
+            margin-right: 10px;
+            position: relative;
+        }
+        .overallAssessmentTree {
+            display: inline-block;
+            padding-right: 20px;
+	    }
+        .overallAssessmentTree table,.overallAssessmentTree table tr,.overallAssessmentTree table td:last-of-type{
+            width: 100%;
+        }
+        .condition{
+		    border-radius: 5px;
+		    background-image: linear-gradient(transparent 50%, rgba(200, 200, 235, 0.5));
+		    box-shadow: 2px 1px 3px rgba(0, 0, 0, 50%);
+		    font-weight: bold;
+		    color: black;
+		    padding-left: 10px;
+		}
+		.task{
+		    border-bottom: 1px solid rgb(200,200,200);
+		    color: white;
+		    background-image: linear-gradient(rgb(200,200,200), black 20%, rgb(100,100,100) 90%, black);
+		    border-radius: 5px;
+		    padding-left: 5px;
+        }
+        .task:hover{
+            background-image: linear-gradient(rgb(200,200,255), rgb(0,0,55) 20%, rgb(100,100,155) 90%, rgb(0,0,55));
+	    }
+        @external .fa;
+        .task .fa{
+            transform: scale(1) rotateY(180deg);
+            opacity: 1;
+            filter: drop-shadow(0px 0px 8px rgba(255,255,255,0.5));
+        }
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.overallAssessmentBody}'>
+	   <g:HTML>
+	       Update the summative assessments of this session.
+	   </g:HTML>
+	   <g:FlowPanel addStyleNames='{style.treeArea}'>
+	       <g:Tree addStyleNames='{style.overallAssessmentTree}' ui:field='overallAssessmentTree'/>
+	   </g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

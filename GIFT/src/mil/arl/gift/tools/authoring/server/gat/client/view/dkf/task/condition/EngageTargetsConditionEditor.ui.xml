@@ -1,0 +1,60 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:common="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:c="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:list="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list"
+    xmlns:gallery="urn:import:org.gwtbootstrap3.extras.gallery.client.ui">
+
+    <ui:style>
+        .teamPicker {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .distanceSpinner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .angleSpinner {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .distancePanel{
+			padding-top:5px;
+		}
+    </ui:style>
+
+    <g:HTMLPanel>
+        
+        <gallery:Gallery thumbnailWidth="100px" thumbnailHeight="100px">
+           	<gallery:GalleryImage url="images/help/engageTargets.WeaponCone.PNG" />
+   		</gallery:Gallery>    
+        <span>Assess when </span>
+        <shared:EditableTeamPicker ui:field="teamPicker" addStyleNames="{style.teamPicker}" />
+        <span> fires his/her weapon after a target/location falls inside of the weapon cone of </span>
+        <common:NumberSpinner ui:field="weaponConeAngleSpinner" addStyleNames="{style.angleSpinner}" />
+        <span>degrees.</span>
+        <br/>
+        <span><b>Above Expectation</b> for target/location fired upon within </span>
+        <common:DecimalNumberSpinner ui:field="aboveExpectationTimeSpinner" addStyleNames="{style.angleSpinner}"/><span> seconds.</span>
+		<br/>
+		<span><b>At Expectation</b> for target/location fired upon within </span>
+        <common:DecimalNumberSpinner ui:field="atExpectationTimeSpinner" addStyleNames="{style.angleSpinner}"/><span> seconds.</span>
+		<br/>
+        <!-- Optional weapon cone Maximum Distance Spinner -->
+        <g:HTMLPanel addStyleNames="{style.distancePanel}">
+            <cb:ToggleButton ui:field="useMaxDistanceCheckBox" postLabel="Ignore targets/locations beyond" width="auto" />
+            <common:NumberSpinner ui:field="maxDistanceSpinner" addStyleNames="{style.distanceSpinner}" />
+            <g:InlineLabel ui:field='maxDistanceLabel'>meters.</g:InlineLabel>
+        </g:HTMLPanel>
+        <br/>
+        <span>Who to engage:</span>
+        <shared:EditableTeamPicker ui:field="targetTeamPicker" addStyleNames="{style.teamPicker}" />
+		<br/>
+        <list:ItemListEditor ui:field="targetLocationListEditor" />
+    </g:HTMLPanel>
+</ui:UiBinder>

@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AssessMyLocationTutorActionProto";
+
+import "LearnerAction.proto";
+
+/* This message represents the learner tutor action of assessing a location. */
+message AssessMyLocationTutorAction {
+	/* The learner action. */
+	LearnerAction learner_action = 1;
+}

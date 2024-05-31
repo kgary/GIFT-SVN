@@ -1,0 +1,35 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:list="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list"
+    xmlns:cc="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared">
+    <ui:style>
+        .cellTableFix {
+            border-collapse: separate;
+        }
+        .tableHeader{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .tableHeaderText{
+            padding: 10px 5px 10px 0px;
+        }
+        .teamPicker{
+            margin-top: 20px;
+        }
+    </ui:style>
+    <g:HTMLPanel>
+    
+        <g:FlowPanel addStyleNames='{style.tableHeader}'>
+            <g:HTML addStyleNames='{style.tableHeaderText}'>
+                Checkpoints to reach:
+            </g:HTML>
+            <shared:WrapButton/>
+        </g:FlowPanel>
+        <list:ItemListEditor ui:field="checkpointsEditor" draggable="true" placeholder="No checkpoints have been added. This condition must have at least one checkpoint to be valid." width="100%" addStyleNames='{style.cellTableFix}' />
+        <shared:TeamMemberPicker label='Learners role that should be assessed:' addStyleNames='{style.teamPicker}' ui:field='teamMemberPicker' />
+    </g:HTMLPanel>
+</ui:UiBinder>

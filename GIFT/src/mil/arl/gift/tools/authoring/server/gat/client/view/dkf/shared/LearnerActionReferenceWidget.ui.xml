@@ -1,0 +1,39 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+    xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    
+    <ui:style>
+        .inlineBlock {
+            display: inline-block;
+        }
+        .left-align {
+            text-align: left;
+        }
+        .pointer-cursor {
+            cursor: pointer;
+        }
+        .helpLink {
+            padding-left: 5px;
+            color: rgb(100, 100, 200);
+            font-weight: normal;
+        }
+        .panelPadding{
+            padding-top:5px;
+            padding-bottom:0px;
+        }
+    </ui:style>
+    
+    <b:Panel>
+        <b:PanelHeader ui:field="panelHeader" dataToggle="COLLAPSE" addStyleNames="{style.pointer-cursor}">
+            <b:Heading text="Learner Actions" size="H2" addStyleNames="{style.left-align} {style.inlineBlock}" />
+        </b:PanelHeader>
+        <b:Collapse ui:field="collapse">
+            <b:PanelBody addStyleNames="{style.panelPadding}">
+                <wb:GenericListEditor ui:field="listEditor" />
+            </b:PanelBody>
+        </b:Collapse>
+    </b:Panel>
+</ui:UiBinder>

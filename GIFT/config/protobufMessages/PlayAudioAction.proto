@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "PlayAudioActionProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a feedback action to play some audio. */
+message PlayAudioAction {
+	/* The MP3 file to play for feedback. */
+	google.protobuf.StringValue mp3_file = 1;
+	
+	/* The OGG file to play for feedback. */
+	google.protobuf.StringValue ogg_file = 2;
+}

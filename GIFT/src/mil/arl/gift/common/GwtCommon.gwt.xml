@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module>
+	<inherits name='generated.GwtGenerated-dkf'/>
+	<inherits name='generated.GwtGenerated-course'/>
+
+    <source>
+    	<include name="**/DomainAssessmentContent.java"/>
+        <include name="**/TutorUserInterfaceFeedback.java"/>
+        <include name="**/FeedbackAction.java"/>
+        <include name="**/AvatarData.java"/>
+        <include name="**/DisplayTextAction.java"/>
+        <include name="**/DisplayHTMLFeedbackAction.java"/>
+        <include name="**/ChangeCallback.java"/>
+        <include name="**/ClearTextAction.java"/>
+        <include name="**/PlayAudioAction.java"/>
+        <include name="**/DisplayAvatarAction.java"/>
+        <include name="**/DisplayTextToSpeechAvatarAction.java"/>
+        <include name="**/DisplayScriptedAvatarAction.java"/>
+        <include name="**/AbstractDisplayContentTutorRequest.java"/>
+        <include name="**/DisplayMediaTutorRequest.java"/>
+        <include name="**/DisplayMessageTutorRequest.java"/>
+        <include name="**/DisplayMediaCollectionRequest.java"/>
+        <include name="**/DisplayCourseInitInstructionsRequest.java"/>
+        <include name="**/EndKnowledgeSessionRequest.java"/>
+        <include name="**/EnumException.java"/>
+        <include name="**/EnumerationNotFoundException.java"/>
+        <include name="**/GenericDataProvider.java"/>
+        <include name="**/AttributeValueEnumAccessor.java"/>  
+        <include name="**/DomainOption.java"/>
+        <include name="**/LMSCourseRecords.java"/>
+        <include name="**/LMSCourseRecord.java"/>
+        <include name="**/AssessmentLevelEnum.java"/>
+        <include name="**/ModuleTypeEnum.java"/>
+        <include name="**/GradedScoreNode.java"/>
+        <include name="**/TaskScoreNode.java"/>
+        <include name="**/AbstractScoreNode.java"/>
+        <include name="**/PassFailEnum.java"/>
+        <include name="**/LMSConnectionInfo.java"/>
+        <include name="**/RawScoreNode.java"/>
+        <include name="**/ScoreNodeTypeEnum.java"/>
+        <include name="**/RawScore.java"/>
+        <include name="**/AbstractRawScore.java"/>
+        <include name="**/DefaultRawScore.java"/>
+        <include name="**/TrainingAppCourseObjectWrapper.java"/>
+        <include name="**/LtiUserId.java"/>
+        <include name="**/EvaluatorUpdateRequest.java"/>
+        <include name="**/SaveCancelCallback.java"/>
+        <include name="**/MobileAppProperties.java"/>
+        <include name="**/UserSession.java"/>
+        <include name="**/UserSessionType.java"/>
+        <include name="**/DomainSession.java"/>
+    </source>
+    
+    <source path='aar'>
+        <include name="**/LogFilePlaybackService.java" />
+        <include name="**/LogFilePlaybackTarget.java" />
+        <include name="**/LogIndexService.java" />
+        <include name="**/LogMetadata.java" />
+        <include name="**/LogSpan.java" />
+        <include name="**/VideoMetadata.java"/>
+        <include name="**/ScoreNodeUpdate.java"/>
+    </source>
+    
+    <source path='coordinate'>
+        <include name="**/AbstractCoordinate.java"/> 
+        <include name="**/AGL.java"/> 
+        <include name="**/GCC.java"/> 
+        <include name="**/GDC.java"/> 
+    </source>
+    
+    <source path='usersession'>
+    	<include name="**/LtiUserSessionDetails.java"/>
+    	<include name="**/AbstractUserSessionDetails.java"/>
+    </source>
+    
+    <source path='course'>
+        <include name="**/CourseConceptsUtil.java"/>
+    	<include name="**/CourseValidationResults.java"/> 
+    	<include name="**/GIFTValidationResults.java"/> 
+    	<include name="**/DKFValidationException.java"/>
+    	<include name="**/CourseFileAccessDetails.java"/>
+        <include name="**/FileUserPermissionsKey.java"/>
+    	<include name="**/CourseFileUserPermissionsDetails.java"/>
+        <include name="**/InteropsInfo.java"/>
+        <include name="**/TrainingAppUtil.java"/>
+        <include name="**/AbstractKnowledgeSession.java"/>
+        <include name="**/SessionMember.java"/>
+        <include name="**/Mission.java"/>
+        <include name="**/IndividualKnowledgeSession.java"/>
+        <include name="**/TeamKnowledgeSession.java"/>
+        <include name="**/AbstractTeamUnit.java"/>
+        <include name="**/LocatedTeamMember.java"/>
+        <include name="**/MarkedTeamMember.java"/>
+        <include name="**/Team.java"/>
+        <include name="**/TeamMember.java"/>
+        <include name="**/KnowledgeSessionsRequest.java"/>
+        <include name="**/KnowledgeSessionsReply.java"/>
+        <include name="**/CourseRecordRef.java"/>
+        <include name="**/SessionScenarioInfo.java"/>
+    </source>
+
+    <source path='course/strategy'>
+        <include name="**/ApplyStrategies.java" />
+        <include name="**/AuthorizeStrategiesRequest.java" />
+        <include name="**/ExecuteOCStrategy.java" />
+        <include name="**/DomainStrategyInfo.java" />
+        <include name="**/StrategyStateUpdate.java" />
+        <include name="**/StrategyToApply.java" />
+    </source>
+    
+    <source path='survey'>
+        <exclude name="**/*score*"/>
+    </source>
+    
+    <source path='survey'>
+        <include name="**/AttributeScorer.java"/>
+        <include name="**/AttributeScorerProperties.java"/>
+        <include name="**/QuestionScorer.java"/>
+        <include name="**/ReturnValueCondition.java"/>
+        <include name="**/SurveyScorer.java"/>
+        <include name="**/TotalScorer.java"/>
+        <include name="**/FillInTheBlankQuestion.java"/>
+        <include name="**/SurveyContext.java"/>
+        <exclude name="**/*score*"/>
+    </source>
+    
+    <source path='experiment'>
+        <include name="**/CourseCollection.java"/>
+        <include name="**/DataCollectionResultsLti.java"/>;
+        <include name="**/DataCollectionItem.java"/>
+        <include name="**/ExperimentSubject.java"/>
+        <include name="**/ExperimentSubjectId.java"/>
+        <include name="**/ExperimentUtil.java"/>
+    </source>
+    
+    <source path='ert'>
+        <include name="**/ColumnProperties.java"/>
+        <include name="**/EventColumnDisplay.java"/>
+        <include name="**/EventReportColumn.java"/>
+        <include name="**/EventType.java"/>
+        <include name="**/ReportProperties.java"/>
+        <include name="**/TimeProperties.java"/>
+        <include name="**/MinMaxProperty.java"/>
+        <include name="**/GenerateReportStatus.java"/>
+    </source>
+    
+    <source path='io'>
+        <include name="**/Constants.java"/>
+        <include name="**/FileTreeModel.java"/>
+        <include name="**/LearnerStateIconMap.java"/>
+        <include name="**/ProgressIndicator.java"/>
+        <include name="**/LoadedProgressIndicator.java"/>
+        <include name="**/DownloadableFileRef.java"/>
+        <include name="**/DetailedException.java"/>
+        <include name="**/FileValidationException.java"/>
+        <include name="**/DetailedExceptionSerializedWrapper.java"/>
+        <include name="**/CourseListFilter.java"/>
+        <include name="**/GiftScenarioProperties.java"/>
+        <include name="**/MapTileProperties.java"/>
+    </source>
+    
+    <source path='enums'>
+        <exclude name="**/AbstractEnum.java"/>
+    </source>
+    
+    <source path='metadata'>
+        <include name="**/MetadataWrapper.java"/>
+        <include name="**/MetadataSearchResult.java"/>
+        <include name="**/QuadrantRequest.java"/>
+        <include name="**/QuadrantResultSet.java"/>
+    </source>
+    
+    <source path='ta/util'>
+        <include name="**/TeamEchelonUtility.java"/>
+        <include name="**/ExternalMonitorConfig.java"/>
+    </source>
+
+    <source path='ta/state'>
+        <include name="**/EntityIdentifier.java"/>
+        <include name="**/EntityType.java"/>
+        <include name="**/RemoveEntity.java"/>
+        <include name="**/SimulationAddress.java"/>
+        <include name="**/TrainingAppState.java"/>
+    </source>
+    
+    <source path='state'/>
+    
+    <source path='util'>
+        <include name="**/BiDirectionalHashMap.java"/>
+        <include name="**/CollectionUtils.java"/>
+        <include name="**/ProtectedProperty.java"/>
+        <include name="**/StrategyUtil.java"/>
+        <include name="**/StringUtils.java"/>
+        <include name="**/CompareUtil.java"/>
+    </source>
+</module>

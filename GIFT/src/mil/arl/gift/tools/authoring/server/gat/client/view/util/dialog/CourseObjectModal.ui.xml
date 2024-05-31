@@ -1,0 +1,82 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.content {
+			background: #E9E9E9;
+		}
+		.headerText {
+			display: inline;
+			color: white;
+		}
+		.noBorder {
+			border: none !important;
+		}
+        .modalPadding {
+            padding: 0px;
+            margin-bottom: 5px;
+            margin-top: -5px;
+        }
+		.footer {
+			padding: 10px 0px 0px;
+		}
+		.actionButton {
+			float: left;
+			min-width: 235px;
+		}
+		.btnSpacing {
+			margin-left: 30px !important;
+		}
+		.contentContainer{
+            padding: 0px !important;
+            flex: 1;
+            overflow: auto;
+	    }
+	    .mainHeader{
+            padding: 10px;
+	    }
+	    .mainFlex{
+	       display: flex;
+           flex-direction: column;
+	    }
+	</ui:style>
+	<g:HTMLPanel>
+		<b:Modal title='' b:id="courseObjectModal" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="false" ui:field="courseObjectModal"
+				addStyleNames='courseObjectModal'>
+				
+			<b:ModalHeader width='100%' height='100%' addStyleNames="{style.noBorder} {style.mainHeader}" ui:field='modalHeader'>
+				<g:FlowPanel width='100%' height='100%' styleName="{style.mainFlex}">
+					
+			        <b:ModalHeader addStyleNames="{style.modalPadding} {style.noBorder}" closable='false' ui:field='innerModalHeader'>
+			            <b:Heading size="H3" addStyleNames="{style.headerText}">
+			                <g:InlineHTML ui:field="modalTitle"/>
+			            </b:Heading>				           
+			        </b:ModalHeader>
+	              
+			       <b:ModalBody width='100%' height='100%' styleName=" {style.content} {style.contentContainer}" ui:field='modalBody'>
+	                   <g:FlowPanel width='100%' height='100%' ui:field="contentPanel" styleName="gat-form"/>
+			        </b:ModalBody>	        
+
+			        <b:ModalFooter addStyleNames="{style.noBorder} {style.footer}" >
+			            <b:Button type="SUCCESS" visible="false" addStyleNames="{style.actionButton}" ui:field="actionButton"></b:Button>
+			           <!-- <b:Button type="PRIMARY" width="150px" ui:field="excludeButton">
+			            	Exclude
+			            </b:Button> -->
+			            <b:Button type="PRIMARY" width="150px" ui:field="saveAndCloseButton">
+			            	Save and Close
+			            </b:Button>
+			            <b:Button type="DANGER" width="150px" addStyleNames="{style.btnSpacing}" ui:field="cancelButton">
+			            	Cancel
+			            </b:Button>
+			        </b:ModalFooter>
+		        
+		        </g:FlowPanel>
+	        </b:ModalHeader>
+	        
+	   </b:Modal>
+	   
+	</g:HTMLPanel>
+	
+</ui:UiBinder>

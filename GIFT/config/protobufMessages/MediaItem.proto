@@ -1,0 +1,51 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "MediaItemProto";
+
+import "PDFProperties.proto";
+import "WebpageProperties.proto";
+import "YoutubeVideoProperties.proto";
+import "SlideShowProperties.proto";
+import "VideoProperties.proto";
+import "ImageProperties.proto";
+import "LtiProperties.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This represents properties for an image. */
+message MediaItem {
+	oneof type {
+		/* PDF property. */
+		PDFProperties pdf_properties = 1;
+		
+		/* Webpage property. */
+		WebpageProperties webpage_properties = 2;
+		
+		/* Youtube video property. */
+		YoutubeVideoProperties youtube_video_properties = 3;
+		
+		/* Slide show property. */
+		SlideShowProperties slide_show_properties = 4;
+		
+		/* Video property. */
+		VideoProperties video_properties = 5;
+		
+		/* Image property. */
+		ImageProperties image_properties = 6;
+		
+		/* Lti property. */
+		LtiProperties lti_properties = 7;
+	}
+	
+	/* Value of the uri property. */
+	google.protobuf.StringValue uri = 8;
+	
+	/* Name of the media item. */
+	google.protobuf.StringValue name = 9;
+}

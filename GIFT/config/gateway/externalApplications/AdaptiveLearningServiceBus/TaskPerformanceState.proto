@@ -1,0 +1,42 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "TaskPerformanceStateProto";
+
+import "PerformanceStateAttribute.proto";
+
+message TaskPerformanceState {
+	bool has_observed_assessment = 1;
+	PerformanceStateAttribute state = 2;
+	repeated ConceptPerformanceState concepts = 3;
+}
+
+message PerformanceStateAttributeType {
+	oneof type {
+		PerformanceStateAttribute performance_state_attribute = 2;
+	}	
+}
+
+message PerformanceStateConceptType {
+	oneof type {
+		ConceptPerformanceState concept_performance_state = 2;
+		IntermediateConceptPerformanceState intermediate_concept_performance_state = 3;
+	}
+}
+
+message ConceptPerformanceState {
+	bool has_observed_assessment = 1;
+	PerformanceStateAttribute performance_state_attribute = 2;
+}
+
+message IntermediateConceptPerformanceState {
+	bool has_observed_assessment = 1;
+	PerformanceStateAttribute state = 2;
+	repeated ConceptPerformanceState concepts = 3;
+}
+	

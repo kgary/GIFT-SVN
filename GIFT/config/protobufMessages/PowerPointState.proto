@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "PowerPointStateProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the current state of the PowerPoint. */
+message PowerPointState {
+	/* The index corresponding to the current slide. */
+	google.protobuf.Int32Value slide_index = 1;
+	
+	/* The total count of slides. */
+	google.protobuf.Int32Value slide_count = 2;
+	
+	/* The error message for the state. */
+	google.protobuf.StringValue error_msg = 3;
+}

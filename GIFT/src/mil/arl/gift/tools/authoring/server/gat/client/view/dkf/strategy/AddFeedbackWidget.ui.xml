@@ -1,0 +1,253 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util"
+    xmlns:ds="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.strategy"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:c="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    <ui:style>
+        .padTop {
+            padding-top: 5px;
+        }
+        .largePadTop{
+            padding-top: 10px;
+        }
+        .smallPadBottom{
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+        }
+        .largePadBottom{
+            margin-bottom: 20px;
+        }
+        .inline{
+            display: inline;
+        }
+        .smallPad{
+            margin: 5px;
+        }
+        .editIcon {
+            display: inline;
+            padding-right: 5px;
+        }
+        .fileLabel {
+            margin-right: 4px;
+        }
+        .audioPanelTable > tbody > tr > td {
+            padding: 8px;
+        }
+        .oggHelpLinkIcon {
+            color: rgb(100, 100, 200);
+            margin: 0px 4px;
+        }
+        .label {
+            padding: 7px 7px 7px 0px;
+        }
+        .messageDisplayButton{
+            margin-top: 5px;
+            color: #333;
+        }
+        @external focus;
+        .messageDisplayButton.focus{
+            background-color: white;
+            color: #333;
+        }
+        .messageDisplayButton:hover{
+            background-color: white;
+            background-image: linear-gradient(transparent, rgba(0,0,255,0.1));
+            box-shadow: 0px 0px 5px blue;
+            z-index: 10 !important;
+            color: #333;
+        }
+        @external active;
+        .messageDisplayButton.active{
+            color: #333;
+            background-color: #e6e6e6;
+        }
+        .messageDisplayButton > span{
+            width: auto !important;
+            margin: 0px !important;
+            padding: 0px !important;
+        }
+        .sendToObserverControllerButton{
+            margin-right: 10px;
+            border-radius: 5px !important;
+        }
+        .stressCategoryPickerPanel{
+			margin-top:10px;
+			margin-bottom:10px;
+		}
+    </ui:style>
+    <g:FlowPanel>
+	    <g:DeckPanel ui:field="deckPanel" animationEnabled="true">
+	        <g:FlowPanel ui:field="typeChoiceRibbonPanel" width="100%">
+	            <b:Heading size="H3" text="Feedback" />
+	            <shared:Ribbon ui:field='typeChoiceRibbon' />
+	        </g:FlowPanel>
+	
+	        <g:FlowPanel ui:field='messagePanel'>
+	
+	            <g:DeckPanel ui:field='messageDeck'>
+	
+	                <g:FlowPanel ui:field='noAvatarPanel' addStyleNames='{style.smallPadBottom}' >
+		                <b:Icon size='LARGE' type='COMMENTS' addStyleNames='{style.editIcon}' />
+		                <ds:MessageDisplaySessionPropertiesWrapper ui:field='requestSessionState'>
+		                    <g:InlineHTML>Present a message</g:InlineHTML>
+		                </ds:MessageDisplaySessionPropertiesWrapper>
+	                </g:FlowPanel>
+	
+	                <g:FlowPanel ui:field='avatarPanel' visible='false'>
+	
+	                    <b:Icon size='LARGE' type='USER' addStyleNames='{style.editIcon}' />
+		                <g:InlineHTML>Play Avatar Script</g:InlineHTML>
+	
+		                 <g:FlowPanel addStyleNames='{style.largePadBottom}'>
+		                    <u:TooltipPanel tooltip=
+		                        'The initial agent to show in GIFT when the training application transition is started.
+		                        If no agent is selected here, the default agent will be shown.'
+		                    />
+		                    <g:HTMLPanel addStyleNames='{style.padTop}' width='100%'>
+		                        <g:HTML addStyleNames='{style.largePadTop}'>
+		                            <b>Agent File:</b>
+		                        </g:HTML>
+	                            <g:FlowPanel addStyleNames='{style.padTop}'>
+	                                <g:Button addStyleNames='{style.inline}' ui:field="chooseAvatarBtn">
+	                                    Select a file...
+	                                </g:Button>
+	                                <g:HTML addStyleNames='{style.inline} {style.smallPad}' ui:field='avatarFileLabel'>
+	                                    No file selected.
+	                                </g:HTML>
+		                        </g:FlowPanel>
+		                        <g:HTML addStyleNames='{style.largePadTop}'>
+		                            <b>Speech Key:</b>
+		                        </g:HTML>
+	                            <g:FlowPanel addStyleNames='{style.padTop}'>
+	                                <g:ListBox ui:field="speechKeyListBox" width="100%"/>
+	                            </g:FlowPanel>
+		                    </g:HTMLPanel>
+		                </g:FlowPanel>
+	
+		                                
+	                	<g:FlowPanel ui:field='avatarPanelPresentMessage' addStyleNames='{style.smallPadBottom}' >
+		                	<b:Icon size='LARGE' type='COMMENTS' addStyleNames='{style.editIcon}' />
+		                	<g:InlineHTML>Present a message (Optional)</g:InlineHTML>
+	                	</g:FlowPanel>
+	
+		            </g:FlowPanel>
+	
+	            </g:DeckPanel>
+	
+	            <c:AddMessageWidget ui:field='messageEditor'/>
+	            
+	        </g:FlowPanel>
+	
+	        <g:FlowPanel ui:field='feedbackFilePanel'>
+				<g:Grid width="auto" addStyleNames="{style.audioPanelTable}">
+	                <!-- html File -->
+	                <g:row>
+	                    <g:customCell>
+		                    <g:InlineHTML>Local Webpage:</g:InlineHTML>                            
+	                    </g:customCell>
+	                    <g:customCell>
+	                        <b:Tooltip ui:field="feedbackFileButtonTooltip">
+	                            <b:Button ui:field='feedbackHTMLFileButton'>Select a File</b:Button>
+	                        </b:Tooltip>
+	                    </g:customCell>
+	                </g:row>
+	             </g:Grid>
+	        </g:FlowPanel>
+	
+	        <g:FlowPanel ui:field='audioPanel'>
+	            <g:Grid width="auto" addStyleNames="{style.audioPanelTable}">
+	                <!-- MP3 File -->
+	                <g:row>
+	                    <g:customCell>
+		                    <g:InlineHTML>MP3 File:</g:InlineHTML>                            
+	                    </g:customCell>
+	                    <g:customCell>
+	                        <b:Tooltip ui:field="mp3FileButtonTooltip">
+	                            <b:Button ui:field='mp3FileButton'>Select a File</b:Button>
+	                        </b:Tooltip>
+	                    </g:customCell>
+	                </g:row>
+	                
+	                <!-- OGG File -->
+	                <g:row>
+	                    <g:customCell>
+	                        <g:FlowPanel>
+	                            <g:InlineHTML>OGG File (Optional</g:InlineHTML> 
+	                            <c:HelpLink>
+	                                <c:linkWidget>
+	                                    <b:Icon title="What's this?" type="QUESTION_CIRCLE" addStyleNames="{style.oggHelpLinkIcon}"/>
+	                                </c:linkWidget>
+	                                <c:helpBody>
+	                                    <g:HTML>
+	                                        Some browsers are unable to play MP3 files so an OGG version of the audio may 
+	                                        optionally be included to support those browsers.
+	                                    </g:HTML>
+	                                </c:helpBody>
+	                            </c:HelpLink>
+	                            <g:InlineHTML>):</g:InlineHTML>
+	                        </g:FlowPanel>
+	                    </g:customCell>
+	                    <g:customCell>
+	                        <g:FlowPanel>
+	                            <b:Tooltip ui:field="oggFileButtonTooltip">
+	                                <b:Button ui:field='oggFileButton'>Select a File</b:Button>
+	                            </b:Tooltip>
+	                            <b:Tooltip ui:field="deleteOggFileButtonTooltip">
+	                                <b:Button ui:field='deleteOggFileButton' icon="TRASH" marginLeft="4" />
+	                            </b:Tooltip>
+	                        </g:FlowPanel>
+	                    </g:customCell>
+	                </g:row>
+	            </g:Grid>
+	            
+	            <!-- Delay -->
+				<c:ManagedTooltip title="Specifies how long to wait (if at all) after starting this audio.">
+					<c:DisclosureButton ui:field="audioDelayButton" icon="CLOCK_O">
+						<c:FormattedTimeBox ui:field="audioDelayTimeBox" />
+					</c:DisclosureButton>
+	            </c:ManagedTooltip>
+	            
+	        </g:FlowPanel>
+	    </g:DeckPanel>
+	    
+	    <g:HorizontalPanel addStyleNames="{style.stressCategoryPickerPanel}" ui:field="stressCategoryPickerPanel">
+            	<b:Label>Stress Category:</b:Label>
+            	<b:ButtonGroup>
+                        <b:Button ui:field="environmentalStressCategoryButton" text="Environmental" />
+                        <b:Button ui:field="cognitiveStressCategoryButton" text="Cognitive" />
+                        <b:Button ui:field="physiologicalStressCategoryButton" text="Physiological" />
+                </b:ButtonGroup>
+                <c:HelpLink helpCaption="Stress Category">
+                    <c:linkWidget>
+                        <b:Icon title="What's this?" type="QUESTION_CIRCLE" addStyleNames="{style.oggHelpLinkIcon}"/>
+                    </c:linkWidget>
+                    <c:helpBody>
+                        <g:HTML>
+                            The Stress Category value can be used as an additional data point when analyzing the experiences
+                            under which tasks were performed. 
+                            <br/><br/>
+                            <b>Environmental</b> - temperature/wetness, vibration/noise/fumes, bugs, physical work, lighting, visibilty (fog/foliage), difficult terrain
+                            <br/><br/>
+                            <b>Cognitive</b> - workload, ambious information, time pressure, volatility, complexity, rules of engagement, hard/no choices, impaired function
+                            <br/><br/>
+                            <b>Physiological</b> - muscular/aerobic fatigue, injury, sleep deprivation
+                        </g:HTML>
+                    </c:helpBody>
+                </c:HelpLink>
+        </g:HorizontalPanel>
+    
+        <shared:EditableTeamPicker label='Learners that this feedback should be presented to (Optional):' ui:field='teamPicker'/>
+        
+        <b:ButtonGroup dataToggle="BUTTONS">
+            <c:ManagedTooltip title="Send this message to the Game Master (Optional)">
+				<b:CheckBoxButton addStyleNames="{style.messageDisplayButton} {style.sendToObserverControllerButton}" icon="ID_CARD_O" ui:field='sendToObserverControllerButton'>
+					Send To Observer Controller
+				</b:CheckBoxButton>
+			</c:ManagedTooltip>
+		</b:ButtonGroup>
+        
+    </g:FlowPanel>
+</ui:UiBinder>

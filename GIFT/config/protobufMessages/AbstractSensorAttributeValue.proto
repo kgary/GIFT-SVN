@@ -1,0 +1,71 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractSensorAttributeValueProto";
+
+import "AbstractEnumObject.proto";
+import "Tuple3D.proto";
+import "ImageData.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message serves as the base for a sensor attribute value. */
+message AbstractSensorAttributeValue {
+	/* The sensor can either contain a double, integer, string, tuple, or image value inside. */
+	oneof type {
+		SensorDoubleValue sensor_double_value = 2;
+		SensorIntegerValue sensor_integer_value = 3;
+		SensorStringValue sensor_string_value = 4;
+		SensorTuple3D sensor_tuple_3D = 5;
+		SensorImageValue sensor_image_value = 6;
+	}
+}
+
+/* Double value for the sensor. */
+message SensorDoubleValue {
+	/* Name of the attribute. */
+	AbstractEnumObject name = 1;
+	
+	/* Value of the attribute. */
+	google.protobuf.DoubleValue value = 2;
+}
+
+/* Integer value for the sensor. */
+message SensorIntegerValue {
+	/* Name of the attribute. */
+	AbstractEnumObject name = 1;
+	
+	/* Value of the attribute. */
+	google.protobuf.Int32Value value = 2;
+}
+
+/* String value for the sensor. */
+message SensorStringValue {	
+	/* Name of the attribute. */
+	AbstractEnumObject name = 1;
+	
+	/* Value of the attribute. */
+	google.protobuf.StringValue value = 2;
+}
+
+/* Tuple value for the sensor. */
+message SensorTuple3D {
+	/* Name of the attribute. */
+	AbstractEnumObject name = 1;
+	
+	/* Value of the attribute. */
+	Tuple3D value = 2;
+}
+/* Image for the sensor. */
+message SensorImageValue {
+	/* Name of the attribute. */
+	AbstractEnumObject name = 1;
+	
+	/* Value of the attribute. */
+	ImageData value = 2;
+}

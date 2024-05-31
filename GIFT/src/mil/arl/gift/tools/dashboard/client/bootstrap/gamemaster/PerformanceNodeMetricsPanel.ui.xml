@@ -1,0 +1,240 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:slider="urn:import:org.gwtbootstrap3.extras.slider.client.ui"
+    xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:gm="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster">
+	<ui:style>
+	   .mainPanel{
+	       border-radius: 5px;
+           overflow: visible;
+           background-color: rgba(255,255,255,0.5);
+           background-image: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.2));
+           padding: 5px;
+           box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+           display: flex;
+           flex-direction: column;
+	   }
+	   .metricFields{
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 5px 0px;
+            box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.25);
+	   }
+	   .metricFieldPanel{
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 5px;
+            align-items: center;
+       }
+       .marginBottom5{
+            margin-bottom: 0px;
+       }
+       .marginRight5{
+            margin-right: 5px;
+       }
+       .marginRight7{
+            margin-right: 7px;
+        }
+       .assessmentButton{
+            padding: 5px;
+        }
+        @external focus;
+        .assessmentButton.focus{
+            background-color: white;
+        }
+        .assessmentButton:hover{
+            background-color: white;
+            background-image: linear-gradient(transparent, rgba(0,0,255,0.1));
+            box-shadow: 0px 0px 5px blue;
+            z-index: 10 !important;
+        }
+        .applyButton{
+            margin-right: 5px;
+	    }
+	    .lockButton{
+            font-size: 16px;
+            border-radius: 20px;
+            outline: none !important;
+        }
+	    .inline {
+            display: inline;
+	    }
+	    .sliderPanel {
+            display: flex;
+            flex: 1;
+            flex-flow: row nowrap;
+            align-items: center;
+            width: 100%;
+        }
+        @external tooltip;
+        .sliderPanel .tooltip {
+            pointer-events: none;
+        }
+        @external slider;
+        .sliderPanel .slider {
+            margin: 0px 12px 0px 8px;
+        }
+        .numberSpinner {
+            margin-right: 5px;
+        }
+        .collapseHeader {
+            cursor: pointer;
+            background-image: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.2));
+            padding: 5px;
+        }
+        .collapseHeader:hover {
+            cursor: pointer;
+            background-image: linear-gradient(transparent 0%, rgba(0, 0, 0, 0.2));
+        }
+        .collapseBody {
+            padding: 4px;
+        }
+        .descriptionTextArea {
+            resize: none;
+            margin-bottom: 5px;
+        }
+        .conceptDescriptionFieldPanel{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            margin-bottom: 5px;
+        }
+        .conceptDescriptionFieldLabel{
+            margin-right: 5px;
+        }
+        .conceptDescriptionFieldValue{
+            flex: 1;
+            font-weight: bold;
+        }
+        .boldLabel{
+			font-weight:bold;
+		}
+	</ui:style>
+	<b:Collapse toggle='false' ui:field='collapse'>
+        <g:FlowPanel addStyleNames='{style.mainPanel}'>
+        
+            <g:HorizontalPanel addStyleNames='{style.conceptDescriptionFieldPanel}'>
+                <g:Label addStyleNames='{style.conceptDescriptionFieldLabel}' text="Last Assessment:" />
+                <g:Label addStyleNames='{style.conceptDescriptionFieldValue}' ui:field='conceptLastAssessmentTime'/>
+            </g:HorizontalPanel>
+             
+		    <g:FlowPanel addStyleNames='{style.metricFields}'>
+		        <g:FlowPanel addStyleNames='{style.metricFieldPanel}'>
+	                <g:Label text="Assessment:" addStyleNames='{style.marginRight5}' />
+	                <b:ButtonGroup dataToggle="BUTTONS" addStyleNames='{style.marginRight7}'>
+			            <cb:ManagedTooltip container='body' title="Set this performance node's assessment to below expectation">
+			                <b:RadioButton addStyleNames="{style.assessmentButton}" ui:field='belowExpectationButton'/>
+			            </cb:ManagedTooltip>
+			            <cb:ManagedTooltip container='body' title="Set this performance node's assessment to at expectation">
+                            <b:RadioButton addStyleNames="{style.assessmentButton}" ui:field='atExpectationButton'/>
+                        </cb:ManagedTooltip>
+                        <cb:ManagedTooltip container='body' title="Set this performance node's assessment to above expectation">
+                            <b:RadioButton addStyleNames="{style.assessmentButton}" ui:field='aboveExpectationButton'/>
+                        </cb:ManagedTooltip>
+                    </b:ButtonGroup>
+		            <cb:ManagedTooltip isHtml='true' ui:field='lockAssessmentTooltip'>
+		                <g:FlowPanel addStyleNames='{style.inline}'>
+		                    <b:Button dataToggle="BUTTON" addStyleNames='{style.lockButton}' ui:field='lockAssessmentButton'/>
+		                </g:FlowPanel>
+		            </cb:ManagedTooltip>
+	            </g:FlowPanel>
+
+                <g:FlowPanel ui:field="teamPickerPanel" addStyleNames='{style.metricFieldPanel}' >
+                    <g:Label text="Team Members:" addStyleNames='{style.marginRight5}' />
+                    <!-- A team picker will be added here in the .java file -->
+                </g:FlowPanel>
+
+                <g:FlowPanel addStyleNames='{style.metricFieldPanel}'>
+                    <g:Label text="Description:" addStyleNames='{style.marginRight5}' />
+                    <gm:RecordingBooth width='100%' ui:field='recorder'>
+                        <b:TextArea ui:field="descriptionTextArea" placeholder="e.g. 'remind the team leader that communicating with superiors is an important part of the task'" addStyleNames='{style.descriptionTextArea}' />
+                    </gm:RecordingBooth>
+                </g:FlowPanel>
+
+                <b:Panel addStyleNames="{style.marginBottom5}">
+                    <b:PanelHeader ui:field="advancedMetricsHeader" addStyleNames="{style.collapseHeader}">
+                        <b:Heading size="H4" >
+                            <b:Icon type="CARET_RIGHT" ui:field="advancedMetricsHeaderIcon" addStyleNames='{style.inline} {style.marginRight5}'/>
+                            <g:InlineHTML text="Advanced" />
+                        </b:Heading>
+                    </b:PanelHeader>
+                    <b:Collapse ui:field="advancedMetricsCollapse" addStyleNames="{style.collapseBody}" toggle="false">
+                        <g:FlowPanel addStyleNames='{style.metricFieldPanel}'>
+                            <g:Label text="Confidence:" addStyleNames='{style.marginRight5}' />
+                            <g:FlowPanel addStyleNames='{style.sliderPanel}'>
+                                <slider:Slider ui:field="confidenceSlider" min="0" max="100" step="1" value="0" addStyleNames='{style.slider}' />
+                                <cb:ManagedTooltip isHtml='true' ui:field='lockConfidenceTooltip'>
+                                    <g:FlowPanel addStyleNames='{style.inline}'>
+                                        <b:Button dataToggle="BUTTON" addStyleNames='{style.lockButton}' ui:field='lockConfidenceButton' />
+                                    </g:FlowPanel>
+                                </cb:ManagedTooltip>
+                            </g:FlowPanel>
+                        </g:FlowPanel>
+                        
+                        <g:FlowPanel addStyleNames='{style.metricFieldPanel}'>
+                            <g:Label text="Competence:" addStyleNames='{style.marginRight5}' />
+                            <g:FlowPanel addStyleNames='{style.sliderPanel}'>
+                                <slider:Slider ui:field="competenceSlider" min="0" max="100" step="1" value="0" addStyleNames='{style.slider}' />
+                                <cb:ManagedTooltip isHtml='true' ui:field='lockCompetenceTooltip'>
+                                    <g:FlowPanel addStyleNames='{style.inline}'>
+                                        <b:Button dataToggle="BUTTON" addStyleNames='{style.lockButton}' ui:field='lockCompetenceButton' />
+                                    </g:FlowPanel>
+                                </cb:ManagedTooltip>
+                            </g:FlowPanel>
+                        </g:FlowPanel>
+                        
+                        <g:FlowPanel addStyleNames='{style.metricFieldPanel}'>
+                            <g:Label text="Trend:" addStyleNames='{style.marginRight5}' />
+                            <g:FlowPanel addStyleNames='{style.sliderPanel}'>
+                                <slider:Slider ui:field="trendSlider" min="-100" max="100" step="1" value="0" addStyleNames='{style.slider}' />
+                                <cb:ManagedTooltip isHtml='true' ui:field='lockTrendTooltip'>
+                                    <g:FlowPanel addStyleNames='{style.inline}'>
+                                        <b:Button dataToggle="BUTTON" addStyleNames='{style.lockButton}' ui:field='lockTrendButton' />
+                                    </g:FlowPanel>
+                                </cb:ManagedTooltip>
+                            </g:FlowPanel>
+                        </g:FlowPanel>
+                        
+                        <g:FlowPanel addStyleNames='{style.metricFieldPanel}'>
+                            <g:Label text="Priority:" addStyleNames='{style.marginRight5}' />
+                            <g:FlowPanel addStyleNames='{style.sliderPanel}'>
+                                <cb:ManagedTooltip text="The lower the value, the higher the priority. A '0' value means an unspecified priority.">
+                                    <w:NumberSpinner ui:field="prioritySpinner" minValue="0" addStyleNames='{style.numberSpinner}' />
+                                </cb:ManagedTooltip>
+                                <cb:ManagedTooltip isHtml='true' ui:field='lockPriorityTooltip'>
+                                    <g:FlowPanel addStyleNames='{style.inline}'>
+                                        <b:Button dataToggle="BUTTON" addStyleNames='{style.lockButton}' ui:field='lockPriorityButton' />
+                                    </g:FlowPanel>
+                                </cb:ManagedTooltip>
+                            </g:FlowPanel>
+                        </g:FlowPanel>
+                        
+                        <g:FlowPanel addStyleNames='{style.metricFieldPanel}' ui:field="difficultyReasonPanel">
+                            <g:Label text="Difficulty Reason:" addStyleNames='{style.marginRight5}' />
+                            <g:Label ui:field="difficultyReason" addStyleNames='{style.marginRight5} {style.boldLabel}' />
+                        </g:FlowPanel>
+                        
+                         <g:FlowPanel addStyleNames='{style.metricFieldPanel}' ui:field="stressReasonPanel">
+                            <g:Label text="Stress Reason:" addStyleNames='{style.marginRight5}' />
+                            <g:Label ui:field="stressReason" addStyleNames='{style.marginRight5} {style.boldLabel}' />
+                        </g:FlowPanel>
+                    </b:Collapse>
+                </b:Panel>
+            </g:FlowPanel>
+
+            <g:FlowPanel>
+            <b:Tooltip text="Cancel any changes">
+                <b:Button text="Close" pull='RIGHT' type='PRIMARY' ui:field='closeButton' />
+            </b:Tooltip>
+            <b:Tooltip text="Submit the current metrics">
+                <b:Button text="Apply" addStyleNames='{style.applyButton}' pull='RIGHT' type='SUCCESS' ui:field='applyButton' />
+            </b:Tooltip>
+            </g:FlowPanel>
+
+        </g:FlowPanel>
+	</b:Collapse>
+</ui:UiBinder> 

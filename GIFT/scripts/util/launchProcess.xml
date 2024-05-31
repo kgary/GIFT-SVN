@@ -1,0 +1,1152 @@
+<?xml version="1.0" ?>
+<!-- set the basedir to GIFT/ from GIFT/scripts/util/ -->
+<project name="GIFT Scripts" basedir="../.." default="help" xmlns:if="ant:if" xmlns:unless="ant:unless">
+	
+	<!--Properties are immutable and should never be initialized before being needed -->
+	
+	<!-- Define GIFT/ as basedir -->
+	<property name="BaseDir"           value="."/>
+	<property name="AbsBaseDir"        location="${BaseDir}"/>
+	<!-- Define the location of the GIFT temporary directory -->
+	<property name="GIFT_TEMP"         location="temp"/>
+	<!-- Note: The relative path to external folder is relative to GIFT/ -->
+	<property name="ExternalLibsDir"   value="${BaseDir}/external"/>
+	
+	<!-- Common location to define GIFT directories -->
+	<property name="DataDir"           		  value="${BaseDir}/data"/>
+	<property name="SourceDir"         		  value="${BaseDir}/src"/>
+	<property name="BinDir"            		  value="${BaseDir}/bin"/>
+	<!-- Location of activemq message broker -->
+	<property name="ActiveMQDir"       		  value="${ExternalLibsDir}/activemq"/>
+	<property name="ActiveMQHome"      		  value='-Dactivemq.home="${ActiveMQDir}"'/>
+	<property name="ActiveMQBase"      		  value='-Dactivemq.base="${ActiveMQDir}"'/>
+	<!-- Derby database file locations -->
+	<property name="DERBY_HOME"        		  value="${ExternalLibsDir}/db-derby-10.15.2.0-bin"/>
+	<property name="DB_DERBY_EXTRACT_TO" 	  value="${BaseDir}/data/derbyDb/"/>
+	<property name="DatabasesNotExtractedMsg" value="${BaseDir}/scripts/install/databaseNotExtractedMsg.vbs"/>
+	
+	<!-- JDWP debugging enabled when true -->
+	<property name="JavaDebug"         value="true"/>
+	<!-- location of splash screen image relative to GIFT/ -->
+	<property name="SPLASH_SCREEN_IMG" value="${BinDir}/images/GIFT.logo.splashScreen.png"/>
+	
+	<property name="BaseJmxArgs"       value="-Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost"/>	
+	
+	<!-- ActiveMQ classpath for single process launcher -->
+	<property name="AMQLibs"           value="${ExternalLibsDir}/slf4j/*;${ExternalLibsDir}/jdk-11/jaf-1.1.1/activation.jar;${ActiveMQDir}/lib/camel/*;${ActiveMQDir}/lib/activemq-console-5.18.3.jar;${ActiveMQDir}/lib/activemq-core-5.18.3.jar;${ActiveMQDir}/lib/activemq-jaas-5.18.3.jar;${ActiveMQDir}/lib/activemq-protobuf-1.1.jar;${ActiveMQDir}/lib/activemq-web-5.18.3.jar;${ActiveMQDir}/lib/camel-core-2.7.0.jar;${ActiveMQDir}/lib/camel-jetty-2.7.0.jar;${ActiveMQDir}/lib/camel-jms-2.7.0.jar;${ActiveMQDir}/lib/camel-spring-2.7.0.jar;${ActiveMQDir}/lib/geronimo-j2ee-management_1.1_spec-1.0.1.jar;${ActiveMQDir}/lib/geronimo-jms_1.1_spec-1.1.1.jar;${ActiveMQDir}/lib/geronimo-jta_1.0.1B_spec-1.0.1.jar;${ActiveMQDir}/lib/jcl-over-slf4j-1.5.11.jar;${ActiveMQDir}/lib/kahadb-5.18.3.jar;${ActiveMQDir}/lib/slf4j-api-1.5.11.jar;${ActiveMQDir}/lib/stax-1.2.0.jar;${ActiveMQDir}/lib/stax-api-1.0.1.jar;${ActiveMQDir}/lib/optional/commons-lang-2.4.jar;${ActiveMQDir}/lib/jackson-databind-2.15.3.jar;${ActiveMQDir}/lib/jackson-core-2.15.3.jar;${ActiveMQDir}/lib/jackson-annotations-2.15.3.jar;${ActiveMQDir}/lib/optional/spring-aop-5.3.30.jar"/>
+	<property name="AMQDepend"         value="${ActiveMQDir}/activemq-all-5.18.3.jar;${AMQLibs};${ExternalLibsDir}/activemq/lib/web/*;${ActiveMQDir}/lib/optional/slf4j-log4j12-1.5.11.jar;;${ActiveMQDir}/lib/optional/spring-core-3.0.3.RELEASE.jar;${ActiveMQDir}/lib/optional/spring-beans-3.0.3.RELEASE.jar;${ActiveMQDir}/lib/optional/spring-context-3.0.3.RELEASE.jar;${ActiveMQDir}/lib/optional/xbean-spring-3.7.jar;${ActiveMQDir}/lib/optional/spring-asm-3.0.3.RELEASE.jar;${ActiveMQDir}/lib/optional/spring-expression-3.0.3.RELEASE.jar;${ActiveMQDir}/lib/optional/spring-tx-3.0.3.RELEASE.jar;${ActiveMQDir}/lib/optional/spring-jms-3.0.3.RELEASE.jar;${ActiveMQDir}/lib/optional/spring-aop-3.0.3.RELEASE.jar;${ActiveMQDir}/lib/optional/jettison-1.2.jar;${ActiveMQDir}/lib/optional/commons-lang-2.4.jar;"/>
+	<!-- location of derby server script relative to GIFT/ -->
+	<property name="LaunchDerbyServerScript" value="${BaseDir}/scripts/install/launchDerbyServer.vbs"/>
+	
+	<!-- Beginning of application extension definitions. Applications with library path extensions use native binaries that need to be loaded by the Java system, such as .dlls  -->
+		<!-- Domain module properties used to start the domain module -->
+			<property name="DomainName"                 	value="Domain Console"/>
+			<property name="DomainClass"                	value="mil.arl.gift.domain.DomainModule"/>
+			<property name="DomainDebugPort"            	value="50007"/>
+			<property name="DomainJmxArgs"             		value="-Dcom.sun.management.jmxremote.port=7007 -Dcom.sun.management.jmxremote.rmi.port=7007 ${BaseJmxArgs}"/>
+			<property name="DomainFindConversionWizardJars" value="true"/>
+			<property name="DomainClassPathExtension"       value="${ExternalLibsDir}/jetty-9.4.41/lib/*;${BinDir}/gift-commongwt.jar;${BinDir}/gift-authoring-conversion.jar;${BinDir}/gift-domain.jar;${ExternalLibsDir}/commons-codec-1.7.jar;${ExternalLibsDir}/redmine/httpcore-4.3.jar;${ExternalLibsDir}/redmine/httpclient-4.3.1.jar;${ExternalLibsDir}/gson-2.3.1.jar;${ExternalLibsDir}/lti/*;${ExternalLibsDir}/SuperCSV-with_src-1.52.jar;${ExternalLibsDir}/spiffy-with_source-all-0.05.jar;${BinDir}/gift-services.jar;${ExternalLibsDir}/nuxeo/*;${ExternalLibsDir}/protobuf/bin/*;${BinDir}/legacyJsonMessageCodec.jar;${ExternalLibsDir}/apache-poi-3.15/*;"/>
+			<property name="DomainLibraryPathExtension"     value="${ExternalLibsDir}/simile"/>
+		
+		<!-- Gateway module properties used to start gateway module -->
+			<property name="GatewayName"                 	value="Gateway Console"/>
+			<property name="GatewayClass"                	value="mil.arl.gift.gateway.GatewayModule"/>
+			<property name="GatewayDebugPort"            	value="50008"/>
+			<property name="GatewayJmxArgs"              	value="-Dcom.sun.management.jmxremote.port=7008 -Dcom.sun.management.jmxremote.rmi.port=7008 ${BaseJmxArgs}"/>
+			<property name="GatewayClassPathExtension"      value="${ExternalLibsDir}/jacob/*;${BinDir}/gift-gateway.jar;${BinDir}/jacob-loader.jar;${ExternalLibsDir}/apache-xmlrpc-3.1.3/lib/*;${ExternalLibsDir}/CJWizards-0.2.jar;${ExternalLibsDir}/rabbitmq-java-client-bin-3.5.4/*;${ExternalLibsDir}/protobuf/bin/*;${ExternalLibsDir}/grpc/*;${ExternalLibsDir}/perfmark/*;${ExternalLibsDir}/opencensus/*;${ExternalLibsDir}/guava/*;${BinDir}/protobuf_generated.jar;${BinDir}/protobuf_generated_external_apps.jar;${ExternalLibsDir}/javafx-sdk-11.0.2/lib/*;${ExternalLibsDir}/jdk-11/jaxb-ri/mod/*;"/>
+			<property name="GatewayLibraryPathExtension"    value="${ExternalLibsDir}/jacob"/>
+		
+		<!-- GAS module properties used to start the gas module -->
+			<property name="GASName"                 		value="GIFT Admin Server"/>
+			<property name="GASDebugPort"            		value="50009"/>
+			
+			<!-- This is used to guide where the derby.log file will be created when using derby Embedded Client driver to connect to the database -->
+			<property name="GASJavaArgs"             		value='"-Dderby.system.home=${DataDir}" -Dlog4j1.compatibility="true"'/>
+			
+			<!-- As a solution for #5260, we load the activation module from the JDK before the JAXB libraries because the activation JAR
+			contains package com.sun.activation.registries, which is called by Nuxeo when importing and saving courses into the workspace 
+			in a server deployment. If the JAXB libraries were used only, GIFT would return a NoClassDefFoundError since the package would 
+			not be loaded. Note that this issue does not happen when GIFT is launched using Single Process Launcher since the library is 
+			included inside %AMQDepend%. -->
+			<property name="GASClassPathExtension"         	value="${AbsBaseDir}/${BinDir}/gift-common.jar;${AbsBaseDir}/${BinDir}/json_generated.jar;${AbsBaseDir}/${BinDir}/gift-commongwt.jar;${AbsBaseDir}/${ExternalLibsDir}/slf4j/*;${AbsBaseDir}/${ExternalLibsDir}/activemq/activemq-all-5.18.3.jar;${AbsBaseDir}/${ExternalLibsDir}/jdk-11/jaf-1.1.1/activation.jar;${AbsBaseDir}/${ExternalLibsDir}/jdk-11/jaxb-ri/mod/*;${AbsBaseDir}/${ExternalLibsDir}/lms/*"/>
+			
+			<!-- specify path for runtime usage of jacob library and simile libs -->
+			<property name="GASLibraryPathExtension" 		value="${ExternalLibsDir}/jacob;${ExternalLibsDir}/simile;${GatewayLibraryPathExtension}"/>
+			<property name="GASWebServerConfig"      		location="${BaseDir}/config/tools/gas"/>
+			<property name="GASStopPort"             		value="8079"/>
+            <property name="GASStopKey"                     value="GasStop"/>
+			<property name="GASshouldLaunchDerbyServer"   	value="true"/>
+			<property name="GASneedUMSDb"            		value="true"/>
+			<property name="GASneedLMSDb"            		value="true"/>
+			<property name="GASJmxArgs"              		value="-Dcom.sun.management.jmxremote.port=7009 -Dcom.sun.management.jmxremote.rmi.port=7009 ${BaseJmxArgs}"/>
+		
+		<!-- Extensions used for the tutor module -->
+			<property name="TutorName"                 		value="Tutor Web Server"/>
+			<property name="TutorDebugPort"            		value="50005"/>
+			<property name="TutorLibraryPathExtension" 		value=""/>
+			<property name="TutorWebServerConfig"      		value="${BaseDir}/config/tutor/server"/>
+			<property name="TutorStopPort"             		value="9079"/>
+	        <property name="TutorStopKey"                     value="TutorStop"/>
+			<property name="TutorJmxArgs"              		value="-Dcom.sun.management.jmxremote.port=7005 -Dcom.sun.management.jmxremote.rmi.port=7005 ${BaseJmxArgs}"/>
+			<property name="TutorClassPathExtension"	    value="${AbsBaseDir}/${BinDir}/gift-common.jar;${AbsBaseDir}/${BinDir}/gift-commongwt.jar;${AbsBaseDir}/${ExternalLibsDir}/slf4j/*;${AbsBaseDir}/${ExternalLibsDir}/commons-fileupload-1.2.2.jar;${AbsBaseDir}/${ExternalLibsDir}/commons-io-2.3.jar;${AbsBaseDir}/${ExternalLibsDir}/commons-cli-1.2.jar;${AbsBaseDir}/${ExternalLibsDir}/commons-lang-2.4.jar;${AbsBaseDir}/${ExternalLibsDir}/jdk-11/jaxb-ri/mod/*"/>
+		
+		<!-- Learner module properties used to start the learner module -->
+			<property name="LearnerName"					value="Learner Console"/>
+			<property name="LearnerClass"					value="mil.arl.gift.learner.LearnerModule"/>
+			<property name="LearnerDebugPort"				value="50002"/>
+			<property name="LearnerJmxArgs"					value="-Dcom.sun.management.jmxremote.port=7002 -Dcom.sun.management.jmxremote.rmi.port=7002 ${BaseJmxArgs}"/>
+			<property name="LearnerClassPathExtension"      value="${BinDir}/gift-learner.jar"/>
+			<property name="LearnerLibraryPathExtension"    value=""/>
+		
+		<!-- Ped module properties used to start the ped module -->
+			<property name="PedName"                 		value="Ped Console"/>
+			<property name="PedClass"                		value="mil.arl.gift.ped.PedagogicalModule"/>
+			<property name="PedDebugPort"            		value="50003"/>
+			<property name="PedJmxArgs"						value="-Dcom.sun.management.jmxremote.port=7003 -Dcom.sun.management.jmxremote.rmi.port=7003 ${BaseJmxArgs}"/>
+			<property name="PedClassPathExtension"			value="${BinDir}/gift-pedagogical.jar"/>
+			<property name="PedLibraryPathExtension"		value=""/>
+		
+		<!-- Sensor module properties used to start sensor module -->
+			<property name="SensorName"						value="Sensor Console"/>
+			<property name="SensorClass"                	value="mil.arl.gift.sensor.SensorModule"/>
+			<property name="SensorDebugPort"            	value="50004"/>
+			<property name="SensorJmxArgs"              	value="-Dcom.sun.management.jmxremote.port=7004 -Dcom.sun.management.jmxremote.rmi.port=7004 ${BaseJmxArgs}"/>
+			<property name="SensorJavaArgs"             	value="-Xmx1024m"/>
+			<property name="SensorClassPathExtension"       value="${ExternalLibsDir}/emotiv/*;${BinDir}/gift-sensor.jar;${ExternalLibsDir}/jnect/*;${ExternalLibsDir}/jnect;${ExternalLibsDir}/vecmath.jar;${ExternalLibsDir}/jdk-11/jaxb-ri/mod/*;"/>
+			<property name="SensorLibraryPathExtension"     value="${ExternalLibsDir};${ExternalLibsDir}/emotiv;${ExternalLibsDir}/jnect;"/>
+		
+		<!-- LMS module properties used to start lms module -->
+			<property name="LMSName"                 		value="LMS Console"/>
+			<property name="LMSClass"                		value="mil.arl.gift.lms.LmsModule"/>
+			<property name="LMSDebugPort"            		value="50001"/>
+			<property name="LMSJmxArgs"              		value="-Dcom.sun.management.jmxremote.port=7001 -Dcom.sun.management.jmxremote.rmi.port=7001 ${BaseJmxArgs}"/>
+			<property name="LMSJavaArgs"             		value="-Dderby.system.home=${DataDir}"/>
+			<property name="LMSshouldLaunchDerbyServer" 	value="true"/>
+			<property name="LMSneedLMSDb"            		value="true"/>
+			<property name="LMSClassPathExtension"          value="${BinDir}/gift-lms.jar;${ExternalLibsDir}/db-derby-10.15.2.0-bin/lib/derby.jar;${ExternalLibsDir}/db-derby-10.15.2.0-bin/lib/derbytools.jar;${ExternalLibsDir}/jdk-11/jaxb-ri/mod/*;${ExternalLibsDir}/jetty-9.4.41/lib/*;${ExternalLibsDir}/lms/*"/>
+		
+		<!-- Extensions used for the ums module -->
+			<property name="UMSName"						value="UMS Console"/>
+			<property name="UMSClass"                		value="mil.arl.gift.ums.UMSModule"/>
+			<property name="UMSDebugPort"            		value="50000"/>
+			<property name="UMSJmxArgs"              		value="-Dcom.sun.management.jmxremote.port=7000 -Dcom.sun.management.jmxremote.rmi.port=7000 -Xmx1024m ${BaseJmxArgs}"/>
+			<property name="UMSshouldLaunchDerbyServer"   	value="true"/>
+			<property name="UMSneedUMSDb"            		value="true"/>
+			<property name="UMSClassPathExtension"          value="${BinDir}/gift-ums.jar;${BinDir}/gift-ums-db.jar;${ExternalLibsDir}/db-derby-10.15.2.0-bin/lib/derby.jar;${ExternalLibsDir}/db-derby-10.15.2.0-bin/lib/derbytools.jar;;${BinDir}/legacyJsonMessageCodec.jar;"/>
+
+		<!-- Extensions used for the spl module -->
+			<property name="SPLName"                 		value="Single Process"/>
+			<property name="SPLClass"                		value="mil.arl.gift.tools.spl.SingleProcessLauncher"/>
+			<property name="SPLDebugPort"            		value="50015"/>
+			<!-- REM This is used to guide where the derby.log file will be created when using derby 
+			Embedded Client driver to connect to the database -->
+			<property name="SPLJavaArgs"             		value='"-Dderby.system.home=${DataDir}" -Dlog4j1.compatibility="true" -Dactivemq.data=${ActiveMQDir}/data -Dactivemq.conf=${ActiveMQDir}/conf'/>
+			<property name="SPLshouldLaunchDerbyServer"		value="true"/>
+			<property name="SPLneedUMSDb"            		value="true"/>
+			<property name="SPLneedLMSDb"            		value="true"/>
+			<property name="SPLJmxArgs"              		value="-Dcom.sun.management.jmxremote.port=7015 -Dcom.sun.management.jmxremote.rmi.port=7015 ${BaseJmxArgs}"/>
+			<property name="SPLClassPathExtention"       	value="${BinDir}/gift-common.jar;${BinDir}/gift-camel.jar;${BinDir}/gift-spl.jar;${AMQDepend};${ExternalLibsDir}/jsonsimple/*;${BinDir}/jaxb_generated.jar;${ExternalLibsDir}/commons-cli-1.2.jar;${ExternalLibsDir}/commons-io-2.3.jar;${ExternalLibsDir}/rapidminer/lib/*;${ExternalLibsDir}/rapidminer/lib/plugins/rmx_weka-5.3.1.jar;${ExternalLibsDir}/commons-codec-1.7.jar;${ExternalLibsDir}/redmine/httpcore-4.3.jar;${ExternalLibsDir}/redmine/httpclient-4.3.1.jar;${ExternalLibsDir}/gson-2.3.1.jar;${ExternalLibsDir}/lti/*;${ExternalLibsDir}/apache-xmlrpc-3.1.3/lib/*;${DomainClassPathExtension};${GatewayClassPathExtension};${SensorClassPathExtension};${BinDir}/legacyJsonMessageCodec.jar;"/>
+			<!-- This should include a path of any dll's -->
+			<property name="SPLLibraryPathExtension"     	value="${DomainLibraryPathExtension};${GatewayLibraryPathExtension};${SensorLibraryPathExtension}"/>
+		
+		<!-- Extensions used for the monitor application -->
+			<property name="MonitorName"                 	value="Monitor Console"/>
+			<property name="MonitorClass"                	value="mil.arl.gift.tools.monitor.MonitorModule"/>
+			<property name="MonitorDebugPort"            	value="50006"/>
+			<property name="MonitorSplashScreenArg"      	value="-splash:&quot;${SPLASH_SCREEN_IMG}&quot;"/>
+			<property name="MonitorClassPathExtension"   	value="${BinDir}/gift-monitor.jar;${BinDir}/gift-remote.jar;"/>
+		
+		<!-- Extensions used for the control panel application -->
+			<property name="ControlPanelName"               value="Control Panel Tool"/>
+			<property name="ControlPanelClass"              value="mil.arl.gift.tools.controlpanel.ControlWindow"/>
+			<property name="ControlPanelDebugPort"          value="50022"/>
+			<property name="ControlPanelSplashScreenArg"    value="-splash:&quot;${SPLASH_SCREEN_IMG}&quot;"/>
+			<property name="ControlPanelClassPathExtension" value="${BinDir}/gift-controlpanel.jar;"/>
+		
+		<!-- Extensions used for the DAT application -->
+			<property name="DATName"                 		value="DKF Authoring Tool"/>
+			<property name="DATClass"                		value="mil.arl.gift.tools.authoring.desktop.dat.DAT"/>
+			<property name="DATDebugPort"            		value="50010"/>
+			<property name="DATshouldLaunchDerbyServer"   	value="true"/>
+			<property name="DATFindConversionWizardJars"  	value="true"/>
+			<property name="DATneedUMSDb"            		value="true"/>
+			<property name="DATClassPathExtension"       	value="${DomainClassPathExtension};${BinDir}/gift-ums-db.jar;${BinDir}/gift-dat.jar;${BinDir}/gift-authoring-common.jar;${BinDir}/gift-authoring-conversion.jar;${BinDir}/gift-desktop-authoring-common.jar;${ExternalLibsDir}/orgjson.jar;${ExternalLibsDir}/db-derby-10.15.2.0-bin/lib/*"/>
+			<property name="DATLibraryPathExtension"     	value="${DomainLibraryPathExtension}"/>
+		
+		<!-- Extensions used for the SCAT application -->
+			<property name="SCATName"                 		value="Sensor Config Authoring Tool"/>
+			<property name="SCATClass"                		value="mil.arl.gift.tools.authoring.desktop.scat.SCAT"/>
+			<property name="SCATDebugPort"            		value="50011"/>
+			<property name="SCATFindConversionWizardJars"  	value="true"/>
+			<property name="SCATClassPathExtension"      	value="${SensorClassPathExtension};${BinDir}/gift-scat.jar;${BinDir}/gift-authoring-common.jar;${BinDir}/gift-authoring-conversion.jar;${BinDir}/gift-desktop-authoring-common.jar;"/>
+			
+			<!-- specify path for runtime usage of RXTX library (among others) -->
+			<property name="SCATLibraryPathExtension"     	value="${SensorLibraryPathExtension}"/>
+		
+		<!-- Extensions used for the LCAT application -->
+			<property name="LCATName"                 		value="Learner Config Authoring Tool"/>
+			<property name="LCATClass"                		value="mil.arl.gift.tools.authoring.desktop.lcat.LCAT"/>
+			<property name="LCATDebugPort"            		value="50012"/>
+			<property name="LCATFindConversionWizardJars"  	value="true"/>
+			<property name="LCATClassPathExtension"      	value="${LearnerClassPathExtension};${BinDir}/gift-lcat.jar;${BinDir}/gift-authoring-common.jar;${BinDir}/gift-authoring-conversion.jar;${BinDir}/gift-desktop-authoring-common.jar;"/>
+		
+		<!-- Extensions used for the CAT application -->
+			<property name="CATName"                 		value="Course Authoring Tool"/>
+			<property name="CATClass"                		value="mil.arl.gift.tools.authoring.desktop.cat.CAT"/>
+			<property name="CATDebugPort"            		value="50014"/>
+			<property name="CATshouldLaunchDerbyServer"   	value="true"/>
+			<property name="CATFindConversionWizardJars"  	value="true"/>
+			<property name="CATneedUMSDb"            		value="true"/>
+			<property name="CATClassPathExtension"      	value="${DomainClassPathExtension};${GatewayClassPathExtension};${BinDir}/gift-ums-db.jar;${BinDir}/gift-cat.jar;${BinDir}/gift-authoring-common.jar;${BinDir}/gift-authoring-conversion.jar;${BinDir}/gift-desktop-authoring-common.jar;${ExternalLibsDir}/db-derby-10.15.2.0-bin/lib/*"/>
+			
+			<!-- specify path for runtime usage of jacob library -->
+			<property name="CATLibraryPathExtension"    	value="${GatewayLibraryPathExtension};${DomainLibraryPathExtension}"/>
+		
+		<!-- Extensions used for the MAT application -->
+			<property name="MATName"                 		value="Metadata Authoring Tool"/>
+			<property name="MATClass"                		value="mil.arl.gift.tools.authoring.desktop.mat.MAT"/>
+			<property name="MATDebugPort"            		value="50017"/>
+			<property name="MATFindConversionWizardJars"  	value="true"/>
+			<property name="MATClassPathExtension"      	value="${DomainClassPathExtension};${BinDir}/gift-mat.jar;${BinDir}/gift-authoring-common.jar;${BinDir}/gift-authoring-conversion.jar;${BinDir}/gift-desktop-authoring-common.jar;"/>
+		
+		<!-- Extensions used for the PCAT application -->
+			<property name="PCATName"                 		value="Pedagogy Config Authoring Tool"/>
+			<property name="PCATClass"                		value="mil.arl.gift.tools.authoring.desktop.pcat.PCAT"/>
+			<property name="PCATDebugPort"            		value="50018"/>
+			<property name="PCATFindConversionWizardJars"  	value="true"/>
+			<property name="PCATClassPathExtension"      	value="${BinDir}/gift-pcat.jar;${BinDir}/gift-authoring-common.jar;${BinDir}/gift-authoring-conversion.jar;${BinDir}/gift-desktop-authoring-common.jar;"/>
+		
+		<!-- Extensions used for the TARAT application -->
+			<property name="TARATName"                 		value="Training Application Reference Authoring Tool"/>
+			<property name="TARATClass"               		value="mil.arl.gift.tools.authoring.desktop.tarat.TARAT"/>
+			<property name="TARATDebugPort"            		value="50021"/>
+			<property name="TARATFindConversionWizardJars"  value="true"/>
+			<property name="TARATClassPathExtension"      	value="${DomainClassPathExtension};${GatewayClassPathExtension};${BinDir}/gift-tarat.jar;${BinDir}/gift-authoring-common.jar;${BinDir}/gift-authoring-conversion.jar;${BinDir}/gift-desktop-authoring-common.jar;"/>
+			<property name="TARATLibraryPathExtension"    	value="${GatewayLibraryPathExtension};"/>
+		
+		<!-- Extensions used for the Export application -->
+			<property name="ExportName"                 	value="Desktop Export Tool"/>
+			<property name="ExportClass"                	value="mil.arl.gift.tools.export.desktop.ExportMain"/>
+			<property name="ExportDebugPort"            	value="50016"/>
+			<property name="ExportSplashScreenArg"      	value="-splash:&quot;${SPLASH_SCREEN_IMG}&quot;"/>
+			<property name="ExportshouldLaunchDerbyServer"  value="true"/>
+			<property name="ExportneedUMSDb"            	value="true"/>
+			<property name="ExportneedLMSDb"            	value="true"/>
+			<property name="ExportClassPathExtension"      	value="${DomainClassPathExtension};${BinDir}/gift-desktop-export.jar;${BinDir}/gift-domain.jar;${BinDir}/gift-ums-db.jar;${ExternalLibsDir}/CJWizards-0.2.jar;${ExternalLibsDir}/commons-logging-1.1.1.jar;${ExternalLibsDir}/db-derby-10.15.2.0-bin/lib/*;"/>
+			<property name="ExportLibraryPathExtension"    	value="${DomainLibraryPathExtension};"/>
+		
+		<!-- Extensions used for the remote launch application -->
+			<property name="RemoteLaunchName"                 value="Remote Launch Service"/>
+			<property name="RemoteLaunchClass"                value="mil.arl.gift.tools.remote.RemoteLaunchService"/>
+			<property name="RemoteLaunchDebugPort"            value="50013"/>
+			<property name="RemoteLaunchClassPathExtension"   value="${BinDir}/gift-remote.jar"/>
+		
+		<!-- Extensions used for the installer application -->
+			<property name="InstallerName"                 	value="Installer Tool"/>
+			<property name="InstallerClass"                	value="mil.arl.gift.tools.installer.InstallMain"/>
+			<property name="InstallerDebugPort"            	value="50020"/>
+			<property name="InstallerSplashScreenArg"      	value="-splash:&quot;${SPLASH_SCREEN_IMG}&quot;"/>
+			<property name="InstallerClassPathExtension"    value="${BinDir}/gift-installer.jar;${ExternalLibsDir}/CJWizards-0.2.jar;${ExternalLibsDir}/commons-logging-1.1.1.jar;${ExternalLibsDir}/jna-3.5.1.jar;${ExternalLibsDir}/jna-platform-3.5.1.jar;${BinDir}/jaxb_generated.jar;${ExternalLibsDir}/jdk-11/jaxb-ri/mod/*;${GatewayClassPathExtension};${ExternalLibsDir}/zip4j-1.3.2/zip4j-1.3.2.jar;"/>
+		
+		<!-- Extensions used for the uninstaller application -->
+			<property name="UninstallerName"                value="Uninstaller Tool"/>
+			<property name="UninstallerClass"               value="mil.arl.gift.tools.uninstaller.UninstallMain"/>
+			<property name="UninstallerDebugPort"           value="50023"/>
+			<property name="UninstallerSplashScreenArg"     value="-splash:&quot;${SPLASH_SCREEN_IMG}&quot;"/>
+			<property name="UninstallerClassPathExtension"  value="${BinDir}/gift-uninstaller.jar;${ExternalLibsDir}/CJWizards-0.2.jar;${GatewayClassPathExtension}"/>
+	<!-- End of application extension definitions -->
+	
+	<!--Base java runtime classpath for all applications -->
+	<property name="JavaClasspath" value="${ExternalLibsDir}/slf4j/*;${ExternalLibsDir}/*;${ExternalLibsDir}/activemq/activemq-all-5.18.3.jar;${ExternalLibsDir}/hibernate/*;${ExternalLibsDir}/jsonsimple/json_simple-1.1.jar;${DERBY_HOME}/lib/derbyclient.jar;${BinDir}/gift-common.jar;${ExternalLibsDir}/rapidminer/lib/*;${ExternalLibsDir}/rapidminer/lib/plugins/rmx_weka-5.3.1.jar;${ExternalLibsDir}/apache-xmlrpc-3.1.3/lib/*;${ExternalLibsDir}/nuxeo/*;${BinDir}/jaxb_generated.jar;${BinDir}/protobuf_generated.jar;${ExternalLibsDir}/protobuf/bin/*;${ExternalLibsDir}/jdk-11/jaxb-ri/mod/*;${AbsBaseDir}/${ExternalLibsDir}/zip4j-1.3.2/zip4j-1.3.2.jar;${BinDir}/json_generated.jar;"/>
+	
+	<!-- single process launcher has a slf4j library inside activemq that is used over the one in external folder -->
+	<property name="SPLJavaClasspath" value="${ExternalLibsDir}/*;${ExternalLibsDir}/activemq/activemq-all-5.18.3.jar;${ExternalLibsDir}/hibernate/*;${ExternalLibsDir}/jsonsimple/json_simple-1.1.jar;${DERBY_HOME}/lib/derbyclient.jar;${BinDir}/gift-common.jar;${ExternalLibsDir}/rapidminer/lib/*;${ExternalLibsDir}/rapidminer/lib/plugins/rmx_weka-5.3.1.jar;${ExternalLibsDir}/apache-xmlrpc-3.1.3/lib/*;${ExternalLibsDir}/nuxeo/*;${BinDir}/jaxb_generated.jar;${BinDir}/protobuf_generated.jar;${ExternalLibsDir}/protobuf/bin/*;${BinDir}/json_generated.jar;"/>
+
+	<!-- This condition is used to show the OS is windows based -->
+	<condition property="isWindows">
+	    <os family="windows" />
+	</condition>
+
+	<!-- This condition is used to show the OS is unix based -->
+	<condition property="isLinux">
+	    <os family="unix" />
+	</condition>
+	
+	<target name="system32PathCheck" if="${isWindows}">
+		<!-- This should only be performed on Windows systems -->
+	</target>
+	
+	<!-- This target checks if the machine has been associated with .vbs files. 
+	     The check should only need to be performed on Windows systems. -->
+	<target name="vbsFileAssocCheck" if="${isWindows}">
+		<exec executable="cmd" failonerror="true">                
+            <arg line='/c "${AbsBaseDir}/scripts/install/vbsFileAssocCheck.bat"'/>
+		</exec>
+	</target>
+	
+	<!-- No modules will attempt to launch if GIFT is on an unsupported platform. -->
+	<target name="supportedPlatformCheck">
+		
+		<condition property="isSupportedOs">
+            <or>
+                <istrue value="${isWindows}"/>
+                <istrue value="${isLinux}"/>
+            </or>
+        </condition>
+		
+		<!-- Track the operating system family so that it can be passed to the running GIFT process -->
+		<condition property="gift.os.family" value="UNIX" else="WINDOWS">
+	       <istrue value="${isLinux}"/>
+	    </condition>
+		
+		<fail unless="${isSupportedOs}" 
+			message="The current operating system platform is not supported. Supported platforms: Windows, Linux" />
+				<echo message="Debug Args ${JavaDebugArgs} ${convWizardJars}"/>
+		
+		<!-- NOTE: Both platforms must use the same path to the JDK because of the reference to modules JAXB and JAF within the JDK. Without 
+                   this, it would be required that separate Linux and Windows JDK paths to the modules be maintained. -->
+		<!-- TODO: Need to check for 64-bit processor and change JDK accordingly -->
+		<property name="JvmPath" value="${ExternalLibsDir}/jdk-11/bin/java"/>
+		
+		<!-- If launching from a Windows platform, use javaw.exe to launch SPL minimized. -->
+		<condition property="QuietJvmPath" value="${ExternalLibsDir}/jdk-11/bin/javaw" else="${JvmPath}">
+	        <istrue value="${isWindows}"/>
+	    </condition>
+			
+		<property name="JvmPathLoc" location="${JvmPath}"/>
+		<property name="QuietJvmPathLoc" location="${QuietJvmPath}"/>
+		
+	</target>
+
+	<!-- This target is called when using launchProcess.bat and verifies the remaining command line arguments.
+		The first <or> block contains all valid applications and any new applications should be added here in addition
+		to thier targets added throughout the file. The second <or> block checks that the start argument was used. If
+		start and a valid application are not provided as arguments the build will fail and display the help message -->
+	<target name="checkTargets">
+		
+		<!-- Verify application argument-->
+		<condition property="call.help">
+			<not>
+				<or>
+					<contains string="${ant.project.invoked-targets}" substring="singleprocess"/>
+					<contains string="${ant.project.invoked-targets}" substring="ums"/>
+					<contains string="${ant.project.invoked-targets}" substring="lms"/>
+					<contains string="${ant.project.invoked-targets}" substring="domain"/>
+					<contains string="${ant.project.invoked-targets}" substring="gateway"/>
+					<contains string="${ant.project.invoked-targets}" substring="learner"/>
+					<contains string="${ant.project.invoked-targets}" substring="ped"/>
+					<contains string="${ant.project.invoked-targets}" substring="tutor"/>
+					<contains string="${ant.project.invoked-targets}" substring="sensor"/>
+					<contains string="${ant.project.invoked-targets}" substring="activemq"/>
+					<contains string="${ant.project.invoked-targets}" substring="gas"/>
+					<contains string="${ant.project.invoked-targets}" substring="installer"/>
+					<contains string="${ant.project.invoked-targets}" substring="monitor"/>
+					<contains string="${ant.project.invoked-targets}" substring="controlpanel"/>
+					<contains string="${ant.project.invoked-targets}" substring="dat"/>
+					<contains string="${ant.project.invoked-targets}" substring="scat"/>
+					<contains string="${ant.project.invoked-targets}" substring="lcat"/>
+					<contains string="${ant.project.invoked-targets}" substring="cat"/>
+					<contains string="${ant.project.invoked-targets}" substring="mat"/>
+					<contains string="${ant.project.invoked-targets}" substring="pcat"/>
+					<contains string="${ant.project.invoked-targets}" substring="tarat"/>
+					<contains string="${ant.project.invoked-targets}" substring="export"/>
+					<contains string="${ant.project.invoked-targets}" substring="remotelaunchservice"/>
+					<contains string="${ant.project.invoked-targets}" substring="uninstaller"/>
+				</or>
+			</not>
+		</condition>
+		
+		<!-- Verify start argument -->
+		<condition property="call.help">
+			<not>
+				<contains string="${ant.project.invoked-targets}" substring="start"/>				
+			</not>
+		</condition>
+		<!-- Display the list of targets then call the check to see if the help menu should be invoked --> 
+		<echo message="list of args: ${ant.project.invoked-targets}"/>
+		<antcall target="start.help"/>
+	</target>
+	
+	<!-- this target only proceeds if the help menu should be called. Otherwise the build moves to the first argument target -->
+	<target name="start.help" if="call.help">
+		<antcall target="help"/>
+	</target>
+	
+	<!-- After arguments have been verifies the start target should be the first command line argument called as all
+	applications require "isStarting" to be set -->
+	<target name="start">
+		<property name="isStarting" value="true"/>
+	</target>
+	
+	<!-- All gift processes depend on the platform and the existance of the system32 folder. -->
+	
+	<!-- builds launchApplication properties for learner application -->
+	<target name="learner" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"          				value="${LearnerName}"/>
+		<property name="Class"         				value="${LearnerClass}"/>
+		<property name="DebugPort"     				value="${LearnerDebugPort}"/>
+		<property name="ClasspathExtension"			value="${LearnerClassPathExtension}"/>
+		<property name="JmxArgs"              		value="${LearnerJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  	 	value=""/>
+		
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for ped application -->
+	<target name="ped" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+		
+		<property name="Name"             	    	value="${PedName}"/>
+		<property name="Class"                		value="${PedClass}"/>
+		<property name="DebugPort"            		value="${PedDebugPort}"/>
+		<property name="ClasspathExtension"     	value="${PedClassPathExtension}"/>
+		<property name="JmxArgs"              		value="${PedJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		 		value=""/>
+		
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for Sensor application -->
+	<target name="sensor" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${SensorName}"/>
+		<property name="Class"                		value="${SensorClass}"/>
+		<property name="DebugPort"            		value="${SensorDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${SensorClassPathExtension}"/>
+		<property name="JmxArgs"              		value="${SensorJmxArgs}"/>
+		<property name="JavaArgs"             		value="${SensorJavaArgs}"/>
+		
+		<!-- specify path for runtime usage of RXTX library (among others) -->
+		<property name="LibraryPathExtension" 		value="${SensorLibraryPathExtension}"/>
+		
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for LMS application -->
+	<target name="lms" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${LMSName}"/>
+		<property name="Class"                		value="${LMSClass}"/>
+		<property name="DebugPort"            		value="${LMSDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${LMSClassPathExtension}"/>
+		<property name="JmxArgs"              		value="${LMSJmxArgs}"/>
+		
+		<!-- This is used to guide where the derby.log file will be created when using derby 
+		Embedded Client driver to connect to the database -->
+		<property name="JavaArgs"             		value="${LMSJavaArgs}"/>
+		<property name="shouldLaunchDerbyServer" 	value="${LMSshouldLaunchDerbyServer}"/>
+		<property name="needLMSDb"            		value="${LMSneedLMSDb}"/>
+		
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for UMS application -->
+	<target name="ums" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+			
+		<property name="Name"                 		value="${UMSName}"/>
+		<property name="Class"                		value="${UMSClass}"/>
+		<property name="DebugPort"            		value="${UMSDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${UMSClassPathExtension}"/>
+		<property name="JmxArgs"              		value="${UMSJmxArgs}"/>
+		<property name="shouldLaunchDerbyServer"	value="${UMSshouldLaunchDerbyServer}"/>
+		<property name="needUMSDb"            		value="${UMSneedUMSDb}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+		
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for Domain application -->
+	<target name="domain" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"						value="${DomainName}"/>
+		<property name="Class"                		value="${DomainClass}"/>
+		<property name="DebugPort"            		value="${DomainDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${DomainClassPathExtension}"/>
+		<property name="LibraryPathExtension" 		value="${DomainLibraryPathExtension}"/>
+		<property name="JmxArgs"              		value="${DomainJmxArgs}"/>
+		<property name="FindConversionWizardJars"	value="${DomainFindConversionWizardJars}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+		
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for Gateway application -->
+	<target name="gateway" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${GatewayName}"/>
+		<property name="Class"                		value="${GatewayClass}"/>
+		<property name="DebugPort"            		value="${GatewayDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${GatewayClassPathExtension}"/>
+		
+		<!-- specify path for runtime usage of jacob library -->
+		<property name="LibraryPathExtension" 		value="${GatewayLibraryPathExtension}"/>
+		<property name="JmxArgs"              		value="${GatewayJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for Monitor application -->
+	<target name="monitor" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${MonitorName}"/>
+		<property name="Class"                		value="${MonitorClass}"/>
+		<property name="DebugPort"            		value="${MonitorDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${MonitorClassPathExtension}"/>
+		<property name="SplashScreenArg"      		value="${MonitorSplashScreenArg}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for Control Panel application -->
+	<target name="controlpanel" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${ControlPanelName}"/>
+		<property name="Class"                		value="${ControlPanelClass}"/>
+		<property name="DebugPort"            		value="${ControlPanelDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${ControlPanelClassPathExtension}"/>
+		<property name="SplashScreenArg"      		value="${ControlPanelSplashScreenArg}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for DKF Authoring Tool application -->
+	<target name="dat" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${DATName}"/>
+		<property name="Class"                		value="${DATClass}"/>
+		<property name="DebugPort"            		value="${DATDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${DATClassPathExtension}"/>
+		<property name="LibraryPathExtension" 		value="${DATLibraryPathExtension};"/>
+		<property name="shouldLaunchDerbyServer"	value="${DATshouldLaunchDerbyServer}"/>
+		<property name="FindConversionWizardJars"	value="${DATFindConversionWizardJars}"/>
+		<property name="needUMSDb"            		value="${DATneedUMSDb}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for SCAT application -->
+	<target name="scat" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${SCATName}"/>
+		<property name="Class"                		value="${SCATClass}"/>
+		<property name="DebugPort"            		value="${SCATDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${SCATClassPathExtension}"/>
+		<property name="LibraryPathExtension" 		value="${SCATLibraryPathExtension};"/>
+		<property name="FindConversionWizardJars"	value="${SCATFindConversationWizardJars}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for LCAT application -->
+	<target name="lcat" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${LCATName}"/>
+		<property name="Class"                		value="${LCATClass}"/>
+		<property name="DebugPort"            		value="${LCATDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${LCATClassPathExtension}"/>
+		<property name="FindConversionWizardJars"	value="${LCATFindConversationWizardJars}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for CAT application -->
+	<target name="cat" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${CATName}"/>
+		<property name="Class"                		value="${CATClass}"/>
+		<property name="DebugPort"            		value="${CATDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${CATClassPathExtension}"/>
+		<property name="LibraryPathExtension" 		value="${CATLibraryPathExtension};"/>
+		<property name="shouldLaunchDerbyServer"   	value="${CATshouldLaunchDerbyServer}"/>
+		<property name="FindConversionWizardJars"  	value="${CATFindConversionWizardJars}"/>
+		<property name="needUMSDb"            		value="${CATneedUMSDb}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for MAT application -->
+	<target name="mat" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${MATName}"/>
+		<property name="Class"                		value="${MATClass}"/>
+		<property name="DebugPort"            		value="${MATDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${MATClassPathExtension}"/>
+		<property name="FindConversionWizardJars"  	value="${MATFindConversionWizardJars}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for PCAT application -->
+	<target name="pcat" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${PCATName}"/>
+		<property name="Class"                		value="${PCATClass}"/>
+		<property name="DebugPort"            		value="${PCATDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${PCATClassPathExtension}"/>
+		<property name="FindConversionWizardJars"  	value="${PCATFindConversionWizardJars}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for TARAT application -->
+	<target name="tarat" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${TARATName}"/>
+		<property name="Class"                		value="${TARATClass}"/>
+		<property name="DebugPort"            		value="${TARATDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${TARATClassPathExtension}"/>
+		<property name="LibraryPathExtension" 		value="${TARATLibraryPathExtension};"/>
+		<property name="FindConversionWizardJars"  	value="${TARATFindConversionWizardJars}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for Desktop Export Tool application -->
+	<target name="export" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 		value="${ExportName}"/>
+		<property name="Class"                		value="${ExportClass}"/>
+		<property name="DebugPort"            		value="${ExportDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${ExportClassPathExtension}"/>
+		<property name="LibraryPathExtension" 		value="${ExportLibraryPathExtension};"/>
+		<property name="SplashScreenArg"      		value="${ExportsplashScreenArg}"/>
+		<property name="shouldLaunchDerbyServer"   	value="${ExportshouldLaunchDerbyServer}"/>
+		<property name="needUMSDb"            		value="${ExportneedUMSDb}"/>
+		<property name="needLMSDb"            		value="${ExportneedLMSDb}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for Remote Launch Service application -->
+	<target name="remotelaunchservice" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 value="${RemoteLaunchName}"/>
+		<property name="Class"                value="${RemoteLaunchClass}"/>
+		<property name="DebugPort"            value="${RemoteLaunchDebugPort}"/>
+		<property name="ClasspathExtension"   value="${RemoteLaunchClassPathExtension}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for Installer application -->
+	<target name="installer" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 value="${InstallerName}"/>
+		<property name="Class"                value="${InstallerClass}"/>
+		<property name="DebugPort"            value="${InstallerDebugPort}"/>
+		<property name="ClasspathExtension"   value="${InstallerClassPathExtension}"/>
+		<property name="SplashScreenArg"      value="${InstallerSplashScreenArg}"/>
+		<property name="JmxArgs"              		value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  value="${SplashScreenArg}"/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- builds launchApplication properties for Uninstaller application -->
+	<target name="uninstaller" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck">
+	
+		<property name="Name"                 value="${UninstallerName}"/>
+		<property name="Class"                value="${UninstallerClass}"/>
+		<property name="DebugPort"            value="${UninstallerDebugPort}"/>
+		<property name="ClasspathExtension"   value="${UninstallerClassPathExtension}"/>
+		<property name="SplashScreenArg"      value="${UninstallerSplashScreenArg}"/>
+		<property name="JmxArgs"              value="${BaseJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  value=""/>
+
+		<antcall target="startApplication"/>
+	</target>
+	
+	<!-- checks if the starting target was called then launches the built application -->
+	<target name="startApplication" if="isStarting">
+		
+		<antcall target="launchApplication"/>
+	</target>
+	
+	<!-- GIFT Admin Server process -->
+	<target name="gas" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck, startGAS"/>
+	
+	<!-- GIFT Single Process Launcher process -->
+	<target name="singleprocess" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck, startSPL"/>
+	
+	<!--GIFT Tutor Web Server -->
+	<target name="tutor" depends="system32PathCheck, vbsFileAssocCheck, supportedPlatformCheck, startTutor"/>
+	
+	<!-- builds launchApplication properties for gas application -->
+	<target name="startGAS" if="isStarting">
+		
+		<property name="Name"                 		value="${GASName}"/>
+		<property name="DebugPort"            		value="${GASDebugPort}"/>
+		<property name="JavaArgs"             		value="${GASJavaArgs}"/>
+		<property name="ClasspathExtension"   		value="${GASClassPathExtension}"/>
+		<property name="LibraryPathExtension" 		value="${GASLibraryPathExtension};${GatewayLibraryPathExtension}"/>
+		<property name="WebServerConfig"      		location="${GASWebServerConfig}"/>
+		<property name="StopPort"             		value="${GASStopPort}"/>
+		<property name="StopKey"                     value="${GASStopKey}"/>
+		<property name="shouldLaunchDerbyServer"	value="${GASshouldLaunchDerbyServer}"/>
+		<property name="needUMSDb"            		value="${GASneedUMSDb}"/>
+		<property name="needLMSDb"            		value="${GASneedLMSDb}"/>
+		<property name="JmxArgs"              		value="${GASJmxArgs}"/>
+		
+		<!-- Used to launch GAS -->
+		<antcall target="launchServer"/>
+	</target>
+	
+	<!-- builds launchApplication properties for tutor application -->
+	<target name="startTutor" if="isStarting">
+		
+		<property name="Name"                 		value="${TutorName}"/>
+		<property name="DebugPort"            		value="${TutorDebugPort}"/>
+		<property name="ClasspathExtension"   		value="${TutorClassPathExtension}"/>
+		<property name="LibraryPathExtension" 		value="${TutorLibraryPathExtension}"/>
+		<property name="WebServerConfig"      		value="${TutorWebServerConfig}"/>
+		<property name="StopPort"             		value="${TutorStopPort}"/>
+		<property name="StopKey"                     value="${TutorStopKey}"/>
+		<property name="JmxArgs"              		value="${TutorJmxArgs}"/>
+		
+		<!-- Null JavaArgs argument expected by launchApplication target -->
+		<property name="JavaArgs"      		  		value='-Dlog4j1.compatibility="true"'/>
+		
+		<!-- Used to launch Tutor -->
+		<antcall target="launchServer"/>
+	</target>
+	
+	<!-- builds launchApplication properties for spl application -->
+	<target name="startSPL" if="isStarting">
+		<property name="Name"                 		value="${SPLName}"/>
+		<property name="Class"                		value="${SPLClass}"/>
+		<property name="DebugPort"            		value="${SPLDebugPort}"/>
+		<property name="JavaArgs"             		value="${SPLJavaArgs}"/>
+		<property name="ClasspathExtension"   		value="${SPLClassPathExtention}"/>
+		<property name="LibraryPathExtension" 		value="${SPLLibraryPathExtension}"/>
+		<property name="shouldLaunchDerbyServer"   	value="${SPLshouldLaunchDerbyServer}"/>
+		<property name="needUMSDb"            		value="${SPLneedUMSDb}"/>
+		<property name="needLMSDb"            		value="${SPLneedLMSDb}"/>
+		<property name="JmxArgs"              		value="${SPLJmxArgs}"/>
+		
+		<!-- Used to launch SPL -->
+		<antcall target="launchSPL"/>
+	</target>
+	
+	<!-- If the provided arguments are invalid display the help message and then pause for user input -->
+	<target name="help">
+	
+		<echo message="Usage: launchProcess.xml start (debug) application"/>
+		<echo message="where application includes:"/>
+		<echo message="    gateway               The Gateway module"/>
+		<echo message="    domain                The Domain module"/>
+		<echo message="    monitor               The monitor - used to graphically monitor the network traffic"/>
+		<echo message="    tutor                 The Tutor web server"/>
+		<echo message="    sensor                The Sensor module"/>
+		<echo message="    ped                   The Pedagogical module"/>
+		<echo message="    ums                   The UMS module"/>
+		<echo message="    lms                   The LMS module"/>
+		<echo message="    learner               The Learner module"/>
+		<echo message="    singleprocess		 Run GIFT in single process mode. Parameters is a list of modules."/>
+		<echo message="    gas                   The GIFT Admin Server"/>
+		<echo message="    dat                   The DKF Authoring Tool"/>
+		<echo message="    scat                  The Sensor Configuration Authoring Tool"/>
+		<echo message="    lcat                  The Learner Configuration Authoring Tool"/>
+		<echo message="    pcat                  The Pedagogical Configuration Authoring Tool"/>
+		<echo message="    mat                   The Metadata Authoring Tool"/>
+		<echo message="    export                The Export Tutor application"/>
+		<echo message="    installer             The GIFT Installer application"/>
+		<echo message="    uninstaller           The GIFT Uninstaller application"/>
+		<echo message="    remotelaunchservice   The Remote Launch Service Client"/>
+		<echo message="."/>
+		<echo message="    (optional) debug      Launches the application in the same window and can be used to "/>
+		<echo message="                          keep the window open after the application executable finishes.   "/> 
+		<input>Press return key to continue...</input>
+		<fail message="Invalid command line args used"/>
+		
+	</target>
+	
+	<!-- launchApplication is used to build the command line arguments and call the run command -->
+	<target name="launchApplication" depends="checkDebug, launchDerby, addConvWizardJars, !addConvWizardJars">
+	
+		<echo message="Debug Args ${JavaDebugArgs} ${convWizardJars}"/>
+		
+	    <!-- Build the command line arguments to pass into the Java executable -->
+		
+		<!-- The below pathconvert and map calls are needed to convert the absolute paths found inside the classpaths to relative 
+             paths in order to fix the Windows command line error about the file paths being too long. See 
+             ticket #5341 for more context. 
+             
+             Additionally, this classpath needs to go into 3 separate pathconvert calls because placing it all in one
+             pathconvert ends up removing duplicate JAR paths, which strangely prevents the installer from loading 
+             generated JAXB classes after running a build. See ticket #5342 for more context. -->
+		<pathconvert property="JavaClasspathCvrt">
+            <path><pathelement path="${JavaClasspath}"/></path>
+            <map from="${AbsBaseDir}/" to=""/>
+        </pathconvert>
+		<pathconvert property="ClasspathExtensionCvrt">
+            <path><pathelement path="${ClasspathExtension}"/></path>
+            <map from="${AbsBaseDir}/" to=""/>
+        </pathconvert>
+		<pathconvert property="convWizardJarsCvrt">
+            <path><pathelement path="${convWizardJars}"/></path>
+            <map from="${AbsBaseDir}/" to=""/>
+        </pathconvert>
+		
+		<!-- Put the whole classpath together. path.separator uses the OS' preferred separator (e.g. ; for Windows) -->
+		<property name="classpath" value="${JavaClasspathCvrt}${path.separator}${ClasspathExtensionCvrt}${path.separator}${convWizardJarsCvrt}"/>
+        
+		<!-- Set the library path to empty string if not set -->
+		<property name="LibraryPathExtension" value=""/>
+		
+        <pathconvert property="libraryPath">
+            <path>
+                <pathelement path="${LibraryPathExtension};"/>
+            </path>
+        
+            <!-- This call to map is needed to convert the absolute paths found inside the classpaths to relative 
+                 paths in order to fix the Windows command line error about the file paths being too long. See 
+                 ticket #5341 for more context. -->
+            <map from="${AbsBaseDir}/" to=""/>
+        </pathconvert>
+		
+		<!-- Additional Java system properties that need to be passed to PlatformUtils -->
+		<property name='PlatformArgs' value="-Dgift.os.family=&quot;${gift.os.family}&quot;"/>
+	        
+		<property name="JavaCmdLine" 
+	    	value='${JmxArgs} ${JavaArgs} ${PlatformArgs} ${JavaDebugArgs} -classpath "${classpath}" -Djava.library.path="${libraryPath}" -Djava.io.tmpdir="${GIFT_TEMP}" ${Class}'/>
+        
+		<!-- Construct the final command to pass to runCommand.bat when launching Java -->
+		<property name="Command" value='"${JvmPathLoc}" ${JavaCmdLine}'/>
+		
+		<antcall target="runCommand"/>
+	
+	</target>
+	
+	<!-- calls linux, windows, and debug run commands so that the appropriate command can execute based on OS and debug argument -->
+	<target name="runCommand" depends="runCommandDebug, runCommandWindows, runCommandLinux"/>
+	
+	<!-- if the debug argument was used echo the command line -->
+	<target name="runCommandDebug" if="isDebug">
+	
+		<echo message="Java debug command line: ${JavaCmdLine}"/>
+	</target>
+	
+	<!-- runs the assembled command to start an application in windows -->
+	<target name="runCommandWindows" if="isWindows" unless="isDebug">
+		<echo message="Windows based OS detected"/>
+		
+		<!-- 
+		   Executes a GIFT Java task using command prompt
+		   
+		   To explain the below task:
+              + Executable: Command Prompt in System32
+			  + runCommand.bat: script that is used to launch the application, passing in all arguments configured from past targets 
+			     to the batch file
+              + Command Prefix: Runs the Java command in its own minimized console window 
+                 process named ${Name}
+              + Java Command Line: The command line arguments to pass into java.exe
+		-->
+		<exec executable="cmd" failonerror="true">  
+            <arg value='/c start /MIN "${Name}" scripts\util\runCommand.bat ${Command}' />
+		</exec>
+	</target>
+	
+	<!-- runs the assembled command to start an application in unix using a main class -->
+	<target name="runCommandLinuxClass" if="Class">
+		<echo message="Linux based OS detected"/>
+		
+		<!-- 
+           Executes a Java task to start a GIFT application based on its main class
+        -->
+		<java jvm="${JvmPathLoc}" fork="true" failonerror="true" classname="${Class}">           
+            <jvmarg line="${JavaCmdLine}" />
+        </java>
+	</target>
+	
+	<!-- runs the assembled command to start an application in unix using a main JAR -->
+	<target name="runCommandLinuxJar" unless="Class">
+        <echo message="Linux based OS detected"/>
+        
+		<!-- 
+           Executes a GIFT Java task using the Java executable in GIFT/external directly
+           
+           To explain the below task:
+              + Executable: bin/java in the JVM in GIFT/external
+              + Java Command Line: The command line arguments to pass into bin/java
+        -->
+		<exec executable="${JvmPathLoc}" failonerror="true">           
+            <arg line="${JavaCmdLine}" />
+        </exec>
+    </target>
+	
+	<!-- runs the assembled command to start an application in unix -->
+	<target name="runCommandLinux" if="isLinux">
+		<antcall target="runCommandLinuxClass"/>
+		<antcall target="runCommandLinuxJar"/>
+	</target>
+	
+	<!-- launches GIFT through a single proces -->
+	<target name="launchSPL" depends="checkDebug, launchDerby, addConvWizardJars, !addConvWizardJars">	
+		<echo message="Debug Args ${JavaDebugArgs} ${convWizardJars}"/>
+		
+		<!-- 
+	          Determine which executable should run the command to start the application and define any 
+	          special arguments that are needed by it.
+	          
+	          This is primarily used to allow Java processes to be spawned into different console
+	          process since Ant, being platform agonostic and running in a JVM, is incredibly limited
+	          in how it can manage these processes and how the OS treats them.
+	          
+	          To explain the below settings:
+	          
+	              - Windows
+	                  + Executable: Command Prompt in System32
+	                  + Command Prefix: Runs the Java command in its own minimized console window 
+	                     process named ${Name}
+	                  + Suffix: Does nothing
+	                  
+	              - Linux
+	                  + Executable: Bash in /bin
+	                  + Command Prefix: Does nothing
+	                  + Suffix: Runs the Java command in its own background process
+	        -->
+	        <condition property="Executable" value="cmd" else="/bin/bash">
+	            <istrue value="${isWindows}"/>
+	        </condition>
+			
+		    <!-- This property holds the fully-qualified classpath used to launch GIFT in SPL mode. Any updates to the classpath 
+                 should be performed in this property. -->
+            <pathconvert property="classpath">
+                <path>
+                    <pathelement path="${SPLJavaClasspath};${ClasspathExtension};${convWizardJars}"/>
+                </path>
+                
+                <!-- This call to map is needed to convert the absolute paths found inside the classpaths to relative 
+                     paths in order to fix the Windows command line error about the file paths being too long. See 
+                     ticket #5241 for more context. -->
+                <map from="${AbsBaseDir}" to="."/>
+            </pathconvert>
+            
+            <pathconvert property="libraryPath">
+                <path>
+                    <pathelement path="${LibraryPathExtension};"/>
+                </path>
+                
+                <!-- This call to map is needed to convert the absolute paths found inside the classpaths to relative 
+                     paths in order to fix the Windows command line error about the file paths being too long. See 
+                     ticket #5241 for more context. -->
+                <map from="${AbsBaseDir}" to="."/>
+            </pathconvert>
+		            
+			
+			<!-- Additional Java system properties that need to be passed to PlatformUtils -->
+			<property name='PlatformArgs' value="-Dgift.os.family=&quot;${gift.os.family}&quot;"/>
+			
+			<property name="JavaCmdLine" 
+				value='${JmxArgs} ${JavaArgs} ${PlatformArgs} ${JavaDebugArgs} -classpath "${classpath}" -Djava.library.path="${libraryPath}" -Dderby.stream.error.field="output/logger/derby.log" -Djava.io.tmpdir="${GIFT_TEMP}" "${ActiveMQHome}" "${ActiveMQBase}" ${Class} ums lms domain gateway learner ped sensor tutor activemq gas'/>
+			
+			<!-- 
+			    Construct the final command to pass to runCommand.bat when launching SPL. Note that we need to use a different path 
+                to the JVM here to account for starting Java minimized.			
+			-->
+			<property name="Command" value='start "GIFT" "${QuietJvmPathLoc}" ${JavaCmdLine}'/>
+		
+			<antcall target="runCommand"/>
+	</target>
+	
+	<!-- Launches a Java server -->
+	<target name="launchServer" depends="checkDebug, launchDerby">     
+		
+		<!-- 
+		    The DevModeArgs argument that is used below is not set in this file and will normally be empty. 
+		    This argument is intended to be set by scripts that are involved with running servers alongside 
+		    GWT Dev Mode, such as "scripts/tools/GWT Development Mode/launchDashboard.bat",
+            since running dev mode with the -noserver argument requires additional properties to be 
+            changed for the running server, such as where its
+		-->
+		<condition property="DevModeArgsCmd" value="${DevModeArgs}" else="">
+		    <isset property="DevModeArgs" />
+		</condition>
+		
+		<!-- Additional Java system properties that need to be passed to PlatformUtils -->
+		<property name='PlatformArgs' value="-Dgift.os.family=&quot;${gift.os.family}&quot;"/>
+        
+        <!-- Additional Java system properties that need to be passed to PlatformUtils -->
+        <property name='PlatformArgs' value="-Dgift.os.family=&quot;${gift.os.family}&quot;"/>
+		
+		<!-- This property holds the fully-qualified classpath used to launch GIFT in SPL mode. Any updates to the classpath 
+             should be performed in this property. -->
+        <pathconvert property="classpath">
+            <path>
+                <pathelement path="${ClasspathExtension};"/>
+            </path>
+        </pathconvert>
+        
+        <pathconvert property="libraryPath">
+            <path>
+                <pathelement path="${LibraryPathExtension};"/>
+            </path>
+            
+            <!-- This call to map is needed to convert the absolute paths found inside the classpaths to relative 
+                 paths in order to fix the Windows command line error about the file paths being too long. See 
+                 ticket #5241 for more context. -->
+            <map from="${AbsBaseDir}" to="."/>
+        </pathconvert>
+		
+        <property name="JavaCmdLine" 
+            value='-Xmx1024m ${JmxArgs} ${JavaArgs} ${PlatformArgs} ${JavaDebugArgs} ${DevModeArgsCmd} -Djava.library.path="${libraryPath}" -Djava.io.tmpdir="${GIFT_TEMP}" -Dgift.home="${AbsBaseDir}" -DSTOP.PORT=${StopPort} -DSTOP.KEY=${StopKey} -jar "${ExternalLibsDir}/jetty-9.4.41/start.jar" jetty.base="${WebServerConfig}" --lib="${classpath}"'/>
+        
+        <!-- Construct the final command to pass to runCommand.bat when launching Java -->
+		<!-- 
+		     Note: The trailing " is unfortunately necessary, since failing to add it causes the classpath arguments to not be
+		     loaded properly when running in Windows. This happens due to a combination of how cmd works and how Ant wraps command
+		     line arguments with quotes. In short, <arg value='text1 "text2"'/> will print ["text1 "text2""] to the command line while
+		     <arg line='text1 "text2"'/> will print [text1 text2] with no quotes, which becomes a problem when file paths with spaces
+		     are introduced, since quotes in the command lines need to be preserved. The <arg value="..."> approach handles this 
+		     better since it doesn't just drop quotes entirely, but in this case, it also means an extra " needs to be added.
+		-->
+        <property name="Command" value='"${JvmPathLoc}" ${JavaCmdLine} "'/>
+		
+		<antcall target="runCommand"/>
+	</target>
+	
+	<!-- add conversion wizard jars to classpath for processes that require it -->
+	<target name="addConvWizardJars" if="FindConversionWizardJars">
+		<!-- First, get the path to the conversion wizard jars -->
+        <fileset id="convJarFileSet" dir="${DataDir}">
+			<include name="conversionWizard/**/*.jar" />
+		</fileset>
+		
+		<!-- Save the jar list and seperate using commas -->
+		<pathconvert property="convWizardJars" refid="convJarFileSet" pathsep=";"/>
+		<echo message="updated java classpath extension for XML authoring tool conversion wizard to ${convWizardJars}"/>
+	</target>
+	
+	<!-- used to initialize convWizardJars property when nothing new was added to the classpath -->
+	<target name="!addConvWizardJars" unless="FindConversionWizardJars">
+		<property name="convWizardJars" value=""/> 
+	</target>
+	
+	<!-- checks if the UMS database has been extracted -->
+	<target name="checkUMSDb">
+		<condition property="derbyDbExists">
+			<available file="${DB_DERBY_EXTRACT_TO}GiftUms" type="dir"/>
+		</condition>
+	</target>
+	
+	<!-- checks if the LMS database has been extracted -->
+	<target name="checkLMSDb">
+		<condition property="derbyDbExists">
+			<available file="${DB_DERBY_EXTRACT_TO}GiftLms" type="dir"/>
+		</condition>
+	</target>
+	
+	<!-- This target displays the "database not extracted" message based on whether the 
+	     path to the derby database exists or not. -->
+	<target name="databaseNotExtractedMsgWindows" unless="derbyDbExists" if="isWindows">
+		<exec executable="cscript" spawn="true">
+			<arg value="${DatabasesNotExtractedMsg}"/>
+		</exec>
+	</target>
+	
+	<!-- This target displays a warning to the user that the GIFT databases have not been 
+	     extracted based on existence of the derby database directory. 
+		 NOTE: Because the Linux container operates in a headless environment, text is used 
+               in place of the dialog that otherwise would have appeared in Windows. -->
+	<target name="databaseNotExtractedMsgLinux" unless="derbyDbExists" if="isLinux">
+		<echo message="WARNING: The GIFT database(s) have not been extracted yet."/>
+		<echo message="Please run the GIFT installer, which should extract the databases for you."/>
+		<input message="Press Enter key to continue..."/>
+	</target>
+	
+	<!--launches derby by calling the appropriate script based on OS -->
+	<target name="launchDerby" depends="checkUMSDb, checkLMSDb" if="shouldLaunchDerbyServer">
+		<!-- Call both launchDerby targets for Windows and Linux. The correct one should run 
+		     based on OS platform. -->
+		<antcall target="launchDerbyWindows"/>
+		<antcall target="launchDerbyLinux"/>
+	</target>
+	
+	<!--calls the windows script to launch derby server -->
+	<target name="launchDerbyWindows" depends="databaseNotExtractedMsgWindows" if="isWindows">
+		<echo message="Launching Derby database"/>
+		<exec executable="cscript" spawn="true">
+			<arg value="${LaunchDerbyServerScript}"/>
+		</exec>
+	</target>
+	
+	<!--calls the linux script to launch derby server -->
+	<target name="launchDerbyLinux" depends="databaseNotExtractedMsgLinux" if="isLinux">
+		<echo>Launching Derby database</echo>
+		<exec executable="${DERBY_HOME}/bin/startNetworkServer" spawn="true"/>
+		<sleep seconds="1"/>
+	</target>
+	
+	<!-- if the debug argument is used this sets the property that triggers a separate launch
+		application target to show the debug information -->
+	<target name="debug">
+		<property name="isDebug" value="true"/>
+	</target>
+	
+	<!-- This target allows remote debugging utilizing eclipse. When enabled GIFT will
+		pause during launching and await a remote connection on the debug port -->
+	<target name="checkDebug" if="JavaDebug">
+		<!-- Change the suspend argument to y to enable -->
+		<property name="JavaDebugArgs" value="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=*:${DebugPort}"/>
+		<echo message="Check Debug ${JavaDebugArgs} + ${DebugPort}"/>
+	</target>
+</project>

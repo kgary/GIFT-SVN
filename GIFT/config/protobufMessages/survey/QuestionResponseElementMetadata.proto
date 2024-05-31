@@ -1,0 +1,31 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "QuestionResponseElementMetadataProto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents important data about a question response element similar 
+   to a question response element. */
+message QuestionResponseElementMetadata {
+	/* The unique id assigned to the question response, which is not 
+	   initialized until the survey database creates the id. */
+	google.protobuf.Int32Value question_response_id = 1;
+	
+	/* The text of the question response. */
+	google.protobuf.StringValue text = 2;
+	
+	/* The text of the row. */
+	google.protobuf.StringValue row_text = 3;
+	
+	/* The current column the element is in. */
+	google.protobuf.Int32Value column_index = 4;
+	
+	/* The current row the element is in. */
+	google.protobuf.Int32Value row_index = 5;
+}

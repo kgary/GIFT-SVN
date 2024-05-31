@@ -1,0 +1,31 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:gm="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster">
+	<ui:style>
+	   .main{
+            min-width: 100px;
+            max-width: 250px;
+            padding: 5px;
+            cursor: pointer;
+            flex: 1;
+            position: relative;
+	   }
+	   .main:hover{
+            background-image: linear-gradient(transparent, rgba(0,0,0,0.15));
+            box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.15);
+	   }
+	   .label{
+            color: white;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            pointer-events: none;
+            text-shadow: 1px 1px black;
+            text-align: center; 
+	   }
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.main}'>
+	   <gm:AssessmentLevelBar ui:field='assessmentBar' vertical='true'/>
+	   <g:Label ui:field='label' addStyleNames='{style.label}'/>
+	</g:FlowPanel>
+</ui:UiBinder> 

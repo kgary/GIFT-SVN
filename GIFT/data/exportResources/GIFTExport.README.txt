@@ -1,0 +1,49 @@
+This is a GIFT export of a Tutor created using the GIFT export tool.  It contains one or more
+exported courses (listed at the bottom of this README) and a fully configured GIFT instance.
+
+Quick Start
+
+To install this version of GIFT, execute the "installGIFT.bat" file located adjacent to this README.
+
+Once the installation is complete you will notice a new file appear alongside the install file called "launchGIFT.bat".
+Double left click on that file to launch the newly installed GIFT.
+
+You will notice a GIFT system icon tray appear on your computer.  A short time later an Internet
+Explorer window will appear with the GIFT Tutor login screen.
+
+Creating a new user
+
+This exported version of GIFT comes equipped with a clean
+embedded database. Since it is clean you will need to create
+a user before starting a lesson. 
+
+There are two ways to create a new user:
+1) If you have a GIFT account (on gifttutoring.org) and your GIFT machine has
+access to the internet, you can use those credentials to login to this GIFT instance.
+2) otherwise, you can click on the 'go to simple login' link to open the GIFT simple login page. 
+To create a new user on this webpage, click on the Create New User button.
+
+System tray icon
+
+When running GIFT in Learner mode (instead of Power User mode) a GIFT system tray
+icon will be available to interact with the GIFT system.
+Currently, this icon can be used to re open the GIFT webpage
+if it is closed, or exit the system.
+
+Warning
+
+The folder structure in a GIFT export mimics that of a development version of GIFT.  Furthermore,
+the documents provided in the GIFT export refer to that standard GIFT configuration.
+
+Powerpoint
+
+Many GIFT lessons use PowerPoint as a learning tool. Before
+launching GIFT make sure any important PowerPoint work is saved
+and PowerPoint is closed to reduce the risk of data loss.
+
+GIFT Resources
+
+For more information on GIFT or to collaborate with the GIFT
+community, visit gifttutoring.org
+
+Exported Domain Content 

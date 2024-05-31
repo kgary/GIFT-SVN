@@ -1,0 +1,45 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "MissionProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains the various types of mission data for a scenario. */
+message Mission {
+	/* The source property. */
+	google.protobuf.StringValue source = 1;
+	
+	/* The met property. */
+	google.protobuf.StringValue met = 2;
+	
+	/* The task of the mission. */
+	google.protobuf.StringValue task = 3;
+	
+	/* The mission situation. */
+	google.protobuf.StringValue situation = 4;
+	
+	/* The goals of the mission. */
+	google.protobuf.StringValue goals = 5;
+	
+	/* The umission condition. */
+	google.protobuf.StringValue condition = 6;
+	
+	/* The roe property. */
+	google.protobuf.StringValue roe = 7;
+	
+	/* The mission threat warning. */
+	google.protobuf.StringValue threat_warning = 8;
+	
+	/* The weapon status. */
+	google.protobuf.StringValue weapon_status = 9;
+	
+	/* The weapon posture. */
+	google.protobuf.StringValue weapon_posture = 10;
+}

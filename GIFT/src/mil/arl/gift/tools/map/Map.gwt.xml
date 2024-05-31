@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module rename-to='map'>
+    <inherits name='com.google.gwt.user.User' />
+    <inherits name="com.google.gwt.uibinder.UiBinder"/>
+    <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
+    
+    <!-- Google Maps -->
+    <inherits name='com.google.gwt.maps.Maps' />
+
+    <source path='client'/>
+    
+    <source path='shared' />
+
+</module>

@@ -1,0 +1,92 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AssessmentContainerProto";
+
+import "google/protobuf/wrappers.proto";
+import "AbstractEnumObject.proto";
+import "google/protobuf/timestamp.proto";
+
+/* This message contains information about an AbstractAssessment shared across all Assessment
+   type messages. */
+message AssessmentContainer {
+	/* The unique performance node id that maps to a single assessment. */
+	google.protobuf.Int32Value id = 1;
+	
+	/* Optional priority value that a performance node may have. */
+	google.protobuf.Int32Value priority = 2;
+	
+	/* Value indicating how confident a learner is on the concept. */
+	google.protobuf.FloatValue confidence = 3;
+	
+	/* Value indicating how competent a learner is on the concept. */
+	google.protobuf.FloatValue competence = 4;
+	
+	/* Value indicating the trend of the learner on the concept. */
+	google.protobuf.FloatValue trend = 5;
+	
+	/* Name of the concept being assessed. */
+	google.protobuf.StringValue name = 6;
+	
+	/* Assessment level value. */
+	AbstractEnumObject assessment = 7;
+	
+	/* The current state of the task/concept being assessed. */
+	google.protobuf.StringValue node_state = 8;
+	
+	/* The unique performance node id across an entire course that maps to a 
+	   single assessment. */
+	google.protobuf.StringValue course_id = 9;
+	
+	/* Optional evaluator value for the performance node. */
+	google.protobuf.StringValue evaluator = 10;
+	
+	/* Optional observer comment that a performance node may have. */
+	google.protobuf.StringValue observer_comment = 11;
+	
+	/* Optional observer media that a performance node may contain. */
+	google.protobuf.StringValue observer_media = 12;
+	
+	/* Value indicating whether the task should hold the trend value or not. */
+	google.protobuf.BoolValue assessment_hold = 13;
+
+	/* Value indicating whether the priority value of a task should be held. */
+	google.protobuf.BoolValue priority_hold = 14;
+	
+	/* Value indicating whether the confidence value of a task should be held. */
+	google.protobuf.BoolValue confidence_hold = 15;
+	
+	/* Value indicating whether the competence value of a task should be held. */
+	google.protobuf.BoolValue competence_hold = 16;
+	
+	/* Value indicating whether the trend value of a task should be held. */
+	google.protobuf.BoolValue trend_hold = 17;
+	
+	/* Value indicating whether the task/concept has scenario support. */
+	google.protobuf.BoolValue scenario_support = 18;
+	
+	/* Optional value indicating if the task has an observed assessment. */
+	google.protobuf.BoolValue observed_assessment = 19;
+	
+	/* Time the assessment was set. */
+	google.protobuf.Timestamp time = 20;
+	
+	/* Optional assessment explanation that the task may contain. */
+	repeated string assessment_explanation = 21;
+	
+	/* The collection of unique team organization names of learners whose assessment 
+	   is represented in this object. */
+	map<string, AbstractEnumObject> assessed_team_org_entities = 22;	
+	
+	/* The optional reference to a resource in an external authoritative system associated with the assessment. */
+	google.protobuf.StringValue authoritative_resource = 23;
+}
+	
+	
+	

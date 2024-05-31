@@ -1,0 +1,40 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LMSDataRequestProto";
+
+import "PublishLessonScoreResponse.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message is used to retrieve the training history of a learner from the LMS. */
+message LMSDataRequest {
+	/* The unique user name of a user that wants to get their information from the LMS. */
+	google.protobuf.StringValue	user_name = 1;
+	
+	/* The identifiable information for the records wanting to be retrieved from the LMS. */
+	repeated PublishLessonScoreResponse published_responses = 2;
+	
+	/* The the index to start getting LMS Records from from the entire query result. */
+	google.protobuf.Int32Value page_start = 3;
+	
+	/* Value indicating how many LMS Records to return. */
+	google.protobuf.Int32Value page_size = 4;
+	
+	/* Value indicating if the LMS Records are to be sorted with the newest records appearing in the list first. */
+	google.protobuf.BoolValue sort_descending = 5;
+	
+	/* The domain ids used to filter for specific LMS records on domains/courses. */
+	repeated string domain_names = 6;
+	
+	/* Value indicating if the learner sent the request. */
+	google.protobuf.BoolValue learner_request = 7;
+	
+	/* The course concepts being used in this course.  */
+	google.protobuf.StringValue course_concepts = 8;
+}

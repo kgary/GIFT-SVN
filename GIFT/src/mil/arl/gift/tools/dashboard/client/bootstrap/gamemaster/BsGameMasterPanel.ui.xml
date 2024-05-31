@@ -1,0 +1,434 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:media="urn:import:com.google.gwt.media.client"
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+             xmlns:select="urn:import:org.gwtbootstrap3.extras.select.client.ui"
+             xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+             xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+             xmlns:gm="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster"
+             xmlns:gmsf="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster.sessionfilter"
+             xmlns:gma="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster.aar"
+             xmlns:db="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap"
+             xmlns:s="urn:import:org.gwtbootstrap3.extras.slider.client.ui">
+	<ui:style type="mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster.BsGameMasterPanel.Style">
+		.selectedSessionPanel {
+            display: flex;
+            flex-flow: column nowrap;
+		}
+        .flexRowDisplay {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+        }
+        .headerPanel {
+            display: inline-flex;
+            margin-left: 8px;
+	    }
+        .outerSplitter {
+            background-color: rgb(50, 50, 50);
+            background-image: linear-gradient(rgba(100, 100, 100, 1) 50%, #323232);
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+        }
+	    .mainSplitter {
+	        background-color: rgb(50, 50, 50);
+            background-image: linear-gradient(rgba(100, 100, 100, 1) 50%, #323232);
+            flex: 1;
+            height: 100%;
+            overflow: hidden;
+	    }
+	    .hideHorizontalDraggers  {
+		    display: none;
+		    width: 0px !important;
+		}
+	    .navBar{
+            min-height: 30px;
+            
+            /* The z-index MUST be auto here. If it is set to a different value, then it's possible
+            that the help dialog will show up below the glass that accompanies it. This happens because
+            whatever z-index is applied here takes precedence. */
+            z-index: auto; 
+        }
+        .navBarCollapse{
+            padding-left: 0px;
+        }
+	    .navBarForm{
+            margin: 0px;
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            min-height: 35px;
+            padding-left: 0px;
+	    }
+	    .smallMarginTop {
+            margin-top: 5px;
+	    }
+        .contentDisplay {
+            background-color: rgb(100,100,100);
+            flex: 1;
+        }
+        .sessionFilterContainer {
+			width: 19%;
+			height: 100%;
+			display: flex;
+			overflow: hidden;
+        }
+        .buttonDropdown {
+	        padding-top: 0px;
+	        padding-bottom: 0px;
+	        margin-right: 4px;
+        }
+        .buttonDropdown:focus {
+            border: inherit !important;
+	    }
+        .progressBar {
+			padding: 10px 40px 0 40px;
+			color: white;
+			font-size: 18px;
+		}
+		.settingsMenu {
+            min-width: 230px;
+            padding: 4px 8px;
+	    }
+	    .settingsSubMenu{
+            position: relative;
+        }
+        @external dropdown-menu;
+        .settingsSubMenu > .dropdown-menu{
+            top: 0;
+            left: 100%;
+            margin-top: -1px;
+            min-width: 230px;
+            padding: 4px 8px;
+        }
+        .subMenuGroup{
+            user-select: none;
+        }
+	    .subMenuGroup:hover .settingsSubMenu:first-child > .dropdown-menu{
+            display: block;
+        }
+        .subMenuGroup:focus .settingsSubMenu:first-child > .dropdown-menu{
+            display: block;
+        }
+		.soundSettingItems {
+			padding-bottom: 4px;
+    		padding-left: 4px;
+		}
+		.scaleSettingItems {
+            color: black;
+            display: flex;
+        }
+        .scaleSettingItems > span {
+            flex: 1;
+        }
+        .scaleSettingItems > div {
+            margin-right: 5px;
+        }
+		.anchorListItemKnockoff{
+			display:block;
+			padding-left: 4px;
+			padding-bottom: 4px;
+			padding-top: 2px;
+			cursor:pointer;
+			color: black;
+		}
+		.anchorListItemKnockoff:focus{
+	    	text-decoration: none;
+    		color: #ffffff;
+    		background-color: #446e9b;
+		}
+		.anchorListItemKnockoff:hover{
+	    	text-decoration: none;
+    		color: #ffffff;
+    		background-color: #446e9b;
+		}
+		.panelSelect {
+	         width: 150px !important;
+		}
+		.hideWidget {
+	         display: none !important;
+		}
+		.contentPanel {
+	         height: 100%;
+	         width: 100%;
+		}
+        .timeline{
+           flex: 1;
+       }
+       .mainPanelContainer {
+             height: 100%;
+             width: 100%;
+             display: flex;
+             flex-direction: column;
+        }
+        .leftPanel {
+             flex: 1;
+             position: relative;
+        }
+        .leftNavButtons {
+	         flex: 1;
+	         max-width: 19%;
+	         padding-left: 15px;
+        }
+        .remainingNavButtons {
+	         flex: 1;
+	         display: flex;
+	         justify-content: space-between;
+        }
+        .displayPickerIcon {
+             width: 40px;
+        }
+        .blocker{
+             position: absolute;
+             top: 0px;
+             right: 0px;
+             left: 0px;
+             bottom: 0px;
+             background-color: rgba(0, 0, 0, 0.8) !important;
+             z-index: 1000 !important; /* Allow modals to show up on top*/
+             user-select: none;
+        }
+        .gestureFlowPanel{
+	         display: flex;
+	         align-items:center;
+	         justify-content: center;
+	         height: 100%;
+        }
+         .gestureEnabledHTML{
+	         font-size: 50px;
+	         color: #aaf;
+	         font-weight: bold;
+	         text-shadow: 3px 3px 5px black;
+	         text-align: center;
+        }
+        .pressHold{
+	         position: absolute;
+	         right: 0px;
+	         bottom: 0px;
+             margin: 20px;
+             display: flex;
+             align-items: center;
+        }
+        .pressHoldHTML{
+             font-size: 35px;
+             color: yellow;
+             text-shadow: 3px 3px 5px black;
+        }
+        .bookmarkGestureHeader{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+	    }
+	    .gestureMic{
+            font-size: 50px;
+            color: #f66;
+            text-shadow: 3px 3px 5px black;
+	    }
+	    @external fa-microphone;
+        .gestureMic.fa-microphone{
+            color: #f11;
+            animation: belowExpectationAssessmentAnimation 2s infinite; /* Borrow red pulsing used by poor assessments */
+            width: 50px;
+            text-align: center;
+            border-radius: 50%;
+            filter: drop-shadow(0px 0px 5px red);
+        }
+	    .exitGestureButton{
+             font-size: 50px;
+             color: #aaf;
+             text-shadow: 3px 3px 5px black;
+             margin-left: 10px;
+             pointer: cursor;
+	    }
+	    .exitGestureButton:hover{
+             filter: drop-shadow(0px 0px 6px #aaf)
+	    }
+	    .gestureSubText{
+            font-size: 35px;
+            color: yellow;
+            text-shadow: 3px 3px 5px black;
+	   }
+	</ui:style>
+    <g:FlowPanel>
+        <w:BlockerPanel ui:field ="bookmarkBlockerPanel" addStyleNames='{style.blocker}' showDisabled='true'>
+	       <g:FlowPanel addStyleNames='{style.gestureFlowPanel}'>
+	         <g:FlowPanel addStyleNames='{style.bookmarkGestureHeader}'>
+	           <g:HTML addStyleNames='{style.gestureEnabledHTML}'>
+	               Bookmark Gestures Enabled
+	            </g:HTML>
+	            <b:Icon type='MICROPHONE_SLASH' addStyleNames='{style.gestureMic}' ui:field='gestureMicIcon'/>
+	            <g:HTML addStyleNames='{style.gestureSubText}' ui:field='gestureSubText'>
+                   Triple tap to start audio recording
+                </g:HTML>
+	         </g:FlowPanel>
+	         <g:FlowPanel addStyleNames='{style.pressHold}'>
+		         <g:HTML addStyleNames='{style.pressHoldHTML}'>
+		           Hold 3 seconds to exit...
+		         </g:HTML>
+		         <b:Icon addStyleNames='{style.exitGestureButton}' type='SIGN_OUT' ui:field="exitGestureButton"/>
+	         </g:FlowPanel>
+	       </g:FlowPanel>
+       </w:BlockerPanel>
+        <g:DeckPanel ui:field="mainDeck">
+            <w:GIFTSplitLayoutPanel ui:field="sessionListSplit" addStyleNames='{style.mainSplitter}'>
+                <w:center>
+                    <g:DeckPanel ui:field="sessionListDeck">
+                        <wb:KnowledgeSessionListWidget ui:field="activeSessionListWidget" addStyleNames="{style.smallMarginTop}" emptyListText="There are no sessions currently active." />
+                        <wb:KnowledgeSessionListWidget ui:field="aarListWidget" addStyleNames="{style.smallMarginTop}" emptyListText="No previously completed sessions were found." />
+                    </g:DeckPanel>
+                </w:center>
+                <w:west size="300">
+                    <gmsf:SessionsFilterPanel ui:field="sessionListFilter" />
+                </w:west>
+            </w:GIFTSplitLayoutPanel>
+            <wb:ProgressBarListEntry ui:field="progressBar" addStyleNames="{style.progressBar}" descriptionLabelColor="white" />
+            <g:FlowPanel ui:field="selectedSessionPanel" addStyleNames='{style.selectedSessionPanel}'>
+                <b:Navbar addStyleNames="subHeader {style.navBar}">
+                    
+                    <b:NavbarHeader>
+                        <b:NavbarCollapseButton dataTarget="#navbar-collapse-subheader"/>
+                    </b:NavbarHeader>
+        
+                    <b:NavbarCollapse b:id="navbar-collapse-subheader" addStyleNames="{style.navBarCollapse}">
+                            
+                        <b:NavbarForm pull="LEFT" addStyleNames='{style.navBarForm} '>
+                            <g:FlowPanel addStyleNames="{style.leftNavButtons}">
+                                <b:ButtonGroup>
+                                    <b:Button dataToggle="DROPDOWN" text="Settings" type="LINK" icon='GEARS' addStyleNames="gameMasterHeaderButton" />
+                                    <b:DropDownMenu ui:field="settingsMenu" addStyleNames="{style.settingsMenu}">                   
+                                        <wb:ManagedTooltip title='Turns off all the audio AND visual alerts that can be controlled in this settings panel' placement="BOTTOM">
+                                            <g:InlineHTML ui:field="muteAllAlerts" addStyleNames="{style.anchorListItemKnockoff}">
+                                                Suppress All Alerts <i class='fa fa-volume-off' style='font-size:large; padding-left:20px;'/> <i class='fa fa-eye-slash' style='font-size:large; padding-left:5px;'/>
+                                            </g:InlineHTML>
+                                        </wb:ManagedTooltip>
+                                        <g:HTMLPanel>
+                                            <hr style='border-color: rgb(200,200,200); margin: 4px 0px 0px; width: 100%;'/>
+                                        </g:HTMLPanel>
+                                        <!--  organize the display of the tasks/concepts -->
+                                        <wb:ManagedTooltip title='Highlight the tasks/concepts which have poor assessment in the Assessments panel' placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="showPoorAssessmentVisual" preLabel="Show Poor Assessment Indicators" value="true" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>                            
+                                        <wb:ManagedTooltip title='Highlight the concepts that require an observed assessment to be provided in the Assessments panel' placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="showOCAssessmentVisual" preLabel="Show Observer Assessment Indicators" value="true" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>
+                                        <wb:ManagedTooltip title='Sorts concepts in the Assessments panel so that concepts that require an observed assessment to be provided are shown first' placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="prioritizeOCAssessment" preLabel="Prioritize Observer Asessments" value="true" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>
+                                        <wb:ManagedTooltip title='Display all Task assessments grouped by Completed, Active and Upcoming' placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="showAllTasks" preLabel="Show All Assessments" value="false" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>                  
+                                         <wb:ManagedTooltip title=' Allows to automatically move on to observe the next knowledge session in the course if the current one ends and another one begins' placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="autoAdvanceSessions" preLabel="Auto-Advance Sessions" value="true" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>           
+                                        <g:HTMLPanel>
+                                            <hr style='border-color: rgb(200,200,200); margin: 4px 0px 0px; width: 100%;'/>
+                                        </g:HTMLPanel>
+                                        <!--  observer related and scenario display settings -->
+										<wb:ManagedTooltip title="Scenario support elements are used by the system to track and trigger activities needed 
+                                                        by this lesson. Often these are not something an instructor/observer-controller wants to be shown." placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="showScenarioSupport" preLabel="Show Scenario Support" value="false" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>
+                                        <wb:ManagedTooltip title='Show only the tasks and concepts that require manual attention' placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="showOcOnly" preLabel="Show Observer Assessments Only" value="false" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>
+                                        <wb:ManagedTooltip title="Hide automatically assessed concepts when the current assessment is At/Above expectation." placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="hideGoodAutoAssessments" preLabel="Hide Good Automatic Assessments" value="true" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>
+                                        <wb:ManagedTooltip title='Apply the assessment changes starting at the playhead. If this is turned off, the entire assessment will be changed regardless of the playhead location.' placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="applyChangesAtPlayhead" preLabel="Apply Changes at Playhead" value="false" addStyleNames="{style.soundSettingItems}" visible="false" />
+                                        </wb:ManagedTooltip>
+                                        <g:HTMLPanel>
+                                            <hr style='border-color: rgb(200,200,200); margin: 4px 0px 0px; width: 100%;'/>
+                                        </g:HTMLPanel>
+                                        <wb:ManagedTooltip title="Show the mini-map." placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="showMiniMap" preLabel="Show Mini-Map" value="true" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>
+                                        <wb:ManagedTooltip title="Show the learner's information next to the icon on the map that represents the learner." placement="BOTTOM">
+                                            <wb:ToggleButton ui:field="showTeamOrgName" preLabel="Map Icon Name Labels" value="true" addStyleNames="{style.soundSettingItems}" />
+                                        </wb:ManagedTooltip>
+                                         <wb:ManagedTooltip title="Controls the scaling size of icons on the map." placement="BOTTOM">
+                                            <g:FlowPanel addStyleNames="{style.soundSettingItems} {style.scaleSettingItems}">
+                                                <g:InlineLabel>
+									               Map Icon Size:
+									           </g:InlineLabel>
+									           <s:Slider width="70px" step="0.1" ui:field='symbolSizeSlider'/>
+                                            </g:FlowPanel>
+                                        </wb:ManagedTooltip>
+                                        <g:HTMLPanel>
+                                            <hr style='border-color: rgb(200,200,200); margin: 4px 0px 0px; width: 100%;'/>
+                                        </g:HTMLPanel>
+                                        <g:FocusPanel addStyleNames='{style.subMenuGroup}' ui:field='sharePlaybackPanel'>
+                                            <g:FlowPanel>
+                                                <g:FlowPanel addStyleNames="{style.settingsSubMenu}">
+                                                    <b:DropDownMenu ui:field="appMenu">
+                                                       <wb:ToggleButton ui:field="monitorWithARES" preLabel="Augmented REality Sandtable (ARES)" 
+                                                          value="false" addStyleNames="{style.soundSettingItems}" />
+                                                          <wb:ToggleButton ui:field="monitorWithDIS" preLabel="Distributed Interactive Simulation (DIS)" 
+                                                          value="false" addStyleNames="{style.soundSettingItems}" />
+                                                    </b:DropDownMenu>
+                                                </g:FlowPanel>
+                                                 <g:InlineHTML addStyleNames="{style.anchorListItemKnockoff}">
+                                                    Share playback with...
+                                                 </g:InlineHTML>
+                                             </g:FlowPanel>
+                                         </g:FocusPanel>
+                                    </b:DropDownMenu>
+                                </b:ButtonGroup>
+                                <wb:ManagedTooltip title='Show the mission panel.' placement="BOTTOM">
+                                    <b:Button ui:field="missionButton" text="Mission" type="LINK" icon='INFO' addStyleNames="gameMasterHeaderButton" visible="true" />
+                                </wb:ManagedTooltip>
+                                <wb:ManagedTooltip title='Show the timeline for the selected session.' placement="BOTTOM">
+                                    <b:Button ui:field="timelineButton" text="Timeline" type="LINK" icon='EXCHANGE' addStyleNames="gameMasterHeaderButton" visible="false" />
+                                </wb:ManagedTooltip>
+                            </g:FlowPanel>
+                            
+                            <g:FlowPanel addStyleNames="{style.remainingNavButtons}">
+                                <g:FlowPanel ui:field="leftDisplayPickerPanel" visible="false" >
+                                    <b:Image url="images/left_side_screen.png" addStyleNames="{style.displayPickerIcon}" /> 
+                                    <gm:DisplayPicker ui:field="leftDisplayPicker" tooltipText='Populate the left screen with the selected page'/>
+                                </g:FlowPanel>
+
+                                <g:FlowPanel ui:field="rightDisplayPickerPanel" visible="false" > 
+                                    <b:Image url="images/right_side_screen.png" addStyleNames="{style.displayPickerIcon}" /> 
+                                    <gm:DisplayPicker ui:field="rightDisplayPicker" tooltipText='Populate the right screen with the selected page'/>
+                                </g:FlowPanel>
+    
+                                <g:SimplePanel ui:field="sessionDataHeaderPanel" visible="false" addStyleNames="{style.headerPanel}" />
+                            </g:FlowPanel>
+                        </b:NavbarForm>
+                    </b:NavbarCollapse>
+                </b:Navbar>
+                <g:FlowPanel ui:field="mainPanel" addStyleNames="subHeaderContents {style.flexRowDisplay} {style.contentDisplay}" >
+                    <g:HTMLPanel ui:field="filterPanelContainer" addStyleNames='{style.sessionFilterContainer}'>
+                        <gmsf:StatePane ui:field="statePane" />
+                        <hr style='border-color: rgb(200,200,200); background-color: rgb(200,200,200); margin: 0px; width: 2px; height: 100%;'/>
+                    </g:HTMLPanel>
+                    <w:GIFTSplitLayoutPanel ui:field="outerSplitter" addStyleNames='{style.outerSplitter}'>
+                        <w:center>
+                            <g:FlowPanel addStyleNames='{style.mainPanelContainer}'>
+	                            <w:GIFTSplitLayoutPanel ui:field="mainSplitter" addStyleNames='{style.mainSplitter}'>
+	                                <w:center>
+		                                 <g:SimplePanel ui:field="leftContentPanel" addStyleNames='{style.contentPanel}' />
+		                            </w:center>
+		                            <w:east size="0">
+			                            <g:SimplePanel ui:field="rightContentPanel" addStyleNames='{style.contentPanel}' />
+			                        </w:east>
+	                            </w:GIFTSplitLayoutPanel>
+                            <gma:SessionControlPanel ui:field="controlPanel" />
+                            </g:FlowPanel>
+                        </w:center>
+                        <w:south size="0">
+                            <gma:SessionTimeline width='100%' height='100%' ui:field="timelinePanel" addStyleNames='{style.timeline}'/>
+                        </w:south>
+                    </w:GIFTSplitLayoutPanel>
+                </g:FlowPanel>
+            </g:FlowPanel>
+        </g:DeckPanel>
+        <db:BsDialogConfirmWidget ui:field='gestureConfirmDialog'/>
+        <db:BsDialogWidget ui:field='gestureErrorDialog'/>
+    </g:FlowPanel>
+</ui:UiBinder> 

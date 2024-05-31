@@ -1,0 +1,1 @@
+The files found in this folder are meant to reside in the GIFT/external/ folder of a GIFT instance.

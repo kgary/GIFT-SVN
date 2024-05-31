@@ -1,0 +1,55 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+    xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    
+    <ui:style>
+	    .gradientPanel {
+            margin: 4px;
+            width: 99%;
+	        background: repeating-linear-gradient(45deg, rgb(220,50,50), rgb(220,50,50) 5px, rgb(0,0,0) 5px, rgb(0,0,0) 10px);
+	        border-radius: 10px;
+	    }
+        .validationTable {
+			margin: 10px;
+			padding-bottom: 1px;
+			padding-left: 5px;
+			padding-right: 5px;
+			background-color: rgb(220,50,50);
+			border-radius: 4px;
+		}
+		/* No border for the top and bottom button containers */
+		.validationTable tr:not\(:firstChild\):not\(:lastChild\) {
+			border: 2px solid rgb(0,0,0);
+		}
+		.validationTable td {
+			border: none;
+		}
+		.validationTable > div {
+			border-width: 0px;
+		}
+		.validationTable > div > table {
+			border-style: hidden;
+		}
+		@external .gwt-HTML;
+		.validationTable .gwt-HTML {
+			color: white;
+			font-weight: bold;
+			text-shadow: 2px 2px rgba(0,0,0,0.5);
+		}
+		.validationTable > div > table > tbody {
+            border: none;
+	    }
+		.validationTable > div > table > tbody > tr:not\(:first-of-type\):not\(:last-of-type\) {
+	        color: rgb(51, 51, 51);
+	    }
+    </ui:style>
+    
+    <b:Panel addStyleNames="{style.gradientPanel}">
+   		<g:FlowPanel addStyleNames="{style.validationTable}">
+			<wb:GenericListEditor ui:field="validationErrorListEditor" />
+		</g:FlowPanel>
+    </b:Panel>
+</ui:UiBinder>

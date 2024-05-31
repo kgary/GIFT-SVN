@@ -1,0 +1,127 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:select="urn:import:org.gwtbootstrap3.extras.select.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:list="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:cc="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common"
+    xmlns:ts='urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.shared'>
+    <ui:style>
+        .panel {
+            margin-top: 10px;
+        }
+        .pointer-cursor {
+            cursor: pointer;
+        }
+        .left-align {
+            text-align: left;
+        }
+        .panelPadding {
+            padding-top: 10px;
+            padding-bottom: 10px;            
+        }
+        .helpLink {
+            padding-left: 5px;
+            color: rgb(100,100,200);
+            font-weight: normal;
+        }
+        .notBold {
+            font-weight: normal;
+        }
+        .panelPadding > .defaultAssessmentPanel > .defaultAssessmentCheckBox {
+            display:inline-block;
+            padding: 0px 5px;
+            vertical-align: middle;
+        }
+        .panelPadding > .defaultAssessmentPanel > .defaultAssessmentSelect {
+            display:inline-block;
+            padding: 0px 5px;
+            vertical-align: middle;
+            min-width: 75px;
+            width: auto;
+        }
+        .scoringRulePadding {
+	        padding-top: 5px;
+        }
+    </ui:style>
+    <g:FlowPanel>
+
+        <shared:ConditionDescriptor ui:field='descriptor' />
+          
+        <b:Panel addStyleNames="{style.panel}">
+            <b:PanelHeader dataToggle="COLLAPSE" ui:field="realTimePanelHeader" addStyleNames="{style.pointer-cursor}">
+                <b:Heading text="Real-Time Assessment" size="H2" addStyleNames="{style.left-align}" />
+            </b:PanelHeader>
+            <b:Collapse ui:field='realTimePanelCollapse' width='100%'>
+                <b:PanelBody addStyleNames="{style.panelPadding}">
+                    <g:SimplePanel ui:field='conditionPanel' />
+                </b:PanelBody>
+            </b:Collapse>
+        </b:Panel>
+
+        <b:Panel ui:field="overallAssessmentPanel" addStyleNames="{style.panel}">
+            <b:PanelHeader dataToggle="COLLAPSE" ui:field="overallPanelHeader" addStyleNames="{style.pointer-cursor}">
+                <b:Heading text="Overall Assessment" size="H2" addStyleNames="{style.left-align}" />
+            </b:PanelHeader>
+            <b:Collapse ui:field='overallCollapse' width='100%' toggle='false'>
+                <b:PanelBody addStyleNames="{style.panelPadding}">
+                    <g:InlineHTML text="Additional scoring that will be presented in Structured Reviews based on this condition's assessments" />
+                    <wb:HelpLink helpCaption='Final Performance Grade' addStyleNames='{style.notBold}'>
+
+                        <wb:linkWidget>
+                            <b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE'/>
+                        </wb:linkWidget>
+
+                        <wb:helpBody>
+                            <g:HTML>
+                                Used to author logic that grades the learner's performance on this condition at the end of the lesson 
+                                represented by this DKF.  These rules differ from the real time performance assessment logic because 
+                                they are only evaluated at the end of the lesson, not while the learner is interacting with the training 
+                                application.
+                                <br/><br/>
+                                The assessments calculated by these rules can be shown in a Structured Review course object 
+                                that is presented after this lesson in the course.  In addition, those assessments are stored in the 
+                                Learning Management System (LMS).
+                                <br/><br/>
+                                Note: the rules are evaluated in order, therefore the assessment value for the first rule to pass will 
+                                be returned under each 'Grade the learner based on' sections.  
+                            </g:HTML>
+                        </wb:helpBody>
+
+                    </wb:HelpLink>
+                    <cc:OverallAssessmentScoringRulesWidget ui:field="scoringRulesWidget" addStyleNames="{style.scoringRulePadding}" />
+                </b:PanelBody>
+            </b:Collapse>
+        </b:Panel>
+        
+        <b:Panel addStyleNames="{style.panel}">
+            <b:PanelHeader dataToggle="COLLAPSE" ui:field="advancedPanelHeader" addStyleNames="{style.pointer-cursor}">
+                <b:Heading text="Advanced" size="H2" addStyleNames="{style.left-align}" />
+            </b:PanelHeader>
+            <b:Collapse ui:field='advancedPanelCollapse' width='100%' toggle='false'>
+                <b:PanelBody addStyleNames="{style.panelPadding}">
+                    <g:FlowPanel addStyleNames='{style.defaultAssessmentPanel}' >
+                        <b:CheckBox ui:field='defaultAssessmentCheckBox' text="Set the initial assessment to" addStyleNames="{style.defaultAssessmentCheckBox}" />
+                        <select:Select ui:field='defaultAssessmentSelect' addStyleNames="{style.defaultAssessmentSelect}" />
+                        <wb:HelpLink helpCaption='Default Assessments'>
+                            <wb:linkWidget>
+                                <b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE'/>
+                            </wb:linkWidget>
+                            <wb:helpBody>
+                                <g:HTML>
+                                    The starting performance assessment to use for this condition. Conditions may over-write this 
+                                    value immediately upon starting the lesson and/or use this value to reset the assessment value 
+                                    after some assessed event. Please see the condition's assessment logic help for specific help.                          
+                                </g:HTML>
+                            </wb:helpBody>
+                        </wb:HelpLink>
+                    </g:FlowPanel>
+                </b:PanelBody>
+            </b:Collapse>
+        </b:Panel>
+
+    </g:FlowPanel>
+
+</ui:UiBinder> 

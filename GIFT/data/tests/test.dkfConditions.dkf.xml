@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="simplest" version="8.0.56">
+    <description>This is the simplest DKF that can be used by most training applications.  It only contains 1 condition, the Application Completed Condition, which when triggered will end the domain assessment and therefore the Training Applicaton course element.</description>
+    <learnerId>
+        <startLocation>
+            <coordinate>
+                <ns2:GCC>
+                    <ns2:x>0</ns2:x>
+                    <ns2:y>0</ns2:y>
+                    <ns2:z>0</ns2:z>
+                </ns2:GCC>
+            </coordinate>
+        </startLocation>
+    </learnerId>
+    <resources>
+        <ns2:surveyContext>36</ns2:surveyContext>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="Application Completed Task" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Application Completed" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+<input>
+    <ApplicationCompletedCondition>
+        <IdealCompletionDuration>00:00:00</IdealCompletionDuration>
+    </ApplicationCompletedCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.PowerPointUnderDwellCondition</conditionImpl>
+<input>
+    <PowerPointDwellCondition>
+        <default>
+            <timeInSeconds>1.0</timeInSeconds>
+        </default>
+        <slides/>
+    </PowerPointDwellCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.PowerPointOverDwellCondition</conditionImpl>
+<input>
+    <PowerPointDwellCondition>
+        <default>
+            <timeInSeconds>1.0</timeInSeconds>
+        </default>
+        <slides/>
+    </PowerPointDwellCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SimpleSurveyAssessmentCondition</conditionImpl>
+<input>
+    <NoConditionInput/>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>1</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.HasCollidedCondition</conditionImpl>
+<input>
+    <NoConditionInput/>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.HasMovedExcavatorComponentCondition</conditionImpl>
+<input>
+    <hasMovedExcavatorComponentInput>
+        <component>
+            <componentType>bucket</componentType>
+        </component>
+    </hasMovedExcavatorComponentInput>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
+<input>
+    <GenericConditionInput>
+        <ns2:nvpair>
+            <ns2:name>test</ns2:name>
+            <ns2:value>test</ns2:value>
+        </ns2:nvpair>
+    </GenericConditionInput>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.simile.SIMILEInterfaceCondition</conditionImpl>
+<input>
+    <SIMILEConditionInput>
+        <configurationFile>TC3_Scenario.ixs</configurationFile>
+        <conditionKey>amputee_administer_hextend</conditionKey>
+    </SIMILEConditionInput>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <waypointRef distance="0" value="sd"/>
+    </AvoidLocationCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CorridorPostureCondition</conditionImpl>
+<input>
+    <CorridorPostureCondition>
+        <postures>
+            <posture>Crawling</posture>
+        </postures>
+        <path>
+            <segment name="New Segment 1">
+                <width>1</width>
+                <bufferWidthPercent>0</bufferWidthPercent>
+                <start waypoint="sd"/>
+                <end waypoint="sd"/>
+            </segment>
+        </path>
+    </CorridorPostureCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CorridorBoundaryCondition</conditionImpl>
+<input>
+    <CorridorBoundaryCondition>
+        <bufferWidthPercent>0</bufferWidthPercent>
+        <path>
+            <segment name="New Segment 1">
+                <width>1</width>
+                <bufferWidthPercent>0</bufferWidthPercent>
+                <start waypoint="sd"/>
+                <end waypoint="sd"/>
+            </segment>
+        </path>
+    </CorridorBoundaryCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CheckpointPaceCondition</conditionImpl>
+<input>
+    <CheckpointPaceCondition>
+        <checkpoint atTime="00:00:00" waypoint="sd" windowOfTime="0"/>
+    </CheckpointPaceCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CheckpointProgressCondition</conditionImpl>
+<input>
+    <CheckpointProgressCondition>
+        <checkpoint atTime="00:00:00" waypoint="sd" windowOfTime="0"/>
+    </CheckpointProgressCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.EliminateHostilesCondition</conditionImpl>
+<input>
+    <EliminateHostilesCondition>
+        <entities>
+            <startLocation>
+                <coordinate>
+                    <ns2:GCC>
+                        <ns2:x>0</ns2:x>
+                        <ns2:y>0</ns2:y>
+                        <ns2:z>0</ns2:z>
+                    </ns2:GCC>
+                </coordinate>
+            </startLocation>
+        </entities>
+    </EliminateHostilesCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.EnterAreaCondition</conditionImpl>
+<input>
+    <EnterAreaCondition>
+        <entrance assessment="AtExpectation" name="New Entrance 1">
+            <outside proximity="1" waypoint="sd"/>
+            <inside proximity="1" waypoint="sd"/>
+        </entrance>
+    </EnterAreaCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.IdentifyPOIsCondition</conditionImpl>
+<input>
+    <IdentifyPOIsCondition>
+        <pois>
+            <waypointRef distance="0.0000000000000000000" value="sd"/>
+        </pois>
+    </IdentifyPOIsCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.RulesOfEngagementCondition</conditionImpl>
+<input>
+    <RulesOfEngagementCondition>
+        <wcs value="Free"/>
+    </RulesOfEngagementCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.LifeformTargetAccuracyCondition</conditionImpl>
+<input>
+    <LifeformTargetAccuracyCondition>
+        <entities>
+            <startLocation>
+                <coordinate>
+                    <ns2:GCC>
+                        <ns2:x>0</ns2:x>
+                        <ns2:y>0</ns2:y>
+                        <ns2:z>0</ns2:z>
+                    </ns2:GCC>
+                </coordinate>
+            </startLocation>
+        </entities>
+    </LifeformTargetAccuracyCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.NineLineReportCondition</conditionImpl>
+<input>
+    <NineLineReportCondition/>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ExplosiveHazardSpotReportCondition</conditionImpl>
+<input>
+    <ExplosiveHazardSpotReportCondition/>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SpotReportCondition</conditionImpl>
+<input>
+    <SpotReportCondition/>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.UseRadioCondition</conditionImpl>
+<input>
+    <UseRadioCondition/>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <waypointRef distance="0" value="sd"/>
+    </AvoidLocationCondition>
+</input>
+                            </condition>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.IdentifyPOIsCondition</conditionImpl>
+<input>
+    <IdentifyPOIsCondition>
+        <pois>
+            <waypointRef distance="0.0000000000000000000" value="sd"/>
+        </pois>
+    </IdentifyPOIsCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects>
+            <waypoints>
+                <waypoint name="sd">
+                    <coordinate>
+                        <ns2:GDC>
+                            <ns2:latitude>0</ns2:latitude>
+                            <ns2:longitude>0</ns2:longitude>
+                            <ns2:elevation>0</ns2:elevation>
+                        </ns2:GDC>
+                    </coordinate>
+                </waypoint>
+            </waypoints>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions/>
+        <instructionalStrategies/>
+    </actions>
+</Scenario>

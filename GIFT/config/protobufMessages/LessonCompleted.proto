@@ -1,0 +1,30 @@
+/* 
+ * version 1.0 [July 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+ 
+/*	This line specifies the version of protobuf used to 
+ *	encode the messages. As of now, this is the current version. */
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LessonCompletedProto";
+ 
+ /* this messages indicates the end of a real time assessment (DKF), aka domain knowledge session/lesson in a GIFT course */
+message LessonCompleted {
+ 	
+	/* ways a lesson can be ended */
+ 	enum LessonCompletedStatusType {
+ 		LEGACY_NOT_SPECIFIED = 0;       /* the default for legacy instances that don't have this field (pre July 2021)*/
+		ERROR = 1; 						/* An error occurred in GIFT and the lesson can no longer continue */
+		LESSON_RULE = 2;				/* A rule in the lesson (DKF) caused the lesson to end gracefully */
+		LEARNER_ENDED_OBJECT = 3;		/* The learner ended the course prematurely */
+		LEARNER_ENDED_COURSE = 4;		/* The learner ended the course object */
+		CONTROLLER_ENDED_LESSON = 5;        /* Some external controller outside of the modules ended the lesson (e.g. game master, RTA application) */ 	
+		INSTRUCTIONAL_STRATEGY_REQUEST = 6; /* some instructional design ended the course prematurely, e.g. too many failed attempts, need to start lesson over */
+	}	
+	
+	/* (Required) the way the lesson completed */
+	LessonCompletedStatusType status = 1;
+ }

@@ -1,0 +1,6 @@
+date,phase,duration,passed,state
+1234567890,K,10,n,"{Grit:High},{Motivation:Low}"
+1234567891,K,30,y,"{Grit:High},{Motivation:High}"
+1582569767617,K,101,y,{TEST:XYZ}
+1582569877034,K,101,y,"{TEST1:ABC},{TEST2:XYZ}"
+1582569957766,K,101,y,"{TEST1:ABC},{TEST2:XYZ}"

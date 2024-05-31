@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SliderRangeProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the range of a slider. */
+message SliderRange {
+
+	/* Min value of the slider, specifying the range. */
+	google.protobuf.DoubleValue min_value = 1;
+	
+	/* Max value of the slider, specifying the range. */
+	google.protobuf.DoubleValue max_value = 2;
+	
+	/* Step size of the slider, specifying the level of incrementation. */
+	google.protobuf.DoubleValue step_size = 3;
+	
+	/* Scale type of the slider, specifying the type of incrementation. */
+	google.protobuf.StringValue scale_type = 4;
+}

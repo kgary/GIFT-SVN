@@ -1,0 +1,14 @@
+# It was discovered that using GUIDS associated with PowerPoint to get the installation
+# path would not work on "Click2Run" (C2R) installs of Office.  Therefore the following
+# Windows Registry paths are used to determine the installation path of Windows.
+#
+#      http://social.msdn.microsoft.com/Forums/office/en-US/0f21edcd-559c-4af2-ae74-04f0d5c48b44/powerpoint-2013-msigetcomponentpath-returns-assembly-dll-path-instead-of-installation-path# There are used to find the path for the Microsoft Office PowerPoint application
+#
+# PowerPoint 2016 (16.0)
+PowerPoint2016=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\ClickToRun\\REGISTRY\\MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\powerpnt.exe
+# PowerPoint 2016 (16.0) - Alternate location
+PowerPoint2016a=HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\MSPowerPoint\\protocol\\StdFileEditing\\server\\powerpnt.exe
+# PowerPoint 2013 (15.0) 
+PowerPoint2013=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\15.0\\ClickToRun\\REGISTRY\\MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\powerpnt.exe
+# PowerPoint 2010 (14.0)
+PowerPoint2010=HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Office\\14.0\\ClickToRun\\REGISTRY\\MACHINE\\Software\\Microsoft\\Windows\\CurrentVersion\\App Paths\\powerpnt.exe

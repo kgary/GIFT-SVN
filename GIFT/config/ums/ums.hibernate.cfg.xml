@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ Copyright (c) 2010, Red Hat Inc. or third-party contributors as
+  ~ indicated by the @author tags or express copyright attribution
+  ~ statements applied by the authors.  All third-party contributions are
+  ~ distributed under license by Red Hat Inc.
+  ~
+  ~ This copyrighted material is made available to anyone wishing to use, modify,
+  ~ copy, or redistribute it subject to the terms and conditions of the GNU
+  ~ Lesser General Public License, as published by the Free Software Foundation.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+  ~ or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
+  ~ for more details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public License
+  ~ along with this distribution; if not, write to:
+  ~ Free Software Foundation, Inc.
+  ~ 51 Franklin Street, Fifth Floor
+  ~ Boston, MA  02110-1301  USA
+  -->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+		<!-- 
+			The derby database path is relative to the derby.system.home directory specified by GIFT in:
+			Embedded Driver: launchProcess.bat as a Java argument
+			Client Driver: GIFT\external\db-derby-10-15.2.0-bin\bin\startNetworkServer.bat as a Java argument
+		-->
+		<property name="connection.url">jdbc:derby://localhost:1527/derbyDb/GiftUms</property>
+
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+       
+        <!--  change the schema -->
+        <property name="hibernate.default_schema">APP</property>
+		
+		<!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <!-- MH: dialects found in hibernate3.jar-> org.hibernate.dialect, tells hibernate which db its talking too  -->
+        <property name="dialect">org.hibernate.dialect.DerbyDialect</property>
+        
+        <!-- MH: added based on youtube video part 3 -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">false</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <!-- MH: commented out based on youtube video part 3, we will be recreating the db inside the code  -->
+        <!--
+        <property name="hbm2ddl.auto">create</property>        
+
+        <mapping resource="org/hibernate/tutorial/hbm/Event.hbm.xml"/>
+        --> 
+		<!-- 
+			update - update the schema, keeps existing data intact (used when you want to update an existing table or create a new one)
+			create - creates the schema, destroying previous data
+		<property name="hbm2ddl.auto">update</property>		 
+		-->
+                    
+        <!-- the following is from http://kobyleha.com/en/programming/java/java_hibernate_broken_pipe_eng -->
+        	<!-- c3p0 -->
+        	<property name="hibernate.c3p0.acquire_increment">1</property>
+        	<property name="hibernate.c3p0.idle_test_period">60</property> 
+        	<property name="hibernate.c3p0.timeout">120</property>
+        	<property name="hibernate.c3p0.max_size">100</property>
+        	<property name="hibernate.c3p0.min_size">2</property>
+
+            <!-- 
+                The Prepared Statement Cache aka max_statements became a huge bottleneck with just 
+                4 concurrent users because of lock contention. There is a negligible single user
+                performance hit turning the cache off (set to 0), but the concurrency gains far 
+                outweigh the effect of turning this off.
+                If this is still a concern at some point in the future, this number should be tuned
+                to a high enough number to balance single call performance, concurrency and memory usage.
+            -->
+        	<property name="hibernate.c3p0.max_statements">0</property>
+        	<property name="hibernate.c3p0.preferredTestQuery">select 1;</property>
+
+        	<!-- Connection auto reconnect after long inactivity -->
+        	<property name="connection.autoReconnect">true</property>
+        	<property name="connection.autoReconnectForPools">true</property>
+        	<property name="connection.is-connection-validation-required">true</property>
+        <!-- end reference -->
+
+	</session-factory>
+
+</hibernate-configuration>

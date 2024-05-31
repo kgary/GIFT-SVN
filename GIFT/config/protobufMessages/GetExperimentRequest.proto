@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "GetExperimentRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a get experiment request used to retrieve experiment contents from the database. */
+message GetExperimentRequest {
+	/* The experiment's id. */
+	google.protobuf.StringValue experiment_id = 1;
+}

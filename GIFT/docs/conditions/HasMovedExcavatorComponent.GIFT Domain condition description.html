@@ -1,0 +1,51 @@
+﻿<body>
+<p><strong>Has Moved Excavator Component Condition</strong></p>
+<p>This condition checks whether the learner has moved a specific Excavator 
+component (e.g. boom, bucket) enough to warrant an assessment.&nbsp; The author 
+must provide one or more components that could be moved for this assessment.&nbsp; 
+For each component the type of direction allowed {any direction, bidirectional} 
+is optional (the default being bidirectional).</p>
+<p>The expected movements for each component are as follows:</p>
+<p>Swing - 90 degrees, Boom - 90 degrees, Arm - 180 degrees, Bucket, 180 degrees</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span></li><ul>
+		<li>case: the correct component is moved the desired distance as defined 
+		by the author</li>
+	</ul>
+	<li><span style="color : #0000FF">At Expectation</span><li>
+	<span style="color : #FF0000">Below Expectation</span><ul>
+		<li>case: the default value</li>
+		<li>case: the wrong component is moved, i.e. another component besides 
+		the one this condition has been configured to assess is being moved</li>
+	</ul>
+	</li>
+	<li>Unknown<ul>
+		<li>case: the default value</li>
+	</ul>
+	</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of times the movement assessment is assessed 
+	(positvely or negatively, right or wrong)</li>
+	<li>provides the amount of time it took the condition to complete, i.e. the 
+	learner has completed all assessments by moving the specified component</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>the condition completes once the excavator component movement is 
+	assessed the maximum number of assessment times as defined by the author</li>
+	<li>the condition can't be repeated</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>DE Testbed application</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>
+mil.arl.gift.domain.knowledge.condition.HasMovedExcavatorComponentCondition</em></p>
+</body>

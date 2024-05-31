@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LoginRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a request to login to GIFT. */
+message LoginRequest {
+	/* The unique GIFT user id of a user wanting to login. */
+	google.protobuf.Int32Value user_id = 1;
+	
+	/* The username of a GIFT user. */
+	google.protobuf.StringValue	user_name = 2;
+	
+	/* The type of user. */
+	google.protobuf.StringValue	user_type = 3;
+}

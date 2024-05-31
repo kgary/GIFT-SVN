@@ -1,0 +1,30 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+	xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:widgets="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.pedagogy.widgets">
+	
+	<ui:style>	
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}	
+	</ui:style>
+	
+	<g:FlowPanel width="100%">
+	
+		<g:HTML addStyleNames='{style.smallPadBottom}'>
+			In which quadrant will the metadata be used?
+		</g:HTML>
+		
+		<g:FlowPanel width='100%' addStyleNames='{style.padBottom}'>
+		
+			<widgets:QuadrantValueListBox width="100%" ui:field="quadrantValueListBox"/>
+			
+		</g:FlowPanel>
+		
+	</g:FlowPanel>
+	
+</ui:UiBinder> 

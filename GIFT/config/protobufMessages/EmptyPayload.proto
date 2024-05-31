@@ -1,0 +1,13 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "EmptyPayloadProto";
+
+/* This message represents a class that does not have any contents. */
+message EmptyPayload {}

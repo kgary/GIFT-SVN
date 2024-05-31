@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AdvancementConceptProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about an advancement concept. */
+message AdvancementConcept {
+	/* Concept for the advancement. */
+	google.protobuf.StringValue concept = 1;
+	
+	/* The reason for this advancement. */
+	google.protobuf.StringValue advancement_reason = 3;
+}

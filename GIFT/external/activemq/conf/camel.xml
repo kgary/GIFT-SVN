@@ -1,0 +1,166 @@
+ <!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+   
+    http://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!-- 
+
+    Lets deploy some Enterprise Integration Patterns inside the ActiveMQ Message Broker
+    For more information, see:
+    
+    http://camel.apache.org
+    
+    Include this file in your configuration to enable Camel
+    
+    e.g. <import resource="camel.xml"/>
+    
+    Note: this configuration is already included in a default configuration via Camel Web Console.
+    See ${ACTIVEMQ_HOME}/conf/jetty.xml for more info on how to disable it, in case you want to do so.
+    Also check ${ACTIVEMQ_HOME}/webapps/camel/WEB-INF/application-context.xml to see how this config is included in Camel Web Console
+    
+    
+-->
+<beans
+   xmlns="http://www.springframework.org/schema/beans"  
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+  
+  	<camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+	
+	<!--
+		The following camel routes will direct traffic from these various topics to the destinations specified.
+		e.g. routing UMS module status messages sent to the UMS Discovery Topic to the Monitor topic and the logger queue.
+	-->
+
+        <route id="UMS_Discovery_Topic_Route">
+            <!--<description>GIFT UMS Discovery Topic Message Route</description>-->
+            <from uri="activemq:topic:UMS_Discovery_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+		
+		<route id="LMS_Discovery_Topic_Route">
+            <!--<description>GIFT LMS Discovery Topic Message Route</description>-->
+            <from uri="activemq:topic:LMS_Discovery_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+		
+		<route id="Sensor_Discovery_Topic_Route">
+            <!--<description>GIFT Sensor Discovery Topic Message Route</description>-->
+            <from uri="activemq:topic:Sensor_Discovery_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+		
+		<route id="Gateway_Discovery_Topic_Route">
+            <!--<description>GIFT Gateway Discovery Topic Message Route</description>-->
+            <from uri="activemq:topic:Gateway_Discovery_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+		
+		<route id="Gateway_Topic_Route">
+            <!--<description>GIFT Gateway Topic Message Route</description>-->
+            <from uri="activemq:topic:Gateway_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+		
+		<route id="Domain_Discovery_Topic_Route">
+            <!--<description>GIFT Domain Discovery Topic Message Route</description>-->
+            <from uri="activemq:topic:Domain_Discovery_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+		
+		<route id="Learner_Discovery_Topic_Route">
+            <!--<description>GIFT Learner Discovery Topic Message Route</description>-->
+            <from uri="activemq:topic:Learner_Discovery_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+		
+		<route id="Pedagogical_Discovery_Topic_Route">
+            <!--<description>GIFT Pedagogical Discovery Topic Message Route</description>-->
+            <from uri="activemq:topic:Pedagogical_Discovery_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+		
+		<route id="Tutor_Discovery_Topic_Route">
+            <!--<description>GIFT Tutor Discovery Topic Message Route</description>-->
+            <from uri="activemq:topic:Tutor_Discovery_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+
+        <route id="Web_Monitor_Discovery_Topic_Route">
+            <!--<description>GIFT Web Monitor Discovery Topic Message Route</description>-->
+            <from uri="activemq:topic:Monitor_Discovery_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+		
+		<route id="Sensor_Status_Topic_Route">
+            <!--<description>GIFT Sensor Status Topic Message Route</description>-->
+            <from uri="activemq:topic:Sensor_Status_Topic"/>
+            <multicast>
+                <to uri="activemq:topic:Monitor_Topic"/>
+                <to uri="activemq:queue:Logger_Queue"/>
+            </multicast>
+        </route>
+
+    </camelContext>
+	
+	<bean id="GIFT.Bean" class="mil.arl.gift.net.camel.GIFTDynamicRouteBean" />
+
+    <!--
+       Lets configure some Camel endpoints
+    
+       http://camel.apache.org/components.html
+    -->
+
+    <!-- configure the camel activemq component to use the current broker -->
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent" >
+        <property name="connectionFactory">
+          <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+            <property name="brokerURL" value="vm://localhost?create=false&amp;waitForStart=10000" />
+            <property name="userName" value="${activemq.username}"/>
+            <property name="password" value="${activemq.password}"/>
+          </bean>
+        </property>
+    </bean>
+</beans>

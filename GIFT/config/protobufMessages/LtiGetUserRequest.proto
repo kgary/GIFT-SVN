@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LtiGetUserRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message encapsulates the data needed to request an lti user record from the UMS ltiuserrecord database table. */
+message LtiGetUserRequest {
+	/* The consumer key for the request. */
+	google.protobuf.StringValue consumer_key = 1;
+	
+	/* The consumer id for the request. */
+	google.protobuf.StringValue consumer_id = 2;
+}

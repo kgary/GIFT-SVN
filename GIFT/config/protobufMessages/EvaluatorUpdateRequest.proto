@@ -1,0 +1,69 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "EvaluatorUpdateRequestProto";
+
+import "AbstractEnumObject.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+
+/* This message contains the metrics to update a Task or Concept using a providedunique name as the identifier. */
+message EvaluatorUpdateRequest {
+	/* The name of the task or concept. */
+	google.protobuf.StringValue name = 1;
+	
+	/* The username of the person making the request. */
+	google.protobuf.StringValue evaluator = 2;
+	
+	/* The performance metric. */
+	AbstractEnumObject performance = 3;
+	
+	/* The confidence value. */
+	google.protobuf.FloatValue confidence = 4;
+	
+	/* The competence value. */
+	google.protobuf.FloatValue competence = 5;
+	
+	/* The trend value. */
+	google.protobuf.FloatValue trend = 6;
+	
+	/* The priority value. */
+	google.protobuf.Int32Value priority = 7;
+	
+	/* The requested life cycle state of the described performance node. */
+	google.protobuf.StringValue state = 8;
+	
+	/* The value indicating if the assessment value should be held. */
+	google.protobuf.BoolValue assessment_hold = 9;
+	
+	/* The value indicating if the confidence value should be held. */
+	google.protobuf.BoolValue confidence_hold = 10;
+	
+	/* The value indicating if the competence value should be held. */
+	google.protobuf.BoolValue competence_hold = 11;
+	
+	/* The value indicating if the trend value should be held. */
+	google.protobuf.BoolValue trend_hold = 12;
+	
+	/* The value indicating if the priority value should be held. */
+	google.protobuf.BoolValue priority_hold = 13;
+	
+	/* The reason for the request. */
+	google.protobuf.StringValue reason = 14;
+	
+	/* The reference to the media file. */
+	google.protobuf.StringValue media_file = 15;
+	
+	/* The team org entities and their respective assessments. */
+	map<string, AbstractEnumObject> team_org_entities = 16;
+	
+	/* The epoch time when the evaluator update happened, i.e. the time at which 
+	   some observationwas started by the observer. */
+	google.protobuf.Timestamp timestamp = 17;
+}

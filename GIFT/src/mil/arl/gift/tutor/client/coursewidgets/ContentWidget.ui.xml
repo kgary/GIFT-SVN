@@ -1,0 +1,81 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui">
+    <ui:style type="mil.arl.gift.tutor.client.coursewidgets.ContentWidget.Style">
+        .block {
+            display: block;
+        }
+        .border {
+            border: rgb(132, 145, 152) solid 1px !important;
+        }
+        .imagePanel{
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;           
+            bottom: 0;
+            padding: 20px;
+            overflow: auto;
+        }
+        .image {
+            max-height: 99%;
+            max-width: 99%;
+        }
+        .frame {
+            z-index: -1;
+            border: none !important;
+        }
+        .centerText {
+            text-align: center;
+        }
+        .contentPanel {
+            display: inline-block;
+            text-align: center;
+            min-width: 350px;
+            width: 90%;
+            background: #EFEFEF;
+            box-shadow: rgba(0, 0, 0, 0.2) 10px 10px 30px;
+            border: rgb(132, 145, 152) solid 1px;
+            border-radius: 15px;
+            color: #2B3A42;
+            min-height: 27%;
+            margin: 25px auto;
+            padding: 20px 20px 0;
+            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+		.mediumMargin {
+            margin: 10px;
+        }
+        .guidanceText {
+            font-size: 14pt;
+            padding-bottom: 30px;
+            min-height: 300px;
+        }
+        .anchor {
+            cursor: pointer;
+        }
+        .hidden {
+			display: none;
+		}
+    </ui:style>
+    <g:DeckPanel ui:field="deckPanel" height="100%">
+        <g:FlowPanel ui:field="messagePanel" addStyleNames="centerText guidanceText">
+            <g:HTML ui:field="htmlMsg" addStyleNames="{style.contentPanel}"></g:HTML>
+        </g:FlowPanel>
+        
+        <g:HTMLPanel ui:field="urlPanel" width="100%" height="100%">
+        	<g:NamedFrame ui:field="frame" width="100%" height="100%" addStyleNames="{style.border} {style.frame}" />
+			<g:FormPanel ui:field="frameFormPanel" addStyleNames="{style.hidden}"/>
+        </g:HTMLPanel>
+        
+        <g:FlowPanel ui:field="imagePanel" addStyleNames="{style.imagePanel}">
+            <g:Image ui:field="image" addStyleNames="center {style.block} {style.image} {style.border}" />
+        </g:FlowPanel>
+        
+        <g:FlowPanel ui:field="anchorPanel" addStyleNames="{style.centerText} {style.mediumMargin} {style.guidanceText} {style.contentPanel}" width="60%" height="auto">
+            <g:Label>Please click the link below to view the lesson material.</g:Label>
+            <g:Anchor addStyleNames="{style.anchor}" ui:field="urlAnchor"></g:Anchor>
+            <g:FormPanel ui:field="windowFormPanel" addStyleNames="{style.hidden}"/>
+        </g:FlowPanel>
+    </g:DeckPanel>
+</ui:UiBinder> 

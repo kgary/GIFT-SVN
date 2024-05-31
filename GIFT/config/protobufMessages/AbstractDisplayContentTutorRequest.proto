@@ -1,0 +1,56 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractDisplayContentTutorRequestProto";
+
+import "MediaItem.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents the base message for display content requests. */
+message AbstractDisplayContentTutorRequest {
+	/* The requests can either be a DisplayMessageTutorRequest or DisplayMediaTutorRequest. */
+	oneof type {
+		/* This represents a message that requests the Tutor User Interface to display guidance. */
+		DisplayMessageTutorRequest display_message_tutor_request = 1;
+		
+		/* This represents a message that requests the Tutor User Interface to display a media dialog. */
+		DisplayMediaTutorRequest display_media_tutor_request = 2;
+	}
+}
+
+message DisplayMessageTutorRequest {
+	/* Serialized guidance course object. */
+	google.protobuf.StringValue guidance = 1;
+	
+	/* Duration of the display object. */
+	google.protobuf.Int32Value display_duration = 2;
+	
+	/* Value indicating whether the guidance is for when the training application loads. */
+	google.protobuf.BoolValue while_ta_loads = 3;
+}
+
+message DisplayMediaTutorRequest {
+	/* Serialized guidance course object. */
+	google.protobuf.StringValue guidance = 1;
+	
+	/* Duration of the display object. */
+	google.protobuf.Int32Value display_duration = 2;
+	
+	/* Value indicating whether the guidance is for when the training application loads. */
+	google.protobuf.BoolValue while_ta_loads = 3;
+	
+	/* Media course object. */
+	google.protobuf.StringValue media = 4;
+	
+	/* Value indicating whether the request should open in a new window. */
+	google.protobuf.BoolValue new_window = 5;
+	
+	/* The list of Media Items for the request. */
+	repeated MediaItem media_list = 6;
+}

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Domain Knowledge File (DKF) Authoring Tool (DAT).
+	It contains information on how to assess a lesson (e.g. training application instance/scenario) in a GIFT course.
+-->
+<Scenario name="Auto Tutor Assessment Knowledge" version="11.0.1"
+    xmlns:c0="http://GIFT.com/common"
+    xmlns:l0="http://GIFT.com/learnerActions"
+    xmlns:p0="http://GIFT.com/pedagogicalStrategy" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <description>This DKF is used to assess an AutoTutor (AT) session.  The AT script used here is referenced by the only Condition node in the Task/Concept hierarchy.  During an AT session, the GIFT tutor loop is driven by the state transition and instructional strategy authored in this file.  To include an AT session in a larger Training Application DKF, make sure you have those 3 elements.  To use an AT session as a course survey element,  you can copy this DKF, change the AT script value accordingly and reference the copied DKF in your course under the AutoTutorSession element.</description>
+    <resources>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="AT session Task" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+					</trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="AT session" nodeId="2">
+                        <conditions>
+                            <condition>
+                                <conditionImpl>domain.knowledge.condition.autotutor.AutoTutorWebServiceInterfaceCondition</conditionImpl>
+                                <input>
+                                    <AutoTutorConditionInput>
+                                        <ATRemoteSKO>
+                                            <URL>
+                                                <address>http://cs.gifttutoring.org/sko/coin.xml</address>
+                                            </URL>
+                                        </ATRemoteSKO>
+                                    </AutoTutorConditionInput>
+                                </input>
+                            </condition>
+                        </conditions>
+                        <assessments>
+                            <conditionAssessment/>
+                        </assessments>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects/>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition>
+                <LogicalExpression>
+                    <performanceNode name="AT session" nodeId="2">
+                        <previous>Unknown</previous>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="continue chat"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="continue chat">
+                <performanceAssessment nodeId="2">
+                    <p0:strategyHandler xmlns:p0="http://GIFT.com/pedagogicalStrategy">
+                        <p0:impl>domain.knowledge.strategy.DefaultStrategyHandler</p0:impl>
+                    </p0:strategyHandler>
+                </performanceAssessment>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+</Scenario>

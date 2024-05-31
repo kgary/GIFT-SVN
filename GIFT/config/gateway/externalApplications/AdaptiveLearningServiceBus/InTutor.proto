@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "InTutorProto";
+
+message InTutor {
+	string text_enhancement = 1;
+	string message_presentation = 2;
+}

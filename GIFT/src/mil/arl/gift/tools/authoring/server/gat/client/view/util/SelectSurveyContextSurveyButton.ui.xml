@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.mainContainer{
+			display: inline;
+		}
+		.clearButton{
+			cursor: pointer;
+		}
+	</ui:style>
+	<g:HTMLPanel addStyleNames='{style.mainContainer}'>
+		<g:Button ui:field='selectButton'>
+			Select a Survey
+		</g:Button>
+		<b><g:InlineHTML ui:field='valueLabel'/></b>
+		<g:Image visible='false' addStyleNames='{style.clearButton}' ui:field='clearButton' title='Deselect survey'/>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,280 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+import "proto/entity.proto";
+
+option csharp_namespace = "Cta.Tmt.Protobuf";
+option java_package = "cta.tmt.protobuf";
+
+enum EventType {
+
+DisplayFeedback = 0;
+SetEntityPosition = 1;
+SetEntityHealth = 2; 
+EnterArea = 3;
+SimulationState = 4;
+EntityUpdate = 5; 
+EntityUpdates = 6; 
+WeaponMalfunction = 7; 
+SetWeather = 8;
+SetTimeOfDay = 9;
+SetHighlight = 10;
+EntityCombatEngage = 11;
+EntityCombatDisengage = 12;
+EntitySpawn = 13;
+SimulationStateUpdate= 14;
+Collision = 15;
+EntityUseObject = 16;
+UserInterfaceInteraction= 17;
+EntitySpeed = 18;
+EntityRepairObject = 19;
+EntityFireWeapon = 20;
+EntitySuppress = 21; 
+EntityWeaponReloadStart = 22;
+EntityWeaponReloadFinish = 23;
+WeaponSafetyToggled = 24;
+WeaponUpToggled = 25;
+SpeechAnalyzed = 26;
+}
+
+
+message EntitySuppressMessage {
+	// the entity being suppressed
+	Entity target = 1; 
+	
+	// current suppression value
+	float suppression = 2; 
+	
+	google.protobuf.Timestamp when = 3;
+	
+	// the location from which the suppression was calculated from.
+	// This could be the impact location or the closest point along
+	// the trajectory of the bullet, whichever is closer
+	Vector3 suppressionPoint = 4;
+	
+	// the entity doing the suppressing
+	Entity attacker = 5;
+	int32 id = 6;
+	
+	float suppressionChange = 7;
+}
+
+message EntityWeaponReloadStartMessage {
+	Entity entity = 1;
+	Entity weapon = 2;
+	google.protobuf.Timestamp when = 3;
+}
+
+message EntityWeaponReloadFinishMessage {
+	Entity entity = 1;
+	Entity weapon = 2;
+	google.protobuf.Timestamp when = 3;
+}
+
+message SetHighlightMessage 
+{
+	Entity entity = 1; 
+	bool isHighlighted = 2;
+	google.protobuf.Timestamp when = 3;
+}
+
+message SetTimeOfDayMessage 
+{
+	google.protobuf.Timestamp timeOfDay = 1;
+}
+
+message SetWeatherMessage 
+{
+	WeatherType weather = 1; 
+	google.protobuf.Timestamp when = 2;
+}
+
+message DisplayFeedBackMessage
+{
+	string feedbackMessage = 1; 
+	float duration = 2;
+	google.protobuf.Timestamp when = 3;
+}
+
+message SetEntityHealthMessage
+{
+	Entity entity = 1;
+	int32 health = 2;
+	google.protobuf.Timestamp when = 3;
+}
+
+message SimulationStateMessage 
+{
+	SimulationStateType state = 1; 
+	google.protobuf.Timestamp when = 2;
+}
+
+message SetEntityPositionMessage
+{
+	Entity entity = 1; 
+	Vector3 position = 2; 
+	google.protobuf.Timestamp when = 3;
+}
+
+message EntityCombatEngageMessage
+{
+	Entity entity = 1; 
+	Entity engage = 2; 
+	google.protobuf.Timestamp when = 3;
+}
+
+message EntityCombatDisengageMessage
+{
+	Entity entity = 1; 
+	Entity disengage = 2; 
+	google.protobuf.Timestamp when = 3;
+}
+
+message EntityRepairObjectMessage 
+{
+	Entity entity = 1; 
+	Entity repaired = 2;
+	google.protobuf.Timestamp when = 3;
+}
+
+
+message EntityFireWeaponMessage {
+    // the position / orientation of the entity 
+    EntityTransform firingEntity = 1;
+
+	// the position and orientation of the weapon
+    EntityTransform weapon = 2;
+
+    // the position of where the bullet hit 
+	// this is (0,0,0) if isHit is false
+	Vector3 impactLocation = 3;
+	
+	// the normal of the surface that the bullet hit
+	// this is (0,0,0) if isHit is false
+	Vector3 impactSurfaceNormal = 4;
+	
+	// true if the bullet hit something in the world
+	bool isHit = 5;
+
+	// the position / orientation of the thing that was hit
+	// this is empty if isHit is false
+	EntityTransform target = 6;   
+
+    google.protobuf.Timestamp when = 7;
+	
+	int32 id = 8;
+	
+	// true if the bullet suppressed one or more enemies
+	bool isSuppressive = 9;
+}
+
+message WeaponMalfunctionMessage {
+  Entity firingEntity = 1;
+  Entity weapon = 2;
+  google.protobuf.Timestamp when = 3;
+}
+
+message EntityUpdatesMessage {
+    repeated EntityUpdateMessage updates = 1; 
+	google.protobuf.Timestamp when = 2;
+}
+  
+  
+message EntityUpdateMessage {
+	EntityTransform entity = 1;
+	Health health = 2;
+	//google.protobuf.Timestamp when = 3;
+}
+  
+
+message EntitySpawnMessage {
+    EntityTransform entity = 1; 
+	google.protobuf.Timestamp when = 2;
+}
+
+message SimulationStateUpdateMessage {
+    SimulationStateType state = 1; 
+	google.protobuf.Timestamp when = 2;
+}
+
+message EnterAreaMessage {
+    EntityTransform entity = 1; 
+    EntityTransform area = 2; 
+    google.protobuf.Timestamp when = 3;
+}
+
+message EntityHitMessage {
+	
+	Entity entity = 1;
+	Entity hitBy = 2;
+	Health health = 3;
+}
+
+message CollisionMessage {
+	
+	// the entity intiating the collision
+	Entity entity = 1;
+	
+	// the entity that was collided with
+	Entity collidedWith = 2;
+	
+	google.protobuf.Timestamp when = 3;
+}
+
+
+message EntityUseObjectMessage {
+	
+	// the object user
+	Entity entity = 1;
+	
+	// the object being used
+	Entity obj = 2;
+	
+	// when it the entity used the object
+	google.protobuf.Timestamp when = 3;
+}
+
+
+message UserInterfaceInteractionMessage {
+
+	// The human player (leaner) who is interacting with a UI
+    Entity player = 1; 
+	
+	// The user-interface that the player is interacting with
+	Entity ui = 2;
+	
+	// the UI interaction that the player made
+	Entity choice = 3;
+	
+    google.protobuf.Timestamp when = 4;
+}
+
+
+message EntitySpeedMessage {
+
+	// the entity that's moving (could be a player, vehicle, bullet, etc)
+    Entity entity = 1; 
+    float speed = 2; 
+    google.protobuf.Timestamp when = 3;
+}
+
+message WeaponSafetyToggledMessage {
+	Entity owner = 1;
+	Entity weapon = 2;
+	bool isOn = 3;
+	google.protobuf.Timestamp when = 4;
+}
+
+message WeaponUpToggledMessage {
+	Entity owner = 1;
+	Entity weapon = 2;
+	bool isUp = 3;
+	google.protobuf.Timestamp when = 4;
+}
+
+message SpeechAnalyzedMessage {
+	Entity speaker = 1;
+	string text = 2;
+	float confidence = 3;
+	string filename = 4;
+	google.protobuf.Timestamp when = 5;
+}

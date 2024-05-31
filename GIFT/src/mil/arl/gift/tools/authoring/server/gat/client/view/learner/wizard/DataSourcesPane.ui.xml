@@ -1,0 +1,74 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder
+	xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:widgets="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.learner.widgets">
+	
+	<ui:style>	
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}	
+		
+		/* controls the style of the cell table itself which is inset from the border */
+		.cellTableInset {
+			margin: 1px;
+			/* Using literal otherwise calc won't get parsed properly here per: https://groups.google.com/forum/#!topic/google-web-toolkit/TLYgNn3jAl0  */
+			width: literal("calc(100% - 2px)");
+		}
+		
+		.cellTableBorder{
+			border-style: solid;
+			border-Width: 1px;
+			border-color: rgb(185,185,185);
+			border-radius: 3px;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+			background-color: rgb(250,250,250);
+		}
+	</ui:style>
+	
+	<g:FlowPanel width="100%">
+	
+		<g:HTML addStyleNames='{style.smallPadBottom}'>
+			What data sources will be used to evaluate and predict the learner's state?
+		</g:HTML>
+		
+		<g:FlowPanel addStyleNames='{style.cellTableBorder}'>
+			<widgets:DataSourceDataGrid addStyleNames='{style.padBottom} {style.cellTableInset}' ui:field="dataSourceDataGrid" height="150px"/>
+		</g:FlowPanel>
+		
+		<g:FlowPanel width='100%'>
+			<g:HTMLPanel>	
+				<div style='max-width: 550px; margin-top: 10px;'>
+				
+					<div style='width: 30%; padding: 5px; display: inline-block;'>
+					
+						<g:Button width='100%' ui:field="addSensorButton" >
+							Add Sensor
+						</g:Button>
+						
+					</div>
+					
+					<div style='width: 30%; padding: 5px; display: inline-block;'>
+					
+						<g:Button width='100%' ui:field="addTrainingApplicationButton">
+							Add Training Application
+						</g:Button>
+						
+					</div>
+					
+					<div style='width: 30%; padding: 5px; display: inline-block;'>
+					
+						<g:Button width='100%' ui:field="removeDataSourceButton">
+							Remove Data Source
+						</g:Button>
+						
+					</div>
+				</div>					
+			</g:HTMLPanel>
+		</g:FlowPanel>
+	</g:FlowPanel>
+	
+</ui:UiBinder> 

@@ -1,0 +1,23 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "SurveyListCheckRequestProto";
+
+import "SurveyCheckRequest.proto";
+
+/* This message contains a collection of survey check requests. */
+message SurveyListCheckRequest {
+	/* The collection of survey check requests mapped by a key that provides some useful information about the requests mapped to it. */
+	map<string, SurveyCheckRequestList> requests = 1;
+}
+
+/* This message represents a list of survey check requests. */
+message SurveyCheckRequestList {
+	repeated SurveyCheckRequest request_list = 1;
+}

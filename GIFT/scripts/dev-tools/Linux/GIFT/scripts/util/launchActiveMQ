@@ -1,0 +1,10 @@
+#!/bin/bash
+
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$parent_path"
+
+AbsBaseDir="$(cd ../..; pwd)"
+jdkDir="${AbsBaseDir}/external/jdk-11"
+export JAVA_HOME="${jdkDir}"
+
+"${AbsBaseDir}/external/activemq/bin/linux-x86-64/activemq" start

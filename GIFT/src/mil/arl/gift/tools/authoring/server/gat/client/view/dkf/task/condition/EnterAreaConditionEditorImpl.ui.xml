@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:list="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui" 
+    xmlns:condition.common="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared">
+    <ui:style>
+        .padTop{
+            padding-top: 5px;
+        }
+        .startLocationEditor {
+			padding-top: 10px;
+		}
+		.teamPicker{
+            margin-top: 20px;
+        }
+    </ui:style>
+    <g:HTMLPanel addStyleNames='{style.padTop}'>
+
+        <shared:WrapButton/>
+
+        <list:ItemListEditor ui:field="entranceListEditor" />
+        
+        <shared:TeamMemberPicker label='Learners role that should be assessed:' addStyleNames='{style.teamPicker}' ui:field='teamMemberPicker' />
+        
+    </g:HTMLPanel>
+</ui:UiBinder> 

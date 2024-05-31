@@ -1,0 +1,43 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	   .buttonPanel{
+            display: inline-flex;
+	   }
+	   .filterButton{
+	        width: 100%;
+            text-align: center;
+            background-color: white;
+            padding: 4px;
+        }
+        @external active;
+        .filterButton.active{
+            background-color: rgb(210, 210, 255) !important;
+        }
+        .filterButton:hover{
+	        background-color: white;
+            background-image: linear-gradient(transparent, rgba(0,0,255,0.1));
+            box-shadow: 0px 0px 5px blue;
+            z-index: 10 !important;
+        }
+        .filterButton > span{
+            width: auto !important;
+            margin: 0px !important;
+            padding: 0px !important;
+            white-space: normal !important;
+        }
+	</ui:style>
+	<b:ButtonGroup addStyleNames='{style.buttonPanel}' dataToggle="BUTTONS">
+	    <b:Tooltip title='Show Points' ui:field='pointTooltip'>
+		    <b:CheckBoxButton addStyleNames="{style.filterButton}" ui:field='pointButton'/>
+		</b:Tooltip>
+		<b:Tooltip title='Show Paths' ui:field='pathTooltip'>
+		    <b:CheckBoxButton addStyleNames="{style.filterButton}" ui:field='pathButton'/>
+		</b:Tooltip>
+		<b:Tooltip title='Show Areas' ui:field='areaTooltip'>
+		    <b:CheckBoxButton addStyleNames="{style.filterButton}" ui:field='areaButton'/>
+		</b:Tooltip>
+    </b:ButtonGroup>
+</ui:UiBinder> 

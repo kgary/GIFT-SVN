@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SurveyContextSurveyProto";
+
+import "survey/Survey.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message serves as a container class for survey contexts, storing the 
+   id of the survey, the key, and the corresponding context survey. */
+message SurveyContextSurvey {
+
+	/* Id of the survey context survey. */
+	google.protobuf.Int32Value survey_context_context_id = 1;
+	
+	/* Key of the survey context survey. */
+	google.protobuf.StringValue survey_context_survey_key = 2;
+	
+	/* The survey that the survey context survey corresponds to.*/
+	Survey survey_context_survey_survey = 3;
+}

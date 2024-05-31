@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "GetSurveyRequestProto";
+
+import "ConceptParameters.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains  a get survey request used to retrieve survey contents from the database. */
+message GetSurveyRequest {
+	/* The gift key associated with the request. */
+	google.protobuf.StringValue gift_key = 1;
+	
+	/* The survey context id. */
+	google.protobuf.Int32Value survey_context_id = 2;
+	
+	/* The map of concepts for the request. */
+	map<string, ConceptParameters> concepts = 3;
+}

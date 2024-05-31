@@ -1,0 +1,50 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "QuestionProto";
+
+import "AbstractEnumObject.proto";
+import "survey/SurveyItemPropertyValue.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a question that can be asked. */
+message Question {
+	/* Enumerations of the different question types asked. */
+	enum QuestionType {
+		UNKNOWN_QUESTIONTYPE = 0;
+		FREE_RESPONSE = 1;
+		MULTIPLE_CHOICE = 2;
+		RATING_SCALE = 3;
+		MATRIX_OF_CHOICES = 4;
+		SLIDER_BAR = 5;
+		ESSAY = 6;
+		TRUE_FALSE = 7;
+	}
+	
+	/* Id of the question. */
+	google.protobuf.Int32Value id = 1;
+	
+	/* Text for the question. */
+	google.protobuf.StringValue question_text = 2;
+	
+	/* Type of question asked. */
+	AbstractEnumObject question_type = 3;
+	
+	/* The properties of the question cannot be null. */
+	map<string, SurveyItemPropertyValue> properties = 4;
+	
+	/* The categories that the question falls under can be null or empty. */
+	repeated string categories = 5;
+	
+	/* The list of user names that can see the question. Can be empty. */
+	repeated string visible_to_user_names = 6;
+	
+	/* The list of user names that can edit the question. Can be empty. */
+	repeated string editable_to_user_names = 7;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>	
+		.pad{
+			padding: 10px;
+		}
+		.padTop{
+			padding-top: 5px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.largePadBottom{
+			margin-bottom: 20px;
+		}
+		.tabbed{
+			padding: 0px 30px;
+		}
+	</ui:style>
+	 <g:HTMLPanel addStyleNames='{style.padTop}'>
+
+		  <g:FlowPanel addStyleNames='{style.tabbed}'>
+			  <g:FlowPanel addStyleNames='{style.padTop} {style.smallPadBottom}'>
+			  
+				  <g:HTML>
+					  Expected Number of Shots (Optional):
+				  </g:HTML>
+				  <g:FlowPanel addStyleNames='{style.tabbed} {style.padBottom}'>
+					  <g:TextBox width="100%" ui:field="expectedNumberOfShotsTextBox" />
+				  </g:FlowPanel>	
+			  </g:FlowPanel>
+		</g:FlowPanel>
+	</g:HTMLPanel>
+
+</ui:UiBinder> 

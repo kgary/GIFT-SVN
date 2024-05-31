@@ -1,0 +1,30 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AfterActionReviewSurveyEventProto";
+
+import "AbstractScore.proto";
+import "survey/SurveyResponseMetadata.proto";
+import "google/protobuf/wrappers.proto";
+
+/*  
+ *	This is the protobuf message that contains the survey event to display after an 
+ * 	After Action Review.
+ */ 
+message AfterActionReviewSurveyEvent {
+    /* The name of the course, which should not be null. */
+	google.protobuf.StringValue course_object_name = 1;
+
+	/* Completed response to the survey, cannot be null. */
+	SurveyResponseMetadata survey_response_metadata = 2;
+	
+	/* List of scores per survey event, which cannot be null but can 
+	   be empty. */
+	repeated AbstractScore scores = 3;
+}

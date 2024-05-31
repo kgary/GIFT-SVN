@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>GIFT-VHtoolkit</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <script src="TemplateData/UnityProgress.js"></script>  
+    <script src="Build/UnityLoader.js"></script>
+	<script>
+      	var gameInstance = UnityLoader.instantiate("gameContainer", "Build/avatarResources.json", {onProgress: UnityProgress});
+		window.addEventListener("message", receiveMessage, false);
+ 
+		function receiveMessage(event)
+		{
+			try{
+				var payload = JSON.parse(event.data);
+			
+				hostname = location.hostname;
+				
+				//if(location.port != "")
+				//	hostname = "localhost";
+				
+				if(hostname == "localhost" || hostname == "127.0.0.1" || location.port != "")
+				{//only add the ports if we're running locally.
+					mediaHostName = hostname + ":8088";
+					giftHostName = hostname + ":8885";
+					useHttp = "true";
+				}
+				else
+				{
+					mediaHostName = hostname;
+					giftHostName = hostname;
+					useHttp = "false";
+				}
+
+				if (payload.method == "msSpeak") {
+					//msSpeak("Movie1",payload.key);
+					gameInstance.SendMessage("DebugControllerGift","SpeakJs", payload.key + "|" + mediaHostName + "|" + giftHostName + "|" + useHttp);
+					
+				} else if (payload.method == "msPlay") {
+                    audioFilePath = getAudioFilePath();
+                    audioFilePath = audioFilePath + "audio/wav/" + payload.key + ".wav";
+                    bmlFilePath = getAudioFilePath() + "bml/" + payload.key + ".bml.txt";
+					gameInstance.SendMessage("DebugControllerGift", "PlayJs", audioFilePath + "|" + bmlFilePath + "|" + payload.key + "|" + mediaHostName + "|" + giftHostName + "|" + useHttp);
+				}
+			} catch (error) {}
+		}
+		
+		
+			// used to detect when the avatar is idle in order to notify GIFT
+		function notifyGIFT()
+		{
+			try {
+				parent.notifyGIFT();
+			} catch (error) {
+				// workaround for cross-domain error
+				parent.postMessage("notify", "*");
+			}
+		}
+        
+        //grab the location of the audio file
+        function getAudioFilePath()
+        {
+            htmlFileLocation = location.pathname;
+            split = htmlFileLocation.split('/');
+            
+            path = "";
+            
+            for(i = 0; i < split.length - 2; i++)
+            {
+                path = path + split[i];
+                if(i != 0)
+                    path = path + "/";
+            }
+            
+            
+            return path;
+        }
+	</script>
+  </head>
+  <body>
+    <div class="webgl-content">
+       <div id="gameContainer" style="width: 400px; height: 200px; margin: auto"></div>
+    </div>
+  </body>
+</html>

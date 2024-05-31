@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+ 
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractLearnerStateProto";
+
+import "AbstractLearnerStateAttribute.proto";
+
+message AbstractLearnerState {
+	oneof type {
+		AffectiveState affective_state = 1;
+		CognitiveState cognitive_state = 2;
+	}
+}
+
+message AffectiveState {
+	map<string, AbstractLearnerStateAttribute> attributes = 1;
+}
+
+message CognitiveState {
+	map<string, AbstractLearnerStateAttribute> attributes = 1;
+}

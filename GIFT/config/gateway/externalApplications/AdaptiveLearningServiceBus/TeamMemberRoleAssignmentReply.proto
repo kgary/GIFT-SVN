@@ -1,0 +1,21 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_outer_classname = "TeamMemberRoleAssignmentReplyProto";
+option java_package = "generated.proto.gateway";
+
+/*
+ * The response to a TeamMemberRoleAssignmentRequest that contains information
+ * about the team member roles the learners will be associated with.
+ */
+message TeamMemberRoleAssignmentReply {
+    /* 
+	 * mapping of TeamMemberRoleAssignmentRequest.proto->TeamMember->role_name to a learner's username 
+	 * The TeamMemberRoleAssignmentRequest from the ITS contains the team organization for which to assign learner's too.
+	 */
+    map<string, string> role_to_learner_map = 1;
+}

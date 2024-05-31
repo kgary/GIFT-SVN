@@ -1,0 +1,17 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "SimanProto";
+
+message Siman {
+	int64 file_size = 1;
+	string siman_type = 2;
+	string route_type = 3;
+	string course_folder_path = 4;
+	map<string, string> load_args = 5;
+}

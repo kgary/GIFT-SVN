@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<project name="Pedagogy Configuration Authoring Tool" default="compile">
+    <property name="root.path"         value="../../../../../../../.."/>
+    <property name="package.name"      value="mil.arl.gift.tools.authoring.desktop.pcat"/>
+    <property name="source.path"       value="mil/arl/gift/tools/authoring/desktop/pcat"/>
+    <property name="jarfile.ext.path" value="gift-pcat"/>
+    <property name="jarfile.name" value="gift-pcat.jar"/>
+    <property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="gift.desktop.authoring.common.jar" value="gift-desktop-authoring-common.jar" />
+	<property name="gift.authoring.common.jar" value="gift-authoring-common.jar"/>
+	<property name="gift.ped.jar" value="gift-pedagogical.jar"/>
+	<property name="authoring.conversion.jar" value="gift-authoring-conversion.jar" />
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+	    
+    <path id="classpath">
+    	<fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+        <fileset dir="${root.path}/bin" includes="${gift.common.jar}"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.ped.jar}"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.desktop.authoring.common.jar}"/>
+		<fileset dir="${root.path}/bin" includes="${gift.authoring.common.jar}"/>
+    	<fileset dir="${root.path}/external" includes="**/xmleditor-Java8.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/xercesImpl-2.9.1.jar"/>
+    	<fileset dir="${root.path}/bin" includes="**/jaxb_generated.jar"/>
+    	<fileset dir="${root.path}/bin" includes="${authoring.conversion.jar}"/>
+		<fileset dir="${root.path}/external" includes="**/jdk-11/jaxb-ri/mod/jaxb-api-2.3.1.GIFT.jar"/>
+    </path>
+    
+    <target name="checkForChanges">
+        <uptodate property="rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        	<uptodate property="desktop.authoring.common.rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.desktop.authoring.common.jar}"/>
+    	<uptodate property="authoring.common.rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.authoring.common.jar}"/>
+        <uptodate property="build.notRequired" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <and>
+                <isset property="rebuild.required"/>
+            	<isset property="desktop.authoring.common.rebuild.required"/>
+				<isset property="authoring.common.rebuild.required"/>
+                <isset property="build.notRequired"/>
+            </and>
+        </condition>
+    </target>
+
+    <target name="compileCore" unless="build.required">
+    	<echo message="Compiling PCAT"/>
+        <mkdir dir="${root.path}/build/classes"/>
+        <mkdir dir="${root.path}/bin"/>
+    	<javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+    	            <compilerarg value="-Xlint"/>
+    	</javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" includes="${source.path}/**"/>
+    </target>
+    
+    <target name="compile" depends="checkForChanges, compileCore"/>
+		
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

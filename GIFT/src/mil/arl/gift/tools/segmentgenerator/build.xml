@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<project name="Segment Generator" default="compile">
+    
+    <property name="root.path" value="../../../../../.."/>
+    <property name="package.name" value="mil.arl.gift.tools.segmentgenerator"/>
+    <property name="source.path" value="mil/arl/gift/tools/segmentgenerator"/>
+    <property name="jarfile.ext.path" value="gift-segmentgenerator"/>
+    <property name="jarfile.name" value="gift-segmentgenerator.jar"/>
+    <property name="gift.common.jar" value="gift-common.jar"/>
+    <property name="gift.gateway.jar" value="gift-gateway.jar"/>
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+        
+    <path id="classpath">
+    	<fileset dir="${root.path}/external" includes="**/slf4j/*.jar"/>
+        <fileset dir="${root.path}/external" includes="**/geotransform.jar"/>
+        <fileset dir="${root.path}/external" includes="**/vecmath.jar"/>
+        <fileset dir="${root.path}/bin" includes="${gift.common.jar}"/>
+        <fileset dir="${root.path}/bin" includes="${gift.gateway.jar}"/>
+		<fileset dir="${root.path}/external" includes="**/jdis.jar"/>
+		<fileset dir="${root.path}/external/protobuf/bin" includes="**/protobuf-java-3.7.0.jar"/>
+    </path>
+    
+    <target name="checkForChanges">
+        <uptodate property="rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        <uptodate property="gateway.rebuild.required" targetfile="${root.path}/bin/${jarfile.name}" srcfile="${root.path}/bin/${gift.gateway.jar}"/>
+        <uptodate property="build.notRequired" targetfile="${root.path}/bin/${jarfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="${src.excludes}"/>
+        </uptodate>
+    
+        <condition property="build.required">
+            <and>
+                <isset property="rebuild.required"/>
+                <isset property="gateway.rebuild.required"/>
+                <isset property="build.notRequired"/>
+            </and>
+        </condition>
+    </target>
+    
+    <target name="compileCore" unless="build.required">
+    	<echo message="Compiling Segment Generator"/>
+        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" classpathref="classpath" includeDestClasses="false" excludes="${src.excludes}">
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes/" includes="${source.path}/**"/>
+    </target>
+
+    <target name="compile" depends="checkForChanges, compileCore">        
+    </target>
+    	
+    <target name="clean">
+        <delete file="${root.path}/bin/${jarfile.name}"/>
+        <delete dir="${root.path}/build/classes/${source.path}"/>
+    </target>
+</project>

@@ -1,0 +1,14 @@
+/* 
+ * version 1.1 [July 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "FloatObjectProto";
+
+/** contains a float value, useful for null/optional float values in other messages*/
+message FloatObject{
+	float value = 1;
+}

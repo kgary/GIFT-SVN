@@ -1,0 +1,35 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "OptionListProto";
+
+import "survey/ListOption.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a list of options. */
+message OptionList {
+	
+	/* Id of the option list. */
+	google.protobuf.Int32Value id = 1;
+	
+	/* This field can be null, as the default name will be represented if not set. */
+	google.protobuf.StringValue name = 2;
+	
+	/* Value determining if option list is shared among multiple questions. */
+	google.protobuf.BoolValue is_shared = 3;
+	
+	/* The options that the list contains. */
+	repeated ListOption list_options = 4;
+	
+	/* The list of user names that can see the option list. Can be empty. */
+	repeated string visible_to_user_names = 5;
+	
+	/* The list of user names that can edit the option list. Can be empty. */
+	repeated string editable_to_user_names = 6;
+}

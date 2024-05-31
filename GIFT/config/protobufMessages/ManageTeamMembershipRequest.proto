@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ManageTeamMembershipRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message is used to manage a learners membership to a team knowledge session. */
+message ManageTeamMembershipRequest {
+	/* The domain session id of the host of a already created team knowledge session. */
+	google.protobuf.Int32Value ds_id_host = 1;
+	
+	/* The unique team member name the learner wants to play (or leave) in the team organization of a real time assessment. */
+	google.protobuf.StringValue member_name = 2;
+	
+	/* The enumerated type of action the learner wants to perform on a team knowledge session. */
+	google.protobuf.StringValue action = 3;
+	
+	/* The authored name of a team knowledge session that will be created or destroyed by the learner. */
+	google.protobuf.StringValue session_name = 4;
+}

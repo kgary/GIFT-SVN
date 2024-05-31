@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="Question1" version="7.0">
+    <description>This is a template for assessing an ARES scenario with a survey</description>
+    <resources>
+        <ns2:surveyContext>1</ns2:surveyContext>  <!-- ALWAYS USE 1, it will be changed on course import into GIFT -->
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="init timer task" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Init Timer concept" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>1</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="survey task" nodeId="3">
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="4" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="AssessmentQuestion1" nodeId="4">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+<input>
+    <ApplicationCompletedCondition/>
+</input>
+                            </condition>
+                        </conditions>
+                        <assessments>
+                            <survey>
+<ns2:GIFTSurveyKey>TacticsQ1</ns2:GIFTSurveyKey> <!-- will be replaced -->
+<questions>
+    <question key="0"> <!-- will be replaced -->
+        <reply key="0" result="AtExpectation"/> <!-- will be replaced -->
+		<!-- add reply elements for each question choice -->
+    </question>
+</questions>
+                            </survey>
+                        </assessments>
+                    </concept>
+                </concepts>
+                <assessments/>
+            </task>
+            <task name="end timer task" nodeId="5">
+                <startTriggers>
+                    <trigger>
+                        <conceptAssessment concept="4" result="AtExpectation"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="6" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="end concept timer" nodeId="6">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>1</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects/>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="wait for scenario 1 timer finished">
+                <LogicalExpression>
+                    <performanceNode name="wait for scenario 1 timer" nodeId="2">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="show survey 1"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="show survey 1">
+                <performanceAssessment>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+					</ns4:strategyHandler>
+					<performanceNode>
+						<nodeId>4</nodeId>
+					</performanceNode>
+                </performanceAssessment>
+				
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+</Scenario>

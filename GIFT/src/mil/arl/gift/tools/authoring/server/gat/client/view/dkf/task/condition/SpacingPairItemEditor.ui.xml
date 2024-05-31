@@ -1,0 +1,73 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+	xmlns:common="urn:import:mil.arl.gift.common.gwt.client.widgets">
+	<ui:style>
+	   .teamPicker{
+            margin-bottom: 10px;
+            margin-left: -10px;
+        }
+        .distancePanel{
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+	    }
+	    .distanceInput{
+            margin-right: 15px;
+	    }
+	    .distanceBox{
+            display: flex;
+            align-items: center;
+	    }
+	</ui:style>
+	<g:HTMLPanel>
+	
+	   <div style='margin-bottom: 5px;'>
+	       Entities that should maintain spacing from one another:
+	   </div>
+	   
+	   <shared:TeamMemberPicker addStyleNames='{style.teamPicker}' ui:field='firstObjectPicker' />
+	   <shared:TeamMemberPicker addStyleNames='{style.teamPicker}' ui:field='secondObjectPicker' />
+	   
+	   <div class='{style.distancePanel}'>
+	   
+	       <div class='{style.distanceInput}'>
+               <div>
+                   Acceptable <i>minimum</i> distance:
+               </div>
+               <div class='{style.distanceBox}'>
+                   <common:DecimalNumberSpinner ui:field='acceptedMinBox'/> meter(s)
+               </div>
+           </div>
+	   
+		   <div class='{style.distanceInput}'>
+		       <div>
+			      Ideal <i>minimum</i> distance:
+			   </div>
+			   <div class='{style.distanceBox}'>
+			       <common:DecimalNumberSpinner ui:field='idealMinBox'/> meter(s)
+			   </div>
+		   </div>
+		   
+		   <div class='{style.distanceInput}'>
+		       <div>
+			      Ideal <i>maximum</i> distance:
+			   </div>
+			   <div class='{style.distanceBox}'>
+		           <common:DecimalNumberSpinner ui:field='idealMaxBox'/> meter(s)
+		       </div>
+	       </div>
+           
+           <div class='{style.distanceInput}'>
+               <div>
+                  Acceptable <i>maximum</i> distance:
+               </div>
+               <div class='{style.distanceBox}'>
+                   <common:DecimalNumberSpinner ui:field='acceptedMaxBox'/> meter(s)
+               </div>
+           </div>
+	   </div>
+	   
+	</g:HTMLPanel>
+</ui:UiBinder> 

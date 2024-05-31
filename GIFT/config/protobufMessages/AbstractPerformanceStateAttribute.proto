@@ -1,0 +1,103 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "AbstractPerformanceStateAttributeProto";
+
+import "AbstractEnumObject.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message is the base message for the learner state performance state attribute. */
+message AbstractPerformanceStateAttribute {
+	oneof type {
+		/*  Learner's performance state attribute measurements. */ 
+		PerformanceStateAttribute performance_state_attribute = 1;
+	}
+}
+
+message PerformanceStateAttribute {
+	/* Name of the attribute. */
+	google.protobuf.StringValue name = 1;
+	
+	/* Id of the attribute. */
+	google.protobuf.Int32Value id = 2;
+	
+	/* The unique performance node id across an entire course that maps to a 
+	   single assessment. */
+	google.protobuf.StringValue course_id = 3;
+	
+	/* The short term value for the attribute. */
+	AbstractEnumObject short_term = 4;
+	
+	/* The time the short term value was set. */
+	google.protobuf.Int64Value short_term_timestamp = 5;
+	
+	/* The long term value for the attribute. */
+	AbstractEnumObject long_term = 6;
+	
+	/* The time the long term value was set. */
+	google.protobuf.Int64Value long_term_timestamp = 7;
+	
+	/* The predicted value for the attribute. */
+	AbstractEnumObject predicted = 8;
+	
+	/* The time the predicted value was set. */
+	google.protobuf.Int64Value predicted_timestamp = 9;
+	
+	/* State of the performance node. */
+	google.protobuf.StringValue node_state = 10;
+	
+	/* Value indicating how confident a learner is on the concept. */
+	google.protobuf.FloatValue confidence = 11;
+	
+	/* Value indicating how competent a learner is on the concept. */
+	google.protobuf.FloatValue competence = 12;
+	
+	/* Value indicating the trend of the learner on the concept. */
+	google.protobuf.FloatValue trend = 13;
+	
+	/* Value indicating whether the task should hold the trend value or not. */
+	google.protobuf.BoolValue assessment_hold = 14;
+
+	/* Value indicating whether the priority value of a task should be held. */
+	google.protobuf.BoolValue priority_hold = 15;
+	
+	/* Value indicating whether the confidence value of a task should be held. */
+	google.protobuf.BoolValue confidence_hold = 16;
+	
+	/* Value indicating whether the competence value of a task should be held. */
+	google.protobuf.BoolValue competence_hold = 17;
+	
+	/* Value indicating whether the trend value of a task should be held. */
+	google.protobuf.BoolValue trend_hold = 18;
+	
+	/* Value indicating whether the task/concept has scenario support. */
+	google.protobuf.BoolValue scenario_support = 19;
+	
+	/* Optional priority value that a performance node may have. */
+	google.protobuf.Int32Value priority = 20;
+	
+	/* Optional evaluator value for the performance node. */
+	google.protobuf.StringValue evaluator = 21;
+	
+	/* Optional observer comment that a performance node may have. */
+	google.protobuf.StringValue observer_comment = 22;
+	
+	/* Optional observer media that a performance node may contain. */
+	google.protobuf.StringValue observer_media = 23;
+	
+	/* Optional assessment explanation that the task may contain. */
+	repeated string assessment_explanation = 24;
+	
+	/* The collection of unique team organization names of learners whose assessment 
+	   is represented in this object. */
+	map<string, string> assessed_team_org_entities = 25;	
+	
+	/* The optional reference to a resource in an external authoritative system associated with the assessment. */
+	google.protobuf.StringValue authoritative_resource = 26;
+}

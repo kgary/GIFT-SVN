@@ -1,0 +1,58 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:gm="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    <ui:style>
+       .basePanel{
+           display: flex;
+           align-items: flex-start;
+           overflow: auto;
+       }
+       .mainPanel{
+           flex: 1;
+           display: flex;
+           align-items: stretch;
+           margin-left: 5px;
+       }
+        .intermediateConceptsButton{
+            background-image: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.2));
+            margin-top: 5px;
+            margin-right: 5px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            border: none !important;
+        }
+        .rootConceptOuter{
+	       flex: 1;
+           overflow: auto;
+	    }
+        .rootConceptPanel{
+           display: inline-flex;
+        }
+        .descriptionPanel{
+            margin: 5px 0px 5px 5px;
+	    }
+    </ui:style>
+
+    <g:FlowPanel> <!-- need this wrapper flow panel to avoid conflicting animations -->
+        <g:FlowPanel addStyleNames='{style.basePanel}' ui:field='basePanel'>
+    
+            <gm:TaskDescriptionPanel addStyleNames='{style.descriptionPanel}' ui:field='taskDescriptionPanel'/>
+            
+            <g:FlowPanel addStyleNames='{style.mainPanel}'>
+               
+               <b:Tooltip title="Click to view the entire hierarchy">
+                   <b:Button ui:field='intermediateConceptsButton' icon='ELLIPSIS_V'
+                       addStyleNames='{style.intermediateConceptsButton}'/>
+               </b:Tooltip>
+               
+               <g:FlowPanel addStyleNames='{style.rootConceptOuter}'>
+	               <g:FlowPanel addStyleNames="{style.rootConceptPanel}" ui:field='mainPanel'>
+	                   <!-- Concept panels appear here -->
+	                </g:FlowPanel>
+                </g:FlowPanel>
+            </g:FlowPanel>
+        </g:FlowPanel>
+    </g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";;
+option java_outer_classname = "ACKProto";
+
+/*
+ * This class represents an ACK (Acknowledged) message. An ACK is a positive
+ * response to another network message and is usually caused by successfully receiving,
+ * applying and/or overall completion of logic associated with the received message.
+ */
+message ACK {
+}

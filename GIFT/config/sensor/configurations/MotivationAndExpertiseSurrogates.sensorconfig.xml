@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Sensor Configuration Authoring Tool (SCAT).
+	This file contains the configuration for sensors for the sensor module.
+	Multiple sensors, filters and writers can be configured using this file.
+	For specific sensor configuration examples look at the various sensor configuration xml files (e.g. SensorConfiguration.Mouse.xml).
+-->
+<SensorsConfiguration version="11.0.1" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <Sensors>
+        <Sensor id="1">
+            <name>Motivation Surrogate</name>
+            <sensorImpl>sensor.impl.MotivationSurrogateSensor</sensorImpl>
+            <distributeExternally>false</distributeExternally>
+            <sensorInput/>
+            <filterInstance>2</filterInstance>
+        </Sensor>
+        <Sensor id="4">
+            <name>Expertise Surrogate</name>
+            <sensorImpl>sensor.impl.ExpertiseSurrogateSensor</sensorImpl>
+            <distributeExternally>false</distributeExternally>
+            <sensorInput/>
+            <filterInstance>3</filterInstance>
+        </Sensor>
+    </Sensors>
+    <Filters>
+        <Filter id="2">
+            <name>Motivation Filter</name>
+            <filterImpl>sensor.filter.GenericSensorFilter</filterImpl>
+            <distributeExternally>true</distributeExternally>
+            <filterInput/>
+        </Filter>
+        <Filter id="3">
+            <name>Expertise Filter</name>
+            <filterImpl>sensor.filter.GenericSensorFilter</filterImpl>
+            <distributeExternally>true</distributeExternally>
+            <filterInput/>
+        </Filter>
+    </Filters>
+    <Writers/>
+</SensorsConfiguration>

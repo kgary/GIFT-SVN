@@ -1,0 +1,67 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    <ui:style>
+       .mainPanel{
+            padding: 4px;
+            height: 100%;
+            width: 100%;
+       }
+       .layoutInnerPanel{
+            display: flex;
+            flex-flow: column;
+	   }
+       .filterPanelHeader{
+            color: white;
+            font-size: 18px;
+            margin-bottom: 5px;
+       }
+       .filterPanelHeader i{
+            margin-right: 5px;
+       }
+       .filterBox{
+            margin-bottom: 10px;
+       }
+       .innerPanelContent{
+            background-color: rgb(50,50,50);
+            background-image: linear-gradient(rgb(50,50,50), rgb(25,25,25));
+            border-radius: 5px;
+            border: 1px solid rgb(75,75,75);
+            height: 100%;
+            overflow: auto;
+       }
+       .innerPanelContent > div {
+            height: auto !important;
+       }
+       .filterItems{
+            margin-bottom: 0px;
+       }
+       @external list-group-item;
+       .filterItems > .list-group-item{
+            margin: 4px 0px;
+       }
+       .filterItems > .list-group-item:first-child{
+            margin-top: 0px;
+       }
+       .filterItems > .list-group-item:last-child{
+            margin-bottom: 0px;
+       }
+       .noSessionsLabel{
+            text-align: center;
+        }
+    </ui:style>
+    <g:FlowPanel ui:field="sessionFilterContainer" addStyleNames='{style.mainPanel} {style.layoutInnerPanel}'>
+        <g:FlowPanel addStyleNames='{style.filterPanelHeader}'>
+            <b:Icon type='FILTER'/>
+            <g:InlineHTML text="Filter" />
+        </g:FlowPanel>
+        <g:ValueListBox width='100%' addStyleNames='{style.filterBox}' ui:field='filterBox'/>
+        <g:DeckPanel ui:field="sessionDeckPanel" addStyleNames="{style.innerPanelContent}">
+            <b:Heading ui:field="noSessionsLabel" addStyleNames="giftBackgroundText {style.noSessionsLabel}" size="H4" text="There are no sessions that meet the filter criteria." />
+            <b:LinkedGroup ui:field="filteredItemGroup" addStyleNames='{style.filterItems}' />
+        </g:DeckPanel>
+    </g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainSessionListProto";
+
+import "DomainSession.proto";
+
+/* This message represents the list of domain sessions. */
+message DomainSessionList {
+	/* The list of domain sessions. */
+	repeated DomainSession domain_sessions = 1;
+}

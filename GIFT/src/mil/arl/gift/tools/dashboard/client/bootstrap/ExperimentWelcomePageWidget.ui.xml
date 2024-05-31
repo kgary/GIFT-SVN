@@ -1,0 +1,90 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.mainContainer {
+		    background-size: cover;
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    right: 0px;
+		    bottom: 0px;
+		    overflow: auto;
+            text-align: center;
+		}	
+		.bodyPanel{
+			font-family: Arial; 
+			color: white; 
+			text-shadow: 3px 3px 5px rgba(0,0,0,0.59); 
+			padding-bottom: 111px;
+            height:100%;
+		}
+		.logo{
+			margin-bottom: 20px;
+            margin-top: 5px;
+		}
+		.loadingLabel{
+            font-size: 18pt;
+            margin-bottom:5px;
+		}
+		.startButton{
+			font-size: 32px;
+			font-weight: bold;
+			padding: 20px 50px;
+			border-radius: 10px;
+			box-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+			line-height: 19.99px;
+			margin-bottom: 10px;
+		}
+        .progressStyle{
+            position: relative;
+            margin-top:10px;
+            height: 25px;
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+	</ui:style>
+    <g:FlowPanel addStyleNames='{style.mainContainer}' ui:field='mainPanel'>
+        <g:FlowPanel width='100%' height='100%'>
+            <g:HTMLPanel addStyleNames='{style.bodyPanel}'>
+            
+                <g:Image ui:field='logoImage' addStyleNames='{style.logo}' width='200px'/>
+                
+                <div style="font-size: 50pt; font-weight: bold; margin-bottom: 20px;">
+                    Welcome!
+                </div>
+                
+                <g:DeckPanel ui:field="deckPanel" >
+                    <g:FlowPanel ui:field='startPanel'>
+                        <g:HTMLPanel>
+                            <div style="font-size: 18pt; margin-bottom: 30px;">
+                                If you are seeing this page, then you have been invited to take a course in GIFT.
+                                <br/><br/>
+                                To begin, please click the start button below.
+                            </div>
+                            <g:FlowPanel>
+                                <b:Button type='PRIMARY' size='LARGE' addStyleNames='{style.startButton}' ui:field='startButton'>
+                                    Start
+                                </b:Button>
+                            </g:FlowPanel>
+                        </g:HTMLPanel>
+                    </g:FlowPanel>
+                    
+                    <g:FlowPanel ui:field='loadPanel'>  
+                        <g:HTML addStyleNames='{style.loadingLabel}'>
+                            Retrieving experiment...
+                        </g:HTML>
+                        <g:HTML addStyleNames='{style.loadingLabel}' ui:field="loadingMessage" />
+                        <w:BsLoadingIcon type="SPINNER" size="TIMES3" ui:field="loadingIcon"/>
+                        <b:Progress active="true" type="STRIPED" ui:field="loadProgress" addStyleNames='{style.progressStyle}'>
+                            <b:ProgressBar ui:field="loadProgressBar" type="SUCCESS" percent="0"/>
+                        </b:Progress>
+                    </g:FlowPanel>
+                </g:DeckPanel>
+            </g:HTMLPanel>
+        </g:FlowPanel>
+    </g:FlowPanel>
+</ui:UiBinder> 

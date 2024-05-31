@@ -1,0 +1,50 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared"
+    xmlns:common="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:c="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common"
+    xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:select="urn:import:org.gwtbootstrap3.extras.select.client.ui">
+
+    <ui:style>
+        .teamPicker {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .inlineBlock{
+			display: inline-block;
+		}
+		.attributeTypeSelect{
+			max-width:180px;
+		}
+		.paddingTop{
+			padding-top:5px;
+		}
+		.paddingBottom{
+			padding-bottom:5px;
+		}
+		.paddingRight{
+			padding-right:5px;
+		}
+		.attrNameTextbox{
+			min-width:250px;
+		}
+    </ui:style>
+
+    <g:HTMLPanel>
+        
+        <span>Retrieve the following attribute value from the training application:<br/></span>
+        <g:FlowPanel addStyleNames="{style.paddingTop} {style.paddingBottom}">
+            <g:Label ui:field="attributeNameLabel" addStyleNames="{style.inlineBlock} {style.paddingRight}">Name:</g:Label>
+        	<g:TextBox ui:field="attributeNameTextbox" addStyleNames="{style.attrNameTextbox}" />
+        </g:FlowPanel>
+		<g:FlowPanel>
+        	<g:Label addStyleNames="{style.inlineBlock} {style.paddingRight}">Type:</g:Label>
+	    	<select:Select ui:field="attributeTypeSelect" addStyleNames="{style.attributeTypeSelect}" />
+	    </g:FlowPanel>
+        <span>Assigned to: </span>
+        <shared:EditableTeamPicker ui:field="teamPicker" addStyleNames="{style.teamPicker} {style.paddingTop}" />
+
+    </g:HTMLPanel>
+</ui:UiBinder>

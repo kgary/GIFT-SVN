@@ -1,0 +1,81 @@
+<?xml version="1.0"  encoding="ISO-8859-1"?>
+<!DOCTYPE doc [
+    <!ENTITY Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+    <!ENTITY keycloakWebAppConfig SYSTEM "config/tools/gas/auth/keycloak/webapp.xml">
+]>
+<Configure class="org.eclipse.jetty.webapp.WebAppContext" >
+	<Set name="contextPath">/dashboard</Set>
+	<Set name="defaultsDescriptor"><SystemProperty name="gift.home" default="."/>/config/tools/gas/etc/webdefault.xml</Set>
+	<Set name="throwUnavailableOnStartupException">true</Set>
+	
+	<!-- assign an explicit temporary directory to avoid leaving Jetty's auto-generated ones behind -->
+	<Set name="tempDirectory"><SystemProperty name="gift.home" default="."/>/temp/jetty-gift-dashboard</Set>
+	
+	<!-- 
+	   If dev mode is being used, then the war target needs to point to the uncompressed WAR folder in build/war 
+	   rather than the .war file in bin, otherwise some files needed for dev mode to work cannot be overridden.
+	   
+	   This is handled by allowing dev mode to set a target.war property to override where this configuration grabs
+	   the WAR content from. If this property is not set, this config will default to using the compressed .war.
+	-->
+	<Set name="war">
+	   <SystemProperty name="gift.home" default="."/><SystemProperty name="target.war" default="/bin/gift-dashboard.war"/>
+	</Set>
+
+    <!-- System classes are classes that cannot be replaced by
+        the web application, and they are *always* loaded via
+        system classloader.
+        https://github.com/eclipse/jetty.project/blob/jetty-7/jetty-webapp/src/main/java/org/eclipse/jetty/webapp/WebAppContext.java
+    -->
+	<Set name="systemClasses">
+		<Array type="String">
+			<Item>java.</Item>
+			<Item>javax.servlet.</Item>
+			<Item>javax.xml.</Item>
+			<Item>org.eclipse.</Item>
+			<Item>org.xml.</Item>
+			<Item>org.w3c.</Item>
+            <Item>org.eclipse.jetty.websocket.servlet.WebSocketServlet</Item> <!-- webapp cannot change WebSocketServlet -->
+            <Item>org.eclipse.jetty.websocket.servlet.WebSocketCreator</Item>
+            <Item>org.eclipse.jetty.servlet.DefaultServlet</Item> <!-- webapp cannot change default servlets  -->
+            <Item>org.eclipse.jetty.jndi.InitialContextFactory</Item>
+            <Item>org.apache.tomcat.</Item> <!-- JSP classes must be loaded in the same classloader to avoid ClassCastExceptions -->
+            <Item>org.apache.jasper.</Item> <!-- JSP classes must be loaded in the same classloader to avoid ClassCastExceptions -->
+		</Array>
+	</Set>
+	
+    <!-- Server classes are classes that are hidden from being
+         loaded by the web application using system classloader,
+        so if web application needs to load any of such classes,
+        it has to include them in its distribution.
+        https://github.com/eclipse/jetty.project/blob/jetty-7/jetty-webapp/src/main/java/org/eclipse/jetty/webapp/WebAppContext.java
+    -->
+	<Set name="serverClasses">
+		<Array type="String">
+            <Item>-org.eclipse.jetty.websocket.servlet.WebSocketServlet</Item>      <!-- don't hide websocketservlet , note the '-' character here! -->
+            <Item>-org.eclipse.jetty.websocket.servlet.WebSocketCreator</Item>
+			<Item>-org.eclipse.jetty.servlet.DefaultServlet</Item>          <!-- don't hide default servlet, note the '-' character here! -->
+			<Item>org.slf4j.</Item>                                         <!-- hide SLF4J to avoid conflicts with the older SLF4J classes in WEB-INF/lib -->
+		</Array>
+	</Set>
+	
+	<Set name="extraClasspath">
+		<SystemProperty name="gift.home" default="."/>/config/tools/dashboard/
+	</Set>
+	
+	<Call name="setAttribute">
+      <Arg>org.eclipse.jetty.server.webapp.WebInfIncludeJarPattern</Arg>
+      <Arg>^$</Arg>
+    </Call>
+    
+    <!-- Ensure static files can be fetched inside a Windows symlink context -->
+    <Call name="addAliasCheck">
+        <Arg>
+            <New class="org.eclipse.jetty.server.SameFileAliasChecker"/>
+        </Arg>
+    </Call>
+	
+	<!-- Optional Keycloak authentication settings shared between GIFT's web apps -->
+    &keycloakWebAppConfig;
+	
+</Configure>

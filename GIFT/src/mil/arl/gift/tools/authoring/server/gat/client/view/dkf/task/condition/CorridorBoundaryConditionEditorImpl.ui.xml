@@ -1,0 +1,71 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets"
+    xmlns:list="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util.list"
+    xmlns:condition.common="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.task.condition.common"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:shared="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.dkf.shared">
+    <ui:style>
+        .numberSpinner {
+            margin: 10px 10px 15px 5px;
+            min-width: 75px;
+            vertical-align: middle;
+        }
+        .startLocationEditor {
+            padding-top: 10px;
+        }
+        .helpLink {
+            padding-left: 5px;
+            color: rgb(100,100,200);
+            font-weight: normal;
+        }
+        .notBold {
+            font-weight: normal;
+        }
+        .hide {
+            display: none;
+        }
+        @external fa-trash;
+        .segmentList td > .fa-trash{
+            display: none;
+	    }
+	    .teamPicker{
+            margin-top: 20px;
+        }
+    </ui:style>
+    <g:HTMLPanel>
+        <!-- Hide the default buffer width in the editor since we do not use it at runtime currently -->
+        <g:HTMLPanel addStyleNames="{style.hide}">
+            <g:InlineHTML text="Default buffer width:" />
+            <w:DecimalNumberSpinner ui:field='bufferWidth' addStyleNames='{style.numberSpinner}' />
+            <g:InlineHTML text="%" />
+            <wb:HelpLink helpCaption='Default buffer width' addStyleNames='{style.notBold}'>
+
+                <wb:linkWidget>
+                    <b:Icon title="What's this?" addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE'/>
+                </wb:linkWidget>
+
+                <wb:helpBody>
+                    <g:HTML>
+                        This condition checks whether the learner stays within the bounds of an entered corridor.
+                        <br/><br/>
+                        The Default Buffer Width provides a buffer that is used along the edge of a corridor to
+                        give the learner leeway when it comes to assessing whether the learner is still within
+                        the corridor. This default width is only used for corridors with no buffer width specified.
+                    </g:HTML>
+                </wb:helpBody>
+
+            </wb:HelpLink>
+        </g:HTMLPanel>
+        
+        <shared:PlaceOfInterestPicker label='Path that the learner should follow:' ui:field='pathPicker' />
+        <list:ItemListEditor addStyleNames='{style.segmentList}' ui:field="segmentListEditor" 
+            placeholder="No path segments have been created."/>
+            
+        <shared:EditableTeamPicker label='Learners roles that should be assessed:' addStyleNames='{style.teamPicker}' ui:field='teamPicker' />
+
+    </g:HTMLPanel>
+
+</ui:UiBinder> 

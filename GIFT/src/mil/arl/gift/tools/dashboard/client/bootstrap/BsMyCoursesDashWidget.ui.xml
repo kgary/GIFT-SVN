@@ -1,0 +1,648 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+             xmlns:select="urn:import:org.gwtbootstrap3.extras.select.client.ui"
+             xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html"
+             xmlns:w='urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap'
+             xmlns:z='urn:import:mil.arl.gift.tools.dashboard.client.bootstrap'
+             xmlns:f='urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.file'
+             xmlns:c='urn:import:mil.arl.gift.common.gwt.client.widgets'
+             xmlns:cb='urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap'>
+	<ui:style>
+		.mainContainer{
+			padding: 0px;
+		}
+        
+        .mainNavBar{
+			border-radius: 0px;
+		}
+		.footerPanel{
+			background-color: black;
+			background-image: linear-gradient(225deg, rgba(50, 70, 125, 1), rgb(0,0,0));
+			border-top: solid rgb(100,100,100);
+			border-right:none;
+			border-left: none;
+			border-bottom: none;
+		}
+		.contentContainer{
+			padding: 0px;
+		}
+		.rightAlign{
+			text-align: right;
+		}
+		.smallButton{
+			padding: 8px 7px;
+		}
+		.debugButton{
+			background: orange;
+		}
+		.exportNavBar{
+			border-color: rgb(75, 75, 75);
+			border-top-color: rgb(175, 175, 175);
+			border-right-style: none;
+			border-left-style: none;
+			background-image: linear-gradient(rgb(150, 150, 150), rgb(125, 125, 125), rgb(100,100,100));
+			background-color: rgba(125, 125, 125, 1);
+		}
+		.exportCoursesButton{
+			margin-right: 20px;
+			padding: 8px 30px;
+		}
+		.deselectAllButton{
+			margin-right: 30px;
+		}
+		.detailsTabContent{
+			border: solid 1px rgba(254, 254, 254, 1);
+			border-radius: 0px 0px 5px 5px;
+			box-shadow: 5px 5px 30px rgba(0,0,0,0.5);
+		}
+		.requirementHeader{
+			display: inline-block;
+		}
+		.requirementValue{
+			float: right;
+		}
+		.requirementContainer{			
+			padding: 10px 0px;
+			overflow: hidden;
+		}
+		.dottedBottom{
+			border-bottom-style: dotted;
+			border-width: 1px;
+		}
+		.descriptionContent{
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.center{
+			text-align: center;
+		}
+		.twentyPercentWidth{
+			width: 20%;
+		}
+		.scrolls{
+			overflow: auto;
+		}
+		.requirementList{
+			border: ridge;
+			background-color: white;
+			background-image: linear-gradient(rgb(255,255,255) , rgb(200,200,200));
+			border-radius: 5px;
+		}
+		.requirementListContainer{
+			padding: 0 10px 10px 10px
+		}
+		.detailsTabs > li > a{
+			color: rgb(200, 200, 200);
+		}
+		.detailsTabs > li > a:hover{
+			color: rgba(102, 102, 102, 1);
+		}
+		.unknownText{
+			padding: 10px; 
+			text-align: center; 
+			color: black; 
+			font-size: 14pt;
+		}
+		.waitContainer{
+			margin-top: 30px;
+		}
+		
+		.filterControlLabel {
+	        margin-right: 8px;
+        }
+		
+		.filterControl {
+	        margin-right: 8px;
+        }
+        
+        .courseMessage {
+            display: inline-block;
+        }
+        .coursesSearchHelpLink{
+			font-size:18px;
+			color:#c9c9f1;
+			padding-left:2px;
+			padding-right:10px;
+		}
+		.coursesHelpLink{
+			font-size:18px;
+			background:transparent;
+			color:white;
+		}
+		.coursesSearchBox::-ms-clear{
+			display: none;
+		}
+		.leftNavBar{
+			padding-right: 0px;  /* allow the right nav bar to be closer before wrapping to a new line */
+		}
+		.rightNavBar{
+			padding-left: 0px; /* allow the left nav bar to be closer before wrapping to a new line */
+		}
+	</ui:style>
+    <!-- This UI Binder uses gwtbootstrap3.  For more information on GwtBootstrap3 see:  https://github.com/gwtbootstrap3/gwtbootstrap3
+         The UI Binder should drive the 'layout' of the widget and typically will be wrapped in a 'container' object.   
+         
+         It is best practice to not specify 'pixels', direct width, height, etc, but rather allow the bootstrap framework "Grid" system and widgets to manage
+         resizing and laying themselves out.  This makes it flexible to support other devices such as mobile.  Also it is best practice
+         to keep the 'layout' logic in these UI Binder files rather than in the widget java class.  The widget java class should drive the 
+         logic for the widget (but not the layout). It is also best practice to not mix old gwt widgets and bootstrap widgets together as the older widgets don't necessarily handle
+         resizing, etc well in the bootstrap framework.
+    -->
+    
+    <b:Container fluid="true" addStyleNames="{style.mainContainer} giftBackgroundColor"> 
+        <b:Navbar ui:field="ctrlCourseSubHeader" addStyleNames="{style.mainNavBar} subHeader">
+            
+                <b:NavbarHeader>
+                    <b:NavbarCollapseButton dataTarget="#navbar-collapse-subheader"/>
+                </b:NavbarHeader>
+
+                <b:NavbarCollapse b:id="navbar-collapse-subheader">
+                    
+                    <b:NavbarForm pull="RIGHT" addStyleNames='{style.rightNavBar}'>
+                    	<b:Tooltip title='Create New Course'>
+                       		<b:Button type="LINK" icon='PLUS' addStyleNames='{style.smallButton}' ui:field="ctrlNewCourse">
+                       		Create
+                       		</b:Button>
+                        </b:Tooltip>
+                        <b:Tooltip title='Export Course(s)'>
+                        	<b:Button type="LINK" icon='DOWNLOAD' addStyleNames='{style.smallButton}' ui:field="ctrlExportCourses">
+                        	Export
+                        	</b:Button>
+                        </b:Tooltip>
+                        <b:Tooltip title='Import Course(s)'>
+                        	<b:Button type="LINK" icon='UPLOAD' addStyleNames='{style.smallButton}' ui:field="ctrlImportCourses">
+                        	Import
+                        	</b:Button>
+                        </b:Tooltip>
+                        <b:Tooltip title='Delete Course(s)'>
+                        	<b:Button type="LINK" icon='TRASH' addStyleNames='{style.smallButton}' ui:field="ctrlDeleteCourses">
+                        	Delete
+                        	</b:Button>
+                        </b:Tooltip>
+                    </b:NavbarForm>
+                    
+                    <b:NavbarForm pull="LEFT" addStyleNames='{style.leftNavBar} {style.rightNavBar}'>
+                    	<b:InputGroup width="375px">											   						
+		    				<b:TextBox addStyleNames='{style.coursesSearchBox}' placeholder='Search by name, description, course concepts...' ui:field='coursesSearchBox'/>
+		    				
+		    				<b:InputGroupButton width="40px">
+		    					<b:Button type='DEFAULT' icon='SEARCH' width="40px" ui:field='coursesSearchButton'/>
+		    				</b:InputGroupButton>
+		    				
+		    			</b:InputGroup>
+		    			<cb:HelpLink helpCaption='Courses Search Queries' ui:field='coursesSearchHelpLink'>
+		    			
+		    				<cb:linkWidget>
+								<b:Icon title="How does this search work?"
+									addStyleNames='{style.coursesSearchHelpLink}' type='QUESTION_CIRCLE' />
+							</cb:linkWidget>
+							   			
+				   			<cb:helpBody>
+				   				<g:HTML>
+						   				By default, the search bar will look for courses whose name, description, 
+						   				or course concepts contain any
+						        		of the words typed in, separated by spaces. For more robust
+						        		searching, consider using some of the commands below.
+						        		<br/><br/>
+						        		Note: Any words marked in italics below can be substituted for any
+						        		other word or any phrase enclosed in quotes.<br/>
+						        		<br/>
+						        		<b>Commands:</b><br/>
+				        				<b>-<i>age</i></b> searches for all that do not contain the word <i>age</i>.<br/>
+				        				<br/>
+				        				<b>"<i>what is your age</i>"</b> searches for all that contain the phrase
+				        				<i>what is your age</i> exactly as it is written. Phrases within quotes will be
+				        				treated as a single search term, which can then be used with other
+				        				commands.<br/>
+				        				<br/>
+				        				<b><i>what</i> AND <i>"is your age"</i></b> searches for all that contain both
+				        				the word <i>what</i> and the phrase <i>is your age</i>.<br/>
+				        				<br/>
+				        				<b><i>"what is your"</i> OR <i>age</i></b> searches for all that contain either
+				        				the phrase <i>what is your</i> or the word <i>age</i>. This is identical to the default
+				        				behavior when used on only two search terms but can be used in a
+				        				chain of AND and OR commands to increase search precision.<br/>
+				        				<br/>
+				        				All commands propagate from the left. So, searching for <i>"What is"</i> AND
+				        				<i>your</i> OR <i>-"age"</i> will find all that contain the phrase <i>What is</i>
+				        				and the word <i>your</i> as well as all that do not
+				        				contain the phrase <i>age</i>.
+							   		</g:HTML>
+				   			</cb:helpBody>				   			
+				   		</cb:HelpLink>
+
+	                    <!-- using &nbsp here to force a little whitespace between the text and the listbox -->
+	                    <b:FormLabel for="sourceOptions" addStyleNames="{style.filterControlLabel}">Source</b:FormLabel>
+
+	                    <select:MultipleSelect 
+	                        ui:field="ctrlSourceOptions" 
+	                        b:id="sourceOptions" 
+	                        addStyleNames="{style.filterControl}" 
+	                        width="165px" 
+	                        showActionsBox="true" 
+	                        noneSelectedText="No Filters" 
+	                        selectedTextFormat="COUNT"/>
+	                        
+	                    <!-- using &nbsp here to force a little whitespace between the text and the listbox -->
+	                    <b:FormLabel for="filterOptions" addStyleNames="{style.filterControlLabel}">Filter</b:FormLabel>
+	                    <select:Select 
+	                        ui:field="ctrlFilterOptions" 
+	                        b:id="filterOptions" 
+	                        addStyleNames="{style.filterControl}"
+	                        width="140px"/>
+
+                    </b:NavbarForm> 
+                    
+                    <b:NavbarForm pull="RIGHT" addStyleNames='{style.rightNavBar} {style.leftNavBar}'>
+                		<b:Button type="LINK" addStyleNames='{style.smallButton} {style.debugButton}' ui:field="ctrlValidateAll">
+                       		Validated All
+                       		</b:Button>
+                	</b:NavbarForm>  
+                </b:NavbarCollapse>
+        </b:Navbar>
+        
+         <b:Navbar type="INVERSE" addStyleNames="{style.mainNavBar} {style.exportNavBar} subHeader" visible='false' ui:field='exportNavBar'>
+            
+                <b:NavbarHeader>
+                    <b:NavbarBrand ui:field="ctrlExport">Export</b:NavbarBrand>
+                    <b:NavbarCollapseButton dataTarget="#navbar-collapse-export-subheader"/>
+                </b:NavbarHeader>
+                
+
+                <b:NavbarCollapse b:id="navbar-collapse-export-subheader">
+                    
+                    <b:NavbarForm pull="RIGHT">
+                    	<b:Tooltip title='Exports the selected courses into a downloadable file'>
+		           			<b:Button type="SUCCESS" icon='DOWNLOAD' addStyleNames='{style.exportCoursesButton}' ui:field='ctrlStartExportCourses'>
+		           				Begin Export
+		           			</b:Button>
+	        			</b:Tooltip>
+                    	<b:Button type="LINK" icon='CHECK_SQUARE' ui:field='ctrlExportSelectAll'>
+           					Select All
+           				</b:Button>
+           				<b:Button type="LINK" icon='SQUARE'  addStyleNames='{style.deselectAllButton}' ui:field='ctrlExportSelectNone'>
+           					Deselect all
+           				</b:Button>             				 
+	        			<b:Button type="LINK" icon="TIMES_CIRCLE_O" iconSize="TIMES2" ui:field="ctrlCloseExport" addStyleNames="courseExportCloseIcon" />     				
+                    </b:NavbarForm>
+                                     
+                </b:NavbarCollapse>
+                   
+        </b:Navbar>
+        
+        <b:Navbar type="INVERSE" addStyleNames="{style.mainNavBar} {style.exportNavBar} subHeader" visible='false' ui:field='deleteNavBar'>
+            
+                <b:NavbarHeader>
+                    <b:NavbarBrand ui:field="ctrlDelete">Delete</b:NavbarBrand>
+                    <b:NavbarCollapseButton dataTarget="#navbar-collapse-export-subheader"/>
+                </b:NavbarHeader>
+                
+
+                <b:NavbarCollapse b:id="navbar-collapse-export-subheader">
+                    
+                    <b:NavbarForm pull="RIGHT">
+                    	<b:Tooltip title='Deletes the selected courses.'>
+		           			<b:Button type="SUCCESS" icon='TRASH' addStyleNames='{style.exportCoursesButton}' ui:field='ctrlStartDeleteCourses'>
+		           				Begin Delete
+		           			</b:Button>
+	        			</b:Tooltip>
+                    	<b:Button type="LINK" icon='CHECK_SQUARE' ui:field='ctrlDeleteSelectAll'>
+           					Select All
+           				</b:Button>
+           				<b:Button type="LINK" icon='SQUARE'  addStyleNames='{style.deselectAllButton}' ui:field='ctrlDeleteSelectNone'>
+           					Deselect all
+           				</b:Button>             				 
+	        			<b:Button type="LINK" icon="TIMES_CIRCLE_O" iconSize="TIMES2" ui:field="ctrlCloseDelete" addStyleNames="courseExportCloseIcon" />     				
+                    </b:NavbarForm>
+                                     
+                </b:NavbarCollapse>
+                   
+        </b:Navbar>
+        
+        <b:Container fluid="true" addStyleNames="subHeaderContents giftBackgroundText {style.contentContainer}" ui:field='contentContainer'>
+            <!-- This element is hidden dynamically, but can be displayed if the user has no courses -->
+            <b.html:Paragraph alignment="CENTER">
+	            <b:Heading width="50%" size="H3" paddingTop="100" addStyleNames="giftBackgroundText {style.courseMessage}" ui:field="ctrlCourseMessage"/>            
+            </b.html:Paragraph>
+            
+            <b.html:Paragraph ui:field="ctrlLoadPanel" alignment="CENTER" addStyleNames='{style.waitContainer}'>
+                <b:Heading size="H2" addStyleNames="giftBackgroundText" text="Retrieving the list of courses.  Please wait."/>
+<!--                 <w:BsLoadingIcon type="SPINNER" size="TIMES5" ui:field="ctrlLoadIcon"/> -->
+            </b.html:Paragraph>
+            
+             <b:Container fluid="true" addStyleNames="statsBox" ui:field="ctrlCourseDetails">
+             	<g:HTMLPanel height='100%'>
+             		<table style='width: 100%; height: 100%;' cellspacing="0" cellpadding="0">
+             			<tbody height='100%'>
+             				<tr height='100%'>
+             					<td align='left' height='100%' class='courseDetailsColumn' style='vertical-align: top;' rowspan="1">
+	             					<g:FlowPanel>
+				             			<!-- Populating the course widget dynamically.  This container will hold the widget.  For some reason, the popup text is not
+				                             updating if the widget is directly embedded in the binder. When trying to call popover.reconfigure(), the popover only seems to show every other time -->
+				                        <b:Container ui:field="courseContainer" addStyleNames="courseDetailsCourseContainer">
+				                        </b:Container>
+				
+				                        <b.html:Paragraph alignment="LEFT">
+				                            <br/>
+				                            <b:Heading size="H4" addStyleNames="giftBackgroundText" text="Last Session"/>
+				                            <b.html:Paragraph addStyleNames='{style.center}'>
+				                            	Unknown
+				                            </b.html:Paragraph>
+				                            <b:Heading size="H4" addStyleNames="giftBackgroundText" text="Required Participants"/>
+				                            <g:FlowPanel addStyleNames='{style.center}'>
+					                            <b.html:Span> 
+					                               	<i class="fa fa-users fa-3x"></i> x 1
+					                            </b.html:Span>
+				                            </g:FlowPanel>
+				                            <b:Heading size="H4" addStyleNames="giftBackgroundText" text="Required Training App(s)"/>
+				                            <b.html:Paragraph addStyleNames='{style.center}'>
+				                            	Unknown
+				                            </b.html:Paragraph>
+				                        </b.html:Paragraph>
+				                    </g:FlowPanel>
+             					</td>
+             					<td align='left' style='vertical-align: top;' rowspan="1">
+             						<b:Container width='100%' ui:field="rightPanel">
+			                            <b.html:Paragraph alignment="CENTER">
+			                                <br/>
+			                            </b.html:Paragraph>
+			                            <b:NavTabs addStyleNames='{style.detailsTabs}' ui:field="tabBar" >
+			                              <b:AnchorListItem active="true" ui:field="tabDesc">Description</b:AnchorListItem>
+			                              <b:AnchorListItem ui:field="tabReq">Requirements</b:AnchorListItem>
+			                            </b:NavTabs>
+			                            <b:Button type="LINK" icon="TIMES_CIRCLE_O" iconSize="TIMES3" ui:field="ctrlCloseDetails" addStyleNames="courseDetailsCloseIcon" />
+			                            <b:Container width='100%' addStyleNames='{style.detailsTabContent}' ui:field="rightPanelContents">
+			                            
+			                                <b:Container width='100%' addStyleNames='{style.descriptionContent}' ui:field="descriptionContents">
+			                                    <b:Form type="HORIZONTAL">
+			                                        <b:FormGroup>
+			                                          <b:FormLabel for="courseDetailsId" addStyleNames=" giftBackgroundText ">Course Id:</b:FormLabel>
+			                                          <b:Heading size="H5" text="" addStyleNames="giftBackgroundText courseDetailsIdStyle" b:id="courseDetailsId" ui:field="coursePath"/>
+			                                        </b:FormGroup>
+			                                    </b:Form>
+			                                    <g:HTML>
+			                                    	<hr/>
+			                                    </g:HTML>
+			                                    <b.html:Paragraph ui:field="courseDescription">
+			                                    </b.html:Paragraph>
+			                                </b:Container>
+			                                <b:Container width='100%' ui:field="requirementsContents">        
+			                                	<g:FlowPanel addStyleNames='{style.center}'>                   	
+				                                	<g:FlowPanel width='25%' addStyleNames='{style.requirementHeader}'>
+					                                    <b:Heading size="H3" addStyleNames="giftBackgroundText" text="Number of Participants"/>
+					                                    <g:HorizontalPanel verticalAlignment='ALIGN_MIDDLE' horizontalAlignment='ALIGN_CENTER' addStyleNames='{style.requirementHeader}'>
+					                                    	<b.html:Span > 
+					                                        <i class="fa fa-users fa-3x" style='margin-right: 10px'/>
+						                                    </b.html:Span>
+						                                    <b.html:Span > 
+						                                         x 1
+						                                    </b.html:Span>
+					                                    </g:HorizontalPanel>		                                    
+					                                </g:FlowPanel>		                                
+					                                <g:FlowPanel width='25%' addStyleNames='{style.requirementHeader}'>
+					                                    <b:Heading size="H3" addStyleNames="giftBackgroundText" text="Time Limit"/>
+					                                    <g:HorizontalPanel verticalAlignment='ALIGN_MIDDLE' horizontalAlignment='ALIGN_CENTER' addStyleNames='{style.requirementHeader}'>
+						                                     <b.html:Span> 
+						                                        <i class="fa fa-clock-o fa-3x" style='margin-right: 10px'/>
+						                                    </b.html:Span>
+						                                     <b.html:Span> 
+						                                         None Specified
+						                                    </b.html:Span>
+					                                   </g:HorizontalPanel>
+				                                    </g:FlowPanel>
+			                                    </g:FlowPanel>
+			                                    <g:FlowPanel>
+													<g:FlowPanel width='50%' addStyleNames='{style.requirementHeader} {style.requirementListContainer}'>										
+														<b:Heading size="H3" addStyleNames="giftBackgroundText" text="Training Applications"/>											
+														<g:FlowPanel width='100%' height='300px' addStyleNames='{style.scrolls} {style.requirementList}'>	
+															<!-- Traning App requirements will go here -->
+															<g:HTMLPanel addStyleNames='{style.unknownText}'>
+																Unknown
+															</g:HTMLPanel>
+														</g:FlowPanel>									
+													</g:FlowPanel>
+													<g:FlowPanel width='50%' addStyleNames='{style.requirementHeader} {style.requirementListContainer}'>									
+														<b:Heading size="H3" addStyleNames="giftBackgroundText" text="Peripherals"/>												
+														<g:FlowPanel width='100%' height='300px' addStyleNames='{style.scrolls} {style.requirementList}'>
+															<!-- Peripheral requirements will go here -->
+															<g:HTMLPanel addStyleNames='{style.unknownText}'>
+																Unknown
+															</g:HTMLPanel>
+														</g:FlowPanel>										
+													</g:FlowPanel>                                  
+												</g:FlowPanel>                                    
+			                                </b:Container>
+			                            </b:Container>
+			                            
+			                        </b:Container>
+             					</td>
+             				</tr>
+             			</tbody>
+             		</table>
+             	</g:HTMLPanel>      
+               
+            </b:Container>
+            
+            <!-- This panel will be dynamically populated by the java code.  This will contain the grid layout of the courses for the user -->
+        	<b:Container fluid="true" ui:field="ctrlCourseList">
+    
+        	</b:Container>
+     
+        </b:Container>
+        
+        <b:Modal title='' b:id="exportDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="exportDialog">
+	        <b:ModalHeader>
+	            <b:Heading size="H3">
+	                <b.html:Text text="Export Summary"/>
+	            </b:Heading>
+	        </b:ModalHeader>
+	        <b:ModalBody>
+	            <!-- The java class determins which icon to make visible based on the type of dialog is being shown -->
+	             <b:Row>
+	                <b:Column size="MD_12">
+	                    <z:BsExportSummaryWidget ui:field='exportSummary'/>
+	                </b:Column>
+	            </b:Row>
+	        </b:ModalBody>
+	        <b:ModalFooter>
+	        	<b:Button type="PRIMARY" dataDismiss="MODAL" ui:field="beginExportButton">
+	        		Start Export
+	        	</b:Button>
+	            <b:Button type="DANGER" dataDismiss="MODAL" ui:field="cancelExportButton">
+	            	Cancel
+	            </b:Button>
+	        </b:ModalFooter>
+	   </b:Modal>
+	   
+	    <b:Modal title='' b:id="exportProgressDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="exportProgressDialog">
+	        <b:ModalHeader>
+	            <b:Heading size="H3">
+	                <b.html:Text text="Creating Export..." ui:field='exportProgressDialogHeading'/>
+	            </b:Heading>
+	        </b:ModalHeader>
+	        <b:ModalBody>
+	            <!-- The java class determines which icon to make visible based on the type of dialog is being shown -->
+	             <b:Row>
+	                <b:Column size="MD_12">	                
+	                   <g:FlowPanel>
+	                   		<cb:ProgressBarListEntry ui:field='subtaskProgress'/>
+	                   		<cb:ProgressBarListEntry ui:field='overallProgress'/>
+	                   </g:FlowPanel>
+	                </b:Column>
+	            </b:Row>
+	        </b:ModalBody>
+	        <b:ModalFooter>
+	            <b:Button type="DANGER" dataDismiss="MODAL" ui:field="cancelExportProgressButton">
+	            	Cancel
+	            </b:Button>
+	        </b:ModalFooter>
+	   </b:Modal>
+	   
+	   <b:Modal title='' b:id="takeACourseProgressDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="takeACourseProgressDialog">
+	        <b:ModalHeader>
+	            <b:Heading size="H3">
+	                <b.html:Text text="Starting Course" ui:field='takeACourseProgressDialogHeading'/>
+	            </b:Heading>
+	        </b:ModalHeader>
+	        <b:ModalBody>
+	            <!-- The java class determines which icon to make visible based on the type of dialog is being shown -->
+	             <b:Row>
+	                <b:Column size="MD_12">	                
+	                   <g:FlowPanel>
+	                   		<cb:ProgressBarListEntry ui:field='takeACourseOverallProgress'/>
+	                   </g:FlowPanel>
+	                </b:Column>
+	            </b:Row>
+	        </b:ModalBody>
+	        <b:ModalFooter>
+	            <b:Button type="DANGER" dataDismiss="MODAL" ui:field="cancelTakeACourseProgressButton">
+	            	Cancel
+	            </b:Button>
+	        </b:ModalFooter>
+	   </b:Modal>
+	   
+	  <b:Modal title='' b:id="deleteDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="deleteDialog">
+	        <b:ModalHeader>
+	            <b:Heading size="H3">
+	                <b.html:Text text="Delete Summary"/>
+	            </b:Heading>
+	        </b:ModalHeader>
+	        <b:ModalBody>
+	            <!-- The java class determines which icon to make visible based on the type of dialog is being shown -->
+	             <b:Row>
+	                <b:Column size="MD_12">
+	                    <z:BsDeleteSummaryWidget ui:field='deleteSummary'/>
+	                </b:Column>
+	            </b:Row>
+	        </b:ModalBody>
+	        <b:ModalFooter>
+	        	<b:Button type="PRIMARY" dataDismiss="MODAL" ui:field="beginDeleteButton">
+	        		Delete
+	        	</b:Button>
+	            <b:Button type="DANGER" dataDismiss="MODAL" ui:field="cancelDeleteButton">
+	            	Cancel
+	            </b:Button>
+	        </b:ModalFooter>
+	   </b:Modal>
+	   
+	    <b:Modal title='' b:id="deleteProgressDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="deleteProgressDialog">
+	        <b:ModalHeader>
+	            <b:Heading size="H3">
+	                <b.html:Text text="Deleting..." ui:field='deleteProgressDialogHeading'/>
+	            </b:Heading>
+	        </b:ModalHeader>
+	        <b:ModalBody>
+	            <!-- The java class determines which icon to make visible based on the type of dialog is being shown -->
+	             <b:Row>
+	                <b:Column size="MD_12">	                
+	                   <g:FlowPanel>
+	                   		<cb:ProgressBarListEntry ui:field='deleteSubtaskProgress'/>
+	                   		<cb:ProgressBarListEntry ui:field='deleteOverallProgress'/>
+	                   </g:FlowPanel>
+	                </b:Column>
+	            </b:Row>
+	        </b:ModalBody>
+	        <b:ModalFooter>
+	        </b:ModalFooter>
+	   </b:Modal>
+	   
+	   	    <b:Modal title='' b:id="courseListProgressDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="courseListProgressDialog">
+	        <b:ModalHeader>
+	            <b:Heading size="H3">
+	                <b.html:Text text="Retrieving courses..." ui:field='courseListProgressDialogHeading'/>
+	            </b:Heading>
+	        </b:ModalHeader>
+	        <b:ModalBody>
+	            <!-- The java class determines which icon to make visible based on the type of dialog is being shown -->
+	             <b:Row>
+	                <b:Column size="MD_12">	                
+	                   <g:FlowPanel>
+	                   		<cb:ProgressBarListEntry ui:field='courseListSubtaskProgress'/>
+	                   		<cb:ProgressBarListEntry ui:field='courseListOverallProgress'/>
+	                   </g:FlowPanel>
+	                </b:Column>
+	            </b:Row>
+	        </b:ModalBody>
+	        <b:ModalFooter>
+	        </b:ModalFooter>
+	   </b:Modal>
+	   
+	   <b:Modal title='' b:id="overwriteFileDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="overwriteFileDialog">
+	        <b:ModalHeader>
+	            <b:Heading size="H3">
+	                <b.html:Text text="A File Already Exists" ui:field='overwriteDialogHeading'/>
+	            </b:Heading>
+	        </b:ModalHeader>
+	        <b:ModalBody>
+	            <!-- The java class determines which icon to make visible based on the type of dialog is being shown -->
+	             <b:Row>
+	                <b:Column size="MD_12">	                
+	                   <g:HTML ui:field='overwriteMessage'/>
+	                </b:Column>
+	            </b:Row>
+	        </b:ModalBody>
+	        <b:ModalFooter>
+	            <b:Button type="PRIMARY" ui:field="overwriteButton">
+	            	Yes
+	            </b:Button>
+	            <b:Button type="PRIMARY" ui:field="overwriteAllButton">
+	            	Overwrite All
+	            </b:Button>
+	            <b:Button type="DANGER" ui:field="noOverwriteButton">
+	            	No
+	            </b:Button>
+	        </b:ModalFooter>
+	   </b:Modal>
+	    
+	   <z:BsDialogRenameWidget ui:field="renameCourseDialog"></z:BsDialogRenameWidget>
+	   
+	   <b:Modal title='' b:id="importProgressDialog" closable="false" fade="true" dataBackdrop="STATIC" dataKeyboard="true" ui:field="importProgressDialog">
+	        <b:ModalHeader>
+	            <b:Heading size="H3">
+	                <b.html:Text text="Importing..." ui:field='importProgressDialogHeading'/>
+	            </b:Heading>
+	        </b:ModalHeader>
+	        <b:ModalBody>
+	            <!-- The java class determins which icon to make visible based on the type of dialog is being shown -->
+	             <b:Row>
+	                <b:Column size="MD_12">	                
+	                   <g:FlowPanel>
+	                   		<cb:ProgressBarListEntry ui:field='importSubtaskProgress'/>
+	                   		<cb:ProgressBarListEntry ui:field='importOverallProgress'/>
+	                   </g:FlowPanel>
+	                </b:Column>
+	            </b:Row>
+	        </b:ModalBody>
+	        <b:ModalFooter>
+	            <b:Button type="DANGER" dataDismiss="MODAL" ui:field="cancelImportProgressButton">
+	            	Cancel
+	            </b:Button>
+	        </b:ModalFooter>
+	   </b:Modal>
+	   
+	   <f:FileSelectionModal ui:field='fileSelectionModal'/>
+	   
+    </b:Container>
+</ui:UiBinder> 

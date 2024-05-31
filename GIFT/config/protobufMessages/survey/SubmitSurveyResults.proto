@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "SubmitSurveyResultsProto";
+
+import "survey/SurveyResponse.proto";
+import "google/protobuf/wrappers.proto";
+
+/*  
+ *	This is the protobuf message that contains the results of a survey.
+ */ 
+message SubmitSurveyResults {
+	/* The gift key of the results for the survey. */
+	google.protobuf.StringValue gift_key = 1;
+	
+	/* The name of the course. */
+	google.protobuf.StringValue course_name = 2;
+	
+	/* The response of a survey for the course name and key. */
+	SurveyResponse survey_response = 3;
+}

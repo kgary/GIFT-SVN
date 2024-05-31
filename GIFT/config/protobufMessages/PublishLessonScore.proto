@@ -1,0 +1,25 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "PublishLessonScoreProto";
+
+import "LMSCourseRecord.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains the records of a single lesson for a learner. */
+message PublishLessonScore {
+	/* The current lms username. */
+	google.protobuf.StringValue lms_username = 1;
+	
+	/* The course data for the lesson. */
+	LMSCourseRecord course_data = 2;
+	
+	/* The root concept of the lesson. */
+	google.protobuf.StringValue root_concept = 3;
+}

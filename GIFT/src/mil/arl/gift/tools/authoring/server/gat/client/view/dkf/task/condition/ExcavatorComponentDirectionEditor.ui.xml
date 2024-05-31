@@ -1,0 +1,60 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets">
+	<ui:style>
+		.pad{
+			padding: 10px;
+		}
+		.padTop{
+			padding-top: 5px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.largePadBottom{
+			margin-bottom: 20px;
+		}
+		.tabbed{
+			padding: 0px 30px;
+		}
+		.inlineBlock{	
+			display: inline-block;
+		}
+		.spaceRight{
+			margin-right: 20px;
+		}
+	</ui:style>
+	<g:FlowPanel>
+		<g:DeckPanel addStyleNames='{style.tabbed} {style.padBottom}' animationEnabled='true' ui:field='directionDeck'>
+		
+			<g:SimplePanel ui:field='anyDirectionPanel'/>
+		
+			<g:FlowPanel addStyleNames='{style.tabbed}' ui:field='anySpecificDirectionPanel'>
+				<g:HTML>
+					Total Angle of Rotation:
+				</g:HTML>
+				<w:AngleBox ui:field='anyAngleBox' addStyleNames="{style.inlineBlock}" />
+			</g:FlowPanel>
+			
+			<g:FlowPanel addStyleNames='{style.tabbed}' ui:field='biDirectionPanel'>
+				<g:FlowPanel addStyleNames="{style.inlineBlock} {style.spaceRight}">
+					<g:HTML>
+						Total Forward Angle of Rotation:
+					</g:HTML>
+					<w:AngleBox ui:field='forwardAngleBox' addStyleNames="{style.inlineBlock}" />
+				</g:FlowPanel>
+				<g:FlowPanel addStyleNames='{style.inlineBlock}'>
+					<g:HTML>
+						Total Backward Angle of Rotation:
+					</g:HTML>
+					<w:AngleBox ui:field='backwardAngleBox' addStyleNames="{style.inlineBlock}" />
+				</g:FlowPanel>
+			</g:FlowPanel>
+		
+		</g:DeckPanel>		
+	</g:FlowPanel>
+</ui:UiBinder> 

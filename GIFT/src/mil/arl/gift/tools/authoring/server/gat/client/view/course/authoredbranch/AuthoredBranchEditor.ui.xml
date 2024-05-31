@@ -1,0 +1,177 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:cw="urn:import:mil.arl.gift.common.gwt.client.widgets"
+	xmlns:w="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:cwb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style>
+		.mainContainer{
+			padding: 10px;
+		}
+		.pathPanel {			
+			
+		}
+		.addPathButon{
+			padding: 0px;
+			font-size: 16px;
+		}
+		.helpLink {
+			padding-left: 5px;
+			color: rgb(100, 100, 200);
+			font-weight: normal;
+		}
+		.headerPanel{
+			
+		}
+		.defaultPathPanel{
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
+		.distRadioPanel{
+			display: inline-block;
+			min-width: 150px;
+		}
+		.padBottom{
+			margin-bottom: 10px;
+		}
+		.smallPadBottom{
+			margin-bottom: 5px;
+		}
+		.rightTabbed{
+			padding-right: 30px;
+		}
+		.disclosurePanelInner{
+		    margin-right: 5px
+	    }
+	    .padSides{
+		    padding: 3px 5px;
+		}
+	</ui:style>
+	<g:FlowPanel width='100%' height='100%' addStyleNames='{style.mainContainer}' ui:field='mainContainer'>
+		<cw:DynamicHeaderScrollPanel width='100%' height='100%' ui:field='splitter'>
+		
+			<cw:north>
+				<g:HTMLPanel addStyleNames='{style.headerPanel}'>
+					<g:InlineHTML>
+						Distribution method:
+					</g:InlineHTML>
+					<cwb:HelpLink helpCaption='Distribution method'>
+
+						<cwb:linkWidget>
+							<b:Icon title="What's this?" addStyleNames='{style.helpLink}'
+								type='QUESTION_CIRCLE' />
+						</cwb:linkWidget>
+
+						<cwb:helpBody>
+							<g:HTML>
+								This is the method of distribution of learners among the paths available in an authored branch. There are three methods of distribution:
+								<h3>Balanced</h3>
+								This method of distribution will balance the learners between the paths to ensure an even distribution.
+								<h3>Random</h3>
+								This method of distribution will randomly assign the learners between all paths. There is no guarantee all paths will be taken.
+								<h3>Custom Percent</h3>
+								This method of distribution allows for a custom percentage to be specified for each branch path, provided each path's custom percentage value adds up to 100% in total.
+								For example, with an authored branch containing 3 paths, the distribution among each path could be 60%, 30% and 10% for each path respectively.
+							</g:HTML>
+						</cwb:helpBody>
+
+					</cwb:HelpLink>
+					
+					<g:HTMLPanel>
+					
+						<g:FlowPanel addStyleNames='{style.distRadioPanel}'>
+							<g:RadioButton name='authoredBranchEditor' ui:field='balancedDistRadio'>
+								Balanced
+							</g:RadioButton>
+						</g:FlowPanel>
+						
+						<g:FlowPanel addStyleNames='{style.distRadioPanel}'>
+							<g:RadioButton name='authoredBranchEditor' ui:field='randomDistRadio'>
+								Random
+							</g:RadioButton>
+						</g:FlowPanel>
+						
+						<g:FlowPanel addStyleNames='{style.distRadioPanel}'>
+							<g:RadioButton name='authoredBranchEditor' ui:field='customDistRadio'>
+								Custom Percent
+							</g:RadioButton>
+						</g:FlowPanel>
+						
+						<!--  Chris: commenting this out for now since it's not supported yet
+						<g:FlowPanel addStyleNames='{style.distRadioPanel}'>
+							<g:RadioButton name='authoredBranchEditor' ui:field='ruleDistRadio'>
+								Rule-Based
+							</g:RadioButton>
+						</g:FlowPanel>
+						-->
+						
+					</g:HTMLPanel>
+					
+					<hr style='border-color: rgb(200,200,200); margin-bottom: 0px;'/>
+					
+				</g:HTMLPanel>
+			</cw:north>
+		
+			<cw:center>
+				<g:HTMLPanel>
+				
+				<!-- #4255 - hiding default path with 'visible = false' until non-SimpleDistribution (e.g. balanced) can be authored
+				            for adaptive courseflow. -->
+					<g:FlowPanel addStyleNames='{style.defaultPathPanel}' visible="false">
+						<g:HTML>
+							Default Path:
+						</g:HTML>
+						<b:ValueListBox width='100%' ui:field='defaultBranchListBox'/>
+					</g:FlowPanel>
+				
+					<g:FlowPanel>
+						<g:HTML>
+							Paths:
+						</g:HTML>
+						<b:Button size='LARGE' type='LINK' icon='PLUS_SQUARE' addStyleNames='{style.addPathButon}' ui:field='addPathButton'>
+							Add Path
+						</b:Button>
+					</g:FlowPanel>
+					<g:FlowPanel ui:field='pathContainer'>
+					
+						<!-- Paths go here -->					
+					
+					</g:FlowPanel>
+					
+					<g:FlowPanel addStyleNames='{style.padBottom}'>						
+						<g:FlowPanel>						
+							<g:DisclosurePanel animationEnabled='true' width='100%' ui:field='optionsPanel' >
+							
+								<g:header>
+									Options
+								</g:header>
+								
+								<g:FlowPanel addStyleNames='{style.smallPadBottom} {style.rightTabbed} {style.disclosurePanelInner}'>
+									<g:FlowPanel width='100%'>
+									  <g:HTMLPanel>
+			                            <table style='width: 100%;'>
+			                                <tr style='width: 100%;'>
+			                                    <td style='vertical-align: top; width: 10px'>
+			                                       <g:CheckBox ui:field='disabled'/>                         
+			                                    </td>
+			                                    <td style='vertical-align: top;'>
+			                                    	<w:ManagedTooltip title="Disabled means this will not be shown to the learner and not checked for authoring errors.">
+			                                        	<g:Label addStyleNames='{style.padSides}'>Disable course object</g:Label>     
+			                                       	</w:ManagedTooltip>                         
+			                                    </td>
+			                                 </tr>
+			                              </table>
+										</g:HTMLPanel>
+										
+			                        </g:FlowPanel>
+								</g:FlowPanel>
+							</g:DisclosurePanel>
+						</g:FlowPanel>
+				    </g:FlowPanel>
+				</g:HTMLPanel>
+			</cw:center>
+
+		</cw:DynamicHeaderScrollPanel>	
+	</g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,122 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+			 xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:b='urn:import:org.gwtbootstrap3.client.ui'
+             xmlns:b.html='urn:import:org.gwtbootstrap3.client.ui.html'
+             xmlns:w='urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap'>
+	<ui:style>
+		.mainContainer{
+			margin-top: 70px;
+		}
+        
+        .loginPanel{
+            border-radius:20px;
+        }
+        
+        .loginHeader {
+            border-top-left-radius:20px;
+            border-top-right-radius:20px;
+        }
+        
+        .loginFooter {
+           border-bottom-left-radius:20px;
+           border-bottom-right-radius:20px;
+        }
+        
+        .organizationImageParagraph{
+        	padding-top: 40px;
+        }
+        .organizationImage{
+			height:106px;
+			width:280px;
+		}
+	</ui:style>
+    <!-- This UI Binder uses gwtbootstrap3.  For more information on GwtBootstrap3 see:  https://github.com/gwtbootstrap3/gwtbootstrap3
+         The UI Binder should drive the 'layout' of the widget and typically will be wrapped in a 'container' object.   
+         
+         It is best practice to not specify 'pixels', direct width, height, etc, but rather allow the bootstrap framework "Grid" system and widgets to manage
+         resizing and laying themselves out.  This makes it flexible to support other devices such as mobile.  Also it is best practice
+         to keep the 'layout' logic in these UI Binder files rather than in the widget java class.  The widget java class should drive the 
+         logic for the widget (but not the layout). It is also best practice to not mix old gwt widgets and bootstrap widgets together as the older widgets don't necessarily handle
+         resizing, etc well in the bootstrap framework.
+    -->
+    <b:Container fluid="true" addStyleNames='{style.mainContainer}'> 
+        <b:Row>
+            <b:Column size="XS_1,SM_1"></b:Column>
+            <b:Column size="XS_10,SM_7">
+                <b:Panel addStyleNames="{style.loginPanel}">
+                    <b:PanelHeader addStyleNames="{style.loginHeader}">
+                      <b.html:Paragraph alignment="CENTER">
+                        <b:Heading size="H4" text="Login with your GIFT account" ui:field="loginText"/>
+                      </b.html:Paragraph>
+                      <b.html:Paragraph alignment="CENTER">
+                        <w:BsLoadingIcon type="GEAR" size="LARGE" ui:field="ctrlLoadIcon"/>
+                      </b.html:Paragraph>
+                    </b:PanelHeader>
+                    <b:PanelBody>
+                        <b:Alert type="INFO" ui:field="ieCompatibilityAlert">
+                            <b.html:Paragraph>Can you see the star icon (<b:Icon type="STAR" size="LARGE"/>)? If not, please check the browser compatibility guide <a href="GiftCompatibilityNotes.html" target="_blank" >here</a>.  <br/>If you wish to no longer see this message, click <b:Anchor ui:field="dismissNote" text="here"/>.
+                            </b.html:Paragraph>
+                            
+                        </b:Alert>
+                        <b:Alert type="INFO" ui:field="serverInfoAlert">
+                            <b.html:Paragraph ui:field="serverInfoText"></b.html:Paragraph>
+                        </b:Alert>
+                        <b:Alert type="DANGER" ui:field="errorAlert">
+                            <b.html:Paragraph ui:field="errorText"></b.html:Paragraph>
+                        </b:Alert>
+                        <b.html:Paragraph alignment="RIGHT">
+                            <b:Anchor ui:field="backToHomeLink" text="Back to Home"/>
+                        </b.html:Paragraph>      
+                        
+                        <b:Form>
+                            <b:FormGroup>
+                                <b:SuggestBox b:id="formName" placeholder="Username" ui:field="userNameTextBox" tabIndex="1"/>
+                                <b:ListBox b:id="formName" ui:field="userNameListBox" visible="false" tabIndex="1"/>
+                            </b:FormGroup>
+
+                            <b:FormGroup>
+                                <!-- $CHROMEFIX$ - This fake & hidden password field prevents Chrome from auto filling the forms.  It is not used or seen by the user. --> 
+                                <b:Input type="PASSWORD" b:id="PasswordFake" visible="false" />
+                                <!-- This is the real password field the user will enter the password in. -->
+                                <b:Input type="PASSWORD" placeholder="Password" b:id="formPassword" ui:field="userPasswordTextBox" tabIndex="2"/>                                
+                            </b:FormGroup>
+                            
+                            <b:FormGroup>
+                                <b:TextBox placeholder="Login As" ui:field="loginAsUserNameTextBox" tabIndex="2"/>
+                            </b:FormGroup>
+
+                            <b:Button type="PRIMARY" size="LARGE" block="true" ui:field="signInButton" tabIndex="3">Login</b:Button>
+                        </b:Form>
+                    </b:PanelBody>
+                    <b:PanelFooter addStyleNames="{style.loginFooter}">
+                        <b:Row>
+                            <b:Column size="MD_5">
+                                <b:Anchor ui:field="forgotPasswordLink" text="Forgot Username or Password?" tabIndex="4"/>
+                            </b:Column>
+                            <b:Column size="MD_6" offset="MD_1">
+                                <b.html:Paragraph alignment="RIGHT" ui:field="createAccountLabel">Don't have an account? 
+                                    <b:Anchor ui:field="createAccountLink" text="Create one now" />
+                                </b.html:Paragraph>
+                            </b:Column>
+                            <b:Column size="MD_12">
+                                <b.html:Paragraph alignment="CENTER" ui:field="offlineLabel">You are running GIFT in offline mode. 
+                                    Please select a previously authenticated user from the drop-down list. If no users are listed, 
+                                    connect to the internet and refresh this page to login.</b.html:Paragraph>
+                            </b:Column>
+                        </b:Row>
+                    </b:PanelFooter>
+                </b:Panel>
+            </b:Column>
+            <b:Column size="XS_1,SM_4"></b:Column>
+            <b:Column size="XS_1,SM_4">
+            	<b.html:Paragraph alignment="CENTER" addStyleNames="{style.organizationImageParagraph}" ui:field="organizationImageParagraph">
+            		<g:Image addStyleNames="{style.organizationImage}" ui:field="organizationImage"/>
+            	</b.html:Paragraph>
+            </b:Column>
+        </b:Row>
+        <!-- This container is empty intentionally as it's only used to hold the css style that specifies a filled background image for the login screen -->
+        <b:Container b:id="backgroundDiv" styleName="loginBackground" ui:field="backgroundContainer">
+        </b:Container>
+    </b:Container>
+</ui:UiBinder> 

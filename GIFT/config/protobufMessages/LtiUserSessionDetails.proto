@@ -1,0 +1,32 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "LtiUserSessionDetailsProto";
+
+import "LtiUserID.proto";
+import "google/protobuf/wrappers.proto";
+
+/*  
+ *	This is the protobuf message that can be used in a user session to
+ *	provide additional details based on the Lti specification. Provides
+ *	information such as the id of the user session, the data set id if 
+ *	the session were to be used for data collection, and the Lti 
+ *	specification of the user id.
+ */ 
+message LtiUserSessionDetails {
+
+	/* The global user id that corresponds to the user session. */
+	google.protobuf.Int32Value global_user_id = 1;
+	
+	/* The data set id (optional) if the session is to be tracked for data collection.*/
+	google.protobuf.StringValue data_set_id = 2;
+	
+	/* The lti_user_id cannot be null. */
+	LtiUserID lti_user_id = 3;
+}

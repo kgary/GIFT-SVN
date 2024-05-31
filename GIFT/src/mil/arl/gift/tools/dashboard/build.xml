@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GIFT Dashboard" default="compile" basedir=".">
+    <property name="root.path"         value="../../../../../.."/>
+    <property name="package.name"      value="mil.arl.gift.tools.dashboard"/>
+	<property name="gat.package.name"      value="mil.arl.gift.tools.authoring.server.gat"/>
+	<property name="ert.package.name"      value="mil.arl.gift.tools.ert"/>
+    <property name="source.path"       value="mil/arl/gift/tools/dashboard"/>
+	<property name="gat.source.path"       value="mil/arl/gift/tools/authoring/server/gat"/>
+	<property name="ert.source.path"       value="mil/arl/gift/tools/ert"/>
+    <property name="warfile.name"      value="gift-dashboard.war"/>
+    
+    <!-- This defines the version of gwtbootstrap jarfile we are using -->
+    <property name="gwtbootstrap.lib" value="gwtbootstrap3-1.0.1.jar"/>
+    <property name="gwtbootstrapextras.lib" value="gwtbootstrap3-extras-1.0.1.jar"/>
+    
+    <property name="gwt.sdk.extensions" value="${root.path}/external/gwt/extensions" />
+	<property name="gwt.sdk" value="${root.path}/external/gwt/gwt-2.9.0" />
+    <property name="gwt.args"          value=""/>
+	
+    <property name="war.root.rel.path" value="build/war/dashboard"/>
+    <property name="war.path"          value="${root.path}/${war.root.rel.path}"/>
+    
+    <property name="gift.common.jar" value="gift-common.jar"/>
+	<property name="gift.authoringcomm.jar" value="gift-authoring-common.jar" />
+	<property name="gift.authoring.conversion.jar" value="gift-authoring-conversion.jar" />
+	<property name="gift.services.jar" value="gift-services.jar"/>
+	<property name="gift.domain.services.jar" value="gift-domain-services.jar"/>
+	<property name="gift.monitor.services.jar" value="gift-monitor-services.jar"/>
+	<property name="gift.survey.services.jar" value="gift-ums-db.jar"/>
+    <property name="gift.lms.services.jar" value="gift-lms-services.jar"/>
+    <property name="gift.commongwt.jar" value="gift-commongwt.jar"/>
+	<property name="gift.export.jar" value="gift-export.jar"/>
+    <property name="gift.import.jar" value="gift-import.jar"/>
+	<property name="gift.map.jar" value="gift-map.jar"/>
+	<property name="gift.remote.jar" value="gift-remote.jar"/>
+    
+    <!-- Path to all images -->
+    <property name="images.path" value="${root.path}/src/mil/arl/gift/common/images"/>
+    
+    <property name="update.includes" value="**/*.java,**/*.form,**/*.xml,**/*.png,**/*.jpg,**/*.ico,**/*.gif,**/*.html,**/*.css"/>
+    <property name="build.dependencies" value="${root.path}/config/build.dependencies"/>
+	
+	<!-- GAT Properties -->
+	<property name="gat.batch.jar" value="gift-gat-batch.jar"/>
+	<property name="gwt-d3.jar" value="gwt-d3-api-1.1.1.jar" />
+    <property name="gwt-d3-js.jar" value="gwt-d3-js-3.5.3.jar" />
+    <property name="gift.common.jar" value="gift-common.jar" />
+    <property name="gift.commongwt.jar" value="gift-commongwt.jar" />
+    <property name="gift.authoringcomm.jar" value="gift-authoring-common.jar" />
+    <property name="gift.ums.db.jar" value="gift-ums-db.jar"/>
+    <property name="jaxb.generated.jar" value="jaxb_generated.jar" />
+	<property name="protobuf.generated.jar" value="protobuf_generated.jar" />
+	<property name="protobuf.generated.external.apps.jar" value="protobuf_generated_external_apps.jar" />
+    <property name="gift.domain.jar" value="gift-domain.jar"/>
+    <property name="gift.gateway.jar" value="gift-gateway.jar"/>
+    <property name="gift.shared.tutor.jar" value="gift-tutor-shared.jar"/>
+    <property name="gift.map.jar" value="gift-map.jar"/>
+    <property name="autoTutorWebService.jar" value="autoTutorWebService.jar"/>
+    <property name="gift.services.jar" value="gift-services.jar"/>
+    <property name="gift.import.jar" value="gift-import.jar"/>
+    <property name="gift.export.jar" value="gift-export.jar"/>
+    <property name="gift.lms.services.jar" value="gift-lms-services.jar"/>
+    <property name="gift.sensor.jar" value="gift-sensor.jar"/>
+    <property name="gift.learner.jar" value="gift-learner.jar"/>
+    <property name="gift.pedagogical.jar" value="gift-pedagogical.jar"/>
+    <property name="gift.authoring.conversion.jar" value="gift-authoring-conversion.jar" />
+	
+	<!-- ERT Properties -->
+	<property name="gift.ums.jar" value="gift-ums.jar"/>
+	
+    <!-- The dashboard uses the 'common' module properties as the classpath by default -->
+    <loadfile property="build.dependencies.dashboard" srcFile="${build.dependencies}">
+        <filterchain>
+            <linecontains>
+                <contains value="@common@"/>
+            </linecontains>
+            <replacetokens>
+                <token key="common" value=""/>
+            </replacetokens>
+        </filterchain>
+    </loadfile>
+    
+    <fileset dir="${root.path}" includes="${build.dependencies.dashboard}"/>
+    
+    <path id="classpath">
+        <fileset dir="${root.path}" includes="${build.dependencies.dashboard}"/>
+    	<fileset dir="${root.path}/external" includes="**/json_simple-1.1.jar"/>
+        <fileset dir="${root.path}/external/slf4j"/>
+        <fileset dir="${root.path}/external" includes="**/hibernate3.jar"/>
+        <fileset dir="${root.path}/external" includes="**/jpa-api-2.0-cr-1.jar"/>
+        <fileset dir="${root.path}/bin"      includes="gift-common.jar"/>
+    	<fileset dir="${root.path}/bin" 	 includes="${gift.authoringcomm.jar}"/>
+    	<fileset dir="${root.path}/bin" 	 includes="${gift.authoring.conversion.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.services.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.domain.services.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.monitor.services.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.survey.services.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.import.jar}"/>
+        <fileset dir="${root.path}/bin"      includes="${gift.lms.services.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.map.jar}" />
+    	<fileset dir="${root.path}/external" includes="**/autoTutorWebService.jar"/>
+		<fileset dir="${root.path}/external" includes="**/guava/guava-30.1.1-jre.jar"/>
+		<fileset dir="${root.path}/external" includes="**/guava/failureaccess-1.0.1.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/gwtbootstrap/${gwtbootstrap.lib}"/>
+    	<fileset dir="${root.path}/external" includes="**/gwtbootstrap/${gwtbootstrapextras.lib}"/>
+        <fileset dir="${root.path}/external/hibernate"/>
+        <fileset dir="${root.path}/external/hibernate-validator-4.2.0.Final" excludes="**/optional/**"/>
+        <fileset dir="${root.path}/external/derby"/>
+        <fileset dir="${gwt.sdk}" includes="${validation-api.jar}"/>
+        <fileset dir="${gwt.sdk}" includes="${validation-api-sources.jar}"/>
+        <fileset dir="${gwt.sdk.extensions}" includes="${gwt-d3.jar}"/>
+        <fileset dir="${gwt.sdk.extensions}" includes="${gwt-d3-js.jar}"/>        
+        <fileset dir="${root.path}/external" includes="**/vecmath.jar"/>
+        <fileset dir="${root.path}/external" includes="**/open-dis_4.16.jar"/>
+        <fileset dir="${root.path}/bin" includes="${gift.commongwt.jar}" />
+        <fileset dir="${root.path}/bin" includes="${gift.shared.tutor.jar}" />
+        <fileset dir="${root.path}/bin" includes="${gift.ums.db.jar}"/>
+        <fileset dir="${root.path}/bin" includes="${jaxb.generated.jar}"/>
+		<fileset dir="${root.path}/bin" includes="${protobuf.generated.jar}"/>
+		<fileset dir="${root.path}/bin" includes="${protobuf.generated.external.apps.jar}"/>
+        <fileset dir="${root.path}/data/conversionWizard" includes="**/**/*generated.jar"/>
+        <fileset dir="${root.path}/bin" includes="${gift.domain.jar}"/>
+        <fileset dir="${root.path}/bin" includes="${gift.services.jar}"/>
+        <fileset dir="${root.path}/bin" includes="${gift.sensor.jar}"/>
+        <fileset dir="${root.path}/bin" includes="${gift.learner.jar}"/>
+        <fileset dir="${root.path}/bin" includes="${gift.pedagogical.jar}"/>
+        <fileset dir="${root.path}/external" includes="**/commons-fileupload-1.2.2.jar"/>
+        <fileset dir="${root.path}/external" includes="**/orgjson.jar"/>
+        <fileset dir="${root.path}/external" includes="**/commons-lang-2.4.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/SuperCSV-with_src-1.52.jar"/>
+    	<fileset dir="${root.path}/external" includes="**/jetty-9.4.41/lib/websocket/*"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.ums.jar}"/>
+    	<fileset dir="${root.path}/bin"      includes="${gift.remote.jar}"/>
+    </path>
+	    
+    <!-- used for running in dev mode -->
+    <path id="runtime-classpath">
+        <fileset dir="${root.path}/bin" includes="gift-common.jar"/>
+        <fileset dir="${root.path}/external/slf4j"/>
+    	<fileset dir="${root.path}/bin" includes="${jaxb.generated.jar}"/>
+		<fileset dir="${root.path}/bin" includes="${protobuf.generated.jar}"/>
+		<fileset dir="${root.path}/bin" includes="${protobuf.generated.external.apps.jar}"/>
+    	<fileset file="${root.path}/bin/${gift.map.jar}" /> 
+    </path>
+	    
+    <path id="gwtBuildClasspath">
+        <pathelement location="${gwt.sdk}/gwt-user.jar"/>
+        <pathelement location="${gwt.sdk}/gwt-dev.jar"/>
+        <pathelement location="${gwt.sdk.extensions}/gwt-slider-bar-1.0.jar"/>
+    	<pathelement location="${gwt.sdk.extensions}/eventbinder-1.0.2.jar"/>
+        <pathelement location="${gwt.sdk.extensions}/gwt-d3-api-1.1.1.jar"/>
+        <pathelement location="${gwt.sdk.extensions}/gwt-d3-js-3.5.3.jar"/>
+        <pathelement location="${root.path}/bin/gift-common.jar"/>
+        <fileset dir="${root.path}/bin" includes="gift-commongwt.jar"/>
+        <fileset dir="${root.path}/external" includes="/gwtbootstrap/${gwtbootstrap.lib}"/>
+        <fileset dir="${root.path}/external" includes="/gwtbootstrap/${gwtbootstrapextras.lib}"/>
+		<fileset dir="${root.path}/external" includes="/zip4j-1.3.2/zip4j-1.3.2.jar"/>
+    	<fileset dir="${gwt.sdk.extensions}" includes="gwt-maps-api-3.10.0-alpha-6.jar"/>
+    	<fileset dir="${gwt.sdk.extensions}" includes="gwt-ajaxloader-1.1.0.jar"/>
+    	<fileset dir="${root.path}/bin" includes="${gift.map.jar}"/>      
+        <pathelement location="${gwt.sdk.extensions}/gwt-dispatch-1.2.0.jar" />      
+        <pathelement location="${gwt.sdk.extensions}/guice-5.0.1/guice-5.0.1.jar" />
+        <pathelement location="${gwt.sdk.extensions}/guice-5.0.1/guice-servlet-5.0.1.jar" />
+        <pathelement location="${gwt.sdk.extensions}/guice-5.0.1/javax.inject.jar" />
+        <pathelement location="${gwt.sdk.extensions}/guice-5.0.1/aopalliance.jar" />
+        <pathelement location="${gwt.sdk.extensions}/guice-5.0.1/gin-2.1.2.jar" />
+        <pathelement location="${gwt.sdk.extensions}/guice-5.0.1/guice-assistedinject-5.0.1.jar" /> 
+        <pathelement location="${gwt.sdk}/gwt-soyc-vis.jar" />
+        <fileset dir="${root.path}/bin" includes="${gift.shared.tutor.jar}"/>   
+    	<pathelement location="${gwt.sdk.extensions}/gwt-dnd-3.3.4.jar" />
+    	<pathelement location="${gwt.sdk}/validation-api-1.0.0.GA.jar" />
+    	<pathelement location="${gwt.sdk}/validation-api-1.0.0.GA-sources.jar" />
+    </path>
+    
+    <target name="checkForChanges">
+        <uptodate property="dashboard.root.unchanged" targetfile="${root.path}/bin/${warfile.name}">
+            <srcfiles dir="." includes="${update.includes}" excludes="*/**/*"/>
+        </uptodate>
+    	
+    	<uptodate property="gat.root.unchanged" targetfile="${root.path}/bin/${warfile.name}">
+            <srcfiles dir="${root.path}/src/${gat.source.path}" includes="${update.includes}" excludes="*/**/*"/>
+        </uptodate>
+    	
+    	<uptodate property="ert.root.unchanged" targetfile="${root.path}/bin/${warfile.name}">
+            <srcfiles dir="${root.path}/src/${ert.source.path}" includes="${update.includes}" excludes="*/**/*"/>
+        </uptodate>
+        
+        <!-- This checks the timestamp of a 'touch' file against the timestamps of any *.jsp files in the root
+             web-inf directory.  This is used to determine if a recompile of the jsp files are needed. -->
+        <uptodate property="jsp.unchanged" targetfile="${war.path}/WEB-INF/jspBuild">
+            <srcfiles dir="war/WEB-INF" includes="*.jsp"/>
+        </uptodate>
+    	
+        <uptodate property="common.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.common.jar}"/>
+        <uptodate property="authoring.common.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.authoringcomm.jar}"/>
+        <uptodate property="commongwt.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.commongwt.jar}"/>
+        <uptodate property="authoring.conversion.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.authoring.conversion.jar}"/>
+        <uptodate property="services.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.services.jar}"/>
+        <uptodate property="domain.services.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.domain.services.jar}"/>
+        <uptodate property="monitor.services.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.monitor.services.jar}"/>
+        <uptodate property="survey.services.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.survey.services.jar}"/>
+        <uptodate property="lms.services.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.lms.services.jar}"/>
+        <uptodate property="export.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.export.jar}"/>
+        <uptodate property="import.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.import.jar}"/>
+        <uptodate property="map.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.map.jar}"/>
+        <uptodate property="gateway.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.gateway.jar}"/>
+        <uptodate property="shared.tutor.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.shared.tutor.jar}"/>
+        <uptodate property="ums.db.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.ums.db.jar}"/>
+        <uptodate property="ums.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.ums.jar}"/>
+    	<uptodate property="sensor.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.sensor.jar}"/>
+    	<uptodate property="domain.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.domain.jar}"/>
+    	<uptodate property="remote.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/bin/${gift.remote.jar}"/>
+    	
+    	<!-- has the version.txt file changed -->
+    	<uptodate property="upToDateWithVersionFile.ifSet" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/config/version.txt"/>
+    	
+    	<uptodate property="imageproperties.unchanged" targetfile="${root.path}/bin/${warfile.name}" srcfile="${root.path}/config/images.properties"/>
+    	
+    	<!-- Check if the Dashboard client needs to be rebuilt -->
+    	<condition property="dashboard.client.unchanged"> 
+    		<and>
+    			<isset property="common.unchanged"/>
+                <isset property="commongwt.unchanged"/>
+    			<isset property="map.unchanged"/>
+    			<isset property="upToDateWithVersionFile.ifSet"/>
+    			<isset property="dashboard.root.unchanged"/>    
+    			<isset property="imageproperties.unchanged"/>
+                <uptodate targetfile="${root.path}/bin/${warfile.name}">
+                    <srcfiles dir="client" includes="${update.includes}"/>
+                    <srcfiles dir="client/bootstrap" includes="${update.includes}"/>
+                    <srcfiles dir="shared" includes="${update.includes}"/>
+                </uptodate>
+			</and>
+		</condition>
+    	
+    	<!-- Check if the GAT client needs to be rebuilt -->
+    	<condition property="gat.client.unchanged"> 
+            <and>
+            	<isset property="common.unchanged"/>
+                <isset property="commongwt.unchanged"/>
+            	<isset property="map.unchanged"/>
+            	<isset property="shared.tutor.unchanged"/>
+            	<isset property="dashboard.root.unchanged"/>
+            	<isset property="gat.root.unchanged"/>
+            	<isset property="imageproperties.unchanged"/>
+            	<uptodate targetfile="${root.path}/bin/${warfile.name}">
+                    <srcfiles dir="${root.path}/src/${gat.source.path}/client" includes="${update.includes}"/>
+                    <srcfiles dir="${root.path}/src/${gat.source.path}/shared" includes="${update.includes}"/>
+                </uptodate>
+            </and>
+        </condition>
+    	
+    	<!-- Check if the ERT client needs to be rebuilt -->
+    	<condition property="ert.client.unchanged"> 
+            <and>
+            	<isset property="common.unchanged"/>
+                <isset property="commongwt.unchanged"/>
+            	<isset property="dashboard.root.unchanged"/>
+            	<isset property="ert.root.unchanged"/>
+            	<isset property="imageproperties.unchanged"/>
+                <uptodate targetfile="${root.path}/bin/${warfile.name}">
+                    <srcfiles dir="${root.path}/src/${ert.source.path}/client" includes="${update.includes}"/>
+                    <srcfiles dir="${root.path}/src/${ert.source.path}/shared" includes="${update.includes}"/>
+                </uptodate>
+            </and>
+        </condition>
+    	
+        <condition property="client.uptodate">
+            <and>
+                <isset property="dashboard.client.unchanged"/>
+            	<isset property="gat.client.unchanged"/>
+            	<isset property="ert.client.unchanged"/>
+            </and>
+        </condition>
+        
+    	<!-- Check if the Dashboard server needs to be rebuilt -->
+    	<condition property="dashboard.server.unchanged"> 
+            <and>
+            	<isset property="common.unchanged"/>
+                <isset property="commongwt.unchanged"/>
+                <isset property="domain.services.unchanged"/>
+                <isset property="monitor.services.unchanged"/>
+                <isset property="survey.services.unchanged"/>
+                <isset property="authoring.common.unchanged"/>
+                <isset property="lms.services.unchanged"/>
+                <isset property="services.unchanged"/> 
+                <isset property="import.unchanged"/> 
+                <isset property="export.unchanged"/> 
+            	<isset property="map.unchanged"/>
+            	<isset property="remote.unchanged"/>
+            	<isset property="dashboard.client.unchanged"/>
+                <uptodate targetfile="${root.path}/bin/${warfile.name}">
+                    <srcfiles dir="server" includes="${update.includes}"/>
+                </uptodate>
+            </and>
+        </condition>
+    	
+    	<!-- Check if the GAT server needs to be rebuilt -->
+    	<condition property="gat.server.unchanged"> 
+            <and>
+            	<isset property="common.unchanged"/>
+                <isset property="commongwt.unchanged"/>
+                <isset property="ums.unchanged"/>
+            	<isset property="domain.unchanged"/>
+            	<isset property="gateway.unchanged"/>
+            	<isset property="authoring.common.unchanged"/>
+            	<isset property="authoring.conversion.unchanged"/>
+            	<isset property="ums.db.unchanged"/> 
+            	<isset property="services.unchanged"/> 
+            	<isset property="import.unchanged"/> 
+            	<isset property="export.unchanged"/> 
+            	<isset property="map.unchanged"/>
+                <isset property="gat.client.unchanged"/>
+            	<uptodate targetfile="${root.path}/bin/${warfile.name}">
+                    <srcfiles dir="${root.path}/src/${gat.source.path}/server" includes="${update.includes}"/>
+                </uptodate>
+            </and>
+        </condition>
+    	
+    	<!-- Check if the ERT server needs to be rebuilt -->
+    	<condition property="ert.server.unchanged"> 
+            <and>
+            	<isset property="common.unchanged"/>
+                <isset property="commongwt.unchanged"/>
+            	<isset property="sensor.unchanged"/>
+            	<isset property="ums.unchanged"/>
+                <isset property="ert.client.unchanged"/>
+            	<uptodate targetfile="${root.path}/bin/${warfile.name}">
+                    <srcfiles dir="${root.path}/src/${ert.source.path}/server" includes="${update.includes}"/>
+                </uptodate>
+            </and>
+        </condition>
+        
+        <condition property="server.uptodate">
+            <and>
+                <isset property="dashboard.server.unchanged"/>
+            	<isset property="gat.server.unchanged"/>
+            	<isset property="ert.server.unchanged"/>
+            </and>
+        </condition>
+        
+        <uptodate property="war.unchanged" targetfile="${root.path}/bin/${warfile.name}">
+            <srcfiles dir="war" includes="${update.includes}"/>
+        </uptodate>
+        
+    	<!--
+    		The war is only up-to-date if:
+    		i. the includes files haven't changed in this package
+    		ii. the includes files haven't changed in the war directory
+    		iii. the server is up-to-date
+    	-->
+        <condition property="war.uptodate">
+            <and>
+                <isset property="war.unchanged"/>
+            	<isset property="server.uptodate"/>
+            	<isset property="upToDateWithVersionFile.ifSet"/>
+            </and>
+        </condition>
+    
+        <condition property="build.uptodate">
+            <and>
+                <isset property="client.uptodate"/>
+                <isset property="server.uptodate"/>
+                <isset property="war.uptodate"/>
+                <isset property="jsp.unchanged"/>
+            </and>
+        </condition>
+        
+        <!-- Debug message to show what is changed in the client
+        <echo message="Dashboard: Client Unchanged = ${dashboard.root.unchanged},${dashboard.client.unchanged},${common.unchanged},${commongwt.unchanged},${services.unchanged},${domain.services.unchanged},${monitor.services.unchanged},${survey.services.unchanged},${lms.services.unchanged}"/>
+        -->
+        
+    </target>
+    
+    <!--unless="war.uptodate"-->
+    <target name="copyDashboardLibs" unless="war.uptodate" description="Copy the third party libs required by the web app to WEB-INF/lib">
+        <echo message="Dashboard: Copy dashboard libs"/>
+        <mkdir dir="${war.path}"/>
+        <mkdir dir="${war.path}/WEB-INF"/>
+        <mkdir dir="${war.path}/WEB-INF/lib"/>
+	    		    	
+        <!-- Server Dependencies -->
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/jaxb_generated.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/protobuf_generated.jar" verbose="${useVerbose}" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/protobuf_generated_external_apps.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" flatten='true' verbose='true'>
+			<fileset dir="${root.path}/data/conversionWizard" includes="**/**/*generated.jar"/>
+		</copy>
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/jsonsimple/json_simple-1.1.jar" verbose="${useVerbose}"/>
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/commons-lang-2.4.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/commons-cli-1.2.jar" verbose="${useVerbose}" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/commons-io-2.3.jar" verbose="${useVerbose}" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/commons-fileupload-1.2.2.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/c3p0-0.9.1.2.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/mysql-connector-java.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/antlr-2.7.6.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/cglib-2.2.jar" verbose="${useVerbose}" /> 
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/commons-collections-3.1.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/dom4j-2.1.0.jar" verbose="${useVerbose}" />	    	
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/hibernate3.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/hibernate-jpa-2.0-api-1.0.0.Final.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/javassist-3.28.0-GA.jar" verbose="${useVerbose}" />	    	
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/jta-1.1.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate/junit.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/autoTutorWebService.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/vecmath.jar" verbose="${useVerbose}" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/open-dis_4.16.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/gson-2.3.1.jar" verbose="${useVerbose}" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/commons-compress-1.4.1.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/SuperCSV-with_src-1.52.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/orgjson.jar" verbose="${useVerbose}" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/snakeyaml/snakeyaml-1.16.jar" verbose="${userVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/zip4j-1.3.2/zip4j-1.3.2.jar" verbose="${userVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/gwt-d3-api-1.1.1.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/gwt-d3-js-3.5.3.jar" verbose="${useVerbose}" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/snakeyaml/snakeyaml-1.16.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/legacyJsonMessageCodec.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/protobuf/bin/protobuf-java-3.7.0.jar" verbose="${useVerbose}" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/protobuf/bin/protobuf-java-util-3.7.0.jar" verbose="${useVerbose}" />
+    	<!-- START: added for HAVEN integration #4914-->
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-all-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-alts-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-api-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-auth-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-benchmarks-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-census-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-context-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-core-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-grpclb-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-interop-testing-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-netty-1.39.0.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-netty-shaded-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-okhttp-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-protobuf-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-protobuf-lite-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-rls-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-services-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-stub-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-testing-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-testing-proto-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/grpc/grpc-xds-1.39.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/guava/failureaccess-1.0.1.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/guava/guava-30.1.1-jre.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/opencensus/opencensus-api-0.28.3.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/opencensus/opencensus-contrib-grpc-metrics-0.28.3.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/perfmark/perfmark-api-0.24.0.jar" verbose="${useVerbose}" />
+		<copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="true" >
+            <fileset dir="${root.path}/external/jdk-11/jaxb-ri/mod" includes="**/*"/>
+        </copy>
+    	<!-- END: added for HAVEN integration #4914-->
+		
+        <!-- Needed for jsp support.  NOTE:  Do NOT copy the entire jsp folder or the servlet-api-2.5.jar file into the WEB-INF/lib folder or the jsps will not work properly at runtime. -->
+        <!-- The following jetty/jsp jars are needed for the jsps to run jstl. -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/jetty-9.4.41/lib/apache-jsp/org.mortbay.jasper.apache-jsp-8.5.54.jar" verbose="${useVerbose}" />
+        
+        <!-- LTI related jars -->
+        <copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="false">
+            <fileset dir="${root.path}/external" includes="**/lti/basiclti-util-1.1.2_custom.jar"/>
+            <fileset dir="${root.path}/external" includes="**/lti/commons-lang3-3.1.jar"/>
+            <fileset dir="${root.path}/external" includes="**/lti/oauth-20100527.jar"/>
+            <fileset dir="${root.path}/external" includes="**/lti/oauth-provider-20100527.jar"/>
+            <fileset dir="${root.path}/external" includes="**/lti/signpost-commonshttp4-1.2.1.2.jar"/>
+            <fileset dir="${root.path}/external" includes="**/lti/signpost-core-1.2.1.2.jar"/>
+        </copy>
+
+        <!-- Nuxeo required jars -->
+        <copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="true" >
+            <fileset dir="${root.path}/external" includes="**/nuxeo/*.jar"/>
+        </copy>
+        
+    	<copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="true" >
+            <fileset dir="${root.path}/external" includes="**/lms/*.jar"/>
+        </copy>
+        
+        <copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="true" >
+            <fileset dir="${root.path}/external/derby" includes="**/*"/>
+        </copy>       
+        
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate-validator-4.2.0.Final/hibernate-validator-4.2.0.Final.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/hibernate-validator-4.2.0.Final/hibernate-validator-annotation-processor-4.2.0.Final.jar" verbose="${useVerbose}" />
+        
+        <copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="true" >
+            <!-- Redmine authentication -->
+        	<fileset dir="${root.path}/external" includes="**/redmine/*.jar"/>
+        	<fileset dir="${root.path}/external" includes="**/apache-xmlrpc-3.1.3/lib/commons-logging-1.1.jar"/>
+        	<fileset dir="${root.path}/external" includes="**/commons-codec-1.7.jar"/>
+        </copy>
+        
+	    <!-- GWT JARs -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk}/gwt-servlet.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk}/gwt-servlet-deps.jar" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk}/gwt-user.jar" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/gwtbootstrap/${gwtbootstrap.lib}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/gwtbootstrap/${gwtbootstrapextras.lib}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/gwt/extensions/gwt-maps-api-3.10.0-alpha-6.jar" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/gwt/extensions/gwt-ajaxloader-1.1.0.jar" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/gwt/extensions/gwt-slider-bar-1.0.jar" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/activemq/activemq-all-5.18.3.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/config/tools/dashboard/dashboard.properties" verbose="true" />
+		
+        <!-- Logging JARs -->
+        <copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="true" >
+            <fileset dir="${root.path}/external" includes="**/slf4j/*.jar" />
+            
+        </copy>
+        
+        <!-- GIFT JARs -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/gift-common.jar" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.authoringcomm.jar}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.authoring.conversion.jar}" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.commongwt.jar}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.services.jar}" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.domain.services.jar}" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.monitor.services.jar}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.survey.services.jar}" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.lms.services.jar}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.export.jar}" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.import.jar}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.map.jar}" verbose="true" />
+    	
+    	<!-- Server Dependencies -->
+        <copy todir="${war.path}/WEB-INF/lib" flatten="true" verbose="true">
+            <fileset dir="${root.path}/external/apache-poi-3.15" includes="*" />
+        </copy>
+        
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/redmine/httpclient-4.3.1.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/redmine/httpcore-4.3.jar" verbose="${useVerbose}" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/commons-codec-1.7.jar" verbose="${useVerbose}" />
+        
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/gift-domain.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/gift-ums-db.jar" verbose="true" />
+        
+        <!-- for Gateway module interop authoring logic -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/gift-gateway.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/jacob-loader.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/jdis.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/jacob/jacob.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/apache-xmlrpc-3.1.3/lib/ws-commons-util-1.0.2.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/apache-xmlrpc-3.1.3/lib/xmlrpc-client-3.1.3.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/apache-xmlrpc-3.1.3/lib/xmlrpc-common-3.1.3.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/apache-xmlrpc-3.1.3/lib/xmlrpc-server-3.1.3.jar" verbose="true" /> 
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/protobuf/bin/protobuf-java-3.7.0.jar" verbose="${useVerbose}" />
+              
+        <!-- GWT JARs -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/eventbinder-1.0.2.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/gwt-dispatch-1.2.0.jar" verbose="true" />
+        
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/guice-5.0.1/guice-5.0.1.jar"  verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/guice-5.0.1/guice-servlet-5.0.1.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/guice-5.0.1/javax.inject.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/guice-5.0.1/aopalliance.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/guice-5.0.1/gin-2.1.2.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/guice-5.0.1/guice-assistedinject-5.0.1.jar" verbose="true" />
+        
+        <copy todir="${war.path}/WEB-INF/lib" file="${gwt.sdk.extensions}/gwt-dnd-3.3.4.jar" verbose="true" />
+
+        <!-- GIFT JARs -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.shared.tutor.jar}" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.sensor.jar}" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.pedagogical.jar}" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.learner.jar}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.ums.jar}" verbose="true" />
+    	<copy todir="${war.path}/WEB-INF/lib" file="${root.path}/bin/${gift.remote.jar}" verbose="true" />
+    	
+    	<!-- JSON Viewer JavaScript library --> 
+        <copy todir="${war.path}/js" >
+             <fileset dir="${root.path}/external/json-viewer/src">
+                <include name="**" />    
+             </fileset>
+        </copy>
+
+    	<copy todir="${war.path}/images/dkf" >
+             <fileset dir="${images.path}/dkf" />
+        </copy>
+        <copy todir="${war.path}/images/transitions" >
+            <fileset dir="${images.path}/transitions" />
+        </copy>
+        <copy todir="${war.path}/images/course_tiles" >
+            <fileset dir="${images.path}/course_tiles" />
+        </copy>
+        
+        <!-- Copy images -->
+    	
+    	<!-- Copy images defined in images.properties file -->
+    	<!-- TODO: add uptodate check on images.properties file -->
+    	<property file="${root.path}/config/images.properties"/>
+    	<copy todir="${war.path}">
+    	    <fileset dir="${root.path}/src">
+    	    	<include name="${Organization}" />
+    	    	<include name="${Background}" />
+    	    	<include name="${System_Icon_Small}" />
+    	    	<include name="${Logo}" />
+    	    </fileset>
+    	</copy>
+    	
+    	<!-- copy the favorite icon file specified by the property to the war as 'favicon.ico' for Dashboard.html static reference --> 
+    	<copy tofile="${war.path}/images/favicon.ico" verbose="true">
+    		<fileset dir="${root.path}/src">
+    	    	<include name="${Favorite_Icon}" />
+    	    </fileset>    		
+    	</copy>
+    	
+        <copy todir="${war.path}/images">
+            <fileset dir="${images.path}">
+                <include name="edit.png" />
+            	<include name="invalid.png" />
+                <include name="help.png" />
+                <include name="arrowup.png" />
+                <include name="help/domainComparison.png" />
+                <include name="arrowdown.png" />
+                <include name="tinyloading.gif" />
+                <include name="Recommended.png"/>
+                <include name="NoRecommendation.png"/>
+                <include name="NotRecommended.png"/>
+                <include name="Unavailable.png"/>
+            	<include name="file.png"/>
+                <include name="folder.png"/>
+            	<include name="check_alt.png"/>
+            	<include name="star_green.png"/>
+            	<include name="errorIcon.png"/>
+            	<include name="ask.png"/>
+            	<include name="course_tiles/course_default_books.jpg" />
+            	<include name="course_tiles/course_loading.jpg"/>
+            	<include name="course_tiles/image_not_found.png" />
+            	<include name="PowerPoint.png" />
+            	<include name="VBS3.png" />
+				<include name="seSandbox_Logo.png" />
+				<include name="RIDE_Logo.png" />
+            	<include name="vmedic_icon.png" />
+            	<include name="ARES.png" />
+            	<include name="Excavator.png" />
+            	<include name="Unity.png"/>
+            	<include name="mobile-app.png"/>
+            	<include name="transitions/ta.png" />
+            	<include name="add_child.png" />
+                <include name="Alert.png" />
+                <include name="Alert-32.png" />
+                <include name="angle_select.png" />
+                <include name="backgrounds/failure.jpg" />
+                <include name="bell-solid.png" />
+                <include name="bolt-solid.png" />
+                <include name="check.png" />
+                <include name="clean.png" />
+                <include name="clean_disabled.png" />
+                <include name="clipboard_check.png" />
+                <include name="cogs-solid.png" />
+                <include name="confirm.png" />
+                <include name="create_button.png" />
+                <include name="help/mediaSemanticsFilesExample.png" />
+                <include name="help/learnerActionsScreenshot.png" />
+                <include name="help/corridor.png" />
+                <include name="help/linked_corridors.png" />
+                <include name="help/corridor_deadreckoning.PNG" />
+                <include name="help/corridor_terrainchanges.PNG" />
+                <include name="help/identifyPoints.PNG" />
+            	<include name="help/engageTargets.WeaponCone.PNG" />
+            	<include name="help/assignedSector.Params.PNG" />
+            	<include name="help/assignedSector.assessment.PNG" />
+                <include name="help/EnterArea.PNG" />
+            	<include name="help/RateOfFire.M4Increasing.PNG" />
+            	<include name="help/RateOfFire.M4NotCovering.PNG" />
+                <include name="help/muzzleFlag.png" />
+            	<include name="help/negligentDischarge.WeaponCone.PNG" />
+            	<include name="help/detectTargets.Parameters.png" />
+            	<include name="help/detectTargets.assessment.png" />
+            	<include name="help/FireTeamRateOfFireTable.PNG" />
+                <include name="totalTime.png" />
+                <include name="error.png" />
+                <include name="file-alt-solid.png" />
+                <include name="gavel-solid.png" />
+                <include name="icons.gif" />
+                <include name="icons/**" />
+                <include name="image_icon.png" />
+                <include name="info.png" />
+                <include name="info-32.png" />
+                <include name="instructions-36.png" />
+            	<include name="left_side_screen.png" />
+                <include name="loading.gif" />
+                <include name="lightbulb-regular.png" />
+                <include name="notify.png" />
+                <include name="pdf_icon.png" />
+                <include name="pencil_professor-64.png" />
+                <include name="preview_unavailable.png" />
+                <include name="preview_error.png" />
+                <include name="refresh_save.png" />
+                <include name="report.png" />
+            	<include name="right_side_screen.png" />
+                <include name="save.png" />
+                <include name="save_disabled.png" />
+                <include name="say.png" />
+                <include name="slideshow_icon.png" />
+                <include name="stop.png" />
+                <include name="transitions/lti.png" />
+                <include name="trashcan.png" />
+                <include name="trashcan_disabled.png" />
+                <include name="tree.png"/>
+                <include name="vibrate-phone.png" />
+                <include name="warn-32.png" />
+                <include name="warning.png" />
+                <include name="web_icon.png" />
+                <include name="youtube_icon.png" />
+				<include name="video_icon.png" />
+                <include name="pace_start.png" />
+                <include name="pace_end.png" />
+                <include name="area.png" />
+                <include name="timeline.png" />
+                <include name="map.png"/>
+                <include name="Engage.png"/>
+            	<include name="strategy.png" /> 
+            	<include name="icons/effort.png" />
+            	<include name="icons/stressed.png" />
+            </fileset>
+        </copy>
+    	
+        <!-- Copy over the Dashboard war directory to be part of the resulting war file -->
+        <copy todir="${war.path}" overwrite="true">
+            <fileset dir="war"/>
+        </copy>
+    	
+    	<!-- update the "_LATEST" string with the GIFT version name in the URL on the static webpage -->
+    	<replace file="${war.path}/help/generate_experiment_report_help.html" token="_LATEST" value="_${GIFT.name}"/>
+    	
+    	<!-- Copy over the GAT war directory to be part of the resulting war file -->
+        <copy todir="${war.path}">
+            <fileset dir="${root.path}/src/${gat.source.path}/war" />
+        </copy>
+    	
+    	<!-- Copy over the ERT war directory to be part of the resulting war file -->
+        <copy todir="${war.path}">
+            <fileset dir="${root.path}/src/${ert.source.path}/war" />
+        </copy>
+                
+        <!-- needed for jetty to serve docs to browser -->
+        <copy todir="${war.path}/docs">
+            <fileset dir="${root.path}/docs" >
+            <!-- Do not copy any files within the testing directory that contain a "~" character. 
+                These are temporary files that exist when the user has a document open. They do not need to be copied.
+                Without this excludes line, the build will fail because the temporary files are being used by another process. -->
+                <exclude name="testing/*~*" />  
+            </fileset>
+        </copy>
+        
+        <!-- Copy over the rabbitMQ jars -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/rabbitmq-java-client-bin-3.5.4/commons-cli-1.1.jar" verbose="true" />
+        <!-- Removed commons-io-1.2.jar because it was causing a NoSuchMethod Exception on FileUtils.writeStringToFile() when trying to downloading validation errors.
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/rabbitmq-java-client-bin-3.5.4/commons-io-1.2.jar" verbose="true" /> -->
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/rabbitmq-java-client-bin-3.5.4/junit.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/rabbitmq-java-client-bin-3.5.4/rabbitmq-client.jar" verbose="true" />
+        <copy todir="${war.path}/WEB-INF/lib" file="${root.path}/external/rabbitmq-java-client-bin-3.5.4/rabbitmq-client-tests.jar" verbose="true" />
+               
+    </target> 
+    
+    <target name="compileDashboardClient" depends="compileDashboardServer" unless="client.uptodate" description="Compile the client side gwt code and creates the war file">
+         <echo message="Dashboard: Compile dashboard client."/>
+        <mkdir dir="${war.path}"/>
+        <mkdir dir="${war.path}/WEB-INF"/>
+        <mkdir dir="${war.path}/WEB-INF/lib"/>
+    	
+    	<!-- determine which module to use - the dev one limits the number of user.agents -->
+    	<condition property="Dashboard-GWT-Module" value="Dashboard" else="DashboardDev">
+	        <isset property="build.release"/>
+	    </condition>
+    	
+    	<condition property="GAT-GWT-Module" value="GiftAuthoringTool" else="GiftAuthoringToolDev">
+            <isset property="build.release"/>
+        </condition> 
+    	
+    	<condition property="ERT-GWT-Module" value="EventReportTool" else="EventReportToolDev">
+            <isset property="build.release"/>
+        </condition>
+    	
+    	<!-- skip compiling the Dashboard client if it hasn't changed -->
+    	<condition property="Dashboard-Module-Package" value="" else="${package.name}.${Dashboard-GWT-Module}">
+            <isset property="dashboard.client.unchanged"/>
+        </condition>
+        
+    	<!-- skip compiling the GAT client if it hasn't changed -->
+        <condition property="GAT-Module-Package" value="" else="${gat.package.name}.${GAT-GWT-Module}">
+            <isset property="gat.client.unchanged"/>
+        </condition> 
+        
+    	<!-- skip compiling the ERT client if it hasn't changed -->
+        <condition property="ERT-Module-Package" value="" else="${ert.package.name}.${ERT-GWT-Module}">
+            <isset property="ert.client.unchanged"/>
+        </condition>
+    	
+    	<echo>Compiling GWT modules</echo>
+    	
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+            <classpath>
+                <pathelement location="${root.path}/src"/>
+                <path refid="gwtBuildClasspath"/>
+                <path refid="classpath"/>
+            	<pathelement location="${war.path}/WEB-INF/classes" />
+                <pathelement location="${war.path}/WEB-INF/lib/gift-common.jar"/>
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA.jar" />
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA-sources.jar" />
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrap.lib}"/>
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrapextras.lib}"/> 
+            </classpath>
+	        <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+            <jvmarg value="-Xmx1024M"/>
+            <arg line="-war"/>
+            <arg value="${war.path}"/>
+            <arg line="-logLevel"/>
+            <arg value="WARN"/>
+	        <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+            <arg line="${gwt.args}"/>
+            <arg value="${Dashboard-Module-Package}"/>
+        	<arg value="${GAT-Module-Package}"/>
+        	<arg value="${ERT-Module-Package}"/>
+        	
+        	<!-- improves compile time -->
+        	<arg value="-localWorkers" />
+        	<arg value="4" />
+        </java>
+    </target>
+ 	
+    
+    <!-- This is the list of jar files needed to compile the jsp files.  NOTE:  These should not be copied blindly into the web-inf/lib directory or the jsps will not run. -->
+    <path id="jettyJsp">
+        <fileset dir="${root.path}/external/jetty-9.4.41/lib/apache-jsp" includes="*.jar"/>
+    	<fileset dir="${root.path}/external/jetty-9.4.41/lib/apache-jstl" includes="*.jar"/>
+        <fileset dir="${root.path}/external/jetty-9.4.41/lib" includes="servlet-api-3.1.jar"/>
+    </path>
+    
+    <!-- define the jasper compiler that will be used to compile the jsps -->
+    <taskdef classname="org.apache.jasper.JspC" name="jasper2">
+      <classpath>
+          <path refid="jettyJsp"/>
+       </classpath>
+   </taskdef>
+   
+    <!-- Precompile task used to precompile the jsp files. This is a two step process.  First the jsp files
+         are compiled into java classes in a temporary folder.  Then the java classes are compiled into the web-inf/classes location.  
+         NOTE:  The JSPs need to be recompiled anytime the 'war' file is updated (server, client, copy dashboard libs).  Specifically if the web.xml file
+         is recopied into the build war file, then the jsp compiler must remerge the generated jsps into the build web.xml.  Otherwise
+         the jsps will not be included properly in the output web.xml.  
+         This is specified below by setting addWebXmlMappings="true".  The compiler will merge the build web.xml file with the additional
+         mappings that are generated by the compiled jsp files.
+         -->
+    <target name="precompileJsp" depends="copyDashboardLibs" description="precompile the server jsps" unless="build.uptodate">
+        <!-- Compile jsp files into java code first, then let those classes be compiled by the normal java compiler. -->
+        <echo message="Dashboard: Compile jsp files."/>
+        <!-- DEBUG messages to see the directories
+        <echo message="war directory: ${war.path}/WEB-INF"/>
+        <echo message="current directory: ${basedir}"</echo>
+        -->
+        
+        <mkdir dir="${war.path}"/>
+        <mkdir dir="${war.path}/WEB-INF"/>
+        <mkdir dir="${war.path}/WEB-INF/classes"/>
+        <mkdir dir="${war.path}/WEB-INF/temp_jspsrc"/>
+        
+        <!-- Copy the existing jsp files and web.xml into the build folder since the web.xml will get merged with additions by the jsp compiler.  The jsps need to
+             be copied back over since they get removed from the build war folder once the compilation is done to cleanup the war file before deployment. -->
+        <copy todir="${war.path}/WEB-INF" overwrite="true" >
+            <fileset dir="war/WEB-INF" includes="web.xml"/>
+            <fileset dir="war/WEB-INF" includes="*.jsp"/>
+        </copy>
+        
+        <jasper2
+             validateXml="false"
+             uriroot="${basedir}/${war.path}"
+             addWebXmlMappings="true"
+             webXmlFragment="${basedir}/${war.path}/WEB-INF/generated_web.xml"
+             outputDir="${basedir}/${war.path}/WEB-INF/temp_jspsrc" 
+             compilerSourceVM="1.5"
+             compilerTargetVM="1.5"
+             verbose="9"/>
+        
+        <!-- Compile the generated java files into the classes folder. -->
+        <echo message="Dashboard: Compile generated java files from jsp."/>
+        <javac srcdir="${war.path}/WEB-INF/temp_jspsrc" includes="**" encoding="utf-8"
+               destdir="${war.path}/WEB-INF/classes"
+               source="1.8" target="1.8" nowarn="true"
+               debug="true" debuglevel="lines,vars,source"
+               compiler="javac1.5"
+               failonerror="true"
+               includeDestClasses="false" includeAntRuntime="false">
+            
+            <classpath>
+                <path refid="jettyJsp" />
+            </classpath>
+            <compilerarg value="-Xlint"/>
+        </javac>
+        
+        <!-- create a touch file that has the timestamp on when the jsp files were last built.  This is used to see if a recompile of
+             the jsps are needed. -->
+        <touch file="${war.path}/WEB-INF/jspBuild"/>
+        
+        <!-- Cleanup the jsp files and any temporary jsp java src files. -->
+        <delete>
+            <fileset dir="${war.path}/WEB-INF">
+                <include name="*.jsp"/>
+            </fileset>
+        </delete>
+        <delete dir="${war.path}/WEB-INF/temp_jspsrc"/>
+        
+    </target>
+    
+    <target name="compileDashboardServer"  unless="server.uptodate" depends="copyDashboardLibs,precompileJsp" description="compile the server side gwt code">
+        <echo message="Dashboard: Compile server."/>
+        <mkdir dir="${war.path}"/>
+        <mkdir dir="${war.path}/WEB-INF"/>
+        <mkdir dir="${war.path}/WEB-INF/classes"/>
+    	
+    	<!-- skip compiling the Dashboard server if it hasn't changed -->
+        <condition property="Dashboard-src" value="" else="${root.path}/src/${source.path}">
+            <isset property="dashboard.server.unchanged"/>
+        </condition>
+        
+        <!-- skip compiling the GAT server if it hasn't changed -->
+        <condition property="GAT-src" value="" else="${root.path}/src/${gat.source.path}">
+            <isset property="gat.server.unchanged"/>
+        </condition> 
+        
+        <!-- skip compiling the ERT server if it hasn't changed -->
+        <condition property="ERT-src" value="" else="${root.path}/src/${ert.source.path}">
+            <isset property="ert.server.unchanged"/>
+        </condition>
+        
+        <javac includes="server/**, shared/**, client/**" encoding="utf-8"
+               destdir="${war.path}/WEB-INF/classes"
+               source="1.8" target="1.8" nowarn="true"
+               debug="true" debuglevel="lines,vars,source"
+               includeDestClasses="false" includeAntRuntime="false">
+        	
+        	<src>
+    		    <pathelement location="${Dashboard-src}" />
+                <pathelement location="${GAT-src}" />
+                <pathelement location="${ERT-src}" />
+        	</src>
+        	
+            <classpath>
+                <path refid="classpath" />
+                <path refid="gwtBuildClasspath" />
+                <pathelement location="${war.path}/WEB-INF/lib/gift-common.jar"/>
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrap.lib}"/>
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrapextras.lib}"/>
+                <pathelement location="${war.path}/WEB-INF/lib/basiclti-util-1.1.2_custom.jar"/>
+                <pathelement location="${war.path}/WEB-INF/lib/commons-lang3-3.1.jar"/>
+                <pathelement location="${war.path}/WEB-INF/lib/signpost-core-1.2.1.2.jar"/>
+            	<pathelement location="${war.path}/WEB-INF/lib/snakeyaml-1.16.jar"/>
+            	<pathelement location="${gwt.sdk}/validation-api-1.0.0.GA.jar" />
+            	<pathelement location="${gwt.sdk}/validation-api-1.0.0.GA-sources.jar" />
+            </classpath>
+            <compilerarg value="-Xlint"/>
+        </javac>
+        <copy todir="${war.path}/WEB-INF/classes/${source.path}">
+            <fileset dir="." excludes="**/*.java,war/**"/>
+        </copy>
+    	<copy todir="${war.path}/WEB-INF/classes/${gat.source.path}">
+            <fileset dir="${root.path}/src/${gat.source.path}" excludes="**/*.java,war/**" />
+        </copy>
+        <copy todir="${war.path}/WEB-INF/classes/${ert.source.path}">
+            <fileset dir="${root.path}/src/${ert.source.path}" excludes="**/*.java,war/**"/>
+        </copy>
+    </target>
+	
+	<target name="compileBatchJar" description="compile the GAT Batch JAR" depends="compileDashboardServer" if="build.server.required">
+	        <echo message="Compiling GAT Batch JAR"/>
+	            
+	        <!-- create jar -->
+	        <jar destfile="${root.path}/bin/${gat.batch.jar}" basedir="${war.path}/WEB-INF/classes"/>
+	       
+	    </target>
+       
+    <target name="compileCore" depends="copyDashboardLibs,compileDashboardServer,compileDashboardClient,compileBatchJar" unless="build.uptodate">
+    	<echo message="Dashboard: Compiling GIFT Dashboard"/>
+        <jar basedir="${war.path}" destfile="${root.path}/bin/${warfile.name}"/>
+    </target>
+    
+    <target name="compile" depends="checkForChanges,compileCore"/>
+		
+    <target name="clean">
+        <delete file="${root.path}/bin/${warfile.name}"/>
+        <delete dir="${war.path}"/>
+    </target>
+    
+    <target name="DevelopmentMode" depends="compile" description="Run the web app in dev mode">
+    	
+    	<condition property="Dashboard-GWT-Module" value="Dashboard" else="DashboardDev">
+            <isset property="build.release"/>
+        </condition>
+        
+        <condition property="GAT-GWT-Module" value="GiftAuthoringTool" else="GiftAuthoringToolDev">
+            <isset property="build.release"/>
+        </condition>
+    	
+    	<condition property="ERT-GWT-Module" value="EventReportTool" else="EventReportToolDev">
+            <isset property="build.release"/>
+        </condition>
+    	
+    	<!-- Increase heap size allocated to the Dev Server if running using 64-bit Java -->
+    	<condition property="dev.memory.max" value="4096m" else="1024m">
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+        </condition>
+    	
+        <java failonerror="true" fork="true" maxmemory="${dev.memory.max}" classname="com.google.gwt.dev.DevMode" dir="${root.path}">
+            <classpath>
+            	<pathelement location="${root.path}/src"/>
+                <path refid="gwtBuildClasspath"/>
+                <path refid="classpath"/>
+                <pathelement location="${war.path}/WEB-INF/classes" />
+                <pathelement location="${war.path}/WEB-INF/lib/gift-common.jar"/>
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA.jar" />
+                <pathelement location="${gwt.sdk}/validation-api-1.0.0.GA-sources.jar" />
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrap.lib}"/>
+                <pathelement location="${war.path}/WEB-INF/lib/${gwtbootstrapextras.lib}"/>
+            	<pathelement location="${root.path}/external/lms/joda-time-2.9.9.jar"/>
+                <pathelement location="${root.path}/config/tools/dashboard"/> 
+            </classpath>
+        	
+        	<!-- 
+        	   Don't launch the default GWT Dev Mode server, since differences in its internal Jetty
+        	   instance can conflict with the GAS's normally Jetty server log. Instead, the GAS should 
+        	   be launched normally alongside the dev mode process
+        	-->
+        	<arg line="-noserver"/>
+        	
+        	<!-- 
+        	   Set the server's bind address to 0.0.0.0 so that either the IP of the host machine
+        	   or localhost can be used to access it. 0.0.0.0 resolves to all IPv4 addresses on the
+        	   local machine.
+        	 -->
+        	<arg value="-bindAddress"/>
+        	<arg value="0.0.0.0"/>
+        	
+        	<!--
+               Set the port that the GWT code server should run on. This acts as the host for the 
+               source maps that are used to debug client-side code.
+               
+               By default, the code server uses port 9876, but we are explicitly changing it to a
+               different port because we have multiple servers that we may want to use dev mode with,
+               so assigning a unique code server port to each allows us to use dev mode with
+               multiple servers simultaneously.
+               
+               If the port below conflicts with another application on your machine, the code server
+               port can be freely changed to any open port without any negative effects on the code server.
+            -->
+        	<arg value="-codeServerPort"/>
+        	<arg value="8081"/>
+        	
+        	<!-- Set the port that the running GAS server can be reached from -->
+        	<arg value="-port"/>
+        	<arg value="8080"/>
+        	
+        	<!-- Allow either the Dashboard or ERT web pages to be selected from the dev window -->
+            <arg value="-startupUrl"/>
+            <arg value="dashboard/Dashboard.html"/>
+        	<arg value="-startupUrl"/>
+        	<arg value="dashboard/EventReportTool.html"/> 
+        	
+            <arg line="-war"/>
+            <arg value="${war.root.rel.path}"/>
+            
+	        <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+            <arg line="${gwt.args}"/>
+        	<arg value="${package.name}.${Dashboard-GWT-Module}"/>
+        	<arg value="${gat.package.name}.${GAT-GWT-Module}"/>
+        	<arg value="${ert.package.name}.${ERT-GWT-Module}"/>
+        	
+        	<!-- improves compile time -->
+		<!-- 7/9/14 
+			Including the following two lines results in a BUILD FAILED message when executing this target with Ant.
+			The message states that "localWorkers" is an unknown argument.
+		
+        	<arg value="-localWorkers" />
+        	<arg value="4" />
+		-->
+		
+        </java>
+    </target>
+</project>

@@ -1,0 +1,51 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <ui:style>
+       .bookmarkTextBox{
+            position: absolute;
+            right: 0px;
+            top: 100%;
+            display: flex;
+            padding: 3px;
+            background-color: white;
+            border: 1px solid #ccc;
+        }
+        .bookmarkPanel{
+            position: relative;
+            z-index: 20; /* Needed to show text box below header */
+        }
+        .bookmarkSave{
+            padding: 0px;
+            width: 40px;
+        }
+    </ui:style>
+     <g:FlowPanel  addStyleNames='{style.bookmarkPanel}' ui:field='bookmarkPanel'>
+     	 <b:Button ui:field="enterGestureBookmarkHeaderButton" visible="false" type="LINK" icon='SIGN_IN' addStyleNames="gameMasterHeaderButton">
+         	Enter Gesture Mode
+         </b:Button> 
+         <g:FlowPanel addStyleNames='{style.bookmarkTextBox}' visible='false' ui:field='bookmarkEntryPanel'>
+             <b:TextBox ui:field="globalBookmarkCommentText" placeholder="Bookmark Text"></b:TextBox>
+             <b:Tooltip title='Save this bookmark'>
+                 <b:Button icon='PAPERCLIP' ui:field="saveGlobalBookmarkTextButton" addStyleNames="{style.bookmarkSave}, gameMasterHeaderButton"/>
+             </b:Tooltip>
+         </g:FlowPanel>
+         <b:ButtonGroup>
+             <b:Button ui:field="newGlobalBookmarkButton" dataToggle="DROPDOWN" type="LINK" icon='BELL' toggleCaret="false" addStyleNames="gameMasterHeaderButton">
+                 Create Note
+             </b:Button> 
+             <b:DropDownMenu ui:field="globalBookmarkDropdownMenu" pull='RIGHT'>
+                 <b:AnchorListItem ui:field="recordAudioGlobalBookmarkButton">
+                     Record Audio
+                 </b:AnchorListItem>
+                 <b:AnchorListItem ui:field="provideTextBookmarkButton">
+                     Provide Text
+                 </b:AnchorListItem>
+                 <b:AnchorListItem ui:field="recordGestureBookmarkButton">
+                     Enter Gesture Mode
+                 </b:AnchorListItem>
+             </b:DropDownMenu>
+         </b:ButtonGroup>
+     </g:FlowPanel>
+</ui:UiBinder> 

@@ -1,0 +1,26 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "InitializeDomainSessionRequestProto";
+
+import "WebClientInformation.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message is used to signify the domain session is beginning. */
+message InitializeDomainSessionRequest {
+	/* The domain course file name being used for this domain session. */
+	google.protobuf.StringValue course_file_name = 1;
+	
+	/* The unique identifier used to construct the Tutor Topic used for sending 
+	   messages from a single domain's embedded applications to the Domain Module. */
+	google.protobuf.StringValue topic_id = 2;
+	
+	/* The tutor client information for this domain session. */
+	WebClientInformation client_info = 3;
+}

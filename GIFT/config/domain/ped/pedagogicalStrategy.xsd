@@ -1,0 +1,1643 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema 	xmlns:fg="http://www.FGolubov.com/XMLEditor"
+			targetNamespace="http://GIFT.com/pedagogicalStrategy" 
+			xmlns="http://GIFT.com/pedagogicalStrategy" 
+			elementFormDefault="qualified"
+			xmlns:common="http://GIFT.com/common" 
+			version="11.0"
+			xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+            jaxb:version="1.0"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:import schemaLocation="../common.xsd" 
+               namespace="http://GIFT.com/common"/>
+			   
+    <xs:element name="LearnerStateTransitionEnum">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Enum State Transition"> 
+				<fg:message>Represents a change in a learner state attribute enum value. E.g Arousal</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="previous" minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info message="Previous State" editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeValueDialog"> 
+							<fg:message>The previous learner state attribute value for a learner state attribute.</fg:message>
+							<fg:message>If the 'previous' value is not provided it will be treated as a wild card.  In this case the 'current' value must be provided.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+							<fg:param name="attributeValueNodeName">previous</fg:param>
+                            <fg:param name="attributeTypeNodeName">attribute</fg:param>
+							<fg:param name="allowAnyValue">false</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="current" minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info message="Current State" editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeValueDialog"> 
+							<fg:message>The current learner state attribute value for a learner state attribute.</fg:message>
+							<fg:message>If the 'current' value is not provided it will be treated as a wild card.  In this case the 'previous' value must be provided.</fg:message>
+							<fg:message>Refer to "Help" for more information.</fg:message>
+							<fg:param name="attributeValueNodeName">current</fg:param>
+                            <fg:param name="attributeTypeNodeName">attribute</fg:param>
+							<fg:param name="allowAnyValue">false</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+				<xs:element name="concept" minOccurs="0">
+					<xs:annotation>
+                        <xs:appinfo>
+							<fg:node-info message="Concept" > 
+								<fg:message>Contains a course concept that is associated with the learner state attribute.  E.g. 'Knowledge' learner state attribute with 'suppress OPFOR with well-aimed fire' course concept.</fg:message>
+							</fg:node-info> 
+						</xs:appinfo>
+                    </xs:annotation>
+					<xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="1" />
+                        </xs:restriction>
+                    </xs:simpleType>
+				</xs:element>
+            </xs:sequence>
+            <xs:attribute name="attribute" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+					<fg:node-info message="Learner State Attribute" editor-class="mil.arl.gift.tools.authoring.common.custnodes.LearnerAttributeTypeDialog"> 
+						<fg:message>The learner state attribute to analyze.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="doNothingInstStrategy">
+        <xs:annotation>
+            <xs:appinfo>
+				<fg:node-info exposed="true"
+					 message="Do-Nothing Strategy"> 
+					<fg:message>An instructional strategy that has no implications on the tutor or learner.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+			<xs:sequence>
+                <xs:element ref="strategyHandler" />
+				<xs:element minOccurs="0" ref="delayAfterStrategy"/>
+			</xs:sequence>
+		</xs:complexType>
+    </xs:element>
+	<xs:element name="doNothingTactic">
+        <xs:annotation>
+            <xs:appinfo>
+				<fg:node-info exposed="true"
+					 message="Do-Nothing Tactic"> 
+					<fg:message>An instructional strategy tactic that has no implications on the tutor or learner.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+			<xs:complexContent>
+				<xs:restriction base="xs:anyType"/>
+			</xs:complexContent>
+		</xs:complexType>
+    </xs:element>
+    <xs:element name="instructionalIntervention">
+        <xs:annotation>
+            <xs:appinfo>
+				<fg:node-info exposed="true"
+					message="Instructional Intervention Instructional Strategy"> 
+					<fg:message>Contents of an instructional intervention used by the Domain module.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="strategyHandler" />
+				<xs:element minOccurs="0" ref="delayAfterStrategy"/>
+                <xs:element ref="feedback" />
+                <xs:element name="mandatory" minOccurs="0" default="false">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Mandatory"> 
+                                <fg:message>Flag indicating if the activity should be processed automatically regardless of the OC's auto state.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:boolean" />
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+			<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info exposed="true"
+							 message="Stress Category"> 
+							<fg:message>The type of stress category for this inject.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>	
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="delayAfterStrategy">
+		<xs:annotation>
+            <xs:appinfo>
+				<fg:node-info exposed="true"
+					message="Strategy Wait Time"> 
+					<fg:message>Amount of time to wait in seconds before executing the next strategy activity.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+        </xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="duration">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal">
+							<xs:minInclusive value="0.01"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>					
+	</xs:element>
+    <xs:element name="feedback">
+        <xs:complexType>
+			<xs:sequence>
+            <xs:choice>
+				<xs:element ref="message" />
+                <xs:element ref="audio" />
+                <xs:element ref="mediaSemantics" />
+				<xs:element name="file">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="HTML">					
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableFileSelectionDialog" exposed="true" message="HTML File">
+											<fg:message>An html file containing the feedback content.</fg:message>
+											<fg:param name="title">Select an HTML file</fg:param>
+											<fg:param name="extension">htm|html</fg:param>
+											<fg:param name="information">Please select an HTML file that contains the feedback content.</fg:param>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="6"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>					
+				</xs:element>
+            </xs:choice>
+				<xs:element name="AffectiveFeedbackType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog"  exposed="true" message="Affective Feedback"> 
+								<fg:message>The Affective type for this feedback which can be used to deliver the ideal feedback for the current affective state of the learner.</fg:message>
+								<fg:param name="title">Affective Feedback Type</fg:param>
+								<fg:param name="enumClass">mil.arl.gift.common.enums.AffectiveFeedbackEnum</fg:param>
+								<fg:param name="information">Please select the enumerated affective type that describes this feedback from the list provided.</fg:param>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>															
+				</xs:element>
+				<xs:element name="FeedbackSpecificityType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog"  exposed="true" message="Feedback Specificity"> 
+								<fg:message>The specificity type for this feedback which can be used to deliver the ideal feedback for the current learner state.</fg:message>
+								<fg:param name="title">Feedback Specificity Type</fg:param>
+								<fg:param name="enumClass">mil.arl.gift.common.enums.FeedbackSpecificityEnum</fg:param>
+								<fg:param name="information">Please select the enumerated specificity type that describes this feedback from the list provided.</fg:param>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>															
+				</xs:element>
+                <xs:element name="FeedbackDuration" minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Feedback Duration"> 
+                                <fg:message>Approximate amount of time (in seconds) that should be spent before presenting the next strategy activity.</fg:message>
+                            </fg:node-info> 
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                            <xs:minInclusive value="0.01"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+				<xs:element minOccurs="0" maxOccurs="unbounded" ref="teamRef"/>
+			</xs:sequence>
+        </xs:complexType>
+    </xs:element> 
+	<xs:element name="ToObserverController">
+	   <xs:annotation>
+		   <xs:appinfo>
+				<fg:node-info exposed="true" message="Send to the observer controller"> 
+				   <fg:message>Option to send this feedback to the observer controller</fg:message>
+			   </fg:node-info>
+		   </xs:appinfo>
+	   </xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="value" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Observer Controller">
+							<fg:message>The observer controller send this message to</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InTutor">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TextEnhancement" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog"  exposed="true" message="Text Enhancement"> 
+								<fg:message>Configures how the feedback text is rendered in the Tutor.</fg:message>
+								<fg:message>Default: Beep and Flash</fg:message>
+								<fg:param name="title">Feedback Text Enhancement</fg:param>
+								<fg:param name="enumClass">mil.arl.gift.common.enums.TextFeedbackDisplayEnum</fg:param>
+								<fg:param name="information">Please select the enumerated way to enhance feedback text in the Tutor from the list provided.</fg:param>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>															
+				</xs:element>
+				<xs:element name="MessagePresentation" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.ConfigurableEnumSelectionDialog"  exposed="true" message="Message Presentation"> 
+								<fg:message>Configures how the feedback message is presented in the Tutor.</fg:message>
+								<fg:message>Default: both text and avatar</fg:message>
+								<fg:param name="title">Feedback Message Presentation</fg:param>
+								<fg:param name="enumClass">mil.arl.gift.common.enums.MessageFeedbackDisplayModeEnum</fg:param>
+								<fg:param name="information">Please select the enumerated way to present feedback message in the Tutor from the list provided.</fg:param>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="1"/>
+						</xs:restriction>	
+					</xs:simpleType>							
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>	
+    <xs:element name="audio">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Feedback Audio"> 
+				<fg:message>The audio file to play during a domain session for feedback purposes to the learner.</fg:message>
+				<fg:message>Note: In order to support playing the audio file across all browsers the following file types are needed.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ToObserverController" minOccurs="0"/>
+                <xs:element name="OGGFile" minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info 
+                    message="OGG Audio File"
+                    editor-class="mil.arl.gift.tools.authoring.dat.custnodes.OGGFileSelectionDialog"> 
+							<fg:message>Feedback audio file in OGG format.</fg:message>
+							<fg:param name="title">Select OGG Audio file</fg:param>
+							<fg:param name="extension">ogg</fg:param>
+							<fg:param name="information">Please select an ogg audio file that contains the appropriate feedback.</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="MP3File">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info exposed="true"
+                    message="MP3 Audio File"
+                    editor-class="mil.arl.gift.tools.authoring.dat.custnodes.ConfigurableFileSelectionDialog"> 
+							<fg:message>Feedback audio file in MP3 format.</fg:message>
+							<fg:param name="title">Select MP3 Audio file</fg:param>
+							<fg:param name="extension">mp3</fg:param>
+							<fg:param name="information">Please select an mp3 audio file that contains the appropriate feedback.</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mediaSemantics">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Media Semantics"> 
+				<fg:message>Specify the Media Semantics Character builder project information that contains the pre-runtime rendered  logic for a static message.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Avatar">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info exposed="true"
+								message="Avatar File"
+								editor-class="mil.arl.gift.tools.authoring.dat.custnodes.ConfigurableFileSelectionDialog"> 
+							<fg:message>The avatar file created by a Media Semantics Character builder project.</fg:message>
+							<fg:param name="title">Select the Media Semantics Character Avatar file</fg:param>
+							<fg:param name="extension">htm|html</fg:param>
+							<fg:param name="information">Please select the Media Semantics Character Avatar file that contains the appropriate, pre-runtime rendered feedback.</fg:param>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="6" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="key-name">
+                    <xs:annotation>
+                        <xs:appinfo>
+						<fg:node-info exposed="true"
+                    message="Avatar Message Key Name"
+                    editor-class="mil.arl.gift.tools.authoring.dat.custnodes.MediaSemanticsAvatarMessageKeyName"> 
+							<fg:message>Avatar message key name value that uniquely identifies a message the avatar has logic to render.</fg:message>
+							<fg:message>Note: this is case sensitive and must match the Character Builder name value for this action.</fg:message>
+						</fg:node-info> 
+					</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="5" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+				<xs:element ref="message" minOccurs="0" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="message">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info exposed="true" message="Feedback Message"> 
+					<fg:message>The message to display to the learner during a course for feedback purposes.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="content">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Message Content"> 
+								<fg:message>You can format your message being displayed on the tutor using HTML syntax as long as you replace ASCII characters (&quot;,&lt;,&gt;,&amp;) with their equivalent 'entity name' values (http://www.w3schools.com/html/html_entities.asp).</fg:message>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="2" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element minOccurs="0" name="DisplaySessionProperties">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true" message="Display Session Properties">
+								<fg:message>A set of properties that can be used to modify how a piece of content is displayed based on a domain session's internal state.</fg:message>
+							</fg:node-info>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="requestUsingSessionState" type="common:booleanEnum"></xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Delivery" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info message="Message Delivery"> 
+								<fg:message>Define where the message text will be delivered, as well as any additional message enhancements.</fg:message>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+						    <xs:element ref="ToObserverController" minOccurs="0"/>
+							<xs:element ref="InTutor" minOccurs="0"/>
+							<xs:element name="InTrainingApplication" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="enabled" type="common:booleanEnum" default="true"/>
+										<xs:element name="MobileOption" minOccurs="0">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info exposed="true" message="Mobile Options"> 
+														<fg:message>Configures options for mobile devices.</fg:message>
+													</fg:node-info> 
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+											   <xs:sequence>
+												   <xs:element name="Vibrate">
+													   <xs:annotation>
+														   <xs:appinfo>
+																<fg:node-info exposed="true" message="Vibrate"> 
+																   <fg:message>Option to enable vibrate on mobile devices</fg:message>
+															   </fg:node-info>
+														   </xs:appinfo>
+													   </xs:annotation>
+													   <xs:simpleType>
+															<xs:restriction base="xs:boolean">
+															</xs:restriction>
+													   </xs:simpleType>
+												   </xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>							
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="scenarioAdaptation">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Scenario Adaptation Instructional Strategy"> 
+				<fg:message>Contents of a Scenario Adaptation.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="strategyHandler" />
+				<xs:element minOccurs="0" ref="delayAfterStrategy"/>
+                <xs:element ref="environmentAdaptation" />
+				<xs:element name="description" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<fg:node-info exposed="true"
+								 message="Description"> 
+								<fg:message>A short description about this scenario adaptation that can be used for display purposes. E.g. "Move vehicles to rally point alpha"</fg:message>
+							</fg:node-info> 
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="0" />
+                        </xs:restriction>
+                    </xs:simpleType>
+				</xs:element>
+                <xs:element name="mandatory" minOccurs="0" default="false">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <fg:node-info exposed="true" message="Mandatory"> 
+                                <fg:message>Flag indicating if the activity should be processed automatically regardless of the OC's auto state.</fg:message>
+                            </fg:node-info>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:boolean" />
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="environmentAdaptation">
+        <xs:annotation>
+            <xs:appinfo>
+				<fg:node-info exposed="true"
+					 message="Environment Adaptation"> 
+					<fg:message>A type of scenario adaptation which causes a change in the scenario's environment.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+				<xs:choice>
+					<xs:element name="overcast">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="scenarioAdaptationDuration" minOccurs="0"/>
+							</xs:sequence>
+							<xs:attribute name="value"								  
+									  use="required" >
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info exposed="true"
+												 message="Overcast density"> 
+												<fg:message>The range of values originally came from VBS</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal">
+											<xs:minInclusive value="0.0"/>
+											<xs:maxInclusive value="1.0"/>
+										</xs:restriction>
+									</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" fixed="Environmental" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<jaxb:property fixedAttributeAsConstantProperty="true" />
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="fog">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="scenarioAdaptationDuration" minOccurs="0"/>
+								<xs:element name="color" minOccurs="0">
+									<xs:complexType>
+										<xs:attribute name="red"
+										  use="required" >
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="255"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="green"
+										  use="required" >
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="255"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+										<xs:attribute name="blue"
+										  use="required" >
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="255"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>				
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="density"
+									  use="required" >
+										<xs:annotation>
+											<xs:appinfo>
+												<fg:node-info exposed="true"
+													 message="Fog density"> 
+													<fg:message>The range of values originally came from VBS</fg:message>
+												</fg:node-info> 
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal">
+												<xs:minInclusive value="0"/>
+												<xs:maxInclusive value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" fixed="Environmental" use="optional">
+									<xs:annotation>
+										<xs:appinfo>
+											<jaxb:property fixedAttributeAsConstantProperty="true" />
+											<fg:node-info exposed="true"
+												 message="Stress Category"> 
+												<fg:message>The type of stress category for this adaptation.</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="rain">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="scenarioAdaptationDuration" minOccurs="0"/>
+							</xs:sequence>
+							<xs:attribute name="value"
+									  use="required" >
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info exposed="true"
+												 message="Rain density"> 
+												<fg:message>The range of values originally came from VBS</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal">
+											<xs:minInclusive value="0"/>
+											<xs:maxInclusive value="1"/>
+										</xs:restriction>
+									</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" fixed="Environmental" use="optional">
+									<xs:annotation>
+										<xs:appinfo>
+											<jaxb:property fixedAttributeAsConstantProperty="true" />
+											<fg:node-info exposed="true"
+												 message="Stress Category"> 
+												<fg:message>The type of stress category for this adaptation.</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="timeOfDay">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice>
+									<xs:element name="midnight">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:restriction base="xs:anyType"/>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="dawn">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:restriction base="xs:anyType"/>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="midday">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:restriction base="xs:anyType"/>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="dusk">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:restriction base="xs:anyType"/>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>							
+								</xs:choice>
+							</xs:sequence>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" fixed="Environmental" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<jaxb:property fixedAttributeAsConstantProperty="true" />
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="createActors">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info exposed="true"
+									 message="Create Actors"> 
+									<fg:message>Used to create a single actors in the training environment.</fg:message>
+								</fg:node-info> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="common:coordinate"/>
+								<xs:element name="heading" minOccurs="0">
+									<xs:complexType>
+										<xs:attribute name="value"
+											use="required" >
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="360"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="type">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Actor Type"> 
+												<fg:message>An identifier for the type of actor to create.  For VBS this can come from the vbs_to_lvc.config file (e.g. vbs2_iq_militia_01_aks74u).</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="side">
+									<xs:complexType>
+										<xs:choice>
+											<xs:element name="civilian">
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:restriction base="xs:anyType"/>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="blufor">
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:restriction base="xs:anyType"/>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="opfor">
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:restriction base="xs:anyType"/>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="TypeCategory" type="common:ActorTypeCategoryEnum" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Actor Type Category"> 
+												<fg:message>The category of the actor type. Can be used for additional logic when creating this actor.  If not provided, a category will be assumed (e.g. VBS implementation assumes Person)</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="actorName" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Actor Name"> 
+												<fg:message>The name of the actor to create.  Useful for when you want to remove the specific actor created, therefore it should be unique.  If not provided, the same default value is used for all actors created without a name specified.</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="removeActors">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info exposed="true"
+									 message="Remove Actors"> 
+									<fg:message>Used to remove one actor from the training environment.</fg:message>
+								</fg:node-info> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice>
+									<xs:element name="actorName">
+										<xs:annotation>
+											<xs:appinfo>
+												<fg:node-info message="Actor Name"> 
+													<fg:message>The name of the actor to remove.</fg:message>
+												</fg:node-info> 
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:minLength value="1" />
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="location">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element ref="common:coordinate"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+								<xs:element name="TypeCategory" type="common:ActorTypeCategoryEnum" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Actor Type Category"> 
+												<fg:message>The category of the actor type. Can be used for additional logic when removing this actor.  If not provided, a category will be assumed (e.g. VBS implementation assumes Person)</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="teleport">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info exposed="true"
+									 message="Teleport"> 
+									<fg:message>Used to move an existing actor referenced in the team organization to another location in the training environment.</fg:message>
+								</fg:node-info> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="common:coordinate"/>
+								<xs:element name="heading" minOccurs="0">
+									<xs:complexType>
+										<xs:attribute name="value"
+											use="required" >
+											<xs:simpleType>
+												<xs:restriction base="xs:integer">
+													<xs:minInclusive value="0"/>
+													<xs:maxInclusive value="360"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="teamMemberRef" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="entityMarking">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Entity Marking">
+															<fg:message>A entity marking such as a URN Marking that can be used to uniquely identify a playable entity in a training application.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:minLength value="1"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="value" use="required">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Team Reference">
+														<fg:message>A team member name that is part of the team organization.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="fatigueRecovery">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="teamMemberRef">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="entityMarking">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Entity Marking">
+															<fg:message>A entity marking such as a URN Marking that can be used to uniquely identify a playable entity in a training application.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:minLength value="1"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="value" use="required">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Team Reference">
+														<fg:message>A team member name that is part of the team organization.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="rate"
+								use="required" >
+								<xs:simpleType>
+									<xs:restriction base="xs:decimal">
+										<xs:minInclusive value="0"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>	
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>							
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="endurance">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="teamMemberRef">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="entityMarking">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Entity Marking">
+															<fg:message>A entity marking such as a URN Marking that can be used to uniquely identify a playable entity in a training application.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:minLength value="1"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="value" use="required">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Team Reference">
+														<fg:message>A team member name that is part of the team organization.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="value"
+							  use="required" >
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Endurance setting"> 
+											<fg:message>The range of values originally came from VBS</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:decimal">
+										<xs:minInclusive value="0"/>
+										<xs:maxInclusive value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="highlightObjects">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info exposed="true"
+									 message="Highlight Objects"> 
+									<fg:message>Used to highlight objects such as a location or an existing actor in the training environment.</fg:message>
+								</fg:node-info> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:choice>
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info exposed="true"
+												 message="Type of object"> 
+												<fg:message>The type of object to highlight, location or actor.</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:element name="locationInfo">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element ref="common:coordinate" minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<fg:node-info message="Location(s)">
+																<fg:message>This is the location to highlight.  
+																Should only be used during runtime to transmit the coordinates populated from 
+																the place of interest reference.</fg:message>
+															</fg:node-info>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="PlaceOfInterestRef" use="required">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Place Of Interest reference">
+															<fg:message>The name of an authored place of interest (point).  
+															Required during authoring and used during runtime to extract the coordinates for 
+															the specific place of interest and place them in the coordinates objects.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:minLength value="1"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="teamMemberRef">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="entityMarking">
+													<xs:annotation>
+														<xs:appinfo>
+															<fg:node-info message="Entity Marking">
+																<fg:message>A entity marking such as a URN Marking that can be used to uniquely identify a playable entity in a training application.</fg:message>
+															</fg:node-info>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:minLength value="1"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+											</xs:sequence>
+											<xs:attribute name="value" use="required">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Team Reference">
+															<fg:message>A team member name that is part of the team organization.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:minLength value="1"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:attribute>
+										</xs:complexType>
+									</xs:element>
+								</xs:choice>
+								<xs:element name="offset" minOccurs="0">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="right" minOccurs="0" type="xs:decimal">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info exposed="true"
+															 message="Offset Right"> 
+															<fg:message>Offset in meters to the right of the object.  A negative value is to the left.</fg:message>
+														</fg:node-info> 
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="front" minOccurs="0" type="xs:decimal">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info exposed="true"
+															 message="Offset Front"> 
+															<fg:message>Offset in meters to the front of the object.  A negative value is behind.</fg:message>
+														</fg:node-info> 
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+											<xs:element name="up" minOccurs="0" type="xs:decimal">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info exposed="true"
+															 message="Offset Up"> 
+															<fg:message>Offset in meters above the object.  A negative value is below.</fg:message>
+														</fg:node-info> 
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="color" minOccurs="0">
+									<xs:complexType>
+										<xs:choice>
+											<xs:element name="red">
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:restriction base="xs:anyType"/>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="green">
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:restriction base="xs:anyType"/>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="blue">
+												<xs:complexType>
+													<xs:complexContent>
+														<xs:restriction base="xs:anyType"/>
+													</xs:complexContent>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>											
+									</xs:complexType>				
+								</xs:element>
+								<xs:element name="duration" minOccurs="0">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info exposed="true" message="Highlight Duration"> 
+												<fg:message>How long in seconds the highlight should be shown.</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:integer">
+											<xs:minExclusive value="0"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="name" use="required">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info message="Unique name of highlight">
+											<fg:message>This is needed for removing the highlighting.</fg:message>
+										</fg:node-info>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:minLength value="1"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>	
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>							
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="removeHighlightOnObjects">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info exposed="true"
+									 message="Remove Highlight on Objects"> 
+									<fg:message>Used to remove a previously created highlight on an object such as a location or an existing actor in the training environment.</fg:message>
+								</fg:node-info> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="highlightName">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Unique name of highlight">
+												<fg:message>The name of the highlight to remove where the name was given when the highlight was created.</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>	
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="createBreadcrumbs">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info exposed="true"
+									 message="Create Breadcrumbs"> 
+									<fg:message>Used to place one or more markers in the environment for a learner to follow.</fg:message>
+								</fg:node-info> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="teamMemberRef" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info message="Team Member(s)">
+												<fg:message>This is 'who' will see the breadcrumb(s).</fg:message>
+											</fg:node-info>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="entityMarking">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Entity Marking">
+															<fg:message>A entity marking such as a URN Marking that can be used to uniquely identify a playable entity in a training application.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:minLength value="1"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="value" use="required">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Team Reference">
+														<fg:message>A team member name that is part of the team organization.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="locationInfo">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="common:coordinate" maxOccurs="unbounded" minOccurs="0">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Location(s)">
+															<fg:message>This is the breadcrumb locations to see.  
+															A path of breadcrumbs is more than one coordinate.  
+															Should only be used during runtime to transmit the coordinates populated from 
+															the place of interest reference.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="PlaceOfInterestRef" use="required">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Place Of Interest reference">
+														<fg:message>The name of an authored place of interest (point or path).  
+														Required during authoring and used during runtime to extract the coordinates for 
+														the specific place of interest and place them in the coordinates objects.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>	
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="removeBreadcrumbs">
+						<xs:annotation>
+							<xs:appinfo>
+								<fg:node-info exposed="true"
+									 message="Remove Breadcrumbs"> 
+									<fg:message>Used to remove one or more markers in the environment from one or more learners.</fg:message>
+								</fg:node-info> 
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="teamMemberRef" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="entityMarking">
+												<xs:annotation>
+													<xs:appinfo>
+														<fg:node-info message="Entity Marking">
+															<fg:message>A entity marking such as a URN Marking that can be used to uniquely identify a playable entity in a training application.</fg:message>
+														</fg:node-info>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:simpleType>
+													<xs:restriction base="xs:string">
+														<xs:minLength value="1"/>
+													</xs:restriction>
+												</xs:simpleType>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="value" use="required">
+											<xs:annotation>
+												<xs:appinfo>
+													<fg:node-info message="Team Reference">
+														<fg:message>A team member name that is part of the team organization.</fg:message>
+													</fg:node-info>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>	
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="script">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="value">
+									<xs:annotation>
+										<xs:appinfo>
+											<fg:node-info exposed="false"
+												 message="Script"> 
+												<fg:message>A script to use for scenario adaptation.</fg:message>
+											</fg:node-info> 
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:minLength value="1" />
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+							<xs:attribute name="StressCategory" type="StrategyStressCategory" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<fg:node-info exposed="true"
+											 message="Stress Category"> 
+											<fg:message>The type of stress category for this adaptation.</fg:message>
+										</fg:node-info> 
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:attribute>	
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+        </xs:complexType>
+    </xs:element>
+	<xs:simpleType name="StrategyStressCategory">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info exposed="true"
+					 message="Strategy Stress Category"> 
+					<fg:message>The type of stress category for a strategy.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+		</xs:annotation>
+        <xs:restriction base="xs:normalizedString">
+            <xs:enumeration value="Environmental"/>
+            <xs:enumeration value="Cognitive"/>
+			<xs:enumeration value="Physiological"/>
+        </xs:restriction>
+    </xs:simpleType>
+	<xs:element name="scenarioAdaptationDuration">
+		<xs:annotation>
+			<xs:appinfo>
+				<fg:node-info exposed="true" message="Duration"> 
+					<fg:message>How long in seconds it should take the scenario adaptation to be applied (e.g. roll the fog bank in over 5 seconds).  
+						A duration might not always be applicable.</fg:message>
+				</fg:node-info> 
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:restriction base="xs:integer">
+				<xs:minInclusive value="0"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+    <xs:element name="strategyHandler">
+        <xs:annotation>
+            <xs:appinfo>
+			<fg:node-info exposed="true"
+                 message="Strategy Handler"> 
+				<fg:message>Specifies information about what will handle a particular instructional strategy.</fg:message>
+				<fg:message>Refer to "Help" for more information.</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="impl">
+                    <xs:annotation>
+                        <xs:appinfo>
+					<fg:node-info exposed="true"
+                   message="Strategy Handler implementation"
+                   editor-class="mil.arl.gift.tools.authoring.common.custnodes.StrategyHandlerDialog"> 
+						<fg:message>Specifies the class that will handle a particular instructional strategy (e.g. domain.knowledge.strategy.DefaultStrategyHandler)</fg:message>
+						<fg:message>Refer to "Help" for more information.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:minLength value="7" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="params"
+                            minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+					<fg:node-info message="Input Parameters"> 
+						<fg:message>Specifies a list of name:value pairs as input to configure the strategy handler implementation.</fg:message>
+					</fg:node-info> 
+				</xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="common:nvpair"
+                                        minOccurs="1"
+                                        maxOccurs="unbounded" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<xs:element name="teamRef">
+        <xs:complexType>
+            <xs:attribute name="value" use="required">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="Team Reference">
+                            <fg:message>The team to use for this reference.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

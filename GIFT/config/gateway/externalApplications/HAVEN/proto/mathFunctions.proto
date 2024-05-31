@@ -1,0 +1,48 @@
+syntax = "proto3";
+import "proto/entity.proto";
+
+option csharp_namespace = "Cta.Tmt.Protobuf";
+option java_generic_services = true;
+option java_package = "cta.tmt.protobuf";
+
+package math;
+
+
+// Service for handling functions pertaining to math calculations
+service MathService {
+	
+	// tests if a point is visible from an entity's location
+	rpc IsVisiblePoint(IsVisiblePointRequest) returns (IsVisiblePointResponse) {}
+	
+	// tests if an entity is viewable from an entity's location
+	rpc IsVisibleEntity(IsVisibleEntityRequest) returns (IsVisibleEntityResponse) {}
+}
+
+
+message IsVisiblePointRequest {
+	int32 viewer = 1;
+	Vector3 point = 2;
+	float radius = 3;
+	Fidelity fidelity = 4;
+	GlobalCoordinateSystem pointGcs = 5;
+}
+
+message IsVisiblePointResponse {
+	bool isVisible = 1;
+	
+	// range 0-1 inclusive. 1 signifies full visibility
+	float visibility = 2;
+}
+
+message IsVisibleEntityRequest {
+	int32 viewer = 1;
+	int32 target = 2;
+	Fidelity fidelity = 3;
+}
+
+message IsVisibleEntityResponse {
+	bool isVisible = 1;
+	
+	// range 0-1 inclusive. 1 signifies full visibility
+	float visibility = 2;
+}

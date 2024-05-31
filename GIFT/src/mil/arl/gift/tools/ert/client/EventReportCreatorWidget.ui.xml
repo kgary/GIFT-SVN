@@ -1,0 +1,109 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+    <ui:style type='mil.arl.gift.tools.ert.client.EventReportCreatorWidget.Styles'>
+        .smallBorder {
+        border: 1px solid #999999;
+        padding: 3px;
+        }
+        .reportPropertiesHeader {
+        font-size: 18px;
+        font-weight: bold;
+        }
+        .reportName {
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+        border-top: 2px;
+        border-bottom: solid Gray;
+        }
+        .gwt-Button {
+        margin: 5px;
+        float: right;
+        }
+        .customizeAnchor {
+        float: right;
+        }
+        .smallColumnRightMargin {
+            margin-right: 10px;
+        }
+        .showAllButton{
+			margin-left: 5px;
+		}
+    </ui:style>
+    <g:HTMLPanel>
+        <g:VerticalPanel spacing="5">
+            <g:VerticalPanel spacing="5" ui:field="selectFilePanel">
+                <g:HorizontalPanel>
+                	<g:Label text="Select Event Source(s)"/>
+                	<g:Button text="Show all" ui:field="showAllButton" styleName='{style.showAllButton}'/>
+                </g:HorizontalPanel>
+                <g:FlowPanel ui:field="eventSourceContainer" styleName='{style.smallBorder}'>
+                    
+                </g:FlowPanel>
+                <g:Cell horizontalAlignment="ALIGN_CENTER">
+                    <g:Button text="Continue" ui:field="selectFileButton"/>
+                </g:Cell>
+            </g:VerticalPanel>
+            <g:VerticalPanel spacing="5" ui:field="reportConfigurationPanel">
+                <g:HorizontalPanel spacing="5">
+                    <g:Button ui:field="loadSettingsButton" width="115px">Load Settings</g:Button>
+                    <g:Button ui:field="saveSettingsButton" width="115px">Save Settings</g:Button>
+                </g:HorizontalPanel>
+                <g:Label text="Generate Report For" width="" styleName="{style.reportPropertiesHeader}"/>
+                <g:Label text="New InlineLabel" ui:field="reportNameLabel" styleName="{style.reportName}"/>
+                <g:Label text="Select the Events of Interest"/>
+                <g:HorizontalPanel spacing="5">
+                    <g:ScrollPanel width="400px" height="200px" styleName='{style.smallBorder}'>
+                        <g:FlowPanel width="100%" height="100%" ui:field="eventsPanel"/>
+                    </g:ScrollPanel>
+                    <g:ScrollPanel height="200px" styleName="{style.smallBorder}" width="550px" ui:field="eventTypeColumnContainerPanel" visible="false">
+                        <g:FlowPanel>
+                            <g:FlowPanel width="100%" ui:field="eventTypeColumnPanel"/>
+                            <g:Button text="Close" ui:field="closeEventTypeColumnPanelButton" styleName="{style.gwt-Button}" width="75px"/>
+                        </g:FlowPanel>
+                    </g:ScrollPanel>
+                </g:HorizontalPanel>
+                <g:Label text="Customize the Default Columns"/>
+                <g:HorizontalPanel spacing="5">
+                    <g:ScrollPanel width="400px" height="150px" styleName='{style.smallBorder}'>
+                        <g:FlowPanel width="100%" height="100%" ui:field="eventFileColumnsPanel"/>
+                    </g:ScrollPanel>
+                    <g:ScrollPanel height="200px" styleName="{style.smallBorder}" width="550px" ui:field="customizeDefaultColumnContainer" visible="false">
+                        <g:FlowPanel>
+                            <g:FlowPanel width="100%" ui:field="customizeDefaultColumnPanel"/>
+                            <g:Button text="Close" ui:field="closeCustomizeDefaultColumnPanelButton" styleName="{style.gwt-Button}" width="75px"/>
+                        </g:FlowPanel>
+                    </g:ScrollPanel>
+                </g:HorizontalPanel>
+                <g:CheckBox text="Exclude columns with no data" ui:field="excludeDatalessCheckBox"/>
+                <g:HorizontalPanel spacing="5">
+                	<g:Cell verticalAlignment="ALIGN_MIDDLE">
+                		<g:InlineLabel text="Merge By Column" width="120px"/>
+                	</g:Cell>
+                	<g:ListBox ui:field="mergeByColumnList"/>
+                </g:HorizontalPanel>
+                <g:CheckBox text="Relocate duplicated merged columns to end" ui:field="relocateDuplicateColCheckBox"/>
+                <g:HorizontalPanel spacing="5">
+                	<g:Cell verticalAlignment="ALIGN_MIDDLE">
+                		<g:InlineLabel text="Sort By Column" width="120px"/>
+                	</g:Cell>
+                	<g:ListBox ui:field="sortByColumnList"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel spacing="5">
+                    <g:Cell verticalAlignment="ALIGN_MIDDLE">
+                        <g:InlineLabel text="Empty Cell Value" width="120px"/>
+                    </g:Cell>
+                    <g:TextBox visibleLength="3" ui:field="emptyCellValueTextBox"/>
+                </g:HorizontalPanel>
+                <g:HorizontalPanel width="100%">
+                    <g:Cell horizontalAlignment="ALIGN_RIGHT">
+                        <g:Button ui:field="createEventFileButton" width="115px">Create File</g:Button>
+                    </g:Cell>
+                    <g:Cell horizontalAlignment="ALIGN_RIGHT" width="80px">
+                        <g:Button text="Cancel" width="75px" ui:field="cancelButton"/>
+                    </g:Cell>
+                </g:HorizontalPanel>
+            </g:VerticalPanel>
+        </g:VerticalPanel>
+    </g:HTMLPanel>
+</ui:UiBinder> 

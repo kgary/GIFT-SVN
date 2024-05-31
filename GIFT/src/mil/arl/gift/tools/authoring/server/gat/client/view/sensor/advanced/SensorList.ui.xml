@@ -1,0 +1,29 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:mil.arl.gift.common.gwt.client.widgets"
+	xmlns:u="urn:import:mil.arl.gift.tools.authoring.server.gat.client.view.util"
+	xmlns:p1="urn:import:com.google.gwt.user.cellview.client">
+	
+    <ui:style>
+        .header {
+        	line-height: 27px;
+        	font-weight: bold;
+        	color: #3B3B3B;
+        	border-bottom-style: solid;
+        	border-bottom-width: 1px;
+        	border-bottom-color: gray;
+        	text-shadow: 1px 1px lightgray;
+			padding-left: 15px;
+        }        
+    </ui:style>
+    
+	<c:DynamicHeaderScrollPanel width='100%' height='100% '>
+ 		<c:header>
+			<g:Label addStyleNames="{style.header}">Sensors</g:Label>
+		</c:header> 
+		<c:scrollableContent> 
+			<p1:CellTable ui:field="dataGrid" width="100%"/>
+		</c:scrollableContent> 
+ 	</c:DynamicHeaderScrollPanel> 
+</ui:UiBinder> 

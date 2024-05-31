@@ -1,0 +1,78 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style type="mil.arl.gift.tools.dashboard.client.bootstrap.gamemaster.StrategyBubble.Style">
+        .mainPanel {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .closeButton {
+			cursor: pointer;
+			position: absolute;
+			top: 4px;
+			right: 6px;
+        }
+        .header {
+            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .sendButtonGroup {
+	        margin-right: 5px;
+        }
+        .strategyCheckBox {
+            display: inline;
+            top: 3px;
+            margin: 0px;
+        }
+        .nameLabel {
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .glassPanel {
+            position: absolute;
+            top: -1px;
+            bottom: -1px;
+            left: -1px;
+            right: -1px;
+            background-color: rgba(0, 0, 0, 0.5);
+            cursor: default;
+            border-radius: 5px;
+        }
+        .selected{
+            background-color: rgba(72,72,78,0.08);
+            border-color: #e47410;
+            box-shadow: inset 1px 3px 7px rgba(202,129,20,0.5), 0px 0px 0px 1px #e6710d;
+        }
+        .borderRight{
+			border-right:dotted orange;
+		}
+    </ui:style>
+    <g:FlowPanel ui:field='mainPanel' addStyleNames="strategyBubbleStyle {style.mainPanel}">
+        <wb:ManagedTooltip title="Dismiss request" placement="LEFT" >
+            <b:Icon ui:field="closeButton" type="TIMES" addStyleNames="{style.closeButton}" />
+        </wb:ManagedTooltip>
+    
+        <g:FlowPanel ui:field="bubbleHeader" addStyleNames="{style.header}" >
+            <g:DeckPanel ui:field="headerDeckPanel">
+                <wb:ThreeStateCheckbox ui:field="strategyCheckBox" addStyleNames="{style.strategyCheckBox}" />
+                <b:ButtonGroup ui:field="sendButtonGroup" addStyleNames="{style.sendButtonGroup}">
+                    <wb:ManagedTooltip ui:field="sendStrategyButtonTooltip" >
+                        <b:Button ui:field="sendStrategyButton" type="SUCCESS" size="EXTRA_SMALL" text="Apply" />
+                    </wb:ManagedTooltip>
+                    <wb:ManagedTooltip ui:field="changeModeButtonTooltip" >
+                        <b:Button ui:field="changeModeButton" icon="GEAR" iconSize="LARGE" size="EXTRA_SMALL" />
+                    </wb:ManagedTooltip>
+                </b:ButtonGroup>
+            </g:DeckPanel>
+            <wb:EditableInlineLabel ui:field="strategyNameLabel" addStyleNames="{style.nameLabel}" />
+        </g:FlowPanel>
+        
+        <g:FlowPanel ui:field="glassPanel" addStyleNames="{style.glassPanel}" />
+    </g:FlowPanel>
+</ui:UiBinder>

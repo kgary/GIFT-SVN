@@ -1,0 +1,62 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	    .editButton{
+			float: right;
+		}
+		
+		.providerHeader{
+			padding: 8px 10px
+		}
+        
+        .ltiInfoStyle{
+            font-size:12px;
+            font-weight:bold;
+            padding-left:15px;
+            padding-right:15px;
+            color:blue;
+        }
+        
+        .inline{
+			display: inline;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+    
+        <g:FlowPanel>
+            <g:FlowPanel >
+                <g:HTML addStyleNames="{style.ltiInfoStyle}">
+                    Note:  If you edit existing provider authentication data, there may be LTI course objects that will be affected. 
+                </g:HTML>
+            </g:FlowPanel>
+            <g:HTML>
+                <hr style='margin: 7px 10px; border-top: 1px solid rgb(210, 210, 210);'/>
+            </g:HTML>
+       	</g:FlowPanel>
+
+		
+					
+        <g:FlowPanel>
+        	<g:HTMLPanel>
+				<table style='width: 100%;'>
+					<tr style='width: 100%;'>
+						<td>
+							<g:Label addStyleNames="propertyHeader {style.providerHeader} {style.inline}">Trusted Providers</g:Label>
+						</td>
+						<td>
+							<b:Tooltip title='Edit Provider' container='body'>	
+							<b:Button type='LINK' icon='PENCIL' ui:field='editProvidersButton' addStyleNames="{style.editButton}"/>
+						</b:Tooltip>
+						</td>
+					</tr>
+				</table>
+			</g:HTMLPanel>
+            
+        	<g:FlowPanel ui:field='trustedProvidersPanel'/>
+        </g:FlowPanel>
+        
+        
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,88 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+	<ui:style type="mil.arl.gift.tools.authoring.server.gat.client.view.dkf.EditorTab.Style">
+
+	.important {
+		font-weight: bold;
+	}
+	
+	.objectIcon {
+		margin-right: 5px;
+		padding-top: 5px;
+	}
+
+	.nameTab {
+		width: 100%;
+		padding: 2px 6px 5px;
+		background-color: white;
+		border: 1px solid #ddd;
+		border-bottom-color: white;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+	}
+
+	.inActive {
+		background-color: #ddd;
+	}
+	
+	.nameLabel {
+		padding: 3px;
+		border: none;
+		box-shadow: none;
+		height: auto;
+	}
+	
+	.removeButton {
+		border-radius: 50%;
+		border: none;
+		padding: 0px;
+		width: 20px;
+		height: 20px;
+		vertical-align: auto;
+		margin-left: 1px;
+	}
+	
+	.pinButton {
+		border-radius: 50%;
+		border: none;
+		padding: 0px;
+		width: 20px;
+		height: 20px;
+		vertical-align: auto;
+		margin-left: 1px;
+	}
+	
+	.pinButton i {
+		transform: rotate(45deg);
+	}
+	
+	</ui:style>
+	<g:HTMLPanel ui:field="editorTab" addStyleNames='{style.nameTab}'>
+		<table style='width: 230px'>
+			<tr style='width: 100%'>
+				<td>
+					<b:Icon height='24px' addStyleNames='{style.objectIcon}'
+						ui:field='objectIcon' type='QUESTION' />
+				</td>
+				<td style='width: 100%'>
+					<wb:EditableInlineLabel ui:field="nameLabel" addStyleNames='{style.nameLabel}' />
+				</td>
+				<td>
+					<b:Tooltip placement='BOTTOM' ui:field='pinTooltip'>
+						<b:Button dataToggle='BUTTON' addStyleNames='{style.pinButton}'
+							type='DEFAULT' icon='THUMB_TACK' ui:field='pinButton' />
+					</b:Tooltip>
+				</td>
+				<td>
+					<b:Tooltip title='Close Tab' placement='BOTTOM'>
+						<b:Button addStyleNames='{style.removeButton}'
+							type='DEFAULT' icon='TIMES' ui:field='removeButton' />
+					</b:Tooltip>
+				</td>
+			</tr>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 

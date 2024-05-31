@@ -1,0 +1,24 @@
+/* 
+ * version 1.0 [June 2020]
+ * For use with the Adaptive Learning Service API
+ * Dignitas Technologies, LLC.
+ */
+syntax = "proto3";
+
+option java_package = "generated.proto.gateway";
+option java_outer_classname = "TutorUserInterfaceFeedbackPayloadProto";
+
+import "DisplayTextAction.proto";
+import "PlayAudioAction.proto";
+import "DisplayAvatarAction.proto";
+import "ClearTextAction.proto";
+import "DisplayHTMLFeedbackAction.proto";
+
+message TutorUserInterfaceFeedbackPayload {
+	DisplayTextAction display_text_action = 1;
+	PlayAudioAction play_audio_action = 2;
+	DisplayAvatarAction display_avatar_action = 3;
+	ClearTextAction clear_text_action = 4;
+	DisplayHTMLFeedbackAction display_HTML_feedback_action = 5;
+	int32 domain_session_id = 6;
+}

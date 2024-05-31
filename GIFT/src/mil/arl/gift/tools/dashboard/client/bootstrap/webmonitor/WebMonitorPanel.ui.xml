@@ -1,0 +1,13 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:wms="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.webmonitor.status"
+	xmlns:wmm="urn:import:mil.arl.gift.tools.dashboard.client.bootstrap.webmonitor.message">
+	<ui:style>
+	
+	</ui:style>
+	<g:DeckLayoutPanel addStyleNames='giftBackgroundColor' ui:field='mainDeck'>
+	   <wms:WebMonitorStatusPanel ui:field='statusPanel'/>
+	   <wmm:WebMonitorMessagePanel ui:field='messagePanel'/>
+	</g:DeckLayoutPanel>
+</ui:UiBinder> 

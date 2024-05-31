@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "InteropConnectionsInfoProto";
+
+import "AbstractEnumObject.proto";
+
+/* This message contains information about initialize gateway interop plugins. */
+message InteropConnectionsInfo {
+	/*  The collection of message types the current gateway interop plugins can handle. */
+	repeated AbstractEnumObject types = 1;
+}

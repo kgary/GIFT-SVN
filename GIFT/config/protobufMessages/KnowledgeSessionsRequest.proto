@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "KnowledgeSessionsRequestProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This class contains filter options for retrieving knowledge session list from the domain module. */
+message KnowledgeSessionsRequest {
+	/* Value indicating whether running knowledge sessions should be returned in the reply. */
+	google.protobuf.BoolValue running_sessions = 1;
+	
+	/* Value indicating whether individual knowledge sessions should be returned in the reply */
+	google.protobuf.BoolValue individual_sessions = 2;
+	
+	/* Value indicating whether team sessions that have no empty positions should be returned in the reply. */
+	google.protobuf.BoolValue full_team_sessions = 3;
+	
+	/* The list of course ids that knowledge sessions must have in order to include those sessions. */
+	repeated string course_ids = 4;
+}

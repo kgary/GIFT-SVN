@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" version="8.0" xmlns:fg="http://www.FGolubov.com/XMLEditor" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="LearnerConfiguration">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Learner Configuration">
+                    <fg:message>This is the root node of the Learner Configuration.  Look for other helpful information by clicking on a node.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="inputs"/>
+            </xs:sequence>
+            <xs:attribute name="version" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info message="File Version">
+                            <fg:message>The version of this file.  This is auto-incremented if using the LCAT to save.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="inputs">
+        <xs:complexType>
+            <xs:sequence>
+			<!-- allow zero elements which essentially means no pipeline for sensor data at this time -->
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="input"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="input">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="translator"/>
+                <xs:element ref="classifier"/>
+                <xs:element ref="predictor"/>
+                <xs:element ref="producers"/>
+            </xs:sequence>
+			<xs:attribute name="name" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info message="Name" exposed="true">
+							<fg:message>A display name for this pipeline definition.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="translator">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Translator">
+                    <fg:message>A translator is responsible for converting raw or filtered sensor data into values which can be used in a classifier.  E.g. normalizing various streams of data into values between 0.0 and 1.0.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="translatorImpl"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="translatorImpl">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.lcat.custnodes.TranslatorDialog" message="Translator Implementation">
+                    <fg:message>Specify the translator implementation class.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="classifier">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Classifier">
+                    <fg:message>A classifier classifies sensor data into a learner state attribute. E.g. mouse humidity data is classified into an arousal level enum value.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="classifierImpl"/>
+                <xs:element minOccurs="0" ref="properties"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="classifierImpl">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.lcat.custnodes.ClassifierDialog" message="Classifier Implementation">
+                    <fg:message>Specify the classifier implementation class.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="properties">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Properties">
+                    <fg:message>Specify the configuration properties of the classifier which will be consumed by the classifier class.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="property"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="property">
+        <xs:complexType>
+            <xs:attribute name="name" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="value" type="xs:NMTOKEN" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="predictor">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Predictor">
+                    <fg:message>A predictor is responsible for predicting the next learner state attribute value.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="predictorImpl"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="predictorImpl">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info editor-class="mil.arl.gift.tools.authoring.lcat.custnodes.PredictorDialog" message="Predictor Implementation">
+                    <fg:message>Specify the predictor implementation class.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="producers">
+        <xs:annotation>
+            <xs:appinfo>
+                <fg:node-info message="Producers">
+                    <fg:message>List of producers for this input element.  A producer generates, or produces, data to be translated, classified and predicted upon.</fg:message>
+                    <fg:message>Refer to "Help" for more information.</fg:message>
+                </fg:node-info>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+				<xs:choice minOccurs="1" maxOccurs="unbounded">
+					<xs:element ref="sensor"/>
+					<xs:element ref="trainingAppState"/>
+				</xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sensor">
+		<xs:complexType>
+			<xs:attribute name="type" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info editor-class="mil.arl.gift.tools.authoring.common.custnodes.SensorTypeDialog" message="Sensor Type">
+							<fg:message>Specify the sensor type whose sensor data feed will be provided to this learner state pipeline.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+    </xs:element>
+	<xs:element name="trainingAppState">
+		<xs:complexType>
+			<xs:attribute name="type" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<fg:node-info editor-class="mil.arl.gift.tools.authoring.lcat.custnodes.TrainingAppStateMessageEnumDialog" message="Sensor Type">
+							<fg:message>Specify the Training Application state message that will be provided to this learner state pipeline.</fg:message>
+						</fg:node-info>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+    </xs:element>
+</xs:schema>

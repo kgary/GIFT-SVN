@@ -1,0 +1,18 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "DomainSessionStartTimeReplyProto";
+
+import "google/protobuf/timestamp.proto";
+
+/* This message represents the reply's start time for the domain session. */
+message DomainSessionStartTimeReply {
+	/* The domain session start time. */
+	google.protobuf.Timestamp domain_session_start_time = 1;
+}

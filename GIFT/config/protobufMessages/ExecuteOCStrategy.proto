@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ExecuteOCStrategyProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message contains data on messages that have been requested for execution 
+   by the DomainModule to the WebMonitorModule. */
+message ExecuteOCStrategy {
+	/* The strategy that has been requested to be executed forthe OC. */
+	google.protobuf.StringValue oc_strategy = 1;
+	
+	/* The evaluator for the strategy. */
+	google.protobuf.StringValue evaluator = 2;
+	
+	/* The reason for the strategy. */
+	google.protobuf.StringValue reason = 3;
+	
+	/* Value indicating whether this strategy is associated with a scenario element. */
+	google.protobuf.BoolValue scenario_support = 4;
+}

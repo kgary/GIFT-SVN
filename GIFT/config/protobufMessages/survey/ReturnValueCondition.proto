@@ -1,0 +1,27 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common.survey";
+option java_outer_classname = "ReturnValueConditionProto";
+
+import "AbstractEnumObject.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message contains information about a return value condition, 
+   returning the value only when the condition set is met. */
+message ReturnValueCondition {
+
+	/* The value of the condition. Cannot be null. */
+	google.protobuf.DoubleValue value = 1;
+	
+	/* The relational operator of the condition. Cannot be null. */
+	google.protobuf.StringValue sign = 2;
+	
+	/* The value returned when the condition is met. */
+	AbstractEnumObject return_value = 3;
+}

@@ -1,0 +1,70 @@
+<body>
+<p><strong>Detect Objects Condition</strong></p>
+<p>This condition assesses whether one or more team members are properly 
+detecting objects within a window of time after the object has entered the field 
+of view. </p>
+<p>Currently, to detect an object means to orient to that object within a 
+specified cone in degrees after that object has entered the larger field of view.&nbsp; In the future other means of 'detection' might 
+be supported such as pressing a button, verbal communication or other action 
+naitve to the training environment.</p>
+<p>The author can define the objects, time to detect, field of view, and orient 
+cone 
+as inputs to the assessment algorithm.&nbsp; Only objects that are 
+healthy will be considered for assessment.&nbsp; This prevents being assessed 
+against objects that are dead/incapacitated.&nbsp; </p>
+<p>The goal of this condition is to not assess every possible situation.&nbsp; 
+Hopefully it provides an initial assessment result that can be used by 
+observers/trainers to make additional assessments or over-rides.</p>
+<p><strong>Assessment Evaluations </strong>(Real-time)</p>
+<ul>
+	<li><span style="color: #008000">Above Expectation</span>
+		<ul>
+			<li>case: assessed team member(s) have detected objects within the 
+			time specificed to receive an Above Expectation.&nbsp; </li>
+			<li>case: the average assessment of all detections in this instance 
+			averages to Above Expectation. </li>
+		</ul>
+	</li>
+	<li><span style="color : #0000FF">At Expectation</span>
+		<ul>
+			<li>case: assessed team member(s) have detected objects within the 
+			time specified to receive an At Expectation.&nbsp; </li>
+			<li>case: the average assessment of all detections in this instance 
+			averages to At Expectation.</li>
+		</ul>
+	</li>
+	<li><span style="color : #FF0000">Below Expectation</span>
+		<ul>
+			<li>case: assessed team member(s) have detected objects beyond the 
+			time specified to receive an At or Above Expectation.&nbsp; This 
+			includes not detecting objects that come within the field of view.</li>
+			<li>case the average assessment of all detections in this instance 
+			averages to Below Expectation.</li>
+		</ul>
+	</li>
+	<li>Unknown
+		<ul>
+			<li>case: The default initial value of this condition. </li>
+	</ul>
+		</li>
+</ul>
+<p><strong><em>Possible </em>Scored Evaluations </strong>(overall)</p>
+<ul>
+	<li>counts the number of violations (going from At/Above to Below Expecation)</li>
+	<li>sums the duration of time in Below Expectation</li>
+</ul>
+<p><strong>Miscellaneous details</strong></p>
+<ul>
+	<li>this condition DOES complete when all objects have been assessed (i.e. 
+	found within the field of view and either detected or not detected)</li>
+</ul>
+<p><strong><em>Intended</em> Training Applications and Domains</strong></p>
+<ul>
+	<li>any application that can produce entity state</li>
+</ul>
+<p><strong>Consumed State Messages </strong>(used for assessment)</p>
+<ul>
+	<li>GIFT Entity State</li>
+</ul>
+<p><strong>GIFT class</strong>: <em>mil.arl.gift.domain.knowledge.condition.DetectObjectsCondition</em></p>
+</body>

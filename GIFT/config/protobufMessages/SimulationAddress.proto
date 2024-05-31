@@ -1,0 +1,22 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "SimulationAddressProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a simulation address. */
+message SimulationAddress {
+
+	/* The unique id for this address. */
+	google.protobuf.Int32Value app_id = 1;
+	
+	/* The unique site identifier for this address. */
+	google.protobuf.Int32Value site_id = 2;
+}

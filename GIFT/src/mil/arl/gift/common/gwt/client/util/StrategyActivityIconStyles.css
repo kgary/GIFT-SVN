@@ -1,0 +1,37 @@
+/** styling for the icon used by the Strategy Bubble  */
+.iconStyle {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    display: inline;
+    vertical-align: middle;
+}
+
+/** styling for the icon used in the summary panel */
+.summaryStyle {
+    padding-right: 5px;
+}
+
+/** styling for the icon used in a toast alert */
+.toastStyle {
+    padding-left: 5px;
+    padding-right: 5px;
+    display: inline;
+}
+
+/** styling for the icon used in the GAT */
+.gatStyle {
+	display: inline;
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+/** styling for the icon used in the state transition panel */
+.stateTransitionPanelStyle {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    display: inline;
+    vertical-align: middle;
+	margin: 0px 3px;
+}

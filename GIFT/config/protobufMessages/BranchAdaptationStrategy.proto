@@ -1,0 +1,65 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "BranchAdaptationStrategyProto";
+
+import "AbstractRemediationConcept.proto";
+import "AdvancementConcept.proto";
+import "AbstractEnumObject.proto";
+import "MetadataAttributeItem.proto";
+import "google/protobuf/wrappers.proto";
+
+/* This message represents a branch adaptation strategy for a request. */
+message BranchAdaptationStrategy {
+	oneof type {
+		/* This strategy type is used to indicate that the branch point course element should 
+		   progress to the next scheduled element (e.g. Rule content, Example content, Recall 
+		   test, Practice scenario, end). */
+		ProgressionInfo progression_info = 1;
+		
+		/* This strategy type is used to indicate that remediation is needed 
+		   on one or more concepts. */
+		RemediationInfo remediation_info = 2;
+		
+		/* This strategy type is used to indicate that one or more concepts can be skipped (i.e. advanced).
+		   It contains advancement information for one or more concepts.For example, Concept "A" doesn't 
+		   need to be taught in the course because the learner is an expert. */
+		AdvancementInfo advancement_info = 3;
+	}
+}
+
+message ProgressionInfo {
+	/* The attributes for the progression info. */
+	repeated MetadataAttributeItem attributes = 1;
+	
+	/* The next quadrant to branch to. */
+	AbstractEnumObject next_quadrant = 2;
+}
+
+message RemediationInfo {
+	/* Value indicating whether these concepts are for knowledge or skill expertise. */
+	google.protobuf.BoolValue after_practice = 1;
+	
+	/* The map of assessed concept name to a descending prioritized list of remediation types. */
+	map<string, AbstractRemediationConceptList> remediation = 2;
+}
+
+message AdvancementInfo {
+	/* Value that indicates whether the advancement info has skill or not. */
+	google.protobuf.BoolValue is_skill = 1;
+	
+	/* The list of concepts per advancement. */
+	repeated AdvancementConcept concept = 2;
+}
+	
+/* Helper message that represents a list of AbstractRemediationConcepts. Defined in a separate 
+   message to enable use inside the map of remediation types. */
+message AbstractRemediationConceptList {
+	repeated AbstractRemediationConcept concepts = 1;
+}

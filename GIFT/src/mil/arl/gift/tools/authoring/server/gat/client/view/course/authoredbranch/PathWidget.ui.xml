@@ -1,0 +1,141 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+	xmlns:cb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+	xmlns:cw="urn:import:mil.arl.gift.common.gwt.client.widgets">
+	<ui:style>
+		.branchPanel{
+			padding: 10px;
+			border: 1px solid rgb(200,200,200);
+			border-radius: 3px;
+			box-shadow: 2px 2px 3px rgba(0,0,0,0.25);
+			margin-bottom: 10px;
+		}
+		.branchPanel:hover{
+		    cursor: pointer;
+		    border: 1px solid rgb(125, 125, 255);
+		}		
+		.removeButton {
+			border-radius: 50%;
+			border: none;
+			padding: 0px;
+			width: 20px;
+			height: 20px;
+			vertical-align: auto;
+			margin-left: 1px;
+		}
+		.stopButton {
+			border-radius: 50%;
+			border: none;
+			padding: 0px;
+			width: 20px;
+			height: 20px;
+			vertical-align: auto;
+			margin-left: 1px;
+			color: red;
+			text-shadow: 0px 0px 1px black;
+		}
+		@external active;
+		.active.stopButton {
+			border: 1px solid rgb(150, 150, 150)
+		}
+		.defaultStar{
+			color: gold;
+			text-shadow: 0px 0px 2px black;
+			margin-right: 5px;
+			margin-left: 5px;
+		}
+		.percentLabel{
+			font-size: 16px;
+			padding: 3px;
+			border: none;
+			box-shadow: none;
+			height: auto;
+			background-color: transparent;
+			cursor: default;
+		}		
+		.percentLabel:hover {
+			box-shadow: none;
+			-webkit-box-shadow: none;
+		}
+		.percentLabel:focus {
+			box-shadow: none;
+			-webkit-box-shadow: none;
+		}
+		.branchLabel{
+			font-size: 16px;
+			padding: 3px;
+			border: none;
+			box-shadow: none;
+			height: auto;
+		}		
+		.branchLabel:hover {
+			box-shadow: 0px 0px 5px rgba(0, 0, 255, 0.5);
+		}
+		.iconColumn {
+		    display: flex;
+		    align-items: center;
+		}
+		hr {
+		    cursor: pointer;
+		}
+	</ui:style>
+	<g:FlowPanel addStyleNames='{style.branchPanel}'>
+		<g:HTMLPanel>
+			<table style='width: 100%'>
+				<tr style='width: 100%'>
+				
+					<td style='width: 100%'>
+						<b:TextBox addStyleNames='{style.branchLabel}' ui:field='nameLabel'>
+							<!-- Path name goes here -->
+						</b:TextBox>
+					</td>
+					
+				    <td style="display: flex; align-items: center;">
+						<cb:ManagedTooltip title='This branch is the default' >
+							<b:Icon type='STAR' addStyleNames="{style.defaultStar}" ui:field='defaultPathIcon' visible="false"/>
+						</cb:ManagedTooltip>
+						<cb:ManagedTooltip title='Terminate the course when this branch is completed'>
+							<b:Button addStyleNames='{style.stopButton}' dataToggle='BUTTON'
+								type='DEFAULT' icon='STOP' ui:field='stopButton'/>
+						</cb:ManagedTooltip>
+						<cb:ManagedTooltip title='Remove this branch'>
+							<b:Button addStyleNames='{style.removeButton}'
+								type='DEFAULT' icon='TIMES' ui:field='removeButton'/>
+						</cb:ManagedTooltip>
+				    </td>
+				</tr>
+
+				
+				<!-- horizontal line -->
+				<tr>
+				    <td>
+						<g:HTMLPanel ui:field="hr1">
+							<hr/>
+						</g:HTMLPanel>
+				    </td>
+				    <td>
+						<g:HTMLPanel ui:field="hr2">
+							<hr/>
+				        </g:HTMLPanel>
+				    </td>
+				</tr>
+
+				<tr>
+				    <td>
+						<g:FlowPanel ui:field="percentageLabel">
+							<cb:ManagedTooltip title='Set the distribution percentage for this path' >
+								<b:TextBox addStyleNames='{style.percentLabel}' >Custom Percentage:</b:TextBox>
+							</cb:ManagedTooltip>
+				        </g:FlowPanel>
+				    </td>
+				    <td style="display: flex; align-items: center;">
+						<cw:NumberSpinner ui:field="customPercentage"/>
+				    </td>
+				</tr>
+
+			</table>
+		</g:HTMLPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

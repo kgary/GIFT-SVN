@@ -1,0 +1,113 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c='urn:import:com.google.gwt.user.cellview.client'>
+	<ui:style>
+		.bottomPanel{
+			background-color: rgb(245, 245,245);
+			border-style: solid;
+			border-width: 1px;
+			border-color: rgb(245, 245,245);
+		}
+		.arrows{
+			font-size: 18pt;
+		}
+		.pad{
+			margin: 5px;
+		}
+		.inline{
+			display: inline;
+		}
+		.textbox{
+			margin-left: 5px;
+		}
+		.fileTable{
+			border-width: 5px 1px 1px;
+			border-style: double solid solid;
+			border-color: rgba(237, 237, 237, 1);
+		}
+		.tabContainer{
+			margin: 0px;
+		}			
+		.toolbarButtonContainer{
+			background-color: rgb(245, 245,245);
+			padding: 3px;
+		}
+		.toolbarButton{
+			padding: 6px 10px;
+			border: none;
+			background: none;
+			border-radius: 5px;
+		}
+		.toolbarButton:hover{
+			border: 1px solid rgba(136, 136, 136, 0.5);
+			border-radius: 5px;
+			padding: 4px 10px 6px 10px;
+			background-image: linear-gradient(
+				rgba(255,255,255,0) 5%, 
+				rgba(255,255,255,0.75) 10%, 
+				rgba(255,255,255,0) 30%, 
+				rgba(210,210,220,0.5) 30%, 
+				rgba(255,255,255,0) 100%
+			);
+		}
+		.toolbarButton:active{
+			border: 1px solid rgba(136, 136, 136, 0.5);
+			border-radius: 5px;
+			padding: 6px 10px 4px 10px;
+			background-image: linear-gradient(
+				rgba(255,255,255,0) 5%, 
+				rgba(230,230,230,0.50) 10%, 
+				rgba(255,255,255,0) 30%, 
+				rgba(195,195,205,0.5) 30%, 
+				rgba(255,255,255,0) 100%
+			);		
+		}
+	</ui:style>
+	<g:FlowPanel>
+		<g:DeckPanel ui:field='workspaceDeck'>
+			<g:VerticalPanel ui:field='workspaceLoadPanel' horizontalAlignment='ALIGN_CENTER' verticalAlignment='ALIGN_MIDDLE'>
+				<g:Image ui:field='workspaceLoadImage'/>
+			</g:VerticalPanel>
+			<g:FlowPanel ui:field='loadedContentPanel'>
+				<g:TabPanel addStyleNames='{style.tabContainer}' ui:field='tabPanel' width='100%'>		
+					<g:Tab text='My Workspace'>
+						<g:FlowPanel ui:field='myWorkspacesTab'>					
+							<g:VerticalPanel width='100%' ui:field='workspacePanel'>
+								<g:MenuBar width='100%' ui:field='navigationBar'>
+									<g:MenuItem ui:field='upArrow'>&uarr;</g:MenuItem>
+									<!-- <g:MenuItem ui:field='backArrow'>&larr;</g:MenuItem>
+									<g:MenuItem ui:field='forwardArrow'>&rarr;</g:MenuItem>
+									<g:MenuItem ui:field='refreshArrow'>&#x21BB;</g:MenuItem>-->
+									<g:MenuItem ui:field='directoryName'>
+										Directory Name
+									</g:MenuItem>
+								</g:MenuBar>
+								<g:FlowPanel addStyleNames='{style.toolbarButtonContainer}' ui:field='toolbarPanel'>
+									<g:Button title='Create a new empty folder' addStyleNames='{style.toolbarButton}' ui:field='newFolderButton'>
+										New Folder
+									</g:Button>
+								</g:FlowPanel>
+								<g:FlowPanel addStyleNames='{style.fileTable}' ui:field='fileTableContainer'>
+									<g:ScrollPanel ui:field='fileTableScrollPanel'>
+										<c:CellTable width='100%' ui:field='fileNameTable'/>
+									</g:ScrollPanel>
+								</g:FlowPanel>							
+							</g:VerticalPanel>				
+						</g:FlowPanel>
+					</g:Tab>
+				</g:TabPanel>
+				<g:VerticalPanel width='100%' verticalAlignment='middle' ui:field='namePanel'>
+					<g:HorizontalPanel width='100%' verticalAlignment='middle' addStyleNames='{style.pad}'>
+						<g:FlowPanel width='100%'>
+							<g:Label horizontalAlignment='right' addStyleNames='{style.inline}' ui:field='fileNameLabel'>
+								File Name:
+							</g:Label>
+							<g:TextBox width='93%' addStyleNames='{style.inline} {style.textbox}' ui:field='fileNameInput'/>
+						</g:FlowPanel>
+					</g:HorizontalPanel>						
+				</g:VerticalPanel>
+			</g:FlowPanel>
+		</g:DeckPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 

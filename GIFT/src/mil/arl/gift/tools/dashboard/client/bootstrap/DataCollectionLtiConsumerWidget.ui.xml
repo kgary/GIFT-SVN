@@ -1,0 +1,107 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+		.propertyLink{
+			padding-left: 5px;
+		}
+		.propertyLink:hover{
+			background-color: rgb(225, 225, 255);
+			cursor: pointer;
+		}
+		.propertyLinkIcon{
+			padding: 5px 10px !important;
+		}
+		.propertySubLink{
+			margin-left: 35px;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+	
+		<b:Tooltip title='Click to Expand' container='body' placement='TOP'>
+			<g:FocusPanel addStyleNames="{style.propertyLink}" ui:field='mainPanel'>
+				<g:HTMLPanel>
+					<table style='width: 100%;'>
+						<tr style='width: 100%;'>
+							<td>
+								<b:Icon addStyleNames='{style.propertyLinkIcon}' ui:field="arrowIcon" type="CHEVRON_RIGHT"/>
+							</td>
+							<td style='width: 100%; font-weight: bold; padding: 8px 0px;'>
+								<g:Label ui:field='nameLabel'/>
+							</td>			
+						</tr>
+					</table>
+				</g:HTMLPanel>
+			</g:FocusPanel>
+		</b:Tooltip>
+		
+		<b:Collapse toggle='false' ui:field='mainCollapse'>
+			 <g:HTML>
+			 	<hr style='margin: 7px 10px; border-top: 1px dashed rgb(210, 210, 210);'/>
+			 </g:HTML>
+			 <g:FlowPanel>
+			 
+			 	<g:FlowPanel>
+				 	<b:Tooltip title='Click to View' container='body' placement='TOP'>
+						<g:FocusPanel addStyleNames="{style.propertyLink}" ui:field='collapseKeyButton'>
+							<g:HTMLPanel>
+								<table style='width: 100%;'>
+									<tr style='width: 100%;'>
+                                        <td>
+											<b:Tooltip title='Copy to Clipboard' container='body'>	
+												<b:Button type='LINK' icon='COPY' ui:field='copyKeyButton'/>
+											</b:Tooltip>							
+										</td>
+										<td>
+											<b:Icon addStyleNames='{style.propertyLinkIcon}' type='KEY'/>
+										</td>
+										<td style='width: 100%; font-weight: bold; padding: 8px 0px;'>
+											Key
+										</td>
+									</tr>
+								</table>
+							</g:HTMLPanel>
+						</g:FocusPanel>
+					</b:Tooltip>
+					
+					<b:Collapse addStyleNames='{style.propertySubLink}' toggle='false' ui:field='keyCollapse'>
+						<g:Label ui:field='keyLabel'/>
+					</b:Collapse>
+				</g:FlowPanel>
+				
+				<g:FlowPanel>
+				 	<b:Tooltip title='Click to View' container='body' placement='TOP'>
+						<g:FocusPanel addStyleNames="{style.propertyLink}" ui:field='collapseSecretButton'>
+							<g:HTMLPanel>
+								<table style='width: 100%;'>
+									<tr style='width: 100%;'>
+                                        <td>
+											<b:Tooltip title='Copy to Clipboard' container='body'>	
+												<b:Button type='LINK' icon='COPY' ui:field='copySecretButton'/>
+											</b:Tooltip>							
+										</td>
+										<td>
+											<b:Icon addStyleNames='{style.propertyLinkIcon}' type='USER_SECRET'/>
+										</td>
+										<td style='width: 100%; font-weight: bold; padding: 8px 0px;'>
+											Shared Secret
+										</td>
+									</tr>
+								</table>
+							</g:HTMLPanel>
+						</g:FocusPanel>
+					</b:Tooltip>
+					
+					<b:Collapse addStyleNames='{style.propertySubLink}' toggle='false' ui:field='secretCollapse'>
+						<g:Label ui:field='sharedSecretLabel'/>
+					</b:Collapse>
+				</g:FlowPanel>
+                                                          
+             </g:FlowPanel>
+             <g:HTML>
+			 	<hr style='margin: 30px 10px 7px; border-top: 1px dashed rgb(210, 210, 210);'/>
+			 </g:HTML>
+		</b:Collapse>
+	</g:HTMLPanel>
+</ui:UiBinder> 

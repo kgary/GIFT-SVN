@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Navigate to the appropriate working directory if this script was invoked by another script
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$parent_path"
+
+# This calls the release build target which should build everything in GIFT
+./build.sh release

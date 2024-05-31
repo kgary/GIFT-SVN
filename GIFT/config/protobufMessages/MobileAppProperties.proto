@@ -1,0 +1,28 @@
+/* 
+ * version 1.0 [June 2021]
+ * For use with GIFT
+ * Dignitas Technologies, LLC.
+ */
+
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "MobileAppPropertiesProto";
+
+import "google/protobuf/wrappers.proto";
+
+/* This message represents detailed information about a particular instance of the GIFT Mobile 
+   App and the device it is currently running on. */
+message MobileAppProperties {
+	/* Operating system of the mobile device (Android, iOS, etc.). */
+	google.protobuf.StringValue platform = 1;
+	
+	/* Version of the operating system of the mobile device (e.g. 7.0.0). */
+	google.protobuf.StringValue version = 2;
+	
+	/* Screen width. */
+	google.protobuf.Int32Value screen_width = 3;
+	
+	/* Screen height. */
+	google.protobuf.Int32Value screen_height = 4;
+}

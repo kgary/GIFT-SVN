@@ -1,0 +1,84 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:summer="urn:import:org.gwtbootstrap3.extras.summernote.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap"
+    xmlns:b.html="urn:import:org.gwtbootstrap3.client.ui.html">
+	
+    <ui:style>
+		.buttonDivStyle {
+            text-align:center;
+            padding-top:10px;
+            padding-bottom:10px;
+        }
+        .formGroup {
+			margin-bottom: 0px;
+		}
+		.requiredCheckbox {
+			margin: 4px 0px;
+		}
+		.particalCreditCheckbox{
+			margin: 4px 0px;
+		}
+		.textFieldBlock {
+			margin-bottom: 0px;
+			margin-top: 5px;
+		}
+		.helpLink {
+	        padding-left: 5px;
+	        color: rgb(100, 100, 200);
+	        font-weight: normal;
+	    }
+	</ui:style>
+    
+   
+    <b:Container fluid="true">
+        <b:CheckBox ui:field='isRequiredBox' addStyleNames='{style.requiredCheckbox}'>
+        	Required
+        </b:CheckBox>
+        
+        <g:HorizontalPanel ui:field='partialCreditPanel'>
+	        <b:CheckBox ui:field='isPartialCreditBox' addStyleNames='{style.particalCreditCheckbox}'>
+	        	Partial Credit
+	        </b:CheckBox>
+	        <wb:HelpLink helpCaption='Partial Credit' ui:field='helpLink'>
+			    			
+	   				<wb:linkWidget>
+						<b:Icon title="What's this?"
+							addStyleNames='{style.helpLink}' type='QUESTION_CIRCLE' />
+					</wb:linkWidget>
+					   			
+		   			<wb:helpBody>
+		   				<g:HTML>
+			   				Use the 'partial credit' property to set whether the learner can receive partial credit when answering this question.
+			   				If you would like the learner to be able to receive points for a partially correct answer, leave this enabled.
+			   				When 'partial credit' is disabled the learner will earn the following on this question:
+			   				<ul>
+			   					<li><b>0 points</b> if the total points earned are more than 0 points but less than the maximum points</li>
+			   					<li><b>0 points</b> if the total points earned are less than 0</li>
+			   					<li><b>maximum points</b> if the total points earned are the maximum points possible</li>
+			   				</ul>
+				   		</g:HTML>
+		   			</wb:helpBody>
+		   			
+	   		</wb:HelpLink>
+   		</g:HorizontalPanel>
+
+        
+        <b:FormGroup addStyleNames='{style.formGroup}'>
+          <b:FormLabel>Help Message</b:FormLabel>
+           <b:TextBox ui:field='helpStringBox'/>
+          <b:HelpBlock text="" iconType="EXCLAMATION_TRIANGLE" addStyleNames='{style.textFieldBlock}'/>
+        </b:FormGroup>
+        
+         <b:FormGroup addStyleNames='{style.formGroup}'>
+          <b:FormLabel>Tag</b:FormLabel>
+           <b:TextBox ui:field='tagBox'/>
+          <b:HelpBlock text="Used to identify responses for a question in an ERT generated report" iconType="EXCLAMATION_TRIANGLE" addStyleNames='{style.textFieldBlock}'/>
+          <b:Label>Survey Question Id: </b:Label>
+          <b:Label ui:field='surveyQuestionId' />
+        </b:FormGroup>
+    </b:Container>
+    
+</ui:UiBinder> 

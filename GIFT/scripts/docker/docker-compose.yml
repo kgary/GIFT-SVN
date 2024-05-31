@@ -1,0 +1,43 @@
+version: '3'
+services:
+
+  # Set up a container to run GIFT
+  gift:
+  
+    # Use the GIFT image as the base of the container
+    image: gift-image:latest
+      
+    # Name the container
+    container_name: gift
+    
+    # Expose GIFT's ports using ports on the host machine
+    ports:
+      - 8080:8080   # Admin Server (i.e. GIFT Dashboard) 
+      - 8090:8090   # Tutor Server (i.e. Tutor User Interface) 
+      - 8885:8885   # Domain content server
+      - 61617:61617 # GIFT message bus
+    
+    # Print system output to terminal
+    tty: true        # docker run -t
+    
+    # Persistent files to maintain between container launches
+    volumes:
+    
+      # Points the output file volume to the output folder inside the GIFT container
+      - output:/work/GIFT/output
+      
+      # Points the DerbyDb file volume to the derbyDB folder inside the GIFT container
+      - DerbyDb:/work/GIFT/data/derbyDb
+    
+# Define volumes to be used by GIFT container
+volumes:
+    
+    # Creates a "gift-output" folder in the host file system to act as a volume for output files
+    output:
+        driver: local
+        name: gift-output
+    
+        # Creates a "gift-DerbyDb" folder in the host file system to act as a volume for DerbyDb files
+    DerbyDb:
+        driver: local
+        name: gift-DerbyDb

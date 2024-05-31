@@ -1,0 +1,145 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+    xmlns:g="urn:import:com.google.gwt.user.client.ui"
+    xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+    xmlns:wb="urn:import:mil.arl.gift.common.gwt.client.widgets.bootstrap">
+    <ui:style>
+        .selectedHeader {
+            font-weight: bold;
+            font-size: larger;
+            color: #2b2b2b;
+            min-width: 100px;
+            width: 100%;
+            margin-right: -59px;
+            display: inline-block;
+            padding: 5px 0px 0px 0px;
+        }
+        .selectedPanel {
+            padding: 3px 13px 13px 13px;
+            background-color: #f1f1f1;
+            background-image: none;
+            border: 1px solid;
+            border-color: #c1c1c1;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+        }
+        .unselectedPanel {
+            cursor: pointer;
+            padding: 20px 15px;
+            border-radius: 5px;
+        }
+        .unselectedHeader {
+            font-weight: bold;
+            color: white;
+        }
+        .saveImg {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            margin-left: -22px;
+            margin-top: -27px;
+        }
+        .panelButton {
+            display: inline;
+            padding: 5px 8px;
+            box-shadow: none;
+            margin: 0px;
+            color: #404040;
+            background-color: transparent;
+            border-color: transparent;
+        }
+        .topMargin {
+            margin-top: 15px;
+        }
+        .padTop {
+            padding-top: 10px;
+        }
+        .mediaTitleStyle {
+            margin-top: 2px;
+            margin-bottom: 10px;
+        }
+        .padRight {
+            padding-right: 10px;
+        }
+        .block {
+            display: block;
+        }
+    </ui:style>
+    <g:FlowPanel>
+        <g:InlineHTML addStyleNames='{style.padTop} {style.padRight}'> 
+            Media Title:<span style='color: red'>*</span>
+        </g:InlineHTML>
+        <wb:HelpLink helpCaption='Media Title'>
+            
+            <wb:helpBody>
+                <g:HTML>
+                    When lesson material is shown to the learner, media resources are presented with a title. 
+                    <br/><br/>
+                    Modifying this text box will change the text of the title that is presented with this media to the learner.
+                </g:HTML>
+            </wb:helpBody>
+            
+        </wb:HelpLink>
+        <g:TextBox width='100%' addStyleNames='{style.mediaTitleStyle}' ui:field='mediaTitleTextbox'/>
+        <g:DeckPanel ui:field='deckPanel'>
+            <g:FocusPanel addStyleNames='presentSurveyChoice {style.unselectedPanel}' ui:field='selectPptPanel'>
+                <g:FlowPanel>
+                    <b:Tooltip title='The course will be saved after a SlideShow is uploaded.' placement="RIGHT">
+                        <g:Image url='images/save.png' addStyleNames='{style.saveImg}'/>
+                    </b:Tooltip>
+                    <g:Label ui:field='selectPptLabel' addStyleNames='{style.unselectedHeader}'>
+                        Select PowerPoint Show
+                    </g:Label>
+                </g:FlowPanel>
+            </g:FocusPanel>
+            
+            <g:FlowPanel ui:field='pptSelectedPanel'>
+                <g:FlowPanel addStyleNames='{style.selectedPanel}'>
+                    <g:Label ui:field='slideNumberLabel' addStyleNames='{style.selectedHeader}' />
+                    <b:Tooltip title='Replace these slides' placement='BOTTOM'>
+                        <b:Button type='PRIMARY' icon='REFRESH' addStyleNames='{style.panelButton}' ui:field='replaceSlideShowButton' />
+                    </b:Tooltip>
+                    <b:Tooltip title='Remove this slide show' placement='BOTTOM'>
+                        <b:Button type='PRIMARY' icon='TIMES' addStyleNames='{style.panelButton}' ui:field='removePptButton' />
+                    </b:Tooltip>
+                </g:FlowPanel>
+                
+                <g:DisclosurePanel ui:field="optionsPanel" addStyleNames='{style.topMargin}'>
+                    <g:header>
+                        Options
+                    </g:header>
+                    <g:FlowPanel>
+                         <b:Tooltip title='Whether to allow the learner to visit previously shown slides.' placement='BOTTOM'>
+                            <b:CheckBox addStyleNames='{style.block}' ui:field='previousCheckbox'>Display previous slide button</b:CheckBox>
+                        </b:Tooltip>
+                        <b:Tooltip title='Whether to show the continue button that allows the learner to move to the next course object before viewing all slides.' placement='BOTTOM'>
+                            <b:CheckBox ui:field='continueCheckbox'>Keep 'Continue' button available</b:CheckBox>
+                        </b:Tooltip>
+                    </g:FlowPanel>
+                </g:DisclosurePanel>   
+                
+            </g:FlowPanel>   
+        </g:DeckPanel>
+        <g:HTMLPanel ui:field="warning">
+            <div style='margin: 10px 2px 2px; font-weight: bold; border: solid 1px #bfbfbf; background: #f3f3f3; border-radius: 5px; padding: 10px 10px 10px 30px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);'>
+                <i class="fa fa-lightbulb-o" style="font-size: 30px; float: left; margin: -9px -27px; color: rgb(88, 88, 88); background: radial-gradient(rgb(254, 255, 166), transparent 55%);"></i>
+                The following will be removed from the slide show:
+                <ul>
+                    <li>Hyperlinks</li>
+                    <li>Videos</li>
+                    <li>Animations</li>
+                    <li>Audio</li>
+                    <li>Transitions</li>
+                    <li>Macros</li>
+                </ul>
+                If you wish to keep these elements, please select 'PowerPoint' from the Course Objects list
+            </div>
+        </g:HTMLPanel>
+        <g:HTMLPanel>
+            <div style='margin: 10px 2px 2px; font-weight: bold; border: solid 1px #bfbfbf; background: #f3f3f3; border-radius: 5px; padding: 10px 10px 10px 30px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15); color: rgb(68, 68, 68);'>
+                <i class="fa fa-lightbulb-o" style="font-size: 30px; float: left; margin: -9px -27px; color: rgb(88, 88, 88); background: radial-gradient(rgb(254, 255, 166), transparent 55%);"></i>
+                To change the image size, set the Slide Size in PowerPoint
+            </div>
+        </g:HTMLPanel>    
+    </g:FlowPanel>
+</ui:UiBinder> 

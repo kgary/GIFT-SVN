@@ -1,0 +1,41 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+	<ui:style>
+	   .mainPanel{
+            text-align: center;
+            line-height: 0px;
+	   }
+	   @external fa-star;
+	   .mainPanel .fa-star{
+            color: gold;
+       }
+       @external fa-star-o;
+       .mainPanel .fa-star-o{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            text-shadow: 1px 1px 1px white;
+       }
+       .iconPanel{
+	       display: inline-block;
+	       position: relative;
+	   }
+	</ui:style>
+	<g:HTMLPanel addStyleNames='{style.mainPanel}'>
+	   <div class='{style.iconPanel}' style='margin-left: 2px;'>
+		   <b:Icon type='STAR' ui:field='star3'/>
+		   <b:Icon type='STAR_O'/>
+       </div>
+	   <br/>
+	   <div class='{style.iconPanel}'>
+	       <b:Icon type='STAR' ui:field='star1'/>
+	       <b:Icon type='STAR_O'/>
+	   </div>
+	   <div class='{style.iconPanel}'>
+		   <b:Icon type='STAR' ui:field='star2'/>
+		   <b:Icon type='STAR_O'/>
+       </div>
+	</g:HTMLPanel>
+</ui:UiBinder> 
