@@ -1,17 +1,27 @@
 # Steps to run GIFT
 
-1) The following files need to be placed in their correct locations based on their paths:
+1) Download the GIFT [zip](https://drive.google.com/file/d/1gDPXY4aAm4wdLwlMDkaeIczfBcFasJmp/view?usp=drive_link). This zipped version of GIFT is what you get after installing GIFT and it is ready to be launched.
 
-    1) GIFT/bin/**gift-dashboard.war**
-    2) GIFT/bin/war/remote/generated/**loadGatewayDependencies.zip**
-    3) GIFT/external/**openjdk-11.64x.GIFT.zip**
+2) Open the GIFT folder.
 
-The mentioned files are located in [here](https://drive.google.com/drive/folders/1vybk6YT7Kfk4HhhRFa9Hd2YC5bZup1Co?usp=sharing).
+3) Run the following commands:
 
-2) Next, manually unzip the openjdk to **GIFT/external/jdk-11**
+```
+git init
+git remote add origin https://github.com/kgary/GIFT-SVN.git
+git pull origin main
+```
 
-3) Next, run launchGIFT.bat
+These will ensure your local codebase has all the latest changes on the repo.
 
 
-This should launch GIFT ideally. 
-(Although currently, there's a domain module error being thrown without any logs at all.)
+### Note
+Due to the large folder/file size of GIFT, we're currentyl tracking changes in the following folders only:
+
+- Domain
+- Training.Apps
+- GIFT/config
+- GIFT/scripts
+- GIFT/src.py
+- GIFT/src
+
