@@ -1,0 +1,128 @@
+05-30-2024 23:25:31 [Thread-66] ERROR mil.arl.gift.common.python.ProcessStreamProcessor - src.py/xml.rpc.server/XmlRpcServer.py ERROR> Python was not found; run without arguments to install from the Microsoft Store, or disable this shortcut from Settings > Manage App Execution Aliases.
+
+05-30-2024 23:25:40 [ActiveMQ Connection Executor: tcp://localhost/127.0.0.1:61617@60630] WARN  mil.arl.gift.net.api.MessageClient - Message client for subject 'Learner_Queue_10.203.43.114' caught JMSExcepion, attempting to reconnect.
+javax.jms.JMSException: java.io.EOFException
+	at org.apache.activemq.util.JMSExceptionSupport.create(JMSExceptionSupport.java:67) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.ActiveMQConnection.onAsyncException(ActiveMQConnection.java:2033) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:2052) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:346) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportSupport.onException(TransportSupport.java:96) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.run(TcpTransport.java:219) ~[activemq-all-5.18.3.jar:5.18.3]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:397) ~[?:?]
+	at org.apache.activemq.openwire.OpenWireFormat.unmarshal(OpenWireFormat.java:280) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.readCommand(TcpTransport.java:240) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.doRun(TcpTransport.java:232) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.run(TcpTransport.java:215) ~[activemq-all-5.18.3.jar:5.18.3]
+	... 1 more
+05-30-2024 23:25:40 [ActiveMQ Connection Executor: tcp://localhost/127.0.0.1:61617@60634] WARN  mil.arl.gift.net.api.MessageClient - Message client for subject 'Learner_Discovery_Topic' caught JMSExcepion, attempting to reconnect.
+javax.jms.JMSException: java.io.EOFException
+	at org.apache.activemq.util.JMSExceptionSupport.create(JMSExceptionSupport.java:67) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.ActiveMQConnection.onAsyncException(ActiveMQConnection.java:2033) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:2052) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:114) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:346) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.TransportSupport.onException(TransportSupport.java:96) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.run(TcpTransport.java:219) ~[activemq-all-5.18.3.jar:5.18.3]
+	at java.lang.Thread.run(Thread.java:834) [?:?]
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:397) ~[?:?]
+	at org.apache.activemq.openwire.OpenWireFormat.unmarshal(OpenWireFormat.java:280) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.readCommand(TcpTransport.java:240) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.doRun(TcpTransport.java:232) ~[activemq-all-5.18.3.jar:5.18.3]
+	at org.apache.activemq.transport.tcp.TcpTransport.run(TcpTransport.java:215) ~[activemq-all-5.18.3.jar:5.18.3]
+	... 1 more
+05-30-2024 23:25:40 [Learner_Queue_10.203.43.114_Reconnect_Thread] WARN  mil.arl.gift.net.api.MessageClient - Caught JMSException for an inactive message client (hence why this is a warning and not an error) while disconnecting the message client message producer
+05-30-2024 23:25:40 [Learner_Discovery_Topic_Reconnect_Thread] WARN  mil.arl.gift.net.api.MessageClient - Caught JMSException for an inactive message client (hence why this is a warning and not an error) while disconnecting the message client message producer
+05-30-2024 23:25:40 [Learner_Discovery_Topic_Reconnect_Thread] WARN  mil.arl.gift.net.api.MessageClient - Caught JMSException for an inactive message client (hence why this is a warning and not an error) while disconnecting the message client broker session
+05-30-2024 23:25:40 [Learner_Discovery_Topic_Reconnect_Thread] WARN  mil.arl.gift.net.api.MessageClient - Caught JMSException for an inactive message client (hence why this is a warning and not an error) while disconnecting the message client broker connection
+05-30-2024 23:25:40 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:40 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 23:25:41 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:41 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 23:25:42 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:42 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 23:25:43 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:43 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 23:25:44 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:44 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 23:25:45 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:45 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 23:25:46 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:46 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 23:25:47 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:47 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 23:25:48 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:48 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
+05-30-2024 23:25:49 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Unable to find a message client for subject name Learner_Discovery_Topic, therefore unable to send the payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown] for message type ModuleStatus
+05-30-2024 23:25:49 [Heartbeat:Learner_Module] ERROR mil.arl.gift.net.api.NetworkSession - Caught exception while trying to send message type ModuleStatus with payload = [ModuleStatus: moduleName = Learner_Module, queueName = Learner_Queue_10.203.43.114_Inbox, moduleType = Learner_Module, moduleState = Unknown].
+java.lang.Exception: Unable to find a message client for subject name Learner_Discovery_Topic
+	at mil.arl.gift.net.api.NetworkSession.sendMessage(NetworkSession.java:2874) [gift-common.jar:?]
+	at mil.arl.gift.common.module.AbstractModule.sendMessage(AbstractModule.java:769) [gift-common.jar:?]
+	at mil.arl.gift.learner.LearnerModule.sendModuleStatus(LearnerModule.java:960) [gift-learner.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon.handleHeartbeat(ModuleHeartbeatDaemon.java:127) [gift-common.jar:?]
+	at mil.arl.gift.common.module.ModuleHeartbeatDaemon$HeartbeatThread.run(ModuleHeartbeatDaemon.java:118) [gift-common.jar:?]
