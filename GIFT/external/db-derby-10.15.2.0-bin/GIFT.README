@@ -1,7 +1,0 @@
-As part of the GIFT release of the Apache Derby database we removed the following directories normally 
-found in the download to make the library have less of a memory footprint:
-
-- docs
-- javadocs
-- demos
-- tests

@@ -1,1 +1,0 @@
-For documentation go to: http://ws.apache.org/xmlrpc/apidocs/index.html

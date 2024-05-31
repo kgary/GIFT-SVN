@@ -1,8 +1,10 @@
 GIFT/build
-# GIFT/bin/*
-# !GIFT/bin/.gitkeep
-GIFT/external/openjdk-11.64x.GIFT.zip
-GIFT/external/jdk-11
-GIFT/bin/gift-dashboard.war
-GIFT/bin/war/remote/generated/loadGatewayDependencies.zip
+GIFT/external
+GIFT/bin
+GIFT/data
+GIFT/docs
+GIFT/generated
+GIFT/output
+GIFT/temp
+GIFT/test
 .svn

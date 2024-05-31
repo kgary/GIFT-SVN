@@ -1,1 +1,0 @@
-The purpose of this file is for testing the logic that retrieves a paradata file based on a resource file name.
