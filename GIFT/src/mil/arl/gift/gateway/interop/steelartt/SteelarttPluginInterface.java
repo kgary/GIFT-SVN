@@ -170,7 +170,8 @@ public class SteelarttPluginInterface extends UnityInterface {
         if (logger.isTraceEnabled()) {
             logger.trace("handleTrainingAppData('" + line + "')");
         }
-
+        logger.info("Received message: ");
+        logger.info(line);
         /* A message that starts with a '!' character indicates that the rest of
          * the line is an error message. This is provided functionality in the
          * GIFT Unity SDK. */

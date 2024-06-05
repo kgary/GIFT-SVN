@@ -164,6 +164,7 @@ public class UnityInterface extends AbstractInteropInterface {
         }
 
         final String jsonString = jsonMsg.toJSONString();
+        logger.info("Sending JSON message to Unity: " + jsonString); // Log the JSON string before sending
         try {
             socketHandler.sendMessage(jsonString);
         } catch (IOException e) {
@@ -367,6 +368,12 @@ public class UnityInterface extends AbstractInteropInterface {
             if(logger.isInfoEnabled()){
                 logger.info("Re-connecting existing socket handler");
             }
+
+            // Send a test message after connection is established
+            String testMessage = "{\"type\": \"test\", \"payload\": \"This is a test message\"}";
+            logger.info("Sending test message to Unity: " + testMessage);
+            socketHandler.sendMessage(testMessage);
+            
         }
     }
 }
