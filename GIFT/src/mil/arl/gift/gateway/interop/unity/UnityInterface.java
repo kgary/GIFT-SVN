@@ -134,7 +134,7 @@ public class UnityInterface extends AbstractInteropInterface {
     @SuppressWarnings("unchecked")
     @Override
     public boolean handleGIFTMessage(Message message, StringBuilder errorMsg) throws ConfigurationException {
-
+        logger.info("handleGIFTMessage()");
         JSONObject jsonMsg;
         try {
             if (message.getMessageType().equals(MessageTypeEnum.SIMAN)) {
@@ -183,6 +183,7 @@ public class UnityInterface extends AbstractInteropInterface {
      * @param line The text that was received from the Unity application.
      */
     private void handleRawUnityMessage(String line) {
+            logger.info("handleRawUnityMessage()");
         if (logger.isTraceEnabled()) {
             logger.trace("handleTrainingAppData('" + line + "')");
         }
@@ -335,6 +336,7 @@ public class UnityInterface extends AbstractInteropInterface {
      * is already populated, no action is taken.
      */
     private void createSocketHandler() {
+        logger.info("createSocketHandler()");
         if (socketHandler == null) {
             final String address = this.unityConfig.getNetworkAddress();
             final int port = this.unityConfig.getNetworkPort();
@@ -355,6 +357,7 @@ public class UnityInterface extends AbstractInteropInterface {
      *         connection.
      */
     private void establishConnection() throws IOException {
+        logger.info("establishConnection()");
         if (logger.isTraceEnabled()) {
             logger.trace("establishConnection()");
         }
@@ -369,10 +372,20 @@ public class UnityInterface extends AbstractInteropInterface {
                 logger.info("Re-connecting existing socket handler");
             }
 
-            // Send a test message after connection is established
-            String testMessage = "{\"type\": \"test\", \"payload\": \"This is a test message\"}";
-            logger.info("Sending test message to Unity: " + testMessage);
-            socketHandler.sendMessage(testMessage);
+            // Create a JSON object
+            JSONObject jsonMessage = new JSONObject();
+            jsonMessage.put("type", "Feedback");
+            jsonMessage.put("payload", "This is a test message-vjk");
+
+            // Convert the JSON object to a string
+            String jsonString = jsonMessage.toJSONString();
+
+            // Log the JSON string
+            logger.info("Sending JSON message to Unity: " + jsonString);
+
+            // Send the JSON message
+            socketHandler.sendMessage(jsonString);
+
             
         }
     }

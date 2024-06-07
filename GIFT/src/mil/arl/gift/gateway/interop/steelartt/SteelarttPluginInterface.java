@@ -221,7 +221,7 @@ public class SteelarttPluginInterface extends UnityInterface {
 
         if (value) {
             if (logger.isInfoEnabled()) {
-                logger.info("Enabling Unity interface");
+                logger.info("Enabling Steelartt interface");
             }
 
             /* Ensure a a connection has been established with the Unity
@@ -232,14 +232,14 @@ public class SteelarttPluginInterface extends UnityInterface {
                 throw new ConfigurationException("Unable to establish connection",
                         "There was a problem while trying to establish a connection to the '" + getName()
                                 + "' Unity application.\n"
-                                + "1.) Ensure the Unity application is running before starting GIFT"
-                                + "2.) Ensure that the Unity application is listening for connections at '"
+                                + "1.) Ensure the Steelartt application is running before starting GIFT"
+                                + "2.) Ensure that the Steelartt application is listening for connections at '"
                                 + unityConfig.getNetworkAddress() + ":" + unityConfig.getNetworkPort() + "'",
                         ioEx);
             }
         } else {
             if (logger.isInfoEnabled()) {
-                logger.info("Disabling Unity interface");
+                logger.info("Disabling Steelartt interface");
             }
 
             try {

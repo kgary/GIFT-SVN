@@ -155,11 +155,11 @@
         </InteropInterfaceConfig>
         <!-- <InteropInterfaceConfig refID="17">
             <available>true</available>
-            <impl>gateway.interop.unity.UnityInterface</impl>
+            <impl>gateway.interop.steelartt.SteelarttPluginInterface</impl>
             <name>Steelartt Plugin</name>
             <Unity>
                 <networkPort>5000</networkPort>
-                <networkAddress>127.0.0.1</networkAddress>
+                <networkAddress>0.0.0.0</networkAddress>
             </Unity>
         </InteropInterfaceConfig> -->
     </interfaceConfigurations>
