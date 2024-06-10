@@ -373,18 +373,19 @@ public class UnityInterface extends AbstractInteropInterface {
             }
 
             // Create a JSON object
-            JSONObject jsonMessage = new JSONObject();
-            jsonMessage.put("type", "Feedback");
-            jsonMessage.put("payload", "This is a test message-vjk");
+            // JSONObject jsonMessage = new JSONObject();
+            // jsonMessage.put("type", "SimpleExampleState");
+            // jsonMessage.put("payload", "{\"state\": \"example\"}");
 
-            // Convert the JSON object to a string
-            String jsonString = jsonMessage.toJSONString();
+            // // Convert the JSON object to a string
+            // String jsonString = jsonMessage.toJSONString();
 
-            // Log the JSON string
-            logger.info("Sending JSON message to Unity: " + jsonString);
+            // // Log the JSON string
+            // logger.info("Sending JSON message to Unity: " + jsonString);
 
-            // Send the JSON message
-            socketHandler.sendMessage(jsonString);
+            // // Send the JSON message
+            // socketHandler.sendMessage(jsonString);
+
 
             
         }
