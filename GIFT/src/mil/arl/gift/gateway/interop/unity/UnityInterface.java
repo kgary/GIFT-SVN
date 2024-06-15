@@ -101,26 +101,30 @@ public class UnityInterface extends AbstractInteropInterface {
             logger.trace("configure(" + config + ")");
         }
     
-        if (config instanceof generated.gateway.Unity) {
-            /* Save a reference to the configuration. */
-            unityConfig = (Unity) config;
-            createSocketHandler();
+        try {
+            if (config instanceof Unity) {
+                unityConfig = (Unity) config;
+                createSocketHandler();
     
-            if (logger.isInfoEnabled()) {
-                logger.info("Plugin has been configured");
+                if (logger.isInfoEnabled()) {
+                    logger.info("Plugin has been configured");
+                }
+    
+                return true;
+            } else {
+                throw new ConfigurationException(
+                        "Unity Plugin interface can't configure.",
+                        "The Unity Plugin interface only uses the interop config type of "
+                                + Unity.class
+                                + " and doesn't support using the interop config instance of " + config,
+                        null);
             }
-    
-            return true;
-        } else {
-            String errorMsg = "The Unity Plugin interface only uses the interop config type of "
-                            + generated.gateway.Unity.class + " and doesn't support using the interop config instance of " + config.getClass().getName();
-            logger.error(errorMsg);
-            throw new ConfigurationException(
-                    "Unity Plugin interface can't configure.",
-                    errorMsg,
-                    null);
+        } catch (Exception e) {
+            logger.error("Error during configuration: ", e);
+            throw new ConfigurationException("Configuration failed due to an error.", e.getMessage(), e);
         }
     }
+    
 
     @Override
     public List<MessageTypeEnum> getSupportedMessageTypes() {
