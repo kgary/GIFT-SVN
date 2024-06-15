@@ -10,6 +10,7 @@ package mil.arl.gift.gateway.interop.unity;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.ConnectException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -99,24 +100,24 @@ public class UnityInterface extends AbstractInteropInterface {
         if (logger.isTraceEnabled()) {
             logger.trace("configure(" + config + ")");
         }
-
+    
         if (config instanceof generated.gateway.Unity) {
-
             /* Save a reference to the configuration. */
             unityConfig = (Unity) config;
             createSocketHandler();
-
+    
             if (logger.isInfoEnabled()) {
                 logger.info("Plugin has been configured");
             }
-
-            return false;
+    
+            return true;
         } else {
+            String errorMsg = "The Unity Plugin interface only uses the interop config type of "
+                            + generated.gateway.Unity.class + " and doesn't support using the interop config instance of " + config.getClass().getName();
+            logger.error(errorMsg);
             throw new ConfigurationException(
                     "Unity Plugin interface can't configure.",
-                    "The Unity Plugin interface only uses the interop config type of "
-                            + generated.gateway.Unity.class
-                            + " and doesn't support using the interop config instance of " + config,
+                    errorMsg,
                     null);
         }
     }
@@ -139,20 +140,20 @@ public class UnityInterface extends AbstractInteropInterface {
         try {
             if (message.getMessageType().equals(MessageTypeEnum.SIMAN)) {
                 Siman siman = (Siman) message.getPayload();
-
+    
                 JSONObject jsonLoadArgs = null;
                 if (SimanTypeEnum.LOAD.equals(siman.getSimanTypeEnum())) {
                     jsonLoadArgs = new JSONObject();
                     final InteropInputs interopInputs = getLoadArgsByInteropImpl(getClass().getName(),
                             siman.getLoadArgs());
-
+    
                     UnityInteropInputs unityInteropInputs = (UnityInteropInputs) interopInputs.getInteropInput();
                     for (Nvpair nv : unityInteropInputs.getLoadArgs().getNvpair()) {
                         jsonLoadArgs.put(nv.getName(), nv.getValue());
                     }
-
+    
                 }
-
+    
                 jsonMsg = EmbeddedAppMessageEncoder.encodeSimanForEmbeddedApplication(siman, jsonLoadArgs);
             } else {
                 jsonMsg = EmbeddedAppMessageEncoder.encodeForEmbeddedApplication(message);
@@ -160,21 +161,24 @@ public class UnityInterface extends AbstractInteropInterface {
         } catch (Exception e) {
             errorMsg.append("There was a problem encoding the following message for the Unity application: ")
                     .append(message).append('\n').append(e);
+            logger.error("Error encoding message for Unity application: {}", message, e);
             return false;
         }
-
+    
         final String jsonString = jsonMsg.toJSONString();
         logger.info("Sending JSON message to Unity: " + jsonString); // Log the JSON string before sending
         try {
             socketHandler.sendMessage(jsonString);
         } catch (IOException e) {
-            logger.error("Caught exception when trying to send message to GIFT Unity SDK:\n"+jsonString, e);
+            logger.error("Caught exception when trying to send message to GIFT Unity SDK:\n" + jsonString, e);
             errorMsg.append("There was a problem sending the following message to the Unity application: ")
                     .append(jsonString).append('\n').append(e);
+            return false;
         }
-
-        return false;
+    
+        return true;
     }
+    
 
     /**
      * The method that is invoked when a new text message is received from the
@@ -183,11 +187,11 @@ public class UnityInterface extends AbstractInteropInterface {
      * @param line The text that was received from the Unity application.
      */
     private void handleRawUnityMessage(String line) {
-            logger.info("handleRawUnityMessage()");
+        logger.info("handleRawUnityMessage()");
         if (logger.isTraceEnabled()) {
             logger.trace("handleTrainingAppData('" + line + "')");
         }
-
+    
         /* A message that starts with a '!' character indicates that the rest of
          * the line is an error message. This is provided functionality in the
          * GIFT Unity SDK. */
@@ -198,7 +202,7 @@ public class UnityInterface extends AbstractInteropInterface {
             logger.error(errMsg);
             return;
         }
-
+    
         try {
             final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
             MessageTypeEnum msgType;
@@ -208,7 +212,7 @@ public class UnityInterface extends AbstractInteropInterface {
                 logger.error("There was a problem determining the message type of a payload.", e);
                 return;
             }
-
+    
             if (message instanceof TrainingAppState) {
                 GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
             } else {
@@ -217,7 +221,7 @@ public class UnityInterface extends AbstractInteropInterface {
                         + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
             }
         } catch (ParseException e) {
-            logger.error("There was a problem parsing the follwing message from the Unity Desktop applicaiton:\n" + line, e);
+            logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
         } catch (Exception ex) {
             logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
         }
@@ -274,17 +278,21 @@ public class UnityInterface extends AbstractInteropInterface {
                 logger.info("Enabling Unity interface");
             }
 
-            /* Ensure a a connection has been established with the Unity
-             * application */
+            /*
+             * Ensure a connection has been established with the Unity
+             * application
+             */
             try {
                 establishConnection();
+            } catch (ConnectException connEx) {
+                throw new ConfigurationException("Unable to establish connection",
+                        "Could not connect to the Unity application. Check if the Unity application is running and listening for connections at '"
+                                + unityConfig.getNetworkAddress() + ":" + unityConfig.getNetworkPort() + "'",
+                        connEx);
             } catch (IOException ioEx) {
                 throw new ConfigurationException("Unable to establish connection",
                         "There was a problem while trying to establish a connection to the '" + getName()
-                                + "' Unity application.\n"
-                                + "1.) Ensure the Unity application is running before starting GIFT"
-                                + "2.) Ensure that the Unity application is listening for connections at '"
-                                + unityConfig.getNetworkAddress() + ":" + unityConfig.getNetworkPort() + "'",
+                                + "' Unity application: " + ioEx.getMessage(),
                         ioEx);
             }
         } else {
@@ -294,14 +302,14 @@ public class UnityInterface extends AbstractInteropInterface {
 
             try {
                 if (socketHandler != null) {
-                    if(logger.isInfoEnabled()){
+                    if (logger.isInfoEnabled()) {
                         logger.info("Disconnecting socket handler");
                     }
                     socketHandler.disconnect();
                     socketHandler = null; // in order to recreate it upon next needed connection
                 }
-            } catch (@SuppressWarnings("unused") IOException e) {
-                // not sure if we care at this point
+            } catch (IOException e) {
+                logger.error("Error disconnecting socket handler: ", e);
             }
         }
 
@@ -361,33 +369,21 @@ public class UnityInterface extends AbstractInteropInterface {
         if (logger.isTraceEnabled()) {
             logger.trace("establishConnection()");
         }
-
+    
         if (socketHandler == null) {
             createSocketHandler();
         }
-
+    
         if (!socketHandler.isConnected()) {
-            socketHandler.connect();
-            if(logger.isInfoEnabled()){
-                logger.info("Re-connecting existing socket handler");
+            try {
+                socketHandler.connect();
+                if (logger.isInfoEnabled()) {
+                    logger.info("Established connection with Unity application");
+                }
+            } catch (IOException e) {
+                logger.error("Failed to establish connection with Unity application at {}:{}", unityConfig.getNetworkAddress(), unityConfig.getNetworkPort(), e);
+                throw e;
             }
-
-            // Create a JSON object
-            // JSONObject jsonMessage = new JSONObject();
-            // jsonMessage.put("type", "SimpleExampleState");
-            // jsonMessage.put("payload", "{\"state\": \"example\"}");
-
-            // // Convert the JSON object to a string
-            // String jsonString = jsonMessage.toJSONString();
-
-            // // Log the JSON string
-            // logger.info("Sending JSON message to Unity: " + jsonString);
-
-            // // Send the JSON message
-            // socketHandler.sendMessage(jsonString);
-
-
-            
         }
     }
 }
