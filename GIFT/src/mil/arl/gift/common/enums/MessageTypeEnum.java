@@ -237,11 +237,15 @@ public class MessageTypeEnum extends AbstractEnum {
     public static final MessageTypeEnum DOMAIN_SESSION_START_TIME_REQUEST = new MessageTypeEnum("DomainSessionStartTimeRequest", "Domain Session Start Time Request", "Request for the starting time of a particular active domain session.");
     public static final MessageTypeEnum DOMAIN_SESSION_START_TIME_REPLY = new MessageTypeEnum("DomainSessionStartTimeReply", "Domain Session Start Time Reply", "Response to a domain session start time request that contains the starting time in question.");
 
+
+    public static final MessageTypeEnum POSITIONAL_MESSAGE = new MessageTypeEnum("PositionalMessage", "Positional Message", "Contains positional data including position, rotation, name, and parent index.");
+
+
     /**
      * Collection of Training Application Game state message types
      */
     public static final List<MessageTypeEnum> TRAINING_APP_STATE_MESSAGE_TYPES = Arrays.asList(ENTITY_STATE, COLLISION, DETONATION,
-            WEAPON_FIRE, POWERPOINT_STATE, SIMPLE_EXAMPLE_STATE, GENERIC_JSON_STATE, RIFLE_SHOT_MESSAGE, GEOLOCATION);
+            WEAPON_FIRE, POWERPOINT_STATE, SIMPLE_EXAMPLE_STATE, GENERIC_JSON_STATE, RIFLE_SHOT_MESSAGE, GEOLOCATION,POSITIONAL_MESSAGE);
 
     /** (optional) information about the message type and its use in GIFT */
     private String description = null;
