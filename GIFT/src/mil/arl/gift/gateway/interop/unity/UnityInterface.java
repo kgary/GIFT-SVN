@@ -74,10 +74,14 @@ public class UnityInterface extends AbstractInteropInterface {
     );
 
     /**
-     * The object used to manage communication with the Unity application over a
-     * socket.
+     * The socket handler that recieves positional/speech data from the unity app over socket
      */
-    private AsyncSocketHandler socketHandler;
+    private AsyncSocketHandler dataSocketHandler;
+
+    /**
+     * The socket handler that sends control data to the unity app over socket
+     */
+    private AsyncSocketHandler controlSocketHandler;
 
     /**
      * The configuration specifying how to connect to the external Unity
@@ -104,7 +108,7 @@ public class UnityInterface extends AbstractInteropInterface {
         try {
             if (config instanceof Unity) {
                 unityConfig = (Unity) config;
-                createSocketHandler();
+                createSocketHandlers();
     
                 if (logger.isInfoEnabled()) {
                     logger.info("Plugin has been configured");
@@ -172,7 +176,7 @@ public class UnityInterface extends AbstractInteropInterface {
         final String jsonString = jsonMsg.toJSONString();
         logger.info("Sending JSON message to Unity: " + jsonString); // Log the JSON string before sending
         try {
-            socketHandler.sendMessage(jsonString);
+            controlSocketHandler.sendMessage(jsonString);
         } catch (IOException e) {
             logger.error("Caught exception when trying to send message to GIFT Unity SDK:\n" + jsonString, e);
             errorMsg.append("There was a problem sending the following message to the Unity application: ")
@@ -229,6 +233,20 @@ public class UnityInterface extends AbstractInteropInterface {
         } catch (Exception ex) {
             logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
         }
+    }
+
+
+    private void handleControlMessage(String line) {
+        logger.info("handleControlMessage()");
+        if (logger.isTraceEnabled()) {
+            logger.trace("handleControlMessage('" + line + "')");
+        }
+
+        // Handle control message here
+        // Example: parse the line and take necessary actions
+
+        // Log the control message
+        logger.info("Control message ACK received: {}", line);
     }
 
     @Override
@@ -291,7 +309,7 @@ public class UnityInterface extends AbstractInteropInterface {
             } catch (ConnectException connEx) {
                 throw new ConfigurationException("Unable to establish connection",
                         "Could not connect to the Unity application. Check if the Unity application is running and listening for connections at '"
-                                + unityConfig.getNetworkAddress() + ":" + unityConfig.getNetworkPort() + "'",
+                                + unityConfig.getNetworkAddress() + ":" + unityConfig.getControlNetworkPort() + "'",
                         connEx);
             } catch (IOException ioEx) {
                 throw new ConfigurationException("Unable to establish connection",
@@ -305,12 +323,20 @@ public class UnityInterface extends AbstractInteropInterface {
             }
 
             try {
-                if (socketHandler != null) {
+                if (dataSocketHandler != null) {
                     if (logger.isInfoEnabled()) {
-                        logger.info("Disconnecting socket handler");
+                        logger.info("Disconnecting data socket handler");
                     }
-                    socketHandler.disconnect();
-                    socketHandler = null; // in order to recreate it upon next needed connection
+                    dataSocketHandler.disconnect();
+                    dataSocketHandler = null; // in order to recreate it upon next needed connection
+                }
+
+                if (controlSocketHandler != null) {
+                    if (logger.isInfoEnabled()) {
+                        logger.info("Disconnecting control socket handler");
+                    }
+                    controlSocketHandler.disconnect();
+                    controlSocketHandler = null; // in order to recreate it upon next needed connection
                 }
             } catch (IOException e) {
                 logger.error("Error disconnecting socket handler: ", e);
@@ -327,12 +353,12 @@ public class UnityInterface extends AbstractInteropInterface {
         }
 
         try {
-            if (socketHandler != null) {
+            if (dataSocketHandler != null) {
                 if(logger.isInfoEnabled()){
                     logger.info("Closing socket handler");
                 }
-                socketHandler.close();
-                socketHandler = null; // in order to recreate it upon next needed connection
+                dataSocketHandler.close();
+                dataSocketHandler = null; // in order to recreate it upon next needed connection
             }
         } catch (Exception e) {
             final String errMsg = new StringBuilder("There was a problem closing the socket connection to ")
@@ -344,24 +370,34 @@ public class UnityInterface extends AbstractInteropInterface {
 
     /**
      * Ensures that an {@link AsyncSocketHandler} has been created and assigned
-     * to the {@link #socketHandler} field. If the {@link #socketHandler} field
-     * is already populated, no action is taken.
+     * to the {#dataSocketHandler & #controlSocketHandler} fields. If the {#dataSocketHandler & controlSocketHandler} fields
+     * are already populated, no action is taken.
      */
-    private void createSocketHandler() {
-        logger.info("createSocketHandler()");
-        if (socketHandler == null) {
-            final String address = this.unityConfig.getNetworkAddress();
-            final int port = this.unityConfig.getNetworkPort();
-            socketHandler = new AsyncSocketHandler(address, port, this::handleRawUnityMessage);
+    private void createSocketHandlers() {
+        logger.info("createSocketHandlers()");
+        if (dataSocketHandler == null) {
+            final String dataportAddress = this.unityConfig.getNetworkAddress();
+            final int dataPort = this.unityConfig.getDataNetworkPort();
+            dataSocketHandler = new AsyncSocketHandler(dataportAddress, dataPort, this::handleRawUnityMessage);
             
             if(logger.isInfoEnabled()){
-                logger.info("Created new socket handler");
+                logger.info("Created new data socket handler");
+            }
+        }
+
+        if (controlSocketHandler == null) {
+            final String controlAddress = this.unityConfig.getNetworkAddress();
+            final int controlPort = this.unityConfig.getControlNetworkPort();
+            controlSocketHandler = new AsyncSocketHandler(controlAddress, controlPort, this::handleControlMessage);
+
+            if (logger.isInfoEnabled()) {
+                logger.info("Created new control socket handler");
             }
         }
     }
 
     /**
-     * Ensures that the {@link #socketHandler} has established a connection with
+     * Ensures that the {@link #dataSocketHandler & #controlSocketHandler} have established a connection with
      * the Unity application. No action is taken if the connection is already
      * established.
      *
@@ -374,18 +410,30 @@ public class UnityInterface extends AbstractInteropInterface {
             logger.trace("establishConnection()");
         }
     
-        if (socketHandler == null) {
-            createSocketHandler();
+        if (dataSocketHandler == null || controlSocketHandler == null) {
+            createSocketHandlers();
         }
     
-        if (!socketHandler.isConnected()) {
+        if (!dataSocketHandler.isConnected()) {
             try {
-                socketHandler.connect();
+                dataSocketHandler.connect();
                 if (logger.isInfoEnabled()) {
-                    logger.info("Established connection with Unity application");
+                    logger.info("Established data connection with Unity application");
                 }
             } catch (IOException e) {
-                logger.error("Failed to establish connection with Unity application at {}:{}", unityConfig.getNetworkAddress(), unityConfig.getNetworkPort(), e);
+                logger.error("Failed to establish data connection with Unity application at {}:{}", unityConfig.getNetworkAddress(), unityConfig.getControlNetworkPort(), e);
+                throw e;
+            }
+        }
+
+        if (!controlSocketHandler.isConnected()) {
+            try {
+                controlSocketHandler.connect();
+                if (logger.isInfoEnabled()) {
+                    logger.info("Established control connection with Unity application");
+                }
+            } catch (IOException e) {
+                logger.error("Failed to establish control connection with Unity application at {}:{}", unityConfig.getNetworkAddress(), unityConfig.getControlNetworkPort(), e);
                 throw e;
             }
         }

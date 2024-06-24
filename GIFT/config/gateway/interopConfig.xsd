@@ -240,6 +240,37 @@
 		</xs:restriction>
 	</xs:simpleType>
   </xs:element>
+    <xs:element name="dataNetworkPort">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Data Network Port"> 
+			<fg:message>A network port number used for communication purposes in the unity interop interface implementation. E.g. 3000</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:simpleType>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="65535"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+  <xs:element name="controlNetworkPort">
+	<xs:annotation>
+		<xs:appinfo>
+			<fg:node-info message="Network Port"> 
+			<fg:message>A network port number used for communication purposes in the unity interop interface implementation. E.g. 3000</fg:message>
+			</fg:node-info> 
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:simpleType>
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="65535"/>
+		</xs:restriction>
+	</xs:simpleType>
+  </xs:element>
+
   <xs:element name="XML-RPC">
 	<xs:annotation>
 		<xs:appinfo>
@@ -411,7 +442,8 @@
     </xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="networkPort"/>
+        <xs:element ref="dataNetworkPort"/>
+		<xs:element ref="controlNetworkPort"/>
         <xs:element ref="networkAddress"/>
       </xs:sequence>
     </xs:complexType>

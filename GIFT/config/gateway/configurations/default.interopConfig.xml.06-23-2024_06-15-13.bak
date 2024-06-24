@@ -154,5 +154,14 @@
                 <grpcNetworkPort>5001</grpcNetworkPort>
             </RIDE>
         </InteropInterfaceConfig>
+        <!-- <InteropInterfaceConfig refID="17">
+            <available>true</available>
+            <impl>gateway.interop.steelartt.SteelarttPluginInterface</impl>
+            <name>Steelartt Plugin</name>
+            <Unity>
+                <networkPort>5000</networkPort>
+                <networkAddress>0.0.0.0</networkAddress>
+            </Unity>
+        </InteropInterfaceConfig> -->
     </interfaceConfigurations>
 </InteropConfig>
