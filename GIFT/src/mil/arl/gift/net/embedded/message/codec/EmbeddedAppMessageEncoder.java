@@ -43,6 +43,7 @@ import mil.arl.gift.net.embedded.message.EmbeddedSiman;
 import mil.arl.gift.net.embedded.message.EmbeddedSimpleExampleState;
 import mil.arl.gift.net.embedded.message.EmbeddedStopFreeze;
 import mil.arl.gift.net.embedded.message.EmbeddedPositionalMessage;
+import mil.arl.gift.net.embedded.message.EmbeddedPositionalMessageBatch;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedBinaryDataJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGenericJSONStateJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGeolocationJSON;
@@ -52,6 +53,7 @@ import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStopFreezeJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStringPayloadJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedVibrateDeviceJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedPositionalMessageJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedPositionalMessageBatchJSON;
 import mil.arl.gift.net.json.JSONCodec;
 
 /**
@@ -102,6 +104,7 @@ public class EmbeddedAppMessageEncoder {
 
 	private static EmbeddedPositionalMessageJSON POSITIONAL_JSON_CODEC = new EmbeddedPositionalMessageJSON();
 
+    private static EmbeddedPositionalMessageBatchJSON POSITIONAL_BATCH_JSON_CODEC = new EmbeddedPositionalMessageBatchJSON();
 	/**
 	 * An enumeration of object types that are supported for encoding/decoding. The name of an object's type will be added to its
 	 * JSON encoding upon invoking {@link EmbeddedAppMessageEncoder#encodeForEmbeddedApplication(Object)} so that embedded applications
@@ -131,7 +134,9 @@ public class EmbeddedAppMessageEncoder {
         /** A message containing raw binary data. */
         BinaryData,
         /** A message containing positional data for steel-artt */
-        PositionalMessage
+        PositionalMessage,
+        /** A message containing an array of positional data,its timestamp of sending from unity and batch size  for steel-artt */
+        PositionalMessageBatch
 	}
 
 	/**
@@ -152,6 +157,7 @@ public class EmbeddedAppMessageEncoder {
 		messageTypeToCodec.put(EncodedMessageType.GenericJSONState, GENERIC_JSON_STATE_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.BinaryData, BINARY_DATA_JSON_CODEC );
         messageTypeToCodec.put(EncodedMessageType.PositionalMessage,POSITIONAL_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.PositionalMessageBatch,POSITIONAL_BATCH_JSON_CODEC );
 
 	}
 
@@ -168,6 +174,7 @@ public class EmbeddedAppMessageEncoder {
         decodedPayloadClassToMessageType.put(Geolocation.class, MessageTypeEnum.GEOLOCATION);
         decodedPayloadClassToMessageType.put(EntityState.class, MessageTypeEnum.ENTITY_STATE);
         decodedPayloadClassToMessageType.put(EmbeddedPositionalMessage.class, MessageTypeEnum.POSITIONAL_MESSAGE);
+        decodedPayloadClassToMessageType.put(EmbeddedPositionalMessageBatch.class, MessageTypeEnum.POSITIONAL_MESSAGE_BATCH);
 	}
 
     /**
@@ -470,7 +477,10 @@ public class EmbeddedAppMessageEncoder {
         } else if (embeddedPayload instanceof EmbeddedPositionalMessage) {
             EmbeddedPositionalMessage embeddedPositionalMessage = (EmbeddedPositionalMessage) embeddedPayload;
             return embeddedPositionalMessage;
-        } else {
+        } else if (embeddedPayload instanceof EmbeddedPositionalMessageBatch) {
+            EmbeddedPositionalMessageBatch embeddedPositionalMessageBatch = (EmbeddedPositionalMessageBatch) embeddedPayload;
+            return embeddedPositionalMessageBatch;
+        }else {
             throw new IllegalArgumentException("The class of the GIFT payload was an unsupported type '" + embeddedPayload.getClass().getName() + "'");
         }
     }

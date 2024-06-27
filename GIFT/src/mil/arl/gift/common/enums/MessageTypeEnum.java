@@ -239,6 +239,7 @@ public class MessageTypeEnum extends AbstractEnum {
 
 
     public static final MessageTypeEnum POSITIONAL_MESSAGE = new MessageTypeEnum("PositionalMessage", "Positional Message", "Contains positional data including position, rotation, name, and parent index.");
+    public static final MessageTypeEnum POSITIONAL_MESSAGE_BATCH = new MessageTypeEnum("PositionalMessageBatch", "Positional Message Batch", "Contains an array of positional data, timestamp when data was sent by unity and batch size");
 
 
     /**

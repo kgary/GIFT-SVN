@@ -129,8 +129,8 @@
             <impl>gateway.interop.unity.UnityInterface</impl>
             <name>Unity Interface</name>
             <Unity>
-                <dataNetworkPort>5050</dataNetworkPort>
-                <controlNetworkPort>5000</controlNetworkPort>
+                <dataNetworkPort>5000</dataNetworkPort>
+                <controlNetworkPort>5050</controlNetworkPort>
                 <networkAddress>0.0.0.0</networkAddress>
             </Unity>
         </InteropInterfaceConfig>

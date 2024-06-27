@@ -140,6 +140,8 @@ public class UnityInterface extends AbstractInteropInterface {
         return producedMsgs;
     }
 
+
+    // This method sends control messages over to Unity. For e.g. SIMAN messages. 
     @SuppressWarnings("unchecked")
     @Override
     public boolean handleGIFTMessage(Message message, StringBuilder errorMsg) throws ConfigurationException {
@@ -189,8 +191,8 @@ public class UnityInterface extends AbstractInteropInterface {
     
 
     /**
-     * The method that is invoked when a new text message is received from the
-     * Unity application.
+     * The method that is invoked when a data message is received from the
+     * Unity application. This method then should ideally send an ACK.
      *
      * @param line The text that was received from the Unity application.
      */
@@ -235,15 +237,14 @@ public class UnityInterface extends AbstractInteropInterface {
         }
     }
 
-
+    // This method receives the ACKs for the control messages(sent by gift to unity)  sent by the unity app. 
     private void handleControlMessage(String line) {
         logger.info("handleControlMessage()");
         if (logger.isTraceEnabled()) {
             logger.trace("handleControlMessage('" + line + "')");
         }
 
-        // Handle control message here
-        // Example: parse the line and take necessary actions
+        // Handle control message ACK here
 
         // Log the control message
         logger.info("Control message ACK received: {}", line);
@@ -378,8 +379,9 @@ public class UnityInterface extends AbstractInteropInterface {
         if (dataSocketHandler == null) {
             final String dataportAddress = this.unityConfig.getNetworkAddress();
             final int dataPort = this.unityConfig.getDataNetworkPort();
+            logger.info("dataPort: "+ dataPort);
             dataSocketHandler = new AsyncSocketHandler(dataportAddress, dataPort, this::handleRawUnityMessage);
-            
+
             if(logger.isInfoEnabled()){
                 logger.info("Created new data socket handler");
             }
@@ -388,6 +390,7 @@ public class UnityInterface extends AbstractInteropInterface {
         if (controlSocketHandler == null) {
             final String controlAddress = this.unityConfig.getNetworkAddress();
             final int controlPort = this.unityConfig.getControlNetworkPort();
+            logger.info("controlPort: "+ controlPort);
             controlSocketHandler = new AsyncSocketHandler(controlAddress, controlPort, this::handleControlMessage);
 
             if (logger.isInfoEnabled()) {
