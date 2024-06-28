@@ -38,7 +38,7 @@ The control messages follow the structure shown below:
 
 ### Acknowledgment for Control Messages
 
-Upon receiving a control message, Unity sends back an acknowledgment to GIFT. This message format has beein implemented by the GIFT developers and not the Steelartt-SE team. Although we can modify it, but we haven't done so. The format for the same is given below:
+Upon receiving a control message, for now the unity app doesn't do anything with that message. It just sends back an acknowledgment back to GIFT. This message format has beein implemented by the GIFT developers and not the Steelartt-SE team. Although we can modify it, but we haven't done so. The format for the same is given below:
 
 ```json
 {
