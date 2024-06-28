@@ -13,7 +13,8 @@
 13) [GIFT - Unity WebGL TA Creation](GIFTUnityAppBuildRunGuide.md)
 14) [GIFT & Unity WebGL TA Communication](GIFTUnityCommunication.md)
 15) [GIFT & Unity Desktop TA Communication](GIFTUnityDesktopAppGuide.md)
-16) [Communication between all TAs](TrainingApps.md)
+16) [GIFT - Unity Desktop TA Socket Communication](GIFTUnitySocketCommunication.md)
+17) [Communication between all TAs](TrainingApps.md)
 17) [Various Message Types - Unity WebGL, Unity Desktop, C# TA](MessagingSystems.md)
 18) [Miscellaneous](Misc.md)
 
