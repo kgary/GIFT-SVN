@@ -2,6 +2,9 @@ package mil.arl.gift.net.embedded.message.codec.json;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,9 +23,9 @@ public class EmbeddedPositionalMessageBatchJSON implements JSONCodec {
 
     private static Logger logger = LoggerFactory.getLogger(EmbeddedPositionalMessageBatchJSON.class);
 
-    private static final String TIMESTAMP = "timestamp";
-    private static final String DATA_SIZE = "dataSize";
-    private static final String MESSAGES = "messages";
+    private static final String TIMESTAMP = "Timestamp";
+    private static final String DATA_SIZE = "DataSize";
+    private static final String MESSAGES = "Messages";
     private static final String POSITION = "position";
     private static final String ROTATION = "rotation";
     private static final String NAME = "name";
@@ -52,14 +55,23 @@ public class EmbeddedPositionalMessageBatchJSON implements JSONCodec {
             }
 
             List<EmbeddedPositionalMessage> messages = new ArrayList<>();
+            JSONParser parser = new JSONParser();  // JSON parser to parse the strings into JSONObjects
+
             for (Object messageObj : messagesJsonArray) {
-                JSONObject messageJson = (JSONObject) messageObj;
+
+                // Parse the string back into a JSONObject
+                JSONObject messageJson;
+                try {
+                    messageJson = (JSONObject) parser.parse((String) messageObj);
+                } catch (ParseException e) {
+                    throw new MessageDecodeException(this.getClass().getName(), "Error parsing message JSON string.", e);
+                }                
+                
 
                 JSONObject positionJson = (JSONObject) messageJson.get(POSITION);
                 if (positionJson == null) {
                     throw new MessageDecodeException(this.getClass().getName(), "Position field is missing in a message.");
                 }
-
                 Position position = new Position(
                     (double) positionJson.get("x"),
                     (double) positionJson.get("y"),
