@@ -15,7 +15,8 @@
 15) [GIFT & Unity Desktop TA Communication](GIFTUnityDesktopAppGuide.md)
 16) [Communication between all TAs](TrainingApps.md)
 17) [Various Message Types - Unity WebGL, Unity Desktop, C# TA](MessagingSystems.md)
-18) [Miscellaneous](Misc.md)
+18) [Steps to write a new data message parser in GIFT](DataMessageParserWritingSteps.md)
+19) [Miscellaneous](Misc.md)
 
 
 ## Note (Mar 17, 2024)
