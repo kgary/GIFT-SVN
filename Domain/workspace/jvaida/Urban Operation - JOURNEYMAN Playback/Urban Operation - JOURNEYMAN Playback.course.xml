@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Urban Operation - JOURNEYMAN Playback" version="11.0.1">
+    <description>&lt;p&gt;This course demonstrates playing back captured Virtual Battle Space (VBS) DIS game state messages recorded during a four person urban operation scenario in VBS through a GIFT course. The messages will be sent back through GIFT for real time assessment as if the four learners were actually interacting in VBS.&amp;nbsp; Since this is a playback of a log VBS is not required to run this course.&amp;nbsp; While collective (team) assessments do take place, you will be playing as an observer.&amp;nbsp; No useful feedback will be shown in the tutor webpage and any real time scenario adaptations have already happen in the past when the log was recorded and won't be applied again. We do recommend that you use an additional browser window and use the Game Master tool to observe the playback unfold including watching a view of the action over a map view.&amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;The audio file you hear playing is a recording of the four learners as they completed their mission.&amp;nbsp; It provides the observer additional information that can be used for assessing the actions of the team and help conduct After Action Review (AAR).&lt;br&gt;&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Concepts&lt;/span&gt;: OPORD/WARNORD brief (observed assessment), map recon (observed assessment), Forward Operating Base operations, situational awareness, convoy operations including proper spacing and speed, communication, roadside IED reaction, checkpoints, react to changing intelligence, follow route&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Intended Audience&lt;/span&gt;: everyone&amp;nbsp;&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Number of users&lt;/span&gt;: 1&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Training Applications: &lt;/span&gt;none (because its a log playback)&lt;/p&gt;&lt;p&gt;&lt;span style="font-weight: 700;"&gt;Peripherals&lt;/span&gt;: none&lt;/p&gt;</description>
+    <lastSuccessfulValidation>2019:12:30 16:08:32:206 -0500</lastSuccessfulValidation>
+    <image>soldier-military-uniform-american.jpg</image>
+    <ns2:surveyContext>27</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts"/>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>WARNORD</transitionName>
+            <message>
+                <content>&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;Who:&amp;nbsp;&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;&amp;nbsp;C-1-507 IN&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;What:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;&amp;nbsp;Provide resources to local village
+ISO Urban operations&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;When:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt; 19 0930 OCT 19&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;Where:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt; &lt;/span&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;IVO OBJ Crusher&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;Why:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;&amp;nbsp;Gain support of local populace for
+future operations&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Arial"&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;Uniform:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt; &lt;/span&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;ACU, full kit&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>Urban Operation</transitionName>
+            <trainingAppTypeEnum>VBS</trainingAppTypeEnum>
+            <dkfRef>
+                <file>Resupply MIssion.bmmfortpolk_e87ed88a-1c4c-45fe-9425-c111682b9ecb.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <DISInteropInputs>
+                            <loadArgs/>
+                            <logFile>
+<domainSessionLog assessmentName="Urban Operation - Resource Delivery" start="64" end="55313">Urban Operation - JOURNEYMAN Playback_journeyman.log</domainSessionLog>
+<capturedAudioFile>urbanOp_capstone final audio_v4.mp3</capturedAudioFile>
+                            </logFile>
+                        </DISInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>Scenario End</transitionName>
+            <message>
+                <content>The scenario is now over.&amp;nbsp; Please notify your proctor.&amp;nbsp;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>
