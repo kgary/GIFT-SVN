@@ -15,9 +15,10 @@
 15) [GIFT & Unity Desktop TA Communication](GIFTUnityDesktopAppGuide.md)
 16) [GIFT - Unity Desktop TA Socket Communication](GIFTUnitySocketCommunication.md)
 17) [Communication between all TAs](TrainingApps.md)
-17) [Various Message Types - Unity WebGL, Unity Desktop, C# TA](MessagingSystems.md)
-18) [GIFT Courses](GIFTCourse.md)
-18) [Miscellaneous](Misc.md)
+18) [Various Message Types - Unity WebGL, Unity Desktop, C# TA](MessagingSystems.md)
+19) [GIFT Courses](GIFTCourse.md)
+20) [GIFT Derby DB](GIFTDerbyDB.md)
+21) [Miscellaneous](Misc.md)
 
 
 ## Note (Mar 17, 2024)
