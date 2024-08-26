@@ -36,6 +36,14 @@ import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.net.embedded.message.codec.EmbeddedAppMessageEncoder;
 import mil.arl.gift.net.socket.AsyncSocketHandler;
 
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+import com.mongodb.MongoException;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
+
 /**
  * The interop plugin that allows for communication with a training application
  * that was built using the Unity game engine and the GIFT Unity SDK.
@@ -201,40 +209,82 @@ public class UnityInterface extends AbstractInteropInterface {
         if (logger.isTraceEnabled()) {
             logger.trace("handleTrainingAppData('" + line + "')");
         }
-    
-        /* A message that starts with a '!' character indicates that the rest of
-         * the line is an error message. This is provided functionality in the
-         * GIFT Unity SDK. */
+
+        // Check for error messages from Unity
         if (line.startsWith("!")) {
-            String errMsg = new StringBuilder("The Unity application reported the following error: ")
-                    .append(line)
-                    .toString();
+            String errMsg = "The Unity application reported the following error: " + line;
             logger.error(errMsg);
             return;
         }
-    
-        try {
-            final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
-            MessageTypeEnum msgType;
+
+        // try {
+            // Parse the received message
+            // final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
+            // MessageTypeEnum msgType;
+            // try {
+            //     msgType = EmbeddedAppMessageEncoder.getDecodedMessageType(message);
+            // } catch (Exception e) {
+            //     logger.error("There was a problem determining the message type of a payload.", e);
+            //     return;
+            // }
+
+            // if (message instanceof TrainingAppState) {
+            //     // Send message to GIFT
+            //     GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
+
+           // JSON Parsing with json-simple
+            JSONParser parser = new JSONParser();
             try {
-                msgType = EmbeddedAppMessageEncoder.getDecodedMessageType(message);
-            } catch (Exception e) {
-                logger.error("There was a problem determining the message type of a payload.", e);
-                return;
+                // Parse the entire line as a JSONObject
+                JSONObject jsonObject = (JSONObject) parser.parse(line);
+
+                // Extract the payload string
+                String payload = (String) jsonObject.get("payload");
+
+                // Parse the payload string into a JSONObject
+                JSONObject payloadObject = (JSONObject) parser.parse(payload);
+
+                // Extract the Messages array
+                JSONArray messagesArray = (JSONArray) payloadObject.get("Messages");
+
+                // MongoDB Connection Setup
+                try (MongoClient mongoClient = new MongoClient("localhost", 27017)) {
+                    MongoDatabase database = mongoClient.getDatabase("unityMessagesDB");
+                    MongoCollection<Document> collection = database.getCollection("competencyMessages");
+
+                    // Iterate over each message in the "Messages" array
+                    for (Object obj : messagesArray) {
+                        JSONObject message = (JSONObject) obj;
+
+                        // Add any additional information from the payload, if needed
+                        message.put("Timestamp", payloadObject.get("Timestamp"));
+                        message.put("scenarioEvent", payloadObject.get("scenarioEvent"));
+
+                        // Convert the message to a MongoDB Document
+                        Document document = Document.parse(message.toJSONString());
+                        collection.insertOne(document);
+
+                        logger.info(" Message inserted into MongoDB: " + document.toJson());
+                    }
+
+                } catch (MongoException ex) {
+                    logger.error("There was a problem connecting to MongoDB or inserting the document.", ex);
+                }
+
+            } catch (ParseException e) {
+                logger.error("Failed to parse the JSON message from Unity.", e);
             }
-    
-            if (message instanceof TrainingAppState) {
-                GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
-            } else {
-                final String typeName = message != null ? message.getClass().getName() : "null";
-                logger.warn("A message of type '" + typeName + "' was received from the unity application. "
-                        + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
-            }
-        } catch (ParseException e) {
-            logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
-        } catch (Exception ex) {
-            logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
-        }
+
+            // } else {
+            //     final String typeName = message != null ? message.getClass().getName() : "null";
+            //     logger.warn("A message of type '" + typeName + "' was received from the unity application. "
+            //             + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
+            // }
+        // } catch (ParseException e) {
+        //     logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
+        // } catch (Exception ex) {
+        //     logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
+        // }
     }
 
     // This method receives the ACKs for the control messages(sent by gift to unity)  sent by the unity app. 

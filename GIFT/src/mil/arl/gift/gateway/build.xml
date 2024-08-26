@@ -327,6 +327,7 @@
     	<echo message="Compiling Gateway"/>
         <mkdir dir="${root.path}/build/classes"/>
         <mkdir dir="${root.path}/bin"/>
+		<echo message="${toString:classpath}" />
         <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
 			<compilerarg value="-Xlint:-path"/> <!-- necessary to silence the build errors about bad path elements as jars referenced in external are different from MANIFEST file -->
         </javac>
