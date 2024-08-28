@@ -36,6 +36,8 @@ import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.net.embedded.message.codec.EmbeddedAppMessageEncoder;
 import mil.arl.gift.net.socket.AsyncSocketHandler;
 
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+
 /**
  * The interop plugin that allows for communication with a training application
  * that was built using the Unity game engine and the GIFT Unity SDK.
