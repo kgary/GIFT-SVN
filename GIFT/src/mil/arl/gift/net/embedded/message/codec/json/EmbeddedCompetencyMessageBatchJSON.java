@@ -27,10 +27,10 @@ public class EmbeddedCompetencyMessageBatchJSON implements JSONCodec {
     private final EmbeddedCompetencyMessageJSON messageCodec = new EmbeddedCompetencyMessageJSON();
     @Override
     public Object decode(JSONObject jsonObj) throws MessageDecodeException {
-
-        try {
             logger.info("Received JSONObject: ");
             logger.info(jsonObj.toJSONString());
+        try {
+            
 
             String timestamp = (String) jsonObj.get(TIMESTAMP);
             if (timestamp == null) {

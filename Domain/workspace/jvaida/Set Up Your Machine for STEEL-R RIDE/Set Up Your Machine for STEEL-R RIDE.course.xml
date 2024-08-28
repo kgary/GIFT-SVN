@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Set Up Your Machine for STEEL-R RIDE" version="11.0.98">
+    <description>&lt;p&gt;This course describes the process of setting up computers for running RIDE with a GIFT course.&lt;/p&gt;&lt;p&gt;RIDE can be run on one computer or multiple networked computers, and this course describes the process of setup for either of those configurations.&lt;/p&gt;&lt;p&gt;When the course is complete, you will be ready to run the STEEL-R RIDE Exemplar course.&lt;br&gt;&lt;/p&gt;</description>
+    <lastSuccessfulValidation>2021:11:17 18:11:34:325 -0500</lastSuccessfulValidation>
+    <image>STE logo white1.PNG</image>
+    <ns2:surveyContext>39</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts"/>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>Introduction</transitionName>
+            <message>
+                <content>&lt;p style="font-family: Arial; font-size: 20px;" align="left"&gt;Welcome to GIFT!&lt;br&gt;&lt;br&gt;This course will instruct you on how to prepare your machine for RIDE, the Rapid Integration &amp;amp; Development Environment developed by the USC Institute for Creative Technologies (ICT) (&lt;a href="https://ride.ict.usc.edu/" target="_blank"&gt;https://ride.ict.usc.edu/&lt;/a&gt;). &lt;/p&gt;&lt;p style="font-family: Arial; font-size: 20px;" align="left"&gt;When this course is finished, you will be prepared to follow the STEEL-R RIDE Exemplar course, and connect GIFT to RIDE&lt;/p&gt;&lt;p style="font-family: Arial; font-size: 20px;" align="left"&gt;&lt;br&gt;&lt;/p&gt;&lt;p style="font-family: Arial; font-size: 20px;" align="left"&gt;These instructions are also available on &lt;a href="https://gifttutoring.org/projects/gift/wiki/STEEL-R_RIDE_Exemplar_Courses" target="_blank"&gt;this GIFT Wiki page&lt;/a&gt;. You can use that site rather than this course, or as a later reference.&lt;br&gt;&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Setting up RIDE</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;Your first step is to ensure that you have the correct version of RIDE on your machine.&lt;/p&gt;&lt;div align="left"&gt;&lt;ol&gt;&lt;li&gt;Download the latest version of RIDE from the &lt;a href="https://gifttutoring.org/projects/gift/files" target="_blank"&gt;GIFT downloads page. &lt;/a&gt;&lt;/li&gt;&lt;li&gt;Right-click the downloaded zip file, and then left-click the menu option "Extract All..."&lt;/li&gt;&lt;li&gt;Type the location of the extracted folder, and left-click "Extract" to extract the files. This will move the extracted files to the location you specify, so they can be accessed later.&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Determining computer network IP address</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;RIDE can be used by a single player or multiple players.&amp;nbsp; When there are multiple players each player will have their own instance of RIDE.&amp;nbsp; In either case there will always be a single RIDE instance that manages the world; this is called the &lt;b&gt;Host&lt;/b&gt;. A &lt;b&gt;Host&lt;/b&gt;&amp;nbsp;RIDE instance can have many other RIDE instances connect to it; these are called &lt;b&gt;Clients&lt;/b&gt;.&lt;/p&gt;&lt;p align="left"&gt;To enable communication between RIDE and GIFT during a GIFT Course, GIFT needs to be configured with the network IP address of the RIDE Host (e.g. 10.3.82.1).&amp;nbsp; If you do not know the computers network IP address please follow the following steps:&lt;/p&gt;&lt;div align="left"&gt;&lt;u&gt;&lt;b&gt;Determining RIDE computer network IP&lt;/b&gt;&lt;/u&gt;&lt;br&gt;&lt;ol&gt;&lt;li&gt;Determine which computer will run RIDE as a Host.&lt;/li&gt;&lt;ul&gt;&lt;li&gt;This
+ can be any computer.&amp;nbsp; You may need to open certain network ports in 
+order for GIFT and RIDE to work properly.&amp;nbsp; Refer to&amp;nbsp;&lt;a href="https://gifttutoring.org/projects/gift/wiki/Configuration_Settings_2022-1#Network-communication-ports-Firewall" target="_blank"&gt;GIFT network ports&lt;/a&gt;&amp;nbsp;for more information or use the&amp;nbsp;&lt;a href="https://gifttutoring.org/projects/gift/boards" target="_blank"&gt;GIFT forums&lt;/a&gt;.&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;On the Host computer, open a command prompt. This can be done by typing "Command Prompt" into the Windows search bar.&lt;/li&gt;&lt;li&gt;In the command prompt, type&amp;nbsp;&lt;i&gt;ipconfig&amp;nbsp;&lt;/i&gt;and press Enter.&lt;/li&gt;&lt;li&gt;Information
+ about your Windows IP Configuration will be displayed. Find the line 
+labeled "IPv4 Address" and write that down. That is your&amp;nbsp;&lt;span style="font-weight: 700;"&gt;Host IP Address&lt;/span&gt;.&lt;br&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style="font-weight: 700;"&gt;&lt;span style="background-color: rgb(255, 255, 0);"&gt;NOTE:&lt;/span&gt;&lt;/span&gt;&amp;nbsp;Even
+ if you are running RIDE on the same computer as GIFT, do not use 
+an IPv4 "loopback address". This will cause issues connecting to RIDE.&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;In the default configuration, your Host computer 
+will also run GIFT. However, it is possible to run GIFT and the Host 
+instance of RIDE on separate computers.&amp;nbsp;&lt;span style="font-weight: 700;"&gt;If you are doing that&lt;/span&gt;, repeat steps 2-4 on the computer running GIFT to obtain that computer's IP address as well.&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Configure GIFT with RIDE IP address</transitionName>
+            <message>
+                <content>&lt;div align="left"&gt;&lt;u&gt;&lt;b&gt;Configure GIFT with RIDE computer network IP address&lt;/b&gt;&lt;/u&gt;&lt;br&gt;&lt;ol&gt;&lt;li style="text-align: left;"&gt;On the computer running GIFT, navigate to&amp;nbsp;&lt;span style="font-weight: 700;"&gt;GIFT/config/gateway/configurations/default.interopConfig.xml&lt;/span&gt;&amp;nbsp;and open the file in a text editor.&lt;/li&gt;&lt;li style="text-align: left;"&gt;Search for the tag called&amp;nbsp;&lt;i&gt;&amp;lt;RIDE&amp;gt;&lt;/i&gt;. Inside that tag will be another tag called&amp;nbsp;&lt;i&gt;&amp;lt;networkAddress&amp;gt;&lt;/i&gt;, which contain the value&amp;nbsp;&lt;i&gt;RIDEHostIpAddress&lt;/i&gt;&amp;nbsp;(unless you have already set it to a different value).&lt;/li&gt;&lt;li style="text-align: left;"&gt;Replace RIDE&lt;i&gt;HostIpAddress&lt;/i&gt;&amp;nbsp;with the Host IP Address you wrote down in an earlier step.&lt;/li&gt;&lt;li style="text-align: left;"&gt;Save the change to default.interopConfig.xml.&lt;/li&gt;&lt;li style="text-align: left;"&gt;Close default.interopConfig.xml.&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Configure GIFT for multiple players</transitionName>
+            <message>
+                <content>&lt;div align="left"&gt;&lt;u&gt;&lt;b&gt;Configure GIFT for multiple players&lt;/b&gt;&lt;/u&gt;&lt;br&gt;&lt;ol&gt;&lt;li style="text-align: left;"&gt;On the computer running GIFT, navigate to&amp;nbsp;&lt;span style="font-weight: 700;"&gt;GIFT/config/common.properties&lt;/span&gt;&amp;nbsp;and open the file in a text editor.&lt;/li&gt;&lt;li style="text-align: left;"&gt;Search for the property called TutorURL.&lt;/li&gt;&lt;li style="text-align: left;"&gt;In the TutorURL's value, replace&amp;nbsp;&lt;i&gt;localHost&lt;/i&gt;&amp;nbsp;with the IP address of the computer running GIFT.&lt;/li&gt;&lt;li style="text-align: left;"&gt;Search the file for a property called GiftAdminServerUrl.&lt;/li&gt;&lt;li style="text-align: left;"&gt;In the GiftAdminServerUrl's value, replace&amp;nbsp;&lt;i&gt;localHost&lt;/i&gt;&amp;nbsp;with the IP address of the computer running GIFT.&lt;/li&gt;&lt;li style="text-align: left;"&gt;Save the changes to common.properties.&lt;/li&gt;&lt;li style="text-align: left;"&gt;Close common.properties.&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <LessonMaterial>
+            <transitionName>Example Network Diagram for RIDE Host and Clients</transitionName>
+            <LessonMaterialList>
+                <media>
+                    <name>Example Network Configuration</name>
+                    <uri>RIDE_Network_Diagram.PNG</uri>
+                    <message>&lt;p&gt;This diagram shows how a four player setup would look with GIFT and RIDE.&amp;nbsp; You can choose to run with less players.&amp;nbsp; When there is only one player, only the Host exists in this diagram.&lt;/p&gt;</message>
+                    <ImageProperties/>
+                </media>
+                <isCollection>false</isCollection>
+            </LessonMaterialList>
+        </LessonMaterial>
+        <Guidance>
+            <transitionName>Single Player is ready</transitionName>
+            <message>
+                <content>&lt;div align="left"&gt;If you are configuring this computer for multi-player use with RIDE, click the continue arrow now.&lt;/div&gt;&lt;div align="left"&gt;&lt;b&gt;&lt;br&gt;If you are &lt;u&gt;only&lt;/u&gt; running RIDE with one player, continue reading below:&lt;/b&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;br&gt;&lt;/div&gt;&lt;p align="left"&gt;You have now finished setting up your machine for RIDE.&lt;/p&gt;&lt;p align="left"&gt;Refer back to this setup course should any issues arise.&lt;/p&gt;&lt;div align="left"&gt;Then, use the GIFT forums for further help.&lt;/div&gt;&lt;div align="left"&gt;&lt;br&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;b&gt;If you made any changes to configuration files while running this course, follow the steps below to reset GIFT before running any more courses.&lt;/b&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;u&gt;Resetting after configuration changes&lt;/u&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;span style="background-color: rgb(255, 255, 0);"&gt;NOTE:&lt;/span&gt; &lt;span style="font-size: 14px;"&gt;Once you perform the following steps, GIFT will close. You will need to launch GIFT again to use it, and configuration changes will be applied.&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;ol&gt;&lt;li&gt;&lt;b&gt;IF&lt;/b&gt; you changed any configuration files in the previous steps, right-click the GIFT icon in the Windows system tray.&lt;/li&gt;&lt;li&gt;In the pop-up menu, left-click "Exit".&lt;/li&gt;&lt;li&gt;A dialog will appear asking if you want to close GIFT. Left-click "Yes".&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Setting up RIDE for Team Training</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;If you are using multiple instances of RIDE, you will need to perform some setup on each computer that is running RIDE.&lt;br&gt;&lt;/p&gt;&lt;p align="left"&gt;Copy or download the RIDE folder to each computer which will run the software. As a reminder, these are the instructions on downloading and extracting RIDE:&lt;/p&gt;&lt;div align="left"&gt;&lt;ol&gt;&lt;li&gt;Download the latest version of RIDE from the &lt;a href="https://gifttutoring.org/projects/gift/files" target="_blank"&gt;GIFT downloads page. &lt;/a&gt;&lt;/li&gt;&lt;li&gt;Right-click the downloaded zip file, and then left-click the menu option "Extract All..."&lt;/li&gt;&lt;li&gt;Type
+ the location of the extracted folder, and left-click "Extract" to 
+extract the files. This will move the extracted files to the location 
+you specify, so they can be accessed later.&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;p align="left"&gt;&lt;br&gt;&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Logging Into GIFT From Clients</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;Each computer which is running RIDE will also need to log into GIFT.&lt;/p&gt;&lt;p align="left"&gt;If you are running only one instance of RIDE, and it is on the same computer that is running GIFT, then you do not need to perform these steps.&lt;/p&gt;&lt;p align="left"&gt;However, &lt;b&gt;if any instance of RIDE is on a computer other than the one running GIFT&lt;/b&gt;, perform the following steps:&lt;/p&gt;&lt;div align="left"&gt;&lt;ol&gt;&lt;li&gt;On the computer that is currently running GIFT, open a Command Prompt.&lt;/li&gt;&lt;li&gt;Type &lt;i&gt;ipconfig&lt;/i&gt; and write down the address on the line labeled &lt;i&gt;IPv4 Address&lt;/i&gt;. This is GIFT's IP address.&lt;br&gt;&lt;/li&gt;&lt;li&gt;On each computer with RIDE, if GIFT is not already installed, open a web browser.&lt;/li&gt;&lt;li&gt;In the web browser, navigate to the address &lt;i&gt;&amp;lt;giftIP&amp;gt;:8080/dashboard&lt;/i&gt; where &lt;i&gt;&amp;lt;giftIP&amp;gt;&lt;/i&gt; is replaced with the GIFT IP address you wrote down earlier.&lt;/li&gt;&lt;li&gt;Log into GIFT from this computer&lt;br&gt;&lt;b&gt;&lt;span style="background-color: rgb(255, 255, 0);"&gt;NOTE:&lt;/span&gt;&lt;/b&gt; When logging into a GIFT computer, no two computers should use the same login. Use a different account on each computer.&lt;/li&gt;&lt;/ol&gt;You will need to perform the login steps (3-5) any time you run RIDE from another computer. Once you verify that you are using the correct IP address, you can reuse that later, as long as your IP address does not change. If it does, you will need to perform all of the above steps to determine the new IP address and use that to log in.&lt;br&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Thank you</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;You have now finished setting up your machine for RIDE.&lt;/p&gt;&lt;p align="left"&gt;Refer back to this setup course should any issues arise.&lt;/p&gt;&lt;p align="left"&gt;Then, use the GIFT forums for further help.&lt;br&gt;&lt;/p&gt;&lt;p align="left"&gt;&lt;b&gt;If you made any changes to configuration files while running this course, reset GIFT before running any more courses.&lt;/b&gt;&lt;br&gt;&lt;/p&gt;&lt;div align="left"&gt;&lt;u&gt;Resetting after configuration changes&lt;/u&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;span style="background-color: rgb(255, 255, 0);"&gt;NOTE:&lt;/span&gt; &lt;span style="font-size: 14px;"&gt;Once
+ you perform the following steps, GIFT will close. You will need to 
+launch GIFT again to use it, and configuration changes will be applied.&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;ol&gt;&lt;li&gt;&lt;b&gt;IF&lt;/b&gt; you changed any configuration files in the previous steps, right-click the GIFT icon in the Windows system tray.&lt;/li&gt;&lt;li&gt;In the pop-up menu, left-click "Exit".&lt;/li&gt;&lt;li&gt;A dialog will appear asking if you want to close GIFT. Left-click "Yes".&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>
