@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Survey" version="11.0.64">
+    <description>This course will test my new training application interop plugin.</description>
+    <lastSuccessfulValidation>2024:08:27 18:05:07:744 -0700</lastSuccessfulValidation>
+    <ns2:surveyContext>37</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts"/>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>Welcome to Steel-Artt</transitionName>
+            <message>
+                <content>Please click on the next button to start the VR Scenario.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <PresentSurvey>
+            <transitionName>Post Scenario Survey</transitionName>
+            <ns2:GIFTSurveyKey>Post Scenario Survey_20240826_171853</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <Guidance>
+            <transitionName>Thankyou</transitionName>
+            <message>
+                <content>&lt;p&gt;Thankyou for taking the survey. We will now talk about a concept which has been measured based on your performance and has been visualized for you.&lt;br&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Entropy is a concept from information theory that measures the average amount of uncertainty or information content in a set of possible outcomes.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;You can now view this &lt;a href="http://localhost:5173/scenario/1?startTime=2024-08-20T23:10:42Z&amp;endTime=2024-08-30T23:11:01Z&amp;extremeEntropy=100"&gt;link&lt;/a&gt; to see how your entropy progressed over time during the VR scenario.&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

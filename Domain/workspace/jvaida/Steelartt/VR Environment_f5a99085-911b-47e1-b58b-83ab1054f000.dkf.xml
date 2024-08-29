@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="Real-time Assessment" version="11.0.7">
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="Real-time Assessment" version="11.0.10">
     <description>This is the simplest DKF that can be used by most training applications.  It only contains 1 condition, the Application Completed Condition, which when triggered will end the domain assessment and therefore the Training Application course element.</description>
     <resources>
         <ns2:surveyContext>37</ns2:surveyContext>
@@ -20,7 +20,7 @@
 <conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
 <input>
     <ApplicationCompletedCondition>
-        <IdealCompletionDuration>00:00:05</IdealCompletionDuration>
+        <IdealCompletionDuration>00:00:00</IdealCompletionDuration>
     </ApplicationCompletedCondition>
 </input>
                             </condition>

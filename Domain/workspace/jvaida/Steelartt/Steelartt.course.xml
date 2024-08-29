@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt" version="11.0.47">
+<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt" version="11.0.68">
     <description>This course will test my new training application interop plugin.</description>
-    <lastSuccessfulValidation>2024:08:27 18:05:07:744 -0700</lastSuccessfulValidation>
+    <lastSuccessfulValidation>2024:08:28 23:28:43:190 -0700</lastSuccessfulValidation>
     <ns2:surveyContext>37</ns2:surveyContext>
     <concepts>
         <hierarchy>
@@ -12,7 +12,14 @@
         <Guidance>
             <transitionName>Welcome to Steel-Artt</transitionName>
             <message>
-                <content>Please click on the next button to start the VR Scenario.</content>
+                <content>Please click on the next button to read the instructions to be followed in order to start the VR Scenario.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Start VR</transitionName>
+            <message>
+                <content>&lt;font face="Verdana" color="#ff0000"&gt;&lt;span style="font-size: 24px;"&gt;Before advancing to the next course object in GIFT, the Unity application&lt;/span&gt;&lt;/font&gt;&lt;font face="Verdana" color="#ff0000"&gt;&lt;span style="font-size: 24px;"&gt;&amp;nbsp;scene needs to be running in order for GIFT's gateway module to communicate with the application.&lt;/span&gt;&lt;/font&gt;&lt;p&gt;&lt;font face="Verdana"&gt;&lt;span style="font-weight: 700;"&gt;&lt;span style="font-size: 18px;"&gt;To run the scene in the Unity Application, follow these steps:&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;ol&gt;&lt;li style="text-align: left;"&gt;&lt;span style="color: rgb(23, 43, 77); font-family: Verdana; font-size: 18px;"&gt;Open Unity Hub. Click the "unity-template" project.&lt;/span&gt;&lt;/li&gt;&lt;li style="text-align: left;"&gt;&lt;span style="color: rgb(23, 43, 77); font-family: Verdana; font-size: 18px;"&gt;Once that opens up, search for the "Main Scene". Click on that scene.&lt;/span&gt;&lt;/li&gt;&lt;li style="text-align: left;"&gt;&lt;span style="color: rgb(23, 43, 77); font-family: Verdana; font-size: 18px;"&gt;Next click on the "Play" button you see in your Unity editor atop the "Main scene".&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;div style="text-align: left;"&gt;&lt;span style="color: rgb(23, 43, 77); font-family: Verdana; font-size: 18px;"&gt;Make sure the "Main Scene" is running &lt;/span&gt;&lt;b style="color: rgb(23, 43, 77); font-family: Verdana; font-size: 18px;"&gt;before &lt;/b&gt;&lt;span style="color: rgb(23, 43, 77); font-family: Verdana; font-size: 18px;"&gt;you click the next button on the top of this page.&lt;/span&gt;&lt;/div&gt;&lt;font face="Verdana"&gt;&lt;span style="font-weight: 700;"&gt;&lt;span style="font-size: 18px;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;</content>
             </message>
             <fullScreen>true</fullScreen>
         </Guidance>
@@ -20,7 +27,7 @@
             <transitionName>VR Environment</transitionName>
             <trainingAppTypeEnum>UnityDesktop</trainingAppTypeEnum>
             <dkfRef>
-                <file>VR Environment_f5a99085-911b-47e1-b58b-83ab1054f000.dkf.xml</file>
+                <file>simplest.dkf.xml</file>
             </dkfRef>
             <interops>
                 <interop>
