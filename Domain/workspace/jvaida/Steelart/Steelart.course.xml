@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Course xmlns:ns2="http://GIFT.com/common" name="Survey" version="11.0.64">
+<Course xmlns:ns2="http://GIFT.com/common" name="Steelart" version="11.0.66">
     <description>This course will test my new training application interop plugin.</description>
     <lastSuccessfulValidation>2024:08:27 18:05:07:744 -0700</lastSuccessfulValidation>
     <ns2:surveyContext>37</ns2:surveyContext>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Course xmlns:ns2="http://GIFT.com/common" name="STEEL-R RIDE Individual Exemplar" version="11.0.432">
+<Course xmlns:ns2="http://GIFT.com/common" name="STEEL-R RIDE Individual Exemplar" version="11.0.434">
     <description>&lt;p&gt;This course is designed to provide an example of the GIFT/RIDE Integration.&lt;/p&gt;&lt;p&gt;This course contains a real-time assessment built for the "React to Fire (Forest)" scenario in RIDE.&lt;/p&gt;&lt;p&gt;This course is used to train a single user, and not designed for multiplayer. &lt;/p&gt;&lt;p&gt;This course one playable team member, four non-playable enemy team members, and an OC/T non-playable team member. You will be assessed on several tasks described throughout the real-time assessment, and reviewed in a slide show after the real-time assessment ends.&lt;/p&gt;&lt;p&gt;The real-time assessment will end 10 seconds after all enemies are eliminated.&lt;br&gt;&lt;/p&gt;</description>
-    <lastSuccessfulValidation>2021:11:18 12:43:54:504 -0500</lastSuccessfulValidation>
+    <lastSuccessfulValidation>2024:08:28 23:59:14:041 -0700</lastSuccessfulValidation>
     <image>STE logo white1.PNG</image>
     <ns2:surveyContext>38</ns2:surveyContext>
     <concepts>
