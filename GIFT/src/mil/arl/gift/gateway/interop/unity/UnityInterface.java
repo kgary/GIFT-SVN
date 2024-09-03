@@ -35,15 +35,7 @@ import mil.arl.gift.gateway.interop.AbstractInteropInterface;
 import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.net.embedded.message.codec.EmbeddedAppMessageEncoder;
 import mil.arl.gift.net.socket.AsyncSocketHandler;
-import mil.arl.gift.common.ta.state.StopFreeze;
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-import com.mongodb.MongoException;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 
 /**
  * The interop plugin that allows for communication with a training application
