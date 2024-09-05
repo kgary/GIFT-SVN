@@ -53,6 +53,7 @@
     	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
     	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
             <srcfiles dir="." includes="${update.includes}" excludes="${build.excludes}" />
+			        <srcfiles dir="../../../../${steelartt.gateway.source.path}" includes="**/*" excludes="${build.excludes}" />
         </uptodate>
     	
     	<!-- have the files included in the remote jar changed since the last remote jar creation (true = no change, not set = files have changed) -->
