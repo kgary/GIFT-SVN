@@ -21,7 +21,7 @@
             </dkfRef>
             <interops>
                 <interop>
-                    <InteropImpl>gateway.interop.unity.UnityInterface</InteropImpl>
+                    <InteropImpl>gateway.interop.VjkInterface.VjkInterface</InteropImpl>
                     <InteropInputs>
                         <UnityInteropInputs>
                             <loadArgs/> 

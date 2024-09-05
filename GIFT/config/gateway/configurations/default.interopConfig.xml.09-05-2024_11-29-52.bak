@@ -126,8 +126,8 @@
         </InteropInterfaceConfig>
         <InteropInterfaceConfig refID="14">
             <available>true</available>
-            <impl>gateway.interop.VjkInterface.VjkInterface</impl>
-            <name>VJK Interface</name>
+            <impl>gateway.interop.unity.UnityInterface</impl>
+            <name>Unity Interface</name>
             <Unity>
                 <dataNetworkPort>5050</dataNetworkPort>
                 <controlNetworkPort>5000</controlNetworkPort>
