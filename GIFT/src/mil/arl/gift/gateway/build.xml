@@ -3,7 +3,7 @@
     <property name="root.path" value="../../../../.."/>
     <property name="package.name" value="mil.arl.gift.gateway"/>
     <property name="source.path" value="mil/arl/gift/gateway"/>
-    <property name="steelartt.gateway.source.path" value="src/edu/asu/selab/steelartt/gateway"/>
+    <property name="steelartt.gateway.source.path" value="edu/asu/selab/steelartt/gateway"/>
 	<property name="common.source.path" value="mil/arl/gift/common"/>
 	<property name="remote.path" value="bin/war/remote"/>
 	<property name="remote.build.path" value="${remote.path}/bin" />
@@ -336,8 +336,8 @@
     </target>
 	
 	<target name="compileSteelarttCore" if="build.core.required">
-        <echo message="Compiling steelartt code"/>
-        <javac debug="on" srcdir="${root.path}/${steelartt.gateway.source.path}" destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+        <echo message="Compiling steelartt gateway code"/>
+        <javac debug="on" srcdir="${root.path}/src/${steelartt.gateway.source.path}" destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
             <compilerarg value="-Xlint:-path"/>
         </javac>
     </target>
@@ -345,7 +345,7 @@
     <target name="jar" depends="compileCore, compileSteelarttCore">
         <echo message="Creating JAR for Gateway"/>
         <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes"
-            includes="${source.path}/**,${additional.source.path}/**,${root.path}/config/**" excludes="${build.excludes}"/>
+            includes="${source.path}/**,${root.path}/config/**" excludes="${build.excludes}"/>
     </target>
 
 	<!-- create the jacob loader jar used to load the jacob dll and prevent UnsatisfiedLinkError jacob-1.17-M2-x64.dll already loaded in another classloader (#5266) -->
