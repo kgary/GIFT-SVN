@@ -2,20 +2,19 @@ package mil.arl.gift.net.embedded.message;
 
 import java.util.List;
 
-public class EmbeddedPositionalMessageBatch {
+public class EmbeddedCompetencyMessageBatch {
 
     private String timestamp;
     private int dataSize;
-    private List<EmbeddedPositionalMessage> messages;
+    private List<EmbeddedCompetencyMessage> messages;
 
 
-    public EmbeddedPositionalMessageBatch(String timestamp, int dataSize, List<EmbeddedPositionalMessage> messages){
+    public EmbeddedCompetencyMessageBatch(String timestamp, int dataSize, List<EmbeddedCompetencyMessage> messages){
         this.timestamp = timestamp;
         this.dataSize = dataSize;
         this.messages = messages;
     }
 
-    // Getters and Setters
 
     public String getTimestamp() {
         return timestamp;
@@ -33,11 +32,11 @@ public class EmbeddedPositionalMessageBatch {
         this.dataSize = dataSize;
     }
 
-    public List<EmbeddedPositionalMessage> getMessages() {
+    public List<EmbeddedCompetencyMessage> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<EmbeddedPositionalMessage> messages) {
+    public void setMessages(List<EmbeddedCompetencyMessage> messages) {
         this.messages = messages;
     }
 }

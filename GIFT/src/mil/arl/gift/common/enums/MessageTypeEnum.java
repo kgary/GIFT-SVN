@@ -238,15 +238,15 @@ public class MessageTypeEnum extends AbstractEnum {
     public static final MessageTypeEnum DOMAIN_SESSION_START_TIME_REPLY = new MessageTypeEnum("DomainSessionStartTimeReply", "Domain Session Start Time Reply", "Response to a domain session start time request that contains the starting time in question.");
 
 
-    public static final MessageTypeEnum POSITIONAL_MESSAGE = new MessageTypeEnum("PositionalMessage", "Positional Message", "Contains positional data including position, rotation, name, and parent index.");
-    public static final MessageTypeEnum POSITIONAL_MESSAGE_BATCH = new MessageTypeEnum("PositionalMessageBatch", "Positional Message Batch", "Contains an array of positional data, timestamp when data was sent by unity and batch size");
+    public static final MessageTypeEnum COMPETENCY_MESSAGE = new MessageTypeEnum("CompetencyMessage", "Competency Message", "Contains competency layers data");
+    public static final MessageTypeEnum COMPETENCY_MESSAGE_BATCH = new MessageTypeEnum("CompetencyMessageBatch", "Competency Message Batch", "Contains an array of competency layers data, timestamp when data was sent by unity and batch size");
 
 
     /**
      * Collection of Training Application Game state message types
      */
     public static final List<MessageTypeEnum> TRAINING_APP_STATE_MESSAGE_TYPES = Arrays.asList(ENTITY_STATE, COLLISION, DETONATION,
-            WEAPON_FIRE, POWERPOINT_STATE, SIMPLE_EXAMPLE_STATE, GENERIC_JSON_STATE, RIFLE_SHOT_MESSAGE, GEOLOCATION,POSITIONAL_MESSAGE);
+            WEAPON_FIRE, POWERPOINT_STATE, SIMPLE_EXAMPLE_STATE, GENERIC_JSON_STATE, RIFLE_SHOT_MESSAGE, GEOLOCATION,COMPETENCY_MESSAGE,COMPETENCY_MESSAGE_BATCH);
 
     /** (optional) information about the message type and its use in GIFT */
     private String description = null;
