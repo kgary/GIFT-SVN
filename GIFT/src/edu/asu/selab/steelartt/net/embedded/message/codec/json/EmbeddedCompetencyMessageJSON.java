@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import mil.arl.gift.net.api.message.MessageDecodeException;
 import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessage;
 import mil.arl.gift.net.json.JSONCodec;
-import edu.asu.selab.steelartt.net.embedded.message.codec.json.competency.*;
+import mil.arl.gift.net.embedded.message.codec.json.competency.*;
 import mil.arl.gift.net.embedded.message.competency.layers.*;
 
 public class EmbeddedCompetencyMessageJSON implements JSONCodec {

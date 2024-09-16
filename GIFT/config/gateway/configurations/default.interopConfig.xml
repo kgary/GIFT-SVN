@@ -130,7 +130,7 @@
             <name>VJK Interface</name>
             <Unity>
                 <dataNetworkPort>5050</dataNetworkPort>
-                <controlNetworkPort>5000</controlNetworkPort>
+                <networkPort>5000</networkPort>
                 <networkAddress>0.0.0.0</networkAddress>
             </Unity>
         </InteropInterfaceConfig>

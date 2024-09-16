@@ -1,4 +1,4 @@
-package mil.arl.gift.net.embedded.message.codec.json;
+package mil.arl.gift.net.embedded.message.codec.json.competency;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
