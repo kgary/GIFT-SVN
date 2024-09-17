@@ -58,8 +58,6 @@ public class SteelarttInterface extends UnityInterface {
 
         if (config instanceof generated.gateway.Unity) {
 
-            /* Save a reference to the configuration. */
-            unityConfig = (Unity) config;
             createDataSocketHandler();
 
             if (logger.isInfoEnabled()) {
@@ -84,34 +82,34 @@ public class SteelarttInterface extends UnityInterface {
      *
      * @param line The text that was received from the Unity application.
      */
-    // @Override
-    // private void handleRawUnityMessage(String line) {
-    //     logger.info("handleRawUnityMessage()");
 
-    //     try {
-    //         final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
-    //         MessageTypeEnum msgType;
-    //         try {
-    //             msgType = EmbeddedAppMessageEncoder.getDecodedMessageType(message);
-    //         } catch (Exception e) {
-    //             logger.error("There was a problem determining the message type of a payload.", e);
-    //             return;
-    //         }
+    private void handleRawUnityMessage(String line) {
+        logger.info("handleRawUnityMessage()");
+
+        try {
+            final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
+            MessageTypeEnum msgType;
+            try {
+                msgType = EmbeddedAppMessageEncoder.getDecodedMessageType(message);
+            } catch (Exception e) {
+                logger.error("There was a problem determining the message type of a payload.", e);
+                return;
+            }
     
-    //         if (message instanceof TrainingAppState) {
-    //             GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
-    //             // Might introduce changes here based on what we want to send to Gateway module.
-    //         } else {
-    //             final String typeName = message != null ? message.getClass().getName() : "null";
-    //             logger.warn("A message of type '" + typeName + "' was received from the unity application. "
-    //                     + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
-    //         }
-    //     } catch (ParseException e) {
-    //         logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
-    //     } catch (Exception ex) {
-    //         logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
-    //     }
-    // }
+            if (message instanceof TrainingAppState) {
+                GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
+                // Might introduce changes here based on what we want to send to Gateway module.
+            } else {
+                final String typeName = message != null ? message.getClass().getName() : "null";
+                logger.warn("A message of type '" + typeName + "' was received from the unity application. "
+                        + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
+            }
+        } catch (ParseException e) {
+            logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
+        } catch (Exception ex) {
+            logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
+        }
+    }
 
     // This method receives the ACKs for the control messages(sent by gift to unity)  sent by the unity app. 
     private void handleControlMessage(String line) {
@@ -141,7 +139,7 @@ public class SteelarttInterface extends UnityInterface {
                                 + "' Unity application.\n"
                                 + "1.) Ensure the Unity application is running before starting GIFT"
                                 + "2.) Ensure that the Unity application is listening for connections at '"
-                                + unityConfig.getNetworkAddress() + ":" + unityConfig.getNetworkPort() + "'",
+                                + getUnityConfig().getNetworkAddress() + ":" + getUnityConfig().getNetworkPort() + "'",
                         ioEx);
             }
         }
@@ -189,8 +187,8 @@ public class SteelarttInterface extends UnityInterface {
     private void createDataSocketHandler() {
         logger.info("createDataSocketHandler()");
         if (dataSocketHandler == null) {
-            final String dataportAddress = this.unityConfig.getNetworkAddress();
-            final int dataPort = this.unityConfig.getDataNetworkPort();
+            final String dataportAddress = getUnityConfig().getNetworkAddress();
+            final int dataPort = getUnityConfig().getDataNetworkPort();
             logger.info("dataPort: "+ dataPort);
             dataSocketHandler = new AsyncSocketHandler(dataportAddress, dataPort, this::handleRawUnityMessage);
 
@@ -214,7 +212,7 @@ public class SteelarttInterface extends UnityInterface {
                     logger.info("Established data connection with Unity application");
                 }
             } catch (IOException e) {
-                logger.error("Failed to establish data connection with Unity application at {}:{}", unityConfig.getNetworkAddress(), unityConfig.getNetworkPort(), e);
+                logger.error("Failed to establish data connection with Unity application at {}:{}", getUnityConfig().getNetworkAddress(), getUnityConfig().getNetworkPort(), e);
                 throw e;
             }
         }
