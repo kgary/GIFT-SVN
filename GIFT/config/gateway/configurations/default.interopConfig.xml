@@ -126,8 +126,8 @@
         </InteropInterfaceConfig>
         <InteropInterfaceConfig refID="14">
             <available>true</available>
-            <impl>gateway.interop.SteelarttInterface.SteelarttInterface</impl>
-            <name>VJK Interface</name>
+            <impl>gateway.interop.Steelartt.SteelarttInterface</impl>
+            <name>Steelartt Interface</name>
             <Unity>
                 <dataNetworkPort>5050</dataNetworkPort>
                 <networkPort>5000</networkPort>

@@ -84,7 +84,7 @@ public class UnityInterface extends AbstractInteropInterface {
      */
     private Unity unityConfig;
 
-    public Unity getUnityConfig(){
+    protected Unity getUnityConfig(){
         return unityConfig;
     }
     /**
