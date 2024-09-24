@@ -55,12 +55,15 @@ public class EmbeddedCompetencyMessageBatchJSON implements JSONCodec {
 
                 // Parse the string back into a JSONObject
                 JSONObject messageJson;
-                try {
-                    messageJson = (JSONObject) parser.parse((String) messageObj);
-                } catch (ParseException e) {
-                    throw new MessageDecodeException(this.getClass().getName(), "Error parsing message JSON string.", e);
-                }                
-
+                if(messageObj instanceof JSONObject){
+                    messageJson = (JSONObject) messageObj;
+                }else{
+                    try {
+                        messageJson = (JSONObject) parser.parse((String) messageObj);
+                    } catch (ParseException e) {
+                        throw new MessageDecodeException(this.getClass().getName(), "Error parsing message JSON string.", e);
+                    }                
+                }
                 EmbeddedCompetencyMessage message = (EmbeddedCompetencyMessage)messageCodec.decode(messageJson);
                 messages.add(message);
             }

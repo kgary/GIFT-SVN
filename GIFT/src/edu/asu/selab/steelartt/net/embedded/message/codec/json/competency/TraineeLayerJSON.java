@@ -2,62 +2,65 @@ package mil.arl.gift.net.embedded.message.codec.json.competency;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import mil.arl.gift.net.embedded.message.competency.layers.TraineeLayer;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import mil.arl.gift.net.api.message.MessageDecodeException;
-import mil.arl.gift.net.embedded.message.competency.layers.TraineeLayer;
-import mil.arl.gift.net.embedded.message.competency.components.Trainee;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class TraineeLayerJSON {
 
-    private static final String TRAINEE = "Trainee";
+    public TraineeLayer parse(JSONObject jsonObj) throws ParseException {
+        TraineeLayer traineeLayer = new TraineeLayer();
+        JSONArray traineesArray = (JSONArray) jsonObj.get("trainees");
 
-    public TraineeLayer parse(JSONObject jsonObj) throws MessageDecodeException {
-        try {
-            JSONArray traineesJsonArray = (JSONArray) jsonObj.get(TRAINEE);
-            if (traineesJsonArray == null) {
-                throw new MessageDecodeException(this.getClass().getName(), "Trainee field is missing.");
-            }
+        for (Object obj : traineesArray) {
+            JSONObject traineeObj = (JSONObject) obj;
 
-            List<Trainee> trainees = new ArrayList<>();
-            for (Object traineeObj : traineesJsonArray) {
-                JSONObject traineeJson = (JSONObject) traineeObj;
+            String id = (String) traineeObj.get("id");
+            boolean communication = (Boolean) traineeObj.get("Communication");
 
-                Trainee trainee = new Trainee(
-                    (String) traineeJson.get("id"),
-                    (String) traineeJson.get("role"),
-                    (String) traineeJson.get("location"),
-                    (String) traineeJson.get("heading"),
-                    (String) traineeJson.get("timestamp")
-                );
+            JSONObject visualActivityObj = (JSONObject) traineeObj.get("VisualActivity");
+            JSONArray ooiWatched = (JSONArray) visualActivityObj.get("OOI_Watched");
+            JSONArray roiWatched = (JSONArray) visualActivityObj.get("ROI_Watched");
 
-                trainees.add(trainee);
-            }
+            JSONObject movementObj = (JSONObject) traineeObj.get("Movement");
+            JSONArray headRotation = (JSONArray) movementObj.get("headRotation");
+            JSONArray head = (JSONArray) movementObj.get("head");
+            JSONArray leftHand = (JSONArray) movementObj.get("leftHand");
+            JSONArray rightHand = (JSONArray) movementObj.get("rightHand");
+            JSONArray leftFoot = (JSONArray) movementObj.get("leftFoot");
+            JSONArray rightFoot = (JSONArray) movementObj.get("rightFoot");
 
-            return new TraineeLayer(trainees);
-        } catch (Exception e) {
-            throw new MessageDecodeException(this.getClass().getName(), "Error parsing TraineeLayer.", e);
+            traineeLayer.addTrainee(id, communication, ooiWatched, roiWatched, headRotation, head, leftHand, rightHand, leftFoot, rightFoot);
         }
+
+        return traineeLayer;
     }
 
-    @SuppressWarnings("unchecked")
     public void encode(JSONObject jsonObj, TraineeLayer traineeLayer) {
-        JSONArray traineesJsonArray = new JSONArray();
+        JSONArray traineesArray = new JSONArray();
 
-        for (Trainee trainee : traineeLayer.getTrainee()) {
-            JSONObject traineeJson = new JSONObject();
-            traineeJson.put("id", trainee.getId());
-            traineeJson.put("role", trainee.getRole());
-            traineeJson.put("location", trainee.getLocation());
-            traineeJson.put("heading", trainee.getHeading());
-            traineeJson.put("timestamp", trainee.getTimestamp());
-            traineesJsonArray.add(traineeJson);
+        for (TraineeLayer.Trainee trainee : traineeLayer.getTrainees()) {
+            JSONObject traineeObj = new JSONObject();
+            traineeObj.put("id", trainee.getId());
+            traineeObj.put("Communication", trainee.isCommunication());
+
+            JSONObject visualActivityObj = new JSONObject();
+            visualActivityObj.put("OOI_Watched", trainee.getOOIWatched());
+            visualActivityObj.put("ROI_Watched", trainee.getROIWatched());
+            traineeObj.put("VisualActivity", visualActivityObj);
+
+            JSONObject movementObj = new JSONObject();
+            movementObj.put("headRotation", trainee.getHeadRotation());
+            movementObj.put("head", trainee.getHead());
+            movementObj.put("leftHand", trainee.getLeftHand());
+            movementObj.put("rightHand", trainee.getRightHand());
+            movementObj.put("leftFoot", trainee.getLeftFoot());
+            movementObj.put("rightFoot", trainee.getRightFoot());
+            traineeObj.put("Movement", movementObj);
+
+            traineesArray.add(traineeObj);
         }
 
-        jsonObj.put(TRAINEE, traineesJsonArray);
+        jsonObj.put("trainees", traineesArray);
     }
 }

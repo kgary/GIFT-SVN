@@ -42,6 +42,8 @@ import mil.arl.gift.net.embedded.message.EmbeddedGeolocation;
 import mil.arl.gift.net.embedded.message.EmbeddedSiman;
 import mil.arl.gift.net.embedded.message.EmbeddedSimpleExampleState;
 import mil.arl.gift.net.embedded.message.EmbeddedStopFreeze;
+import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessage;
+import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessageBatch;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedBinaryDataJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGenericJSONStateJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGeolocationJSON;
@@ -50,6 +52,8 @@ import mil.arl.gift.net.embedded.message.codec.json.EmbeddedSimpleExampleStateJS
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStopFreezeJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStringPayloadJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedVibrateDeviceJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedCompetencyMessageJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedCompetencyMessageBatchJSON;
 import mil.arl.gift.net.json.JSONCodec;
 
 /**

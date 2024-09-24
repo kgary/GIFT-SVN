@@ -1,19 +1,35 @@
 package mil.arl.gift.net.embedded.message.competency.layers;
-import mil.arl.gift.net.embedded.message.competency.components.Casualty;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CasualtyLayer {
-    private List<Casualty> Casualty;
 
-    public List<Casualty> getCasualty() {
-        return Casualty;
+    public static class Casualty {
+        private String id;
+        private String status;
+
+        public Casualty(String id, String status) {
+            this.id = id;
+            this.status = status;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getStatus() {
+            return status;
+        }
     }
 
-    public void setCasualty(List<Casualty> Casualty) {
-        this.Casualty = Casualty;
+    private List<Casualty> casualties = new ArrayList<>();
+
+    public void addCasualty(String id, String status) {
+        casualties.add(new Casualty(id, status));
     }
 
-    public CasualtyLayer(List<Casualty> Casualty){
-        this.Casualty=Casualty;
+    public List<Casualty> getCasualties() {
+        return casualties;
     }
 }
