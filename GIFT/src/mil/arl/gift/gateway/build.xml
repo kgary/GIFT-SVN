@@ -334,16 +334,7 @@
 			<src path="${root.path}/src/${steelartt.gateway.source.path}"/>
 			<compilerarg value="-Xlint:-path"/> <!-- necessary to silence the build errors about bad path elements as jars referenced in external are different from MANIFEST file -->
         </javac>
-        <!-- <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" 
-        	includes="${source.path}/**,${root.path}/config/**" excludes="${build.excludes}"/> -->
     </target>
-	
-	<!-- <target name="compileSteelarttCore" if="build.core.required">
-        <echo message="Compiling steelartt gateway code"/>
-        <javac debug="on" srcdir="${root.path}/src/${steelartt.gateway.source.path}" destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
-            <compilerarg value="-Xlint:-path"/>
-        </javac>
-    </target> -->
 
     <target name="jar" depends="compileCore">
         <echo message="Creating JAR for Gateway"/>
