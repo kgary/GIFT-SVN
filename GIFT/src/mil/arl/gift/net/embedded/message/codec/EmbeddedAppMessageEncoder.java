@@ -177,6 +177,8 @@ public class EmbeddedAppMessageEncoder {
         decodedPayloadClassToMessageType.put(StopFreeze.class, MessageTypeEnum.STOP_FREEZE);
         decodedPayloadClassToMessageType.put(Geolocation.class, MessageTypeEnum.GEOLOCATION);
         decodedPayloadClassToMessageType.put(EntityState.class, MessageTypeEnum.ENTITY_STATE);
+        decodedPayloadClassToMessageType.put(EmbeddedCompetencyMessage.class, MessageTypeEnum.COMPETENCY_MESSAGE);
+        decodedPayloadClassToMessageType.put(EmbeddedCompetencyMessageBatch.class, MessageTypeEnum.COMPETENCY_MESSAGE_BATCH);
 	}
 
     /**

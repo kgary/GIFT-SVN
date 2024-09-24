@@ -1,58 +1,30 @@
 package mil.arl.gift.net.embedded.message;
 
-import java.util.List;
-import java.util.Map;
-import mil.arl.gift.net.embedded.message.competency.layers.*;
+import mil.arl.gift.net.embedded.message.competency.layers.CasualtyLayer;
+import mil.arl.gift.net.embedded.message.competency.layers.TraineeLayer;
 
 public class EmbeddedCompetencyMessage {
-    private CasualtyLayer CasualtyLayer;
-    private VisualActivityLayer VisualActivityLayer;
-    private TraineeLayer TraineeLayer;
-    private EnvironmentLayer EnvironmentLayer;
-    private CommunicationLayer CommunicationLayer;
+
+    private CasualtyLayer casualtyLayer;
+    private TraineeLayer traineeLayer;
 
     public CasualtyLayer getCasualtyLayer() {
-        return CasualtyLayer;
+        return casualtyLayer;
     }
 
-    public void setCasualtyLayer(CasualtyLayer CasualtyLayer) {
-        this.CasualtyLayer = CasualtyLayer;
-    }
-
-    public VisualActivityLayer getVisualActivityLayer() {
-        return VisualActivityLayer;
-    }
-
-    public void setVisualActivityLayer(VisualActivityLayer VisualActivityLayer) {
-        this.VisualActivityLayer = VisualActivityLayer;
+    public void setCasualtyLayer(CasualtyLayer casualtyLayer) {
+        this.casualtyLayer = casualtyLayer;
     }
 
     public TraineeLayer getTraineeLayer() {
-        return TraineeLayer;
+        return traineeLayer;
     }
 
-    public void setTraineeLayer(TraineeLayer TraineeLayer) {
-        this.TraineeLayer = TraineeLayer;
-    }
-
-    public EnvironmentLayer getEnvironmentLayer() {
-        return EnvironmentLayer;
-    }
-
-    public void setEnvironmentLayer(EnvironmentLayer EnvironmentLayer) {
-        this.EnvironmentLayer = EnvironmentLayer;
-    }
-
-    public CommunicationLayer getCommunicationLayer() {
-        return CommunicationLayer;
-    }
-
-    public void setCommunicationLayer(CommunicationLayer CommunicationLayer) {
-        this.CommunicationLayer = CommunicationLayer;
+    public void setTraineeLayer(TraineeLayer traineeLayer) {
+        this.traineeLayer = traineeLayer;
     }
 
     public static void main(String[] args) {
         EmbeddedCompetencyMessage message = new EmbeddedCompetencyMessage();
     }
-
 }
