@@ -42,8 +42,6 @@ import mil.arl.gift.net.embedded.message.EmbeddedGeolocation;
 import mil.arl.gift.net.embedded.message.EmbeddedSiman;
 import mil.arl.gift.net.embedded.message.EmbeddedSimpleExampleState;
 import mil.arl.gift.net.embedded.message.EmbeddedStopFreeze;
-import mil.arl.gift.net.embedded.message.EmbeddedPositionalMessage;
-import mil.arl.gift.net.embedded.message.EmbeddedPositionalMessageBatch;
 import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessage;
 import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessageBatch;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedBinaryDataJSON;
@@ -54,8 +52,6 @@ import mil.arl.gift.net.embedded.message.codec.json.EmbeddedSimpleExampleStateJS
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStopFreezeJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStringPayloadJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedVibrateDeviceJSON;
-import mil.arl.gift.net.embedded.message.codec.json.EmbeddedPositionalMessageJSON;
-import mil.arl.gift.net.embedded.message.codec.json.EmbeddedPositionalMessageBatchJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedCompetencyMessageJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedCompetencyMessageBatchJSON;
 import mil.arl.gift.net.json.JSONCodec;
@@ -106,16 +102,11 @@ public class EmbeddedAppMessageEncoder {
     /** The codec used for {@link BinaryData} messages. */
 	private static EmbeddedBinaryDataJSON BINARY_DATA_JSON_CODEC = new EmbeddedBinaryDataJSON();
 
-	private static EmbeddedPositionalMessageJSON POSITIONAL_JSON_CODEC = new EmbeddedPositionalMessageJSON();
-
-    private static EmbeddedPositionalMessageBatchJSON POSITIONAL_BATCH_JSON_CODEC = new EmbeddedPositionalMessageBatchJSON();
-
 
     // The below codecs are used for Competency mesages for Steelartt
     private static EmbeddedCompetencyMessageJSON COMPETENCY_JSON_CODEC = new EmbeddedCompetencyMessageJSON();
     
     private static EmbeddedCompetencyMessageBatchJSON COMPETENCY_BATCH_JSON_CODEC = new EmbeddedCompetencyMessageBatchJSON();
-
 
 	/**
 	 * An enumeration of object types that are supported for encoding/decoding. The name of an object's type will be added to its
@@ -145,10 +136,6 @@ public class EmbeddedAppMessageEncoder {
         Geolocation,
         /** A message containing raw binary data. */
         BinaryData,
-        /** A message containing positional data for steel-artt */
-        PositionalMessage,
-        /** A message containing an array of positional data, its timestamp of when it was sent from unity and batch size for steel-artt */
-        PositionalMessageBatch,
         /** A message containing competency layers data for steel-artt */
         CompetencyMessage,
         /** A message containing an array of competency layers data, its timestamp of when it was sent from unity and batch size for steel-artt */
@@ -172,8 +159,6 @@ public class EmbeddedAppMessageEncoder {
 		messageTypeToCodec.put(EncodedMessageType.Geolocation, GEOLOCATION_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.GenericJSONState, GENERIC_JSON_STATE_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.BinaryData, BINARY_DATA_JSON_CODEC );
-        messageTypeToCodec.put(EncodedMessageType.PositionalMessage,POSITIONAL_JSON_CODEC );
-        messageTypeToCodec.put(EncodedMessageType.PositionalMessageBatch,POSITIONAL_BATCH_JSON_CODEC );
         messageTypeToCodec.put(EncodedMessageType.CompetencyMessage,COMPETENCY_JSON_CODEC );
         messageTypeToCodec.put(EncodedMessageType.CompetencyMessageBatch,COMPETENCY_BATCH_JSON_CODEC );
 
@@ -191,8 +176,8 @@ public class EmbeddedAppMessageEncoder {
         decodedPayloadClassToMessageType.put(StopFreeze.class, MessageTypeEnum.STOP_FREEZE);
         decodedPayloadClassToMessageType.put(Geolocation.class, MessageTypeEnum.GEOLOCATION);
         decodedPayloadClassToMessageType.put(EntityState.class, MessageTypeEnum.ENTITY_STATE);
-        decodedPayloadClassToMessageType.put(EmbeddedPositionalMessage.class, MessageTypeEnum.POSITIONAL_MESSAGE);
-        decodedPayloadClassToMessageType.put(EmbeddedPositionalMessageBatch.class, MessageTypeEnum.POSITIONAL_MESSAGE_BATCH);
+        decodedPayloadClassToMessageType.put(EmbeddedCompetencyMessage.class, MessageTypeEnum.COMPETENCY_MESSAGE);
+        decodedPayloadClassToMessageType.put(EmbeddedCompetencyMessageBatch.class, MessageTypeEnum.COMPETENCY_MESSAGE_BATCH);
 	}
 
     /**
@@ -492,13 +477,7 @@ public class EmbeddedAppMessageEncoder {
             Double heading = embeddedGeolocation.getHeading();
             Double speed = embeddedGeolocation.getSpeed();
             return new Geolocation(coordinates, accuracy, altitudeAccuracy, heading, speed);
-        } else if (embeddedPayload instanceof EmbeddedPositionalMessage) {
-            EmbeddedPositionalMessage embeddedPositionalMessage = (EmbeddedPositionalMessage) embeddedPayload;
-            return embeddedPositionalMessage;
-        } else if (embeddedPayload instanceof EmbeddedPositionalMessageBatch) {
-            EmbeddedPositionalMessageBatch embeddedPositionalMessageBatch = (EmbeddedPositionalMessageBatch) embeddedPayload;
-            return embeddedPositionalMessageBatch;
-        }  else if (embeddedPayload instanceof EmbeddedCompetencyMessage) {
+        }else if (embeddedPayload instanceof EmbeddedCompetencyMessage) {
             EmbeddedCompetencyMessage embeddedCompetencyMessage = (EmbeddedCompetencyMessage) embeddedPayload;
             return embeddedCompetencyMessage;
         }else if(embeddedPayload instanceof EmbeddedCompetencyMessageBatch){

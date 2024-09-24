@@ -211,21 +211,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="networkPort">
-	<xs:annotation>
-		<xs:appinfo>
-			<fg:node-info message="Network Port"> 
-			<fg:message>A network port number used for communication purposes in the interop interface implementation. E.g. 3000</fg:message>
-			</fg:node-info> 
-		</xs:appinfo>
-	</xs:annotation>
-	<xs:simpleType>
-		<xs:restriction base="xs:integer">
-			<xs:minInclusive value="1"/>
-			<xs:maxInclusive value="65535"/>
-		</xs:restriction>
-	</xs:simpleType>
-  </xs:element>
   <xs:element name="networkAddress">
 	<xs:annotation>
 		<xs:appinfo>
@@ -255,7 +240,7 @@
 		</xs:restriction>
 	</xs:simpleType>
   </xs:element>
-  <xs:element name="controlNetworkPort">
+  <xs:element name="networkPort">
 	<xs:annotation>
 		<xs:appinfo>
 			<fg:node-info message="Network Port"> 
@@ -443,7 +428,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="dataNetworkPort"/>
-		<xs:element ref="controlNetworkPort"/>
+		<xs:element ref="networkPort"/>
         <xs:element ref="networkAddress"/>
       </xs:sequence>
     </xs:complexType>
