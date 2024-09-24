@@ -99,6 +99,11 @@ public class EmbeddedAppMessageEncoder {
 	private static EmbeddedBinaryDataJSON BINARY_DATA_JSON_CODEC = new EmbeddedBinaryDataJSON();
 
 
+    // The below codecs are used for Competency mesages for Steelartt
+    private static EmbeddedCompetencyMessageJSON COMPETENCY_JSON_CODEC = new EmbeddedCompetencyMessageJSON();
+    
+    private static EmbeddedCompetencyMessageBatchJSON COMPETENCY_BATCH_JSON_CODEC = new EmbeddedCompetencyMessageBatchJSON();
+
 	/**
 	 * An enumeration of object types that are supported for encoding/decoding. The name of an object's type will be added to its
 	 * JSON encoding upon invoking {@link EmbeddedAppMessageEncoder#encodeForEmbeddedApplication(Object)} so that embedded applications
@@ -127,6 +132,10 @@ public class EmbeddedAppMessageEncoder {
         Geolocation,
         /** A message containing raw binary data. */
         BinaryData,
+        /** A message containing competency layers data for steel-artt */
+        CompetencyMessage,
+        /** A message containing an array of competency layers data, its timestamp of when it was sent from unity and batch size for steel-artt */
+        CompetencyMessageBatch
 
 	}
 
@@ -147,6 +156,9 @@ public class EmbeddedAppMessageEncoder {
 		messageTypeToCodec.put(EncodedMessageType.Geolocation, GEOLOCATION_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.GenericJSONState, GENERIC_JSON_STATE_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.BinaryData, BINARY_DATA_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.CompetencyMessage,COMPETENCY_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.CompetencyMessageBatch,COMPETENCY_BATCH_JSON_CODEC );
+
 	}
 
 	/**
@@ -460,6 +472,12 @@ public class EmbeddedAppMessageEncoder {
             Double heading = embeddedGeolocation.getHeading();
             Double speed = embeddedGeolocation.getSpeed();
             return new Geolocation(coordinates, accuracy, altitudeAccuracy, heading, speed);
+        }else if (embeddedPayload instanceof EmbeddedCompetencyMessage) {
+            EmbeddedCompetencyMessage embeddedCompetencyMessage = (EmbeddedCompetencyMessage) embeddedPayload;
+            return embeddedCompetencyMessage;
+        }else if(embeddedPayload instanceof EmbeddedCompetencyMessageBatch){
+            EmbeddedCompetencyMessageBatch embeddedCompetencyMessageBatch = (EmbeddedCompetencyMessageBatch) embeddedPayload;
+            return embeddedCompetencyMessageBatch;
         }else {
             throw new IllegalArgumentException("The class of the GIFT payload was an unsupported type '" + embeddedPayload.getClass().getName() + "'");
         }
