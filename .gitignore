@@ -8,3 +8,7 @@ GIFT/output
 GIFT/temp
 GIFT/test
 .svn
+.vscode/settings.json
+GIFT/config/gateway/configurations/*.bak
+GIFT/src.py/xml.rpc.server/*
+Domain/runtime

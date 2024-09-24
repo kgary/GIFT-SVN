@@ -3,6 +3,7 @@
     <property name="root.path" value="../../../../.."/>
     <property name="package.name" value="mil.arl.gift.gateway"/>
     <property name="source.path" value="mil/arl/gift/gateway"/>
+    <property name="steelartt.gateway.source.path" value="edu/asu/selab/steelartt/gateway"/>
 	<property name="common.source.path" value="mil/arl/gift/common"/>
 	<property name="remote.path" value="bin/war/remote"/>
 	<property name="remote.build.path" value="${remote.path}/bin" />
@@ -52,6 +53,7 @@
     	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
     	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${jarfile.name}">
             <srcfiles dir="." includes="${update.includes}" excludes="${build.excludes}" />
+			<srcfiles dir="../../../../${steelartt.gateway.source.path}" includes="**/*" excludes="${build.excludes}" />
         </uptodate>
     	
     	<!-- have the files included in the remote jar changed since the last remote jar creation (true = no change, not set = files have changed) -->
@@ -327,13 +329,28 @@
     	<echo message="Compiling Gateway"/>
         <mkdir dir="${root.path}/build/classes"/>
         <mkdir dir="${root.path}/bin"/>
-        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+        <javac debug="on" destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+			<src path="."/>
+			<src path="${root.path}/src/${steelartt.gateway.source.path}"/>
 			<compilerarg value="-Xlint:-path"/> <!-- necessary to silence the build errors about bad path elements as jars referenced in external are different from MANIFEST file -->
         </javac>
-        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" 
-        	includes="${source.path}/**,${root.path}/config/**" excludes="${build.excludes}"/>
+        <!-- <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes" 
+        	includes="${source.path}/**,${root.path}/config/**" excludes="${build.excludes}"/> -->
     </target>
 	
+	<!-- <target name="compileSteelarttCore" if="build.core.required">
+        <echo message="Compiling steelartt gateway code"/>
+        <javac debug="on" srcdir="${root.path}/src/${steelartt.gateway.source.path}" destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+            <compilerarg value="-Xlint:-path"/>
+        </javac>
+    </target> -->
+
+    <target name="jar" depends="compileCore">
+        <echo message="Creating JAR for Gateway"/>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes"
+            includes="${source.path}/**,${root.path}/config/**" excludes="${build.excludes}"/>
+    </target>
+
 	<!-- create the jacob loader jar used to load the jacob dll and prevent UnsatisfiedLinkError jacob-1.17-M2-x64.dll already loaded in another classloader (#5266) -->
 	<target name="compileJacobLoader" depends="compileCore" if="build.core.required">
 		<echo message="Compiling Jacob Loader"/>
@@ -468,7 +485,7 @@
     	</jar>
 	</target>
 	
-    <target name="compile" depends="checkForChanges, generate_protobuf_external_apps, compileJacobLoader, compileCore, compileRemoteCore, deleteJre, buildRemoteZip, compileNative" />
+    <target name="compile" depends="checkForChanges, generate_protobuf_external_apps, compileJacobLoader, jar, compileRemoteCore, deleteJre, buildRemoteZip, compileNative" />
 	
     <target name="clean">
         <delete file="${root.path}/bin/${jarfile.name}"/>

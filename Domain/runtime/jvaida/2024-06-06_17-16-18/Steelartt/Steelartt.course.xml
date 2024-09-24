@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt" version="11.0.2">
+    <description>This course will test my new training application interop plugin.</description>
+    <ns2:surveyContext>37</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts"/>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>Start Guidance</transitionName>
+            <message>
+                <content>You are about to use your new interop plugin.</content>
+            </message>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>TA transition</transitionName>
+            <dkfRef>
+                <file>simplest.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.unity.UnityInterface</InteropImpl>
+                    <InteropInputs/>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+    </transitions>
+</Course>

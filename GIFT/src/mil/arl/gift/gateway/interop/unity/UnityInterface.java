@@ -84,6 +84,9 @@ public class UnityInterface extends AbstractInteropInterface {
      */
     private Unity unityConfig;
 
+    protected Unity getUnityConfig(){
+        return unityConfig;
+    }
     /**
      * Constructs a new {@link UnityInterface} with the provided display name.
      *

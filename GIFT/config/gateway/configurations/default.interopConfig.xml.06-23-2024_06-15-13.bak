@@ -126,11 +126,11 @@
         </InteropInterfaceConfig>
         <InteropInterfaceConfig refID="14">
             <available>true</available>
-            <impl>gateway.interop.Steelartt.SteelarttInterface</impl>
-            <name>Steelartt Interface</name>
+            <impl>gateway.interop.unity.UnityInterface</impl>
+            <name>Unity Interface</name>
             <Unity>
-                <dataNetworkPort>5050</dataNetworkPort>
-                <networkPort>5000</networkPort>
+                <dataNetworkPort>5000</dataNetworkPort>
+                <controlNetworkPort>5050</controlNetworkPort>
                 <networkAddress>0.0.0.0</networkAddress>
             </Unity>
         </InteropInterfaceConfig>
@@ -154,5 +154,14 @@
                 <grpcNetworkPort>5001</grpcNetworkPort>
             </RIDE>
         </InteropInterfaceConfig>
+        <!-- <InteropInterfaceConfig refID="17">
+            <available>true</available>
+            <impl>gateway.interop.steelartt.SteelarttPluginInterface</impl>
+            <name>Steelartt Plugin</name>
+            <Unity>
+                <networkPort>5000</networkPort>
+                <networkAddress>0.0.0.0</networkAddress>
+            </Unity>
+        </InteropInterfaceConfig> -->
     </interfaceConfigurations>
 </InteropConfig>
