@@ -45,7 +45,10 @@ public class SteelarttInterface extends UnityInterface {
     /**
      * The socket handler that recieves positional/speech data from the unity app over socket
      */
-    private AsyncSocketHandler dataSocketHandler;
+    // private AsyncSocketHandler dataSocketHandler;
+
+    // Testing Kafka
+    private KafkaDataConsumer kafkaDataConsumer;
 
     public SteelarttInterface(String displayName) {
         super(displayName);
@@ -58,7 +61,8 @@ public class SteelarttInterface extends UnityInterface {
 
         if (config instanceof generated.gateway.Unity) {
 
-            createDataSocketHandler();
+            // Testing Kafka
+            createKafkaDataConsumer();
 
             if (logger.isInfoEnabled()) {
                 logger.info("Plugin has been configured");
@@ -83,33 +87,33 @@ public class SteelarttInterface extends UnityInterface {
      * @param line The text that was received from the Unity application.
      */
 
-    private void handleRawUnityMessage(String line) {
-        logger.info("handleRawUnityMessage()");
+    // private void handleRawUnityMessage(String line) {
+    //     logger.info("handleRawUnityMessage()");
 
-        try {
-            final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
-            MessageTypeEnum msgType;
-            try {
-                msgType = EmbeddedAppMessageEncoder.getDecodedMessageType(message);
-            } catch (Exception e) {
-                logger.error("There was a problem determining the message type of a payload.", e);
-                return;
-            }
+    //     try {
+    //         final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
+    //         MessageTypeEnum msgType;
+    //         try {
+    //             msgType = EmbeddedAppMessageEncoder.getDecodedMessageType(message);
+    //         } catch (Exception e) {
+    //             logger.error("There was a problem determining the message type of a payload.", e);
+    //             return;
+    //         }
     
-            if (message instanceof TrainingAppState) {
-                GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
-                // Might introduce changes here based on what we want to send to Gateway module.
-            } else {
-                final String typeName = message != null ? message.getClass().getName() : "null";
-                logger.warn("A message of type '" + typeName + "' was received from the unity application. "
-                        + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
-            }
-        } catch (ParseException e) {
-            logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
-        } catch (Exception ex) {
-            logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
-        }
-    }
+    //         if (message instanceof TrainingAppState) {
+    //             GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
+    //             // Might introduce changes here based on what we want to send to Gateway module.
+    //         } else {
+    //             final String typeName = message != null ? message.getClass().getName() : "null";
+    //             logger.warn("A message of type '" + typeName + "' was received from the unity application. "
+    //                     + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
+    //         }
+    //     } catch (ParseException e) {
+    //         logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
+    //     } catch (Exception ex) {
+    //         logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
+    //     }
+    // }
 
     // This method receives the ACKs for the control messages(sent by gift to unity)  sent by the unity app. 
     private void handleControlMessage(String line) {
@@ -132,7 +136,13 @@ public class SteelarttInterface extends UnityInterface {
 
         if(value){
             try {
-                establishDataSocketConnection();
+                // establishDataSocketConnection();
+                // Testing Kafka
+                if (value) {
+                    kafkaDataConsumer.start();
+                } else {
+                    kafkaDataConsumer.stop();
+                }
             } catch (IOException ioEx) {
                 throw new ConfigurationException("Unable to establish connection",
                         "There was a problem while trying to establish a connection to the '" + getName()
@@ -166,12 +176,16 @@ public class SteelarttInterface extends UnityInterface {
         }
         super.cleanup();
         try {
-            if (dataSocketHandler != null) {
-                if(logger.isInfoEnabled()){
-                    logger.info("Closing data socket handler");
-                }
-                dataSocketHandler.close();
-                dataSocketHandler = null; // in order to recreate it upon next needed connection
+            // if (dataSocketHandler != null) {
+            //     if(logger.isInfoEnabled()){
+            //         logger.info("Closing data socket handler");
+            //     }
+            //     dataSocketHandler.close();
+            //     dataSocketHandler = null; // in order to recreate it upon next needed connection
+            // }
+            if (kafkaDataConsumer != null) {
+                kafkaDataConsumer.stop();
+                kafkaDataConsumer = null;
             }
         } catch (Exception e) {
             final String errMsg = new StringBuilder("There was a problem closing the data socket connection to ")
@@ -184,37 +198,46 @@ public class SteelarttInterface extends UnityInterface {
         
     }
 
-    private void createDataSocketHandler() {
-        logger.info("createDataSocketHandler()");
-        if (dataSocketHandler == null) {
-            final String dataportAddress = getUnityConfig().getNetworkAddress();
-            final int dataPort = getUnityConfig().getDataNetworkPort();
-            logger.info("dataPort: "+ dataPort);
-            dataSocketHandler = new AsyncSocketHandler(dataportAddress, dataPort, this::handleRawUnityMessage);
+    // private void createDataSocketHandler() {
+    //     logger.info("createDataSocketHandler()");
+    //     if (dataSocketHandler == null) {
+    //         final String dataportAddress = getUnityConfig().getNetworkAddress();
+    //         final int dataPort = getUnityConfig().getDataNetworkPort();
+    //         logger.info("dataPort: "+ dataPort);
+    //         dataSocketHandler = new AsyncSocketHandler(dataportAddress, dataPort, this::handleRawUnityMessage);
 
-            if(logger.isInfoEnabled()){
-                logger.info("Created new data socket handler");
-            }
+    //         if(logger.isInfoEnabled()){
+    //             logger.info("Created new data socket handler");
+    //         }
+    //     }
+
+    // }
+    private void createKafkaDataConsumer() {
+        if (kafkaDataConsumer == null) {
+            String bootstrapServers = "localhost:9092"; // Replace with your Kafka broker address
+            String topic = "unity-data-topic"; // Replace with your Kafka topic
+            String groupId = "gift-consumer-group"; // Replace with your consumer group ID
+            kafkaDataConsumer = new KafkaDataConsumer(bootstrapServers, topic, groupId, this);
         }
-
     }
 
-    private void establishDataSocketConnection() throws IOException {
-        logger.info("establishDataSocketConnection()");
-        if (dataSocketHandler == null) {
-            createDataSocketHandler();
-        }
+
+    // private void establishDataSocketConnection() throws IOException {
+    //     logger.info("establishDataSocketConnection()");
+    //     if (dataSocketHandler == null) {
+    //         createKafkaDataConsumer();
+    //     }
     
-        if (!dataSocketHandler.isConnected()) {
-            try {
-                dataSocketHandler.connect();
-                if (logger.isInfoEnabled()) {
-                    logger.info("Established data connection with Unity application");
-                }
-            } catch (IOException e) {
-                logger.error("Failed to establish data connection with Unity application at {}:{}", getUnityConfig().getNetworkAddress(), getUnityConfig().getNetworkPort(), e);
-                throw e;
-            }
-        }
-    }
+    //     if (!dataSocketHandler.isConnected()) {
+    //         try {
+    //             dataSocketHandler.connect();
+    //             if (logger.isInfoEnabled()) {
+    //                 logger.info("Established data connection with Unity application");
+    //             }
+    //         } catch (IOException e) {
+    //             logger.error("Failed to establish data connection with Unity application at {}:{}", getUnityConfig().getNetworkAddress(), getUnityConfig().getNetworkPort(), e);
+    //             throw e;
+    //         }
+    //     }
+    // }
 }
