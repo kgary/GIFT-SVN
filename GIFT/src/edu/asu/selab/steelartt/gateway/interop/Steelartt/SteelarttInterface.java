@@ -6,11 +6,14 @@ import java.io.Serializable;
 import java.net.ConnectException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.StringDeserializer;
 
 import generated.course.InteropInputs;
 import generated.course.Nvpair;
@@ -87,34 +90,6 @@ public class SteelarttInterface extends UnityInterface {
      * @param line The text that was received from the Unity application.
      */
 
-    // private void handleRawUnityMessage(String line) {
-    //     logger.info("handleRawUnityMessage()");
-
-    //     try {
-    //         final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
-    //         MessageTypeEnum msgType;
-    //         try {
-    //             msgType = EmbeddedAppMessageEncoder.getDecodedMessageType(message);
-    //         } catch (Exception e) {
-    //             logger.error("There was a problem determining the message type of a payload.", e);
-    //             return;
-    //         }
-    
-    //         if (message instanceof TrainingAppState) {
-    //             GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
-    //             // Might introduce changes here based on what we want to send to Gateway module.
-    //         } else {
-    //             final String typeName = message != null ? message.getClass().getName() : "null";
-    //             logger.warn("A message of type '" + typeName + "' was received from the unity application. "
-    //                     + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
-    //         }
-    //     } catch (ParseException e) {
-    //         logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
-    //     } catch (Exception ex) {
-    //         logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
-    //     }
-    // }
-
     // This method receives the ACKs for the control messages(sent by gift to unity)  sent by the unity app. 
     private void handleControlMessage(String line) {
         logger.info("handleControlMessage()");
@@ -134,37 +109,10 @@ public class SteelarttInterface extends UnityInterface {
     public void setEnabled(boolean value) throws ConfigurationException {
         super.setEnabled(value);
 
-        if(value){
-            try {
-                // establishDataSocketConnection();
-                // Testing Kafka
-                if (value) {
-                    kafkaDataConsumer.start();
-                } else {
-                    kafkaDataConsumer.stop();
-                }
-            } catch (IOException ioEx) {
-                throw new ConfigurationException("Unable to establish connection",
-                        "There was a problem while trying to establish a connection to the '" + getName()
-                                + "' Unity application.\n"
-                                + "1.) Ensure the Unity application is running before starting GIFT"
-                                + "2.) Ensure that the Unity application is listening for connections at '"
-                                + getUnityConfig().getNetworkAddress() + ":" + getUnityConfig().getNetworkPort() + "'",
-                        ioEx);
-            }
-        }
-        else{
-            try{
-                 if (dataSocketHandler != null) {
-                    if (logger.isInfoEnabled()) {
-                        logger.info("Disconnecting data socket handler");
-                    }
-                    dataSocketHandler.disconnect();
-                    dataSocketHandler = null; // in order to recreate it upon next needed connection
-                }
-            } catch (IOException e) {
-                logger.error("Error disconnecting data socket handler: ", e);
-            }
+        if (value) {
+            kafkaDataConsumer.start();
+        } else {
+            kafkaDataConsumer.stop();
         }
         
     }
@@ -175,69 +123,25 @@ public class SteelarttInterface extends UnityInterface {
             logger.trace("cleanup()");
         }
         super.cleanup();
-        try {
-            // if (dataSocketHandler != null) {
-            //     if(logger.isInfoEnabled()){
-            //         logger.info("Closing data socket handler");
-            //     }
-            //     dataSocketHandler.close();
-            //     dataSocketHandler = null; // in order to recreate it upon next needed connection
-            // }
-            if (kafkaDataConsumer != null) {
-                kafkaDataConsumer.stop();
-                kafkaDataConsumer = null;
-            }
-        } catch (Exception e) {
-            final String errMsg = new StringBuilder("There was a problem closing the data socket connection to ")
-                    .append(getName()).toString();
-
-            logger.error(errMsg, e);
+        if (kafkaDataConsumer != null) {
+            kafkaDataConsumer.stop();
+            kafkaDataConsumer = null;
         }
-
-        
-        
     }
 
-    // private void createDataSocketHandler() {
-    //     logger.info("createDataSocketHandler()");
-    //     if (dataSocketHandler == null) {
-    //         final String dataportAddress = getUnityConfig().getNetworkAddress();
-    //         final int dataPort = getUnityConfig().getDataNetworkPort();
-    //         logger.info("dataPort: "+ dataPort);
-    //         dataSocketHandler = new AsyncSocketHandler(dataportAddress, dataPort, this::handleRawUnityMessage);
-
-    //         if(logger.isInfoEnabled()){
-    //             logger.info("Created new data socket handler");
-    //         }
-    //     }
-
-    // }
-    private void createKafkaDataConsumer() {
+   private void createKafkaDataConsumer() {
         if (kafkaDataConsumer == null) {
-            String bootstrapServers = "localhost:9092"; // Replace with your Kafka broker address
-            String topic = "unity-data-topic"; // Replace with your Kafka topic
-            String groupId = "gift-consumer-group"; // Replace with your consumer group ID
-            kafkaDataConsumer = new KafkaDataConsumer(bootstrapServers, topic, groupId, this);
+            Properties props = new Properties();
+            props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Replace IP with your Kafka broker address
+            props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+            props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+            props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"); // Start reading from the end of the topic
+            props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // Disable auto-commit of offsets
+            props.put(ConsumerConfig.CLIENT_ID_CONFIG, "gift-unity-consumer"); // Set a unique client ID
+
+            String topic = "scenario-topic"; // Change topic name here if required
+
+            kafkaDataConsumer = new KafkaDataConsumer(props, topic, this);
         }
     }
-
-
-    // private void establishDataSocketConnection() throws IOException {
-    //     logger.info("establishDataSocketConnection()");
-    //     if (dataSocketHandler == null) {
-    //         createKafkaDataConsumer();
-    //     }
-    
-    //     if (!dataSocketHandler.isConnected()) {
-    //         try {
-    //             dataSocketHandler.connect();
-    //             if (logger.isInfoEnabled()) {
-    //                 logger.info("Established data connection with Unity application");
-    //             }
-    //         } catch (IOException e) {
-    //             logger.error("Failed to establish data connection with Unity application at {}:{}", getUnityConfig().getNetworkAddress(), getUnityConfig().getNetworkPort(), e);
-    //             throw e;
-    //         }
-    //     }
-    // }
 }
