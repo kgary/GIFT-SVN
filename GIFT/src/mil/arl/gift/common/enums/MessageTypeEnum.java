@@ -240,7 +240,6 @@ public class MessageTypeEnum extends AbstractEnum {
 
     public static final MessageTypeEnum COMPETENCY_MESSAGE = new MessageTypeEnum("CompetencyMessage", "Competency Message", "Contains competency layers data");
     public static final MessageTypeEnum COMPETENCY_MESSAGE_BATCH = new MessageTypeEnum("CompetencyMessageBatch", "Competency Message Batch", "Contains an array of competency layers data, timestamp when data was sent by unity and batch size");
-
     /**
      * Collection of Training Application Game state message types
      */
