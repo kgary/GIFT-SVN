@@ -54,8 +54,9 @@ public class SteelarttInterface extends UnityInterface {
 
     @Override
     public boolean configure(Serializable config) throws ConfigurationException {
-        super.configure(config);
+        super.configure(config); //this super was called here bucause it create the "control socket handler"
 
+        // everything below here works to create the "Data socket handler"
         if (config instanceof generated.gateway.Unity) {
 
             createDataSocketHandler();
