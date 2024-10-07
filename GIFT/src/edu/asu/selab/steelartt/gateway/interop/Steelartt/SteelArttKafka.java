@@ -66,8 +66,25 @@ public class SteelArttKafka extends AbstractInteropInterface {
     private KafkaConsumer<String, String> consumer;
     private final JSONParser jsonParser = new JSONParser();
 
+    private Unity unityConfig;
+
+    protected Unity getUnityConfig(){
+        return this.unityConfig;
+    }
+
+    protected void setUnityConfig(Unity config){
+        this.unityConfig = config;
+    }
+
+    /**
+     * The socket handler that sends control mesgs to the unity app over socket and receives ACKs for the same.
+     */
+    private AsyncSocketHandler controlSocketHandler;
+
     public SteelArttKafka(String displayName,Properties consumerProps, String topic) {
         super(displayName,false);
+        this.consumerProps = consumerProps;
+        this.topic = topic;
     }
     
     /**
@@ -146,8 +163,10 @@ public class SteelArttKafka extends AbstractInteropInterface {
 
         if (config instanceof generated.gateway.Unity) {
 
-            // Testing Kafka
+            setUnityConfig((Unity)config);
+            
             createKafkaDataConsumer();
+            createSocketHandler(); // creating only the control channel's socket handler
 
             if (logger.isInfoEnabled()) {
                 logger.info("Plugin has been configured");
@@ -218,10 +237,10 @@ public class SteelArttKafka extends AbstractInteropInterface {
      */
 
     // This method receives the ACKs for the control messages(sent by gift to unity)  sent by the unity app. 
-    private void handleControlMessage(String line) {
-        logger.info("handleControlMessage()");
+    private void handleControlMessageAck(String line) {
+        logger.info("handleControlMessageAck()");
         if (logger.isTraceEnabled()) {
-            logger.trace("handleControlMessage('" + line + "')");
+            logger.trace("handleControlMessageAck('" + line + "')");
         }
 
         // Handle control message ACK here
@@ -234,22 +253,107 @@ public class SteelArttKafka extends AbstractInteropInterface {
 
     @Override
     public void setEnabled(boolean value) throws ConfigurationException {
-        super.setEnabled(value);
+         if (logger.isTraceEnabled()) {
+            logger.trace("setEnabled(" + value + ")");
+        }
 
-        if (value) {
-            start();
-        } else {
-            stop();
+        /* If the values are the same, there's no change to be made. */
+        if (value == isEnabled()) {
+            return;
+        }
+
+         if(value){
+            if (logger.isInfoEnabled()) {
+                logger.info("Enabling Unity interface");
+            }
+
+            /* Ensure a a connection has been established with the Unity
+             * application */
+            try {
+                establishConnection();
+            } catch (IOException ioEx) {
+                throw new ConfigurationException("Unable to establish connection",
+                        "There was a problem while trying to establish a connection to the '" + getName()
+                                + "' Unity application.\n"
+                                + "1.) Ensure the Unity application is running before starting GIFT"
+                                + "2.) Ensure that the Unity application is listening for connections at '"
+                                + getUnityConfig().getNetworkAddress() + ":" + getUnityConfig().getNetworkPort() + "'",
+                        ioEx);
+            }
+
+            startKafka();
+        }
+        else{
+             try{ // disconnect control socket handler
+                 if (controlSocketHandler != null) {
+                    if (logger.isInfoEnabled()) {
+                        logger.info("Disconnecting control socket handler");
+                    }
+                    controlSocketHandler.disconnect();
+                    controlSocketHandler = null;
+                }
+            } catch (IOException e) {
+                logger.error("Error disconnecting control socket handler: ", e);
+            }
+            
+            stopKafka();
         }
         
+        super.setEnabled(value); // called this coz all setEnabled methods in other interop plugins call the super from AbstractInteropInterface.
     }
+
+    private void establishConnection() throws IOException {
+        if (logger.isTraceEnabled()) {
+            logger.trace("establishConnection()");
+        }
+
+        if (controlSocketHandler == null) {
+            createSocketHandler();
+        }
+
+        if (!controlSocketHandler.isConnected()) {
+            controlSocketHandler.connect();
+            if(logger.isInfoEnabled()){
+                logger.info("Re-connecting existing socket handler");
+            }
+        }
+    }
+
+    private void createSocketHandler() {
+        logger.info("createSocketHandler()");
+        if(controlSocketHandler == null){
+            final String controlAddress = getUnityConfig().getNetworkAddress();
+            final int controlPort = getUnityConfig().getNetworkPort();
+            controlSocketHandler = new AsyncSocketHandler(controlAddress, controlPort, this::handleControlMessageAck);
+            
+            if(logger.isInfoEnabled()){
+                logger.info("Created new control socket handler");
+            }
+        }
+    }
+
 
     @Override
     public void cleanup() {
         if (logger.isTraceEnabled()) {
             logger.trace("cleanup()");
         }
-        stop();
+        try { // close control socket handler
+            if (controlSocketHandler != null) {
+                if(logger.isInfoEnabled()){
+                    logger.info("Closing data socket handler");
+                }
+                controlSocketHandler.close();
+                controlSocketHandler = null; // in order to recreate it upon next needed connection
+            }
+        } catch (Exception e) {
+            final String errMsg = new StringBuilder("There was a problem closing the socket connection to ")
+                    .append(getName()).toString();
+
+            logger.error(errMsg, e);
+        }
+        
+        stopKafka(); //stop kafka connection
     }
 
    private void createKafkaDataConsumer() {
@@ -265,7 +369,7 @@ public class SteelArttKafka extends AbstractInteropInterface {
 
     }
 
-    public void start() {
+    public void startKafka() {
         if (running.getAndSet(true)) {
             logger.warn("Kafka consumer is already running.");
             return;
@@ -333,7 +437,7 @@ public class SteelArttKafka extends AbstractInteropInterface {
         }
     }
 
-
+    // below method to go in common class coz no real difference between kafka-socket or all-socket version - so remove from here
     private void handleRawUnityMessage(String message) {
         try {
             final Object decodedMessage = EmbeddedAppMessageEncoder.decodeForGift(message);
@@ -353,7 +457,7 @@ public class SteelArttKafka extends AbstractInteropInterface {
         }
     }
 
-    public void stop() {
+    public void stopKafka() {
         logger.debug("Stopping Kafka Consumer.");
         running.set(false);
         if (consumer != null) {
