@@ -1,0 +1,2222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="Real-time Assessment" version="11.0.1">
+    <description>-282568.0877824915 -5458616.84461234 3276171.1972723273</description>
+    <resources>
+        <ns2:surveyContext>27</ns2:surveyContext>
+        <AvailableLearnerActions>
+            <ns3:LearnerActionsList>
+                <ns3:learnerAction>
+                    <ns3:type>Radio</ns3:type>
+                    <ns3:displayName>Radio</ns3:displayName>
+                </ns3:learnerAction>
+            </ns3:LearnerActionsList>
+        </AvailableLearnerActions>
+        <ScenarioControls>
+            <preventManualStop/>
+        </ScenarioControls>
+    </resources>
+    <endTriggers>
+        <trigger>
+            <taskEnded nodeId="9"/>
+        </trigger>
+    </endTriggers>
+    <assessment>
+        <tasks>
+            <task name="Waiting For Entity States (HIDDEN TASK)" nodeId="43" scenarioSupport="true">
+                <startTriggers>
+                    <trigger>
+                        <scenarioStarted/>
+                        <triggerMessage>
+                            <strategy name="TaskTriggerStrategy">
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>Mission Initializing...</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="M1078 LSAC"/>
+        <ns4:teamRef value="Leader"/>
+        <ns4:teamRef value="Machine Gunner 1"/>
+        <ns4:teamRef value="Assistant Machine Gunner 1"/>
+        <ns4:teamRef value="Machine Gunner 2"/>
+        <ns4:teamRef value="Assistant Machine Gunner 2"/>
+        <ns4:teamRef value="Gunner 1"/>
+        <ns4:teamRef value="Ammo Bearer 1"/>
+        <ns4:teamRef value="Gunner 2"/>
+        <ns4:teamRef value="Ammo Bearer 2"/>
+        <ns4:teamRef value="Vehicle 3"/>
+        <ns4:teamRef value="v3 Driver"/>
+        <ns4:teamRef value="v3 Gunner"/>
+        <ns4:teamRef value="Vehicle 4"/>
+        <ns4:teamRef value="v4 Driver"/>
+        <ns4:teamRef value="v4 Gunner"/>
+        <ns4:teamRef value="Vehicle 5"/>
+        <ns4:teamRef value="v5 Gunner"/>
+        <ns4:teamRef value="v5 Driver"/>
+        <ns4:teamRef value="Vehicle 1"/>
+        <ns4:teamRef value="Vehicle 2"/>
+        <ns4:teamRef value="Platoon Leader"/>
+        <ns4:teamRef value="Sergeant 1"/>
+        <ns4:teamRef value="Grenadier 1"/>
+        <ns4:teamRef value="Automatic Rifleman 1"/>
+        <ns4:teamRef value="Rifleman 1"/>
+        <ns4:teamRef value="Sergeant 2"/>
+        <ns4:teamRef value="Grenadier 2"/>
+        <ns4:teamRef value="Automatic Rifleman 2"/>
+        <ns4:teamRef value="Rifleman 2"/>
+        <ns4:teamRef value="Iveco LMV"/>
+        <ns4:teamRef value="Squad Leader"/>
+        <ns4:teamRef value="Medic1"/>
+        <ns4:teamRef value="Team Leader"/>
+        <ns4:teamRef value="Medic2"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>From the VBS main menu, go to Networking.  Select the appropriate Host and click Join.  </ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="M1078 LSAC"/>
+        <ns4:teamRef value="Leader"/>
+        <ns4:teamRef value="Machine Gunner 1"/>
+        <ns4:teamRef value="Assistant Machine Gunner 1"/>
+        <ns4:teamRef value="Machine Gunner 2"/>
+        <ns4:teamRef value="Assistant Machine Gunner 2"/>
+        <ns4:teamRef value="Gunner 1"/>
+        <ns4:teamRef value="Ammo Bearer 1"/>
+        <ns4:teamRef value="Gunner 2"/>
+        <ns4:teamRef value="Ammo Bearer 2"/>
+        <ns4:teamRef value="Vehicle 3"/>
+        <ns4:teamRef value="v3 Driver"/>
+        <ns4:teamRef value="v3 Gunner"/>
+        <ns4:teamRef value="Vehicle 4"/>
+        <ns4:teamRef value="v4 Driver"/>
+        <ns4:teamRef value="v4 Gunner"/>
+        <ns4:teamRef value="Vehicle 5"/>
+        <ns4:teamRef value="v5 Gunner"/>
+        <ns4:teamRef value="v5 Driver"/>
+        <ns4:teamRef value="Vehicle 1"/>
+        <ns4:teamRef value="Vehicle 2"/>
+        <ns4:teamRef value="Platoon Leader"/>
+        <ns4:teamRef value="Sergeant 1"/>
+        <ns4:teamRef value="Grenadier 1"/>
+        <ns4:teamRef value="Automatic Rifleman 1"/>
+        <ns4:teamRef value="Rifleman 1"/>
+        <ns4:teamRef value="Sergeant 2"/>
+        <ns4:teamRef value="Grenadier 2"/>
+        <ns4:teamRef value="Automatic Rifleman 2"/>
+        <ns4:teamRef value="Rifleman 2"/>
+        <ns4:teamRef value="Iveco LMV"/>
+        <ns4:teamRef value="Squad Leader"/>
+        <ns4:teamRef value="Medic1"/>
+        <ns4:teamRef value="Team Leader"/>
+        <ns4:teamRef value="Medic2"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be playing as BLUFOR actor named "1-1-A-6: Leader - M4 RCO - IOTV, group leader".  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Platoon Leader"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be playing as BLUFOR actor named "1-1-A-7: Leader - M4 RCO - IOTV".  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Sergeant 1"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be playing as BLUFOR actor named "1-1-A-9: Automatic Rifleman - M249 MGO - IOTV".  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Automatic Rifleman 1"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be playing as BLUFOR actor named "1-1-B-2: Leader - M4 RCO - IOTV".  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Sergeant 2"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+                            </strategy>
+                        </triggerMessage>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="44" result="BelowExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="scenario starts" nodeId="44">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="4" value="entity start location"/>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Mission Brief" nodeId="1">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="43"/>
+                        <triggerMessage>
+                            <strategy name="TaskTriggerStrategy">
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be the driver of Vehicle 1.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Platoon Leader"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be the driver of Vehicle 2.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Sergeant 2"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>Your assigned vehicle is Vehicle 1.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Sergeant 1"/>
+        <ns4:teamRef value="Automatic Rifleman 1"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>After the PL has issued the OPORD Brief and Map Recon, you need to assess their performance in the Assessment panel. </ns4:content>
+            <ns4:Delivery>
+                <ns4:ToObserverController value="controller"/>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+                            </strategy>
+                        </triggerMessage>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="10" result="AtExpectation"/>
+                    </trigger>
+                    <trigger>
+                        <conceptAssessment concept="10" result="BelowExpectation"/>
+                    </trigger>
+                    <trigger>
+                        <conceptAssessment concept="10" result="AboveExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="OPORD/WARNORD Brief" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Map Recon" nodeId="10">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Leave the FOB" nodeId="3">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="43"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="32" result="AtExpectation"/>
+                        <triggerDelay>10</triggerDelay>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Mount Vehicles" nodeId="11">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+            <teamMemberRef>Vehicle 2</teamMemberRef>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+            <teamMemberRef>Sergeant 1</teamMemberRef>
+            <teamMemberRef>Grenadier 1</teamMemberRef>
+            <teamMemberRef>Automatic Rifleman 1</teamMemberRef>
+            <teamMemberRef>Rifleman 1</teamMemberRef>
+            <teamMemberRef>Sergeant 2</teamMemberRef>
+            <teamMemberRef>Grenadier 2</teamMemberRef>
+            <teamMemberRef>Automatic Rifleman 2</teamMemberRef>
+            <teamMemberRef>Rifleman 2</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Report Step Off Time" nodeId="12">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Halt at Gate" nodeId="31">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.HaltCondition</conditionImpl>
+<input>
+    <HaltConditionInput>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+            <teamMemberRef>Vehicle 2</teamMemberRef>
+        </teamMemberRefs>
+    </HaltConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Vehicles Exit FOB" nodeId="32" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="7" value="FOB Gate"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Transport Supplies to OBJ" nodeId="4">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="3"/>
+                        <triggerMessage>
+                            <strategy name="TaskTriggerStrategy">
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>Follow the provided GPS navigation arrows to reach your OBJ. Remember to maintain the proper ETA. </ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Vehicle 1"/>
+        <ns4:teamRef value="Vehicle 2"/>
+        <ns4:teamRef value="Platoon Leader"/>
+        <ns4:teamRef value="Sergeant 1"/>
+        <ns4:teamRef value="Grenadier 1"/>
+        <ns4:teamRef value="Automatic Rifleman 1"/>
+        <ns4:teamRef value="Rifleman 1"/>
+        <ns4:teamRef value="Sergeant 2"/>
+        <ns4:teamRef value="Grenadier 2"/>
+        <ns4:teamRef value="Automatic Rifleman 2"/>
+        <ns4:teamRef value="Rifleman 2"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+                            </strategy>
+                        </triggerMessage>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="30" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="V1 Maintain Proper Speed" nodeId="13">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SpeedLimitCondition</conditionImpl>
+<input>
+    <SpeedLimitCondition>
+        <speedLimit>40</speedLimit>
+        <minDurationBeforeViolation>5</minDurationBeforeViolation>
+        <teamMemberRef>Vehicle 1</teamMemberRef>
+    </SpeedLimitCondition>
+</input>
+<scoring>
+    <count name="Violation Count" units="count">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="Equals" value="0"/>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="2"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="3"/>
+        </evaluators>
+    </count>
+</scoring>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="V2 Maintain Proper Speed" nodeId="14">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SpeedLimitCondition</conditionImpl>
+<input>
+    <SpeedLimitCondition>
+        <speedLimit>40</speedLimit>
+        <minDurationBeforeViolation>5</minDurationBeforeViolation>
+        <teamMemberRef>Vehicle 2</teamMemberRef>
+    </SpeedLimitCondition>
+</input>
+<scoring>
+    <count name="Violation Count" units="count">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="Equals" value="0"/>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="2"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="3"/>
+        </evaluators>
+    </count>
+</scoring>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Convoy Maintain Proper Spacing" nodeId="15">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SpacingCondition</conditionImpl>
+<input>
+    <SpacingCondition>
+        <minDurationBeforeViolation>10</minDurationBeforeViolation>
+        <spacingPair>
+            <firstObject>
+                <teamMemberRef>Vehicle 1</teamMemberRef>
+            </firstObject>
+            <secondObject>
+                <teamMemberRef>Vehicle 2</teamMemberRef>
+            </secondObject>
+            <ideal>
+                <idealMaxSpacing>15</idealMaxSpacing>
+                <idealMinSpacing>11</idealMinSpacing>
+            </ideal>
+            <acceptable>
+                <acceptableMaxSpacing>20</acceptableMaxSpacing>
+                <acceptableMinSpacing>10</acceptableMinSpacing>
+            </acceptable>
+        </spacingPair>
+    </SpacingCondition>
+</input>
+<scoring>
+    <count name="Violation Count" units="count">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="Equals" value="0"/>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="2"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="3"/>
+        </evaluators>
+    </count>
+</scoring>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Maintain Situational Awareness" nodeId="16">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+            <teamMemberRef>Vehicle 2</teamMemberRef>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+            <teamMemberRef>Sergeant 1</teamMemberRef>
+            <teamMemberRef>Grenadier 1</teamMemberRef>
+            <teamMemberRef>Automatic Rifleman 1</teamMemberRef>
+            <teamMemberRef>Rifleman 1</teamMemberRef>
+            <teamMemberRef>Sergeant 2</teamMemberRef>
+            <teamMemberRef>Grenadier 2</teamMemberRef>
+            <teamMemberRef>Automatic Rifleman 2</teamMemberRef>
+            <teamMemberRef>Rifleman 2</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Arrive IVO Urban Area" nodeId="30" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="13" value="Approaching Urban Area"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+        <requireLearnerAction>false</requireLearnerAction>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="React to Roadside IED" nodeId="5">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="3"/>
+                        <triggerDelay>15</triggerDelay>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="36" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Proper Stop Reaction to IED" nodeId="17">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SpeedLimitCondition</conditionImpl>
+<input>
+    <SpeedLimitCondition>
+        <speedLimit>45</speedLimit>
+        <minSpeedLimit>10</minSpeedLimit>
+        <minDurationBeforeViolation>5</minDurationBeforeViolation>
+        <teamMemberRef>Vehicle 1</teamMemberRef>
+    </SpeedLimitCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Report IED to HQ" nodeId="18">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="PL Orders to Move On" nodeId="19">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Keep Radio Chatter to Minimum" nodeId="35">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+            <teamMemberRef>Vehicle 2</teamMemberRef>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+            <teamMemberRef>Sergeant 1</teamMemberRef>
+            <teamMemberRef>Grenadier 1</teamMemberRef>
+            <teamMemberRef>Automatic Rifleman 1</teamMemberRef>
+            <teamMemberRef>Rifleman 1</teamMemberRef>
+            <teamMemberRef>Sergeant 2</teamMemberRef>
+            <teamMemberRef>Grenadier 2</teamMemberRef>
+            <teamMemberRef>Automatic Rifleman 2</teamMemberRef>
+            <teamMemberRef>Rifleman 2</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Arrive at Checkpoint Alpha" nodeId="36" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="5" value="Checkpoint Alpha"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Convoy Approaching IED Location" nodeId="41" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="6" value="Approaching IED Location"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Checkpoint Alpha" nodeId="6">
+                <startTriggers>
+                    <trigger>
+                        <conceptAssessment concept="36" result="AtExpectation"/>
+                        <triggerMessage>
+                            <strategy name="TaskTriggerStrategy">
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>Don't forget to provide an assessment when the PL reports the checkpoint to HQ!</ns4:content>
+            <ns4:Delivery>
+                <ns4:ToObserverController value="controller"/>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+                            </strategy>
+                        </triggerMessage>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="30" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Report CP Alpha to HQ" nodeId="20">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Reach CP Alpha On Time" nodeId="33">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CheckpointProgressCondition</conditionImpl>
+<input>
+    <CheckpointProgressCondition>
+        <checkpoint atTime="00:02:00" point="Checkpoint Alpha" windowOfTime="180"/>
+        <teamMemberRef>Vehicle 1</teamMemberRef>
+    </CheckpointProgressCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Intel Timer" nodeId="46" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>30</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Travel Through Urban Village" nodeId="8">
+                <startTriggers>
+                    <trigger>
+                        <conceptAssessment concept="36" result="AtExpectation"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="42" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Report Entrance of Village and Civilian Presence" nodeId="22">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Follow GPS Path Through Village" nodeId="38">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CorridorBoundaryCondition</conditionImpl>
+<input>
+    <CorridorBoundaryCondition>
+        <bufferWidthPercent>0</bufferWidthPercent>
+        <pathRef value="GPS Path Through Village"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+    </CorridorBoundaryCondition>
+</input>
+<scoring>
+    <violation_time name="Violation Time" units="hh:mm:ss">
+        <evaluators>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="00:00:20"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="00:00:21"/>
+        </evaluators>
+    </violation_time>
+</scoring>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Crowded Path - Transport Point" nodeId="39" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="5" value="Crowd Gathering - Transport Point"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Exit Village Location" nodeId="42" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="5" value="End of Village Path"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Checkpoint Bravo" nodeId="7">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="8"/>
+                        <triggerMessage>
+                            <strategy name="TaskTriggerStrategy">
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>Don't forget to provide an assessment when the PL reports the next checkpoint to HQ!</ns4:content>
+            <ns4:Delivery>
+                <ns4:ToObserverController value="controller"/>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+                            </strategy>
+                        </triggerMessage>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="24" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Report CP Bravo to HQ" nodeId="21">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Reach CP Bravo On Time" nodeId="34">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CheckpointProgressCondition</conditionImpl>
+<input>
+    <CheckpointProgressCondition>
+        <checkpoint atTime="00:10:00" point="Checkpoint Bravo " windowOfTime="900"/>
+        <teamMemberRef>Vehicle 1</teamMemberRef>
+    </CheckpointProgressCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Arrive at Checkpoint Bravo" nodeId="37" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="5" value="Checkpoint Bravo "/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Deliver Supplies to POC" nodeId="9">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="8"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="27" result="AtExpectation"/>
+                        <triggerDelay>120</triggerDelay>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Reach Outpost Gate" nodeId="24" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="5" value="Outpost OBJ Gate"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="PL Deliver Supplies to POC" nodeId="27">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="5" value="Delivery Location"/>
+        <teamMemberRefs>
+            <teamMemberRef>Platoon Leader</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Team Maintain Perimeter Security" nodeId="28">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Sergeant 1</teamMemberRef>
+            <teamMemberRef>Grenadier 1</teamMemberRef>
+            <teamMemberRef>Automatic Rifleman 1</teamMemberRef>
+            <teamMemberRef>Rifleman 1</teamMemberRef>
+            <teamMemberRef>Sergeant 2</teamMemberRef>
+            <teamMemberRef>Grenadier 2</teamMemberRef>
+            <teamMemberRef>Automatic Rifleman 2</teamMemberRef>
+            <teamMemberRef>Rifleman 2</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Distraction Task (HIDDEN)" nodeId="45" scenarioSupport="true">
+                <startTriggers>
+                    <trigger>
+                        <conceptAssessment concept="27" result="AtExpectation"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <taskEnded nodeId="9"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Distraction Task Trigger" nodeId="40">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>30</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Second Timer" nodeId="47">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>65</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects>
+            <PlacesOfInterest>
+                <point name="FOB Gate">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-283156.74477903015</ns2:x>
+                            <ns2:y>-5458171.730136833</ns2:y>
+                            <ns2:z>3276851.801780325</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Roadside IED Location">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282805.4526013464</ns2:x>
+                            <ns2:y>-5458358.779281982</ns2:y>
+                            <ns2:z>3276575.1406237907</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Checkpoint Alpha">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282550.08314972464</ns2:x>
+                            <ns2:y>-5458609.292254127</ns2:y>
+                            <ns2:z>3276184.147476982</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Checkpoint Bravo ">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282549.69780942664</ns2:x>
+                            <ns2:y>-5458610.002450551</ns2:y>
+                            <ns2:z>3276182.8778383746</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Approaching FOB Gate">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-283161.46027408616</ns2:x>
+                            <ns2:y>-5458170.908825259</ns2:y>
+                            <ns2:z>3276852.630191448</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Exiting FOB Gate ">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-283145.25754010625</ns2:x>
+                            <ns2:y>-5458173.3936349945</ns2:y>
+                            <ns2:z>3276849.909793308</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="No Stop Zone After IED">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282733.15721706784</ns2:x>
+                            <ns2:y>-5458411.378684509</ns2:y>
+                            <ns2:z>3276494.3036122606</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <path name="GPS Path Through Village">
+                    <segment name="Segment 1">
+                        <width>10</width>
+                        <bufferWidthPercent>7</bufferWidthPercent>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>-282568.0877824915</ns2:x>
+    <ns2:y>-5458616.84461234</ns2:y>
+    <ns2:z>3276171.1972723273</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>-282604.93518937944</ns2:x>
+    <ns2:y>-5458667.40466668</ns2:y>
+    <ns2:z>3276085.537933382</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="Segment 2">
+                        <width>10</width>
+                        <bufferWidthPercent>5</bufferWidthPercent>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>-282604.93518937944</ns2:x>
+    <ns2:y>-5458667.40466668</ns2:y>
+    <ns2:z>3276085.537933382</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>-282700.08012033155</ns2:x>
+    <ns2:y>-5458714.703801753</ns2:y>
+    <ns2:z>3275997.7396366703</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="Segment 3">
+                        <width>10</width>
+                        <bufferWidthPercent>0</bufferWidthPercent>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>-282700.08012033155</ns2:x>
+    <ns2:y>-5458714.703801753</ns2:y>
+    <ns2:z>3275997.7396366703</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>-282549.03660061175</ns2:x>
+    <ns2:y>-5458796.785903117</ns2:y>
+    <ns2:z>3275867.612355963</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="Segment 4">
+                        <width>10</width>
+                        <bufferWidthPercent>0</bufferWidthPercent>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>-282549.03660061175</ns2:x>
+    <ns2:y>-5458796.785903117</ns2:y>
+    <ns2:z>3275867.612355963</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>-282596.356449397</ns2:x>
+    <ns2:y>-5458817.386660599</ns2:y>
+    <ns2:z>3275828.904357158</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                </path>
+                <point name="Outpost OBJ Gate">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282343.6130610443</ns2:x>
+                            <ns2:y>-5458879.310702859</ns2:y>
+                            <ns2:z>3275744.676210187</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Crowd Gathering - Transport Point">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282704.24226896476</ns2:x>
+                            <ns2:y>-5458716.814603634</ns2:y>
+                            <ns2:z>3275993.6721507222</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Approaching IED Location">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282965.3542368171</ns2:x>
+                            <ns2:y>-5458237.192581473</ns2:y>
+                            <ns2:z>3276754.024765433</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="B Platoon Ambush Location">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-281868.06106822105</ns2:x>
+                            <ns2:y>-5458272.368609144</ns2:y>
+                            <ns2:z>3276780.3186237365</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="B Platoon Approaching Ambush Alert Location">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-281981.88283764874</ns2:x>
+                            <ns2:y>-5458187.326211544</ns2:y>
+                            <ns2:z>3276902.4460476125</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Approaching Urban Area">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282568.0877824915</ns2:x>
+                            <ns2:y>-5458616.84461234</ns2:y>
+                            <ns2:z>3276171.1972723273</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="End of Village Path">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282594.5720720969</ns2:x>
+                            <ns2:y>-5458816.631988805</ns2:y>
+                            <ns2:z>3275830.5460028662</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="entity start location">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-283212.714526146</ns2:x>
+                            <ns2:y>-5458184.61790807</ns2:y>
+                            <ns2:z>3276825.547951146</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Delivery Location">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282290.02851604787</ns2:x>
+                            <ns2:y>-5458918.953249168</ns2:y>
+                            <ns2:z>3275683.5976345437</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+            </PlacesOfInterest>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="Vehicles Waiting to Exit FOB Gate">
+                <LogicalExpression>
+                    <performanceNode name="Vehicles Exit FOB" nodeId="32">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Message to O/C - Open the FOB Gate"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicle 1 Speeding">
+                <LogicalExpression>
+                    <performanceNode name="V1 Maintain Proper Speed" nodeId="13">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="V1 Speeding Ticket"/>
+                    <strategyRef name="do nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicle 2 Speeding">
+                <LogicalExpression>
+                    <performanceNode name="V2 Maintain Proper Speed" nodeId="14">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="V2 Speeding Ticket"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicle 2 Not Properly Spaced">
+                <LogicalExpression>
+                    <performanceNode name="Convoy Maintain Proper Spacing" nodeId="15">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="V2 Improper Spacing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicles Approaching IED Event">
+                <LogicalExpression>
+                    <performanceNode name="Convoy Approaching IED Location" nodeId="41">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Message to O/C - Team Approaching IED Event"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicles Stopped After IED">
+                <LogicalExpression>
+                    <performanceNode name="Proper Stop Reaction to IED" nodeId="17">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Message to O/C - Team Stopped After IED"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Inappropriate Radio Chatter">
+                <LogicalExpression>
+                    <performanceNode name="Keep Radio Chatter to Minimum" nodeId="35">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Minimize Radio Chatter Message to Team"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicles Reach Checkpoint Alpha">
+                <LogicalExpression>
+                    <performanceNode name="Arrive at Checkpoint Alpha" nodeId="36">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Team Instructions at Checkpoint Alpha"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Late Vehicle Transfer to Uncrowded Path">
+                <LogicalExpression>
+                    <performanceNode name="Crowded Path - Transport Point" nodeId="39">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="(Automatic) Transport Vehicles to Uncrowded Route"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicles No Longer Following GPS Route">
+                <LogicalExpression>
+                    <performanceNode name="Follow GPS Path Through Village" nodeId="38">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Message to O/C - Vehicles Left GPS Route"/>
+                    <strategyRef name="do nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicles Waiting to Enter Outpost Gate">
+                <LogicalExpression>
+                    <performanceNode name="Reach Outpost Gate" nodeId="24">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Message to O/C - Open the Outpost Gate"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Distraction Task - B Platoon Ambushed">
+                <LogicalExpression>
+                    <performanceNode name="Distraction Task Trigger" nodeId="40">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="(Distraction Task) Ambush Entity Additions"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Distraction Task - 2nd Ambush">
+                <LogicalExpression>
+                    <performanceNode name="Second Timer" nodeId="47">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="(Distraction Task) 2nd Ambush Entity Additions"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="do nothing"/>
+            <strategy name="Message to O/C - Open the FOB Gate">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Open the FOB gate for the vehicles using the appropriate strategy preset.</ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Open FOB Gate">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>fob_gate animate ["gate_open", 1]</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Open FOB Gate</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="V1 Speeding Ticket">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You are going too fast, slow down!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Platoon Leader"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="V2 Speeding Ticket">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You are going too fast, slow down!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Sergeant 2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="V2 Improper Spacing">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You are not properly spaced with your lead vehicle! Get back in formation!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Sergeant 2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Message to O/C - Team Approaching IED Event">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>A significant event is about to occur.  Notify your proctor when you identify this event on the map. </ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Minimize Radio Chatter Message to Team">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Keep the radio chatter to a minimum! </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Vehicle 1"/>
+                        <ns4:teamRef value="Vehicle 2"/>
+                        <ns4:teamRef value="Platoon Leader"/>
+                        <ns4:teamRef value="Sergeant 1"/>
+                        <ns4:teamRef value="Grenadier 1"/>
+                        <ns4:teamRef value="Automatic Rifleman 1"/>
+                        <ns4:teamRef value="Rifleman 1"/>
+                        <ns4:teamRef value="Sergeant 2"/>
+                        <ns4:teamRef value="Grenadier 2"/>
+                        <ns4:teamRef value="Automatic Rifleman 2"/>
+                        <ns4:teamRef value="Rifleman 2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Message to O/C - Team Stopped After IED">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>The team has stopped before the checkpoint, confirm this assessment is correct for the Proper Stop Reaction to IED box in the Assessment panel. </ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Team Instructions at Checkpoint Alpha">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:delayAfterStrategy>
+                        <ns4:duration>30</ns4:duration>
+                    </ns4:delayAfterStrategy>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>After reporting your arrival at the checkpoint, wait for HQ orders before moving on. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Vehicle 1"/>
+                        <ns4:teamRef value="Vehicle 2"/>
+                        <ns4:teamRef value="Platoon Leader"/>
+                        <ns4:teamRef value="Sergeant 1"/>
+                        <ns4:teamRef value="Grenadier 1"/>
+                        <ns4:teamRef value="Automatic Rifleman 1"/>
+                        <ns4:teamRef value="Rifleman 1"/>
+                        <ns4:teamRef value="Sergeant 2"/>
+                        <ns4:teamRef value="Grenadier 2"/>
+                        <ns4:teamRef value="Automatic Rifleman 2"/>
+                        <ns4:teamRef value="Rifleman 2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:delayAfterStrategy>
+                        <ns4:duration>20</ns4:duration>
+                    </ns4:delayAfterStrategy>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>New intel just came through notifying you that air support has spotted civilians blocking the players path.  Notify them to take their next left to avoid causalities!!</ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>HQ: The other teams are now in place, you can move out. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Vehicle 1"/>
+                        <ns4:teamRef value="Vehicle 2"/>
+                        <ns4:teamRef value="Platoon Leader"/>
+                        <ns4:teamRef value="Sergeant 1"/>
+                        <ns4:teamRef value="Grenadier 1"/>
+                        <ns4:teamRef value="Automatic Rifleman 1"/>
+                        <ns4:teamRef value="Rifleman 1"/>
+                        <ns4:teamRef value="Sergeant 2"/>
+                        <ns4:teamRef value="Grenadier 2"/>
+                        <ns4:teamRef value="Automatic Rifleman 2"/>
+                        <ns4:teamRef value="Rifleman 2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Push New Route Intel to Team">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>New intel just came in: there are civilians blocking your current route.  Take the next left and follow that path to until it is clear. Then continue to follow your GPS. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Vehicle 1"/>
+                        <ns4:teamRef value="Vehicle 2"/>
+                        <ns4:teamRef value="Platoon Leader"/>
+                        <ns4:teamRef value="Sergeant 1"/>
+                        <ns4:teamRef value="Grenadier 1"/>
+                        <ns4:teamRef value="Automatic Rifleman 1"/>
+                        <ns4:teamRef value="Rifleman 1"/>
+                        <ns4:teamRef value="Sergeant 2"/>
+                        <ns4:teamRef value="Grenadier 2"/>
+                        <ns4:teamRef value="Automatic Rifleman 2"/>
+                        <ns4:teamRef value="Rifleman 2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Transport Vehicles to Uncrowded Route">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Vehicles are now being transported.....</ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Vehicle 1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="(Automatic) Transport Vehicles to Uncrowded Route">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>48415.0</ns2:x>
+    <ns2:y>51365.61</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:heading value="135"/>
+                            <ns4:teamMemberRef value="Vehicle 1">
+<ns4:entityMarking>v1</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>48408.32</ns2:x>
+    <ns2:y>51370.76</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:heading value="135"/>
+                            <ns4:teamMemberRef value="Vehicle 2">
+<ns4:entityMarking>v2</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Message to O/C - Vehicles Left GPS Route">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Alert: The vehicles are no longer on the GPS provided route. </ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Message to O/C - Open the Outpost Gate">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Open the Outpost gate for the vehicles. </ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Open Outpost Gate">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>outpost_gate animate ["gate_open", 1]</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Open Outpost Gate</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="(Distraction Task) Ambush Entity Additions">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:delayAfterStrategy>
+                        <ns4:duration>30</ns4:duration>
+                    </ns4:delayAfterStrategy>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>A significant event is about to occur involving the B platoon.  Notify your proctor when you identify this event on the map. </ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>49169.83</ns2:x>
+    <ns2:y>52255.26</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="Taliban 1">
+<ns4:entityMarking>taliban1</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Taliban 1 Transport</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>49166.53</ns2:x>
+    <ns2:y>52251.36</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="Taliban 2">
+<ns4:entityMarking>taliban2</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Taliban 2 Teleport</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="(Distraction Task) 2nd Ambush Entity Additions">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>49174.47</ns2:x>
+    <ns2:y>52243.55</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="Taliban 3">
+<ns4:entityMarking>taliban3</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Transport Taliban 3</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>49183.20</ns2:x>
+    <ns2:y>52236.09</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="Taliban 4">
+<ns4:entityMarking>taliban4</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Transport Taliban 4</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+    <teamOrganization>
+        <team name="Everyone" echelon="Platoon">
+            <team name="BLUFOR" echelon="Battalion">
+                <team name="1-507" echelon="Platoon">
+                    <team name="C-1-507IN" echelon="Fireteam">
+                        <teamMember name="Vehicle 1" playable="false">
+                            <learnerId>
+<entityMarking>v1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Vehicle 2" playable="false">
+                            <learnerId>
+<entityMarking>v2</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Platoon Leader" playable="true">
+                            <learnerId>
+<entityMarking>CPL1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Sergeant 1" playable="true">
+                            <learnerId>
+<entityMarking>CL1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Grenadier 1" playable="false">
+                            <learnerId>
+<entityMarking>CG1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Automatic Rifleman 1" playable="true">
+                            <learnerId>
+<entityMarking>CAR1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Rifleman 1" playable="false">
+                            <learnerId>
+<entityMarking>CR1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Sergeant 2" playable="true">
+                            <learnerId>
+<entityMarking>CL2</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Grenadier 2" playable="false">
+                            <learnerId>
+<entityMarking>CG2</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Automatic Rifleman 2" playable="false">
+                            <learnerId>
+<entityMarking>CAR2</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Rifleman 2" playable="false">
+                            <learnerId>
+<entityMarking>CR2</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                    </team>
+                    <team name="B-1-507IN" echelon="Fireteam">
+                        <teamMember name="Vehicle 3" playable="false">
+                            <learnerId>
+<entityMarking>v3</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="v3 Driver" playable="false">
+                            <learnerId>
+<entityMarking>v3driver</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="v3 Gunner" playable="false">
+                            <learnerId>
+<entityMarking>v3gunner</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Vehicle 4" playable="false">
+                            <learnerId>
+<entityMarking>v4</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="v4 Driver" playable="false">
+                            <learnerId>
+<entityMarking>v4driver</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="v4 Gunner" playable="false">
+                            <learnerId>
+<entityMarking>v4gunner</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Vehicle 5" playable="false">
+                            <learnerId>
+<entityMarking>v5</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="v5 Gunner" playable="false">
+                            <learnerId>
+<entityMarking>v5gunner</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="v5 Driver" playable="false">
+                            <learnerId>
+<entityMarking>v5driver</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                    </team>
+                    <team name="A-1-507WP" echelon="Fireteam">
+                        <teamMember name="M1078 LSAC" playable="false">
+                            <learnerId>
+<entityMarking>carrier1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Leader" playable="false">
+                            <learnerId>
+<entityMarking>AL1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Machine Gunner 1" playable="false">
+                            <learnerId>
+<entityMarking>AMG1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Assistant Machine Gunner 1" playable="false">
+                            <learnerId>
+<entityMarking>AAMG1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Machine Gunner 2" playable="false">
+                            <learnerId>
+<entityMarking>AMG2</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Assistant Machine Gunner 2" playable="false">
+                            <learnerId>
+<entityMarking>AAMG2</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Gunner 1" playable="false">
+                            <learnerId>
+<entityMarking>AG1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Ammo Bearer 1" playable="false">
+                            <learnerId>
+<entityMarking>AAB1</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Gunner 2" playable="false">
+                            <learnerId>
+<entityMarking>AG2</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <teamMember name="Ammo Bearer 2" playable="false">
+                            <learnerId>
+<entityMarking>AAB2</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                    </team>
+                </team>
+                <team name="Medical Team" echelon="Squad">
+                    <teamMember name="Iveco LMV" playable="false">
+                        <learnerId>
+                            <entityMarking>med_veh1</entityMarking>
+                        </learnerId>
+                    </teamMember>
+                    <teamMember name="Squad Leader" playable="false">
+                        <learnerId>
+                            <entityMarking>MSL1</entityMarking>
+                        </learnerId>
+                    </teamMember>
+                    <teamMember name="Medic1" playable="false">
+                        <learnerId>
+                            <entityMarking>Medic1</entityMarking>
+                        </learnerId>
+                    </teamMember>
+                    <teamMember name="Team Leader" playable="false">
+                        <learnerId>
+                            <entityMarking>MTL1</entityMarking>
+                        </learnerId>
+                    </teamMember>
+                    <teamMember name="Medic2" playable="false">
+                        <learnerId>
+                            <entityMarking>Medic2</entityMarking>
+                        </learnerId>
+                    </teamMember>
+                </team>
+            </team>
+            <team name="OPFOR">
+                <teamMember name="Taliban 1" playable="false">
+                    <learnerId>
+                        <entityMarking>taliban1</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Taliban 2" playable="false">
+                    <learnerId>
+                        <entityMarking>taliban2</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Taliban 3" playable="false">
+                    <learnerId>
+                        <entityMarking>taliban3</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Taliban 4" playable="false">
+                    <learnerId>
+                        <entityMarking>taliban4</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Taliban Driver" playable="false">
+                    <learnerId>
+                        <entityMarking>talibandriver</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Taliban Vehicle" playable="false">
+                    <learnerId>
+                        <entityMarking>talibanvehicle</entityMarking>
+                    </learnerId>
+                </teamMember>
+            </team>
+            <teamMember name="Observer Controller" playable="true">
+                <learnerId>
+                    <entityMarking>New Entity Marker</entityMarking>
+                </learnerId>
+            </teamMember>
+        </team>
+    </teamOrganization>
+</Scenario>

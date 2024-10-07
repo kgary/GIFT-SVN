@@ -140,7 +140,6 @@ public class EmbeddedAppMessageEncoder {
         CompetencyMessage,
         /** A message containing an array of competency layers data, its timestamp of when it was sent from unity and batch size for steel-artt */
         CompetencyMessageBatch
-
 	}
 
 	/**
