@@ -158,31 +158,31 @@ public class SteelArttKafka extends AbstractInteropInterface {
 
 
     // goes inside common abstract class as a template, this will create the kafka consumer as well as the control channel socket
-    @Override
-    public boolean configure(Serializable config) throws ConfigurationException {
+    // @Override
+    // public boolean configure(Serializable config) throws ConfigurationException {
 
-        if (config instanceof generated.gateway.Unity) {
+    //     if (config instanceof generated.gateway.Unity) {
 
-            setUnityConfig((Unity)config);
+    //         setUnityConfig((Unity)config);
             
-            createKafkaDataConsumer();
-            createSocketHandler(); // creating only the control channel's socket handler
+    //         createKafkaDataConsumer();
+    //         createSocketHandler(); // creating only the control channel's socket handler
 
-            if (logger.isInfoEnabled()) {
-                logger.info("Plugin has been configured");
-            }
+    //         if (logger.isInfoEnabled()) {
+    //             logger.info("Plugin has been configured");
+    //         }
 
-            return false;
-        } else {
-            throw new ConfigurationException(
-                    "Unity Plugin interface can't configure.",
-                    "The Unity Plugin interface only uses the interop config type of "
-                            + generated.gateway.Unity.class
-                            + " and doesn't support using the interop config instance of " + config,
-                    null);
-        }
+    //         return false;
+    //     } else {
+    //         throw new ConfigurationException(
+    //                 "Unity Plugin interface can't configure.",
+    //                 "The Unity Plugin interface only uses the interop config type of "
+    //                         + generated.gateway.Unity.class
+    //                         + " and doesn't support using the interop config instance of " + config,
+    //                 null);
+    //     }
 
-    }
+    // }
 
     @SuppressWarnings("unchecked")
     @Override
@@ -270,7 +270,7 @@ public class SteelArttKafka extends AbstractInteropInterface {
             /* Ensure a a connection has been established with the Unity
              * application */
             try {
-                establishConnection();
+                establishSocketConnection();
             } catch (IOException ioEx) {
                 throw new ConfigurationException("Unable to establish connection",
                         "There was a problem while trying to establish a connection to the '" + getName()
@@ -304,7 +304,7 @@ public class SteelArttKafka extends AbstractInteropInterface {
 
     private void establishConnection() throws IOException {
         if (logger.isTraceEnabled()) {
-            logger.trace("establishConnection()");
+            logger.trace("establishSocketConnection()");
         }
 
         if (controlSocketHandler == null) {
@@ -356,18 +356,23 @@ public class SteelArttKafka extends AbstractInteropInterface {
         stopKafka(); //stop kafka connection
     }
 
-   private void createKafkaDataConsumer() {
-            Properties props = new Properties();
-            props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Replace IP with your Kafka broker address
-            props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-            props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-            props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"); // Start reading from the end of the topic
-            props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // Disable auto-commit of offsets
-            props.put(ConsumerConfig.CLIENT_ID_CONFIG, "gift-unity-consumer"); // Set a unique client ID
-
-            String topic = "scenario-topic"; // Change topic name here if required
-
+    private void createSocketsOrConsumers(){
+        createSocketHandler();
+        createKafkaDataConsumer();
     }
+
+    private void createKafkaDataConsumer() {
+                Properties props = new Properties();
+                props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Replace IP with your Kafka broker address
+                props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+                props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+                props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"); // Start reading from the end of the topic
+                props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // Disable auto-commit of offsets
+                props.put(ConsumerConfig.CLIENT_ID_CONFIG, "gift-unity-consumer"); // Set a unique client ID
+
+                String topic = "scenario-topic"; // Change topic name here if required
+
+        }
 
     public void startKafka() {
         if (running.getAndSet(true)) {
@@ -434,26 +439,6 @@ public class SteelArttKafka extends AbstractInteropInterface {
         } finally {
             consumer.close();
             logger.debug("Entering consumerMessages method.");
-        }
-    }
-
-    // below method to go in common class coz no real difference between kafka-socket or all-socket version - so remove from here
-    private void handleRawUnityMessage(String message) {
-        try {
-            final Object decodedMessage = EmbeddedAppMessageEncoder.decodeForGift(message);
-            MessageTypeEnum msgType = EmbeddedAppMessageEncoder.getDecodedMessageType(decodedMessage);
-
-            if (decodedMessage instanceof TrainingAppState) {
-                GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) decodedMessage, msgType, this);
-            } else {
-                final String typeName = decodedMessage != null ? decodedMessage.getClass().getName() : "null";
-                logger.warn("A message of type '{}' was received from Kafka. "
-                        + "It could not be sent to the DomainModule because it is not of type TrainingAppState", typeName);
-            }
-        } catch (ParseException e) {
-            logger.error("Error parsing JSON from Kafka message: {}", message, e);
-        } catch (Exception e) {
-            logger.error("Error handling Kafka message: {}", message, e);
         }
     }
 
