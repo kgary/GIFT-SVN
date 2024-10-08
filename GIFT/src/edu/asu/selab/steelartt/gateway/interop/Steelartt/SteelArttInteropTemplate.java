@@ -287,20 +287,46 @@ public abstract class SteelArttInteropTemplate extends AbstractInteropInterface 
         }
         else{
             // replace with template method
-            disconnectSocketHandler(dataSocketHandler);
             disconnectSocketHandler(controlSocketHandler);
+            disconnectSocketHandlerOrKafka();
         }
         
         super.setEnabled(value); // called this coz all setEnabled methods in other interop plugins call the super from AbstractInteropInterface.
     }
 
     @Override
-    public void cleanup() {}
+    public void cleanup() {
+        if (logger.isTraceEnabled()) {
+            logger.trace("cleanup()");
+        }
+        closeSocketHandler(controlSocketHandler);
+    }
 
-    private void createSocketsOrConsumers(){}
+    private void establishConnection() throws IOException{
+        logger.info("establishConnection()");
+        if (controlSocketHandler == null) {
+            createSocket(controlSocketHandler,1);
+        }
+        connectSocketHandler(controlSocketHandler);
+    }
 
-    private void establishConnection(int numOfSockets) throws IOException{}
+    private void createSocket(AsyncSocketHandler socketHandler, int channelNum) {
+        // channelNum can be 1 or 2;
+        // 1 indicates control socket, 2 indicates data socket
+        logger.info("createSocket()");
+        if (socketHandler == null) {
+            final String address = getUnityConfig().getNetworkAddress();
+            final int port = channelNum == 1? getUnityConfig().getNetworkPort(): getUnityConfig().getDataNetworkPort();
+            logger.info("port: "+ port);
+            socketHandler = new AsyncSocketHandler(address, port, this::handleRawUnityMessage);
 
+            if(logger.isInfoEnabled()){
+                logger.info("Created new socket handler");
+            }
+        }
+        
+
+    }
     protected void connectSocketHandler(AsyncSocketHandler socketHandler) throws IOException{
         // This method will connect the socket handler if it isn't connected.
         // Created this method coz it is being called twice, once for each socket.
@@ -312,7 +338,7 @@ public abstract class SteelArttInteropTemplate extends AbstractInteropInterface 
         }
     }
 
-    private void disconnectSocketHandler(AsyncSocketHandler socketHandler){
+    protected void disconnectSocketHandler(AsyncSocketHandler socketHandler){
         // This method will disconnect the socket handler.
         // Created this method coz it is being called twice, once for each socket.
         try{
@@ -328,9 +354,10 @@ public abstract class SteelArttInteropTemplate extends AbstractInteropInterface 
             }
     }
 
+    protected void disconnectSocketHandlerOrKafka(){}
+
     protected void closeSocketHandler(AsyncSocketHandler socketHandler){
         // This method will close the socket handler and make the socketHandler variable = null.
-        // Created this method coz it is being called twice, once for each socket.
         try {
             if (socketHandler != null) {
                 if(logger.isInfoEnabled()){

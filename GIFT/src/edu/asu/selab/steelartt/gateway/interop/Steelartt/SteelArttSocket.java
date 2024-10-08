@@ -54,83 +54,24 @@ public class SteelArttSocket extends SteelArttInteropTemplate {
 
     @Override
     public void cleanup() {
-        if (logger.isTraceEnabled()) {
-            logger.trace("cleanup()");
-        }
-        closeSocketHandler(controlSocketHandler);
+        super.cleanup();
         closeSocketHandler(dataSocketHandler);
     }
-
-    private void createSocketsOrConsumers() {
-        logger.info("createSocketsOrConsumers()");
-        // can't create a template method for both the if blocks below coz the indiviudal methods for getting each port are different.
-        // i.e. getNetworkPort() & getDataNetworkPort()
-        if(controlSocketHandler == null){
-            final String controlAddress = getUnityConfig().getNetworkAddress();
-            final int controlPort = getUnityConfig().getNetworkPort();
-            controlSocketHandler = new AsyncSocketHandler(controlAddress, controlPort, this::handleControlMessageAck);
-            
-            if(logger.isInfoEnabled()){
-                logger.info("Created new control socket handler");
-            }
-        }
-        if (dataSocketHandler == null) {
-            final String dataAddress = getUnityConfig().getNetworkAddress();
-            final int dataPort = getUnityConfig().getDataNetworkPort();
-            logger.info("dataPort: "+ dataPort);
-            dataSocketHandler = new AsyncSocketHandler(dataAddress, dataPort, this::handleRawUnityMessage);
-
-            if(logger.isInfoEnabled()){
-                logger.info("Created new data socket handler");
-            }
-        }
-
-    }
-
+    
+    @Override
     private void establishConnection() throws IOException{
-        logger.info("establishConnection()");
-        if (controlSocketHandler == null || dataSocketHandler == null) {
-            createSocketsOrConsumers();
+        super.establishConnection();
+
+        if (dataSocketHandler == null) {
+            createSocket(dataSocketHandler,2);
         }
 
-        connectSocketHandler(controlSocketHandler);
         connectSocketHandler(dataSocketHandler);
     }
 
-    private void disconnectSocketHandler(AsyncSocketHandler socketHandler){
-        // This method will disconnect the socket handler.
-        // Created this method coz it is being called twice, once for each socket.
-        try{
-                 if (socketHandler != null) {
-                    if (logger.isInfoEnabled()) {
-                        logger.info("Disconnecting data socket handler");
-                    }
-                    socketHandler.disconnect();
-                    socketHandler = null;
-                }
-            } catch (IOException e) {
-                logger.error("Error disconnecting data socket handler: ", e);
-            }
-    }
-
-    protected void closeSocketHandler(AsyncSocketHandler socketHandler){
-        // This method will close the socket handler and make the socketHandler variable = null.
-        // Created this method coz it is being called twice, once for each socket.
-        try {
-            if (socketHandler != null) {
-                if(logger.isInfoEnabled()){
-                    logger.info("Closing data socket handler");
-                }
-                socketHandler.close();
-                socketHandler = null; // in order to recreate it upon next needed connection
-            }
-        } catch (Exception e) {
-            final String errMsg = new StringBuilder("There was a problem closing the socket connection to ")
-                    .append(getName()).toString();
-
-            logger.error(errMsg, e);
-        }
-    }
-    
+    private void disconnectSocketHandlerOrKafka(AsyncSocketHandler socketHandler){
+        // This method will disconnect the "data" socket handler.
+        disconnectSocketHandler(dataSocketHandler);
+    }    
 
 }
