@@ -48,13 +48,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.errors.WakeupException;
 import org.json.simple.parser.JSONParser;
 
-/**
- * The interop plugin that allows for communication with a training application
- * that was built using the Unity game engine and the GIFT Unity SDK.
- *
- * @author tflowers
- *
- */
+
 public class SteelArttKafka extends SteelArttInteropTemplate {
 
     /** The logger for the class */

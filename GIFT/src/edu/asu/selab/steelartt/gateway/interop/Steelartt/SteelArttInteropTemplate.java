@@ -30,13 +30,7 @@ import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.net.embedded.message.codec.EmbeddedAppMessageEncoder;
 import mil.arl.gift.net.socket.AsyncSocketHandler;
 
-/**
- * The interop plugin that allows for communication with a training application
- * that was built using the Unity game engine and the GIFT Unity SDK.
- *
- * @author tflowers
- *
- */
+
 public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
     /** The logger for the class */
@@ -330,10 +324,8 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
     protected void connectSocketHandler(AsyncSocketHandler socketHandler) throws IOException{
         // This method will connect the socket handler if it isn't connected.
         logger.info("controlSocketHandler: {}",(socketHandler==null));
-        if (socketHandler == null) {
-            throw new IOException("SocketHandler is null, cannot connect.");
-        }
          if (!socketHandler.isConnected()) {
+            logger.info("we connecting socket");
             socketHandler.connect();
             if(logger.isInfoEnabled()){
                 logger.info("Re-connecting existing socket handler");
@@ -343,7 +335,6 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
     protected void disconnectSocketHandler(AsyncSocketHandler socketHandler){
         // This method will disconnect the socket handler.
-        // Created this method coz it is being called twice, once for each socket.
         try{
                  if (socketHandler != null) {
                     if (logger.isInfoEnabled()) {

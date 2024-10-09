@@ -30,13 +30,7 @@ import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.net.embedded.message.codec.EmbeddedAppMessageEncoder;
 import mil.arl.gift.net.socket.AsyncSocketHandler;
 
-/**
- * The interop plugin that allows for communication with a training application
- * that was built using the Unity game engine and the GIFT Unity SDK.
- *
- * @author tflowers
- *
- */
+
 public class SteelArttSocket extends SteelArttInteropTemplate {
 
     /** The logger for the class */
