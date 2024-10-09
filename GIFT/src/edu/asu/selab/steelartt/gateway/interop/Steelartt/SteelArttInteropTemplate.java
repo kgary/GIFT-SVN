@@ -37,7 +37,7 @@ import mil.arl.gift.net.socket.AsyncSocketHandler;
  * @author tflowers
  *
  */
-public abstract class SteelArttInteropTemplate extends AbstractInteropInterface {
+public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
     /** The logger for the class */
     private static final Logger logger = LoggerFactory.getLogger(SteelArttInteropTemplate.class);
@@ -52,10 +52,6 @@ public abstract class SteelArttInteropTemplate extends AbstractInteropInterface 
         this.unityConfig = config;
     }
 
-    /**
-     * The socket handler that recieves competency message data from the unity app over socket.
-     */
-    private AsyncSocketHandler dataSocketHandler;
 
     /**
      * The socket handler that sends control mesgs to the unity app over socket and receives ACKs for the same.
@@ -141,8 +137,7 @@ public abstract class SteelArttInteropTemplate extends AbstractInteropInterface 
             /* Set the unity config to be used later. */
             setUnityConfig((Unity)config);
 
-            createSocketOrConsumers(); // replace with template method
-
+            createSocketOrConsumers();
             if (logger.isInfoEnabled()) {
                 logger.info("Plugin has been configured");
             }
@@ -212,7 +207,7 @@ public abstract class SteelArttInteropTemplate extends AbstractInteropInterface 
      *
      * @param line The text that was received from the Unity application.
      */
-    private void handleRawUnityMessage(String line) {
+    protected void handleRawUnityMessage(String line) {
         logger.info("handleRawUnityMessage()");
 
         try {
@@ -302,15 +297,20 @@ public abstract class SteelArttInteropTemplate extends AbstractInteropInterface 
         closeSocketHandler(controlSocketHandler);
     }
 
-    private void establishConnection() throws IOException{
+    protected void establishConnection() throws IOException{
         logger.info("establishConnection()");
         if (controlSocketHandler == null) {
-            createSocket(controlSocketHandler,1);
+            controlSocketHandler = createSocket(controlSocketHandler,1);
         }
         connectSocketHandler(controlSocketHandler);
+    }    
+    
+
+    protected void createSocketOrConsumers(){
+        controlSocketHandler = createSocket(controlSocketHandler,1);
     }
 
-    private void createSocket(AsyncSocketHandler socketHandler, int channelNum) {
+    protected AsyncSocketHandler createSocket(AsyncSocketHandler socketHandler, int channelNum){
         // channelNum can be 1 or 2;
         // 1 indicates control socket, 2 indicates data socket
         logger.info("createSocket()");
@@ -320,16 +320,19 @@ public abstract class SteelArttInteropTemplate extends AbstractInteropInterface 
             logger.info("port: "+ port);
             socketHandler = new AsyncSocketHandler(address, port, this::handleRawUnityMessage);
 
+
             if(logger.isInfoEnabled()){
                 logger.info("Created new socket handler");
             }
         }
-        
-
+        return socketHandler;
     }
     protected void connectSocketHandler(AsyncSocketHandler socketHandler) throws IOException{
         // This method will connect the socket handler if it isn't connected.
-        // Created this method coz it is being called twice, once for each socket.
+        logger.info("controlSocketHandler: {}",(socketHandler==null));
+        if (socketHandler == null) {
+            throw new IOException("SocketHandler is null, cannot connect.");
+        }
          if (!socketHandler.isConnected()) {
             socketHandler.connect();
             if(logger.isInfoEnabled()){

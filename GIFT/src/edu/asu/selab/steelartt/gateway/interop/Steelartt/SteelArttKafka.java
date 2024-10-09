@@ -55,7 +55,7 @@ import org.json.simple.parser.JSONParser;
  * @author tflowers
  *
  */
-public class SteelArttKafka extends AbstractInteropInterface {
+public class SteelArttKafka extends SteelArttInteropTemplate {
 
     /** The logger for the class */
     private static final Logger logger = LoggerFactory.getLogger(SteelArttKafka.class);
@@ -82,7 +82,7 @@ public class SteelArttKafka extends AbstractInteropInterface {
     private AsyncSocketHandler controlSocketHandler;
 
     public SteelArttKafka(String displayName,Properties consumerProps, String topic) {
-        super(displayName,false);
+        super(displayName);
         this.consumerProps = consumerProps;
         this.topic = topic;
     }
@@ -98,14 +98,15 @@ public class SteelArttKafka extends AbstractInteropInterface {
     }
 
     @Override
-    private void establishConnection() throws IOException{
+    protected void establishConnection() throws IOException{
         super.establishConnection();
+        startKafka();
         createKafkaDataConsumer();
     }
 
-    private void createKafkaDataConsumer() {
+    protected void createKafkaDataConsumer() {
         Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Replace IP with your Kafka broker address
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Replace localhost with the machine's IP running the Kafka server (if running on a different machine)
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"); // Start reading from the end of the topic
@@ -116,7 +117,7 @@ public class SteelArttKafka extends AbstractInteropInterface {
 
     }
 
-    public void startKafka() {
+    protected void startKafka() {
         if (running.getAndSet(true)) {
             logger.warn("Kafka consumer is already running.");
             return;
@@ -155,7 +156,7 @@ public class SteelArttKafka extends AbstractInteropInterface {
         }
     }
 
-    private void consumeMessages() {
+    protected void consumeMessages() {
         logger.debug("Entering consumerMessages method.");
         try {
             while (running.get()) {
@@ -184,7 +185,7 @@ public class SteelArttKafka extends AbstractInteropInterface {
         }
     }
 
-    public void stopKafka() {
+    protected void stopKafka() {
         logger.debug("Stopping Kafka Consumer.");
         running.set(false);
         if (consumer != null) {

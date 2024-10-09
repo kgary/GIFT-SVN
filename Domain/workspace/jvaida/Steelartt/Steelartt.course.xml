@@ -21,7 +21,7 @@
             </dkfRef>
             <interops>
                 <interop>
-                    <InteropImpl>gateway.interop.Steelartt.SteelarttInterface</InteropImpl>
+                    <InteropImpl>gateway.interop.Steelartt.SteelArttSocket</InteropImpl>
                     <InteropInputs>
                         <UnityInteropInputs>
                             <loadArgs/> 

@@ -48,7 +48,7 @@ public class SteelArttSocket extends SteelArttInteropTemplate {
     private AsyncSocketHandler dataSocketHandler;
 
     public SteelArttSocket(String displayName) {
-        super(displayName,false);
+        super(displayName);
     }
     
 
@@ -57,19 +57,25 @@ public class SteelArttSocket extends SteelArttInteropTemplate {
         super.cleanup();
         closeSocketHandler(dataSocketHandler);
     }
-    
+
     @Override
-    private void establishConnection() throws IOException{
+    protected void establishConnection() throws IOException{
         super.establishConnection();
 
         if (dataSocketHandler == null) {
-            createSocket(dataSocketHandler,2);
+            dataSocketHandler = createSocket(dataSocketHandler,2);
         }
 
         connectSocketHandler(dataSocketHandler);
     }
 
-    private void disconnectSocketHandlerOrKafka(AsyncSocketHandler socketHandler){
+    @Override
+    protected void createSocketOrConsumers(){
+            super.createSocketOrConsumers();
+            dataSocketHandler = createSocket(dataSocketHandler,2);
+    }
+
+    protected void disconnectSocketHandlerOrKafka(AsyncSocketHandler socketHandler){
         // This method will disconnect the "data" socket handler.
         disconnectSocketHandler(dataSocketHandler);
     }    
