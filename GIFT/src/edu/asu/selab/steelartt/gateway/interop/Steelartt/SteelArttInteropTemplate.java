@@ -203,7 +203,7 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
      */
     protected void handleRawUnityMessage(String line) {
         logger.info("handleRawUnityMessage()");
-
+        logger.info("line: ", line);
         try {
             final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
             MessageTypeEnum msgType;
@@ -312,7 +312,11 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
             final String address = getUnityConfig().getNetworkAddress();
             final int port = channelNum == 1? getUnityConfig().getNetworkPort(): getUnityConfig().getDataNetworkPort();
             logger.info("port: "+ port);
-            socketHandler = new AsyncSocketHandler(address, port, this::handleRawUnityMessage);
+            if(channelNum==1){
+                socketHandler = new AsyncSocketHandler(address, port, this::handleControlMessageAck);
+            }else{
+                socketHandler = new AsyncSocketHandler(address, port, this::handleRawUnityMessage);
+            }
 
 
             if(logger.isInfoEnabled()){
