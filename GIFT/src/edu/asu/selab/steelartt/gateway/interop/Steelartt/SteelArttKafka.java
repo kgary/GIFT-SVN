@@ -77,8 +77,24 @@ public class SteelArttKafka extends SteelArttInteropTemplate {
 
     public SteelArttKafka(String displayName,Properties consumerProps, String topic) {
         super(displayName);
-        this.consumerProps = consumerProps;
-        this.topic = topic;
+        this.consumerProps = getDefaultProperties();
+        this.topic = getDefaultTopic();
+    }
+
+    private String getDefaultTopic(){
+        return "scenario-topic";
+    }
+
+    private Properties getDefaultProperties(){
+        Properties props = new Properties();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Replace localhost with the machine's IP running the Kafka server (if running on a different machine)
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"); // Start reading from the end of the topic
+        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // Disable auto-commit of offsets
+        props.put(ConsumerConfig.CLIENT_ID_CONFIG, "gift-unity-consumer"); // Set a unique client ID
+
+        return props;
     }
 
     protected void disconnectSocketHandlerOrKafka(){
@@ -95,20 +111,6 @@ public class SteelArttKafka extends SteelArttInteropTemplate {
     protected void establishConnection() throws IOException{
         super.establishConnection();
         startKafka();
-        createKafkaDataConsumer();
-    }
-
-    protected void createKafkaDataConsumer() {
-        Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"); // Replace localhost with the machine's IP running the Kafka server (if running on a different machine)
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest"); // Start reading from the end of the topic
-        props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // Disable auto-commit of offsets
-        props.put(ConsumerConfig.CLIENT_ID_CONFIG, "gift-unity-consumer"); // Set a unique client ID
-
-        String topic = "scenario-topic"; // Change topic name here if required
-
     }
 
     protected void startKafka() {
