@@ -75,10 +75,11 @@ public class SteelArttKafka extends SteelArttInteropTemplate {
      */
     private AsyncSocketHandler controlSocketHandler;
 
-    public SteelArttKafka(String displayName,Properties consumerProps, String topic) {
+    public SteelArttKafka(String displayName) {
         super(displayName);
         this.consumerProps = getDefaultProperties();
         this.topic = getDefaultTopic();
+        this.consumer = new KafkaConsumer<>(this.consumerProps);
     }
 
     private String getDefaultTopic(){
@@ -110,10 +111,12 @@ public class SteelArttKafka extends SteelArttInteropTemplate {
     @Override
     protected void establishConnection() throws IOException{
         super.establishConnection();
+        logger.info("about to start Kafka");
         startKafka();
     }
 
     protected void startKafka() {
+        logger.info("starting Kafka");
         if (running.getAndSet(true)) {
             logger.warn("Kafka consumer is already running.");
             return;
@@ -177,12 +180,12 @@ public class SteelArttKafka extends SteelArttInteropTemplate {
             }
         } finally {
             consumer.close();
-            logger.debug("Entering consumerMessages method.");
+            logger.info("Exiting consumerMessages method.");
         }
     }
 
     protected void stopKafka() {
-        logger.debug("Stopping Kafka Consumer.");
+        logger.info("Stopping Kafka Consumer.");
         running.set(false);
         if (consumer != null) {
             consumer.wakeup();
