@@ -36,4 +36,9 @@ Currently for all the files in the [Steelartt interop plugin](https://github.com
 
 4) Lastly, we've created [SteelArttKafka.java](https://github.com/kgary/GIFT-SVN/blob/better-build/GIFT/src/edu/asu/selab/steelartt/gateway/interop/Steelartt/SteelArttKafka.java), this has all the methods for the Kafka channel(involving data messages). This has the KafkaConsumer member variable and all other unique(local) methods for starting Kafka, stopping Kafka & consuming messages.
 
-The class diagram for the above is here ![GIFT Interop Plugin Class Diagram](GIFT_Steelartt_Class_Diagram.png "Class Diagram").
+The class diagram for the above is here ![GIFT Interop Plugin Class Diagram](GIFT_Steelartt_Class_Diagram.png "Class Diagram")
+
+
+**Unity Side interop plugin design pattern**
+
+The class diagram for this is here ![Unity Interop Plugin Class Diagram](Unity_Steelartt_Class_Diagram.png "Class Diagram")
