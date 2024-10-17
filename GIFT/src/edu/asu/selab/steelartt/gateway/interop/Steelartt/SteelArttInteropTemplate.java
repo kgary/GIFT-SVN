@@ -203,7 +203,7 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
      */
     protected void handleRawUnityMessage(String line) {
         logger.info("handleRawUnityMessage()");
-        logger.info("line: ", line);
+        logger.info("line: "+ line);
         try {
             final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
             MessageTypeEnum msgType;
