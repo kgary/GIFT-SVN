@@ -129,8 +129,9 @@
             <impl>gateway.interop.unity.UnityInterface</impl>
             <name>Unity Interface</name>
             <Unity>
+                <dataNetworkPort>5050</dataNetworkPort>
                 <networkPort>5000</networkPort>
-                <networkAddress>127.0.0.1</networkAddress>
+                <networkAddress>0.0.0.0</networkAddress>
             </Unity>
         </InteropInterfaceConfig>
         <InteropInterfaceConfig refID="15">
