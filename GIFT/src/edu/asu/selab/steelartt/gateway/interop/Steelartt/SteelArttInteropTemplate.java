@@ -33,24 +33,24 @@ import mil.arl.gift.net.socket.AsyncSocketHandler;
 
 public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
-    /** The logger for the class */
-    private static final Logger logger = LoggerFactory.getLogger(SteelArttInteropTemplate.class);
+    /** The __logger for the class */
+    private static final Logger __logger = LoggerFactory.getLogger(SteelArttInteropTemplate.class);
 
-    private Unity unityConfig;
+    private Unity __unityConfig;
 
-    protected Unity getUnityConfig(){
-        return this.unityConfig;
+    protected Unity _getUnityConfig(){
+        return this.__unityConfig;
     }
 
-    protected void setUnityConfig(Unity config){
-        this.unityConfig = config;
+    protected void _setUnityConfig(Unity config){
+        this.__unityConfig = config;
     }
 
 
     /**
      * The socket handler that sends control mesgs to the unity app over socket and receives ACKs for the same.
      */
-    private AsyncSocketHandler controlSocketHandler;
+    private AsyncSocketHandler __controlSocketHandler;
 
     public SteelArttInteropTemplate(String displayName) {
         super(displayName,false);
@@ -59,7 +59,7 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
     /**
      * The singleton collection of the message types which are supported.
      */
-    private static final List<MessageTypeEnum> supportedMsgs = Arrays.asList(
+    private static final List<MessageTypeEnum> __supportedMsgs = Arrays.asList(
             MessageTypeEnum.SIMAN,
             MessageTypeEnum.DISPLAY_FEEDBACK_GATEWAY_REQUEST
     );
@@ -68,7 +68,7 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
      * The singleton collection of the message types which this interop plugin
      * can produce.
      */
-    private static final List<MessageTypeEnum> producedMsgs = Arrays.asList(
+    private static final List<MessageTypeEnum> __producedMsgs = Arrays.asList(
             MessageTypeEnum.SIMPLE_EXAMPLE_STATE,
             MessageTypeEnum.STOP_FREEZE
     );
@@ -77,22 +77,22 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
      * The collection of training applications that must be configured for this
      * interop plugin to run.
      */
-    private static final List<TrainingApplicationEnum> REQUIRED_TRAINING_APPLICATIONS = Arrays.asList(
+    private static final List<TrainingApplicationEnum> __REQUIRED_TRAINING_APPLICATIONS = Arrays.asList(
             TrainingApplicationEnum.UNITY_DESKTOP
     );
 
     @Override
     public List<MessageTypeEnum> getSupportedMessageTypes() {
-        return supportedMsgs;
+        return __supportedMsgs;
     }
 
     @Override
     public List<MessageTypeEnum> getProducedMessageTypes() {
-        return producedMsgs;
+        return __producedMsgs;
     }
     @Override
     public List<TrainingApplicationEnum> getReqTrainingAppConfigurations() {
-        return REQUIRED_TRAINING_APPLICATIONS;
+        return __REQUIRED_TRAINING_APPLICATIONS;
     }
 
     @Override
@@ -129,11 +129,11 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
     public boolean configure(Serializable config) throws ConfigurationException {
         if (config instanceof generated.gateway.Unity) {
             /* Set the unity config to be used later. */
-            setUnityConfig((Unity)config);
+            _setUnityConfig((Unity)config);
 
-            createSocketOrConsumers();
-            if (logger.isInfoEnabled()) {
-                logger.info("Plugin has been configured");
+            _createSocketOrConsumers();
+            if (__logger.isInfoEnabled()) {
+                __logger.info("Plugin has been configured");
             }
 
             return false; 
@@ -185,9 +185,9 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
         final String jsonString = jsonMsg.toJSONString();
         try {
-            controlSocketHandler.sendMessage(jsonString);
+            __controlSocketHandler.sendMessage(jsonString);
         } catch (IOException e) {
-            logger.error("Caught exception when trying to send message to GIFT Unity SDK:\n"+jsonString, e);
+            __logger.error("Caught exception when trying to send message to GIFT Unity SDK:\n"+jsonString, e);
             errorMsg.append("There was a problem sending the following message to the Unity application: ")
                     .append(jsonString).append('\n').append(e);
         }
@@ -201,16 +201,16 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
      *
      * @param line The text that was received from the Unity application.
      */
-    protected void handleRawUnityMessage(String line) {
-        logger.info("handleRawUnityMessage()");
-        logger.info("line: "+ line);
+    protected void _handleRawUnityMessage(String line) {
+        __logger.info("_handleRawUnityMessage()");
+        __logger.info("line: "+ line);
         try {
             final Object message = EmbeddedAppMessageEncoder.decodeForGift(line);
             MessageTypeEnum msgType;
             try {
                 msgType = EmbeddedAppMessageEncoder.getDecodedMessageType(message);
             } catch (Exception e) {
-                logger.error("There was a problem determining the message type of a payload.", e);
+                __logger.error("There was a problem determining the message type of a payload.", e);
                 return;
             }
     
@@ -219,35 +219,35 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
                 // Might introduce changes here based on what we want to send to Gateway module.
             } else {
                 final String typeName = message != null ? message.getClass().getName() : "null";
-                logger.warn("A message of type '" + typeName + "' was received from the unity application. "
+                __logger.warn("A message of type '" + typeName + "' was received from the unity application. "
                         + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
             }
         } catch (ParseException e) {
-            logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
+            __logger.error("There was a problem parsing the following message from the Unity Desktop application:\n" + line, e);
         } catch (Exception ex) {
-            logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
+            __logger.error("There was a problem handling the following message from the Unity Desktop application:\n" + line, ex);
         }
     }
 
     // This method receives the ACKs for the control messages(sent by gift to unity)  sent by the unity app. 
-    private void handleControlMessageAck(String line) {
-        logger.info("handleControlMessageAck()");
-        if (logger.isTraceEnabled()) {
-            logger.trace("handleControlMessageAck('" + line + "')");
+    protected void _handleControlMessageAck(String line) {
+        __logger.info("_handleControlMessageAck()");
+        if (__logger.isTraceEnabled()) {
+            __logger.trace("_handleControlMessageAck('" + line + "')");
         }
 
         // Handle control message ACK here
 
         // Log the control message
-        logger.info("Control message ACK received: {}", line);
+        __logger.info("Control message ACK received: {}", line);
     }
 
   
     // this method "enables" the interop plugin to be able to handle incoming SIMAN msgs or external data msgs.
     @Override
     public void setEnabled(boolean value) throws ConfigurationException {
-        if (logger.isTraceEnabled()) {
-            logger.trace("setEnabled(" + value + ")");
+        if (__logger.isTraceEnabled()) {
+            __logger.trace("setEnabled(" + value + ")");
         }
 
         /* If the values are the same, there's no change to be made. */
@@ -256,28 +256,28 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
         }
 
         if(value){
-            if (logger.isInfoEnabled()) {
-                logger.info("Enabling Unity interface");
+            if (__logger.isInfoEnabled()) {
+                __logger.info("Enabling Unity interface");
             }
 
             /* Ensure a a connection has been established with the Unity
              * application */
             try {
-                establishConnection(); // template method
+                _establishConnection(); // template method
             } catch (IOException ioEx) {
                 throw new ConfigurationException("Unable to establish connection",
                         "There was a problem while trying to establish a connection to the '" + getName()
                                 + "' Unity application.\n"
                                 + "1.) Ensure the Unity application is running before starting GIFT"
                                 + "2.) Ensure that the Unity application is listening for connections at '"
-                                + getUnityConfig().getNetworkAddress() + ":" + getUnityConfig().getNetworkPort() + "'",
+                                + _getUnityConfig().getNetworkAddress() + ":" + _getUnityConfig().getNetworkPort() + "'",
                         ioEx);
             }
         }
         else{
             // replace with template method
-            disconnectSocketHandler(controlSocketHandler);
-            disconnectSocketHandlerOrKafka();
+            _disconnectSocketHandler(__controlSocketHandler);
+            _disconnectSocketHandlerOrKafka();
         }
         
         super.setEnabled(value); // called this coz all setEnabled methods in other interop plugins call the super from AbstractInteropInterface.
@@ -285,81 +285,81 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
     @Override
     public void cleanup() {
-        if (logger.isTraceEnabled()) {
-            logger.trace("cleanup()");
+        if (__logger.isTraceEnabled()) {
+            __logger.trace("cleanup()");
         }
-        closeSocketHandler(controlSocketHandler);
+        _closeSocketHandler(__controlSocketHandler);
     }
 
-    protected void establishConnection() throws IOException{
-        logger.info("establishConnection()");
-        if (controlSocketHandler == null) {
-            controlSocketHandler = createSocket(controlSocketHandler,1);
+    protected void _establishConnection() throws IOException{
+        __logger.info("_establishConnection()");
+        if (__controlSocketHandler == null) {
+            __controlSocketHandler = _createSocket(__controlSocketHandler,1);
         }
-        connectSocketHandler(controlSocketHandler);
+        _connectSocketHandler(__controlSocketHandler);
     }    
     
 
-    protected void createSocketOrConsumers(){
-        controlSocketHandler = createSocket(controlSocketHandler,1);
+    protected void _createSocketOrConsumers(){
+        __controlSocketHandler = _createSocket(__controlSocketHandler,1);
     }
 
-    protected AsyncSocketHandler createSocket(AsyncSocketHandler socketHandler, int channelNum){
+    protected AsyncSocketHandler _createSocket(AsyncSocketHandler socketHandler, int channelNum){
         // channelNum can be 1 or 2;
         // 1 indicates control socket, 2 indicates data socket
-        logger.info("createSocket()");
+        __logger.info("_createSocket()");
         if (socketHandler == null) {
-            final String address = getUnityConfig().getNetworkAddress();
-            final int port = channelNum == 1? getUnityConfig().getNetworkPort(): getUnityConfig().getDataNetworkPort();
-            logger.info("port: "+ port);
+            final String address = _getUnityConfig().getNetworkAddress();
+            final int port = channelNum == 1? _getUnityConfig().getNetworkPort(): _getUnityConfig().getDataNetworkPort();
+            __logger.info("port: "+ port);
             if(channelNum==1){
-                socketHandler = new AsyncSocketHandler(address, port, this::handleControlMessageAck);
+                socketHandler = new AsyncSocketHandler(address, port, this::_handleControlMessageAck);
             }else{
-                socketHandler = new AsyncSocketHandler(address, port, this::handleRawUnityMessage);
+                socketHandler = new AsyncSocketHandler(address, port, this::_handleRawUnityMessage);
             }
 
 
-            if(logger.isInfoEnabled()){
-                logger.info("Created new socket handler");
+            if(__logger.isInfoEnabled()){
+                __logger.info("Created new socket handler");
             }
         }
         return socketHandler;
     }
-    protected void connectSocketHandler(AsyncSocketHandler socketHandler) throws IOException{
+    protected void _connectSocketHandler(AsyncSocketHandler socketHandler) throws IOException{
         // This method will connect the socket handler if it isn't connected.
-        logger.info("controlSocketHandler: {}",(socketHandler==null));
+        __logger.info("__controlSocketHandler: {}",(socketHandler==null));
          if (!socketHandler.isConnected()) {
-            logger.info("we connecting socket");
+            __logger.info("we connecting socket");
             socketHandler.connect();
-            if(logger.isInfoEnabled()){
-                logger.info("Re-connecting existing socket handler");
+            if(__logger.isInfoEnabled()){
+                __logger.info("Re-connecting existing socket handler");
             }
         }
     }
 
-    protected void disconnectSocketHandler(AsyncSocketHandler socketHandler){
+    protected void _disconnectSocketHandler(AsyncSocketHandler socketHandler){
         // This method will disconnect the socket handler.
         try{
                  if (socketHandler != null) {
-                    if (logger.isInfoEnabled()) {
-                        logger.info("Disconnecting data socket handler");
+                    if (__logger.isInfoEnabled()) {
+                        __logger.info("Disconnecting data socket handler");
                     }
                     socketHandler.disconnect();
                     socketHandler = null;
                 }
             } catch (IOException e) {
-                logger.error("Error disconnecting data socket handler: ", e);
+                __logger.error("Error disconnecting data socket handler: ", e);
             }
     }
 
-    protected void disconnectSocketHandlerOrKafka(){}
+    protected void _disconnectSocketHandlerOrKafka(){}
 
-    protected void closeSocketHandler(AsyncSocketHandler socketHandler){
+    protected void _closeSocketHandler(AsyncSocketHandler socketHandler){
         // This method will close the socket handler and make the socketHandler variable = null.
         try {
             if (socketHandler != null) {
-                if(logger.isInfoEnabled()){
-                    logger.info("Closing data socket handler");
+                if(__logger.isInfoEnabled()){
+                    __logger.info("Closing data socket handler");
                 }
                 socketHandler.close();
                 socketHandler = null; // in order to recreate it upon next needed connection
@@ -368,7 +368,7 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
             final String errMsg = new StringBuilder("There was a problem closing the socket connection to ")
                     .append(getName()).toString();
 
-            logger.error(errMsg, e);
+            __logger.error(errMsg, e);
         }
     }
     

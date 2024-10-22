@@ -131,6 +131,10 @@ REM with the Control Panel and Monitor, since enabling verbose output in Windows
 REM and applications launched by these tools to be suspended until the parent process ends.
 call "%AbsBaseDir%\external\ant\bin\ant" -file "%~dp0/launchProcess.xml" checkTargets %*
 
+REM Display current branch
+for /f %%i in ('git branch --show-current') do set branch=%%i
+echo Current branch: - %branch%
+
 REM return the command prompt to the directory that started this script
 cd %WorkingDir%
 GOTO End

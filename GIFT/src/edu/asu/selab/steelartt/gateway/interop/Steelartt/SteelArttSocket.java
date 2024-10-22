@@ -33,13 +33,13 @@ import mil.arl.gift.net.socket.AsyncSocketHandler;
 
 public class SteelArttSocket extends SteelArttInteropTemplate {
 
-    /** The logger for the class */
-    private static final Logger logger = LoggerFactory.getLogger(SteelArttSocket.class);
+    /** The __logger for the class */
+    private static final Logger __logger = LoggerFactory.getLogger(SteelArttSocket.class);
 
     /**
      * The socket handler that recieves competency message data from the unity app over socket.
      */
-    private AsyncSocketHandler dataSocketHandler;
+    private AsyncSocketHandler __dataSocketHandler;
 
     public SteelArttSocket(String displayName) {
         super(displayName);
@@ -49,29 +49,29 @@ public class SteelArttSocket extends SteelArttInteropTemplate {
     @Override
     public void cleanup() {
         super.cleanup();
-        closeSocketHandler(dataSocketHandler);
+        _closeSocketHandler(__dataSocketHandler);
     }
 
     @Override
-    protected void establishConnection() throws IOException{
-        super.establishConnection();
+    protected void _establishConnection() throws IOException{
+        super._establishConnection();
 
-        if (dataSocketHandler == null) {
-            dataSocketHandler = createSocket(dataSocketHandler,2);
+        if (__dataSocketHandler == null) {
+            __dataSocketHandler = _createSocket(__dataSocketHandler,2);
         }
 
-        connectSocketHandler(dataSocketHandler);
+        _connectSocketHandler(__dataSocketHandler);
     }
 
     @Override
-    protected void createSocketOrConsumers(){
-            super.createSocketOrConsumers();
-            dataSocketHandler = createSocket(dataSocketHandler,2);
+    protected void _createSocketOrConsumers(){
+            super._createSocketOrConsumers();
+            __dataSocketHandler = _createSocket(__dataSocketHandler,2);
     }
 
-    protected void disconnectSocketHandlerOrKafka(AsyncSocketHandler socketHandler){
+    protected void _disconnectSocketHandlerOrKafka(AsyncSocketHandler socketHandler){
         // This method will disconnect the "data" socket handler.
-        disconnectSocketHandler(dataSocketHandler);
+        _disconnectSocketHandler(__dataSocketHandler);
     }    
 
 }
