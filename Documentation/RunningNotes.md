@@ -52,3 +52,26 @@ The class diagram for the above is here ![GIFT Interop Plugin Class Diagram](GIF
 5) In [ConfigReader.cs](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/DataMessageHandler/ConfigReader.cs), a static method GetFilePath is provided to **read and extract file paths** from config.txt stored in Assets/Resources. The method loads the txt file, splits it into lines, and retrieves the line corresponding to a specified index. If the line contains a valid file path (prefixed with "FilePath="), it extracts and returns the path.
 
 The class diagram for this is here ![Unity Interop Plugin Class Diagram](Unity_Steelartt_Class_Diagram.png "Class Diagram")
+
+
+**Unity Side Config Reader**
+
+1) [ConfigPathResolver](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/ConfigPathResolver.cs)
+Resolves file paths for different components by determining their provider type and handling path resolution through appropriate config readers. Acts as the main entry point for clients needing configuration paths.
+
+2) [FilePathService](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/FilePathService.cs)
+Manages the mapping between classes and their configuration data (provider types and file path keys). Loads configuration from MessageTypeConfig.xml and provides access to configuration settings through a centralized singleton instance.
+
+3) [AbstractConfigReader](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/AbstractConfigReader.cs)
+Abstract base class defining the contract for reading configuration files. Provides common XML handling functionality while allowing specific implementations to define how they load and retrieve file paths.
+
+4) [InternalConfigReader](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/InternalConfigReader.cs)
+Implementation of AbstractConfigReader for reading internalConfig.xml. Specifically handles paths defined by InternalFilePathKey enum, typically for internal system components.
+
+5) [ExternalConfigReader](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/ExternalConfigReader.cs)
+Implementation of AbstractConfigReader for reading externalConfig.xml. Manages paths defined by ExternalFilePathKey enum, typically for components that interact with external systems.
+
+6) [ConfigReaderFactory](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/ConfigReaderFactory.cs)
+Creates appropriate config reader instances based on the provider type. Centralizes the logic for instantiating different types of configuration readers (internal/external).
+
+The class diagram for this is here ![ConfigReader Class Diagram](Unity_ConfigReader.png "Class Diagram")
