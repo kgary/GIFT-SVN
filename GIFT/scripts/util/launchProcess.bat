@@ -131,9 +131,14 @@ REM with the Control Panel and Monitor, since enabling verbose output in Windows
 REM and applications launched by these tools to be suspended until the parent process ends.
 call "%AbsBaseDir%\external\ant\bin\ant" -file "%~dp0/launchProcess.xml" checkTargets %*
 
-REM Display current branch
+REM Get current Git branch
 for /f %%i in ('git branch --show-current') do set branch=%%i
-echo Current branch: - %branch%
+
+REM Get the current date and time
+for /f "tokens=1-5 delims=/: " %%a in ("%date% %time%") do set timestamp=%%a-%%b-%%c_%%d-%%e
+
+REM Append the branch information to git.txt with a timestamp
+echo [%timestamp%] Current branch: %branch% >> ..\..\..\git.txt
 
 REM return the command prompt to the directory that started this script
 cd %WorkingDir%
