@@ -276,7 +276,7 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
         }
         else{
             // replace with template method
-            _disconnectSocketHandler(__controlSocketHandler);
+            __controlSocketHandler = _disconnectSocketHandler(__controlSocketHandler);  
             _disconnectSocketHandlerOrKafka();
         }
         
@@ -337,19 +337,20 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
         }
     }
 
-    protected void _disconnectSocketHandler(AsyncSocketHandler socketHandler){
+    protected AsyncSocketHandler _disconnectSocketHandler(AsyncSocketHandler socketHandler){
         // This method will disconnect the socket handler.
         try{
                  if (socketHandler != null) {
                     if (__logger.isInfoEnabled()) {
-                        __logger.info("Disconnecting data socket handler");
+                        __logger.info("Disconnecting control socket handler");
                     }
                     socketHandler.disconnect();
                     socketHandler = null;
                 }
             } catch (IOException e) {
-                __logger.error("Error disconnecting data socket handler: ", e);
+                __logger.error("Error disconnecting control socket handler: ", e);
             }
+            return socketHandler;
     }
 
     protected void _disconnectSocketHandlerOrKafka(){}

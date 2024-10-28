@@ -71,7 +71,7 @@ public class SteelArttSocket extends SteelArttInteropTemplate {
 
     protected void _disconnectSocketHandlerOrKafka(AsyncSocketHandler socketHandler){
         // This method will disconnect the "data" socket handler.
-        _disconnectSocketHandler(__dataSocketHandler);
+        __dataSocketHandler = _disconnectSocketHandler(__dataSocketHandler);
     }    
 
 }
