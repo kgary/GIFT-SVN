@@ -1,6 +1,6 @@
 # Steps to run GIFT
 
-1) Download the GIFT [zip](https://drive.google.com/file/d/1MXqxJpHwxWAjtmp5rJOsi1YRCLfatDP5/view?usp=sharing). This zipped version of GIFT is what you get after installing GIFT and it is ready to be launched.
+1) Download the GIFT [zip](https://drive.google.com/file/d/1gDPXY4aAm4wdLwlMDkaeIczfBcFasJmp/view?usp=drive_link). This zipped version of GIFT is what you get after installing GIFT and it is ready to be launched.
 
 2) Open the GIFT folder.
 
