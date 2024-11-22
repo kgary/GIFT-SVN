@@ -41,37 +41,45 @@ The class diagram for the above is here ![GIFT Interop Plugin Class Diagram](GIF
 
 **Unity Side interop plugin design pattern**
 
-1) We are using [GiftEventHandler.cs](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/GiftEventHandler.cs), which manages connections by **sending acknowledgments (ACKs)** for each of the different SIMAN control messages received by GIFT (load, start, stop, pause, resume, restart). It also **provides methods to initialize, start, and stop different message-sender** types based on the currently selected one (InternalKafka, ExternalKafka, and DataSocket). The Start and Stop methods are triggered when the respective buttons are clicked.
+1) [GiftEventHandler.cs](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/GiftEventHandler/GiftEventHandler.cs)
+Manages the overall flow of message handling and UI interactions. Uses MessageSenderFactory to create appropriate message sender instances. Handles SIMAN control messages (load, start, stop, pause, resume, restart) from GIFT and manages the complete lifecycle of message senders through UI button controls. Also controls message sender initialization and coordinates between UI interactions and message processing while managing GiftConnector initialization.
 
-2) In [InternalKafkaProducer.cs](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/DataMessageHandler/InternalKafkaProducer.cs), we have integrated Kafka directly with Unity using the Confluent.Kafka library. It initializes **a Kafka producer that runs within Unity**, periodically reads new lines from a JSON file, batches the data, and sends it asynchronously to a specified Kafka topic. It also provides start/stop functionality for the production process. The file path for the JSON data is retrieved using `ConfigReader.cs`.
+2) [AbstractMessageSender](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/DataMessageHandler/AbstractMessageSender.cs)
+Abstract base class that provides a template for message sending implementations. Manages the lifecycle of message senders including initialization, starting, stopping, and cleanup. Uses ConfigPathResolver to obtain configuration paths and maintains sending state.
 
-3) [ExternalKafkaProducer.cs](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/DataMessageHandler/ExternalKafkaProducer.cs) manages an external Kafka producer process. It reads the path of **an external Kafka producer executable** from a configuration file using `ConfigReader.cs`. The Start method launches this external process when the script is initialized, and the Stop method terminates the external process when called or when the Unity application quits. This approach allows Unity to interact with a Kafka producer running as a separate process, rather than integrating Kafka directly into the Unity application.
+3) [InternalKafkaProducer.cs](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/DataMessageHandler/InternalKafkaProducer.cs)
+Implements AbstractMessageSender for direct Kafka integration within Unity using Confluent.Kafka library. Configures and manages an internal Kafka producer that handles asynchronous message processing and batching. Reads and processes JSON data files while managing producer resources and batch processing with configurable parameters.
 
-4) In [DataSocket.cs](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/DataMessageHandler/DataSocket.cs), Unity is integrated with a GIFT connector to send trainee data in batches. It reads data from a file, batches it according to a specified size, and sends it asynchronously **through a socket connection** to GIFT. The script provides functionality to start, pause, and resume sending data, with configurable batch size and delay between batches. The file path for the data file is retrieved using `ConfigReader.cs`, ensuring the system can dynamically access the correct file for processing.
+4) [ExternalKafkaProducer.cs](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/DataMessageHandler/ExternalKafkaProducer.cs)
+Implements AbstractMessageSender to manage an external Kafka producer process. Handles the complete lifecycle of an external process including startup, monitoring, and shutdown. Manages process coordination through configuration-based execution and ensures proper cleanup during application quit.
 
-5) In [ConfigReader.cs](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/DataMessageHandler/ConfigReader.cs), a static method GetFilePath is provided to **read and extract file paths** from config.txt stored in Assets/Resources. The method loads the txt file, splits it into lines, and retrieves the line corresponding to a specified index. If the line contains a valid file path (prefixed with "FilePath="), it extracts and returns the path.
+5) [DataSocket.cs](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/DataMessageHandler/DataSocket.cs)
+Implements AbstractMessageSender for socket-based communication with GIFT. Manages socket connections while handling batched data transmission with configurable batch sizes. Implements data buffering for efficient transmission through asynchronous sending mechanisms.
+
+6) [MessageSenderFactory.cs](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/GiftEventHandler/MessageSenderFactory.cs)
+Creates and configures message sender instances based on configuration. Handles dynamic sender type registration and configuration-based creation while managing sender initialization. Provides type-safe sender instantiation and dependency injection for created instances.
 
 The class diagram for this is here ![Unity Interop Plugin Class Diagram](Unity_Steelartt_Class_Diagram.png "Class Diagram")
 
 
 **Unity Side Config Reader**
 
-1) [ConfigPathResolver](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/ConfigPathResolver.cs)
-Resolves file paths for different components by determining their provider type and handling path resolution through appropriate config readers. Acts as the main entry point for clients needing configuration paths.
+1) [AbstractMessageSender](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/DataMessageHandler/AbstractMessageSender.cs)
+Abstract base class that provides a template for message sending implementations. Manages the lifecycle of message senders including initialization, starting, stopping, and cleanup. Uses ConfigPathResolver to obtain configuration paths and maintains sending state.
 
-2) [FilePathService](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/FilePathService.cs)
-Manages the mapping between classes and their configuration data (provider types and file path keys). Loads configuration from MessageTypeConfig.xml and provides access to configuration settings through a centralized singleton instance.
+2) [ConfigPathResolver](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/Config/ConfigPathResolver.cs)
+Singleton class that resolves configuration file paths using config readers. Manages class-to-provider type mappings and coordinates with ConfigReaderFactory to obtain appropriate readers.
 
-3) [AbstractConfigReader](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/AbstractConfigReader.cs)
-Abstract base class defining the contract for reading configuration files. Provides common XML handling functionality while allowing specific implementations to define how they load and retrieve file paths.
+3) [AbstractConfigReader](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/Config/AbstractConfigReader.cs)
+Abstract base class for configuration readers. Manages XML document handling and defines the contract for path resolution. Provides shared XML parsing functionality through protected methods.
 
-4) [InternalConfigReader](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/InternalConfigReader.cs)
-Implementation of AbstractConfigReader for reading internalConfig.xml. Specifically handles paths defined by InternalFilePathKey enum, typically for internal system components.
+4) [InternalConfigReader](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/Config/InternalConfigReader.cs)
+Implementation of AbstractConfigReader for internal configurations. Overrides LoadConfig for internal-specific loading logic and implements GetFilePath<T> for internal path resolution.
 
-5) [ExternalConfigReader](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/ExternalConfigReader.cs)
-Implementation of AbstractConfigReader for reading externalConfig.xml. Manages paths defined by ExternalFilePathKey enum, typically for components that interact with external systems.
+5) [ExternalConfigReader](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/Config/ExternalConfigReader.cs)
+Implementation of AbstractConfigReader for external configurations. Overrides LoadConfig for external-specific loading logic and implements GetFilePath<T> for external path resolution.
 
-6) [ConfigReaderFactory](https://github.com/kgary/steel-artt-unity-team-se/blob/unity-with-kafka-producer/unity-template/Assets/Config/ConfigReaderFactory.cs)
-Creates appropriate config reader instances based on the provider type. Centralizes the logic for instantiating different types of configuration readers (internal/external).
+6) [ConfigReaderFactory](https://github.com/jvaida/STTC-XR-Multiplayer/blob/main/Unity-VR/unity-vr-app/Assets/Config/ConfigReaderFactory.cs)
+Static factory class that instantiates appropriate config reader (Internal/External) based on ConfigProviderType. Acts as a creation point for configuration readers.
 
 The class diagram for this is here ![ConfigReader Class Diagram](Unity_ConfigReader.png "Class Diagram")
