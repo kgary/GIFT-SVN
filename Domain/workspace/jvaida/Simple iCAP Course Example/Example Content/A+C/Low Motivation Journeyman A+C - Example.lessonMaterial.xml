@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LessonMaterialList>
+	<media>
+		<name>Examples for 'Concept A+C'</name>
+		<uri>Slide Shows/example ac low motivation/Slide01.PNG</uri>
+		<SlideShowProperties>
+			<slideRelativePath>Slide Shows/example ac low motivation/Slide01.PNG</slideRelativePath>
+			<slideRelativePath>Slide Shows/example ac low motivation/Slide02.PNG</slideRelativePath>
+			<displayPreviousSlideButton>true</displayPreviousSlideButton>
+            <keepContinueButton>true</keepContinueButton>
+		</SlideShowProperties>
+	</media>
+</LessonMaterialList>

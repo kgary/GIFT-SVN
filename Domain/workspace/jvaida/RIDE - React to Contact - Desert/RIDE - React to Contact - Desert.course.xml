@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="RIDE - React to Contact - Desert" version="11.0.104">
+    <lastSuccessfulValidation>2022:11:22 15:43:24:314 -0500</lastSuccessfulValidation>
+    <image>STE logo white1.PNG</image>
+    <ns2:surveyContext>37</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts">
+                <conceptNode name="affect(indiv): maintain weapon safety (attitude)"/>
+                <conceptNode name="task (indiv): prepare team for mission (leader)"/>
+                <conceptNode name="team-skill: team leadership"/>
+                <conceptNode name="affect(indiv): maintain weapon safety (attitude) (2)"/>
+                <conceptNode name="task (indiv): move as team member"/>
+                <conceptNode name="team-skill: team leadership (1)"/>
+                <conceptNode name="team-skill: team self-monitoring"/>
+                <conceptNode name="team-skill: team backup behavior"/>
+                <conceptNode name="team-skill: team adaptability"/>
+                <conceptNode name="team-skill: team orientation"/>
+                <conceptNode name="team-skill: team communication"/>
+                <conceptNode name="affect(indiv): maintain weapon safety (attitude) (3)"/>
+                <conceptNode name="task (team): react to contact (drill)"/>
+                <conceptNode name="task (indiv): engage targets with small-arms fire (critical)"/>
+                <conceptNode name="team-skill: team leadership (2)"/>
+                <conceptNode name="team-skill: team self-monitoring (2)"/>
+                <conceptNode name="team-skill: team backup behavior (2)"/>
+                <conceptNode name="team-skill: team adaptability (2)"/>
+                <conceptNode name="team-skill: team orientation (2)"/>
+                <conceptNode name="team-skill: team communication (2)"/>
+            </conceptNode>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>Example Guidance</transitionName>
+            <message>
+                <content>&lt;p style="font-family: Arial; font-size: 20px; text-align: center;"&gt;&lt;span style="font-family: &amp;quot;Arial Unicode MS&amp;quot;, Arial, sans-serif; font-size: 18px; text-align: start;"&gt;The demonstration is now ready to begin. Click on the arrow at the top of the screen to continue.&amp;nbsp;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>RIDE Course Object</transitionName>
+            <trainingAppTypeEnum>RIDE</trainingAppTypeEnum>
+            <dkfRef>
+                <file>TrainingApp_9911b46f-0a4f-4713-b6fc-439f315f4a4d.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.ride.RIDEPluginInterface</InteropImpl>
+                    <InteropInputs>
+                        <RIDEInteropInputs>
+                            <loadArgs/>
+                            <logFile>
+<domainSessionLog assessmentName="STEELR RIDE Demo Course" start="76" end="8075">domainSession141_uId6_2022-11-22_16-25-12.protobuf.bin</domainSessionLog>
+                            </logFile>
+                        </RIDEInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+    </transitions>
+</Course>

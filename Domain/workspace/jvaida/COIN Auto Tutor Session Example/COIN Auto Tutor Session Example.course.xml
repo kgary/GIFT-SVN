@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="COIN Auto Tutor Session Example" version="11.0.1">
+    <description>The "COIN Auto Tutor Session Example" course is meant to provide a demonstration of integrating an Auto Tutor session into a GIFT course.  During the course a PowerPoint show will be given that contains Counter Insurgency (COIN) information.  This will be followed by an chat session in GIFT backed by Auto Tutor in which an instructor avatar will ask the learner about COIN related problems.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Intended Audience&lt;/b&gt;: everyone
+&lt;br&gt;
+&lt;b&gt;Number of users&lt;/b&gt;: 1
+&lt;br&gt;
+&lt;b&gt;Training Applications:&lt;/b&gt;
+&lt;ul&gt;
+	&lt;li&gt;PowerPoint&lt;/li&gt;
+&lt;/ul&gt;
+&lt;b&gt;Periperhals&lt;/b&gt;: none</description>
+    <image>autotutor.png</image>
+    <ns2:surveyContext>26</ns2:surveyContext>
+    <transitions>
+        <LessonMaterial>
+            <transitionName>1st Army - Intro to COIN</transitionName>
+            <LessonMaterialList>
+                <media>
+                    <name>1st Army - Intro to COIN</name>
+                    <uri>Slide Shows/1st Army - Intro to COIN/Slide01.PNG</uri>
+                    <SlideShowProperties>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide01.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide02.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide03.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide04.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide05.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide06.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide07.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide08.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide09.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide10.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide11.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide12.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide13.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide14.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide15.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide16.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide17.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide18.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide19.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide20.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide21.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide22.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide23.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide24.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide25.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide26.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide27.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide28.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide29.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide30.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide31.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide32.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide33.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide34.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide35.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide36.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide37.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide38.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide39.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide40.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide41.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide42.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide43.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide44.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide45.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide46.PNG</slideRelativePath>
+                        <slideRelativePath>Slide Shows/1st Army - Intro to COIN/Slide47.PNG</slideRelativePath>
+                        <displayPreviousSlideButton>true</displayPreviousSlideButton>
+                        <keepContinueButton>true</keepContinueButton>
+                    </SlideShowProperties>
+                </media>
+            </LessonMaterialList>
+        </LessonMaterial>
+        <PresentSurvey>
+            <transitionName>AutoTutor Session</transitionName>
+            <Conversation>
+                <AutoTutorSession>
+                    <AutoTutorSKO>
+                        <ns2:ATRemoteSKO>
+                            <ns2:URL>
+<ns2:address>https://dsspp.gifttutoring.org/retrieve?json={"guid":"f0890bb9-c809-45f5-9db7-8428e267674a","return":"scriptContent"}</ns2:address>
+                            </ns2:URL>
+                        </ns2:ATRemoteSKO>
+                    </AutoTutorSKO>
+                </AutoTutorSession>
+            </Conversation>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+    </transitions>
+</Course>

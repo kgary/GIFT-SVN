@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.net.ConnectException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Date;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -29,7 +30,7 @@ import mil.arl.gift.gateway.interop.AbstractInteropInterface;
 import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.net.embedded.message.codec.EmbeddedAppMessageEncoder;
 import mil.arl.gift.net.socket.AsyncSocketHandler;
-
+import mil.arl.gift.common.ta.state.StopFreeze;
 
 public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
@@ -184,6 +185,7 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
         }
 
         final String jsonString = jsonMsg.toJSONString();
+        __logger.info("Domain module says, do this: "+ jsonString);
         try {
             __controlSocketHandler.sendMessage(jsonString);
         } catch (IOException e) {
@@ -214,6 +216,9 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
                 return;
             }
     
+            StopFreeze sf = new StopFreeze(new Date().getTime(), 0, 0, 1);
+            GatewayModule.getInstance().sendMessageToGIFT(sf, MessageTypeEnum.STOP_FREEZE, this);
+
             if (message instanceof TrainingAppState) {
                 GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
                 // Might introduce changes here based on what we want to send to Gateway module.

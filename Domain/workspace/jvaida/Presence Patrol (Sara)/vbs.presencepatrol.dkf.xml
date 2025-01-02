@@ -1,0 +1,2202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="PresencePatrol.Sara" version="11.0.1">
+    <description>This DKF is used to assess concepts associated with a Presence Patrol scenario.</description>
+    <resources>
+        <ns2:surveyContext>1</ns2:surveyContext>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="init instructions" nodeId="21">
+                <endTriggers>
+                    <trigger>
+                        <conceptEnded nodeId="22"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="show instructions" nodeId="22">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>2</interval>
+        <teamMemberRefs>
+            <teamMemberRef>learner</teamMemberRef>
+        </teamMemberRefs>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Patrol Compound Perimeter" nodeId="1">
+                <startTriggers>
+                    <trigger>
+                        <entityLocation>
+                            <entityId>
+<learnerId>
+    <startLocation>
+        <ns2:coordinate>
+            <ns2:GCC>
+                <ns2:x>3767068.5000000000000</ns2:x>
+                <ns2:y>-3163452.2500000000000</ns2:y>
+                <ns2:z>4046284.5000000000000</ns2:z>
+            </ns2:GCC>
+        </ns2:coordinate>
+    </startLocation>
+</learnerId>
+                            </entityId>
+                            <triggerLocation>
+<ns2:coordinate>
+    <ns2:GCC>
+        <ns2:x>3767066.8535533906</ns2:x>
+        <ns2:y>-3163453.0857864376</ns2:y>
+        <ns2:z>4046285.810660172</ns2:z>
+    </ns2:GCC>
+</ns2:coordinate>
+                            </triggerLocation>
+                        </entityLocation>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <entityLocation>
+                            <entityId>
+<learnerId>
+    <startLocation>
+        <ns2:coordinate>
+            <ns2:GCC>
+                <ns2:x>3767068.5000000000000</ns2:x>
+                <ns2:y>-3163452.2500000000000</ns2:y>
+                <ns2:z>4046284.5000000000000</ns2:z>
+            </ns2:GCC>
+        </ns2:coordinate>
+    </startLocation>
+</learnerId>
+                            </entityId>
+                            <triggerLocation>
+<ns2:coordinate>
+    <ns2:GCC>
+        <ns2:x>3767086.7305224794</ns2:x>
+        <ns2:y>-3163449.4280285537</ns2:y>
+        <ns2:z>4046269.7597387605</ns2:z>
+    </ns2:GCC>
+</ns2:coordinate>
+                            </triggerLocation>
+                        </entityLocation>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Stay close to wall" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CorridorBoundaryCondition</conditionImpl>
+<input>
+    <CorridorBoundaryCondition>
+        <bufferWidthPercent>10</bufferWidthPercent>
+        <pathRef value="generated name 1"/>
+        <teamMemberRefs>
+            <teamMemberRef>learner</teamMemberRef>
+        </teamMemberRefs>
+    </CorridorBoundaryCondition>
+</input>
+<scoring>
+    <count name="violation count" units="count">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="Equals" value="0"/>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="2"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThan" value="2"/>
+        </evaluators>
+    </count>
+    <violation_time name="violation time" units="hh:mm:ss">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="Equals" value="00:00:00"/>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="00:00:30"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThan" value="00:00:30"/>
+        </evaluators>
+    </violation_time>
+</scoring>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                    <concept name="Cover and Concealment" nodeId="3">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CorridorPostureCondition</conditionImpl>
+<input>
+    <CorridorPostureCondition>
+        <postures>
+            <posture>Crouching</posture>
+            <posture>Prone</posture>
+            <posture>Kneeling</posture>
+            <posture>Crawling</posture>
+        </postures>
+        <pathRef value="Cover and Concealment - generated name 2"/>
+        <teamMemberRefs>
+            <teamMemberRef>learner</teamMemberRef>
+        </teamMemberRefs>
+    </CorridorPostureCondition>
+</input>
+<scoring>
+    <count name="violation count" units="count">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="Equals" value="0"/>
+            <evaluator assessment="AtExpectation" operator="Equals" value="1"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="2"/>
+        </evaluators>
+    </count>
+    <violation_time name="violation time" units="hh:mm:ss">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="LessThanEquals" value="00:00:05"/>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="00:00:07"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThan" value="00:00:07"/>
+        </evaluators>
+    </violation_time>
+</scoring>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                    <concept name="Rules of Engagement" nodeId="4">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.RulesOfEngagementCondition</conditionImpl>
+<input>
+    <RulesOfEngagementCondition>
+        <wcs value="Hold"/>
+        <teamMemberRefs>
+            <teamMemberRef>learner</teamMemberRef>
+        </teamMemberRefs>
+    </RulesOfEngagementCondition>
+</input>
+<scoring>
+    <count name="violation count" units="count">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="Equals" value="-1"/>
+            <evaluator assessment="AtExpectation" operator="Equals" value="0"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="1"/>
+        </evaluators>
+    </count>
+</scoring>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                    <concept name="Complete Mission on Schedule" nodeId="5">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CheckpointProgressCondition</conditionImpl>
+<input>
+    <CheckpointProgressCondition>
+        <checkpoint atTime="00:01:00" point="2" windowOfTime="10"/>
+        <checkpoint atTime="00:05:00" point="20" windowOfTime="60"/>
+        <checkpoint atTime="00:10:00" point="37" windowOfTime="60"/>
+        <teamMemberRef>learner</teamMemberRef>
+    </CheckpointProgressCondition>
+</input>
+<scoring>
+    <completion_time name="violation time" units="hh:mm:ss">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="LessThanEquals" value="00:09:30"/>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="00:10:00"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThan" value="00:10:00"/>
+        </evaluators>
+    </completion_time>
+</scoring>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                    <concept name="Checkpoint Pace" nodeId="6">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.CheckpointPaceCondition</conditionImpl>
+<input>
+    <CheckpointPaceCondition>
+        <checkpoint atTime="00:01:00" point="2" windowOfTime="10"/>
+        <checkpoint atTime="00:05:00" point="20" windowOfTime="60"/>
+        <teamMemberRef>learner</teamMemberRef>
+    </CheckpointPaceCondition>
+</input>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                </concepts>
+                <assessments/>
+            </task>
+        </tasks>
+        <objects>
+            <PlacesOfInterest>
+                <point name="1">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767066.3153627636</ns2:x>
+                            <ns2:y>-3163452.5229021083</ns2:y>
+                            <ns2:z>4046286.2924606553</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="2">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767053.8153627636</ns2:x>
+                            <ns2:y>-3163458.7729021083</ns2:y>
+                            <ns2:z>4046293.2924606553</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="3">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767051.25</ns2:x>
+                            <ns2:y>-3163459.5</ns2:y>
+                            <ns2:z>4046294.785714286</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="4">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767052.2021967904</ns2:x>
+                            <ns2:y>-3163460.982845158</ns2:y>
+                            <ns2:z>4046292.448535473</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="5">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767050.7021967904</ns2:x>
+                            <ns2:y>-3163473.732845158</ns2:y>
+                            <ns2:z>4046283.198535473</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="6">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767049.9624283044</ns2:x>
+                            <ns2:y>-3163479.8112715087</ns2:y>
+                            <ns2:z>4046278.8725430174</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="7">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767051.0235831677</ns2:x>
+                            <ns2:y>-3163481.8358500996</ns2:y>
+                            <ns2:z>4046276.3905667327</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="8">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767051.9199426435</ns2:x>
+                            <ns2:y>-3163482.683814526</ns2:y>
+                            <ns2:z>4046275.25</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="9">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767069.3480247664</ns2:x>
+                            <ns2:y>-3163496.5392283294</ns2:y>
+                            <ns2:z>4046250.862746904</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="10">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767070.665967215</ns2:x>
+                            <ns2:y>-3163498.176703095</ns2:y>
+                            <ns2:z>4046248.4073296906</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="11">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767057.5768138175</ns2:x>
+                            <ns2:y>-3163511.011451054</ns2:y>
+                            <ns2:z>4046249.2270978917</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="12">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767055.75</ns2:x>
+                            <ns2:y>-3163513.5</ns2:y>
+                            <ns2:z>4046248.9166666665</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="13">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767057.9250420886</ns2:x>
+                            <ns2:y>-3163513.4428090416</ns2:y>
+                            <ns2:z>4046247.0</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="14">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767074.1750420886</ns2:x>
+                            <ns2:y>-3163525.6928090416</ns2:y>
+                            <ns2:z>4046225.0</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="15">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767075.9651931524</ns2:x>
+                            <ns2:y>-3163527.009037375</ns2:y>
+                            <ns2:z>4046222.887884736</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="16">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767076.459403224</ns2:x>
+                            <ns2:y>-3163525.139602149</ns2:y>
+                            <ns2:z>4046223.880696239</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="17">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767080.709403224</ns2:x>
+                            <ns2:y>-3163520.139602149</ns2:y>
+                            <ns2:z>4046223.880696239</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="18">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767085.1160254036</ns2:x>
+                            <ns2:y>-3163514.6160254036</ns2:y>
+                            <ns2:z>4046224.364359354</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="19">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767087.058745799</ns2:x>
+                            <ns2:y>-3163512.470494959</ns2:y>
+                            <ns2:z>4046224.7060067216</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="20">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767107.842938153</ns2:x>
+                            <ns2:y>-3163528.527481583</ns2:y>
+                            <ns2:z>4046197.5</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="21">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767110.4318181816</ns2:x>
+                            <ns2:y>-3163530.4545454546</ns2:y>
+                            <ns2:z>4046193.477272727</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="22">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767112.1339745964</ns2:x>
+                            <ns2:y>-3163531.6160254036</ns2:y>
+                            <ns2:z>4046191.033493649</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="23">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767113.305289706</ns2:x>
+                            <ns2:y>-3163529.6507556722</ns2:y>
+                            <ns2:z>4046191.7939546215</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="24">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767123.055289706</ns2:x>
+                            <ns2:y>-3163516.1507556722</ns2:y>
+                            <ns2:z>4046196.5439546215</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="25">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767129.7823708025</ns2:x>
+                            <ns2:y>-3163499.655876399</ns2:y>
+                            <ns2:z>4046205.176460665</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="26">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767130.020620726</ns2:x>
+                            <ns2:y>-3163496.3417517096</ns2:y>
+                            <ns2:z>4046207.489689637</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="27">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767129.1793783274</ns2:x>
+                            <ns2:y>-3163492.5271501895</ns2:y>
+                            <ns2:z>4046210.6902072243</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="28">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767128.1160254036</ns2:x>
+                            <ns2:y>-3163490.6339745964</ns2:y>
+                            <ns2:z>4046212.533493649</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="29">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767121.6552780424</ns2:x>
+                            <ns2:y>-3163484.3204995235</ns2:y>
+                            <ns2:z>4046221.1310556084</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="30">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767118.477606875</ns2:x>
+                            <ns2:y>-3163481.908589687</ns2:y>
+                            <ns2:z>4046224.8712678123</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="31">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767105.2848068476</ns2:x>
+                            <ns2:y>-3163470.740962625</ns2:y>
+                            <ns2:z>4046242.887884736</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="32">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767100.0217436333</ns2:x>
+                            <ns2:y>-3163466.2210084894</ns2:y>
+                            <ns2:z>4046249.6213760613</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="33">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767098.5348068476</ns2:x>
+                            <ns2:y>-3163465.240962625</ns2:y>
+                            <ns2:z>4046251.25</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="34">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767097.6552780424</ns2:x>
+                            <ns2:y>-3163464.5704995235</ns2:y>
+                            <ns2:z>4046252.3810556084</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="35">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767094.7848068476</ns2:x>
+                            <ns2:y>-3163462.240962625</ns2:y>
+                            <ns2:z>4046255.887884736</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="36">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767089.3660254036</ns2:x>
+                            <ns2:y>-3163456.6339745964</ns2:y>
+                            <ns2:z>4046262.80754991</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="37">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>3767086.7305224794</ns2:x>
+                            <ns2:y>-3163449.4280285537</ns2:y>
+                            <ns2:z>4046269.7597387605</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <path name="generated name 1">
+                    <segment name="segment 1">
+                        <width>4.0</width>
+                        <bufferWidthPercent>10</bufferWidthPercent>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767066.3153627636</ns2:x>
+    <ns2:y>-3163452.5229021083</ns2:y>
+    <ns2:z>4046286.2924606553</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767053.8153627636</ns2:x>
+    <ns2:y>-3163458.7729021083</ns2:y>
+    <ns2:z>4046293.2924606553</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 2">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767053.8153627636</ns2:x>
+    <ns2:y>-3163458.7729021083</ns2:y>
+    <ns2:z>4046293.2924606553</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767051.25</ns2:x>
+    <ns2:y>-3163459.5</ns2:y>
+    <ns2:z>4046294.785714286</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 3">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767051.25</ns2:x>
+    <ns2:y>-3163459.5</ns2:y>
+    <ns2:z>4046294.785714286</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767052.2021967904</ns2:x>
+    <ns2:y>-3163460.982845158</ns2:y>
+    <ns2:z>4046292.448535473</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 4">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767052.2021967904</ns2:x>
+    <ns2:y>-3163460.982845158</ns2:y>
+    <ns2:z>4046292.448535473</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767050.7021967904</ns2:x>
+    <ns2:y>-3163473.732845158</ns2:y>
+    <ns2:z>4046283.198535473</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 5">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767050.7021967904</ns2:x>
+    <ns2:y>-3163473.732845158</ns2:y>
+    <ns2:z>4046283.198535473</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767049.9624283044</ns2:x>
+    <ns2:y>-3163479.8112715087</ns2:y>
+    <ns2:z>4046278.8725430174</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 6">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767049.9624283044</ns2:x>
+    <ns2:y>-3163479.8112715087</ns2:y>
+    <ns2:z>4046278.8725430174</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767051.0235831677</ns2:x>
+    <ns2:y>-3163481.8358500996</ns2:y>
+    <ns2:z>4046276.3905667327</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 7">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767051.0235831677</ns2:x>
+    <ns2:y>-3163481.8358500996</ns2:y>
+    <ns2:z>4046276.3905667327</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767051.9199426435</ns2:x>
+    <ns2:y>-3163482.683814526</ns2:y>
+    <ns2:z>4046275.25</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 8">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767051.9199426435</ns2:x>
+    <ns2:y>-3163482.683814526</ns2:y>
+    <ns2:z>4046275.25</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767069.3480247664</ns2:x>
+    <ns2:y>-3163496.5392283294</ns2:y>
+    <ns2:z>4046250.862746904</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 9">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767069.3480247664</ns2:x>
+    <ns2:y>-3163496.5392283294</ns2:y>
+    <ns2:z>4046250.862746904</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767070.665967215</ns2:x>
+    <ns2:y>-3163498.176703095</ns2:y>
+    <ns2:z>4046248.4073296906</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 10">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767070.665967215</ns2:x>
+    <ns2:y>-3163498.176703095</ns2:y>
+    <ns2:z>4046248.4073296906</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767057.5768138175</ns2:x>
+    <ns2:y>-3163511.011451054</ns2:y>
+    <ns2:z>4046249.2270978917</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 11">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767057.5768138175</ns2:x>
+    <ns2:y>-3163511.011451054</ns2:y>
+    <ns2:z>4046249.2270978917</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767055.75</ns2:x>
+    <ns2:y>-3163513.5</ns2:y>
+    <ns2:z>4046248.9166666665</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 12">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767055.75</ns2:x>
+    <ns2:y>-3163513.5</ns2:y>
+    <ns2:z>4046248.9166666665</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767057.9250420886</ns2:x>
+    <ns2:y>-3163513.4428090416</ns2:y>
+    <ns2:z>4046247.0</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 13">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767057.9250420886</ns2:x>
+    <ns2:y>-3163513.4428090416</ns2:y>
+    <ns2:z>4046247.0</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767074.1750420886</ns2:x>
+    <ns2:y>-3163525.6928090416</ns2:y>
+    <ns2:z>4046225.0</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 14">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767074.1750420886</ns2:x>
+    <ns2:y>-3163525.6928090416</ns2:y>
+    <ns2:z>4046225.0</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767075.9651931524</ns2:x>
+    <ns2:y>-3163527.009037375</ns2:y>
+    <ns2:z>4046222.887884736</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 15">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767075.9651931524</ns2:x>
+    <ns2:y>-3163527.009037375</ns2:y>
+    <ns2:z>4046222.887884736</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767076.459403224</ns2:x>
+    <ns2:y>-3163525.139602149</ns2:y>
+    <ns2:z>4046223.880696239</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 16">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767076.459403224</ns2:x>
+    <ns2:y>-3163525.139602149</ns2:y>
+    <ns2:z>4046223.880696239</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767080.709403224</ns2:x>
+    <ns2:y>-3163520.139602149</ns2:y>
+    <ns2:z>4046223.880696239</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 17">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767080.709403224</ns2:x>
+    <ns2:y>-3163520.139602149</ns2:y>
+    <ns2:z>4046223.880696239</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767085.1160254036</ns2:x>
+    <ns2:y>-3163514.6160254036</ns2:y>
+    <ns2:z>4046224.364359354</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 18">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767085.1160254036</ns2:x>
+    <ns2:y>-3163514.6160254036</ns2:y>
+    <ns2:z>4046224.364359354</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767087.058745799</ns2:x>
+    <ns2:y>-3163512.470494959</ns2:y>
+    <ns2:z>4046224.7060067216</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 19">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767087.058745799</ns2:x>
+    <ns2:y>-3163512.470494959</ns2:y>
+    <ns2:z>4046224.7060067216</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767107.842938153</ns2:x>
+    <ns2:y>-3163528.527481583</ns2:y>
+    <ns2:z>4046197.5</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 20">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767107.842938153</ns2:x>
+    <ns2:y>-3163528.527481583</ns2:y>
+    <ns2:z>4046197.5</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767110.4318181816</ns2:x>
+    <ns2:y>-3163530.4545454546</ns2:y>
+    <ns2:z>4046193.477272727</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 21">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767110.4318181816</ns2:x>
+    <ns2:y>-3163530.4545454546</ns2:y>
+    <ns2:z>4046193.477272727</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767112.1339745964</ns2:x>
+    <ns2:y>-3163531.6160254036</ns2:y>
+    <ns2:z>4046191.033493649</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 22">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767112.1339745964</ns2:x>
+    <ns2:y>-3163531.6160254036</ns2:y>
+    <ns2:z>4046191.033493649</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767113.305289706</ns2:x>
+    <ns2:y>-3163529.6507556722</ns2:y>
+    <ns2:z>4046191.7939546215</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 23">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767113.305289706</ns2:x>
+    <ns2:y>-3163529.6507556722</ns2:y>
+    <ns2:z>4046191.7939546215</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767123.055289706</ns2:x>
+    <ns2:y>-3163516.1507556722</ns2:y>
+    <ns2:z>4046196.5439546215</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 24">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767123.055289706</ns2:x>
+    <ns2:y>-3163516.1507556722</ns2:y>
+    <ns2:z>4046196.5439546215</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767129.7823708025</ns2:x>
+    <ns2:y>-3163499.655876399</ns2:y>
+    <ns2:z>4046205.176460665</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 25">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767129.7823708025</ns2:x>
+    <ns2:y>-3163499.655876399</ns2:y>
+    <ns2:z>4046205.176460665</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767130.020620726</ns2:x>
+    <ns2:y>-3163496.3417517096</ns2:y>
+    <ns2:z>4046207.489689637</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 26">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767130.020620726</ns2:x>
+    <ns2:y>-3163496.3417517096</ns2:y>
+    <ns2:z>4046207.489689637</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767129.1793783274</ns2:x>
+    <ns2:y>-3163492.5271501895</ns2:y>
+    <ns2:z>4046210.6902072243</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 27">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767129.1793783274</ns2:x>
+    <ns2:y>-3163492.5271501895</ns2:y>
+    <ns2:z>4046210.6902072243</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767128.1160254036</ns2:x>
+    <ns2:y>-3163490.6339745964</ns2:y>
+    <ns2:z>4046212.533493649</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 28">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767128.1160254036</ns2:x>
+    <ns2:y>-3163490.6339745964</ns2:y>
+    <ns2:z>4046212.533493649</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767121.6552780424</ns2:x>
+    <ns2:y>-3163484.3204995235</ns2:y>
+    <ns2:z>4046221.1310556084</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 29">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767121.6552780424</ns2:x>
+    <ns2:y>-3163484.3204995235</ns2:y>
+    <ns2:z>4046221.1310556084</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767118.477606875</ns2:x>
+    <ns2:y>-3163481.908589687</ns2:y>
+    <ns2:z>4046224.8712678123</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 30">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767118.477606875</ns2:x>
+    <ns2:y>-3163481.908589687</ns2:y>
+    <ns2:z>4046224.8712678123</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767105.2848068476</ns2:x>
+    <ns2:y>-3163470.740962625</ns2:y>
+    <ns2:z>4046242.887884736</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 31">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767105.2848068476</ns2:x>
+    <ns2:y>-3163470.740962625</ns2:y>
+    <ns2:z>4046242.887884736</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767100.0217436333</ns2:x>
+    <ns2:y>-3163466.2210084894</ns2:y>
+    <ns2:z>4046249.6213760613</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 32">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767100.0217436333</ns2:x>
+    <ns2:y>-3163466.2210084894</ns2:y>
+    <ns2:z>4046249.6213760613</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767098.5348068476</ns2:x>
+    <ns2:y>-3163465.240962625</ns2:y>
+    <ns2:z>4046251.25</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 33">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767098.5348068476</ns2:x>
+    <ns2:y>-3163465.240962625</ns2:y>
+    <ns2:z>4046251.25</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767097.6552780424</ns2:x>
+    <ns2:y>-3163464.5704995235</ns2:y>
+    <ns2:z>4046252.3810556084</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 34">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767097.6552780424</ns2:x>
+    <ns2:y>-3163464.5704995235</ns2:y>
+    <ns2:z>4046252.3810556084</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767094.7848068476</ns2:x>
+    <ns2:y>-3163462.240962625</ns2:y>
+    <ns2:z>4046255.887884736</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 35">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767094.7848068476</ns2:x>
+    <ns2:y>-3163462.240962625</ns2:y>
+    <ns2:z>4046255.887884736</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767089.3660254036</ns2:x>
+    <ns2:y>-3163456.6339745964</ns2:y>
+    <ns2:z>4046262.80754991</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 36">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767089.3660254036</ns2:x>
+    <ns2:y>-3163456.6339745964</ns2:y>
+    <ns2:z>4046262.80754991</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767086.7305224794</ns2:x>
+    <ns2:y>-3163449.4280285537</ns2:y>
+    <ns2:z>4046269.7597387605</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                </path>
+                <path name="Cover and Concealment - generated name 2">
+                    <segment name="segment 9">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767069.3480247664</ns2:x>
+    <ns2:y>-3163496.5392283294</ns2:y>
+    <ns2:z>4046250.862746904</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767070.665967215</ns2:x>
+    <ns2:y>-3163498.176703095</ns2:y>
+    <ns2:z>4046248.4073296906</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 10">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767070.665967215</ns2:x>
+    <ns2:y>-3163498.176703095</ns2:y>
+    <ns2:z>4046248.4073296906</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767057.5768138175</ns2:x>
+    <ns2:y>-3163511.011451054</ns2:y>
+    <ns2:z>4046249.2270978917</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 11">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767057.5768138175</ns2:x>
+    <ns2:y>-3163511.011451054</ns2:y>
+    <ns2:z>4046249.2270978917</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767055.75</ns2:x>
+    <ns2:y>-3163513.5</ns2:y>
+    <ns2:z>4046248.9166666665</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 12">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767055.75</ns2:x>
+    <ns2:y>-3163513.5</ns2:y>
+    <ns2:z>4046248.9166666665</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767057.9250420886</ns2:x>
+    <ns2:y>-3163513.4428090416</ns2:y>
+    <ns2:z>4046247.0</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 13">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767057.9250420886</ns2:x>
+    <ns2:y>-3163513.4428090416</ns2:y>
+    <ns2:z>4046247.0</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767074.1750420886</ns2:x>
+    <ns2:y>-3163525.6928090416</ns2:y>
+    <ns2:z>4046225.0</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 14">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767074.1750420886</ns2:x>
+    <ns2:y>-3163525.6928090416</ns2:y>
+    <ns2:z>4046225.0</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767075.9651931524</ns2:x>
+    <ns2:y>-3163527.009037375</ns2:y>
+    <ns2:z>4046222.887884736</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 15">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767075.9651931524</ns2:x>
+    <ns2:y>-3163527.009037375</ns2:y>
+    <ns2:z>4046222.887884736</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767076.459403224</ns2:x>
+    <ns2:y>-3163525.139602149</ns2:y>
+    <ns2:z>4046223.880696239</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 16">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767076.459403224</ns2:x>
+    <ns2:y>-3163525.139602149</ns2:y>
+    <ns2:z>4046223.880696239</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767080.709403224</ns2:x>
+    <ns2:y>-3163520.139602149</ns2:y>
+    <ns2:z>4046223.880696239</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 17">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767080.709403224</ns2:x>
+    <ns2:y>-3163520.139602149</ns2:y>
+    <ns2:z>4046223.880696239</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767085.1160254036</ns2:x>
+    <ns2:y>-3163514.6160254036</ns2:y>
+    <ns2:z>4046224.364359354</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 18">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767085.1160254036</ns2:x>
+    <ns2:y>-3163514.6160254036</ns2:y>
+    <ns2:z>4046224.364359354</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767087.058745799</ns2:x>
+    <ns2:y>-3163512.470494959</ns2:y>
+    <ns2:z>4046224.7060067216</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 19">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767087.058745799</ns2:x>
+    <ns2:y>-3163512.470494959</ns2:y>
+    <ns2:z>4046224.7060067216</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767107.842938153</ns2:x>
+    <ns2:y>-3163528.527481583</ns2:y>
+    <ns2:z>4046197.5</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 20">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767107.842938153</ns2:x>
+    <ns2:y>-3163528.527481583</ns2:y>
+    <ns2:z>4046197.5</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767110.4318181816</ns2:x>
+    <ns2:y>-3163530.4545454546</ns2:y>
+    <ns2:z>4046193.477272727</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 21">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767110.4318181816</ns2:x>
+    <ns2:y>-3163530.4545454546</ns2:y>
+    <ns2:z>4046193.477272727</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767112.1339745964</ns2:x>
+    <ns2:y>-3163531.6160254036</ns2:y>
+    <ns2:z>4046191.033493649</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 22">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767112.1339745964</ns2:x>
+    <ns2:y>-3163531.6160254036</ns2:y>
+    <ns2:z>4046191.033493649</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767113.305289706</ns2:x>
+    <ns2:y>-3163529.6507556722</ns2:y>
+    <ns2:z>4046191.7939546215</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 23">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767113.305289706</ns2:x>
+    <ns2:y>-3163529.6507556722</ns2:y>
+    <ns2:z>4046191.7939546215</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767123.055289706</ns2:x>
+    <ns2:y>-3163516.1507556722</ns2:y>
+    <ns2:z>4046196.5439546215</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 24">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767123.055289706</ns2:x>
+    <ns2:y>-3163516.1507556722</ns2:y>
+    <ns2:z>4046196.5439546215</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767129.7823708025</ns2:x>
+    <ns2:y>-3163499.655876399</ns2:y>
+    <ns2:z>4046205.176460665</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 25">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767129.7823708025</ns2:x>
+    <ns2:y>-3163499.655876399</ns2:y>
+    <ns2:z>4046205.176460665</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767130.020620726</ns2:x>
+    <ns2:y>-3163496.3417517096</ns2:y>
+    <ns2:z>4046207.489689637</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 26">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767130.020620726</ns2:x>
+    <ns2:y>-3163496.3417517096</ns2:y>
+    <ns2:z>4046207.489689637</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767129.1793783274</ns2:x>
+    <ns2:y>-3163492.5271501895</ns2:y>
+    <ns2:z>4046210.6902072243</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 27">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767129.1793783274</ns2:x>
+    <ns2:y>-3163492.5271501895</ns2:y>
+    <ns2:z>4046210.6902072243</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767128.1160254036</ns2:x>
+    <ns2:y>-3163490.6339745964</ns2:y>
+    <ns2:z>4046212.533493649</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 28">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767128.1160254036</ns2:x>
+    <ns2:y>-3163490.6339745964</ns2:y>
+    <ns2:z>4046212.533493649</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767121.6552780424</ns2:x>
+    <ns2:y>-3163484.3204995235</ns2:y>
+    <ns2:z>4046221.1310556084</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 29">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767121.6552780424</ns2:x>
+    <ns2:y>-3163484.3204995235</ns2:y>
+    <ns2:z>4046221.1310556084</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767118.477606875</ns2:x>
+    <ns2:y>-3163481.908589687</ns2:y>
+    <ns2:z>4046224.8712678123</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                    <segment name="segment 30">
+                        <width>4.0</width>
+                        <start>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767118.477606875</ns2:x>
+    <ns2:y>-3163481.908589687</ns2:y>
+    <ns2:z>4046224.8712678123</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </start>
+                        <end>
+                            <ns2:coordinate>
+<ns2:GCC>
+    <ns2:x>3767105.2848068476</ns2:x>
+    <ns2:y>-3163470.740962625</ns2:y>
+    <ns2:z>4046242.887884736</ns2:z>
+</ns2:GCC>
+                            </ns2:coordinate>
+                        </end>
+                    </segment>
+                </path>
+            </PlacesOfInterest>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="show instructions">
+                <LogicalExpression>
+                    <performanceNode name="show instructions" nodeId="22">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="show instructions"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Decreasing Arousal (Medium)">
+                <LogicalExpression>
+                    <ns4:LearnerStateTransitionEnum attribute="Arousal">
+                        <ns4:previous>High</ns4:previous>
+                        <ns4:current>Medium</ns4:current>
+                    </ns4:LearnerStateTransitionEnum>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Decreasing Arousal (Medium)"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Decreasing Arousal (Low)">
+                <LogicalExpression>
+                    <ns4:LearnerStateTransitionEnum attribute="Arousal">
+                        <ns4:previous>Medium</ns4:previous>
+                        <ns4:current>Low</ns4:current>
+                    </ns4:LearnerStateTransitionEnum>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Decreasing Arousal (Medium)"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Increasing Arousal (High)">
+                <LogicalExpression>
+                    <ns4:LearnerStateTransitionEnum attribute="Arousal">
+                        <ns4:previous>Medium</ns4:previous>
+                        <ns4:current>High</ns4:current>
+                    </ns4:LearnerStateTransitionEnum>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Increasing Arousal (High)"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Increasing Arousal (Medium)">
+                <LogicalExpression>
+                    <ns4:LearnerStateTransitionEnum attribute="Arousal">
+                        <ns4:previous>Low</ns4:previous>
+                        <ns4:current>Medium</ns4:current>
+                    </ns4:LearnerStateTransitionEnum>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Increasing Arousal (High)"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Stay close to wall violation">
+                <LogicalExpression>
+                    <performanceNode name="Patrol Compound Perimeter#Stay close to wall" nodeId="2">
+                        <previous>AtExpectation</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Stay close to wall violation - Stage 1"/>
+                    <strategyRef name="Stay close to wall violation - Stage 2"/>
+                    <strategyRef name="Stay close to wall violation - Stage 3"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Cover and Concealment violation">
+                <LogicalExpression>
+                    <performanceNode name="Patrol Compound Perimeter#Cover and Concealment" nodeId="3">
+                        <previous>AtExpectation</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Cover and Concealment violation - Stage 1"/>
+                    <strategyRef name="Cover and Concealment violation - Stage 2"/>
+                    <strategyRef name="Cover and Concealment violation - Stage 3"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="ROE violation">
+                <LogicalExpression>
+                    <performanceNode name="Patrol Compound Perimeter#Rules of Engagement" nodeId="4">
+                        <previous>AtExpectation</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="ROE violation - Stage 1"/>
+                    <strategyRef name="ROE violation - Stage 2"/>
+                    <strategyRef name="ROE violation - Stage 3"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Schedule violation checkpoint 1">
+                <LogicalExpression>
+                    <performanceNode name="Patrol Compound Perimeter#Complete Mission on Schedule" nodeId="5">
+                        <previous>AtExpectation</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Schedule violation checkpoint 1 - Stage 1"/>
+                    <strategyRef name="Schedule violation checkpoint 1 - Stage 2"/>
+                    <strategyRef name="Schedule violation checkpoint 1 - Stage 3"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Schedule violation checkpoint 2">
+                <LogicalExpression>
+                    <performanceNode name="Patrol Compound Perimeter#Complete Mission on Schedule" nodeId="5">
+                        <previous>AboveExpectation</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Schedule violation checkpoint 1 - Stage 1"/>
+                    <strategyRef name="Schedule violation checkpoint 1 - Stage 2"/>
+                    <strategyRef name="Schedule violation checkpoint 1 - Stage 3"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="pace violation checkpoint 1">
+                <LogicalExpression>
+                    <performanceNode name="Patrol Compound Perimeter#Checkpoint Pace" nodeId="6">
+                        <previous>AtExpectation</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="pace violation checkpoint 1"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="pace violation checkpoint 2">
+                <LogicalExpression>
+                    <performanceNode name="Patrol Compound Perimeter#Checkpoint Pace" nodeId="6">
+                        <previous>BelowExpectation</previous>
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="pace violation checkpoint 2"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="show instructions">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Mission initializing...</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>When the map appears, find the mission briefing on the notepad and read it carefully. Click 'OK' (in VBS) when you're ready to start.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Decreasing Arousal (Medium)">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:fog density="0.1"/>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Increasing Arousal (High)">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:fog density="0.9"/>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Stay close to wall violation - Stage 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Do you recall the instructions in the mission briefing? (Press 'M' to review the mission briefing. Press 'Esc' to return to the mission.)</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:fog density="0.1"/>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Stay close to wall violation - Stage 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Maintain cover by staying close to the wall! (stay close but not too close)</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:fog density="0.1"/>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Stay close to wall violation - Stage 3">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>&lt;b/&gt;Stay in your lane, Soldier! &lt;b/&gt;</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:fog density="0.1"/>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Cover and Concealment violation - Stage 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>This portion of the wall is lower, so you should crouch to stay covered. Press 'x' to crouch. Press 'c' to stand.</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Cover and Concealment violation - Stage 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Your head is exposed above the wall! Stay crouched when the wall is too low to keep you covered!</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Cover and Concealment violation - Stage 3">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>&lt;b/&gt;Maintain cover, Soldier!&lt;b/&gt;</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="ROE violation - Stage 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Do you recall the Rules of Engagement from the mission briefing? (Press 'M' to review the mission briefing. Press 'Esc' to return to the mission.)</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="ROE violation - Stage 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Fire only when fired upon!</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="ROE violation - Stage 3">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>&lt;b/&gt;Violating RoE is a serious offense, Soldier!&lt;b/&gt;</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Schedule violation checkpoint 1 - Stage 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Remember, this mission is timed. (Press 'M' to review the mission briefing. Press 'Esc' to return to the mission.)</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Schedule violation checkpoint 1 - Stage 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You're behind schedule. Pick up the pace!</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Schedule violation checkpoint 1 - Stage 3">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>&lt;b/&gt;Pick up the pace, Soldier!&lt;b/&gt;</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="pace violation checkpoint 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You're falling behind - pick up the pace.</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="pace violation checkpoint 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Good job - you're back on schedule, keep it up.</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+    <teamOrganization>
+        <team name="Team of One">
+            <teamMember name="learner" playable="true">
+                <learnerId>
+                    <startLocation>
+                        <ns2:coordinate>
+                            <ns2:GCC>
+<ns2:x>3767068.5000000000000</ns2:x>
+<ns2:y>-3163452.2500000000000</ns2:y>
+<ns2:z>4046284.5000000000000</ns2:z>
+                            </ns2:GCC>
+                        </ns2:coordinate>
+                    </startLocation>
+                </learnerId>
+            </teamMember>
+        </team>
+    </teamOrganization>
+</Scenario>

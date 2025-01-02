@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="RapidMiner Demonstration" version="11.0.1">
+    <description>The "RapidMiner Demonstration" course demonstrates and test the integratino of RapidMiner with the GIFT learner module.  In this test course the user executes a TC3 scenario.  During that early parts of the scenario the learner's action will cause an Anxiety learner state value to change due to processing in the RapidMinder model (again this is to demonstrate the integration and nothing more).  When that change happens, feedback will be shown in the GIFT tutor webpage.  
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Intended Audience&lt;/b&gt;: everyone
+&lt;br&gt;
+&lt;b&gt;Number of users&lt;/b&gt;: 1
+&lt;br&gt;
+&lt;b&gt;Training Applications:&lt;/b&gt;
+&lt;ul&gt;
+	&lt;li&gt;TC3 (provided on gifttutoring.org)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;b&gt;Periperhals&lt;/b&gt;: none</description>
+    <image>rapidminer.jpg</image>
+    <ns2:surveyContext>10</ns2:surveyContext>
+    <transitions>
+        <Guidance>
+            <transitionName>Intro</transitionName>
+            <file>
+                <HTML>Guidance Files\Introduction.html</HTML>
+            </file>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Developer Info</transitionName>
+            <file>
+                <HTML>Guidance Files\Developer Info.html</HTML>
+            </file>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Briefing</transitionName>
+            <file>
+                <HTML>Guidance Files\Briefing.html</HTML>
+            </file>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>TC3Sim Tutorial Scenario</transitionName>
+            <dkfRef>
+                <file>RapidMinerDemo.dkf.xml</file>
+            </dkfRef>
+            <options>
+                <disableInstInterImpl>false</disableInstInterImpl>
+            </options>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.tc3plugin.TC3PluginInterface</InteropImpl>
+                    <InteropInputs>
+                        <TC3InteropInputs>
+                            <loadArgs>
+<ScenarioName>Tutorial</ScenarioName>
+                            </loadArgs>
+                        </TC3InteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <Guidance>
+                <transitionName>TC3Sim Tutorial Scenario - Guidance</transitionName>
+                <message>
+                    <content>Scenario initializing, please wait...</content>
+                </message>
+                <displayTime>8</displayTime>
+                <fullScreen>false</fullScreen>
+            </Guidance>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>RapidMiner TestCourse</transitionName>
+            <message>
+                <content>&lt;html&gt;&lt;div style="font-family: Calibri; font-size=11px; padding: 30px 0px;"&gt;&lt;br&gt;&lt;br&gt;The RapidMiner course has ended.&lt;br&gt;&lt;br&gt;For more information, visit &lt;a href="https://www.gifttutoring.org"&gt;www.GIFTTutoring.org&lt;/a&gt;&lt;br&gt;&lt;/div&gt;&lt;/html&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

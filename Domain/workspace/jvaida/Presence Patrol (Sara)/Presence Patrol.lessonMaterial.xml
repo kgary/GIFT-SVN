@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LessonMaterialList>
+	<media>
+		<name>Presence Patrol Introduction</name>
+		<uri>http://www.youtube-nocookie.com/embed/VKtIIRm4O3A?rel=0</uri>
+		<YoutubeVideoProperties>
+			<size>
+				<width>420</width>
+				<height>315</height>
+			</size>
+			<allowFullScreen>true</allowFullScreen>
+		</YoutubeVideoProperties>
+	</media>										
+</LessonMaterialList>

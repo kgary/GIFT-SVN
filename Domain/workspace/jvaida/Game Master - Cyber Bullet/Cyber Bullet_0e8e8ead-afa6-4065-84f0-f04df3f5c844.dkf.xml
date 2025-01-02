@@ -1,0 +1,1788 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="simplest" version="11.0.1">
+    <description>This is the simplest DKF that can be used by most training applications.  It only contains 1 condition, the Application Completed Condition, which when triggered will end the domain assessment and therefore the Training Application course element.</description>
+    <resources>
+        <ns2:surveyContext>4</ns2:surveyContext>
+        <AvailableLearnerActions>
+            <ns3:LearnerActionsList>
+                <ns3:learnerAction>
+                    <ns3:type>Spot Report</ns3:type>
+                    <ns3:displayName>SEND SPOT REPORT</ns3:displayName>
+                </ns3:learnerAction>
+            </ns3:LearnerActionsList>
+        </AvailableLearnerActions>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="GIFT Instructions" nodeId="10">
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="22" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Init Instructions Timer" nodeId="22">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>1</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Leave the FOB" nodeId="1">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="10"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="23" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Mount Up In Time" nodeId="32">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>10</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Team Mounts Vehicle" nodeId="3">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Vehicles Reaches Gate" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="12" value="FOB Gate"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+            <teamMemberRef>Vehicle 2</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Last Vehicle Exit FOB Gate" nodeId="23">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="10" value="Outside FOB Gate"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 2</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Travel to Weapons Cache" nodeId="5">
+                <startTriggers>
+                    <trigger>
+                        <conceptAssessment concept="2" result="AtExpectation"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="24" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Maintain Situational Awareness" nodeId="6">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Maintain Proper Max Speed Vehicle 1" nodeId="8">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SpeedLimitCondition</conditionImpl>
+<input>
+    <SpeedLimitCondition>
+        <speedLimit>40</speedLimit>
+        <minDurationBeforeViolation>8</minDurationBeforeViolation>
+        <teamMemberRef>Vehicle 1</teamMemberRef>
+    </SpeedLimitCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Maintain Proper Max Speed Vehicle 2" nodeId="30">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SpeedLimitCondition</conditionImpl>
+<input>
+    <SpeedLimitCondition>
+        <speedLimit>40</speedLimit>
+        <minDurationBeforeViolation>8</minDurationBeforeViolation>
+        <teamMemberRef>Vehicle 2</teamMemberRef>
+    </SpeedLimitCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Maintain Proper Vehicle Spacing Vehicle 2" nodeId="31">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SpacingCondition</conditionImpl>
+<input>
+    <SpacingCondition>
+        <minDurationBeforeViolation>10</minDurationBeforeViolation>
+        <spacingPair>
+            <firstObject>
+                <teamMemberRef>Vehicle 1</teamMemberRef>
+            </firstObject>
+            <secondObject>
+                <teamMemberRef>Vehicle 2</teamMemberRef>
+            </secondObject>
+            <ideal>
+                <idealMaxSpacing>25</idealMaxSpacing>
+                <idealMinSpacing>15</idealMinSpacing>
+            </ideal>
+            <acceptable>
+                <acceptableMaxSpacing>30</acceptableMaxSpacing>
+                <acceptableMinSpacing>10</acceptableMinSpacing>
+            </acceptable>
+        </spacingPair>
+    </SpacingCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Reach First Compromised Arrow" nodeId="34">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="10" value="First GPS Compromised Trigger Location"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Reach Second Compromised Arrow" nodeId="36">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="15" value="Second GPS Compromised Trigger Location "/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Puppeteering Event Trigger" nodeId="37">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="10" value="Interpreter Puppeteering Alert Trigger Location"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+            <teamMemberRef>Vehicle 2</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Vehicles Reach Weapons Cache" nodeId="29">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="30" value="Weapons Cache Parking Lot"/>
+        <teamMemberRefs>
+            <teamMemberRef>A1</teamMemberRef>
+            <teamMemberRef>A2</teamMemberRef>
+            <teamMemberRef>B1</teamMemberRef>
+            <teamMemberRef>B2</teamMemberRef>
+            <teamMemberRef>B4</teamMemberRef>
+            <teamMemberRef>C1</teamMemberRef>
+            <teamMemberRef>C2</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Optional Demo Transport" nodeId="35">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="15" value="Demo Transport From Location "/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Interpreter Puppeteering Event" nodeId="38">
+                <startTriggers>
+                    <trigger>
+                        <conceptAssessment concept="37" result="AtExpectation"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="39" result="AtExpectation"/>
+                    </trigger>
+                    <trigger>
+                        <taskEnded nodeId="5"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="White Cell Assessment Here" nodeId="39">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Reach Compromised Location" nodeId="42">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="20" value="Compromised Location - IED Trigger"/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Trigger Location for Arrows Flickering on Incorrect Path" nodeId="43">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="10" value="Begin Arrow Flickering on Wrong Path Trigger "/>
+        <teamMemberRefs>
+            <teamMemberRef>Vehicle 1</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Maintain Weapons Cache Security" nodeId="26">
+                <startTriggers>
+                    <trigger>
+                        <conceptAssessment concept="29" result="AtExpectation"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="27" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Sustainability Timer" nodeId="27">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>90</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Secure Weapons Cache" nodeId="19">
+                <startTriggers>
+                    <trigger>
+                        <conceptAssessment concept="29" result="AtExpectation"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="28" result="AtExpectation"/>
+                    </trigger>
+                    <trigger>
+                        <conceptAssessment concept="28" result="AboveExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Entered Weapons Cache" nodeId="24">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="15" value="Inside Weapons Cache"/>
+        <teamMemberRefs>
+            <teamMemberRef>A1</teamMemberRef>
+            <teamMemberRef>A2</teamMemberRef>
+            <teamMemberRef>C1</teamMemberRef>
+            <teamMemberRef>C2</teamMemberRef>
+        </teamMemberRefs>
+        <RealTimeAssessmentRules>
+            <count name="Violation Count" units="count">
+                <evaluators>
+                    <evaluator assessment="Unknown" operator="Equals" value="0"/>
+                    <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                </evaluators>
+            </count>
+        </RealTimeAssessmentRules>
+    </AvoidLocationCondition>
+</input>
+<default assessment="Unknown"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Secure Outside Perimeter" nodeId="25">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Spot Report to Command" nodeId="28">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.SpotReportCondition</conditionImpl>
+<input>
+    <SpotReportCondition>
+        <teamMemberRefs>
+            <teamMemberRef>A1</teamMemberRef>
+            <teamMemberRef>A2</teamMemberRef>
+            <teamMemberRef>C1</teamMemberRef>
+            <teamMemberRef>C2</teamMemberRef>
+        </teamMemberRefs>
+    </SpotReportCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects>
+            <PlacesOfInterest>
+                <point name="FOB Gate">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2856156.8711352767</ns2:x>
+                            <ns2:y>2899411.7845380204</ns2:y>
+                            <ns2:z>4894394.242159442</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Outside FOB Gate">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2856033.78128149</ns2:x>
+                            <ns2:y>2899508.589147405</ns2:y>
+                            <ns2:z>4894408.580618479</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Weapons Cache Entrance">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2853056.8520667786</ns2:x>
+                            <ns2:y>2900692.5179163227</ns2:y>
+                            <ns2:z>4895430.819469224</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Inside Weapons Cache">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2853055.477366393</ns2:x>
+                            <ns2:y>2900663.907632206</ns2:y>
+                            <ns2:z>4895454.010534423</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Weapons Cache Parking Lot">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2853067.2772944495</ns2:x>
+                            <ns2:y>2900657.8581837863</ns2:y>
+                            <ns2:z>4895446.405900202</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="First GPS Compromised Trigger Location">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2853630.4867036473</ns2:x>
+                            <ns2:y>2900758.9521582564</ns2:y>
+                            <ns2:z>4895066.470660536</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Second GPS Compromised Trigger Location ">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2853597.5136424247</ns2:x>
+                            <ns2:y>2900753.1731663328</ns2:y>
+                            <ns2:z>4895088.77967</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Demo Transport From Location ">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2855128.2040385325</ns2:x>
+                            <ns2:y>2899493.795184108</ns2:y>
+                            <ns2:z>4894943.227741908</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Demo Transport To Location">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2853758.8096026634</ns2:x>
+                            <ns2:y>2900882.497171516</ns2:y>
+                            <ns2:z>4894918.720669478</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Interpreter Puppeteering Alert Trigger Location">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2853587.7596469587</ns2:x>
+                            <ns2:y>2900757.8919682177</ns2:y>
+                            <ns2:z>4895091.5288488865</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Compromised Location - IED Trigger">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2853105.0043322304</ns2:x>
+                            <ns2:y>2900819.9507245524</ns2:y>
+                            <ns2:z>4895333.051958768</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Begin Arrow Flickering on Wrong Path Trigger ">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>2853393.0729763964</ns2:x>
+                            <ns2:y>2900781.146539121</ns2:y>
+                            <ns2:z>4895189.317176237</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+            </PlacesOfInterest>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="Team Members are Awaiting Orders">
+                <LogicalExpression>
+                    <performanceNode name="Init Instructions Timer" nodeId="22">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Init Instructions Feedback"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Team Members are Awaiting Assignment Instructions">
+                <LogicalExpression>
+                    <performanceNode name="Mount Up In Time" nodeId="32">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Vehicle Assignment Instructions"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Team Members Waiting at Gate">
+                <LogicalExpression>
+                    <performanceNode name="Vehicles Reaches Gate" nodeId="2">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Message to White Cell - Open Gate"/>
+                    <strategyRef name="Do Nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicle 1 Speeding">
+                <LogicalExpression>
+                    <performanceNode name="Maintain Proper Max Speed Vehicle 1" nodeId="8">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Speeding Ticket Feedback Vehicle 1"/>
+                    <strategyRef name="Do Nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicle 2 Speeding">
+                <LogicalExpression>
+                    <performanceNode name="Maintain Proper Max Speed Vehicle 2" nodeId="30">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Speeding Ticket Feedback Vehicle 2"/>
+                    <strategyRef name="Do Nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicle 2 has Poor Spacing">
+                <LogicalExpression>
+                    <performanceNode name="Maintain Proper Vehicle Spacing Vehicle 2" nodeId="31">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Incorrect Spacing Vehicle 2"/>
+                    <strategyRef name="Do Nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicles Have Exited FOB Gate">
+                <LogicalExpression>
+                    <performanceNode name="Last Vehicle Exit FOB Gate" nodeId="23">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Exited FOB - Follow GPS Instructions"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicles Reached First Compromised Arrow">
+                <LogicalExpression>
+                    <performanceNode name="Reach First Compromised Arrow" nodeId="34">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="GPS Compromised First Flicker"/>
+                    <strategyRef name="Do Nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicles Reached Second Compromised Arrow">
+                <LogicalExpression>
+                    <performanceNode name="Reach Second Compromised Arrow" nodeId="36">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="GPS Compromised Second Flicker"/>
+                    <strategyRef name="Do Nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Team has Encountered Compromised Arrows">
+                <LogicalExpression>
+                    <performanceNode name="Puppeteering Event Trigger" nodeId="37">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Interpreter Begin Conversation Alert"/>
+                    <strategyRef name="Do Nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Team is now Transportable">
+                <LogicalExpression>
+                    <performanceNode name="Optional Demo Transport" nodeId="35">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Message to White Cell - Transport Vehicles for Shorter Demo"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Vehicles Have Reached Cyber Bullet at Compromised Location">
+                <LogicalExpression>
+                    <performanceNode name="Reach Compromised Location" nodeId="42">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Cyber Bullet Attack Alert and Vehicle Transportation"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Teams Reached Weapons Cache">
+                <LogicalExpression>
+                    <performanceNode name="Vehicles Reach Weapons Cache" nodeId="29">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Weapons Cache Team Instructions"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Team Chose to Follow GPS Guidance">
+                <LogicalExpression>
+                    <performanceNode name="Trigger Location for Arrows Flickering on Incorrect Path" nodeId="43">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="All Compromised Arrows Flicker after Interpreter Conversation Begins"/>
+                    <strategyRef name="Do Nothing"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="Init Instructions Feedback">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Mission initializing...</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="B1"/>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                        <ns4:teamRef value="White Cell 1"/>
+                        <ns4:teamRef value="Interpreter"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>From the VBS main menu, go to Networking.  Select the appropriate Host and click Join.  </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="B1"/>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be playing as BLUFOR actor named 1-1-A-5 (A1).  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be playing as BLUFOR actor named 1-1-A-4 (B1).  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="B1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be playing as BLUFOR actor named 1-1-A-6 (B2).  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="B2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be playing as BLUFOR actor named 1-1-B-2 (C2).  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be playing as BLUFOR actor named 1-1-A-8 (B4).  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="B4"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be playing as BLUFOR actor named 1-1-A-9 (C1).  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="C1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be playing as BLUFOR actor named 1-1-B-1 (A2).  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be playing as Independent actor named 1-1-A-2 (White_Cell).  Click 'OK' on the right hand side (in VBS) after all other players have selected their roles. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="White Cell 1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Vehicle Assignment Instructions">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Your assigned vehicle is Vehicle 1 (V1). </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Your assigned vehicle is Vehicle 2 (V2).</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be the driver of Vehicle 1 (V1).</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You will be the driver of Vehicle 2 (V2).</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="B1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Message to White Cell - Open Gate">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Open the FOB Gate!!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="White Cell 1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Open FOB Gate">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>FOBGate animate ["gate_open", 1]</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Open FOB Gate</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Close FOB Gate">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>FOBGate animate ["gate_open", 0]</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Close FOB Gate</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Transport Vehicles to Shorten Demo">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:delayAfterStrategy>
+                        <ns4:duration>6</ns4:duration>
+                    </ns4:delayAfterStrategy>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You are now going to be transported. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="B1"/>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>17830.15</ns2:x>
+    <ns2:y>16823.26</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:heading value="116"/>
+                            <ns4:teamMemberRef value="Vehicle 1">
+<ns4:entityMarking>V1</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Transport V1 Closer to Weapons Cache Block</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>17825.15</ns2:x>
+    <ns2:y>16820.26</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:heading value="116"/>
+                            <ns4:teamMemberRef value="Vehicle 2">
+<ns4:entityMarking>V2</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Transport V2 Closer to Weapons Cache Block</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>The White Cell has just transported you closer to your objective location.  Please proceed. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="B1"/>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Message to White Cell - Transport Vehicles for Shorter Demo">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>If you'd like to shorten the time spent in this scenario, now would be a good time to transport the players!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="White Cell 1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Exited FOB - Follow GPS Instructions">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Your team has successfully exited the FOB.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="B1"/>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Now, follow your GPS provided arrows to locate the weapons cache.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="B1"/>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Speeding Ticket Feedback Vehicle 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You are going too fast! Slow down!!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Speeding Ticket Feedback Vehicle 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You are going too fast! Slow down!!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="B1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Do Nothing"/>
+            <strategy name="Incorrect Spacing Vehicle 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You are too far away from the lead vehicle.  </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="B1"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="GPS Compromised First Flicker">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>[GPS_compromised_arrow_1, 5, 0.40]execvm 'mycontent\scripts\flashObject.sqf';</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Flicker First GPS Compromised Arrow</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>[GPS_first_flicker, 3, 0.40]execvm 'mycontent\scripts\flashObject.sqf';</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Flicker Additional Arrow with First Compromised GPS Arrow </ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="GPS Compromised Second Flicker">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>[GPS_compromised_arrow_2, 5, 0.40]execvm 'mycontent\scripts\flashObject.sqf';</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Flicker Second GPS Compromised Arrow</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>[GPS_second_flicker_, 3, 0.40]execvm 'mycontent\scripts\flashObject.sqf';</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Flicker Additional Arrow with Second Compromised GPS Arrow</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Interpreter Begin Conversation Alert">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Now is a great opportunity to have a conversation about the Compromised GPS! </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="White Cell 1"/>
+                        <ns4:teamRef value="Interpreter"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>If the squad decides not to trust the GPS, you can  remove the GPS arrows from the scenario using the "Remove GPS Arrows" strategy. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="White Cell 1"/>
+                        <ns4:teamRef value="Interpreter"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="All Compromised Arrows Flicker after Interpreter Conversation Begins">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>[GPS_first_incorrect_path_3, 10, 0.40]execvm 'mycontent\scripts\flashObject.sqf';</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Flicker Arrow on Compromised GPS Path</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>[GPS_first_incorrect_path_4, 15, 0.40]execvm 'mycontent\scripts\flashObject.sqf';</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Flicker Arrow on Compromised GPS Path</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>[GPS_first_incorrect_path_5, 20, 0.40]execvm 'mycontent\scripts\flashObject.sqf';</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Flicker Arrow on Compromised GPS Path</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Cyber Bullet Attack Alert and Vehicle Transportation">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:delayAfterStrategy>
+                        <ns4:duration>8</ns4:duration>
+                    </ns4:delayAfterStrategy>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>YOU'VE JUST BEEN HIT WITH A CYBER BULLET!  You will now be transported back to the intersection where you made the mistake of not trusting the Interpreter. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="B1"/>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>18291.29</ns2:x>
+    <ns2:y>17148.94</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:heading value="320"/>
+                            <ns4:teamMemberRef value="Vehicle 1">
+<ns4:entityMarking>V1</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Transport V1 to Correct Path to Weapons Cache</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>18291.29</ns2:x>
+    <ns2:y>17142.94</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:heading value="320"/>
+                            <ns4:teamMemberRef value="Vehicle 2">
+<ns4:entityMarking>V2</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Transport V2 to Correct Path to Weapons Cache</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Remember: technology cannot always be trusted.  If you see warning signs of a possible GPS compromise, always try to gather as much information about the path you are taking to ensure it is the correct path and not an attempted ambush or attack, especially when you are in enemy territory.  
+
+Now, continue on and follow the directions provided by your interpreter to the weapons cache. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="B1"/>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Weapons Cache Team Instructions">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You have successfully reached the weapons cache.  Don't forget to secure the outside perimeter while the other team secures the weapons.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="B1"/>
+                        <ns4:teamRef value="B2"/>
+                        <ns4:teamRef value="B4"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:delayAfterStrategy>
+                        <ns4:duration>12</ns4:duration>
+                    </ns4:delayAfterStrategy>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You have successfully reached the weapons cache.  Don't forget to send a SPOT report after you've secured the weapons inside. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>To send a SPOT report when you secure the weapons: click the center mouse button, then in the GIFT window click on the 'Learner Actions' tab and select 'SEND SPOT REPORT'. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="A1"/>
+                        <ns4:teamRef value="A2"/>
+                        <ns4:teamRef value="C1"/>
+                        <ns4:teamRef value="C2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Remove GPS Arrows">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>0</ns2:x>
+    <ns2:y>0</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="GPS Arrow 1">
+<ns4:entityMarking>GPS_first_incorrect_path</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Remove Compromised GPS Arrow </ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>0</ns2:x>
+    <ns2:y>0</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="GPS Arrow 2">
+<ns4:entityMarking>GPS_first_incorrect_path_1</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Remove Compromised GPS Arrow </ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>0</ns2:x>
+    <ns2:y>0</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="GPS Arrow 3">
+<ns4:entityMarking>GPS_turn_into_first_incorrect_location</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Remove Compromised GPS Arrow </ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>0</ns2:x>
+    <ns2:y>0</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="GPS Arrow 4">
+<ns4:entityMarking>GPS_first_incorrect_path_3</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Remove Compromised GPS Arrow </ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>0</ns2:x>
+    <ns2:y>0</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="GPS Arrow 5">
+<ns4:entityMarking>GPS_first_incorrect_path_4</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Remove Compromised GPS Arrow </ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>0</ns2:x>
+    <ns2:y>0</ns2:y>
+    <ns2:elevation>0</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:teamMemberRef value="GPS Arrow 6">
+<ns4:entityMarking>GPS_first_incorrect_path_5</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Remove Compromised GPS Arrow </ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+    <teamOrganization>
+        <team name="Everyone">
+            <team name="BLUFOR">
+                <teamMember name="A1" playable="true">
+                    <learnerId>
+                        <entityMarking>A1</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="A2" playable="true">
+                    <learnerId>
+                        <entityMarking>A2</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="B1" playable="true">
+                    <learnerId>
+                        <entityMarking>B1</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="B2" playable="true">
+                    <learnerId>
+                        <entityMarking>B2</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="B4" playable="true">
+                    <learnerId>
+                        <entityMarking>B4</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="C1" playable="true">
+                    <learnerId>
+                        <entityMarking>C1</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="C2" playable="true">
+                    <learnerId>
+                        <entityMarking>C2</entityMarking>
+                    </learnerId>
+                </teamMember>
+            </team>
+            <team name="ADMIN">
+                <teamMember name="White Cell 1" playable="true">
+                    <learnerId>
+                        <entityMarking>White_Cell</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Interpreter" playable="true">
+                    <learnerId>
+                        <entityMarking>Interpreter</entityMarking>
+                    </learnerId>
+                </teamMember>
+            </team>
+            <team name="VEHICLES">
+                <teamMember name="Vehicle 1" playable="false">
+                    <learnerId>
+                        <entityMarking>V1</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Vehicle 2" playable="false">
+                    <learnerId>
+                        <entityMarking>V2</entityMarking>
+                    </learnerId>
+                </teamMember>
+            </team>
+            <team name="Arrows">
+                <teamMember name="GPS Arrow 1" playable="false">
+                    <learnerId>
+                        <entityMarking>GPS_first_incorrect_path</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="GPS Arrow 2" playable="false">
+                    <learnerId>
+                        <entityMarking>GPS_first_incorrect_path_1</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="GPS Arrow 3" playable="false">
+                    <learnerId>
+                        <entityMarking>GPS_turn_into_first_incorrect_location</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="GPS Arrow 4" playable="false">
+                    <learnerId>
+                        <entityMarking>GPS_first_incorrect_path_3</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="GPS Arrow 5" playable="false">
+                    <learnerId>
+                        <entityMarking>GPS_first_incorrect_path_4</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="GPS Arrow 6" playable="false">
+                    <learnerId>
+                        <entityMarking>GPS_first_incorrect_path_5</entityMarking>
+                    </learnerId>
+                </teamMember>
+            </team>
+        </team>
+    </teamOrganization>
+</Scenario>

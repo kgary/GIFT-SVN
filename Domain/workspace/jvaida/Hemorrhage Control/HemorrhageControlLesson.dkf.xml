@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="Hemorrhage Control" version="11.0.1">
+    <description>This DKF is used to assess concepts associated with a Hemorrhage Control presentation.</description>
+    <resources>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="Hemorrhage Control Material" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <conceptEnded nodeId="2"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Finish PPT" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+<input>
+    <ApplicationCompletedCondition>
+        <IdealCompletionDuration>00:10:00</IdealCompletionDuration>
+    </ApplicationCompletedCondition>
+</input>
+<scoring>
+    <completion_time name="completion time" units="hh:mm:ss">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="LessThanEquals" value="00:10:00"/>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="00:00:20"/>
+            <evaluator assessment="BelowExpectation" operator="LessThanEquals" value="00:00:10"/>
+        </evaluators>
+    </completion_time>
+</scoring>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                    <concept name="Presentation Under Dwell" nodeId="3">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.PowerPointUnderDwellCondition</conditionImpl>
+<input>
+    <PowerPointDwellCondition>
+        <default>
+            <timeInSeconds>5.0</timeInSeconds>
+        </default>
+        <slides>
+            <slide index="1">
+                <timeInSeconds>5.0</timeInSeconds>
+            </slide>
+            <slide index="21">
+                <timeInSeconds>0.0</timeInSeconds>
+            </slide>
+            <slide index="22">
+                <timeInSeconds>0.0</timeInSeconds>
+            </slide>
+            <slide index="23">
+                <timeInSeconds>0.0</timeInSeconds>
+            </slide>
+            <slide index="24">
+                <timeInSeconds>0.0</timeInSeconds>
+            </slide>
+        </slides>
+    </PowerPointDwellCondition>
+</input>
+<scoring>
+    <count name="Violation Count" units="count">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="Equals" value="-1"/>
+            <evaluator assessment="AtExpectation" operator="LessThan" value="5"/>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="5"/>
+        </evaluators>
+    </count>
+</scoring>
+<default assessment="AtExpectation"/>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                    <concept name="Presentation Over Dwell" nodeId="4">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.PowerPointOverDwellCondition</conditionImpl>
+<input>
+    <PowerPointDwellCondition>
+        <default>
+            <timeInSeconds>300.0</timeInSeconds>
+        </default>
+        <slides>
+            <slide index="19">
+                <timeInSeconds>15.0</timeInSeconds>
+            </slide>
+            <slide index="26">
+                <timeInSeconds>15.0</timeInSeconds>
+            </slide>
+        </slides>
+    </PowerPointDwellCondition>
+</input>
+<default assessment="AtExpectation"/>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                </concepts>
+                <assessments/>
+            </task>
+        </tasks>
+        <objects>
+            <PlacesOfInterest/>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="over dwell">
+                <LogicalExpression>
+                    <performanceNode name="Presentation Over Dwell" nodeId="3">
+                        <previous>AtExpectation</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="over dwell - Stage 1"/>
+                    <strategyRef name="over dwell - Stage 2"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="under dwell">
+                <LogicalExpression>
+                    <performanceNode name="Presentation Under Dwell" nodeId="4">
+                        <previous>AtExpectation</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="under dwell"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="over dwell - Stage 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Skipping a slide's content will not help you learn the material.</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="over dwell - Stage 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You missed important material on the previous slide, hopefully you will pass the upcoming test.</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="under dwell">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>I've noticed that you are hesitating on the current slide.</ns4:content>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+</Scenario>

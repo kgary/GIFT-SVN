@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="RapidMiner Demo" version="11.0.1">
+    <resources>
+        <ns2:surveyContext>10</ns2:surveyContext>
+        <AvailableLearnerActions/>
+    </resources>
+    <endTriggers>
+        <trigger>
+            <conceptAssessment concept="4" result="AtExpectation"/>
+        </trigger>
+    </endTriggers>
+    <assessment>
+        <tasks>
+            <task name="Practice task" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <conceptEnded nodeId="2"/>
+                    </trigger>
+                    <trigger>
+                        <conceptEnded nodeId="4"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Practice" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+<input>
+    <ApplicationCompletedCondition>
+        <IdealCompletionDuration>00:04:00</IdealCompletionDuration>
+    </ApplicationCompletedCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Timer" nodeId="4">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>false</repeatable>
+        <interval>240</interval>
+    </TimerConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects>
+            <PlacesOfInterest/>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="High Anxiety">
+                <LogicalExpression>
+                    <ns4:LearnerStateTransitionEnum attribute="Anxious">
+                        <ns4:current>High</ns4:current>
+                    </ns4:LearnerStateTransitionEnum>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="High Anxiety"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Low Anxiety">
+                <LogicalExpression>
+                    <ns4:LearnerStateTransitionEnum attribute="Anxious">
+                        <ns4:previous>High</ns4:previous>
+                        <ns4:current>Low</ns4:current>
+                    </ns4:LearnerStateTransitionEnum>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Low Anxiety"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="High Anxiety">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Your anxiety state is high.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:AffectiveFeedbackType>None</ns4:AffectiveFeedbackType>
+                        <ns4:FeedbackSpecificityType>Prompt</ns4:FeedbackSpecificityType>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Low Anxiety">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Your anxiety state is low.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:AffectiveFeedbackType>None</ns4:AffectiveFeedbackType>
+                        <ns4:FeedbackSpecificityType>Prompt</ns4:FeedbackSpecificityType>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+</Scenario>

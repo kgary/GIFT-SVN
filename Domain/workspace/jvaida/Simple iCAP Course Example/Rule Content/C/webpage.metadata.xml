@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Metadata displayName="Concept 'C' - Rule, High Motivation" version="11.0.1">
+    <simple>
+        <value>Rule Content\C\webpage.html</value>
+    </simple>
+    <PresentAt>
+        <MerrillQuadrant>Rule</MerrillQuadrant>
+    </PresentAt>
+    <Concepts>
+        <Concept name="some concept c">
+            <ActivityType>
+                <Passive>
+                    <Attributes>
+                        <Attribute>
+                            <value>Visual with Text</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>Medium Difficulty</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>IMI2</value>
+                        </Attribute>
+                    </Attributes>
+                </Passive>
+            </ActivityType>
+        </Concept>
+    </Concepts>
+</Metadata>
