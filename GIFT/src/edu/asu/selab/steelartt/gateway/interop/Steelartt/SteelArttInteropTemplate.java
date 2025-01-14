@@ -236,6 +236,9 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
     // This method receives the ACKs for the control messages(sent by gift to unity)  sent by the unity app. 
     protected void _handleControlMessageAck(String line) {
+        if (line == null || line.trim().isEmpty()) {
+            return;
+        }
         __logger.info("_handleControlMessageAck()");
         if (__logger.isTraceEnabled()) {
             __logger.trace("_handleControlMessageAck('" + line + "')");
