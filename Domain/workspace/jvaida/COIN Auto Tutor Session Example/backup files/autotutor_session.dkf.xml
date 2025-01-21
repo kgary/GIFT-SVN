@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="auto tutor assessment" version="11.0.1">
+    <resources>
+        <ns2:surveyContext>26</ns2:surveyContext>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="AT session task" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="AT session" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.autotutor.AutoTutorWebServiceInterfaceCondition</conditionImpl>
+<input>
+    <AutoTutorConditionInput>
+        <ns3:AutoTutorSKO>
+            <ns2:LocalSKO>
+                <ns2:File>COIN.AT.sko.xml</ns2:File>
+            </ns2:LocalSKO>
+        </ns3:AutoTutorSKO>
+    </AutoTutorConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects/>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="AT below expectation response">
+                <LogicalExpression>
+                    <performanceNode name="AT session" nodeId="2">
+                        <previous>Unknown</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="continue chat"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="AT at expectation response">
+                <LogicalExpression>
+                    <performanceNode name="AT session" nodeId="2">
+                        <previous>Unknown</previous>
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="continue chat"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="AT above expectation response">
+                <LogicalExpression>
+                    <performanceNode name="AT session" nodeId="2">
+                        <previous>Unknown</previous>
+                        <current>AboveExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="continue chat"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="continue chat">
+                <performanceAssessment>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <performanceNode>
+                        <nodeId>2</nodeId>
+                    </performanceNode>
+                </performanceAssessment>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+</Scenario>

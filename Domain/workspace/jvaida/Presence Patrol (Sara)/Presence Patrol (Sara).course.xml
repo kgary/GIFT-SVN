@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Presence Patrol (Sara)" version="11.0.4">
+    <description>The "Presence Patrol (Sara)" course demonstrates integrating Virtual Battle Space (VBS) with a GIFT course.  GIFT assesses the learner actions and provides instructional intervention in the form of feedback.  This course also shows how to embed a YouTube video as lesson material in a GIFT course.  
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Intended Audience&lt;/b&gt;: everyone
+&lt;br&gt;
+&lt;b&gt;Number of users&lt;/b&gt;: 1
+&lt;br&gt;
+&lt;b&gt;Training Applications:&lt;/b&gt;
+&lt;ul&gt;
+	&lt;li&gt;VBS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;b&gt;Periperhals&lt;/b&gt;: none</description>
+    <image>VBS2_screenshot.png</image>
+    <ns2:surveyContext>1</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="patrol compound perimeter">
+                <conceptNode name="stay close to wall"/>
+                <conceptNode name="cover and concealment"/>
+                <conceptNode name="rules of engagement"/>
+                <conceptNode name="complete mission on schedule"/>
+                <conceptNode name="checkpoint pace"/>
+            </conceptNode>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>Auto Generated Guidance</transitionName>
+            <message>
+                <content>&lt;html&gt;&lt;body&gt;The pre-requisites to run this course are:&lt;ul class="center"&gt;&lt;li&gt;VBS should be launched using the GIFT provided shortcut (not the VBS provided shortcuts)&lt;/li&gt;&lt;li&gt;VBS needs to be at the main menu before continuing in this course.&lt;/li&gt;&lt;li&gt;If you haven't already done so, make sure the DIS network port and scenario id values match between GIFT's interopConfig.xml and VBS DIS.config.&lt;/li&gt;&lt;/ul&gt;&lt;style type="text/css"&gt;  .center { text-align: center; list-style-position:inside;} &lt;/style&gt;&lt;/body&gt;&lt;/html&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Intro</transitionName>
+            <message>
+                <content>In this exercise you'll perform a Presence Patrol mission. Prior to the mission you'll need to answer a few questions. &lt;br/&gt; &lt;br/&gt; Click 'Continue' when ready.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <PresentSurvey>
+            <transitionName>Pre Lesson Survey</transitionName>
+            <ns2:GIFTSurveyKey>PreLesson</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <Guidance>
+            <transitionName>Initialize VBS</transitionName>
+            <message>
+                <content>Click the next button to have GIFT start the VBS scenario.</content>
+            </message>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>VBS Presence Patrol scenario</transitionName>
+            <trainingAppTypeEnum>VBS</trainingAppTypeEnum>
+            <dkfRef>
+                <file>vbs.presencepatrol.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.vbsplugin.VBSPluginInterface</InteropImpl>
+                    <InteropInputs>
+                        <VBSInteropInputs>
+                            <loadArgs>
+<ScenarioName>PresencePatrol.Sara</ScenarioName>
+                            </loadArgs>
+                        </VBSInteropInputs>
+                    </InteropInputs>
+                </interop>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <DISInteropInputs>
+                            <loadArgs/>
+                        </DISInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>lesson complete</transitionName>
+            <message>
+                <content>Mission complete! &lt;br/&gt; &lt;br/&gt; Click 'Continue' to report your observations.</content>
+            </message>
+        </Guidance>
+        <PresentSurvey>
+            <transitionName>Pre AAR Survey</transitionName>
+            <ns2:GIFTSurveyKey>PreAAR</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+        </PresentSurvey>
+        <AAR>
+            <transitionName>AAR</transitionName>
+            <fullScreen>true</fullScreen>
+        </AAR>
+        <PresentSurvey>
+            <transitionName>Post AAR Survey</transitionName>
+            <ns2:GIFTSurveyKey>PostAAR</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+        </PresentSurvey>
+        <Guidance>
+            <transitionName>Goodbye</transitionName>
+            <message>
+                <content>Training complete! &lt;br/&gt; &lt;br/&gt; Click 'Continue' to return to the LMS Data Review. (From there you can log out or start another exercise.)</content>
+            </message>
+        </Guidance>
+    </transitions>
+</Course>

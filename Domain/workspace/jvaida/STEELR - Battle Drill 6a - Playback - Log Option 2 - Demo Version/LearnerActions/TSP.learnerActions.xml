@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LearnerActionsList xmlns="http://GIFT.com/learnerActions">
+	<learnerAction>
+		<type>Explosive Hazard Spot Report</type>
+		<displayName>Explosive Hazard Spot Report</displayName>
+	</learnerAction>		
+	<learnerAction>
+		<type>Nine Line Report</type>
+		<displayName>Nine Line Report</displayName>
+	</learnerAction>
+	<learnerAction>
+		<type>Spot Report</type>
+		<displayName>Spot Report</displayName>
+	</learnerAction>
+</LearnerActionsList>

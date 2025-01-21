@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="Simple Example TA Test" version="11.0.1">
+    <description>This DKF is used to assess game state messages coming from the Simple Example Training Application.</description>
+    <resources>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="pressing buttons task" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="5"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="pressed button 1" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
+<input>
+    <GenericConditionInput>
+        <ns2:nvpair>
+            <ns2:name>key</ns2:name>
+            <ns2:value>button 1</ns2:value>
+        </ns2:nvpair>
+    </GenericConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="pressed button 2" nodeId="3">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
+<input>
+    <GenericConditionInput>
+        <ns2:nvpair>
+            <ns2:name>key</ns2:name>
+            <ns2:value>button 2</ns2:value>
+        </ns2:nvpair>
+    </GenericConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="pressed button 3" nodeId="4">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
+<input>
+    <GenericConditionInput>
+        <ns2:nvpair>
+            <ns2:name>key</ns2:name>
+            <ns2:value>button 3</ns2:value>
+        </ns2:nvpair>
+    </GenericConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Application Completed" nodeId="5">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+<input>
+    <ApplicationCompletedCondition/>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects/>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="Button 1">
+                <LogicalExpression>
+                    <performanceNode name="button 1 was pressed" nodeId="2">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Button 1"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Button 2">
+                <LogicalExpression>
+                    <performanceNode name="button 2 was pressed" nodeId="3">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Button 2"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="Button 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>This is feedback because you pressed button 1.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+<ns4:InTrainingApplication>
+    <ns4:enabled>true</ns4:enabled>
+</ns4:InTrainingApplication>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Button 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>This is feedback because you pressed button 2.</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+<ns4:InTrainingApplication>
+    <ns4:enabled>true</ns4:enabled>
+</ns4:InTrainingApplication>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+</Scenario>

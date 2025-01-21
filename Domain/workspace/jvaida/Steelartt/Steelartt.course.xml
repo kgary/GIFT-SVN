@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt" version="11.0.44">
+    <description>This course will test my new training application interop plugin.</description>
+    <ns2:surveyContext>37</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts"/>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>Start of course</transitionName>
+            <message>
+                <content>You are about to start with the course.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>Knowledge Powerpoint</transitionName>
+            <trainingAppTypeEnum>PowerPoint</trainingAppTypeEnum>
+            <dkfRef>
+                <file>simplest.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.ppt.PPTInterface</InteropImpl>
+                    <InteropInputs>
+                        <PowerPointInteropInputs>
+                            <loadArgs>
+<ShowFile>CLS_Training_prep.pptx</ShowFile>
+                            </loadArgs>
+                        </PowerPointInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <PresentSurvey>
+            <transitionName>Knowledge Check</transitionName>
+            <ns2:GIFTSurveyKey>Knowledge Check_20241227_110503</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>Pre-test</transitionName>
+            <ns2:GIFTSurveyKey>Pre-test_20241227_110604</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <Guidance>
+            <transitionName>VR Scenario begins</transitionName>
+            <message>
+                <content>Welcome to the first VR Scenario.</content>
+            </message>
+        </Guidance>
+        <Guidance>
+            <transitionName>Preparation brief</transitionName>
+            <message>
+                <content>Any instructions you want to give the trainee before the start of the scenario - goes here.</content>
+            </message>
+        </Guidance>
+        <Guidance>
+            <transitionName>Jump to VR</transitionName>
+            <message>
+                <content>Now click next and jump into your VR headset right away.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>VR transition</transitionName>
+            <trainingAppTypeEnum>UnityDesktop</trainingAppTypeEnum>
+            <dkfRef>
+                <file>simplest.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.unity.UnityInterface</InteropImpl>
+                    <InteropInputs>
+                        <UnityInteropInputs>
+                            <loadArgs/>
+                        </UnityInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>End of Scenario 1</transitionName>
+            <message>
+                <content>The first scenario has successfully ended.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <PresentSurvey>
+            <transitionName>(1) After Action Review 1</transitionName>
+            <ns2:GIFTSurveyKey>After Action Review 1_20241227_104008</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>(1) After Action Review 2</transitionName>
+            <ns2:GIFTSurveyKey>After Action Review 2_20241227_104234</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>Post test for Knowledge 1</transitionName>
+            <ns2:GIFTSurveyKey>Post test for Knowledge 1_20241227_111354</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>Post-test 1</transitionName>
+            <ns2:GIFTSurveyKey>Post-test 1_20241227_111433</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>UX Survey 1</transitionName>
+            <ns2:GIFTSurveyKey>UX Survey 1_20241227_112041</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <Guidance>
+            <transitionName>VR Scenario begins</transitionName>
+            <message>
+                <content>Welcome to the second VR Scenario.</content>
+            </message>
+        </Guidance>
+        <Guidance>
+            <transitionName>Preparation brief</transitionName>
+            <message>
+                <content>Any instructions(or any survey) you want to give the trainee before the start of the 2nd scenario - goes here.</content>
+            </message>
+        </Guidance>
+        <Guidance>
+            <transitionName>Jump to VR</transitionName>
+            <message>
+                <content>Now click next and jump into your VR headset right away.</content>
+            </message>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>VR transition</transitionName>
+            <trainingAppTypeEnum>UnityDesktop</trainingAppTypeEnum>
+            <dkfRef>
+                <file>simplest.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.unity.UnityInterface</InteropImpl>
+                    <InteropInputs>
+                        <UnityInteropInputs>
+                            <loadArgs/>
+                        </UnityInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <PresentSurvey>
+            <transitionName>(2) After Action Review 1</transitionName>
+            <ns2:GIFTSurveyKey>After Action Review 1_20241227_104008</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>(2) After Action Review 2</transitionName>
+            <ns2:GIFTSurveyKey>After Action Review 2_20241227_104234</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>Post test for Knowledge 2</transitionName>
+            <ns2:GIFTSurveyKey>Post test for Knowledge 2_20241227_112238</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>Post-test 2</transitionName>
+            <ns2:GIFTSurveyKey>Post-test 2_20241227_112339</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>UX Survey 2</transitionName>
+            <ns2:GIFTSurveyKey>UX Survey 1_20241227_112041</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <Guidance>
+            <transitionName>Thankyou</transitionName>
+            <message>
+                <content>The course has ended. Thankyou.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

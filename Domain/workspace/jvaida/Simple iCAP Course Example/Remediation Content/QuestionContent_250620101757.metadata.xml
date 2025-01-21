@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Metadata displayName="Concept A+C Active Remediation - Highlight" version="11.0.1">
+    <simple>
+        <value>Remediation Content\QuestionContent_250620101757.question.export</value>
+    </simple>
+    <PresentAt>
+        <remediationOnly>true</remediationOnly>
+    </PresentAt>
+    <Concepts>
+        <Concept name="some concept a">
+            <ActivityType>
+                <Active/>
+            </ActivityType>
+        </Concept>
+        <Concept name="some concept c">
+            <ActivityType>
+                <Active/>
+            </ActivityType>
+        </Concept>
+    </Concepts>
+</Metadata>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Game Master - Cyber Bullet" version="11.0.1">
+    <description>&lt;p&gt;This course demonstrates a collective (team) assessment on a convoy operation tasked with securing a weapons cache.&amp;nbsp; Along the way a cyber attack compromises the team's GPS (shown by flashing arrows in VBS) and they must decide whether to trust the GPS or follow directions from an embedded interpreter (which should be one of the learners in the course).&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;Concepts: &lt;/b&gt;vehicle&amp;nbsp;convoy (speed, spacing, situational awareness), cyber (compromised GPS), ambush, secure weapons cache&lt;/p&gt;&lt;p&gt;&lt;b&gt;Number of users:&lt;/b&gt;&amp;nbsp;2 to 8&lt;/p&gt;&lt;p&gt;&lt;b&gt;Intended Audience: &lt;/b&gt;everyone&lt;/p&gt;&lt;p&gt;&lt;b&gt;Training Applications:&lt;/b&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;VBS&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Peripherals:&lt;/b&gt; none&lt;/p&gt;</description>
+    <lastSuccessfulValidation>2019:05:23 15:20:02:712 -0400</lastSuccessfulValidation>
+    <image>cyber bullet.PNG</image>
+    <ns2:surveyContext>4</ns2:surveyContext>
+    <transitions>
+        <Guidance>
+            <transitionName>OPORD Introduction</transitionName>
+            <message>
+                <content>&lt;div style="text-align: center;"&gt;&lt;u&gt;&lt;b&gt;Cyber Bullet - NoDie&amp;nbsp;&lt;/b&gt;&lt;/u&gt;&lt;/div&gt;&lt;div style="text-align: center;"&gt;&lt;br&gt;&lt;/div&gt;&lt;div style="text-align: justify;"&gt;Our intel suggests that there is an ENY weapons cache in the surrounding area. You have been tasked to take a convoy to collect the weapons from an abandoned building on the outskirts of town.&lt;/div&gt;&lt;div style="text-align: justify;"&gt;&lt;br&gt;&lt;/div&gt;&lt;div style="text-align: justify;"&gt;You will take a squad sized element, along with your interpreter, on the mission to collect the weapons and return to the FOB WARRIOR. Once you arrive at the weapons cache you will alert to higher and secure the site, the mission will be complete.&lt;/div&gt;&lt;div style="text-align: justify;"&gt;&lt;br&gt;&lt;/div&gt;&lt;div style="text-align: justify;"&gt;As a result of faulty Blue Force Tracker equipment, you are relying on your civilian GPS from a cell phone to maneuver to the weapons cache. Your GPS is represented as blue arrows in the simulation. The enemy has cyber capabilities and access to IDF.&amp;nbsp;&amp;nbsp;&lt;/div&gt;&lt;div style="text-align: justify;"&gt;&lt;br&gt;&lt;/div&gt;&lt;div style="text-align: justify;"&gt;Click the arrow to continue when you are ready.&amp;nbsp;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>Cyber Bullet</transitionName>
+            <dkfRef>
+                <file>Cyber Bullet_0e8e8ead-afa6-4065-84f0-f04df3f5c844.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.vbsplugin.VBSPluginInterface</InteropImpl>
+                    <InteropInputs>
+                        <VBSInteropInputs>
+                            <loadArgs>
+<ScenarioName>Storyboard_GPS_Cyber13_NoDie.map_samawah50km_ieed</ScenarioName>
+                            </loadArgs>
+                        </VBSInteropInputs>
+                    </InteropInputs>
+                </interop>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <DISInteropInputs>
+                            <loadArgs/>
+                        </DISInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>Scenario End</transitionName>
+            <message>
+                <content>You have successfully completed the Cyber Bullet training.&amp;nbsp;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

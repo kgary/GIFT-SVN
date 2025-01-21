@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	This file was created with the GIFT Metadata Authoring Tool (MAT).
+	This file contains metadata attributes about a single domain resource file (e.g. PowerPoint show).
+	Metadata attributes are content dependent and learner state independent.
+-->
+<Metadata version="6.0.1" xmlns:x0="http://www.w3.org/2001/XMLSchema">
+    <trainingAppRef>Rule Content\A+C\A+C-TrainingAppRule.trainingapp.xml</trainingAppRef>
+    <MerrillQuadrant>Rule</MerrillQuadrant>
+    <Concepts>
+        <Concept name="some concept A">
+            <Attributes>
+                <Attribute>
+                    <value>Visual</value>
+                </Attribute>
+                <Attribute>
+                    <value>Animation</value>
+                </Attribute>
+                <Attribute>
+                    <value>IMI1</value>
+                </Attribute>
+            </Attributes>
+        </Concept>
+        <Concept name="some concept C">
+            <Attributes>
+                <Attribute>
+                    <value>Visual</value>
+                </Attribute>
+                <Attribute>
+                    <value>Animation</value>
+                </Attribute>
+                <Attribute>
+                    <value>IMI1</value>
+                </Attribute>
+            </Attributes>
+        </Concept>
+    </Concepts>
+</Metadata>

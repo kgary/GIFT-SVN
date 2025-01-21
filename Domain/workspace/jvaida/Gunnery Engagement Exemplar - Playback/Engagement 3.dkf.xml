@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="Real-time Assessment" version="11.0.283">
+    <description>This is the simplest DKF that can be used by most training applications.  It only contains 1 condition, the Application Completed Condition, which when triggered will end the domain assessment and therefore the Training Application course element.</description>
+    <resources>
+        <ns2:surveyContext>27</ns2:surveyContext>
+        <AvailableLearnerActions/>
+    </resources>
+    <endTriggers>
+        <trigger>
+            <StrategyApplied>
+                <strategyName>Prepare for Next Engagement</strategyName>
+            </StrategyApplied>
+        </trigger>
+    </endTriggers>
+    <assessment>
+        <tasks>
+            <task name="Scenario Started" nodeId="14">
+                <startTriggers>
+                    <trigger>
+                        <scenarioStarted/>
+                        <triggerMessage>
+                            <strategy name="TaskTriggerStrategy">
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>ISR Report a stationary and a moving Truck in your sector. Defend and Report</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:scenarioAdaptation>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:environmentAdaptation>
+        <ns4:script>
+            <ns4:value>STRYKER1 addMagazineTurret ["vbs2_mag_100rnd_127x99_Trace_browning_m2",[0]]; reload STRYKER1;setDriverOverride true;</ns4:value>
+        </ns4:script>
+    </ns4:environmentAdaptation>
+    <ns4:description>Adds a magazine to the turret to let the gunner fire and allows gunner to control vehicle with WASD</ns4:description>
+</ns4:scenarioAdaptation>
+<ns4:scenarioAdaptation>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:environmentAdaptation>
+        <ns4:script>
+            <ns4:value>deleteVehicle Dest1Highlight;Dest1Highlight = createVehicle ["vbs2_editor_waypoint_blue", [27429.236328125,20641.19921875,7], [], 0, "NONE"];Dest1Highlight setUnitName "Dest1Highlight"; Dest1Highlight setPos [27429.236328125,20641.19921875,7];</ns4:value>
+        </ns4:script>
+    </ns4:environmentAdaptation>
+    <ns4:description>Show marker at destination</ns4:description>
+</ns4:scenarioAdaptation>
+                            </strategy>
+                        </triggerMessage>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <taskEnded nodeId="10"/>
+                    </trigger>
+                    <trigger>
+                        <taskEnded nodeId="8"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Application Completed" nodeId="15">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+<input>
+    <ApplicationCompletedCondition>
+        <IdealCompletionDuration>00:00:00</IdealCompletionDuration>
+    </ApplicationCompletedCondition>
+</input>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Detect targets while mounted" nodeId="3">
+                <startTriggers>
+                    <trigger>
+                        <conceptAssessment concept="17" result="BelowExpectation"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="6" result="BelowExpectation"/>
+                    </trigger>
+                    <trigger>
+                        <conceptAssessment concept="6" result="AtExpectation"/>
+                    </trigger>
+                    <trigger>
+                        <conceptAssessment concept="6" result="AboveExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Detect multiple targets while mounted" nodeId="6">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.DetectObjectsCondition</conditionImpl>
+<input>
+    <DetectObjectsCondition>
+        <teamMemberRefs>
+            <teamMemberRef>STYKER_2</teamMemberRef>
+            <teamMemberRef>WST1_DEV</teamMemberRef>
+            <teamMemberRef>STRYKER_1</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Gunner</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Driver</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Commander</teamMemberRef>
+        </teamMemberRefs>
+        <objectsToDetect>
+            <teamMemberRef>LE3Target</teamMemberRef>
+            <teamMemberRef>LM4Flank</teamMemberRef>
+        </objectsToDetect>
+        <fieldOfView>250</fieldOfView>
+        <orientAngle>30</orientAngle>
+        <viewMaxDistance>500</viewMaxDistance>
+        <AtExpectationUpperBound>5.0</AtExpectationUpperBound>
+        <AboveExpectationUpperBound>2.5</AboveExpectationUpperBound>
+    </DetectObjectsCondition>
+</input>
+<scoring>
+    <count name="Violation Count" units="count">
+        <evaluators>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="1"/>
+            <evaluator assessment="AtExpectation" operator="Equals" value="0"/>
+        </evaluators>
+    </count>
+</scoring>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="1.0"/>
+                    </concept>
+                </concepts>
+                <DifficultyMetric>
+                    <value>1</value>
+                </DifficultyMetric>
+            </task>
+            <task name="Engage targets while mounted" nodeId="11">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="3"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="7" result="BelowExpectation"/>
+                    </trigger>
+                    <trigger>
+                        <conceptAssessment concept="7" result="AtExpectation"/>
+                    </trigger>
+                    <trigger>
+                        <conceptAssessment concept="7" result="AboveExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Engage multiple targets while mounted" nodeId="7">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.EngageTargetsCondition</conditionImpl>
+<input>
+    <EngageTargetsCondition>
+        <teamMemberRefs>
+            <teamMemberRef>STYKER_2</teamMemberRef>
+            <teamMemberRef>WST1_DEV</teamMemberRef>
+            <teamMemberRef>STRYKER_1</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Gunner</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Driver</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Commander</teamMemberRef>
+        </teamMemberRefs>
+        <targetsToEngage>
+            <teamMemberRef>LE3Target</teamMemberRef>
+            <teamMemberRef>LM4Flank</teamMemberRef>
+        </targetsToEngage>
+        <weaponConeAngle>300</weaponConeAngle>
+        <weaponConeMaxDistance>500</weaponConeMaxDistance>
+        <AtExpectationUpperBound>5.0</AtExpectationUpperBound>
+        <AboveExpectationUpperBound>2.5</AboveExpectationUpperBound>
+    </EngageTargetsCondition>
+</input>
+<scoring>
+    <count name="Violation Count" units="count">
+        <evaluators>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="1"/>
+            <evaluator assessment="AtExpectation" operator="Equals" value="0"/>
+        </evaluators>
+    </count>
+</scoring>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="1.0"/>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Complete engagement in timely manner" nodeId="8">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="3"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <StrategyApplied>
+                            <strategyName>Hide Engagement 3 Targets</strategyName>
+                        </StrategyApplied>
+                        <triggerDelay>10</triggerDelay>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Eliminate targets within allotted time" nodeId="5">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.TimerCondition</conditionImpl>
+<input>
+    <TimerConditionInput>
+        <repeatable>true</repeatable>
+        <interval>50</interval>
+    </TimerConditionInput>
+</input>
+<scoring>
+    <count name="Violation Count" units="count">
+        <evaluators>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="1"/>
+            <evaluator assessment="AtExpectation" operator="Equals" value="0"/>
+        </evaluators>
+    </count>
+</scoring>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="1.0"/>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Eliminate targets while mounted" nodeId="10">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="11"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <taskEnded nodeId="8"/>
+                    </trigger>
+                    <trigger>
+                        <StrategyApplied>
+                            <strategyName>Hide Engagement 3 Targets</strategyName>
+                        </StrategyApplied>
+                        <triggerDelay>5</triggerDelay>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Eliminate multiple targets while mounted" nodeId="4">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.EliminateHostilesCondition</conditionImpl>
+<input>
+    <EliminateHostilesCondition>
+        <entities>
+            <teamMemberRef>LE3Target</teamMemberRef>
+            <teamMemberRef>LM4Flank</teamMemberRef>
+        </entities>
+        <teamMemberRefs>
+            <teamMemberRef>STYKER_2</teamMemberRef>
+            <teamMemberRef>WST1_DEV</teamMemberRef>
+            <teamMemberRef>STRYKER_1</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Gunner</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Driver</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Commander</teamMemberRef>
+        </teamMemberRefs>
+    </EliminateHostilesCondition>
+</input>
+<scoring>
+    <count name="Violation Count" units="count">
+        <evaluators>
+            <evaluator assessment="BelowExpectation" operator="LessThan" value="2"/>
+            <evaluator assessment="AtExpectation" operator="Equals" value="2"/>
+        </evaluators>
+    </count>
+</scoring>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="1.0"/>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Move to Objective" nodeId="16">
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="17" result="BelowExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Reach Shooting Position" nodeId="17">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+<input>
+    <AvoidLocationCondition>
+        <pointRef distance="6" value="Eng 3 Shooting Position"/>
+        <teamMemberRefs>
+            <teamMemberRef>STYKER_2</teamMemberRef>
+            <teamMemberRef>WST1_DEV</teamMemberRef>
+            <teamMemberRef>STRYKER_1</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Gunner</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Driver</teamMemberRef>
+            <teamMemberRef>STRYKER 1 Commander</teamMemberRef>
+        </teamMemberRefs>
+    </AvoidLocationCondition>
+</input>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Crew Coordination" nodeId="18">
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="15" result="BelowExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Crews exchange information during search" nodeId="19">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="0.5"/>
+                    </concept>
+                    <concept name="Commander corrections" nodeId="22">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="0.5"/>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Crew Duties" nodeId="20">
+                <endTriggers>
+                    <trigger>
+                        <StrategyApplied>
+                            <strategyName>Prepare for Next Engagement</strategyName>
+                        </StrategyApplied>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="State DDR" nodeId="21">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="0.5"/>
+                    </concept>
+                    <concept name="Issue Response Term &quot;IDENTIFIED&quot;" nodeId="23">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="0.5"/>
+                    </concept>
+                    <concept name="Wait for Execution Command Prior to Firing" nodeId="24">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="0.0"/>
+                    </concept>
+                    <concept name="Communicate &quot;ON THE WAY&quot;  Prior to Firing" nodeId="25">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition/>
+</input>
+<performanceMetricArguments weight="1.0"/>
+                            </condition>
+                        </conditions>
+                        <performanceMetricArguments weight="0.0"/>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects>
+            <PlacesOfInterest>
+                <point name="Eng 3 Shooting Position">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-727395.1467608354</ns2:x>
+                            <ns2:y>-5412698.487246579</ns2:y>
+                            <ns2:z>3283947.3901446383</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+            </PlacesOfInterest>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="Prepare Next Engagement once Targets Eliminated">
+                <LogicalExpression>
+                    <performanceNode name="Commander corrections" nodeId="22">
+                        <previous>Unknown</previous>
+                    </performanceNode>
+                    <performanceNode name="Communicate &quot;ON THE WAY&quot;  Prior to Firing" nodeId="25">
+                        <previous>Unknown</previous>
+                    </performanceNode>
+                    <performanceNode name="Crews exchange information during search" nodeId="19">
+                        <previous>Unknown</previous>
+                    </performanceNode>
+                    <performanceNode name="Eliminate multiple targets while mounted" nodeId="4">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                    <performanceNode name="State DDR" nodeId="21">
+                        <previous>Unknown</previous>
+                    </performanceNode>
+                    <performanceNode name="Wait for Execution Command Prior to Firing" nodeId="24">
+                        <previous>Unknown</previous>
+                    </performanceNode>
+                    <performanceNode name="Issue Response Term &quot;IDENTIFIED&quot;" nodeId="23">
+                        <previous>Unknown</previous>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Prepare for Next Engagement"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Hide Targets after Delay">
+                <LogicalExpression>
+                    <performanceNode name="Eliminate targets within allotted time" nodeId="5">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Hide Engagement 3 Targets"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Show Targets on Reaching Position">
+                <LogicalExpression>
+                    <performanceNode name="Move to Objective" nodeId="16">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Show Engagement 3 Targets"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Show help message for demo when appropriate">
+                <LogicalExpression>
+                    <performanceNode name="Eliminate multiple targets while mounted" nodeId="4">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Show help message for demo"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="Prepare for Next Engagement">
+                <midLessonMedia>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <LessonMaterialList>
+                        <media>
+                            <name>External Feedback</name>
+                            <uri>http://localhost:3000/request/</uri>
+                            <DisplaySessionProperties>
+<requestUsingSessionState>true</requestUsingSessionState>
+                            </DisplaySessionProperties>
+                            <WebpageProperties/>
+                        </media>
+                    </LessonMaterialList>
+                </midLessonMedia>
+            </strategy>
+            <strategy name="Show Engagement 3 Targets">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>[] execVM 'scripts\target\le_3a.sqf'</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Displays the LE3 targets</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>deleteVehicle Dest1Highlight;</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Hides the destination marker</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="Hide Engagement 3 Targets"/>
+            <strategy name="Reset Engagement">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>[] execVM 'scripts\target\reset.sqf'</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>STRYKER1 setPos [27743.048828125,20484.517578125];STRYKER1 setDir 302</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Teleport the vehicle back to the start position</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:delayAfterStrategy>
+                        <ns4:duration>10</ns4:duration>
+                    </ns4:delayAfterStrategy>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>http://localhost:3000/</ns4:content>
+                            <ns4:DisplaySessionProperties>
+<ns4:requestUsingSessionState>true</ns4:requestUsingSessionState>
+                            </ns4:DisplaySessionProperties>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <Difficulty>0</Difficulty>
+                <shouldResetScenario>true</shouldResetScenario>
+            </strategy>
+            <strategy name="Show help message for demo">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>&lt;b&gt;To finish the course, you will need to open the Game Master in another browser tab, as suggested earlier. 
+&lt;br/&gt;&lt;br/&gt;
+The final feedback message will appear once assessments have been provided to remaining concepts. To do this, you can open the Assessments panel and click on the black stars with yellow blinking backgrounds behind them.&lt;/b&gt;</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>&lt;b&gt;Please open the Assessments panel and click on the black stars with yellow blinking backgrounds behind them. If the Assessments panel is not showing, you can display it using the two buttons above the center map area.
+&lt;br/&gt;&lt;br/&gt;
+The course will only proceed once assessments have been provided for the 6 yellow blinking concepts.&lt;/b&gt;</ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>AvatarAndText</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+    <teamOrganization>
+        <team name="Everyone">
+            <team name="Team">
+                <teamMember name="STYKER_2" playable="false">
+                    <learnerId>
+                        <entityMarking>STRYKER2</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="WST1_DEV" playable="false">
+                    <learnerId>
+                        <entityMarking>WST1_DEV</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="STRYKER_1" playable="false">
+                    <learnerId>
+                        <entityMarking>VEH1_50CAL</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="STRYKER 1 Gunner">
+                    <learnerId>
+                        <entityMarking>STKR1_GUN</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="STRYKER 1 Driver">
+                    <learnerId>
+                        <entityMarking>STKR1_DVR</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="STRYKER 1 Commander">
+                    <learnerId>
+                        <entityMarking>STKR1_COM</entityMarking>
+                    </learnerId>
+                </teamMember>
+            </team>
+            <team name="Targets">
+                <teamMember name="LE1Truck" playable="false">
+                    <learnerId>
+                        <entityMarking>LE1</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="LE2Truck" playable="false">
+                    <learnerId>
+                        <entityMarking>LE2</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="LE3Target" playable="false">
+                    <learnerId>
+                        <entityMarking>LE3</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="LM4Flank" playable="false">
+                    <learnerId>
+                        <entityMarking>LM4</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="LE4_1Target" playable="false">
+                    <learnerId>
+                        <entityMarking>LE4_1</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="LE5_2Truck" playable="false">
+                    <learnerId>
+                        <entityMarking>LE5_2</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="LM6Flank" playable="false">
+                    <learnerId>
+                        <entityMarking>LM6</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="LM5Target" playable="false">
+                    <learnerId>
+                        <entityMarking>LM5</entityMarking>
+                    </learnerId>
+                </teamMember>
+            </team>
+            <team name="Vehicles">
+                <teamMember name="STRYKER V1" playable="false">
+                    <learnerId>
+                        <entityMarking>VEH1_50CAL</entityMarking>
+                    </learnerId>
+                </teamMember>
+            </team>
+        </team>
+    </teamOrganization>
+</Scenario>
