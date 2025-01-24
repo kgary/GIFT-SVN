@@ -83,3 +83,30 @@ Implementation of AbstractConfigReader for external configurations. Overrides Lo
 Static factory class that instantiates appropriate config reader (Internal/External) based on ConfigProviderType. Acts as a creation point for configuration readers.
 
 The class diagram for this is here ![ConfigReader Class Diagram](Unity_ConfigReader.png "Class Diagram")
+
+# Course Transition Order (GIFT Perspective)
+
+Below, we've outlined the order of GIFT course transition as per Vipin's latest updates.
+
+## Course Flow
+
+1. **Knowledge PPT**
+2. **Knowledge Check**
+3. **Pre-Test**
+4. **VR Scenario 1**
+   - Preparation Brief
+   - Scenario First Half(1.1)
+   - After Action Review (also the break time)
+   - Scenario Second Half(1.2)
+   - After Action Review
+5. **Post-Test for Knowledge 1**
+6. **Post-Test 1**
+7. **UX Survey**
+8. **VR Scenario 2**
+   - Preparation Brief
+   - Scenario First Half(2.1)
+   - After Action Review (also the break time)
+   - Scenario Second Half(2.2)
+   - After Action Review
+9. **Post-Test for Knowledge 2**
+10. **Post-Test 2**
