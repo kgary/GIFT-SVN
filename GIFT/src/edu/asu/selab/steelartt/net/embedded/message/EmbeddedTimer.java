@@ -1,9 +1,9 @@
 package mil.arl.gift.net.embedded.message;
 
-import mil.arl.gift.net.embedded.message.competency.layers.CasualtyLayer;
-import mil.arl.gift.net.embedded.message.competency.layers.TraineeLayer;
+import mil.arl.gift.net.embedded.message.timer.layers.CasualtyLayer;
+import mil.arl.gift.net.embedded.message.timer.layers.TraineeLayer;
 
-public class EmbeddedCompetencyMessage {
+public class EmbeddedTimer {
 
     private CasualtyLayer casualtyLayer;
     private TraineeLayer traineeLayer;
@@ -25,6 +25,6 @@ public class EmbeddedCompetencyMessage {
     }
 
     public static void main(String[] args) {
-        EmbeddedCompetencyMessage message = new EmbeddedCompetencyMessage();
+        EmbeddedTimer message = new EmbeddedTimer();
     }
 }

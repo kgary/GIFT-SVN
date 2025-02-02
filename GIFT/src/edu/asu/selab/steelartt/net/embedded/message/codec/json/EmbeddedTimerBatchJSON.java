@@ -8,23 +8,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import mil.arl.gift.net.api.message.MessageDecodeException;
-import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessage;
-import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessageBatch;
-import mil.arl.gift.net.embedded.message.codec.json.EmbeddedCompetencyMessageJSON;
+import mil.arl.gift.net.embedded.message.EmbeddedTimer;
+import mil.arl.gift.net.embedded.message.EmbeddedTimerBatch;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedTimerJSON;
 import mil.arl.gift.net.json.JSONCodec;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmbeddedCompetencyMessageBatchJSON implements JSONCodec {
+public class EmbeddedTimerBatchJSON implements JSONCodec {
 
-    private static Logger logger = LoggerFactory.getLogger(EmbeddedCompetencyMessageBatchJSON.class);
+    private static Logger logger = LoggerFactory.getLogger(EmbeddedTimerBatchJSON.class);
 
     private static final String TIMESTAMP = "Timestamp";
     private static final String DATA_SIZE = "DataSize";
     private static final String MESSAGES = "Messages";
 
-    private final EmbeddedCompetencyMessageJSON messageCodec = new EmbeddedCompetencyMessageJSON();
+    private final EmbeddedTimerJSON messageCodec = new EmbeddedTimerJSON();
     @Override
     public Object decode(JSONObject jsonObj) throws MessageDecodeException {
             logger.info("Received JSONObject: ");
@@ -48,7 +48,7 @@ public class EmbeddedCompetencyMessageBatchJSON implements JSONCodec {
                 throw new MessageDecodeException(this.getClass().getName(), "Messages field is missing.");
             }
 
-            List<EmbeddedCompetencyMessage> messages = new ArrayList<>();
+            List<EmbeddedTimer> messages = new ArrayList<>();
             JSONParser parser = new JSONParser();  // JSON parser to parse the strings into JSONObjects
 
             for (Object messageObj : messagesJsonArray) {
@@ -64,11 +64,11 @@ public class EmbeddedCompetencyMessageBatchJSON implements JSONCodec {
                         throw new MessageDecodeException(this.getClass().getName(), "Error parsing message JSON string.", e);
                     }                
                 }
-                EmbeddedCompetencyMessage message = (EmbeddedCompetencyMessage)messageCodec.decode(messageJson);
+                EmbeddedTimer message = (EmbeddedTimer)messageCodec.decode(messageJson);
                 messages.add(message);
             }
 
-            return new EmbeddedCompetencyMessageBatch(timestamp, dataSize, messages);
+            return new EmbeddedTimerBatch(timestamp, dataSize, messages);
 
         } catch (Exception e) {
             logger.error("Caught exception while creating " + this.getClass().getName() + " from " + jsonObj, e);
@@ -81,13 +81,13 @@ public class EmbeddedCompetencyMessageBatchJSON implements JSONCodec {
     @Override
     public void encode(JSONObject jsonObj, Object payload) {
 
-        EmbeddedCompetencyMessageBatch batch = (EmbeddedCompetencyMessageBatch) payload;
+        EmbeddedTimerBatch batch = (EmbeddedTimerBatch) payload;
 
         jsonObj.put(TIMESTAMP, batch.getTimestamp());
         jsonObj.put(DATA_SIZE, batch.getDataSize());
 
         JSONArray messagesJsonArray = new JSONArray();
-        for (EmbeddedCompetencyMessage message : batch.getMessages()) {
+        for (EmbeddedTimer message : batch.getMessages()) {
             JSONObject messageJson = new JSONObject();
             messageCodec.encode(messageJson,message);
             messagesJsonArray.add(messageJson);

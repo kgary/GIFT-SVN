@@ -5,14 +5,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import mil.arl.gift.net.api.message.MessageDecodeException;
-import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessage;
+import mil.arl.gift.net.embedded.message.EmbeddedTimer;
 import mil.arl.gift.net.json.JSONCodec;
-import mil.arl.gift.net.embedded.message.codec.json.competency.*;
-import mil.arl.gift.net.embedded.message.competency.layers.*;
+import mil.arl.gift.net.embedded.message.codec.json.timer.*;
+import mil.arl.gift.net.embedded.message.timer.layers.*;
 
-public class EmbeddedCompetencyMessageJSON implements JSONCodec {
+public class EmbeddedTimerJSON implements JSONCodec {
 
-    private static Logger logger = LoggerFactory.getLogger(EmbeddedCompetencyMessageJSON.class);
+    private static Logger logger = LoggerFactory.getLogger(EmbeddedTimerJSON.class);
 
     private static final String CASUALTY_LAYER = "causalities";
     private static final String TRAINEE_LAYER = "trainees";
@@ -29,7 +29,7 @@ public class EmbeddedCompetencyMessageJSON implements JSONCodec {
             CasualtyLayer casualtyLayer = casualtyLayerJSON.parse(jsonObj);
             TraineeLayer traineeLayer = traineeLayerJSON.parse(jsonObj);
 
-            EmbeddedCompetencyMessage message = new EmbeddedCompetencyMessage();
+            EmbeddedTimer message = new EmbeddedTimer();
             message.setCasualtyLayer(casualtyLayer);
             message.setTraineeLayer(traineeLayer);
 
@@ -44,7 +44,7 @@ public class EmbeddedCompetencyMessageJSON implements JSONCodec {
     @SuppressWarnings("unchecked")
     @Override
     public void encode(JSONObject jsonObj, Object payload) {
-        EmbeddedCompetencyMessage message = (EmbeddedCompetencyMessage) payload;
+        EmbeddedTimer message = (EmbeddedTimer) payload;
 
         JSONObject casualtyLayerJson = new JSONObject();
         casualtyLayerJSON.encode(casualtyLayerJson, message.getCasualtyLayer());

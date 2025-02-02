@@ -2,14 +2,14 @@ package mil.arl.gift.net.embedded.message;
 
 import java.util.List;
 
-public class EmbeddedCompetencyMessageBatch {
+public class EmbeddedTimerBatch {
 
     private String timestamp;
     private int dataSize;
-    private List<EmbeddedCompetencyMessage> messages;
+    private List<EmbeddedTimer> messages;
 
 
-    public EmbeddedCompetencyMessageBatch(String timestamp, int dataSize, List<EmbeddedCompetencyMessage> messages){
+    public EmbeddedTimerBatch(String timestamp, int dataSize, List<EmbeddedTimerBatch> messages){
         this.timestamp = timestamp;
         this.dataSize = dataSize;
         this.messages = messages;
@@ -32,11 +32,11 @@ public class EmbeddedCompetencyMessageBatch {
         this.dataSize = dataSize;
     }
 
-    public List<EmbeddedCompetencyMessage> getMessages() {
+    public List<EmbeddedTimer> getMessages() {
         return messages;
     }
 
-    public void setMessages(List<EmbeddedCompetencyMessage> messages) {
+    public void setMessages(List<EmbeddedTimer> messages) {
         this.messages = messages;
     }
 }

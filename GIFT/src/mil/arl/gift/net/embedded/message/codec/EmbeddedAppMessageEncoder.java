@@ -42,8 +42,8 @@ import mil.arl.gift.net.embedded.message.EmbeddedGeolocation;
 import mil.arl.gift.net.embedded.message.EmbeddedSiman;
 import mil.arl.gift.net.embedded.message.EmbeddedSimpleExampleState;
 import mil.arl.gift.net.embedded.message.EmbeddedStopFreeze;
-import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessage;
-import mil.arl.gift.net.embedded.message.EmbeddedCompetencyMessageBatch;
+import mil.arl.gift.net.embedded.message.EmbeddedTimer;
+import mil.arl.gift.net.embedded.message.EmbeddedTimerBatch;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedBinaryDataJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGenericJSONStateJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGeolocationJSON;
@@ -52,8 +52,8 @@ import mil.arl.gift.net.embedded.message.codec.json.EmbeddedSimpleExampleStateJS
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStopFreezeJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStringPayloadJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedVibrateDeviceJSON;
-import mil.arl.gift.net.embedded.message.codec.json.EmbeddedCompetencyMessageJSON;
-import mil.arl.gift.net.embedded.message.codec.json.EmbeddedCompetencyMessageBatchJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedTimerJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedTimerBatchJSON;
 import mil.arl.gift.net.json.JSONCodec;
 
 /**
@@ -103,10 +103,15 @@ public class EmbeddedAppMessageEncoder {
 	private static EmbeddedBinaryDataJSON BINARY_DATA_JSON_CODEC = new EmbeddedBinaryDataJSON();
 
 
-    // The below codecs are used for Competency mesages for Steelartt
-    private static EmbeddedCompetencyMessageJSON COMPETENCY_JSON_CODEC = new EmbeddedCompetencyMessageJSON();
+    // The below codecs are used for Timer mesages for Steelartt
+    private static EmbeddedTimerJSON TIMER_JSON_CODEC = new EmbeddedTimerJSON();
     
-    private static EmbeddedCompetencyMessageBatchJSON COMPETENCY_BATCH_JSON_CODEC = new EmbeddedCompetencyMessageBatchJSON();
+    private static EmbeddedTimerBatchJSON TIMER_BATCH_JSON_CODEC = new EmbeddedTimerBatchJSON();
+
+    private static EmbeddedScenarioDefinitionJSON SCENARIO_DEFINITION_JSON_CODEC = new EmbeddedScenarioDefinitionJSON();
+    private static EmbeddedTriageJSON TRIAGE_JSON_CODEC = new EmbeddedTriageJSON();
+    private static EmbeddedEventStatusJSON EVENT_STATUS_JSON_CODEC = new EmbeddedEventStatusJSON();
+
 
 	/**
 	 * An enumeration of object types that are supported for encoding/decoding. The name of an object's type will be added to its
@@ -136,10 +141,16 @@ public class EmbeddedAppMessageEncoder {
         Geolocation,
         /** A message containing raw binary data. */
         BinaryData,
-        /** A message containing competency layers data for steel-artt */
-        CompetencyMessage,
-        /** A message containing an array of competency layers data, its timestamp of when it was sent from unity and batch size for steel-artt */
-        CompetencyMessageBatch
+        /** A message containing timer data for steel-artt */
+        Timer,
+        /** A message containing an array of timer data json objects, its timestamp of when it was sent from unity and batch size for steel-artt */
+        TimerBatch
+        /** A message containing scenario definition data for STEEL ARTT . */
+        ScenarioDefinition,
+        /** A message containing triage status data for STEEL ARTT . */
+        Triage,
+        /** A message containing event status data like perturbation, triage and scene - start/stop for STEEL ARTT . */
+        EventStatus
 	}
 
 	/**
@@ -159,9 +170,11 @@ public class EmbeddedAppMessageEncoder {
 		messageTypeToCodec.put(EncodedMessageType.Geolocation, GEOLOCATION_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.GenericJSONState, GENERIC_JSON_STATE_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.BinaryData, BINARY_DATA_JSON_CODEC );
-        messageTypeToCodec.put(EncodedMessageType.CompetencyMessage,COMPETENCY_JSON_CODEC );
-        messageTypeToCodec.put(EncodedMessageType.CompetencyMessageBatch,COMPETENCY_BATCH_JSON_CODEC );
-
+        messageTypeToCodec.put(EncodedMessageType.TimerMessage,TIMER_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.TimerMessageBatch,TIMER_BATCH_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.ScenarioDefinition,SCENARIO_DEFINITION_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.Triage,TRIAGE_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.EventStatus,EVENT_STATUS_JSON_CODEC );
 	}
 
 	/**
@@ -176,8 +189,11 @@ public class EmbeddedAppMessageEncoder {
         decodedPayloadClassToMessageType.put(StopFreeze.class, MessageTypeEnum.STOP_FREEZE);
         decodedPayloadClassToMessageType.put(Geolocation.class, MessageTypeEnum.GEOLOCATION);
         decodedPayloadClassToMessageType.put(EntityState.class, MessageTypeEnum.ENTITY_STATE);
-        decodedPayloadClassToMessageType.put(EmbeddedCompetencyMessage.class, MessageTypeEnum.COMPETENCY_MESSAGE);
-        decodedPayloadClassToMessageType.put(EmbeddedCompetencyMessageBatch.class, MessageTypeEnum.COMPETENCY_MESSAGE_BATCH);
+        decodedPayloadClassToMessageType.put(EmbeddedTimer.class, MessageTypeEnum.TIMER);
+        decodedPayloadClassToMessageType.put(EmbeddedTimerBatch.class, MessageTypeEnum.TIMER_BATCH);
+        decodedPayloadClassToMessageType.put(EmbeddedScenarioDefinition.class, MessageTypeEnum.SCENARIO_DEFINITION);
+        decodedPayloadClassToMessageType.put(EmbeddedTriage.class, MessageTypeEnum.TRIAGE);
+        decodedPayloadClassToMessageType.put(EmbeddedEventStatus.class, MessageTypeEnum.EVENT_STATUS);
 	}
 
     /**
@@ -477,12 +493,12 @@ public class EmbeddedAppMessageEncoder {
             Double heading = embeddedGeolocation.getHeading();
             Double speed = embeddedGeolocation.getSpeed();
             return new Geolocation(coordinates, accuracy, altitudeAccuracy, heading, speed);
-        }else if (embeddedPayload instanceof EmbeddedCompetencyMessage) {
-            EmbeddedCompetencyMessage embeddedCompetencyMessage = (EmbeddedCompetencyMessage) embeddedPayload;
-            return embeddedCompetencyMessage;
-        }else if(embeddedPayload instanceof EmbeddedCompetencyMessageBatch){
-            EmbeddedCompetencyMessageBatch embeddedCompetencyMessageBatch = (EmbeddedCompetencyMessageBatch) embeddedPayload;
-            return embeddedCompetencyMessageBatch;
+        }else if (embeddedPayload instanceof EmbeddedTimer) {
+            EmbeddedTimer embeddedTimer = (EmbeddedTimer) embeddedPayload;
+            return embeddedTimer;
+        }else if(embeddedPayload instanceof EmbeddedTimerBatch){
+            EmbeddedTimerBatch embeddedTimerBatch = (EmbeddedTimerBatch) embeddedPayload;
+            return embeddedTimerBatch;
         }else {
             throw new IllegalArgumentException("The class of the GIFT payload was an unsupported type '" + embeddedPayload.getClass().getName() + "'");
         }
