@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt Test" version="11.0.77">
+    <description>This course will test my new training application interop plugin.</description>
+    <lastSuccessfulValidation>2025:01:29 15:39:23:816 -0700</lastSuccessfulValidation>
+    <ns2:surveyContext>37</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts"/>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>Start of course</transitionName>
+            <message>
+                <content>You are about to start with the course.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Jump to VR scenario 1st half</transitionName>
+            <message>
+                <content>Now click next and jump into your VR headset right away.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>VR Scenario - 1st half</transitionName>
+            <trainingAppTypeEnum>UnityDesktop</trainingAppTypeEnum>
+            <dkfRef>
+                <file>simplest.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.Steelartt.SteelArttKafka</InteropImpl>
+                    <InteropInputs>
+                        <UnityInteropInputs>
+                            <loadArgs/>
+                        </UnityInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>End of Scenario 1st half</transitionName>
+            <message>
+                <content>The first half of the scenario has successfully ended.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>VR Scenario 2nd half begins</transitionName>
+            <message>
+                <content>Welcome to the second half of the VR Scenario.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Jump to VR scenario 2nd half</transitionName>
+            <message>
+                <content>Now click next and jump into your VR headset right away.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>VR Scenario - 2nd half</transitionName>
+            <trainingAppTypeEnum>UnityDesktop</trainingAppTypeEnum>
+            <dkfRef>
+                <file>simplest.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.Steelartt.SteelArttKafka</InteropImpl>
+                    <InteropInputs>
+                        <UnityInteropInputs>
+                            <loadArgs/>
+                        </UnityInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>End of Scenario (2nd half)</transitionName>
+            <message>
+                <content>Enter your message here!</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Thankyou</transitionName>
+            <message>
+                <content>The course has ended. Thankyou.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>
