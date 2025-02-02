@@ -9,7 +9,7 @@ public class EmbeddedTriageJSON {
 
     private final ActionsPerformedJSON actionsPerformedJSON = new ActionsPerformedJSON();
 
-    public EmbeddedTriage parse(JSONObject jsonObj) {
+    public EmbeddedTriage decode(JSONObject jsonObj) {
         ActionsPerformed actionsPerformed = actionsPerformedJSON.parse((JSONObject) jsonObj.get("actionsPerformed"));
         
         return new EmbeddedTriage(

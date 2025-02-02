@@ -5,7 +5,7 @@ import mil.arl.gift.net.embedded.message.triage.ActionsPerformed;
 
 public class ActionsPerformedJSON {
 
-    public ActionsPerformed parse(JSONObject jsonObj) {
+    public ActionsPerformed decode(JSONObject jsonObj) {
         return new ActionsPerformed(
             (boolean) jsonObj.get("exitWoundIdentified"),
             (boolean) jsonObj.get("airwayObstructionIdentified"),
