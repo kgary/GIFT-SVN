@@ -3,7 +3,7 @@ package mil.arl.gift.net.embedded.message.scenarioDefinition;
 import java.util.ArrayList;
 import java.util.List;
 
-public static class AreaOfInterest {
+public class AreaOfInterest {
         private String label;
         private String areaType;
         private String interestType;

@@ -8,7 +8,7 @@ import mil.arl.gift.net.api.message.MessageDecodeException;
 import mil.arl.gift.net.embedded.message.EmbeddedTimer;
 import mil.arl.gift.net.json.JSONCodec;
 import mil.arl.gift.net.embedded.message.codec.json.timer.*;
-import mil.arl.gift.net.embedded.message.timer.layers.*;
+import mil.arl.gift.net.embedded.message.timer.*;
 
 public class EmbeddedTimerJSON implements JSONCodec {
 

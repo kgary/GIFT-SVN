@@ -3,7 +3,7 @@ package mil.arl.gift.net.embedded.message.scenarioDefinition;
 import java.util.ArrayList;
 import java.util.List;
 
-public static class ObjectOfInterest extends Entity {
+public class ObjectOfInterest extends Entity {
     private String type;
 
     public ObjectOfInterest(String id, String description, String type, List<Integer> location, List<AreaOfInterest> areasOfInterest) {

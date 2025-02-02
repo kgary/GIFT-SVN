@@ -1,4 +1,4 @@
-package mil.arl.gift.net.embedded.message.competency.layers;
+package mil.arl.gift.net.embedded.message.timer;
 
 import org.json.simple.JSONArray;
 import java.util.ArrayList;

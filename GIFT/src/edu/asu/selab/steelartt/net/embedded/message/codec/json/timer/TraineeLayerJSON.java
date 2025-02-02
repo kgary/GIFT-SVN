@@ -1,8 +1,8 @@
-package mil.arl.gift.net.embedded.message.codec.json.competency;
+package mil.arl.gift.net.embedded.message.codec.json.timer;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import mil.arl.gift.net.embedded.message.competency.layers.TraineeLayer;
+import mil.arl.gift.net.embedded.message.timer.TraineeLayer;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 

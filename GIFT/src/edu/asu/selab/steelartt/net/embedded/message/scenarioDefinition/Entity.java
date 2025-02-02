@@ -3,7 +3,7 @@ package mil.arl.gift.net.embedded.message.scenarioDefinition;
 import java.util.ArrayList;
 import java.util.List;
 
-public static class Entity {
+public class Entity {
         private String id;
         private String description;
         private List<Integer> location;

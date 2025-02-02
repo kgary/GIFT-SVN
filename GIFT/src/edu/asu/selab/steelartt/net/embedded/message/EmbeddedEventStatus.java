@@ -2,7 +2,7 @@ package mil.arl.gift.net.embedded.message;
 
 import java.util.ArrayList;
 import java.util.List;
-import mil.ar.gift.net.embedded.message.eventStatus.Event;
+import mil.arl.gift.net.embedded.message.eventStatus.Event;
 public class EmbeddedEventStatus {
 
     private List<Event> events = new ArrayList<>();

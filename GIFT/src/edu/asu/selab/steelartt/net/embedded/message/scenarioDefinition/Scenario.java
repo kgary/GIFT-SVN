@@ -1,9 +1,10 @@
-package mil.arl.gift.net.embedded.message;
+package mil.arl.gift.net.embedded.message.scenarioDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
+import mil.arl.gift.net.embedded.message.scenarioDefinition.*;
 
-public static class Scenario {
+public class Scenario {
     private String id;
     private String title;
     private String description;

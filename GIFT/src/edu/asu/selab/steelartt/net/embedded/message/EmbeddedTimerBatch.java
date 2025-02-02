@@ -9,7 +9,7 @@ public class EmbeddedTimerBatch {
     private List<EmbeddedTimer> messages;
 
 
-    public EmbeddedTimerBatch(String timestamp, int dataSize, List<EmbeddedTimerBatch> messages){
+    public EmbeddedTimerBatch(String timestamp, int dataSize, List<EmbeddedTimer> messages){
         this.timestamp = timestamp;
         this.dataSize = dataSize;
         this.messages = messages;

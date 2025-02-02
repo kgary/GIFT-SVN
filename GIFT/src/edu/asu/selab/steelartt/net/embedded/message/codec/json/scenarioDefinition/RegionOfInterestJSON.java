@@ -3,6 +3,7 @@ package mil.arl.gift.net.embedded.message.codec.json.scenarioDefinition;
 import org.json.simple.JSONObject;
 import mil.arl.gift.net.embedded.message.scenarioDefinition.Entity;
 import mil.arl.gift.net.embedded.message.scenarioDefinition.ObjectOfInterest;
+import mil.arl.gift.net.embedded.message.scenarioDefinition.RegionOfInterest;
 
 public class RegionOfInterestJSON extends EntityJSON {
     @Override

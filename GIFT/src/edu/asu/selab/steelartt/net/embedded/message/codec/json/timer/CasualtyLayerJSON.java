@@ -2,7 +2,7 @@ package mil.arl.gift.net.embedded.message.codec.json.timer;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import mil.arl.gift.net.embedded.message.timer.layers.CasualtyLayer;
+import mil.arl.gift.net.embedded.message.timer.CasualtyLayer;
 import java.util.List;
 
 public class CasualtyLayerJSON {

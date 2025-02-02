@@ -44,6 +44,9 @@ import mil.arl.gift.net.embedded.message.EmbeddedSimpleExampleState;
 import mil.arl.gift.net.embedded.message.EmbeddedStopFreeze;
 import mil.arl.gift.net.embedded.message.EmbeddedTimer;
 import mil.arl.gift.net.embedded.message.EmbeddedTimerBatch;
+import mil.arl.gift.net.embedded.message.EmbeddedScenarioDefinition;
+import mil.arl.gift.net.embedded.message.EmbeddedTriage;
+import mil.arl.gift.net.embedded.message.EmbeddedEventStatus;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedBinaryDataJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGenericJSONStateJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGeolocationJSON;
@@ -54,6 +57,9 @@ import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStringPayloadJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedVibrateDeviceJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedTimerJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedTimerBatchJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedScenarioDefinitionJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedTriageJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedEventStatusJSON;
 import mil.arl.gift.net.json.JSONCodec;
 
 /**
@@ -144,7 +150,7 @@ public class EmbeddedAppMessageEncoder {
         /** A message containing timer data for steel-artt */
         Timer,
         /** A message containing an array of timer data json objects, its timestamp of when it was sent from unity and batch size for steel-artt */
-        TimerBatch
+        TimerBatch,
         /** A message containing scenario definition data for STEEL ARTT . */
         ScenarioDefinition,
         /** A message containing triage status data for STEEL ARTT . */
@@ -170,8 +176,8 @@ public class EmbeddedAppMessageEncoder {
 		messageTypeToCodec.put(EncodedMessageType.Geolocation, GEOLOCATION_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.GenericJSONState, GENERIC_JSON_STATE_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.BinaryData, BINARY_DATA_JSON_CODEC );
-        messageTypeToCodec.put(EncodedMessageType.TimerMessage,TIMER_JSON_CODEC );
-        messageTypeToCodec.put(EncodedMessageType.TimerMessageBatch,TIMER_BATCH_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.Timer,TIMER_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.TimerBatch,TIMER_BATCH_JSON_CODEC );
         messageTypeToCodec.put(EncodedMessageType.ScenarioDefinition,SCENARIO_DEFINITION_JSON_CODEC );
         messageTypeToCodec.put(EncodedMessageType.Triage,TRIAGE_JSON_CODEC );
         messageTypeToCodec.put(EncodedMessageType.EventStatus,EVENT_STATUS_JSON_CODEC );
@@ -499,7 +505,17 @@ public class EmbeddedAppMessageEncoder {
         }else if(embeddedPayload instanceof EmbeddedTimerBatch){
             EmbeddedTimerBatch embeddedTimerBatch = (EmbeddedTimerBatch) embeddedPayload;
             return embeddedTimerBatch;
-        }else {
+        }else if(embeddedPayload instanceof EmbeddedScenarioDefinition){
+            EmbeddedScenarioDefinition embeddedScenarioDefinition = (EmbeddedScenarioDefinition) embeddedPayload;
+            return embeddedScenarioDefinition;
+        }else if(embeddedPayload instanceof EmbeddedTriage){
+            EmbeddedTriage embeddedTriage = (EmbeddedTriage) embeddedPayload;
+            return embeddedTriage;
+        }else if(embeddedPayload instanceof EmbeddedEventStatus){
+            EmbeddedEventStatus embeddedEventStatus = (EmbeddedEventStatus) embeddedPayload;
+            return embeddedEventStatus;
+        }
+        else {
             throw new IllegalArgumentException("The class of the GIFT payload was an unsupported type '" + embeddedPayload.getClass().getName() + "'");
         }
     }

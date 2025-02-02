@@ -2,7 +2,7 @@ package mil.arl.gift.net.embedded.message.scenarioDefinition;
 
 import java.util.ArrayList;
 import java.util.List;
-public static class Trainee extends Entity {
+public class Trainee extends Entity {
         private String role;
 
         public Trainee(String id, String description, String role, List<Integer> location, List<AreaOfInterest> areasOfInterest) {

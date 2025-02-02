@@ -1,4 +1,4 @@
-package mil.arl.gift.net.embedded.message;
+package mil.arl.gift.net.embedded.message.eventStatus;
 
 import java.util.ArrayList;
 import java.util.List;

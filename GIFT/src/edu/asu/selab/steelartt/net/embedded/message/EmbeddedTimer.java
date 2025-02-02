@@ -1,7 +1,7 @@
 package mil.arl.gift.net.embedded.message;
 
-import mil.arl.gift.net.embedded.message.timer.layers.CasualtyLayer;
-import mil.arl.gift.net.embedded.message.timer.layers.TraineeLayer;
+import mil.arl.gift.net.embedded.message.timer.CasualtyLayer;
+import mil.arl.gift.net.embedded.message.timer.TraineeLayer;
 
 public class EmbeddedTimer {
 
