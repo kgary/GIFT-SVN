@@ -1,21 +1,91 @@
-# Dockerizing GIFT
 
-## Dec 17 
-1) I was able to successfully build GIFT's Dockerfile on linux env & pushed the image to my repo on docker-hub. In case you want to check it out. You'll find it on **jvaida/gift2023** . 
-2) This was done on a VM on top of a Windows host machine(x86_64, Intel architecture).
-3) But I'm unable to run this container as I get an error that says "Gateway module threw an exception." Reason= 'Failed to configure the Gateway module using the interop configuration file.'
-4) From the error it seems that I have to configure the gateway module. If yes, then I believe I will also need to setup an external training application as well. Do I need to configure GIFT(gateway module) to connect with a training application, in order to dockerize GIFT? I mean if I were to make an entirely monolothic type arch. it makes sense to dockerize both GIFT & the training app as well. But is this strictly required?(because we would like to setup the training application differently & basically run GIFT in server mode(that involves sending the gateway module through browser using JWS).
+# GIFT Dockerization
 
-## Jan 8
-1) In my latest push to the docker-hub image, the container is finally running atleast. All modules are starting up, this time including the Gateway module.
-2) They asked to do this change basically : 
-Set the DomainContentServerHost variable in GIFT's GIFT_2023-1\release_2023-1\GIFT\config\common.properties file to **localhost**
-3) After doing this, even the Gateway module started up.
+## Prerequisites
 
+Before getting started, ensure you have the following:
+- A Linux machine or Virtual Machine (VM) with x86_64 (Intel) architecture.
+- Docker
+- Access to Docker Hub.
 
-## Summary (Mar 17, 2024)
-1) The aim here is to run the entirety of GIFT on a docker container, which essentially is running a monolithic architecture on a Docker container.
-2) Initially (Dec 17, 2023) what I tried to do is build GIFT's Dockerfile on the linux env & pushed the image to my repo on docker-hub.
-3) The initial push had some errors on starting up the container, so I did this basically:
-` Set the DomainContentServerHost variable in GIFT\config\common.properties file to "localhost" `
-3) Next, I built the Dockerfile and on running the image, the container starts up without any errors.
+## Quick Start: Pull and Run Pre-built Docker Image
+
+You can directly pull the Docker image that I built(@jvaida) from Docker Hub and run it.
+
+### 1. Pull the GIFT Docker Image
+Pull the pre-built Docker image from Docker Hub:
+
+```bash
+docker pull jvaida/gift2023
+```
+
+### 2. Run the Docker Container
+Run the container using the following command:
+
+```bash
+docker run -d --name gift-container -p 8080:8080 jvaida/gift2023
+```
+
+The -p maps port 8080 of the container to port 8080 of your the machine.
+
+### 3. Verify the Container is Running
+Check if the container is running:
+
+```bash
+docker ps
+```
+
+You should see `gift-container` in the list of running containers.
+
+### 4. Access GIFT
+Once the container is running, you can access GIFT through `http://localhost:8080`.
+
+## Building Your Own Docker Image
+
+If you prefer to build your own Docker image, GIFT provides a Dockerfile.
+
+### 1. Configuring the Gateway Module
+Before running the container, configure the `GIFT\config\common.properties` file by setting the `DomainContentServerHost` variable to `localhost`:
+
+```properties
+DomainContentServerHost=localhost
+```
+
+This ensures that the Gateway module connects correctly in a monolithic setup.
+
+### 2. Build the Docker Image
+Navigate to the directory containing GIFT’s Dockerfile, located at `GIFT/scripts/docker/Dockerfile`, and build the image:
+
+```bash
+docker build -t <dockerhub-username>/gift2023 -f GIFT/scripts/docker/Dockerfile .
+```
+
+Replace `<dockerhub-username>` with an actual Docker Hub username.
+
+### 3. Push the Docker Image to Docker Hub
+If you want to push your own GIFT image to Docker Hub:
+
+```bash
+docker login
+docker push <dockerhub-username>/gift2023
+```
+
+### 4. Run the Docker Container
+Run the container using your custom image:
+
+```bash
+docker run -d --name gift-container -p 8080:8080 <dockerhub-username>/gift2023
+```
+
+This should start GIFT inside the container, accessible on your host machine at localhost:8080
+
+## Troubleshooting
+
+### Gateway Module Exception
+If you encounter an error like "Gateway module threw an exception," ensure that:
+- `DomainContentServerHost` is set to `localhost` in the `common.properties` file.
+
+### Docker Image Build Issues
+If the image fails to build, make sure:
+- You are in the correct directory containing GIFT’s Dockerfile.
+- All necessary files and dependencies are available for the build.
