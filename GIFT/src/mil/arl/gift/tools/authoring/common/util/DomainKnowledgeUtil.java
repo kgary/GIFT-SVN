@@ -562,11 +562,6 @@ public class DomainKnowledgeUtil {
                     mil.arl.gift.domain.knowledge.condition.ObservedAssessmentCondition.class};
         trainingAppConditionClassesMap.put(TrainingApplicationEnum.UNITY_DESKTOP, UNITY_STANDALONE_CONDITIONS);
 
-        // SteelArtt
-        Class<?>[] STEEL_ARTT_CONDITIONS =
-        {mil.arl.lgift.domain.knowledge.condition.StringCompareExampleCondition};
-        trainingAppConditionClassesMap.put(TrainingApplicationEnum.UNITY_DESKTO,STEEL_ARTT_CONDITIONS);
-
         // LEARNER ACTIONS
         learnerActionTypeToConditionClassMap.put(generated.dkf.LearnerActionEnumType.EXPLOSIVE_HAZARD_SPOT_REPORT, mil.arl.gift.domain.knowledge.condition.ExplosiveHazardSpotReportCondition.class);
         learnerActionTypeToConditionClassMap.put(generated.dkf.LearnerActionEnumType.NINE_LINE_REPORT, mil.arl.gift.domain.knowledge.condition.NineLineReportCondition.class);
