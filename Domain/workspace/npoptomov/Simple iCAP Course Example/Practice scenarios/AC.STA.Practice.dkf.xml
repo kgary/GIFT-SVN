@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="Simple Example TA Test" version="11.0.1">
+    <description>This DKF is used to assess game state messages coming from the Simple Example Training Application.</description>
+    <resources>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="pressing buttons task (A+C)" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="5"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="some concept A" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
+<input>
+    <GenericConditionInput>
+        <ns2:nvpair>
+            <ns2:name>key</ns2:name>
+            <ns2:value>button 1</ns2:value>
+        </ns2:nvpair>
+    </GenericConditionInput>
+</input>
+<scoring>
+    <count name="success count" units="count">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="GreaterThanEquals" value="1"/>
+            <evaluator assessment="BelowExpectation" operator="LessThanEquals" value="0"/>
+        </evaluators>
+    </count>
+</scoring>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="some concept C" nodeId="3">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
+<input>
+    <GenericConditionInput>
+        <ns2:nvpair>
+            <ns2:name>key</ns2:name>
+            <ns2:value>button 2</ns2:value>
+        </ns2:nvpair>
+    </GenericConditionInput>
+</input>
+<scoring>
+    <count name="success count" units="count">
+        <evaluators>
+            <evaluator assessment="AboveExpectation" operator="GreaterThanEquals" value="1"/>
+            <evaluator assessment="BelowExpectation" operator="LessThanEquals" value="0"/>
+        </evaluators>
+    </count>
+</scoring>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Application Completed" nodeId="5">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+<input>
+    <ApplicationCompletedCondition/>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects/>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="Unnamed State Transition 1">
+                <LogicalExpression>
+                    <performanceNode name="button 1 was pressed" nodeId="2">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Unnamed State Transition 1"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="Unnamed State Transition 2">
+                <LogicalExpression>
+                    <performanceNode name="button 2 was pressed" nodeId="3">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Unnamed State Transition 2"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="Unnamed State Transition 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>This is feedback because you pressed button 1 (and are now an expert on 'some concept A').</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+<ns4:InTrainingApplication>
+    <ns4:enabled>true</ns4:enabled>
+</ns4:InTrainingApplication>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Unnamed State Transition 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>This is feedback because you pressed button 2 (and are now an expert on 'some concept C').</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+<ns4:InTrainingApplication>
+    <ns4:enabled>true</ns4:enabled>
+</ns4:InTrainingApplication>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+</Scenario>

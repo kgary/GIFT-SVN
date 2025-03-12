@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Metadata displayName="Concept B Constructive Remediation - Summarize" version="11.0.1">
+    <simple>
+        <value>Remediation Content\QuestionContent_220620022747.question.export</value>
+    </simple>
+    <PresentAt>
+        <remediationOnly>true</remediationOnly>
+    </PresentAt>
+    <Concepts>
+        <Concept name="some concept b">
+            <ActivityType>
+                <Constructive/>
+            </ActivityType>
+        </Concept>
+    </Concepts>
+</Metadata>

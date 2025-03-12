@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta content="en-us" http-equiv="Content-Language" />
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Developer Info</title>
+<style type="text/css">
+.auto-style0 {
+	vertical-align: baseline;
+	font-family: Cambria;
+	padding-left: 150px;
+}
+
+.auto-style1 {
+	font-size: large;
+	vertical-align: baseline;
+	position: relative;
+	padding-left: 120px;
+}
+body {
+    background-image: url("paper-548650_1280.png");
+    background-repeat: no-repeat;
+}
+</style>
+</head>
+
+<body>
+
+<h1 class="auto-style0">GIFT RapidMiner Developer Information</h1>
+<p class="auto-style1" style="left: 0px; top: 0px; width: 800px; padding-left: 80px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">In the current integration,
+<strong>GIFT has been integrated with RapidMiner version 5.3.013</strong>.&nbsp; 
+GIFT can use RapidMiner 
+models inside of the GIFT Learner Module.&nbsp; 
+RapidMiner models can be created in the RapidMiner authoring tool as seen in the 
+screenshot below (<a href="https://rapidminer.com/" target="_blank">RapidMiner site</a>).</p>
+<p class="auto-style1">
+<img alt="Screenshot of RapidMiner authoring tool." height="450" src="RapidMiner%20Editor.png" width="725" /></p>
+
+<p class="auto-style1" style="left: 0px; top: 0px; width: 800px; padding-bottom: 10px; padding-left: 90px; padding-right: 10px; padding-top: 10px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+Once created your model can be used in a GIFT Learner module classifier or 
+predictor as an algorithm for calculating learner state.&nbsp; Both classifiers 
+and predictors exists as Java code in GIFT but can be written in such a way that 
+the algorithm can reside in another programming language (e.g. python) or third 
+party library (e.g. RapidMiner).&nbsp; <br />
+<br />
+A classifier consumes data coming into 
+the learner module.&nbsp; This data can be from sensors (e.g. ECG), learning 
+management systems (LMS), learner record store (LRS), real time performance assessments (from 
+the GIFT Domain module), GIFT survey responses 
+and training application / game state information.&nbsp; Classifiers analyze 
+this data and output short-term learner state values (e.g. Low Anxious).&nbsp; 
+On the other hand a predictor consumes the same data set as well as the 
+classifier's output to create predicted learner state values.&nbsp;
+<br />
+<br />
+To specify this data pipeline that runs during course execution in the learner module (i.e. what data 
+goes into the classifier/predictor) you need to edit the learner configuration 
+for your course.&nbsp; This can be accomplished in the GIFT course authoring 
+tool under "Course Properties" by editing the learner configuration.&nbsp; <br />
+<br />
+For more information please read
+<a href="https://gifttutoring.org/projects/gift/wiki/Developer_Guide_2017-1#Configuring-GIFT-with-RapidMiner" target="_blank">
+GIFT RapidMiner Developer Guide</a>.<br />
+</p>
+
+</body>
+
+</html>

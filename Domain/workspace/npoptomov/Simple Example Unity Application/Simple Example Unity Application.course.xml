@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Simple Example Unity Application" version="11.0.1">
+    <image>unity-logo.png</image>
+    <ns2:surveyContext>11</ns2:surveyContext>
+    <transitions>
+        <Guidance>
+            <transitionName>Welcome Message</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;Welcome to the Simple&amp;nbsp;Example Unity Training Application&amp;nbsp;GIFT course.&lt;/p&gt;&lt;p align="left"&gt;&amp;nbsp;&lt;/p&gt;&lt;p align="left"&gt;This course is designed to accompany the &lt;a href="https://gifttutoring.org/projects/gift/wiki/Developer_Guide_LATEST" target="_blank" data-saferedirecturl="https://www.google.com/url?hl=en&amp;amp;q=https://gifttutoring.org/projects/gift/wiki/Developer_Guide_LATEST&amp;amp;source=gmail&amp;amp;ust=1498411966117000&amp;amp;usg=AFQjCNEhyS8omXFEPzSYNMNY3zBlOZg94w"&gt;&lt;u&gt;&lt;font color="#0066cc"&gt;GIFT Software Developer Guide&lt;/font&gt;&lt;/u&gt;&lt;/a&gt;.&amp;nbsp;
+ The Simple Example&amp;nbsp;Unity Application is a web-based Unity&amp;nbsp;application 
+written in the c# programming language and converted to WebGL using the Unity Editor.&amp;nbsp; It&amp;nbsp;as an example of 
+an&amp;nbsp;embedded application that is integrated with the GIFT Tutor module through its tutoring interface.&amp;nbsp; The 
+source for the application is available&amp;nbsp;on the&amp;nbsp;Downloads page&amp;nbsp;on &lt;a href="https://gifttutoring.org/projects/gift/files" target="_blank"&gt;the 
+GIFT website.&lt;/a&gt;&lt;/p&gt;&lt;p align="left"&gt;&lt;br&gt;The next course object will have you interact with the Simple Example Unity Training Application.&amp;nbsp;&lt;/p&gt;&lt;p align="left"&gt;&lt;br&gt;&lt;/p&gt;&lt;p align="left"&gt;Each
+ button in the application is used to show case a specific feature in 
+the GIFT assessment logic.&amp;nbsp; This is merely meant to help a GIFT software
+ developer understand the logic behind the core GIFT modules (Gateway, 
+Domain, Learner, Pedagogical).&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;div align="left"&gt;Pressing 
+"Button 1" will cause a performance assessment, followed by an update in
+ learner state, an instructional strategy request and finally feedback 
+presented to the learner.&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align="left"&gt;&lt;p align="left"&gt;Pressing "Button 2" will cause a performance assessment, followed by an update in learner state.&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;p align="left"&gt;Pressing
+ "Button 3" will cause a performance assessment that indicates the 
+training applications 'scenario' is completed which results in the next 
+course object in the course to be shown.&lt;span class="HOEnZb"&gt;&lt;font color="#888888"&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p style="text-align: center; font-family: Arial; font-size: 20px;"&gt;&lt;br&gt;&lt;/p&gt;&lt;div style="background: repeating-linear-gradient(45deg, rgb(50, 50, 50), rgb(50, 50, 50) 5px, rgb(255, 255, 150) 5px, rgb(255, 255, 150) 10px); margin: 10px; padding: 7px; border-radius: 5px; border: 1px solid rgb(150, 150, 150); border-image: none; text-align: center; font-family: Arial; font-size: 20px;"&gt;&lt;div style="background: rgb(255, 255, 150); padding: 7px 5px; text-align: center; font-family: Arial; font-size: 20px;"&gt;&lt;strong&gt;Note:&lt;/strong&gt; Unity's WebGL player does not officially support Internet Explorer, so &lt;a href="https://docs.unity3d.com/Manual/webgl-browsercompatibility.html" target="_blank"&gt;some features may not work properly in that browser&lt;/a&gt;.&lt;/div&gt;&lt;div style="background: rgb(255, 255, 150); padding: 7px 5px; text-align: center; font-family: Arial; font-size: 20px;"&gt;For the optimal viewing experience, please consider using Mozilla Firefox, Google Chrome, or Microsoft Edge.&lt;br&gt;&lt;/div&gt;&lt;/div&gt;&lt;p style="text-align: center; font-family: Arial; font-size: 20px;"&gt;&lt;br&gt;&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>Unity App</transitionName>
+            <trainingAppTypeEnum>UnityEmbedded</trainingAppTypeEnum>
+            <dkfRef>
+                <file>example.dkf.xml</file>
+            </dkfRef>
+            <options>
+                <showAvatarInitially/>
+            </options>
+            <embeddedApps>
+                <embeddedApp>
+                    <embeddedAppUrl>UnityOutput_2020-06-18_10-16-20/index.html</embeddedAppUrl>
+                </embeddedApp>
+            </embeddedApps>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>Goodbye Message</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;Thanks for taking the course!&lt;br&gt;&lt;br&gt;You saw&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;div align="left"&gt;embedding a web-based application within GIFT's tutoring interface&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align="left"&gt;displaying feedback based on&amp;nbsp;learner interactions with an arbitrary Unity WebGL application&lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align="left"&gt;and performing a training simulation exercise without an external application&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p align="left"&gt;&lt;br&gt;&lt;/p&gt;&lt;p align="left"&gt;&lt;br&gt;It's important to remember that GIFT HANDLES ALL OF THIS AUTOMATICALLY based on the Unity WebGL application, a real-time assessment&amp;nbsp;handling that application, and a course indicating the&amp;nbsp;application to display.&lt;br&gt;&lt;br&gt;Thank you for paying attention.&lt;/p&gt;&lt;p align="left"&gt;&lt;br&gt;&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Acknowledgements</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;The Generalized Intelligent Framework for Tutoring team would like to 
+organizationally thank the Boeing Company, and personally thank Matthew 
+Genova and Barbara Buck for contributions to this Unity demonstration. &lt;/p&gt;&lt;p align="left"&gt;&lt;br&gt;&lt;/p&gt;&lt;p align="left"&gt;
+GIFT is intended to be a platform for community development, and Boeing 
+has taken this to heart with the contribution of a demonstration 
+training environment used as the basis for this course.&lt;/p&gt;&lt;p align="left"&gt;&lt;br&gt;&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

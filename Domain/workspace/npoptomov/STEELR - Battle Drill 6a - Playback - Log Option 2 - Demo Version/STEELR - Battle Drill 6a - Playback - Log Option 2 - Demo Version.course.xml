@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="STEELR - Battle Drill 6a - Playback - Log Option 2 - Demo Version" version="11.0.4">
+    <description>This course demonstrates integrating a pre-recorded log of DIS traffic from Virtual Battle Space (VBS) with a GIFT course. It contains collective (team) assessments which analyze learner actions while performing Battle Drill 6a: Enter and Clear a Room. The DIS traffic captured in this course demonstrates &lt;u&gt;Journeyman&lt;/u&gt;&amp;nbsp;team performance of the Battle Drill.&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Concepts&lt;/span&gt;: prevent weapon safety violations&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Intended Audience&lt;/span&gt;: everyone&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Number of users&lt;/span&gt;: 1&amp;nbsp;&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Training Applications:&lt;/span&gt;&lt;ul&gt;&lt;li&gt;VBS&lt;/li&gt;&lt;/ul&gt;&lt;span style="font-weight: 700;"&gt;Peripherals&lt;/span&gt;: none</description>
+    <lastSuccessfulValidation>2021:06:11 11:19:33:017 -0400</lastSuccessfulValidation>
+    <image>room clearing.jpg</image>
+    <configurations/>
+    <ns2:surveyContext>27</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts">
+                <conceptNode name="establish security between engagements">
+                    <authoritativeResource>
+                        <id>http://army/establish+security+between+engagements</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="select a hasty/optimum fighting position">
+                    <authoritativeResource>
+                        <id>http://army/select+a+hasty+optimum+fighting+position</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="prevent weapon safety violation">
+                    <authoritativeResource>
+                        <id>http://army/prevent+weapon+safety+violation</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="interleave weapon fire with team fires">
+                    <authoritativeResource>
+                        <id>http://army/interleave+weapon+fire+with+team+fires</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="detect all threat targets in assigned sector">
+                    <authoritativeResource>
+                        <id>http://army/detect+all+threat+targets+in+assigned+sector</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="minimize non-combatant casualties">
+                    <authoritativeResource>
+                        <id>http://army/minimize+non+combatant+casualties</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="minimize blufor casualties">
+                    <authoritativeResource>
+                        <id>http://army/minimize+blufor+causalities</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="neutralize opfor">
+                    <authoritativeResource>
+                        <id>http://army/neutralize+opfor</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="establish security between engagements(1)">
+                    <authoritativeResource>
+                        <id>http://army/establish+security+between+engagements</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="select a hasty/optimum fighting position(1)">
+                    <authoritativeResource>
+                        <id>http://army/select+a+hasty+optimum+fighting+position</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="prevent weapon safety violation(1)">
+                    <authoritativeResource>
+                        <id>http://army/prevent+weapon+safety+violation</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="interleave weapon fire with team fires(1)">
+                    <authoritativeResource>
+                        <id>http://army/interleave+weapon+fire+with+team+fires</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="detect all threat targets in assigned sector(1)">
+                    <authoritativeResource>
+                        <id>http://army/detect+all+threats+in+assigned+sector</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="minimize non-combatant casualties(1)">
+                    <authoritativeResource>
+                        <id>http://army/minimize+non+combatant+casualties</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="minimize blufor casualties(1)">
+                    <authoritativeResource>
+                        <id>http://army/minimize+blufor+causalities</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="neutralize opfor(1)">
+                    <authoritativeResource>
+                        <id>http://army/neutralize+opfor</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="establish security between engagements(1)(1)">
+                    <authoritativeResource>
+                        <id>http://army/establish+security+between+engagements</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="select a hasty/optimum fighting position(1)(1)">
+                    <authoritativeResource>
+                        <id>http://army/select+a+hasty+optimum+fighting+position</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="prevent weapon safety violation(1)(1)">
+                    <authoritativeResource>
+                        <id>http://army/prevent+weapon+safety+violation</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="interleave weapon fire with team fires(1)(1)">
+                    <authoritativeResource>
+                        <id>http://army/interleave+weapon+fire+with+team+fires</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="detect all threat targets in assigned sector(1)(1)">
+                    <authoritativeResource>
+                        <id>http://army/detect+all+threat+targets+in+assigned+sector</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="minimize non-combatant casualties(1)(1)">
+                    <authoritativeResource>
+                        <id>http://army/minimize+non+combatant+casualties</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="minimize blufor casualties(1)(1)">
+                    <authoritativeResource>
+                        <id>http://army/minimize+blufor+causalities</id>
+                    </authoritativeResource>
+                </conceptNode>
+                <conceptNode name="neutralize opfor(1)(1)">
+                    <authoritativeResource>
+                        <id>http://army/neutralize+opfor</id>
+                    </authoritativeResource>
+                </conceptNode>
+            </conceptNode>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>course intro</transitionName>
+            <message>
+                <content>&lt;span style="font-size: 18px;"&gt;The demonstration is now ready to begin. Click on the arrow at the top of the screen to continue.&amp;nbsp;&lt;/span&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+            <disabled>false</disabled>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>First Room - Journeyman Performance</transitionName>
+            <trainingAppTypeEnum>VBS</trainingAppTypeEnum>
+            <dkfRef>
+                <file>Battle Drill 6a - Log Option 2.dkf.xml</file>
+            </dkfRef>
+            <options/>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <DISInteropInputs>
+                            <loadArgs/>
+                            <logFile>
+<domainSessionLog assessmentName="Battle Drill 6a - Enter and Clear a Room" start="57" end="5051">domainSession231_uId4_2020-10-28_11-07-34.log</domainSessionLog>
+                            </logFile>
+                        </DISInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+    </transitions>
+</Course>

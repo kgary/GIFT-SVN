@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Metadata displayName="AC-PPT Practice.Scenario2.trainingapp.xml" version="11.0.1">
+    <trainingApp>
+        <value>Practice scenarios\AC-PPT Practice.Scenario2.trainingapp.xml</value>
+    </trainingApp>
+    <PresentAt>
+        <MerrillQuadrant>Practice</MerrillQuadrant>
+    </PresentAt>
+    <Concepts>
+        <Concept name="some concept a">
+            <ActivityType>
+                <Passive>
+                    <Attributes>
+                        <Attribute>
+                            <value>Hard Difficulty</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>IMI4</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>Guidance Prompts</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>Guidance Reflection</value>
+                        </Attribute>
+                    </Attributes>
+                </Passive>
+            </ActivityType>
+        </Concept>
+        <Concept name="some concept c">
+            <ActivityType>
+                <Passive>
+                    <Attributes>
+                        <Attribute>
+                            <value>Hard Difficulty</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>IMI4</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>Guidance Prompts</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>Guidance Reflection</value>
+                        </Attribute>
+                    </Attributes>
+                </Passive>
+            </ActivityType>
+        </Concept>
+    </Concepts>
+</Metadata>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Simple iCAP Course Example" version="11.0.1">
+    <description>This course is used to demonstrate and test the various aspects of GIFT's iCAP pedagogical model.&lt;br&gt;&lt;br&gt;It will attempt to teach 3 arbitrary concepts: "some concept A", "some concept B" and "some concept C" (where A and C are taught together).&lt;br&gt;&lt;br&gt;After the learner has mastered the knowledge based portion of the course, a practice environment will be presented.  The content delivered throughout the course is based on course authoring decisions, the learner's state at that time and empirically driven Pedagogy (in iCAP).  It will exercise dynamic course flow (i.e. branching) in GIFT based on the available domain content (e.g. PPT shows).&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Intended Audience&lt;/b&gt;: everyone
+&lt;br&gt;
+&lt;b&gt;Number of users&lt;/b&gt;: 1
+&lt;br&gt;
+&lt;b&gt;Training Applications:&lt;/b&gt;
+&lt;ul&gt;
+	&lt;li&gt;PowerPoint&lt;/li&gt;
+&lt;/ul&gt;
+&lt;b&gt;Peripherals&lt;/b&gt;: none</description>
+    <image>course.image.png</image>
+    <configurations/>
+    <ns2:surveyContext>12</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="All Concepts">
+                <conceptNode name="some concept a"/>
+                <conceptNode name="some concept b"/>
+                <conceptNode name="some concept c"/>
+            </conceptNode>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>welcome message</transitionName>
+            <message>
+                <content>This course will exercise dynamic course flow by first presenting 2 surveys that will influence the learner state.&lt;br/&gt;&lt;br/&gt;Although the PowerPoint content presented shows learner state characteristic information, the metadata attributes associated with those PowerPoint files are learner state independent as they should be.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+            <disabled>false</disabled>
+        </Guidance>
+        <Guidance>
+            <transitionName>What are you seeing</transitionName>
+            <file>
+                <HTML>What are you seeing with the EMAP Simple Branching Example.html</HTML>
+            </file>
+            <fullScreen>true</fullScreen>
+            <disabled>false</disabled>
+        </Guidance>
+        <Guidance>
+            <transitionName>MBP Course Element Details</transitionName>
+            <file>
+                <HTML>MBP Course Element Details.html</HTML>
+            </file>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <PresentSurvey>
+            <transitionName>motivation survey</transitionName>
+            <ns2:GIFTSurveyKey>Motivation</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <PresentSurvey>
+            <transitionName>Prior Knowledge Concept B test</transitionName>
+            <ConceptSurvey>
+                <GIFTSurveyKey>Knowledge Assessment Question Bank</GIFTSurveyKey>
+                <ConceptQuestions name="some concept b">
+                    <QuestionTypes>
+                        <Easy>1</Easy>
+                        <Medium>0</Medium>
+                        <Hard>0</Hard>
+                    </QuestionTypes>
+                    <AssessmentRules>
+                        <AboveExpectation>
+                            <NumberCorrect>1</NumberCorrect>
+                        </AboveExpectation>
+                        <AtExpectation>
+                            <NumberCorrect>0</NumberCorrect>
+                        </AtExpectation>
+                        <BelowExpectation>
+                            <NumberCorrect>0</NumberCorrect>
+                        </BelowExpectation>
+                    </AssessmentRules>
+                </ConceptQuestions>
+            </ConceptSurvey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <Guidance>
+            <transitionName>Concept B introduction</transitionName>
+            <message>
+                <content>Now let's start the lesson by learning about 'some concept B'.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+            <disabled>false</disabled>
+        </Guidance>
+        <MerrillsBranchPoint>
+            <transitionName>some concept B</transitionName>
+            <Concepts>
+                <concept>some concept b</concept>
+            </Concepts>
+            <Quadrants>
+                <Rule/>
+                <Example/>
+                <Recall>
+                    <PresentSurvey>
+                        <ConceptSurvey>
+                            <GIFTSurveyKey>Knowledge Assessment Question Bank</GIFTSurveyKey>
+                            <ConceptQuestions name="some concept b">
+<QuestionTypes>
+    <Easy>1</Easy>
+    <Medium>1</Medium>
+    <Hard>1</Hard>
+</QuestionTypes>
+<AssessmentRules>
+    <AboveExpectation>
+        <NumberCorrect>3</NumberCorrect>
+    </AboveExpectation>
+    <AtExpectation>
+        <NumberCorrect>2</NumberCorrect>
+    </AtExpectation>
+    <BelowExpectation>
+        <NumberCorrect>0</NumberCorrect>
+    </BelowExpectation>
+</AssessmentRules>
+                            </ConceptQuestions>
+                        </ConceptSurvey>
+                    </PresentSurvey>
+                </Recall>
+                <Remediation>
+                    <ExcludeRuleExampleContent>false</ExcludeRuleExampleContent>
+                </Remediation>
+                <transitions>
+                    <Guidance>
+                        <transitionName>some concept B - after recall guidance</transitionName>
+                        <message>
+                            <content>Congratulations you passed the test.  Now let's apply the knowledge you have learned today (or brought with you to this session) with some practice.</content>
+                        </message>
+                        <fullScreen>true</fullScreen>
+                    </Guidance>
+                </transitions>
+                <Practice>
+                    <PracticeConcepts>
+                        <CourseConcept>some concept b</CourseConcept>
+                    </PracticeConcepts>
+                </Practice>
+            </Quadrants>
+        </MerrillsBranchPoint>
+        <Guidance>
+            <transitionName>Concept A+C introduction</transitionName>
+            <message>
+                <content>Congratulations, you completed the lesson on 'some concept B'. Now lets learn about 'some concept A' and 'some concept C'</content>
+            </message>
+            <fullScreen>true</fullScreen>
+            <disabled>false</disabled>
+        </Guidance>
+        <PresentSurvey>
+            <transitionName>Prior Knowledge Concept A+C test</transitionName>
+            <ConceptSurvey>
+                <GIFTSurveyKey>Knowledge Assessment Question Bank</GIFTSurveyKey>
+                <ConceptQuestions name="some concept a">
+                    <QuestionTypes>
+                        <Easy>1</Easy>
+                        <Medium>0</Medium>
+                        <Hard>0</Hard>
+                    </QuestionTypes>
+                    <AssessmentRules>
+                        <AboveExpectation>
+                            <NumberCorrect>1</NumberCorrect>
+                        </AboveExpectation>
+                        <AtExpectation>
+                            <NumberCorrect>0</NumberCorrect>
+                        </AtExpectation>
+                        <BelowExpectation>
+                            <NumberCorrect>0</NumberCorrect>
+                        </BelowExpectation>
+                    </AssessmentRules>
+                </ConceptQuestions>
+                <ConceptQuestions name="some concept c">
+                    <QuestionTypes>
+                        <Easy>1</Easy>
+                        <Medium>0</Medium>
+                        <Hard>0</Hard>
+                    </QuestionTypes>
+                    <AssessmentRules>
+                        <AboveExpectation>
+                            <NumberCorrect>1</NumberCorrect>
+                        </AboveExpectation>
+                        <AtExpectation>
+                            <NumberCorrect>0</NumberCorrect>
+                        </AtExpectation>
+                        <BelowExpectation>
+                            <NumberCorrect>0</NumberCorrect>
+                        </BelowExpectation>
+                    </AssessmentRules>
+                </ConceptQuestions>
+            </ConceptSurvey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <MerrillsBranchPoint>
+            <transitionName>some concept A + C</transitionName>
+            <Concepts>
+                <concept>some concept a</concept>
+                <concept>some concept c</concept>
+            </Concepts>
+            <Quadrants>
+                <Rule/>
+                <Example/>
+                <Recall>
+                    <PresentSurvey>
+                        <ConceptSurvey>
+                            <GIFTSurveyKey>Knowledge Assessment Question Bank</GIFTSurveyKey>
+                            <ConceptQuestions name="some concept a">
+<QuestionTypes>
+    <Easy>1</Easy>
+    <Medium>1</Medium>
+    <Hard>1</Hard>
+</QuestionTypes>
+<AssessmentRules>
+    <AboveExpectation>
+        <NumberCorrect>3</NumberCorrect>
+    </AboveExpectation>
+    <AtExpectation>
+        <NumberCorrect>2</NumberCorrect>
+    </AtExpectation>
+    <BelowExpectation>
+        <NumberCorrect>0</NumberCorrect>
+    </BelowExpectation>
+</AssessmentRules>
+                            </ConceptQuestions>
+                            <ConceptQuestions name="some concept c">
+<QuestionTypes>
+    <Easy>1</Easy>
+    <Medium>1</Medium>
+    <Hard>1</Hard>
+</QuestionTypes>
+<AssessmentRules>
+    <AboveExpectation>
+        <NumberCorrect>3</NumberCorrect>
+    </AboveExpectation>
+    <AtExpectation>
+        <NumberCorrect>2</NumberCorrect>
+    </AtExpectation>
+    <BelowExpectation>
+        <NumberCorrect>0</NumberCorrect>
+    </BelowExpectation>
+</AssessmentRules>
+                            </ConceptQuestions>
+                        </ConceptSurvey>
+                    </PresentSurvey>
+                </Recall>
+                <Remediation/>
+                <transitions>
+                    <Guidance>
+                        <transitionName>some concept A+C - after recall guidance</transitionName>
+                        <message>
+                            <content>Congratulations you passed the test.  Now let's apply the knowledge you have learned today (or brought with you to this session) with some practice.</content>
+                        </message>
+                        <fullScreen>true</fullScreen>
+                    </Guidance>
+                </transitions>
+                <Practice>
+                    <PracticeConcepts>
+                        <CourseConcept>some concept a</CourseConcept>
+                        <CourseConcept>some concept c</CourseConcept>
+                    </PracticeConcepts>
+                </Practice>
+            </Quadrants>
+        </MerrillsBranchPoint>
+        <Guidance>
+            <transitionName>good bye message</transitionName>
+            <message>
+                <content>&lt;p&gt;Thanks for taking the course!&lt;br/&gt;&lt;br/&gt;You saw&lt;ul&gt;&lt;li&gt;Pretest skipping&lt;/li&gt;&lt;li&gt;metadata matching to learners&lt;/li&gt;&lt;li&gt;merrils quadrant pedagogy&lt;/li&gt;&lt;li&gt;remediation based on poor answers&lt;/li&gt;&lt;li&gt;multiple concept teaching&lt;/li&gt;&lt;li&gt;remedation based on poor recall&lt;/li&gt;&lt;li&gt;non-duplicating content (to the extend possible) selection&lt;/li&gt;&lt;li&gt;practice for various elements&lt;/li&gt;&lt;li&gt;and remediation based on this practice.&lt;/li&gt;&lt;/ul&gt;&lt;br/&gt;It's important to remember that GIFT HANDLES ALL OF THIS AUTOMATICALLY based on the content, metadata about the content, and a course which indicates that each of these items will be selected as a part of a Merril's Quadrant.&lt;br/&gt;&lt;br/&gt;Thank you for paying attention.  A more full demonstration of these items working, in a real course, can be see in the Dynamic Environment Testbed.&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

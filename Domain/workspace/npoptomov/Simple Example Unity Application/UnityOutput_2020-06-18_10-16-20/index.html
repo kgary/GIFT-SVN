@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Simple Example Unity TA</title>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/WebGL.json");
+    </script>
+	<style>
+		body{
+			position: absolute;
+			top: 0px;
+			bottom: 0px;
+			left: 0px;
+			right: 0px;
+			margin: 0px;
+			overflow: hidden;
+		}
+		
+		canvas{
+			width: 100%;
+			height: 100%;
+		}
+		
+		#gameContainer{
+			width: 100% !important;
+			height: 100% !important;
+		}
+	</style>
+      <script type="text/javascript">
+        //Function which sends messages to the unity engine
+        function sendAppMessage(msg) {
+            gameInstance.SendMessage('GiftConnection', 'OnExternalMessageReceived', msg);
+        }
+	       
+        //Function which sends messages to the parent window.
+        //Called from within the UnityEngine
+        function sendTutorMessage(msg) {
+            parent.postMessage(msg, '*');
+        }
+        
+        //Registers listeners for messages from the parent window
+        window.addEventListener('message', function(event) {
+            sendAppMessage(event.data);
+        }, false);
+    </script>
+</head>
+  <body>
+    <div id="gameContainer" ></div>
+  </body>
+</html>

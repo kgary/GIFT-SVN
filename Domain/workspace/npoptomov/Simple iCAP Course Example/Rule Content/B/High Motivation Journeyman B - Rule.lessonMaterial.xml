@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<LessonMaterialList xmlns:ns2="http://GIFT.com/common">
+    <media>
+        <name>'Concept B' - Rule, High Motivation</name>
+        <uri>Slide Shows/rule b high motivation/Slide01.PNG</uri>
+        <SlideShowProperties>
+            <slideRelativePath>Slide Shows/rule b high motivation/Slide01.PNG</slideRelativePath>
+            <slideRelativePath>Slide Shows/rule b high motivation/Slide02.PNG</slideRelativePath>
+            <displayPreviousSlideButton>true</displayPreviousSlideButton>
+            <keepContinueButton>true</keepContinueButton>
+        </SlideShowProperties>
+    </media>
+</LessonMaterialList>

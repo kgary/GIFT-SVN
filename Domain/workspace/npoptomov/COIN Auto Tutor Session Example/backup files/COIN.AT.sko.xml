@@ -1,0 +1,407 @@
+<AutoTutorScript>
+  <Agents>
+    <Agent name="Angela" gender="Female" title="Ms." firstName="Angela" lastName="Brown" displayName="Angela">
+      <SpeechCan name="NeutralFeedback">
+        <Item text="Alright." speech="" />
+        <Item text="OK." speech="" />
+      </SpeechCan>
+      <SpeechCan name="PositiveFeedback">
+        <Item text="Great!" speech="" />
+        <Item text="That's nice!" speech="" />
+        <Item text="Nice!" speech="" />
+        <Item text="That's great!" speech="" />
+      </SpeechCan>
+    </Agent>
+  </Agents>
+  <SpeechActs />
+  <RigidPacks>
+    <RigidPack name="Closing" usedIn="">
+      <Item id="1" agent="Angela" text="OK. I hope you learned something from this passage. See you!" speech="" />
+    </RigidPack>
+  </RigidPacks>
+  <TutoringPacks>
+    <TutoringPack name="1">
+      <Questions>
+        <Question id="1" agent="Angela" text="Based on what you have read, what situation does the United States face?" speech="" media="">
+          <Answers>
+            <Answer name="Good1" agent="Angela" type="Good" text="Enemies are evaluating our strengths and weaknesses for the purpose of avoiding our strengths and attack our weaknesses." speech="" keys="enem|adversar,evaluat,strength, weakness|vulnerab, avoid, attack" threshold="0.8" />
+          </Answers>
+        </Question>
+      </Questions>
+      <Expectations>
+        <Expectation id="1" text="Enemies are evaluating our strengths and weaknesses.">
+          <Answers>
+            <Answer name="Good1" agent="Angela" type="Good" text="Enemies are evaluating our strengths and weaknesses." speech="" keys="enem|adversar, evaluat,strength|strong,weak" threshold="" />
+          </Answers>
+          <Hints>
+            <Hint id="1" agent="Angela" text="What are our enemies doing?" speech="" media="">
+              <Answers>
+                <Answer name="Good1" agent="Angela" type="Good" text="Our enemies are evaluating our strengths and weaknesses." speech="" keys="evaluat, strength|strong, weak|vulnerab" threshold="" />
+              </Answers>
+            </Hint>
+          </Hints>
+          <Prompts>
+            <Prompt id="1" agent="Angela" text="Enemies are evaluating our--, what?" speech="" media="">
+              <Answers>
+                <Answer name="Good1" agent="Angela" type="Good" text="strengths and weaknesses." speech="" keys="strength|strong,weak|vulnerab" threshold="" />
+              </Answers>
+            </Prompt>
+          </Prompts>
+        </Expectation>
+        <Expectation id="2" text="Enemies want to avoid our strengths and attack our weaknesses.">
+          <Answers>
+            <Answer name="Good1" agent="Angela" type="Good" text="Enemies want to avoid our strengths and attack our weaknesses." speech="" keys="avoid, strength|strong, attack, weak|vulnerab" threshold="" />
+          </Answers>
+          <Hints>
+            <Hint id="1" agent="Angela" text="Why do enemies evaluate our strengths?" speech="" media="">
+              <Answers>
+                <Answer name="Good1" agent="Angela" type="Good" text="They want to avoid our strengths." speech="" keys="avoid" threshold="" />
+              </Answers>
+            </Hint>
+            <Hint id="2" agent="Angela" text="Why do they evaluate our weaknesses?" speech="" media="">
+              <Answers>
+                <Answer name="Good1" agent="Angela" type="Good" text="They want to attack our weaknesses." speech="" keys="attack" threshold="" />
+              </Answers>
+            </Hint>
+          </Hints>
+          <Prompts />
+        </Expectation>
+      </Expectations>
+      <Misconceptions />
+    </TutoringPack>
+    <TutoringPack name="2">
+      <Questions>
+        <Question id="1" agent="Angela" text="What should the United States Government do about this?" speech="" media="">
+          <Answers>
+            <Answer name="Good1" agent="Angela" type="Good" text="The government should strive to learn and adapt more quickly and effectively than our enemies. The government should use all instruments of national power, including diplomatic, intelligence, military and economic." speech="" keys="learn, adapt, quick,effective, instruments, diploma,info, military, econom" threshold="" />
+          </Answers>
+        </Question>
+      </Questions>
+      <Expectations>
+        <Expectation id="1" text=" The government should strive to learn and adapt more quickly and effectively than our enemies.">
+          <Answers>
+            <Answer name="Good1" agent="Angela" type="Good" text=" The government should strive to learn and adapt more quickly and effectively than our enemies." speech="" keys="learn, adapt, quick, effective" threshold="" />
+          </Answers>
+          <Hints>
+            <Hint id="1" agent="Angela" text="What should the government devote efforts to do?" speech="" media="">
+              <Answers>
+                <Answer name="Good1" agent="Angela" type="Good" text=" The government should strive to learn and adapt more quickly and effectively than our enemies." speech="" keys="learn, adapt" threshold="" />
+              </Answers>
+            </Hint>
+            <Hint id="2" agent="Angela" text="How quickly and effectively should the government learn and adapt?" speech="" media="">
+              <Answers>
+                <Answer name="Goo1" agent="Angela" type="Good" text="The government should strive to learn and adapt more quickly and effectively than our enemies." speech="" keys="more, quick, effective,enem|adversar" threshold="" />
+              </Answers>
+            </Hint>
+          </Hints>
+          <Prompts>
+            <Prompt id="1" agent="Angela" text="Enemies want to attack our--, what?" speech="" media="">
+              <Answers>
+                <Answer name="Good1" agent="Angela" type="Good" text="our weaknesses" speech="" keys="weak" threshold="" />
+              </Answers>
+            </Prompt>
+          </Prompts>
+        </Expectation>
+        <Expectation id="2" text="The government has instruments of national power, including diplomatic, information, military and economic.">
+          <Answers>
+            <Answer name="Good1" agent="Angela" type="Good" text="The government has instruments of national power, including diplomatic, information, military and economic." speech="" keys="instrument, diploma, info, milit, econo" threshold="" />
+          </Answers>
+          <Hints>
+            <Hint id="1" agent="Angela" text="What allows government to learn and adapt quickly and effectively?" speech="" media="">
+              <Answers>
+                <Answer name="Good1" agent="Angela" type="Good" text="The government has instruments of national power, including diplomatic, information, military and economic." speech="" keys="instrument" threshold="" />
+              </Answers>
+            </Hint>
+            <Hint id="2" agent="Angela" text="What instruments does the government have?" speech="" media="">
+              <Answers>
+                <Answer name="Good1" agent="Angela" type="Good" text="The government has instruments of national power, including diplomatic, information, military and economic." speech="" keys="diploma, info, milit, econo" threshold="" />
+              </Answers>
+            </Hint>
+          </Hints>
+          <Prompts />
+        </Expectation>
+      </Expectations>
+      <Misconceptions />
+    </TutoringPack>
+    <TutoringPack name="3">
+      <Questions>
+        <Question id="1" agent="Angela" text="What should we encourage individuals to pay attention to?" speech="" media="">
+          <Answers>
+            <Answer name="Good1" agent="Angela" type="Good" text="Individuals should pay attention to the rapidly changing situations that characterizes counterinsurgency campaigns. " speech="" keys="chang, situation, counterinsurgenc" threshold="" />
+          </Answers>
+        </Question>
+      </Questions>
+      <Expectations>
+        <Expectation id="1" text="Individuals should pay attention to the rapidly changing situations that characterizes counterinsurgency campaigns. ">
+          <Answers />
+          <Hints>
+            <Hint id="1" agent="Angela" text="What kind of situations should we pay attention to?" speech="" media="">
+              <Answers>
+                <Answer name="Good1" agent="Angela" type="Good" text="We should pay attention to the rapidly changing situations that characterizes counterinsurgency campaigns. " speech="" keys="counterinsurgency " threshold="" />
+              </Answers>
+            </Hint>
+          </Hints>
+          <Prompts />
+        </Expectation>
+      </Expectations>
+      <Misconceptions />
+    </TutoringPack>
+  </TutoringPacks>
+  <Rules>
+    <Rule name="start" status="Start" response="" event="" hasItem="" priority="" frequency="" description="">
+      <Action agent="System" act="GetTutoringPack" data="1" id="1" />
+      <Action agent="Angela" act="AskMainQuestion" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T1MQ" id="3" />
+      <Action agent="System" act="WaitForInput" data="30" id="4" />
+    </Rule>
+    <Rule name="T1MQGood" status="T1MQ" response="FullAsnwerComplete" event="" hasItem="" priority="1" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="GetTutoringPack" data="2" id="2" />
+      <Action agent="Angela" act="AskMainQuestion" data="" id="3" />
+      <Action agent="System" act="SetStatus" data="T2MQ" id="4" />
+      <Action agent="System" act="WaitForInput" data="30" id="5" />
+    </Rule>
+    <Rule name="T1MQOther" status="T1MQ" response="Any" event="" hasItem="" priority="2" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="NeutralFeedback" id="1" />
+      <Action agent="System" act="GetExpectation" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T1E" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T1ET" status="T1E" response="Any" event="" hasItem="true" priority="" frequency="" description="">
+      <Action agent="Angela" act="GetHint" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T1H" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T1HT" status="T1H" response="Any" event="" hasItem="true" priority="" frequency="" description="">
+      <Action agent="Angela" act="DeliverHint" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T1HD" id="2" />
+      <Action agent="System" act="WaitForInput" data="30" id="3" />
+    </Rule>
+    <Rule name="T1HDGood" status="T1HD" response="FullAsnwerComplete" event="" hasItem="" priority="1" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="GetTutoringPack" data="2" id="2" />
+      <Action agent="Angela" act="AskMainQuestion" data="" id="3" />
+      <Action agent="System" act="SetStatus" data="T2MQ" id="4" />
+      <Action agent="System" act="WaitForInput" data="30" id="5" />
+    </Rule>
+    <Rule name="T1HDHGood" status="T1HD" response="Hint-Good" event="" hasItem="" priority="2" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="GetHint" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T1H" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T1HDOther" status="T1HD" response="Any" event="" hasItem="" priority="3" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="NeutralFeedback" id="1" />
+      <Action agent="System" act="GetHint" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T1H" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T1HF" status="T1H" response="Any" event="" hasItem="false" priority="" frequency="" description="">
+      <Action agent="System" act="GetPrompt" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T1P" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T1PT" status="T1P" response="Any" event="" hasItem="true" priority="" frequency="" description="">
+      <Action agent="Angela" act="DeliverPrompt" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T1PD" id="2" />
+      <Action agent="System" act="WaitForInput" data="30" id="3" />
+    </Rule>
+    <Rule name="T1PDGood" status="T1PD" response="FullAsnwerComplete" event="" hasItem="" priority="1" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="GetTutoringPack" data="2" id="2" />
+      <Action agent="Angela" act="AskMainQuestion" data="" id="3" />
+      <Action agent="System" act="SetStatus" data="T2MQ" id="4" />
+      <Action agent="System" act="WaitForInput" data="30" id="5" />
+    </Rule>
+    <Rule name="T1PDPGood" status="T1PD" response="Prompt-Good" event="" hasItem="" priority="2" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="Angela" act="Answer" data="Good" id="2" />
+      <Action agent="System" act="GetPrompt" data="" id="3" />
+      <Action agent="System" act="SetStatus" data="T1P" id="4" />
+      <Action agent="System" act="GetRule" data="" id="5" />
+    </Rule>
+    <Rule name="T1PDOther" status="T1PD" response="Any" event="" hasItem="" priority="3" frequency="" description="">
+      <Action agent="Angela" act="Answer" data="Good" id="1" />
+      <Action agent="System" act="GetPrompt" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T1P" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T1PF" status="T1P" response="" event="" hasItem="false" priority="" frequency="" description="">
+      <Action agent="System" act="GetExpectation" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T1E" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T1EF" status="T1E" response="" event="" hasItem="false" priority="" frequency="" description="">
+      <Action agent="System" act="GetTutoringPack" data="2" id="1" />
+      <Action agent="Angela" act="AskMainQuestion" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T2MQ" id="3" />
+      <Action agent="System" act="WaitForInput" data="30" id="4" />
+    </Rule>
+    <Rule name="T2MQGood" status="T2MQ" response="FullAsnwerComplete" event="" hasItem="" priority="1" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="GetTutoringPack" data="3" id="2" />
+      <Action agent="Angela" act="AskMainQuestion" data="" id="3" />
+      <Action agent="System" act="SetStatus" data="T3MQ" id="4" />
+      <Action agent="System" act="WaitForInput" data="30" id="5" />
+    </Rule>
+    <Rule name="T2MQOther" status="T2MQ" response="Any" event="" hasItem="" priority="2" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="NeutralFeedback" id="1" />
+      <Action agent="System" act="GetExpectation" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T2E" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T2ET" status="T2E" response="Any" event="" hasItem="true" priority="" frequency="" description="">
+      <Action agent="Angela" act="GetHint" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T2H" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T2HT" status="T2H" response="Any" event="" hasItem="true" priority="" frequency="" description="">
+      <Action agent="Angela" act="DeliverHint" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T2HD" id="2" />
+      <Action agent="System" act="WaitForInput" data="30" id="3" />
+    </Rule>
+    <Rule name="T2HDGood" status="T2HD" response="FullAsnwerComplete" event="" hasItem="" priority="1" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="GetTutoringPack" data="3" id="2" />
+      <Action agent="Angela" act="AskMainQuestion" data="" id="3" />
+      <Action agent="System" act="SetStatus" data="T3MQ" id="4" />
+      <Action agent="System" act="WaitForInput" data="30" id="5" />
+    </Rule>
+    <Rule name="T2HDHGood" status="T2HD" response="Hint-Good" event="" hasItem="" priority="2" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="GetHint" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T2H" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T2HDOther" status="T2HD" response="Any" event="" hasItem="" priority="3" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="NeutralFeedback" id="1" />
+      <Action agent="System" act="GetHint" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T2H" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T2HF" status="T2H" response="Any" event="" hasItem="false" priority="" frequency="" description="">
+      <Action agent="System" act="GetPrompt" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T2P" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T2PT" status="T2P" response="Any" event="" hasItem="true" priority="" frequency="" description="">
+      <Action agent="Angela" act="DeliverPrompt" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T2PD" id="2" />
+      <Action agent="System" act="WaitForInput" data="30" id="3" />
+    </Rule>
+    <Rule name="T2PDGood" status="T2PD" response="FullAsnwerComplete" event="" hasItem="" priority="1" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="GetTutoringPack" data="3" id="2" />
+      <Action agent="Angela" act="AskMainQuestion" data="" id="3" />
+      <Action agent="System" act="SetStatus" data="T3MQ" id="4" />
+      <Action agent="System" act="WaitForInput" data="30" id="5" />
+    </Rule>
+    <Rule name="T2PDPGood" status="T2PD" response="Prompt-Good" event="" hasItem="" priority="2" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="Angela" act="Answer" data="Good" id="2" />
+      <Action agent="System" act="GetPrompt" data="" id="3" />
+      <Action agent="System" act="SetStatus" data="T2P" id="4" />
+      <Action agent="System" act="GetRule" data="" id="5" />
+    </Rule>
+    <Rule name="T2PDOther" status="T2PD" response="Any" event="" hasItem="" priority="3" frequency="" description="">
+      <Action agent="Angela" act="Answer" data="Good" id="1" />
+      <Action agent="System" act="GetPrompt" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T2P" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T2PF" status="T2P" response="" event="" hasItem="false" priority="" frequency="" description="">
+      <Action agent="System" act="GetExpectation" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T2E" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T2EF" status="T2E" response="" event="" hasItem="false" priority="" frequency="" description="">
+      <Action agent="System" act="GetTutoringPack" data="3" id="1" />
+      <Action agent="Angela" act="AskMainQuestion" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T3MQ" id="3" />
+      <Action agent="System" act="WaitForInput" data="30" id="4" />
+    </Rule>
+    <Rule name="T3MQGood" status="T3MQ" response="FullAsnwerComplete" event="" hasItem="" priority="1" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="SetStatus" data="T4MQ" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T3MQOther" status="T3MQ" response="Any" event="" hasItem="" priority="2" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="NeutralFeedback" id="1" />
+      <Action agent="System" act="GetExpectation" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T3E" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T3ET" status="T3E" response="Any" event="" hasItem="true" priority="" frequency="" description="">
+      <Action agent="Angela" act="GetHint" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T3H" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T3HT" status="T3H" response="Any" event="" hasItem="true" priority="" frequency="" description="">
+      <Action agent="Angela" act="DeliverHint" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T3HD" id="2" />
+      <Action agent="System" act="WaitForInput" data="30" id="3" />
+    </Rule>
+    <Rule name="T3HDGood" status="T3HD" response="FullAsnwerComplete" event="" hasItem="" priority="1" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="SetStatus" data="T4MQ" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T3HDHGood" status="T3HD" response="Hint-Good" event="" hasItem="" priority="2" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="GetHint" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T3H" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T3HDOther" status="T3HD" response="Any" event="" hasItem="" priority="3" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="NeutralFeedback" id="1" />
+      <Action agent="System" act="GetHint" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T3H" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T3HF" status="T3H" response="Any" event="" hasItem="false" priority="" frequency="" description="">
+      <Action agent="System" act="GetPrompt" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T3P" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T3PT" status="T3P" response="Any" event="" hasItem="true" priority="" frequency="" description="">
+      <Action agent="Angela" act="DeliverPrompt" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T3PD" id="2" />
+      <Action agent="System" act="WaitForInput" data="30" id="3" />
+    </Rule>
+    <Rule name="T3PDGood" status="T3PD" response="FullAsnwerComplete" event="" hasItem="" priority="1" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="System" act="SetStatus" data="T4MQ" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T3PDPGood" status="T3PD" response="Prompt-Good" event="" hasItem="" priority="2" frequency="" description="">
+      <Action agent="Angela" act="GiveFeedback" data="PositiveFeedback" id="1" />
+      <Action agent="Angela" act="Answer" data="Good" id="2" />
+      <Action agent="System" act="GetPrompt" data="" id="3" />
+      <Action agent="System" act="SetStatus" data="T3P" id="4" />
+      <Action agent="System" act="GetRule" data="" id="5" />
+    </Rule>
+    <Rule name="T3PDOther" status="T3PD" response="Any" event="" hasItem="" priority="3" frequency="" description="">
+      <Action agent="Angela" act="Answer" data="Good" id="1" />
+      <Action agent="System" act="GetPrompt" data="" id="2" />
+      <Action agent="System" act="SetStatus" data="T3P" id="3" />
+      <Action agent="System" act="GetRule" data="" id="4" />
+    </Rule>
+    <Rule name="T3PF" status="T3P" response="" event="" hasItem="false" priority="" frequency="" description="">
+      <Action agent="System" act="GetExpectation" data="" id="1" />
+      <Action agent="System" act="SetStatus" data="T3E" id="2" />
+      <Action agent="System" act="GetRule" data="" id="3" />
+    </Rule>
+    <Rule name="T3EF" status="T3E" response="" event="" hasItem="false" priority="" frequency="" description="">
+      <Action agent="System" act="SetStatus" data="T4MQ" id="1" />
+      <Action agent="System" act="GetRule" data="" id="2" />
+    </Rule>
+    <Rule name="Close" status="T4MQ" response="" event="" hasItem="" priority="" frequency="" description="">
+      <Action agent="System" act="DeliverRigidPack" data="Closing" id="1" />
+      <Action agent="System" act="SetStatus" data="End" id="2" />
+    </Rule>
+    <Rule name="Terminate" status="" response="" event="Terminate" hasItem="" priority="1" frequency="" description="">
+      <Action agent="System" act="DeliverRigidPack" data="Closing" id="1" />
+      <Action agent="System" act="SetStatus" data="End" id="2" />
+    </Rule>
+  </Rules>
+</AutoTutorScript>

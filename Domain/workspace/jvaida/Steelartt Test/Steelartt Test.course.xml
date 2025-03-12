@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt Test" version="11.0.77">
+<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt Test" version="11.0.90">
     <description>This course will test my new training application interop plugin.</description>
-    <lastSuccessfulValidation>2025:01:29 15:39:23:816 -0700</lastSuccessfulValidation>
+    <lastSuccessfulValidation>2025:02:12 12:02:26:656 -0700</lastSuccessfulValidation>
     <ns2:surveyContext>37</ns2:surveyContext>
     <concepts>
         <hierarchy>
@@ -9,6 +9,33 @@
         </hierarchy>
     </concepts>
     <transitions>
+        <Guidance>
+                <transitionName>Intro-PPT</transitionName>
+                <message>
+                    <content>Next page is the Powerpoint Presentation. Click next to continue</content>
+                </message>
+                <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+                <transitionName>Knowledge Powerpoint</transitionName>
+            <trainingAppTypeEnum>PowerPoint</trainingAppTypeEnum>
+            <dkfRef>
+                <file>simplest.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.ppt.PPTInterface</InteropImpl>
+                    <InteropInputs>
+                        <PowerPointInteropInputs>
+                            <loadArgs>
+                                <ShowFile>CLS_Training_prep.pptx</ShowFile>
+                            </loadArgs>
+                        </PowerPointInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
         <Guidance>
             <transitionName>Start of course</transitionName>
             <message>
@@ -25,9 +52,9 @@
         </Guidance>
         <TrainingApplication>
             <transitionName>VR Scenario - 1st half</transitionName>
-            <trainingAppTypeEnum>UnityDesktop</trainingAppTypeEnum>
+            <trainingAppTypeEnum>RIDE</trainingAppTypeEnum>
             <dkfRef>
-                <file>simplest.dkf.xml</file>
+                <file>multiplayer.dkf.xml</file>
             </dkfRef>
             <interops>
                 <interop>
@@ -49,13 +76,6 @@
             <fullScreen>true</fullScreen>
         </Guidance>
         <Guidance>
-            <transitionName>VR Scenario 2nd half begins</transitionName>
-            <message>
-                <content>Welcome to the second half of the VR Scenario.</content>
-            </message>
-            <fullScreen>true</fullScreen>
-        </Guidance>
-        <Guidance>
             <transitionName>Jump to VR scenario 2nd half</transitionName>
             <message>
                 <content>Now click next and jump into your VR headset right away.</content>
@@ -64,9 +84,9 @@
         </Guidance>
         <TrainingApplication>
             <transitionName>VR Scenario - 2nd half</transitionName>
-            <trainingAppTypeEnum>UnityDesktop</trainingAppTypeEnum>
+            <trainingAppTypeEnum>RIDE</trainingAppTypeEnum>
             <dkfRef>
-                <file>simplest.dkf.xml</file>
+                <file>multiplayer.dkf.xml</file>
             </dkfRef>
             <interops>
                 <interop>
@@ -87,6 +107,24 @@
             </message>
             <fullScreen>true</fullScreen>
         </Guidance>
+        <PresentSurvey>
+            <transitionName>Survey 1</transitionName>
+            <ns2:GIFTSurveyKey>Survey 1_20250212_190155</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <AAR>
+            <transitionName>Review 1</transitionName>
+            <fullScreen>true</fullScreen>
+            <disabled>false</disabled>
+        </AAR>
         <Guidance>
             <transitionName>Thankyou</transitionName>
             <message>

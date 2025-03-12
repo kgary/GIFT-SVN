@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="multiplayer2" version="11.0.1">
+    <description>This is the STEEL-ARTT course for second scenario that allows multiple players to join and participate together.</description>
+    <resources>
+        <AvailableLearnerActions/>
+    </resources>
+    <endTriggers>
+        <trigger>
+            <conceptAssessment concept="2" result="AtExpectation"/>
+            <triggerDelay>10</triggerDelay>
+            <message>
+                <strategy name="ForceScenarioEnd">
+                    <ns4:instructionalIntervention>
+                        <ns4:strategyHandler>
+                            <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                        </ns4:strategyHandler>
+                        <ns4:feedback>
+                            <ns4:message>
+                                <ns4:content>--SCENARIO 2 ENDING: The second scenario is now complete.</ns4:content>
+                                <ns4:Delivery>
+                                    <ns4:InTutor>
+                                        <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                        <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                    </ns4:InTutor>
+                                </ns4:Delivery>
+                            </ns4:message>
+                        </ns4:feedback>
+                    </ns4:instructionalIntervention>
+                </strategy>
+            </message>
+        </trigger>
+    </endTriggers>
+    <assessment>
+        <tasks>
+            <task name="Second Scenario Task" nodeId="1">
+                <startTriggers>
+                    <trigger>
+                        <scenarioStarted/>
+                        <triggerMessage>
+                            <strategy name="SecondScenarioStartStrategy">
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>3</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--SCENARIO 2: This is a NEW SESSION. Host MUST create a new session now.</ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>5</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--TEAM MEMBERS: Please wait for host to create the new session before joining.</ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
+                            </strategy>
+                        </triggerMessage>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Application Completed" nodeId="2">
+                        <conditions>
+                            <condition>
+                                <conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+                                <input>
+                                    <ApplicationCompletedCondition/>
+                                </input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects/>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="Session Complete">
+                <LogicalExpression>
+                    <performanceNode name="Application Completed" nodeId="2">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Complete Second Scenario"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="Complete Second Scenario">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>--SCENARIO 2 COMPLETE: The second scenario is now ending. All users should COMPLETELY EXIT the VR application.</ns4:content>
+                            <ns4:Delivery>
+                                <ns4:InTutor>
+                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                </ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <shouldResetScenario>true</shouldResetScenario>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+    <teamOrganization>
+        <team name="Everyone">
+            <teamMember name="Prioritizer" playable="true">
+                <learnerId>
+                    <entityMarking>104</entityMarking>
+                </learnerId>
+            </teamMember>
+            <teamMember name="Stabilizer" playable="true">
+                <learnerId>
+                    <entityMarking>105</entityMarking>
+                </learnerId>
+            </teamMember>
+            <teamMember name="Medical Supplier" playable="true">
+                <learnerId>
+                    <entityMarking>106</entityMarking>
+                </learnerId>
+            </teamMember>
+        </team>
+    </teamOrganization>
+</Scenario>

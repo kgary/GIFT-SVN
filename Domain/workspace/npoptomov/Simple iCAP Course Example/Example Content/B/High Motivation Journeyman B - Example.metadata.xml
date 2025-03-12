@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Metadata displayName="Concept 'B' - Example, High Motivation" version="11.0.1">
+    <simple>
+        <value>Example Content\B\High Motivation Journeyman B - Example.lessonMaterial.xml</value>
+    </simple>
+    <PresentAt>
+        <MerrillQuadrant>Example</MerrillQuadrant>
+    </PresentAt>
+    <Concepts>
+        <Concept name="some concept b">
+            <ActivityType>
+                <Passive>
+                    <Attributes>
+                        <Attribute>
+                            <value>Case Study</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>Medium Difficulty</value>
+                        </Attribute>
+                        <Attribute>
+                            <value>IMI2</value>
+                        </Attribute>
+                    </Attributes>
+                </Passive>
+            </ActivityType>
+        </Concept>
+    </Concepts>
+</Metadata>

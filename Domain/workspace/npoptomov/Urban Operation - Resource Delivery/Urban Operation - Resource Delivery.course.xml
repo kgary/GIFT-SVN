@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Urban Operation - Resource Delivery" version="11.0.1">
+    <description>&lt;p&gt;This course demonstrates integrating Virtual Battle Space (VBS) with a GIFT course. It contains collective (team) assessments which analyze learner actions and provides instructional intervention in the form of feedback in real time. This course also delivers observer notifications/instructions, real time scenario adaptations and feedback.&amp;nbsp;&lt;br&gt;&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Concepts&lt;/span&gt;: OPORD/WARNORD brief (observed assessment), map recon (observed assessment), Forward Operating Base operations, situational awareness, convoy operations including proper spacing and speed, communication, roadside IED reaction, checkpoints, react to changing intelligence, follow route&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Intended Audience&lt;/span&gt;: everyone&amp;nbsp;&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Number of users&lt;/span&gt;: 1 to 4&amp;nbsp;&lt;br&gt;&lt;span style="font-weight: 700;"&gt;Training Applications:&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;VBS&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;b&gt;Peripherals&lt;/b&gt;: none&lt;br&gt;&lt;/p&gt;</description>
+    <lastSuccessfulValidation>2019:12:13 10:30:06:902 -0500</lastSuccessfulValidation>
+    <image>soldier-military-uniform-american.jpg</image>
+    <ns2:surveyContext>27</ns2:surveyContext>
+    <transitions>
+        <Guidance>
+            <transitionName>WARNORD</transitionName>
+            <message>
+                <content>&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;Who:&amp;nbsp;&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;&amp;nbsp;C-1-507 IN&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;What:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;&amp;nbsp;Provide resources to local village
+ISO Urban operations&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;When:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt; 19 0930 OCT 19&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;Where:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt; &lt;/span&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;IVO OBJ Crusher&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;Why:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;&amp;nbsp;Gain support of local populace for
+future operations&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Arial"&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;span style="font-size: 24px;"&gt;
+
+&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="line-height: 150%; margin-top: 0pt; margin-bottom: 0pt; direction: ltr; unicode-bidi: embed; vertical-align: baseline;"&gt;&lt;font face="Arial"&gt;&lt;u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt;Uniform:&lt;/span&gt;&lt;/u&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps; font-weight: bold;"&gt; &lt;/span&gt;&lt;span style="font-size: 24px; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-caps: small-caps;"&gt;ACU, full kit&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>Urban Operation</transitionName>
+            <trainingAppTypeEnum>VBS</trainingAppTypeEnum>
+            <dkfRef>
+                <file>Resupply MIssion.bmmfortpolk_e87ed88a-1c4c-45fe-9425-c111682b9ecb.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.vbsplugin.VBSPluginInterface</InteropImpl>
+                    <InteropInputs>
+                        <VBSInteropInputs>
+                            <loadArgs>
+<ScenarioName>UrbanOperation.bmmfortpolk</ScenarioName>
+                            </loadArgs>
+                        </VBSInteropInputs>
+                    </InteropInputs>
+                </interop>
+                <interop>
+                    <InteropImpl>gateway.interop.dis.DISInterface</InteropImpl>
+                    <InteropInputs>
+                        <DISInteropInputs>
+                            <loadArgs/>
+                        </DISInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>Scenario End</transitionName>
+            <message>
+                <content>The scenario is now over.&amp;nbsp; Please notify your proctor.&amp;nbsp;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

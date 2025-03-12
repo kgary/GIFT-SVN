@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="STEEL-R RIDE Individual Exemplar" version="11.0.432">
+    <description>&lt;p&gt;This course is designed to provide an example of the GIFT/RIDE Integration.&lt;/p&gt;&lt;p&gt;This course contains a real-time assessment built for the "React to Fire (Forest)" scenario in RIDE.&lt;/p&gt;&lt;p&gt;This course is used to train a single user, and not designed for multiplayer. &lt;/p&gt;&lt;p&gt;This course one playable team member, four non-playable enemy team members, and an OC/T non-playable team member. You will be assessed on several tasks described throughout the real-time assessment, and reviewed in a slide show after the real-time assessment ends.&lt;/p&gt;&lt;p&gt;The real-time assessment will end 10 seconds after all enemies are eliminated.&lt;br&gt;&lt;/p&gt;</description>
+    <lastSuccessfulValidation>2021:11:18 12:43:54:504 -0500</lastSuccessfulValidation>
+    <image>STE logo white1.PNG</image>
+    <ns2:surveyContext>37</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts">
+                <conceptNode name="task objectives">
+                    <conceptNode name="move to position of dominance"/>
+                    <conceptNode name="avoid muzzle flagging"/>
+                    <conceptNode name="detect enemy targets"/>
+                    <conceptNode name="eliminate all enemies"/>
+                    <conceptNode name="communicate 3 d's"/>
+                </conceptNode>
+                <conceptNode name="team competencies">
+                    <conceptNode name="maintain proper rate of fire"/>
+                    <conceptNode name="engage targets with well-aimed fire"/>
+                    <conceptNode name="maintain assigned sector of fire"/>
+                </conceptNode>
+            </conceptNode>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>Welcome to GIFT!</transitionName>
+            <message>
+                <content>&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px; text-align: -webkit-left;"&gt;&lt;b&gt;Welcome to the STEEL-R RIDE Team Exemplar GIFT Course.&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 16px; text-align: -webkit-left;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="text-align: center;"&gt;&lt;font face="Verdana"&gt;&lt;font style="font-size: 20px;"&gt;&lt;span style="font-size: 18px; text-align: -webkit-left;"&gt;This course is designed to accompany the &lt;/span&gt;&lt;/font&gt;&lt;span style="text-align: start; font-size: 18px;"&gt;&lt;/span&gt;&lt;a href="https://gifttutoring.org/projects/gift/wiki/Documentation_2022-1" target="_blank"&gt;&lt;span style="text-align: -webkit-left; font-size: 18px;"&gt;GIFT 2022-1 Official Release&lt;/span&gt;&lt;/a&gt;&lt;font style="font-size: 20px;"&gt;&lt;span style="font-size: 18px; text-align: -webkit-left;"&gt;.&amp;nbsp; The RIDE Application&amp;nbsp;provides a readily available environment to develop and test ongoing research across game engines. In this instance, RIDE, the Rapid Integration &amp;amp; Development Environment developed by the USC Institute for Creative Technologies (ICT) (&lt;a href="https://ride.ict.usc.edu/" target="_blank"&gt;https://ride.ict.usc.edu/&lt;/a&gt;), is built upon the Unity game engine. GIFT integrates with RIDE through the GIFT Gateway module.&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="text-align: center;"&gt;&lt;font style="font-size: 20px;" face="Verdana"&gt;&lt;span style="font-size: 16px; text-align: -webkit-left;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px; text-align: -webkit-left;"&gt;The intention of this course is to showcase new features to the GIFT community. You will be presented with a slideshow&amp;nbsp;&lt;/span&gt;&lt;span style="font-size: 18px;"&gt;that covers these new features in detail&lt;/span&gt;&lt;span style="font-size: 18px; text-align: -webkit-left;"&gt;&amp;nbsp;&lt;/span&gt;&lt;span style="font-size: 18px;"&gt;after your experience in the training application. More information on GIFT features can also be found in the link above.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Verdana"&gt;&lt;br&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;span style="font-size: 18px; text-align: -webkit-left;"&gt;&lt;font face="Verdana"&gt;During this course, you will interact with the RIDE Training Application course object. Please refer to &lt;a href="https://gifttutoring.org/projects/gift/wiki/STEEL-R_RIDE_Exemplar_Courses" target="_blank"&gt;&lt;span style="text-align: -webkit-left; font-size: 18px;"&gt;this GIFT Wiki page&lt;/span&gt;&lt;/a&gt; for important runtime instructions, keyboard controls and general RIDE information. We highly recommended that you have access to this page while interacting with RIDE.&amp;nbsp;&lt;/font&gt;&lt;/span&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 16px; text-align: -webkit-left;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 16px; text-align: -webkit-left;"&gt;&lt;span style="font-size: 18px;"&gt;GIFT will also provide instructions throughout the course via feedback text that will be displayed in the GIFT webpage window.&amp;nbsp;&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 16px; text-align: -webkit-left;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;p style="font-size: 20px; text-align: center;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 16px; text-align: -webkit-left;"&gt;&lt;span style="font-size: 18px;"&gt;Please press the continue arrow when you are ready to begin.&amp;nbsp;&lt;/span&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+            <disabled>false</disabled>
+        </Guidance>
+        <Guidance>
+            <transitionName>Game Master</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;The Game Master tab will allow you to view assessment data and a map of entities while the scenario progresses.&lt;br&gt;&lt;/p&gt;&lt;p align="left"&gt;&lt;b&gt;To access the Game Master tab:&lt;/b&gt;&lt;/p&gt;&lt;div align="left"&gt;&lt;ol&gt;&lt;li&gt;Open the system tray in the corner of the Windows Start menu.&lt;/li&gt;&lt;li&gt;Right-click the GIFT icon.&lt;/li&gt;&lt;li&gt;Left-click the "Open GIFT Webpage" option. A new tab will appear with the GIFT login screen.&lt;/li&gt;&lt;li&gt;Log into that tab with the same credentials you used to log into GIFT.&lt;/li&gt;&lt;li&gt;Left-click "Game Master" on the GIFT page. A dropdown menu will appear.&lt;/li&gt;&lt;li&gt;Left-click "Active Session" from the Game Master dropdown menu.&lt;/li&gt;&lt;li&gt;A screen will appear which says that "There are no sessions currently active."&lt;/li&gt;&lt;li&gt;When the RIDE course object begins, the Game Master screen will show a new session called "Individual Scenario". Left-click that to open and display the Game Master map.&lt;br&gt;&lt;span style="background-color: rgb(255, 255, 0);"&gt;&lt;b&gt;NOTE:&lt;/b&gt;&lt;/span&gt; You will know that the RIDE course object begins when the GIFT webpage window shows two mostly empty green panes, with the leftmost pane displaying textual feedback.&lt;br&gt;&lt;img src="https://gifttutoring.org/attachments/download/4732/tuiAndRIDEScreenshot_small.PNG/"&gt;&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Role Selection</transitionName>
+            <message>
+                <content>&lt;font face="Verdana" color="#ff0000"&gt;&lt;span style="font-size: 24px;"&gt;Before advancing to the next course object in GIFT, the scenario session in RIDE&lt;/span&gt;&lt;/font&gt;&lt;font face="Verdana" color="#ff0000"&gt;&lt;span style="font-size: 24px;"&gt;&amp;nbsp;needs to be active in order to open the gateway connection for GIFT.&lt;/span&gt; &lt;/font&gt;&lt;p style="text-align: left;"&gt;&lt;font face="Verdana"&gt;&lt;b&gt;&lt;span style="font-size: 18px;"&gt;To activate a session in RIDE, follow these steps:&lt;/span&gt;&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&lt;ol type="1" start="1"&gt;&lt;span style="font-size: 18px;"&gt;
+ &lt;/span&gt;&lt;li class="MsoNormal" style="text-align: left; line-height: normal; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"&gt;&lt;font face="Verdana" style=""&gt;&lt;font color="#172b4d"&gt;&lt;span style="font-size: 18px;"&gt;Double-click the RIDE executable at &amp;lt;RIDE Install Location&amp;gt;/windows/STEELR RIDE Trainer.exe&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;span style="color: rgb(23, 43, 77); font-size: 18px; background-color: rgb(255, 255, 0);"&gt;NOTE:&lt;/span&gt; &lt;/font&gt;&lt;span style="color: rgb(23, 43, 77); font-size: 14px;"&gt;﻿&amp;lt;RIDE Install Location&amp;gt; is the location that you extracted RIDE to in the "Set Up Your Machine for RIDE" course.&lt;/span&gt;&lt;/li&gt;&lt;li class="MsoNormal" style="text-align: left; color: rgb(23, 43, 77); line-height: normal; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"&gt;&lt;span style="font-size: 10.5pt;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px;"&gt;A grassy landscape will appear, with a menu in the top left of the window.&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/li&gt;&lt;li class="MsoNormal" style="text-align: left; color: rgb(23, 43, 77); line-height: normal; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"&gt;&lt;span style="font-size: 10.5pt;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px;"&gt;The top text box contains a user name. If the default name is not the one you used to log into GIFT, replace that user name with your GIFT user name.&lt;/span&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/font&gt;&lt;/span&gt;&lt;/li&gt;&lt;span style="font-size: 18px;"&gt;
+ &lt;/span&gt;&lt;li class="MsoNormal" style="text-align: left; color: rgb(23, 43, 77); line-height: normal; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"&gt;&lt;span style="font-size: 10.5pt;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px;"&gt;In RIDE, click "Start Host".&lt;br&gt;&lt;/span&gt;&lt;o:p&gt;&lt;/o:p&gt;&lt;/font&gt;&lt;/span&gt;&lt;/li&gt;&lt;span style="font-size: 18px;"&gt;
+ &lt;/span&gt;&lt;li class="MsoNormal" style="text-align: left; color: rgb(23, 43, 77); line-height: normal; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"&gt;&lt;span style="font-size: 10.5pt;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px;"&gt;Choose "&lt;u&gt;&lt;b&gt;Team Leader&lt;/b&gt;&lt;/u&gt;" from the "Role" drop-down.&lt;br&gt;&lt;span style="background-color: rgb(255, 255, 0);"&gt;NOTE:&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt; This course is designed for the "&lt;u&gt;&lt;b&gt;Team Leader&lt;/b&gt;&lt;/u&gt;" role. If any other is selected, evaluations may not properly run.&lt;br&gt;&lt;img src="https://gifttutoring.org/attachments/download/4735/RIDERoleSelector.png"&gt;&lt;br&gt;&lt;span style=" font-size:=" "="" 10.5pt;"=""&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px;"&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/li&gt;&lt;span style="font-size: 18px;"&gt;
+ &lt;/span&gt;&lt;li class="MsoNormal" style="text-align: left; color: rgb(23, 43, 77); line-height: normal; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"&gt;&lt;span style="font-size: 10.5pt;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px;"&gt;Click "Spawn" under the "Role" drop-down to spawn an
+     entity with that role.&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;/li&gt;&lt;li class="MsoNormal" style="text-align: left; color: rgb(23, 43, 77); line-height: normal; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"&gt;&lt;span style="font-size: 10.5pt;"&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px;"&gt;&lt;/span&gt;&lt;/font&gt;&lt;/span&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px;"&gt;Press the forward arrow in the G&lt;/span&gt;&lt;/font&gt;&lt;span style="font-size: 18px;"&gt;﻿&lt;/span&gt;&lt;font face="Verdana"&gt;&lt;span style="font-size: 18px;"&gt;IFT web page window to move onto the next course object.&lt;/span&gt;&lt;/font&gt;&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+            <disabled>false</disabled>
+        </Guidance>
+        <Guidance>
+            <transitionName>Prepare to Start Session</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;&lt;span style="font-family: Verdana;"&gt;&lt;b&gt;Next, you will be starting a GIFT session. Before you continue, keep the following in mind.&lt;/b&gt;&lt;/span&gt;&lt;i style="font-family: Verdana;"&gt;&lt;br&gt;&lt;/i&gt;&lt;/p&gt;&lt;div align="left"&gt;&lt;ul&gt;&lt;li&gt;&lt;span style="font-family: Verdana;"&gt;If a 
+session is not being hosted in RIDE you will receive an error 
+in GIFT after attempting to start the GIFT networked session. If an 
+error occurs, please click Disconnect in the RIDE application and 
+retake this course. &lt;br&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;ul&gt;&lt;li style="text-align: left;"&gt;&lt;font face="Verdana"&gt;Make sure to have the GIFT web page window in view at all times while using the RIDE application. &lt;br&gt;&lt;img src="https://gifttutoring.org/attachments/download/4732/tuiAndRIDEScreenshot_small.PNG/"&gt;&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style="text-align: left;"&gt;&lt;font face="Verdana"&gt;Please read all feedback and instructions carefully throughout the course.&amp;nbsp;&lt;/font&gt;&lt;/li&gt;&lt;li style="text-align: left;"&gt;&lt;font face="Verdana"&gt;Enemies are located near the trees in the forest, and wear a green uniform.&lt;br&gt;&lt;img src="https://gifttutoring.org/attachments/download/4736/RIDEForestOpfor.png"&gt;&lt;/font&gt;&lt;/li&gt;&lt;li style="text-align: left;"&gt;&lt;font face="Verdana"&gt;&lt;span style="background-color: rgb(255, 255, 0);"&gt;&lt;b&gt;NOTE:&lt;/b&gt;&lt;/span&gt; The enemies are firing in the direction of the teammate standing under the number "1" indicator. If you stand in between this teammate and your enemies, you may be shot, which will cause the scenario to end early. Stay outside the enemy line of fire.&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;p align="left"&gt;&lt;font face="Verdana"&gt;&lt;b&gt;When you are ready to continue, follow these steps:&lt;/b&gt;&lt;/font&gt;&lt;/p&gt;&lt;div align="left"&gt;&lt;ol&gt;&lt;li style="text-align: left;"&gt;&lt;font face="Verdana"&gt;In RIDE, press 'Begin'.&lt;/font&gt;&lt;/li&gt;&lt;li style="text-align: left;"&gt;&lt;font face="Verdana"&gt;Press the forward arrow in the GIFT web page window to move onto the next course object.&lt;br&gt;&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>Individual Scenario</transitionName>
+            <trainingAppTypeEnum>RIDE</trainingAppTypeEnum>
+            <dkfRef>
+                <file>RIDE Individual Scenario.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.ride.RIDEPluginInterface</InteropImpl>
+                    <InteropInputs>
+                        <RIDEInteropInputs>
+                            <loadArgs/>
+                        </RIDEInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>Disconnect</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;&lt;b&gt;You have completed the RIDE scenario.&lt;/b&gt;&lt;/p&gt;&lt;p align="left"&gt;Make sure to disconnect RIDE.&lt;/p&gt;&lt;div align="left"&gt;&lt;ol&gt;&lt;li&gt;Click the "Disconnect" button in the top left of the RIDE window.&lt;br&gt;&lt;img src="https://gifttutoring.org/attachments/download/4732/tuiAndRIDEScreenshot_small.PNG"&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;Press the forward arrow in the GIFT web page window to move onto the next course object.&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Viewing Past Sessions</transitionName>
+            <message>
+                <content>&lt;p align="left"&gt;You can now use Game Master to view recordings of past sessions.&lt;/p&gt;&lt;p align="left"&gt;&lt;b&gt;To view the previous session in Game Master:&lt;/b&gt;&lt;/p&gt;&lt;div align="left"&gt;&lt;ol&gt;&lt;li&gt;Open the Game Master tab that was opened earlier in this course.&lt;/li&gt;&lt;li&gt;Left-click "Game Master" in the menu to open the dropdown menu.&lt;/li&gt;&lt;li&gt;From the dropdown menu, left-click "Past Sessions".&lt;/li&gt;&lt;li value="4"&gt;Any
+ sessions you have run in GIFT should be listed. Certain selected 
+sessions may be marked as favorites with a highlighted star. These will
+ be at the top of the list.&lt;br&gt;You can click an un-highlighted star to mark its course as a favorite for later reference.&lt;br&gt;&lt;img src="https://gifttutoring.org/attachments/download/4734/pastSessionFavorites_small.png"&gt;&lt;br&gt;&lt;/li&gt;&lt;li&gt;Left-click
+ the most recent session, 
+called "Individual Scenario", to view the session that you just
+ 
+finished.&lt;br&gt;The most recent session may be underneath highlighted courses, if any were marked as favorite before running this course.&lt;/li&gt;&lt;li&gt;Left-click the Play button to begin playback of the recording.&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;p align="left"&gt;&lt;b&gt;You can view other Past Session logs as well.&lt;/b&gt;&lt;/p&gt;&lt;p align="left"&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;Follow
+ the steps above, except for step 5, where you left-click on the session
+ of your choice. This can also be used to view the premade demonstration
+ logs, which are marked as favorite by default.&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <LessonMaterial>
+            <transitionName>Thank you</transitionName>
+            <LessonMaterialList>
+                <media>
+                    <name>Thank you</name>
+                    <uri>Slide Shows/Thank you/Slide01.png</uri>
+                    <message>&lt;p&gt;This slide show briefly describes the conditions used in this course, and gives examples of how they might be used in general.&lt;br&gt;&lt;/p&gt;</message>
+                    <SlideShowProperties>
+                        <slideRelativePath>Slide Shows/Thank you/Slide01.png</slideRelativePath>
+                        <slideRelativePath>Slide Shows/Thank you/Slide02.png</slideRelativePath>
+                        <slideRelativePath>Slide Shows/Thank you/Slide03.png</slideRelativePath>
+                        <slideRelativePath>Slide Shows/Thank you/Slide04.png</slideRelativePath>
+                        <slideRelativePath>Slide Shows/Thank you/Slide05.png</slideRelativePath>
+                        <slideRelativePath>Slide Shows/Thank you/Slide06.png</slideRelativePath>
+                        <slideRelativePath>Slide Shows/Thank you/Slide07.png</slideRelativePath>
+                        <displayPreviousSlideButton>true</displayPreviousSlideButton>
+                        <keepContinueButton>true</keepContinueButton>
+                    </SlideShowProperties>
+                </media>
+                <isCollection>false</isCollection>
+            </LessonMaterialList>
+            <disabled>false</disabled>
+        </LessonMaterial>
+        <Guidance>
+            <transitionName>Thank you!</transitionName>
+            <message>
+                <content>&lt;div align="left"&gt;&lt;font face="Verdana"&gt;Thank you for your participation in the STEEL-R RIDE Individual Exemplar course.&amp;nbsp;&lt;/font&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;font face="Verdana"&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;ul&gt;&lt;li&gt;&lt;font face="Verdana"&gt;GIFT can integrate with external applications to process data and assess learner behavior.&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font face="Verdana"&gt;The Game Master allows this data to be recorded and played back later.&lt;/font&gt;&lt;/li&gt;&lt;li&gt;GIFT's conditions offer a variety of possible assessments that can be used to create courses for learners.&lt;br&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;font face="Verdana"&gt;To create your own condition classes, check out this page here:&amp;nbsp;&lt;a href="https://gifttutoring.org/projects/gift/wiki/Developer_Guide_2022-1#Creating-a-performance-assessment-Condition" target="_blank"&gt;https://gifttutoring.org/projects/gift/wiki/Developer_Guide_2022-1#Creating-a-performance-assessment-Condition&lt;/a&gt;.&lt;span style="color: rgb(23, 43, 77); font-size: 14px;"&gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;font face="Verdana"&gt;&lt;span style="color: rgb(23, 43, 77); font-size: 14px;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div align="left"&gt;&lt;font face="Verdana"&gt;Press the continue arrow to end the course.&amp;nbsp;&lt;/font&gt;&lt;/div&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="simplest" version="11.0.1">
+    <description>This is the simplest DKF that can be used by most training applications.  It only contains 1 condition, the Application Completed Condition, which when triggered will end the domain assessment and therefore the Training Applicaton course element.</description>
+    <resources>
+        <ns2:surveyContext>12</ns2:surveyContext>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="Application Completed Task" nodeId="1">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="2"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Application Completed" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+<input>
+    <ApplicationCompletedCondition/>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Task A" nodeId="3">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="4"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="some concept A" nodeId="4">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.PowerPointUnderDwellCondition</conditionImpl>
+<input>
+    <PowerPointDwellCondition>
+        <default>
+            <timeInSeconds>0.0</timeInSeconds>
+        </default>
+        <slides>
+            <slide index="4">
+                <timeInSeconds>2.0</timeInSeconds>
+            </slide>
+        </slides>
+    </PowerPointDwellCondition>
+</input>
+<scoring>
+    <count name="violation count" units="count">
+        <evaluators>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="1"/>
+            <evaluator assessment="AboveExpectation" operator="LessThanEquals" value="0"/>
+        </evaluators>
+    </count>
+</scoring>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Task C" nodeId="7">
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="8"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="some concept C" nodeId="8">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.PowerPointUnderDwellCondition</conditionImpl>
+<input>
+    <PowerPointDwellCondition>
+        <default>
+            <timeInSeconds>0.0</timeInSeconds>
+        </default>
+        <slides>
+            <slide index="5">
+                <timeInSeconds>2.0</timeInSeconds>
+            </slide>
+        </slides>
+    </PowerPointDwellCondition>
+</input>
+<scoring>
+    <count name="violation count" units="count">
+        <evaluators>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="1"/>
+            <evaluator assessment="AboveExpectation" operator="LessThanEquals" value="0"/>
+        </evaluators>
+    </count>
+</scoring>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects/>
+    </assessment>
+    <actions>
+        <stateTransitions/>
+        <instructionalStrategies/>
+    </actions>
+</Scenario>
