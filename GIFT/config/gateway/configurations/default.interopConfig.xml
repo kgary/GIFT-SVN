@@ -150,7 +150,7 @@
             <name>RIDE Plugin</name>
             <RIDE>
                 <networkPort>11000</networkPort>
-                <networkAddress>RIDEHostIpAddress</networkAddress>
+                <networkAddress>10.203.43.113</networkAddress>
                 <grpcNetworkPort>5001</grpcNetworkPort>
             </RIDE>
         </InteropInterfaceConfig>
@@ -161,7 +161,7 @@
             <Unity>
                 <dataNetworkPort>5050</dataNetworkPort>
                 <networkPort>5000</networkPort>
-                <networkAddress>0.0.0.0</networkAddress>
+                <networkAddress>10.203.43.113</networkAddress>
             </Unity>
         </InteropInterfaceConfig>
         <InteropInterfaceConfig refID="18">
