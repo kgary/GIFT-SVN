@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="multiplayer1" version="11.0.1">
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="multiplayer1" version="11.0.2">
     <description>This is the STEEL-ARTT course for first scenario that allows multiple players to join and participate together.</description>
     <resources>
+        <ns2:surveyContext>37</ns2:surveyContext>
         <AvailableLearnerActions/>
     </resources>
     <assessment>
         <tasks>
-            <task name="First Scenario Task" nodeId="1">
+            <task name="Steelartt Task 1" nodeId="1">
                 <startTriggers>
                     <trigger>
                         <scenarioStarted/>
@@ -37,11 +38,26 @@
                 </startTriggers>
                 <endTriggers>
                     <trigger>
-                        <childConceptEnded nodeId="2"/>
+                        <childConceptEnded nodeId="3"/>
                     </trigger>
                 </endTriggers>
                 <concepts>
-                    <concept name="Application Completed" nodeId="2">
+                    <concept name="Steelartt concept 1" nodeId="2">
+                        <conditions>
+                            <condition>
+                                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                                <input>
+                                    <GenericConditionInput>
+                                        <ns2:nvpair>
+                                            <ns2:name>key</ns2:name>
+                                            <ns2:value>button 1</ns2:value>
+                                        </ns2:nvpair>
+                                    </GenericConditionInput>
+                                </input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Application Completed" nodeId="3">
                         <conditions>
                             <condition>
                                 <conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
@@ -54,13 +70,15 @@
                 </concepts>
             </task>
         </tasks>
-        <objects/>
+        <objects>
+        <PlacesOfInterest/>
+        </objects>
     </assessment>
     <actions>
         <stateTransitions>
             <stateTransition name="Session Complete">
                 <LogicalExpression>
-                    <performanceNode name="Application Completed" nodeId="2">
+                    <performanceNode name="Application Completed" nodeId="1">
                         <current>AtExpectation</current>
                     </performanceNode>
                 </LogicalExpression>
@@ -79,10 +97,10 @@
                         <ns4:message>
                             <ns4:content>--SCENARIO 1 COMPLETE: This scenario is now ending. IMPORTANT: All users should COMPLETELY EXIT the VR application before continuing.</ns4:content>
                             <ns4:Delivery>
-                                <ns4:InTutor>
-                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                                </ns4:InTutor>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
                             </ns4:Delivery>
                         </ns4:message>
                     </ns4:feedback>
