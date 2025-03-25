@@ -73,6 +73,7 @@ import generated.dkf.SpeedLimitCondition;
 import generated.dkf.SpotReportCondition;
 import generated.dkf.TimerConditionInput;
 import generated.dkf.UseRadioCondition;
+import generated.dkf.SteelarttConditionInput;
 import mil.arl.gift.common.course.InteropsInfo.ConditionInfo;
 import mil.arl.gift.common.gwt.client.validation.ModelValidationStatus;
 import mil.arl.gift.common.gwt.client.validation.ValidationComposite;
@@ -528,6 +529,11 @@ public class ConditionPanel extends ScenarioValidationComposite {
             TimerConditionInput timerCondition = (TimerConditionInput) conditionInputCache.get(implType, inputTypeName);
             TimerConditionInputEditorImpl timerPanel = new TimerConditionInputEditorImpl();
             showInputPanel(timerPanel, timerCondition);
+            break;
+        case STRING_COMPARE_CONDITION:
+            GenericConditionInput strMatching = (GenericConditionInput) conditionInputCache.get(implType, inputTypeName);
+            GenericConditionInputEditorImpl strMatchingPanel = new GenericConditionInputEditorImpl();
+            showInputPanel(strMatchingPanel, strMatching);
             break;
         default:
             logger.warning("Unknown Condition type selected. Using empty panel.");

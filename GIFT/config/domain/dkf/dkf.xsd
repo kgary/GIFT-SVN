@@ -1162,6 +1162,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                     <xs:element ref="UseRadioCondition"/>
 					<xs:element ref="PaceCountCondition"/>
 					<xs:element ref="RequestExternalAttributeCondition"/>
+                    <xs:element ref="SteelarttConditionInput"/>
                 </xs:choice>
             </xs:sequence>
         </xs:complexType>
@@ -2458,6 +2459,42 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
 			</xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:element name="SteelarttConditionInput">
+    <xs:annotation>
+        <xs:appinfo>
+            <fg:node-info exposed="true" message="Steelartt Condition Input 1">
+                <fg:message>This input is used to configure the Timer condition for assessment.</fg:message>
+            </fg:node-info>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+        <xs:sequence>
+            <xs:element name="repeatable" type="common:booleanEnum" default="false">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true" message="Repeatable">
+                            <fg:message>Whether the time based assessment should be repeated every 'interval' milliseconds.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="interval">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <fg:node-info exposed="true" message="Time Interval (sec)">
+                            <fg:message>The amount of time in seconds before the condition assessment happens.</fg:message>
+                        </fg:node-info>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:decimal">
+                        <xs:minExclusive value="0.0"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:element>
     <xs:element name="ApplicationCompletedCondition">
         <xs:annotation>
             <xs:appinfo>

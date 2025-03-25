@@ -6,6 +6,7 @@
 	<property name="ert.package.name"      value="mil.arl.gift.tools.ert"/>
     <property name="source.path"       value="mil/arl/gift/tools/dashboard"/>
 	<property name="gat.source.path"       value="mil/arl/gift/tools/authoring/server/gat"/>
+    <property name="steelartt.gat.source.path" value="edu/asu/selab/steelartt/tools/authoring/server/gat"/>
 	<property name="ert.source.path"       value="mil/arl/gift/tools/ert"/>
     <property name="warfile.name"      value="gift-dashboard.war"/>
     
@@ -179,6 +180,7 @@
     	
     	<uptodate property="gat.root.unchanged" targetfile="${root.path}/bin/${warfile.name}">
             <srcfiles dir="${root.path}/src/${gat.source.path}" includes="${update.includes}" excludes="*/**/*"/>
+            <srcfiles dir="${root.path}/src/${steelartt.gat.source.path}" includes="${update.includes}" />
         </uptodate>
     	
     	<uptodate property="ert.root.unchanged" targetfile="${root.path}/bin/${warfile.name}">
@@ -915,23 +917,29 @@
             <isset property="gat.server.unchanged"/>
         </condition> 
         
+        <!-- compile the Steelart GAT server no matter what, coz developer skill issue -->
+        <property name="Steelartt-GAT-src" value="${root.path}/src/${steelartt.gat.source.path}" /> 
+
         <!-- skip compiling the ERT server if it hasn't changed -->
         <condition property="ERT-src" value="" else="${root.path}/src/${ert.source.path}">
             <isset property="ert.server.unchanged"/>
         </condition>
         
+        <echo message="Compiling from ${Steelartt-GAT-src}" />
+
         <javac includes="server/**, shared/**, client/**" encoding="utf-8"
                destdir="${war.path}/WEB-INF/classes"
                source="1.8" target="1.8" nowarn="true"
                debug="true" debuglevel="lines,vars,source"
                includeDestClasses="false" includeAntRuntime="false">
-        	
+
         	<src>
     		    <pathelement location="${Dashboard-src}" />
+                <pathelement location="${Steelartt-GAT-src}" />
                 <pathelement location="${GAT-src}" />
                 <pathelement location="${ERT-src}" />
         	</src>
-        	
+
             <classpath>
                 <path refid="classpath" />
                 <path refid="gwtBuildClasspath" />
@@ -952,6 +960,9 @@
         </copy>
     	<copy todir="${war.path}/WEB-INF/classes/${gat.source.path}">
             <fileset dir="${root.path}/src/${gat.source.path}" excludes="**/*.java,war/**" />
+        </copy>
+        <copy todir="${war.path}/WEB-INF/classes/${gat.source.path}">
+            <fileset dir="${root.path}/src/${steelartt.gat.source.path}" excludes="**/*.java,war/**" />
         </copy>
         <copy todir="${war.path}/WEB-INF/classes/${ert.source.path}">
             <fileset dir="${root.path}/src/${ert.source.path}" excludes="**/*.java,war/**"/>

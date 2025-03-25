@@ -3,6 +3,7 @@
     <property name="root.path" value="../../../../.."/>
     <property name="package.name" value="mil.arl.gift.domain"/>
     <property name="source.path" value="mil/arl/gift/domain"/>
+	<property name="steelartt.domain.source.path" value="edu/asu/selab/steelartt/domain"/>
     <property name="jarfile.ext.path" value="gift-domain"/>
     <property name="module.jarfile.name" value="gift-domain.jar"/>
 	<property name="services.jarfile.name" value="gift-domain-services.jar"/>
@@ -46,6 +47,7 @@
     	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
     	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}">
             <srcfiles dir="." includes="${update.includes}"/>
+			<srcfiles dir="../../../../${steelartt.domain.source.path}" includes="**/*" excludes="${build.excludes}" />
         </uptodate>
     	
     	<!-- has the build properties file changed since the last jar creation (true = no change, not set = properties have changed) -->
@@ -95,6 +97,7 @@
     	<!-- have the files included in this jar changed since the last jar creation (true = no change, not set = files have changed) -->
     	<uptodate property="upToDateWithIncludes.ifSet" targetfile="${root.path}/bin/${module.jarfile.name}">
             <srcfiles dir="." includes="${update.includes}"/>
+			<srcfiles dir="../../../../${steelartt.domain.source.path}" includes="**/*" excludes="${build.excludes}" />
         </uptodate>
     	
     	<!-- has the build properties file changed since the last jar creation (true = no change, not set = properties have changed) -->
@@ -131,16 +134,20 @@
     	<echo message="Compiling Domain"/>
         <mkdir dir="${root.path}/build/classes"/>
         <mkdir dir="${root.path}/bin"/>
-        <javac debug="on" srcdir="." destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+    	<javac debug="on" destdir="${root.path}/build/classes" includeAntRuntime="false" includeDestClasses="false" classpathref="classpath">
+			<src path="."/>
+			<src path="${root.path}/src/${steelartt.domain.source.path}"/>
             <compilerarg value="-Xlint:-path"/> <!-- needed to silence bad path element warnings from build -->
-        </javac>
-    	
-    	<!-- create domain module core jar -->
-        <jar destfile="${root.path}/bin/${module.jarfile.name}" basedir="${root.path}/build/classes" includes="${source.path}/**" excludes="${build.excludes}"/>
-    	
+        </javac>    	
     </target>
     
-    <target name="compile" depends="checkForChanges.Core, compileDomainCore"/>
+	<target name="jar" depends="compileDomainCore">
+        <echo message="Creating JAR for Domain"/>
+        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes"
+            includes="${source.path}/**,${root.path}/config/**" excludes="${build.excludes}"/>
+    </target>
+
+    <target name="compile" depends="checkForChanges.Core, jar, compileDomainCore"/>
 	
 	<!-- create domain module services jar -->
 	<target name="compileDomainServices" depends="checkForChanges.Services" if="buildServices.required">

@@ -53,7 +53,7 @@ import generated.dkf.WeaponControlStatusEnum;
 import mil.arl.gift.common.util.StringUtils;
 import mil.arl.gift.common.util.StringUtils.Stringifier;
 import mil.arl.gift.tools.authoring.server.gat.client.view.dkf.util.ScenarioClientUtility;
-
+import mil.arl.gift.domain.knowledge.condition.SteelarttCondition;
 /**
  * A cache class that is used to keep singleton instances for each of the
  * condition input classes.
@@ -151,8 +151,9 @@ public class ConditionInputCache {
         /** The {@link ConditionType} for {@link mil.arl.gift.domain.knowledge.condition.StringMatchingExampleCondition StringMatchingExampleCondition} */
         STRING_MATCHING_EXAMPLE_CONDITION("domain.knowledge.condition.StringMatchingExampleCondition"),
         /** The {@link ConditionType} for {@link mil.arl.gift.domain.knowledge.condition.TimerCondition TimerCondition} */
-        TIMER_CONDITION("domain.knowledge.condition.TimerCondition");
+        TIMER_CONDITION("domain.knowledge.condition.TimerCondition"),
 
+        STRING_COMPARE_CONDITION("domain.knowledge.condition.SteelarttCondition");
         /** The name of the condition type */
         private String name;
 
@@ -356,6 +357,9 @@ public class ConditionInputCache {
                 timerCondition.setInterval(BigDecimal.ONE);
                 timerCondition.setRepeatable(BooleanEnum.FALSE);
                 return timerCondition;
+            case STRING_COMPARE_CONDITION:
+                return new GenericConditionInput();
+                // or maybe just return new GenericConditionInput();
             }
 
             /* Throw outside the switch statement so that eclipse will warn if
