@@ -2463,34 +2463,21 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:annotation>
         <xs:appinfo>
             <fg:node-info exposed="true" message="Steelartt Condition Input 1">
-                <fg:message>This input is used to configure the Timer condition for assessment.</fg:message>
+                <fg:message>This input is used to check something for steelartt.</fg:message>
             </fg:node-info>
         </xs:appinfo>
     </xs:annotation>
     <xs:complexType>
         <xs:sequence>
-            <xs:element name="repeatable" type="common:booleanEnum" default="false">
+            <xs:element ref="teamMemberRefs" minOccurs="0"/> 
+            <xs:element name="woundIdentified" type="common:booleanEnum" default="false">
                 <xs:annotation>
                     <xs:appinfo>
-                        <fg:node-info exposed="true" message="Repeatable">
-                            <fg:message>Whether the time based assessment should be repeated every 'interval' milliseconds.</fg:message>
+                        <fg:node-info exposed="true">
+                            <fg:message>Whether the exit wound was identified or not.</fg:message>
                         </fg:node-info>
                     </xs:appinfo>
                 </xs:annotation>
-            </xs:element>
-            <xs:element name="interval">
-                <xs:annotation>
-                    <xs:appinfo>
-                        <fg:node-info exposed="true" message="Time Interval (sec)">
-                            <fg:message>The amount of time in seconds before the condition assessment happens.</fg:message>
-                        </fg:node-info>
-                    </xs:appinfo>
-                </xs:annotation>
-                <xs:simpleType>
-                    <xs:restriction base="xs:decimal">
-                        <xs:minExclusive value="0.0"/>
-                    </xs:restriction>
-                </xs:simpleType>
             </xs:element>
         </xs:sequence>
     </xs:complexType>
