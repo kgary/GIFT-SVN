@@ -47,6 +47,13 @@ public class SteelarttCondition extends AbstractCondition {
     /** instance of the logger */
     private static Logger logger = LoggerFactory.getLogger(SteelarttCondition.class);
 
+    /** the authored parameters for this condition */
+    private generated.dkf.SteelarttConditionInput steelarttInput = null;
+
+
+    /** the default assessment for this condition when no location based assessment has taken place yet */
+    private static final AssessmentLevelEnum DEFAULT_ASSESSMENT = AssessmentLevelEnum.AT_EXPECTATION;
+
     private static final ConditionDescription DESCRIPTION = new FileDescription(
             Paths.get("docs", "conditions", "StringMatching.GIFT Domain condition description.html").toFile(),
             "Steelartt Condition");
@@ -57,7 +64,8 @@ public class SteelarttCondition extends AbstractCondition {
     private static List<MessageTypeEnum> simulationInterests;   
     static{
         simulationInterests = new ArrayList<MessageTypeEnum>();
-        simulationInterests.add(MessageTypeEnum.SIMPLE_EXAMPLE_STATE);
+        simulationInterests.add(MessageTypeEnum.ENTITY_STATE);
+        // probably add all the other steelartt messagetypeEnums
     }
 
     /**
@@ -110,15 +118,30 @@ public class SteelarttCondition extends AbstractCondition {
      *
      * @param input configuration parameters for this condition
     */
-    public SteelarttCondition (generated.dkf.GenericConditionInput input){
+    public SteelarttCondition (generated.dkf.SteelarttConditionInput input){
+        
+        this.steelarttInput = input;
+        if(steelarttInput.getWoundIdentified().isEmpty()){
+            throw new IllegalArgumentException("There are no wound-identification inputs");
+        }
 
-        //assuming that there are only 1 name:value pair in the list
-        List<generated.dkf.Nvpair> pairs = input.getNvpair();
-        generated.dkf.Nvpair pair = pairs.get(0);
+        //for this conition rn -lets assume no real time assessment rules, hence commenting.
+        // if(steelarttInput.getRealTimeAssessmentRules() != null){
+        //     addRealTimeAssessmentRules(steelarttInput.getRealTimeAssessmentRules());
+        // }
+        // 
+        // AssessmentLevelEnum authoredLevel = getAuthoredRealTimeAssessment();
+        // if(authoredLevel != null){
+        //     //set the initial assessment to the authored real time assessment value
+        //     updateAssessment(authoredLevel);
+        // }else{
+        //     updateAssessment(DEFAULT_ASSESSMENT);
+        // }
 
-        //set this condition's key value which will be used for string matching
-        //with incoming game state messages
-        conditionKey = pair.getValue();
+        // setting the team references which 
+        if(steelarttInput.getTeamMemberRefs() != null){
+            setTeamMembersBeingAssessed(steelarttInput.getTeamMemberRefs());
+        }
 
     }
 
@@ -126,36 +149,31 @@ public class SteelarttCondition extends AbstractCondition {
     public boolean handleTrainingAppGameState(Message message) {
 
         AssessmentLevelEnum level = null;
+        if (message.getMessageType() == MessageTypeEnum.ENTITY_STATE) {
+            // for now entitystate, but later add scenario-def or timer or triage status etc
+            EntityState entityState = (EntityState) message.getPayload();
 
-        //since this class is only registered to receive 1 type of message, casting w/o checking type
-        SimpleExampleState state = (SimpleExampleState)message.getPayload();
-        if(state.getVar().equals(conditionKey)){
-            //found the condition key in the game state message content
+            //only re-assess this condition if the entity state message describes the learner
+            TeamMember<?> teamMember = isConditionAssessedTeamMember(entityState.getEntityID());
+            if(teamMember == null){
+                return false;
+            }
 
-            logger.info("Found "+conditionKey+" in the ExampleState game state message.");
-
-            // This is used to indicate that an important event for this condition needs to be scored.
-            // In this case we could use the scoring logic to indicate how many times the string was matched
-            // and to start a timer to determine how much time elapses until this condition is not satisfied.
-            // Scoring is used as an overall assessment of a lesson and is normally presented in
-            // After Action Review (AAR) and stored in an LMS/LRS.
-            // Note: the DKF responsible for configuring this condition must have scoring attributes in order
-            //       for this call to do anything.
-            scoringEventStarted();
-
-            level = AssessmentLevelEnum.AT_EXPECTATION;
-            updateAssessment(level);
-
-        }else{
-            // This is used to indicate that an important event for this condition needs to be scored.
-            // In this case we are using it to indicate the amount of time since this condition was satisfied.
-            // Note: the DKF responsible for configuring this condition must have scoring attributes in order
-            //       for this call to do anything.
-            scoringEventEnded();
-
-            level = AssessmentLevelEnum.BELOW_EXPECTATION;
-            updateAssessment(level);
+            // if(evaluateCondition(entityState.what???))
         }
+
+        // SimpleExampleState state = (SimpleExampleState)message.getPayload();
+        // if(state.getVar().equals(conditionKey)){
+        //     logger.info("Found "+conditionKey+" in the ExampleState game state message.");
+        //     scoringEventStarted();
+        //     level = AssessmentLevelEnum.AT_EXPECTATION;
+        //     updateAssessment(level);
+
+        // }else{
+        //     scoringEventEnded();
+        //     level = AssessmentLevelEnum.BELOW_EXPECTATION;
+        //     updateAssessment(level);
+        // }
 
         return true;
    }
