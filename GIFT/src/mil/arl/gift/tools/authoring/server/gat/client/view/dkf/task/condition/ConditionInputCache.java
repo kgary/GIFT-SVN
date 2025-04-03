@@ -153,7 +153,7 @@ public class ConditionInputCache {
         /** The {@link ConditionType} for {@link mil.arl.gift.domain.knowledge.condition.TimerCondition TimerCondition} */
         TIMER_CONDITION("domain.knowledge.condition.TimerCondition"),
 
-        STRING_COMPARE_CONDITION("domain.knowledge.condition.SteelarttCondition");
+        STEELARTT_CONDITION("domain.knowledge.condition.SteelarttCondition");
         /** The name of the condition type */
         private String name;
 
@@ -357,8 +357,8 @@ public class ConditionInputCache {
                 timerCondition.setInterval(BigDecimal.ONE);
                 timerCondition.setRepeatable(BooleanEnum.FALSE);
                 return timerCondition;
-            case STRING_COMPARE_CONDITION:
-                return new GenericConditionInput();
+            case STEELARTT_CONDITION:
+                return new SteelarttConditionInput();
                 // or maybe just return new GenericConditionInput();
             }
 
