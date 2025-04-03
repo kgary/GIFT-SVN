@@ -35,11 +35,13 @@ import mil.arl.gift.common.ta.state.EntityState;
 import mil.arl.gift.common.ta.state.VariablesStateResult;
 import mil.arl.gift.common.ta.state.VariablesState.VariableState;
 import mil.arl.gift.common.ta.state.VariablesState.WeaponState;
+import mil.arl.gift.net.embedded.message.EmbeddedTriage;
 import mil.arl.gift.common.util.CollectionUtils;
 import mil.arl.gift.common.util.StringUtils;
 import mil.arl.gift.domain.knowledge.condition.SessionConditionsBlackboardMgr.ConditionEntityState;
 import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.common.ta.state.SimpleExampleState;
+import generated.course.BooleanEnum;
 
 
 public class SteelarttCondition extends AbstractCondition {
@@ -64,8 +66,12 @@ public class SteelarttCondition extends AbstractCondition {
     private static List<MessageTypeEnum> simulationInterests;   
     static{
         simulationInterests = new ArrayList<MessageTypeEnum>();
-        simulationInterests.add(MessageTypeEnum.ENTITY_STATE);
-        // probably add all the other steelartt messagetypeEnums
+        simulationInterests.add(MessageTypeEnum.ENTITY_STATE); // added entity state just coz other classes like AvoidLocationCondition is doing that - coz maybe they need this class, if not required, remove this later.
+        simulationInterests.add(MessageTypeEnum.SCENARIO_DEFINITION);
+        simulationInterests.add(MessageTypeEnum.TIMER);
+        simulationInterests.add(MessageTypeEnum.TIMER_BATCH);
+        simulationInterests.add(MessageTypeEnum.TRIAGE);
+        simulationInterests.add(MessageTypeEnum.EVENT_STATUS);
     }
 
     /**
@@ -121,24 +127,24 @@ public class SteelarttCondition extends AbstractCondition {
     public SteelarttCondition (generated.dkf.SteelarttConditionInput input){
         
         this.steelarttInput = input;
-        if(steelarttInput.getWoundIdentified().isEmpty()){
+        if(steelarttInput.getWoundIdentified()==null){
             throw new IllegalArgumentException("There are no wound-identification inputs");
         }
 
-        //for this conition rn -lets assume no real time assessment rules, hence commenting.
-        // if(steelarttInput.getRealTimeAssessmentRules() != null){
-        //     addRealTimeAssessmentRules(steelarttInput.getRealTimeAssessmentRules());
-        // }
-        // 
-        // AssessmentLevelEnum authoredLevel = getAuthoredRealTimeAssessment();
-        // if(authoredLevel != null){
-        //     //set the initial assessment to the authored real time assessment value
-        //     updateAssessment(authoredLevel);
-        // }else{
-        //     updateAssessment(DEFAULT_ASSESSMENT);
-        // }
+        //for this conition rn -lets assume real time assessment rules, hence commenting.
+        if(steelarttInput.getRealTimeAssessmentRules() != null){
+            addRealTimeAssessmentRules(steelarttInput.getRealTimeAssessmentRules());
+        }
+        
+        AssessmentLevelEnum authoredLevel = getAuthoredRealTimeAssessment();
+        if(authoredLevel != null){
+            //set the initial assessment to the authored real time assessment value
+            updateAssessment(authoredLevel);
+        }else{
+            updateAssessment(DEFAULT_ASSESSMENT);
+        }
 
-        // setting the team references which 
+        // setting the team references
         if(steelarttInput.getTeamMemberRefs() != null){
             setTeamMembersBeingAssessed(steelarttInput.getTeamMemberRefs());
         }
@@ -155,26 +161,33 @@ public class SteelarttCondition extends AbstractCondition {
 
             //only re-assess this condition if the entity state message describes the learner
             TeamMember<?> teamMember = isConditionAssessedTeamMember(entityState.getEntityID());
-            if(teamMember == null){
-                return false;
+            if (teamMember == null) {
+                    return false;
+                }
+
+            return false;
+
+        }else if(message.getMessageType()==MessageTypeEnum.TRIAGE){
+            EmbeddedTriage triage = (EmbeddedTriage) message.getPayload();
+
+            if (BooleanEnum.TRUE.equals(steelarttInput.getWoundIdentified())) {
+                if (triage.getActionsPerformed().isWoundAreaIdentified()) {
+                    // Success!
+                    scoringEventStarted();
+                    level = AssessmentLevelEnum.AT_EXPECTATION;
+                } else {
+                    // Failure
+                    scoringEventEnded();
+                    level = AssessmentLevelEnum.BELOW_EXPECTATION;
+                }
             }
 
-            // if(evaluateCondition(entityState.what???))
-        }
-
-        // SimpleExampleState state = (SimpleExampleState)message.getPayload();
-        // if(state.getVar().equals(conditionKey)){
-        //     logger.info("Found "+conditionKey+" in the ExampleState game state message.");
-        //     scoringEventStarted();
-        //     level = AssessmentLevelEnum.AT_EXPECTATION;
-        //     updateAssessment(level);
-
-        // }else{
-        //     scoringEventEnded();
-        //     level = AssessmentLevelEnum.BELOW_EXPECTATION;
-        //     updateAssessment(level);
-        // }
-
-        return true;
+            if (level != null) {
+                updateAssessment(level);
+                return true;
+            }
+        } 
+                
+        return false;
    }
 }
