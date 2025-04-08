@@ -358,7 +358,7 @@ public class ConditionInputCache {
                 timerCondition.setRepeatable(BooleanEnum.FALSE);
                 return timerCondition;
             case STEELARTT_CONDITION:
-                return new SteelarttConditionInput();
+                return new generated.dkf.SteelarttConditionInput();
                 // or maybe just return new GenericConditionInput();
             }
 

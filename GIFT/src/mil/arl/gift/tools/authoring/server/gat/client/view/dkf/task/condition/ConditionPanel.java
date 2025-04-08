@@ -530,9 +530,9 @@ public class ConditionPanel extends ScenarioValidationComposite {
             TimerConditionInputEditorImpl timerPanel = new TimerConditionInputEditorImpl();
             showInputPanel(timerPanel, timerCondition);
             break;
-        case STRING_COMPARE_CONDITION:
-            GenericConditionInput strMatching = (GenericConditionInput) conditionInputCache.get(implType, inputTypeName);
-            GenericConditionInputEditorImpl strMatchingPanel = new GenericConditionInputEditorImpl();
+        case STEELARTT_CONDITION:
+            SteelarttConditionInput strMatching = (SteelarttConditionInput) conditionInputCache.get(implType, inputTypeName);
+            SteelarttInputEditorImpl strMatchingPanel = new SteelarttInputEditorImpl();
             showInputPanel(strMatchingPanel, strMatching);
             break;
         default:
