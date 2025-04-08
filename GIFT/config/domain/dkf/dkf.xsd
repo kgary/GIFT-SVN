@@ -2470,15 +2470,16 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:complexType>
         <xs:sequence>
             <xs:element ref="teamMemberRefs" minOccurs="0"/> 
-            <xs:element name="woundIdentified" type="common:booleanEnum" default="false">
-                <xs:annotation>
-                    <xs:appinfo>
-                        <fg:node-info exposed="true">
-                            <fg:message>Whether the exit wound was identified or not.</fg:message>
-                        </fg:node-info>
-                    </xs:appinfo>
-                </xs:annotation>
-            </xs:element>
+            <xs:element ref="RealTimeAssessmentRules" minOccurs="0"/>
+            <xs:element name="woundIdentified" type="common:booleanEnum" minOccurs="0">
+            <xs:annotation>
+                <xs:appinfo>
+                    <fg:node-info exposed="true">
+                        <fg:message>Whether the exit wound was identified or not.</fg:message>
+                    </fg:node-info>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:element>
         </xs:sequence>
     </xs:complexType>
 </xs:element>
