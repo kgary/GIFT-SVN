@@ -247,6 +247,7 @@
             	<isset property="imageproperties.unchanged"/>
             	<uptodate targetfile="${root.path}/bin/${warfile.name}">
                     <srcfiles dir="${root.path}/src/${gat.source.path}/client" includes="${update.includes}"/>
+                    <srcfiles dir="${root.path}/src/${steelartt.gat.source.path}/client" includes="${update.includes}"/>
                     <srcfiles dir="${root.path}/src/${gat.source.path}/shared" includes="${update.includes}"/>
                 </uptodate>
             </and>
@@ -752,7 +753,17 @@
                
     </target> 
     
-    <target name="compileDashboardClient" depends="compileDashboardServer" unless="client.uptodate" description="Compile the client side gwt code and creates the war file">
+    <target name="prepareSteelarttSources" description="Copy Steelartt source to the correct package folder for GWT">
+        <!-- Creating the target directory coz it doesn't exist -->
+        <mkdir dir="${root.path}/src/mil/arl/gift/tools/authoring/server/gat/client/view/dkf/task/condition"/>
+        
+        <!-- Copy the file into the directory that matches its declared package -->
+        <copy file="${root.path}/src/${steelartt.gat.source.path}/client/view/dkf/task/condition/SteelarttInputEditorImpl.java"
+            tofile="${root.path}/src/mil/arl/gift/tools/authoring/server/gat/client/view/dkf/task/condition/SteelarttInputEditorImpl.java"
+            overwrite="true"/>
+    </target>   
+
+    <target name="compileDashboardClient" depends="prepareSteelarttSources, compileDashboardServer" unless="client.uptodate" description="Compile the client side gwt code and creates the war file">
          <echo message="Dashboard: Compile dashboard client."/>
         <mkdir dir="${war.path}"/>
         <mkdir dir="${war.path}/WEB-INF"/>
