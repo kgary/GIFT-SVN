@@ -531,9 +531,9 @@ public class ConditionPanel extends ScenarioValidationComposite {
             showInputPanel(timerPanel, timerCondition);
             break;
         case STEELARTT_CONDITION:
-            SteelarttConditionInput strMatching = (SteelarttConditionInput) conditionInputCache.get(implType, inputTypeName);
-            SteelarttInputEditorImpl strMatchingPanel = new SteelarttInputEditorImpl();
-            showInputPanel(strMatchingPanel, strMatching);
+            SteelarttConditionInput input = (SteelarttConditionInput) conditionInputCache.get(implType, inputTypeName);
+            SteelarttInputEditorImpl panel = new SteelarttInputEditorImpl();
+            showInputPanel(panel, input);
             break;
         default:
             logger.warning("Unknown Condition type selected. Using empty panel.");

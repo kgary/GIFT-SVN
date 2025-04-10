@@ -5,7 +5,10 @@ import java.util.Set;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.core.client.GWT;
 
 import generated.dkf.BooleanEnum;
 import generated.dkf.SteelarttConditionInput;
@@ -16,7 +19,13 @@ import mil.arl.gift.common.gwt.client.validation.ValidationStatus;
 
 public class SteelarttInputEditorImpl extends ConditionInputPanel<SteelarttConditionInput>{
 
+    public interface SteelarttInputEditorUiBinder extends UiBinder<Widget, SteelarttInputEditorImpl> {}
+
+    private static SteelarttInputEditorUiBinder uiBinder =  GWT.create(SteelarttInputEditorUiBinder.class);
+
     public SteelarttInputEditorImpl(){
+        
+        initWidget(uiBinder.createAndBindUi(this));
         // Register value change handler for woundIdentifiedCheck
         woundIdentifiedCheck.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
             @Override
@@ -57,9 +66,9 @@ public class SteelarttInputEditorImpl extends ConditionInputPanel<SteelarttCondi
     
     @Override
     public void addValidationCompositeChildren(Set<ValidationComposite> childValidationComposites) {
-        // Add any composite validations if necessary
+        childValidationComposites.add(teamPicker);
     }
-
+    
     @Override
     public void validate(ValidationStatus validationStatus) {
         // Implement validations if required
