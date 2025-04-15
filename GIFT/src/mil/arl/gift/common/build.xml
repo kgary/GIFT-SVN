@@ -49,6 +49,7 @@
 			<srcfiles dir="../net/util" includes="${update.includes}" />
 			<srcfiles dir="../net/xmlrpc" includes="${update.includes}" />
 			<srcfiles dir="../../../../${steelartt.source.path}/net/embedded" includes="**/*" excludes="${build.excludes}" />
+			<srcfiles dir="../../../../${steelartt.source.path}/common" includes="**/*" excludes="${build.excludes}" />
 		</uptodate>
 
 		<!-- has the build properties file changed since the last jar creation (true = no change, not set = properties have changed) -->
@@ -293,6 +294,7 @@
 			<!-- this line below compiles the steelartt /net code -->
 			<!-- The reason to put this here and not in its own separate target was that - in a separate target the javac wont have access to these files in the classpath -->
 			<src path="${root.path}/src/${steelartt.source.path}/net"/>
+		    <src path="${root.path}/src/${steelartt.source.path}/common"/>
 
 			
 			<!-- NOTE: the following 'add-exports' compiler arguments below are needed to export packages sun.security.validator 
@@ -363,6 +365,7 @@
         <jar destfile="${root.path}/bin/${jarfile.name}" 
             basedir="${root.path}/build/classes" 
             includes="${source.path}/common/**,
+			${steelartt.source.path}/common/**,
         	${source.path}/net/util/**,
         	${source.path}/net/api/**,
 			${source.path}/net/proto/**,
@@ -384,6 +387,7 @@
         <jar destfile="${root.path}/${remote.build.path}/${jarfile.name}" 
             basedir="${root.path}/build/classes" 
             includes="${source.path}/common/**,
+			${steelartt.source.path}/common/**,
         	${source.path}/net/api/**,
         	${source.path}/net/proto/**,
         	${source.path}/net/dis/**,
