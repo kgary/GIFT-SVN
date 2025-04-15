@@ -68,10 +68,10 @@ public class SteelarttInputEditorImpl extends ConditionInputPanel<SteelarttCondi
     public void addValidationCompositeChildren(Set<ValidationComposite> childValidationComposites) {
         childValidationComposites.add(teamPicker);
     }
-    
+
     @Override
     public void validate(ValidationStatus validationStatus) {
-        // Implement validations if required
+        // No validation logic for SteelarttConditionInput — consider it always valid
     }
 
     @Override
