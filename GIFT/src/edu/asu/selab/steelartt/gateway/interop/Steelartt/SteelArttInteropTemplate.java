@@ -31,6 +31,10 @@ import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.net.embedded.message.codec.EmbeddedAppMessageEncoder;
 import mil.arl.gift.net.socket.AsyncSocketHandler;
 import mil.arl.gift.common.ta.state.StopFreeze;
+import mil.arl.gift.common.ta.state.Triage;
+import mil.arl.gift.common.ta.state.TimerBatch;
+import mil.arl.gift.common.ta.state.ScenarioDefinition;
+import mil.arl.gift.common.ta.state.EventStatus;
 
 public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
@@ -216,13 +220,22 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
                 return;
             }
     
-            StopFreeze sf = new StopFreeze(new Date().getTime(), 0, 0, 1);
-            GatewayModule.getInstance().sendMessageToGIFT(sf, MessageTypeEnum.STOP_FREEZE, this);
-
+            // StopFreeze sf = new StopFreeze(new Date().getTime(), 0, 0, 1);
+            // GatewayModule.getInstance().sendMessageToGIFT(sf, MessageTypeEnum.STOP_FREEZE, this);
+             __logger.info("message is: "+ message);
+                Class<?> objClass = message.getClass();
+            __logger.info(objClass.getName());
             if (message instanceof TrainingAppState) {
                 GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
-                // Might introduce changes here based on what we want to send to Gateway module.
-            } else {
+            }else if(message instanceof TimerBatch){
+                GatewayModule.getInstance().sendMessageToGIFT((TimerBatch) message, msgType, this);
+            }else if(message instanceof Triage){
+                GatewayModule.getInstance().sendMessageToGIFT((Triage) message, msgType, this);
+            }else if(message instanceof ScenarioDefinition){
+                GatewayModule.getInstance().sendMessageToGIFT((ScenarioDefinition) message, msgType, this);
+            }else if(message instanceof EventStatus){
+                GatewayModule.getInstance().sendMessageToGIFT((EventStatus) message, msgType, this);
+            }else {
                 final String typeName = message != null ? message.getClass().getName() : "null";
                 __logger.warn("A message of type '" + typeName + "' was received from the unity application. "
                         + "It could not be sent to the DomainModule because it is not of type TrainingAppState");
