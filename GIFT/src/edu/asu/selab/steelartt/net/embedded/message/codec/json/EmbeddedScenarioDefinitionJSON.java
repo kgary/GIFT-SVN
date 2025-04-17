@@ -12,7 +12,7 @@ public class EmbeddedScenarioDefinitionJSON implements JSONCodec{
 
     public EmbeddedScenarioDefinition decode(JSONObject jsonObj) throws MessageDecodeException {
         String scenarioEvent = (String) jsonObj.get("scenarioEvent");
-        Scenario scenario = scenarioJSON.decode((JSONObject) jsonObj.get("scenario"));
+        Scenario scenario = scenarioJSON.decode((JSONObject) jsonObj.get("Scenario"));
         return new EmbeddedScenarioDefinition(scenarioEvent, scenario);
     }
 
@@ -22,6 +22,6 @@ public class EmbeddedScenarioDefinitionJSON implements JSONCodec{
         
         JSONObject scenarioObj = new JSONObject();
         scenarioJSON.encode(scenarioObj, embeddedScenarioDefinition.getScenario());
-        jsonObj.put("scenario", scenarioObj);
+        jsonObj.put("Scenario", scenarioObj);
     }
 }

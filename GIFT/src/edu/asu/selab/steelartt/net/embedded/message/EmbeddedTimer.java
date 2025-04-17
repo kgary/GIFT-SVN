@@ -5,8 +5,39 @@ import mil.arl.gift.net.embedded.message.timer.TraineeLayer;
 
 public class EmbeddedTimer {
 
+    private String sessionID;
+    private String scenarioEvent; //Timer
+    private String timestamp;
     private CasualtyLayer casualtyLayer;
     private TraineeLayer traineeLayer;
+
+    public EmbeddedTimer(String sessionID, String scenarioEvent, String timestamp, CasualtyLayer casualtyLayer, TraineeLayer traineeLayer){
+        this.sessionID = sessionID;
+        this.scenarioEvent = scenarioEvent;
+        this.timestamp = timestamp;
+        this.casualtyLayer = casualtyLayer;
+        this.traineeLayer = traineeLayer;
+    }
+
+    public String getSessionID() {
+        return sessionID;
+    }
+
+    public void setSessionID(String sessionID){
+        this.sessionID = sessionID;
+    }
+
+    public String getScenarioEvent() {
+        return scenarioEvent;
+    }
+
+    public void setScenarioEvent(String scenarioEvent){
+        this.scenarioEvent = scenarioEvent;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
 
     public CasualtyLayer getCasualtyLayer() {
         return casualtyLayer;
@@ -22,9 +53,5 @@ public class EmbeddedTimer {
 
     public void setTraineeLayer(TraineeLayer traineeLayer) {
         this.traineeLayer = traineeLayer;
-    }
-
-    public static void main(String[] args) {
-        EmbeddedTimer message = new EmbeddedTimer();
     }
 }

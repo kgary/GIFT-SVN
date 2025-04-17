@@ -12,9 +12,10 @@ public class Scenario {
     private List<Trainee> trainees;
     private List<ObjectOfInterest> objectsOfInterest;
     private List<RegionOfInterest> regionsOfInterest;
+    private List<NPC> npcs;
 
     public Scenario(String id, String title, String description, String timestamp, List<Casualty> casualties,
-                    List<Trainee> trainees, List<ObjectOfInterest> objectsOfInterest, List<RegionOfInterest> regionsOfInterest) {
+                    List<Trainee> trainees, List<ObjectOfInterest> objectsOfInterest, List<RegionOfInterest> regionsOfInterest, List<NPC> npcs) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -23,6 +24,7 @@ public class Scenario {
         this.trainees = trainees;
         this.objectsOfInterest = objectsOfInterest;
         this.regionsOfInterest = regionsOfInterest;
+        this.npcs= npcs;
     }
 
     public String getId() {
@@ -55,5 +57,10 @@ public class Scenario {
 
     public List<RegionOfInterest> getRegionsOfInterest() {
         return regionsOfInterest;
+    }
+
+
+    public List<NPC> getNPCs() {
+        return npcs;
     }
 }

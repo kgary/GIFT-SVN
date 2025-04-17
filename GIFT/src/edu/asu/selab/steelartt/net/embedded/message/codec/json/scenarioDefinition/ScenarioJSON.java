@@ -11,6 +11,7 @@ public class ScenarioJSON {
     private final TraineeJSON traineeJSON = new TraineeJSON();
     private final ObjectOfInterestJSON objectOfInterestJSON = new ObjectOfInterestJSON();
     private final RegionOfInterestJSON regionOfInterestJSON = new RegionOfInterestJSON();
+    private final NPCJSON npcJSON = new NPCJSON();
 
     public Scenario decode(JSONObject jsonObj) {
         String id = (String) jsonObj.get("id");
@@ -19,26 +20,31 @@ public class ScenarioJSON {
         String timestamp = (String) jsonObj.get("timestamp");
 
         List<Casualty> casualties = new ArrayList<>();
-        for (Object obj : (JSONArray) jsonObj.get("casualties")) {
+        for (Object obj : (JSONArray) jsonObj.get("Casualties")) {
             casualties.add(casualtyJSON.decode((JSONObject) obj));
         }
 
         List<Trainee> trainees = new ArrayList<>();
-        for (Object obj : (JSONArray) jsonObj.get("trainees")) {
+        for (Object obj : (JSONArray) jsonObj.get("Trainees")) {
             trainees.add(traineeJSON.decode((JSONObject) obj));
         }
 
         List<ObjectOfInterest> objectsOfInterest = new ArrayList<>();
-        for (Object obj : (JSONArray) jsonObj.get("objectsOfInterest")) {
+        for (Object obj : (JSONArray) jsonObj.get("ObjectsOfInterest")) {
             objectsOfInterest.add(objectOfInterestJSON.decode((JSONObject) obj));
         }
 
         List<RegionOfInterest> regionsOfInterest = new ArrayList<>();
-        for (Object obj : (JSONArray) jsonObj.get("regionsOfInterest")) {
+        for (Object obj : (JSONArray) jsonObj.get("RegionsOfInterest")) {
             regionsOfInterest.add(regionOfInterestJSON.decode((JSONObject) obj));
         }
 
-        return new Scenario(id, title, description, timestamp, casualties, trainees, objectsOfInterest, regionsOfInterest);
+        List<NPC> npcs = new ArrayList<>();
+        for (Object obj : (JSONArray) jsonObj.get("NPC")) {
+            npcs.add(npcJSON.decode((JSONObject) obj));
+        }
+
+        return new Scenario(id, title, description, timestamp, casualties, trainees, objectsOfInterest, regionsOfInterest, npcs);
     }
 
     public void encode(JSONObject jsonObj, Scenario scenario) {
@@ -53,7 +59,7 @@ public class ScenarioJSON {
             casualtyJSON.encode(obj, casualty);
             casualtiesArray.add(obj);
         }
-        jsonObj.put("casualties", casualtiesArray);
+        jsonObj.put("Casualties", casualtiesArray);
 
         JSONArray traineesArray = new JSONArray();
         for (Trainee trainee : scenario.getTrainees()) {
@@ -61,7 +67,7 @@ public class ScenarioJSON {
             traineeJSON.encode(obj, trainee);
             traineesArray.add(obj);
         }
-        jsonObj.put("trainees", traineesArray);
+        jsonObj.put("Trainees", traineesArray);
 
         JSONArray objectsArray = new JSONArray();
         for (ObjectOfInterest object : scenario.getObjectsOfInterest()) {
@@ -69,7 +75,7 @@ public class ScenarioJSON {
             objectOfInterestJSON.encode(obj, object);
             objectsArray.add(obj);
         }
-        jsonObj.put("objectsOfInterest", objectsArray);
+        jsonObj.put("ObjectsOfInterest", objectsArray);
 
         JSONArray regionsArray = new JSONArray();
         for (RegionOfInterest region : scenario.getRegionsOfInterest()) {
@@ -77,6 +83,15 @@ public class ScenarioJSON {
             regionOfInterestJSON.encode(obj, region);
             regionsArray.add(obj);
         }
-        jsonObj.put("regionsOfInterest", regionsArray);
+        jsonObj.put("RegionsOfInterest", regionsArray);
+
+        JSONArray npcsArray = new JSONArray();
+        for (NPC npc : scenario.getNPCs()) {
+            JSONObject obj = new JSONObject();
+            npcJSON.encode(obj, npc);
+            npcsArray.add(obj);
+        }
+        jsonObj.put("NPCs", npcsArray);
+
     }
 }

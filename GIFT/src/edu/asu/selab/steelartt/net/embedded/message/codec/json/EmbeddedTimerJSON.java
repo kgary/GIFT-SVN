@@ -7,36 +7,39 @@ import org.slf4j.LoggerFactory;
 import mil.arl.gift.net.api.message.MessageDecodeException;
 import mil.arl.gift.net.embedded.message.EmbeddedTimer;
 import mil.arl.gift.net.json.JSONCodec;
-import mil.arl.gift.net.embedded.message.codec.json.timer.*;
-import mil.arl.gift.net.embedded.message.timer.*;
+import mil.arl.gift.net.embedded.message.codec.json.timer.CasualtyLayerJSON;
+import mil.arl.gift.net.embedded.message.codec.json.timer.TraineeLayerJSON;
+import mil.arl.gift.net.embedded.message.timer.CasualtyLayer;
+import mil.arl.gift.net.embedded.message.timer.TraineeLayer;
 
 public class EmbeddedTimerJSON implements JSONCodec {
 
-    private static Logger logger = LoggerFactory.getLogger(EmbeddedTimerJSON.class);
+    private static final Logger logger = LoggerFactory.getLogger(EmbeddedTimerJSON.class);
 
-    private static final String CASUALTY_LAYER = "causalities";
-    private static final String TRAINEE_LAYER = "trainees";
+    private static final String SESSION_ID      = "sessionID";
+    private static final String SCENARIO_EVENT  = "scenarioEvent";
+    private static final String TIMESTAMP       = "timestamp";
 
     private final CasualtyLayerJSON casualtyLayerJSON = new CasualtyLayerJSON();
-    private final TraineeLayerJSON traineeLayerJSON = new TraineeLayerJSON();
+    private final TraineeLayerJSON  traineeLayerJSON  = new TraineeLayerJSON();
 
     @Override
     public Object decode(JSONObject jsonObj) throws MessageDecodeException {
         try {
-            logger.info("Received JSONObject: ");
-            logger.info(jsonObj.toJSONString());
+            logger.info("Received JSONObject: {}", jsonObj.toJSONString());
 
+            String sessionID     = (String) jsonObj.get(SESSION_ID);
+            String scenarioEvent = (String) jsonObj.get(SCENARIO_EVENT);
+            String timestamp     = (String) jsonObj.get(TIMESTAMP);
+
+            // these parse() methods should look for "casualties" and "trainees" arrays inside jsonObj
             CasualtyLayer casualtyLayer = casualtyLayerJSON.parse(jsonObj);
-            TraineeLayer traineeLayer = traineeLayerJSON.parse(jsonObj);
+            TraineeLayer  traineeLayer  = traineeLayerJSON.parse(jsonObj);
 
-            EmbeddedTimer message = new EmbeddedTimer();
-            message.setCasualtyLayer(casualtyLayer);
-            message.setTraineeLayer(traineeLayer);
-
-            return message;
+            return new EmbeddedTimer(sessionID, scenarioEvent, timestamp, casualtyLayer, traineeLayer);
 
         } catch (Exception e) {
-            logger.error("Caught exception while creating " + this.getClass().getName() + " from " + jsonObj, e);
+            logger.error("Error decoding EmbeddedTimerJSON from {}: ", jsonObj, e);
             throw new MessageDecodeException(this.getClass().getName(), "Exception logged while decoding");
         }
     }
@@ -46,12 +49,12 @@ public class EmbeddedTimerJSON implements JSONCodec {
     public void encode(JSONObject jsonObj, Object payload) {
         EmbeddedTimer message = (EmbeddedTimer) payload;
 
-        JSONObject casualtyLayerJson = new JSONObject();
-        casualtyLayerJSON.encode(casualtyLayerJson, message.getCasualtyLayer());
-        jsonObj.put(CASUALTY_LAYER, casualtyLayerJson);
+        jsonObj.put(SESSION_ID,     message.getSessionID());
+        jsonObj.put(SCENARIO_EVENT, message.getScenarioEvent());
+        jsonObj.put(TIMESTAMP,      message.getTimestamp());
 
-        JSONObject traineeLayerJson = new JSONObject();
-        traineeLayerJSON.encode(traineeLayerJson, message.getTraineeLayer());
-        jsonObj.put(TRAINEE_LAYER, traineeLayerJson);
+        // these encode() methods should inject the "casualties" and "trainees" arrays into jsonObj
+        casualtyLayerJSON.encode(jsonObj, message.getCasualtyLayer());
+        traineeLayerJSON.encode(jsonObj,  message.getTraineeLayer());
     }
 }
