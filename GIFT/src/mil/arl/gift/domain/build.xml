@@ -143,8 +143,11 @@
     
 	<target name="jar" depends="compileDomainCore">
         <echo message="Creating JAR for Domain"/>
-        <jar destfile="${root.path}/bin/${jarfile.name}" basedir="${root.path}/build/classes"
-            includes="${source.path}/**,${root.path}/config/**" excludes="${build.excludes}"/>
+         <jar destfile="${root.path}/bin/${module.jarfile.name}" 
+			basedir="${root.path}/build/classes"
+			includes="${source.path}/** edu/asu/selab/steelartt/domain/** config/**"
+			excludes="${build.excludes}"
+		 />
     </target>
 
     <target name="compile" depends="checkForChanges.Core, jar, compileDomainCore"/>
