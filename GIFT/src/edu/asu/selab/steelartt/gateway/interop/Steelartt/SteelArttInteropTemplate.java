@@ -34,7 +34,7 @@ import mil.arl.gift.common.ta.state.StopFreeze;
 import mil.arl.gift.common.ta.state.Triage;
 import mil.arl.gift.common.ta.state.TimerBatch;
 import mil.arl.gift.common.ta.state.ScenarioDefinition;
-import mil.arl.gift.common.ta.state.EventStatus;
+import mil.arl.gift.common.ta.state.Event;
 
 public class SteelArttInteropTemplate extends AbstractInteropInterface {
 
@@ -224,7 +224,7 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
             // GatewayModule.getInstance().sendMessageToGIFT(sf, MessageTypeEnum.STOP_FREEZE, this);
              __logger.info("message is: "+ message);
                 Class<?> objClass = message.getClass();
-            __logger.info(objClass.getName());
+            __logger.info("message is of type: "+objClass.getName());
             if (message instanceof TrainingAppState) {
                 GatewayModule.getInstance().sendMessageToGIFT((TrainingAppState) message, msgType, this);
             }else if(message instanceof TimerBatch){
@@ -233,8 +233,8 @@ public class SteelArttInteropTemplate extends AbstractInteropInterface {
                 GatewayModule.getInstance().sendMessageToGIFT((Triage) message, msgType, this);
             }else if(message instanceof ScenarioDefinition){
                 GatewayModule.getInstance().sendMessageToGIFT((ScenarioDefinition) message, msgType, this);
-            }else if(message instanceof EventStatus){
-                GatewayModule.getInstance().sendMessageToGIFT((EventStatus) message, msgType, this);
+            }else if(message instanceof Event){
+                GatewayModule.getInstance().sendMessageToGIFT((Event) message, msgType, this);
             }else {
                 final String typeName = message != null ? message.getClass().getName() : "null";
                 __logger.warn("A message of type '" + typeName + "' was received from the unity application. "
