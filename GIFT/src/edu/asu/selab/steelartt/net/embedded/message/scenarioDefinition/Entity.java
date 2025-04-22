@@ -6,10 +6,10 @@ import java.util.List;
 public class Entity {
         private String id;
         private String description;
-        private List<Integer> location;
+        private List<Double> location;
         private List<AreaOfInterest> areasOfInterest;
 
-        public Entity(String id, String description, List<Integer> location, List<AreaOfInterest> areasOfInterest) {
+        public Entity(String id, String description, List<Double> location, List<AreaOfInterest> areasOfInterest) {
             this.id = id;
             this.description = description;
             this.location = location;
@@ -24,7 +24,7 @@ public class Entity {
             return description;
         }
 
-        public List<Integer> getLocation() {
+        public List<Double> getLocation() {
             return location;
         }
 

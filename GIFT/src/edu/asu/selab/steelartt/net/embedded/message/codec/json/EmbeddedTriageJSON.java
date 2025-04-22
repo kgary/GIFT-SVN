@@ -11,6 +11,7 @@ public class EmbeddedTriageJSON implements JSONCodec{
 
     private final ActionsPerformedJSON actionsPerformedJSON = new ActionsPerformedJSON();
 
+    @Override
     public EmbeddedTriage decode(JSONObject jsonObj) throws MessageDecodeException{
         ActionsPerformed actionsPerformed = actionsPerformedJSON.decode((JSONObject) jsonObj.get("actionsPerformed"));
         
@@ -25,6 +26,7 @@ public class EmbeddedTriageJSON implements JSONCodec{
         );
     }
 
+    @Override
     public void encode(JSONObject jsonObj, Object payload) {
         
         EmbeddedTriage embeddedTriage = (EmbeddedTriage) payload;

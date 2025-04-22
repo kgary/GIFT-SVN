@@ -1,9 +1,9 @@
-package mil.arl.gift.net.embedded.message.eventStatus;
+package mil.arl.gift.net.embedded.message;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
+public class EmbeddedEvent {
 
     private String sessionID;
     private String scenarioEvent; // Application or Domain
@@ -12,7 +12,7 @@ public class Event {
     private String subtype; // scene or triage or perturbation
     private String subtypeId;
 
-    public Event(String sessionID, String scenarioEvent, String timestamp, String event, String subtype, String subtypeId) {
+    public EmbeddedEvent(String sessionID, String scenarioEvent, String timestamp, String event, String subtype, String subtypeId) {
         this.sessionID = sessionID;
         this.scenarioEvent = scenarioEvent;
         this.timestamp = timestamp;

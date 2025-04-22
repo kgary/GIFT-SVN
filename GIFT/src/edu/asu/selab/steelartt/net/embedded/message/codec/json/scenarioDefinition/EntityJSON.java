@@ -15,15 +15,17 @@ public class EntityJSON {
         String description = (String) jsonObj.get("description");
 
         JSONArray locationArray = (JSONArray) jsonObj.get("location");
-        List<Integer> location = new ArrayList<>();
+        List<Double> location = new ArrayList<>();
         for (Object obj : locationArray) {
-            location.add(((Long) obj).intValue());
+            location.add(((Double) obj).doubleValue());
         }
 
         JSONArray areasArray = (JSONArray) jsonObj.get("areasOfInterest");
         List<AreaOfInterest> areasOfInterest = new ArrayList<>();
-        for (Object obj : areasArray) {
-            areasOfInterest.add(areaOfInterestJSON.decode((JSONObject) obj));
+        if (areasArray != null) {
+            for (Object obj : areasArray) {
+                areasOfInterest.add(areaOfInterestJSON.decode((JSONObject) obj));
+            }
         }
 
         return new Entity(id, description, location, areasOfInterest);
@@ -34,7 +36,7 @@ public class EntityJSON {
         jsonObj.put("description", entity.getDescription());
 
         JSONArray locationArray = new JSONArray();
-        for (Integer loc : entity.getLocation()) {
+        for (Double loc : entity.getLocation()) {
             locationArray.add(loc);
         }
         jsonObj.put("location", locationArray);

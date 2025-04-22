@@ -1,9 +1,9 @@
-package mil.arl.gift.common.ta.state.eventStatus;
+package mil.arl.gift.common.ta.state;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
+public class Event implements TrainingAppState{
 
     private String sessionID;
     private String scenarioEvent; // Application or Domain

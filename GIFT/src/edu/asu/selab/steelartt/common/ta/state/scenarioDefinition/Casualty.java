@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Casualty extends Entity {
-        public Casualty(String id, String description, List<Integer> location, List<AreaOfInterest> areasOfInterest) {
+        public Casualty(String id, String description, List<Double> location, List<AreaOfInterest> areasOfInterest) {
             super(id, description, location, areasOfInterest);
         }
     }

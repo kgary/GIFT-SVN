@@ -6,7 +6,7 @@ import java.util.List;
 public class NPC extends Entity {
      private String role;
 
-    public NPC(String id, String description, String role, List<Integer> location, List<AreaOfInterest> areasOfInterest) {
+    public NPC(String id, String description, String role, List<Double> location, List<AreaOfInterest> areasOfInterest) {
         super(id, description, location, areasOfInterest);
         this.role = role;
     }

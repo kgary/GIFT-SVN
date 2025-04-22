@@ -243,14 +243,14 @@ public class MessageTypeEnum extends AbstractEnum {
     
     public static final MessageTypeEnum SCENARIO_DEFINITION = new MessageTypeEnum("Scenario Definition", "Scenario Definition Message", "Contains Scenario Definition message data");
     public static final MessageTypeEnum TRIAGE = new MessageTypeEnum("Triage", "Triage Message", "Contains Triage message data");
-    public static final MessageTypeEnum EVENT_STATUS = new MessageTypeEnum("Event Status", "Event Status Message", "Contains Event Status message data");
+    public static final MessageTypeEnum EVENT = new MessageTypeEnum("Event", "Event Message", "Contains Event message data");
 
     
     /**
      * Collection of Training Application Game state message types
      */
     public static final List<MessageTypeEnum> TRAINING_APP_STATE_MESSAGE_TYPES = Arrays.asList(ENTITY_STATE, COLLISION, DETONATION,
-            WEAPON_FIRE, POWERPOINT_STATE, SIMPLE_EXAMPLE_STATE, GENERIC_JSON_STATE, RIFLE_SHOT_MESSAGE, GEOLOCATION,TIMER,TIMER_BATCH,SCENARIO_DEFINITION,TRIAGE,EVENT_STATUS);
+            WEAPON_FIRE, POWERPOINT_STATE, SIMPLE_EXAMPLE_STATE, GENERIC_JSON_STATE, RIFLE_SHOT_MESSAGE, GEOLOCATION,TIMER,TIMER_BATCH,SCENARIO_DEFINITION,TRIAGE,EVENT);
 
     /** (optional) information about the message type and its use in GIFT */
     private String description = null;
