@@ -35,13 +35,13 @@ import mil.arl.gift.common.ta.state.EntityState;
 import mil.arl.gift.common.ta.state.VariablesStateResult;
 import mil.arl.gift.common.ta.state.VariablesState.VariableState;
 import mil.arl.gift.common.ta.state.VariablesState.WeaponState;
-import mil.arl.gift.net.embedded.message.EmbeddedTriage;
+import mil.arl.gift.common.ta.state.Triage;
 import mil.arl.gift.common.util.CollectionUtils;
 import mil.arl.gift.common.util.StringUtils;
 import mil.arl.gift.domain.knowledge.condition.SessionConditionsBlackboardMgr.ConditionEntityState;
 import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.common.ta.state.SimpleExampleState;
-import generated.course.BooleanEnum;
+import generated.dkf.BooleanEnum;
 
 
 public class SteelarttCondition extends AbstractCondition {
@@ -106,7 +106,7 @@ public class SteelarttCondition extends AbstractCondition {
 
     @Override
     public boolean canComplete() {
-        return false;
+        return true;
     }
 
     /** a key to look for in the game state message */
@@ -168,24 +168,20 @@ public class SteelarttCondition extends AbstractCondition {
             return false;
 
         }else if(message.getMessageType()==MessageTypeEnum.TRIAGE){
-            EmbeddedTriage triage = (EmbeddedTriage) message.getPayload();
+           Triage triage = (Triage) message.getPayload();
+            boolean identified = triage.getActionsPerformed().isWoundAreaIdentified();
+            boolean shouldBe = BooleanEnum.TRUE.equals(steelarttInput.getWoundIdentified());
 
-            if (BooleanEnum.TRUE.equals(steelarttInput.getWoundIdentified())) {
-                if (triage.getActionsPerformed().isWoundAreaIdentified()) {
-                    // Success!
-                    scoringEventStarted();
-                    level = AssessmentLevelEnum.AT_EXPECTATION;
-                } else {
-                    // Failure
-                    scoringEventEnded();
-                    level = AssessmentLevelEnum.BELOW_EXPECTATION;
-                }
-            }
+            level = (identified == shouldBe)
+                ? AssessmentLevelEnum.AT_EXPECTATION
+                : AssessmentLevelEnum.BELOW_EXPECTATION;
 
-            if (level != null) {
-                updateAssessment(level);
-                return true;
-            }
+            scoringEventStarted();
+            scoringEventEnded();
+
+            updateAssessment(level);
+
+            return true;
         } 
                 
         return false;
