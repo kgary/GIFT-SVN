@@ -14,7 +14,7 @@ public class EmbeddedEventJSON implements JSONCodec {
             (String) jsonObj.get("timestamp"),
             (String) jsonObj.get("event"),
             (String) jsonObj.get("subtype"),
-            (String) jsonObj.get("subtypeId")
+            (String) jsonObj.get("subtype_id")
         );
     }
 
@@ -26,6 +26,6 @@ public class EmbeddedEventJSON implements JSONCodec {
         jsonObj.put("timestamp", event.getTimestamp());
         jsonObj.put("event", event.getEvent());
         jsonObj.put("subtype", event.getSubtype());
-        jsonObj.put("subtypeId", event.getSubtypeId());
+        jsonObj.put("subtype_id", event.getSubtypeId());
     }
 }
