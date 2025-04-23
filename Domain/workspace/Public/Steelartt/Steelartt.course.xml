@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt" version="11.0.148">
+<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt" version="11.0.167">
     <description>This course will test my new training application interop plugin.</description>
-    <lastSuccessfulValidation>2025:03:03 15:08:49:619 -0700</lastSuccessfulValidation>
     <ns2:surveyContext>37</ns2:surveyContext>
     <concepts>
         <hierarchy>
@@ -142,7 +141,7 @@
             <options/>
             <interops>
                 <interop>
-                    <InteropImpl>gateway.interop.unity.UnityInterface</InteropImpl>
+                    <InteropImpl>gateway.interop.Steelartt.SteelArttKafka</InteropImpl>
                     <InteropInputs>
                         <UnityInteropInputs>
                             <loadArgs/>

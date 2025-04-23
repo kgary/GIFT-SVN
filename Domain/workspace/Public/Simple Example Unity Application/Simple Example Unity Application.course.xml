@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Course xmlns:ns2="http://GIFT.com/common" name="Simple Example Unity Application" version="11.0.1">
+<Course xmlns:ns2="http://GIFT.com/common" name="Simple Example Unity Application" version="11.0.5">
+    <lastSuccessfulValidation>2025:04:01 17:16:00:448 -0700</lastSuccessfulValidation>
     <image>unity-logo.png</image>
     <ns2:surveyContext>11</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts"/>
+        </hierarchy>
+    </concepts>
     <transitions>
         <Guidance>
             <transitionName>Welcome Message</transitionName>

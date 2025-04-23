@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Course xmlns:ns2="http://GIFT.com/common" name="Simple Example TA Test" version="11.0.1">
+<Course xmlns:ns2="http://GIFT.com/common" name="Simple Example TA Test" version="11.0.2">
     <description>The "Simple Example TA Test" course is meant to provide a demonstration of the simple example training application in a GIFT course.  While this training application serves no real training purposes, it does provide an example of integrating a C# application with the GIFT Gateway module using XML RPC communication protocol.  This is an important course for those following the GIFT developer guide which helps new GIFT developers familiarize themselves with various parts of the GIFT framework.  
 &lt;br&gt;&lt;br&gt;
 &lt;b&gt;Intended Audience&lt;/b&gt;: everyone
@@ -12,6 +12,12 @@
 &lt;/ul&gt;
 &lt;b&gt;Periperhals&lt;/b&gt;: none</description>
     <image>application.PNG</image>
+    <ns2:surveyContext>40</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="All Concepts"/>
+        </hierarchy>
+    </concepts>
     <transitions>
         <Guidance>
             <transitionName>Intro</transitionName>
@@ -22,6 +28,7 @@
         </Guidance>
         <TrainingApplication>
             <transitionName>Lesson</transitionName>
+            <trainingAppTypeEnum>SimpleExampleTrainingApp</trainingAppTypeEnum>
             <dkfRef>
                 <file>example.dkf.xml</file>
             </dkfRef>

@@ -35,122 +35,122 @@ assessed on a React to Contact task.&lt;br&gt;&lt;/p&gt;&lt;p&gt;The real-time a
                         <scenarioStarted/>
                         <triggerMessage>
                             <strategy name="TaskTriggerStrategy">
-<ns4:instructionalIntervention>
-    <ns4:strategyHandler>
-        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-    </ns4:strategyHandler>
-    <ns4:delayAfterStrategy>
-        <ns4:duration>8</ns4:duration>
-    </ns4:delayAfterStrategy>
-    <ns4:feedback>
-        <ns4:message>
-            <ns4:content>--1. Please READ these instructions carefully! When the scenario begins use the WASD, or the arrow keys, to move your player. To zoom into your weapon scope view, press and hold your right mouse button. Pressing ESC at anytime will bring up a full list of controls. </ns4:content>
-            <ns4:Delivery>
-                <ns4:InTutor>
-                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                </ns4:InTutor>
-            </ns4:Delivery>
-        </ns4:message>
-    </ns4:feedback>
-</ns4:instructionalIntervention>
-<ns4:instructionalIntervention>
-    <ns4:strategyHandler>
-        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-    </ns4:strategyHandler>
-    <ns4:delayAfterStrategy>
-        <ns4:duration>8</ns4:duration>
-    </ns4:delayAfterStrategy>
-    <ns4:feedback>
-        <ns4:message>
-            <ns4:content>--2. This is a team based training scenario - &lt;b&gt;make sure you are moving in close formation and staying together at all times&lt;/b&gt;. </ns4:content>
-            <ns4:Delivery>
-                <ns4:InTutor>
-                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                </ns4:InTutor>
-            </ns4:Delivery>
-        </ns4:message>
-    </ns4:feedback>
-</ns4:instructionalIntervention>
-<ns4:instructionalIntervention>
-    <ns4:strategyHandler>
-        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-    </ns4:strategyHandler>
-    <ns4:delayAfterStrategy>
-        <ns4:duration>10</ns4:duration>
-    </ns4:delayAfterStrategy>
-    <ns4:feedback>
-        <ns4:message>
-            <ns4:content>--3. In a few seconds you will be instructed to move as a team to the floating waypoint labeled with the number "3". 
-&lt;br&gt;&lt;/br&gt; 
-When you reach this location you will come under fire by four enemies located along the tree line. Your goal is to eliminate these enemies - this will end the scenario.</ns4:content>
-            <ns4:Delivery>
-                <ns4:InTutor>
-                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                </ns4:InTutor>
-            </ns4:Delivery>
-        </ns4:message>
-    </ns4:feedback>
-</ns4:instructionalIntervention>
-<ns4:instructionalIntervention>
-    <ns4:strategyHandler>
-        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-    </ns4:strategyHandler>
-    <ns4:delayAfterStrategy>
-        <ns4:duration>10</ns4:duration>
-    </ns4:delayAfterStrategy>
-    <ns4:feedback>
-        <ns4:message>
-            <ns4:content>--4. Your team's performance will be assessed by GIFT throughout the scenario. After the scenario ends, you will review your performance using GIFT's Game Master tool. </ns4:content>
-            <ns4:Delivery>
-                <ns4:InTutor>
-                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                </ns4:InTutor>
-            </ns4:Delivery>
-        </ns4:message>
-    </ns4:feedback>
-</ns4:instructionalIntervention>
-<ns4:instructionalIntervention>
-    <ns4:strategyHandler>
-        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-    </ns4:strategyHandler>
-    <ns4:delayAfterStrategy>
-        <ns4:duration>10</ns4:duration>
-    </ns4:delayAfterStrategy>
-    <ns4:feedback>
-        <ns4:message>
-            <ns4:content>--5. If you are the RIDE HOST and have not done so already, press "Begin" in the RIDE window now.&lt;br&gt;&lt;/br&gt; To show a weapon crosshair, weapon information, and health, press the "Tab" key. </ns4:content>
-            <ns4:Delivery>
-                <ns4:InTutor>
-                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                </ns4:InTutor>
-            </ns4:Delivery>
-        </ns4:message>
-    </ns4:feedback>
-</ns4:instructionalIntervention>
-<ns4:instructionalIntervention>
-    <ns4:strategyHandler>
-        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-    </ns4:strategyHandler>
-    <ns4:delayAfterStrategy>
-        <ns4:duration>5</ns4:duration>
-    </ns4:delayAfterStrategy>
-    <ns4:feedback>
-        <ns4:message>
-            <ns4:content>--Now move to waypoint "3" with your team to start the scenario!</ns4:content>
-            <ns4:Delivery>
-                <ns4:InTutor>
-                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                </ns4:InTutor>
-            </ns4:Delivery>
-        </ns4:message>
-    </ns4:feedback>
-</ns4:instructionalIntervention>
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>8</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--1. Please READ these instructions carefully! When the scenario begins use the WASD, or the arrow keys, to move your player. To zoom into your weapon scope view, press and hold your right mouse button. Pressing ESC at anytime will bring up a full list of controls. </ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>8</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--2. This is a team based training scenario - &lt;b&gt;make sure you are moving in close formation and staying together at all times&lt;/b&gt;. </ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>10</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--3. In a few seconds you will be instructed to move as a team to the floating waypoint labeled with the number "3". 
+                                &lt;br&gt;&lt;/br&gt; 
+                                When you reach this location you will come under fire by four enemies located along the tree line. Your goal is to eliminate these enemies - this will end the scenario.</ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>10</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--4. Your team's performance will be assessed by GIFT throughout the scenario. After the scenario ends, you will review your performance using GIFT's Game Master tool. </ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>10</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--5. If you are the RIDE HOST and have not done so already, press "Begin" in the RIDE window now.&lt;br&gt;&lt;/br&gt; To show a weapon crosshair, weapon information, and health, press the "Tab" key. </ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>5</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--Now move to waypoint "3" with your team to start the scenario!</ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
                             </strategy>
                         </triggerMessage>
                     </trigger>
@@ -164,18 +164,18 @@ When you reach this location you will come under fire by four enemies located al
                     <concept name="Reach Location 3" nodeId="2" scenarioSupport="true">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
-<input>
-    <AvoidLocationCondition>
-        <pointRef distance="10" value="Location 3 "/>
-        <teamMemberRefs>
-            <teamMemberRef>Team Leader</teamMemberRef>
-            <teamMemberRef>Rifleman</teamMemberRef>
-            <teamMemberRef>Grenadier</teamMemberRef>
-            <teamMemberRef>Sawgunner</teamMemberRef>
-        </teamMemberRefs>
-    </AvoidLocationCondition>
-</input>
+                                <conditionImpl>domain.knowledge.condition.AvoidLocationCondition</conditionImpl>
+                                <input>
+                                    <AvoidLocationCondition>
+                                        <pointRef distance="10" value="Location 3 "/>
+                                        <teamMemberRefs>
+                                            <teamMemberRef>Team Leader</teamMemberRef>
+                                            <teamMemberRef>Rifleman</teamMemberRef>
+                                            <teamMemberRef>Grenadier</teamMemberRef>
+                                            <teamMemberRef>Sawgunner</teamMemberRef>
+                                        </teamMemberRefs>
+                                    </AvoidLocationCondition>
+                                </input>
                             </condition>
                         </conditions>
                     </concept>
@@ -187,25 +187,25 @@ When you reach this location you will come under fire by four enemies located al
                         <taskEnded nodeId="1"/>
                         <triggerMessage>
                             <strategy name="TaskTriggerStrategy">
-<ns4:instructionalIntervention>
-    <ns4:strategyHandler>
-        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-    </ns4:strategyHandler>
-    <ns4:delayAfterStrategy>
-        <ns4:duration>8</ns4:duration>
-    </ns4:delayAfterStrategy>
-    <ns4:feedback>
-        <ns4:message>
-            <ns4:content>--You have reached the designated location. Your team's assessment will now begin. </ns4:content>
-            <ns4:Delivery>
-                <ns4:InTutor>
-                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                </ns4:InTutor>
-            </ns4:Delivery>
-        </ns4:message>
-    </ns4:feedback>
-</ns4:instructionalIntervention>
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>8</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--You have reached the designated location. Your team's assessment will now begin. </ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
                             </strategy>
                         </triggerMessage>
                     </trigger>
@@ -220,28 +220,28 @@ When you reach this location you will come under fire by four enemies located al
                     <concept name="Maintain Assigned Sector of Fire" nodeId="4">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.AssignedSectorCondition</conditionImpl>
-<input>
-    <AssignedSectorCondition>
-        <teamMemberRefs>
-            <teamMemberRef>Team Leader</teamMemberRef>
-            <teamMemberRef>Rifleman</teamMemberRef>
-            <teamMemberRef>Grenadier</teamMemberRef>
-            <teamMemberRef>Sawgunner</teamMemberRef>
-        </teamMemberRefs>
-        <pointRef value="Assigned Sector Center (OPFOR3 Location)"/>
-        <maxAngleFromCenter>45</maxAngleFromCenter>
-    </AssignedSectorCondition>
-</input>
-<scoring>
-    <count name="Violation Count" units="count">
-        <evaluators>
-            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
-            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
-        </evaluators>
-    </count>
-</scoring>
-<performanceMetricArguments weight="1.0"/>
+                                <conditionImpl>domain.knowledge.condition.AssignedSectorCondition</conditionImpl>
+                                <input>
+                                    <AssignedSectorCondition>
+                                        <teamMemberRefs>
+                                            <teamMemberRef>Team Leader</teamMemberRef>
+                                            <teamMemberRef>Rifleman</teamMemberRef>
+                                            <teamMemberRef>Grenadier</teamMemberRef>
+                                            <teamMemberRef>Sawgunner</teamMemberRef>
+                                        </teamMemberRefs>
+                                        <pointRef value="Assigned Sector Center (OPFOR3 Location)"/>
+                                        <maxAngleFromCenter>45</maxAngleFromCenter>
+                                    </AssignedSectorCondition>
+                                </input>
+                                <scoring>
+                                    <count name="Violation Count" units="count">
+                                        <evaluators>
+                                            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                                            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                                        </evaluators>
+                                    </count>
+                                </scoring>
+                                <performanceMetricArguments weight="1.0"/>
                             </condition>
                         </conditions>
                         <performanceMetricArguments weight="0.5"/>
@@ -249,36 +249,36 @@ When you reach this location you will come under fire by four enemies located al
                     <concept name="Detect Enemy Targets" nodeId="5">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.DetectObjectsCondition</conditionImpl>
-<input>
-    <DetectObjectsCondition>
-        <teamMemberRefs>
-            <teamMemberRef>Team Leader</teamMemberRef>
-            <teamMemberRef>Rifleman</teamMemberRef>
-            <teamMemberRef>Grenadier</teamMemberRef>
-            <teamMemberRef>Sawgunner</teamMemberRef>
-        </teamMemberRefs>
-        <objectsToDetect>
-            <teamMemberRef>OPFOR 1</teamMemberRef>
-            <teamMemberRef>OPFOR 2</teamMemberRef>
-            <teamMemberRef>OPFOR 3</teamMemberRef>
-            <teamMemberRef>OPFOR 4</teamMemberRef>
-        </objectsToDetect>
-        <fieldOfView>140</fieldOfView>
-        <orientAngle>45</orientAngle>
-        <AtExpectationUpperBound>10</AtExpectationUpperBound>
-        <AboveExpectationUpperBound>5</AboveExpectationUpperBound>
-    </DetectObjectsCondition>
-</input>
-<scoring>
-    <count name="Violation Count" units="count">
-        <evaluators>
-            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
-            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
-        </evaluators>
-    </count>
-</scoring>
-<performanceMetricArguments weight="1.0"/>
+                                <conditionImpl>domain.knowledge.condition.DetectObjectsCondition</conditionImpl>
+                                <input>
+                                    <DetectObjectsCondition>
+                                        <teamMemberRefs>
+                                            <teamMemberRef>Team Leader</teamMemberRef>
+                                            <teamMemberRef>Rifleman</teamMemberRef>
+                                            <teamMemberRef>Grenadier</teamMemberRef>
+                                            <teamMemberRef>Sawgunner</teamMemberRef>
+                                        </teamMemberRefs>
+                                        <objectsToDetect>
+                                            <teamMemberRef>OPFOR 1</teamMemberRef>
+                                            <teamMemberRef>OPFOR 2</teamMemberRef>
+                                            <teamMemberRef>OPFOR 3</teamMemberRef>
+                                            <teamMemberRef>OPFOR 4</teamMemberRef>
+                                        </objectsToDetect>
+                                        <fieldOfView>140</fieldOfView>
+                                        <orientAngle>45</orientAngle>
+                                        <AtExpectationUpperBound>10</AtExpectationUpperBound>
+                                        <AboveExpectationUpperBound>5</AboveExpectationUpperBound>
+                                    </DetectObjectsCondition>
+                                </input>
+                                <scoring>
+                                    <count name="Violation Count" units="count">
+                                        <evaluators>
+                                            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                                            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                                        </evaluators>
+                                    </count>
+                                </scoring>
+                                <performanceMetricArguments weight="1.0"/>
                             </condition>
                         </conditions>
                         <performanceMetricArguments weight="0.5"/>
@@ -286,30 +286,30 @@ When you reach this location you will come under fire by four enemies located al
                     <concept name="Maintain Proper Rate of Fire" nodeId="6">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.FireTeamRateOfFireCondition</conditionImpl>
-<input>
-    <FireTeamRateOfFireCondition>
-        <teamMemberRefs>
-            <teamMemberRef>Team Leader</teamMemberRef>
-            <teamMemberRef>Rifleman</teamMemberRef>
-            <teamMemberRef>Grenadier</teamMemberRef>
-            <teamMemberRef>Sawgunner</teamMemberRef>
-        </teamMemberRefs>
-        <AtExpectationUpperBound>0.55000000000000004441</AtExpectationUpperBound>
-        <BelowExpectationUpperBound>0.20000000000000001110</BelowExpectationUpperBound>
-        <secUntilFirstAssessment>5</secUntilFirstAssessment>
-        <subsequentAssessmentInterval>5</subsequentAssessmentInterval>
-    </FireTeamRateOfFireCondition>
-</input>
-<scoring>
-    <count name="Violation Count" units="count">
-        <evaluators>
-            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
-            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
-        </evaluators>
-    </count>
-</scoring>
-<performanceMetricArguments weight="1.0"/>
+                                <conditionImpl>domain.knowledge.condition.FireTeamRateOfFireCondition</conditionImpl>
+                                <input>
+                                    <FireTeamRateOfFireCondition>
+                                        <teamMemberRefs>
+                                            <teamMemberRef>Team Leader</teamMemberRef>
+                                            <teamMemberRef>Rifleman</teamMemberRef>
+                                            <teamMemberRef>Grenadier</teamMemberRef>
+                                            <teamMemberRef>Sawgunner</teamMemberRef>
+                                        </teamMemberRefs>
+                                        <AtExpectationUpperBound>0.55000000000000004441</AtExpectationUpperBound>
+                                        <BelowExpectationUpperBound>0.20000000000000001110</BelowExpectationUpperBound>
+                                        <secUntilFirstAssessment>5</secUntilFirstAssessment>
+                                        <subsequentAssessmentInterval>5</subsequentAssessmentInterval>
+                                    </FireTeamRateOfFireCondition>
+                                </input>
+                                <scoring>
+                                    <count name="Violation Count" units="count">
+                                        <evaluators>
+                                            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                                            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                                        </evaluators>
+                                    </count>
+                                </scoring>
+                                <performanceMetricArguments weight="1.0"/>
                             </condition>
                         </conditions>
                         <performanceMetricArguments weight="0.0"/>
@@ -317,28 +317,28 @@ When you reach this location you will come under fire by four enemies located al
                     <concept name="Avoid Muzzle Flagging" nodeId="7">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.MuzzleFlaggingCondition</conditionImpl>
-<input>
-    <MuzzleFlaggingCondition>
-        <maxAngle>25</maxAngle>
-        <teamMemberRefs>
-            <teamMemberRef>Team Leader</teamMemberRef>
-            <teamMemberRef>Rifleman</teamMemberRef>
-            <teamMemberRef>Grenadier</teamMemberRef>
-            <teamMemberRef>Sawgunner</teamMemberRef>
-        </teamMemberRefs>
-        <useWeaponSafety>false</useWeaponSafety>
-    </MuzzleFlaggingCondition>
-</input>
-<scoring>
-    <count name="Violation Count" units="count">
-        <evaluators>
-            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
-            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
-        </evaluators>
-    </count>
-</scoring>
-<performanceMetricArguments weight="1.0"/>
+                                <conditionImpl>domain.knowledge.condition.MuzzleFlaggingCondition</conditionImpl>
+                                <input>
+                                    <MuzzleFlaggingCondition>
+                                        <maxAngle>25</maxAngle>
+                                        <teamMemberRefs>
+                                            <teamMemberRef>Team Leader</teamMemberRef>
+                                            <teamMemberRef>Rifleman</teamMemberRef>
+                                            <teamMemberRef>Grenadier</teamMemberRef>
+                                            <teamMemberRef>Sawgunner</teamMemberRef>
+                                        </teamMemberRefs>
+                                        <useWeaponSafety>false</useWeaponSafety>
+                                    </MuzzleFlaggingCondition>
+                                </input>
+                                <scoring>
+                                    <count name="Violation Count" units="count">
+                                        <evaluators>
+                                            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                                            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                                        </evaluators>
+                                    </count>
+                                </scoring>
+                                <performanceMetricArguments weight="1.0"/>
                             </condition>
                         </conditions>
                         <performanceMetricArguments weight="0.0"/>
@@ -346,35 +346,35 @@ When you reach this location you will come under fire by four enemies located al
                     <concept name="Engage Targets with Well-Aimed Fire" nodeId="8">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.EngageTargetsCondition</conditionImpl>
-<input>
-    <EngageTargetsCondition>
-        <teamMemberRefs>
-            <teamMemberRef>Team Leader</teamMemberRef>
-            <teamMemberRef>Rifleman</teamMemberRef>
-            <teamMemberRef>Grenadier</teamMemberRef>
-            <teamMemberRef>Sawgunner</teamMemberRef>
-        </teamMemberRefs>
-        <targetsToEngage>
-            <teamMemberRef>OPFOR 1</teamMemberRef>
-            <teamMemberRef>OPFOR 2</teamMemberRef>
-            <teamMemberRef>OPFOR 3</teamMemberRef>
-            <teamMemberRef>OPFOR 4</teamMemberRef>
-        </targetsToEngage>
-        <weaponConeAngle>15</weaponConeAngle>
-        <AtExpectationUpperBound>10</AtExpectationUpperBound>
-        <AboveExpectationUpperBound>5</AboveExpectationUpperBound>
-    </EngageTargetsCondition>
-</input>
-<scoring>
-    <count name="Violation Count" units="count">
-        <evaluators>
-            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
-            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
-        </evaluators>
-    </count>
-</scoring>
-<performanceMetricArguments weight="1.0"/>
+                                <conditionImpl>domain.knowledge.condition.EngageTargetsCondition</conditionImpl>
+                                <input>
+                                    <EngageTargetsCondition>
+                                        <teamMemberRefs>
+                                            <teamMemberRef>Team Leader</teamMemberRef>
+                                            <teamMemberRef>Rifleman</teamMemberRef>
+                                            <teamMemberRef>Grenadier</teamMemberRef>
+                                            <teamMemberRef>Sawgunner</teamMemberRef>
+                                        </teamMemberRefs>
+                                        <targetsToEngage>
+                                            <teamMemberRef>OPFOR 1</teamMemberRef>
+                                            <teamMemberRef>OPFOR 2</teamMemberRef>
+                                            <teamMemberRef>OPFOR 3</teamMemberRef>
+                                            <teamMemberRef>OPFOR 4</teamMemberRef>
+                                        </targetsToEngage>
+                                        <weaponConeAngle>15</weaponConeAngle>
+                                        <AtExpectationUpperBound>10</AtExpectationUpperBound>
+                                        <AboveExpectationUpperBound>5</AboveExpectationUpperBound>
+                                    </EngageTargetsCondition>
+                                </input>
+                                <scoring>
+                                    <count name="Violation Count" units="count">
+                                        <evaluators>
+                                            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                                            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                                        </evaluators>
+                                    </count>
+                                </scoring>
+                                <performanceMetricArguments weight="1.0"/>
                             </condition>
                         </conditions>
                         <performanceMetricArguments weight="0.0"/>
@@ -382,32 +382,32 @@ When you reach this location you will come under fire by four enemies located al
                     <concept name="Eliminate All Enemies" nodeId="9">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.EliminateHostilesCondition</conditionImpl>
-<input>
-    <EliminateHostilesCondition>
-        <entities>
-            <teamMemberRef>OPFOR 1</teamMemberRef>
-            <teamMemberRef>OPFOR 2</teamMemberRef>
-            <teamMemberRef>OPFOR 3</teamMemberRef>
-            <teamMemberRef>OPFOR 4</teamMemberRef>
-        </entities>
-        <teamMemberRefs>
-            <teamMemberRef>Team Leader</teamMemberRef>
-            <teamMemberRef>Rifleman</teamMemberRef>
-            <teamMemberRef>Grenadier</teamMemberRef>
-            <teamMemberRef>Sawgunner</teamMemberRef>
-        </teamMemberRefs>
-    </EliminateHostilesCondition>
-</input>
-<scoring>
-    <count name="Violation Count" units="count">
-        <evaluators>
-            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
-            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
-        </evaluators>
-    </count>
-</scoring>
-<performanceMetricArguments weight="1.0"/>
+                                <conditionImpl>domain.knowledge.condition.EliminateHostilesCondition</conditionImpl>
+                                <input>
+                                    <EliminateHostilesCondition>
+                                        <entities>
+                                            <teamMemberRef>OPFOR 1</teamMemberRef>
+                                            <teamMemberRef>OPFOR 2</teamMemberRef>
+                                            <teamMemberRef>OPFOR 3</teamMemberRef>
+                                            <teamMemberRef>OPFOR 4</teamMemberRef>
+                                        </entities>
+                                        <teamMemberRefs>
+                                            <teamMemberRef>Team Leader</teamMemberRef>
+                                            <teamMemberRef>Rifleman</teamMemberRef>
+                                            <teamMemberRef>Grenadier</teamMemberRef>
+                                            <teamMemberRef>Sawgunner</teamMemberRef>
+                                        </teamMemberRefs>
+                                    </EliminateHostilesCondition>
+                                </input>
+                                <scoring>
+                                    <count name="Violation Count" units="count">
+                                        <evaluators>
+                                            <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                                            <evaluator assessment="AtExpectation" operator="GreaterThanEquals" value="1"/>
+                                        </evaluators>
+                                    </count>
+                                </scoring>
+                                <performanceMetricArguments weight="1.0"/>
                             </condition>
                         </conditions>
                         <performanceMetricArguments weight="0.0"/>

@@ -17,45 +17,47 @@
                     <concept name="pressed button 1" nodeId="2">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
-<input>
-    <GenericConditionInput>
-        <ns2:nvpair>
-            <ns2:name>key</ns2:name>
-            <ns2:value>button 1</ns2:value>
-        </ns2:nvpair>
-    </GenericConditionInput>
-</input>
+                                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                                <input>
+                                    <SteelarttConditionInput>
+                                        <teamMemberRefs>
+                                            <teamMemberRef>Prioritizer</teamMemberRef>
+                                            <teamMemberRef>Stabilizer</teamMemberRef>
+                                            <teamMemberRef>Medical Supplier</teamMemberRef>
+                                        </teamMemberRefs>
+                                        <woundIdentified>true</woundIdentified>
+                                    </SteelarttConditionInput>
+                                </input>
                             </condition>
                         </conditions>
                     </concept>
                     <concept name="pressed button 2" nodeId="3">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
-<input>
-    <GenericConditionInput>
-        <ns2:nvpair>
-            <ns2:name>key</ns2:name>
-            <ns2:value>button 2</ns2:value>
-        </ns2:nvpair>
-    </GenericConditionInput>
-</input>
+                                <conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
+                                <input>
+                                    <GenericConditionInput>
+                                        <ns2:nvpair>
+                                            <ns2:name>key</ns2:name>
+                                            <ns2:value>button 2</ns2:value>
+                                        </ns2:nvpair>
+                                    </GenericConditionInput>
+                                </input>
                             </condition>
                         </conditions>
                     </concept>
                     <concept name="pressed button 3" nodeId="4">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
-<input>
-    <GenericConditionInput>
-        <ns2:nvpair>
-            <ns2:name>key</ns2:name>
-            <ns2:value>button 3</ns2:value>
-        </ns2:nvpair>
-    </GenericConditionInput>
-</input>
+                                <conditionImpl>domain.knowledge.condition.StringMatchingExampleCondition</conditionImpl>
+                                <input>
+                                    <GenericConditionInput>
+                                        <ns2:nvpair>
+                                            <ns2:name>key</ns2:name>
+                                            <ns2:value>button 3</ns2:value>
+                                        </ns2:nvpair>
+                                    </GenericConditionInput>
+                                </input>
                             </condition>
                         </conditions>
                         <assessments/>
@@ -63,10 +65,10 @@
                     <concept name="Application Completed" nodeId="5">
                         <conditions>
                             <condition>
-<conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
-<input>
-    <ApplicationCompletedCondition/>
-</input>
+                                <conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+                                <input>
+                                    <ApplicationCompletedCondition/>
+                                </input>
                             </condition>
                         </conditions>
                     </concept>

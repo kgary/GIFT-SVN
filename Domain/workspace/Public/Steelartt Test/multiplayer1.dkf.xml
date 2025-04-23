@@ -48,7 +48,12 @@
                                 <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
                                     <input>
                                         <SteelarttConditionInput>
-                                            <woundIdentified>false</woundIdentified>
+                                            <woundIdentified>true</woundIdentified>
+                                            <teamMemberRefs>
+                                                <teamMemberRef>Prioritizer</teamMemberRef>
+                                                <teamMemberRef>Stabilizer</teamMemberRef>
+                                                <teamMemberRef>Medical Supplier</teamMemberRef>
+                                            </teamMemberRefs>
                                         </SteelarttConditionInput>
                                     </input>
                             </condition>
