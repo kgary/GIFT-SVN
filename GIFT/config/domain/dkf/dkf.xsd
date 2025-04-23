@@ -2479,6 +2479,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
                 </xs:annotation>
             </xs:element>
             <xs:element ref="teamMemberRefs" minOccurs="0"/> 
+            <xs:element ref="RealTimeAssessmentRules" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 </xs:element>

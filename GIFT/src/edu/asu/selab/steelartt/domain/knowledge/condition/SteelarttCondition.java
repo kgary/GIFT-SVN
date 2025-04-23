@@ -132,9 +132,9 @@ public class SteelarttCondition extends AbstractCondition {
         }
 
         //for this conition rn -lets assume real time assessment rules, hence not commenting.
-        // if(steelarttInput.getRealTimeAssessmentRules() != null){
-        //     addRealTimeAssessmentRules(steelarttInput.getRealTimeAssessmentRules());
-        // }
+        if(steelarttInput.getRealTimeAssessmentRules() != null){
+            addRealTimeAssessmentRules(steelarttInput.getRealTimeAssessmentRules());
+        }
         
         AssessmentLevelEnum authoredLevel = getAuthoredRealTimeAssessment();
         if(authoredLevel != null){
