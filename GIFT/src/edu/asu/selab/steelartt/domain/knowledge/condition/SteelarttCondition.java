@@ -53,7 +53,7 @@ public class SteelarttCondition extends AbstractCondition {
     private generated.dkf.SteelarttConditionInput steelarttInput = null;
 
 
-    /** the default assessment for this condition when no location based assessment has taken place yet */
+    /** the default assessment for this condition when no assessment has taken place yet */
     private static final AssessmentLevelEnum DEFAULT_ASSESSMENT = AssessmentLevelEnum.AT_EXPECTATION;
 
     private static final ConditionDescription DESCRIPTION = new FileDescription(
@@ -71,7 +71,7 @@ public class SteelarttCondition extends AbstractCondition {
         simulationInterests.add(MessageTypeEnum.TIMER);
         simulationInterests.add(MessageTypeEnum.TIMER_BATCH);
         simulationInterests.add(MessageTypeEnum.TRIAGE);
-        simulationInterests.add(MessageTypeEnum.EVENT_STATUS);
+        simulationInterests.add(MessageTypeEnum.EVENT);
     }
 
     /**
@@ -131,10 +131,10 @@ public class SteelarttCondition extends AbstractCondition {
             throw new IllegalArgumentException("There are no wound-identification inputs");
         }
 
-        //for this conition rn -lets assume real time assessment rules, hence commenting.
-        if(steelarttInput.getRealTimeAssessmentRules() != null){
-            addRealTimeAssessmentRules(steelarttInput.getRealTimeAssessmentRules());
-        }
+        //for this conition rn -lets assume real time assessment rules, hence not commenting.
+        // if(steelarttInput.getRealTimeAssessmentRules() != null){
+        //     addRealTimeAssessmentRules(steelarttInput.getRealTimeAssessmentRules());
+        // }
         
         AssessmentLevelEnum authoredLevel = getAuthoredRealTimeAssessment();
         if(authoredLevel != null){
@@ -153,7 +153,7 @@ public class SteelarttCondition extends AbstractCondition {
 
     @Override
     public boolean handleTrainingAppGameState(Message message) {
-
+        logger.info("steel artt message - "+ message);
         AssessmentLevelEnum level = null;
         if (message.getMessageType() == MessageTypeEnum.ENTITY_STATE) {
             // for now entitystate, but later add scenario-def or timer or triage status etc
