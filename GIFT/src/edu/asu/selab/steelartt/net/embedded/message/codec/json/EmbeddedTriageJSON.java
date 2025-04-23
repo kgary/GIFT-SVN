@@ -19,9 +19,9 @@ public class EmbeddedTriageJSON implements JSONCodec{
             (String) jsonObj.get("sessionID"),
             (String) jsonObj.get("scenarioEvent"),
             (String) jsonObj.get("timestamp"),
-            (String) jsonObj.get("traineeId"),
-            (String) jsonObj.get("casualtyId"),
-            (String) jsonObj.get("subtypeId"),
+            (String) jsonObj.get("trainee_id"),
+            (String) jsonObj.get("casualty_id"),
+            (String) jsonObj.get("subtype_id"),
             actionsPerformed
         );
     }
