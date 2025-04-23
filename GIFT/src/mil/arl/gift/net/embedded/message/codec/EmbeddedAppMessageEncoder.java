@@ -211,11 +211,11 @@ public class EmbeddedAppMessageEncoder {
         decodedPayloadClassToMessageType.put(StopFreeze.class, MessageTypeEnum.STOP_FREEZE);
         decodedPayloadClassToMessageType.put(Geolocation.class, MessageTypeEnum.GEOLOCATION);
         decodedPayloadClassToMessageType.put(EntityState.class, MessageTypeEnum.ENTITY_STATE);
-        decodedPayloadClassToMessageType.put(EmbeddedTimer.class, MessageTypeEnum.TIMER);
-        decodedPayloadClassToMessageType.put(EmbeddedTimerBatch.class, MessageTypeEnum.TIMER_BATCH);
-        decodedPayloadClassToMessageType.put(EmbeddedScenarioDefinition.class, MessageTypeEnum.SCENARIO_DEFINITION);
-        decodedPayloadClassToMessageType.put(EmbeddedTriage.class, MessageTypeEnum.TRIAGE);
-        decodedPayloadClassToMessageType.put(EmbeddedEvent.class, MessageTypeEnum.EVENT);
+        decodedPayloadClassToMessageType.put(Timer.class, MessageTypeEnum.TIMER);
+        decodedPayloadClassToMessageType.put(TimerBatch.class, MessageTypeEnum.TIMER_BATCH);
+        decodedPayloadClassToMessageType.put(ScenarioDefinition.class, MessageTypeEnum.SCENARIO_DEFINITION);
+        decodedPayloadClassToMessageType.put(Triage.class, MessageTypeEnum.TRIAGE);
+        decodedPayloadClassToMessageType.put(Event.class, MessageTypeEnum.EVENT);
 	}
 
     /**

@@ -8,7 +8,7 @@ import java.util.List;
 public class CasualtyLayerJSON {
 
     public CasualtyLayer parse(JSONObject jsonObj) {
-        JSONArray casualtiesArray = (JSONArray) jsonObj.get("causalities");
+        JSONArray casualtiesArray = (JSONArray) jsonObj.get("casualties");
         CasualtyLayer casualtyLayer = new CasualtyLayer();
         for (Object obj : casualtiesArray) {
             JSONObject casualtyObj = (JSONObject) obj;
@@ -26,6 +26,6 @@ public class CasualtyLayerJSON {
             casualtyObj.put("status", casualty.getStatus());
             casualtiesArray.add(casualtyObj);
         }
-        jsonObj.put("causalities", casualtiesArray);
+        jsonObj.put("casualties", casualtiesArray);
     }
 }
