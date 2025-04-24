@@ -36,6 +36,7 @@ import mil.arl.gift.common.ta.state.VariablesStateResult;
 import mil.arl.gift.common.ta.state.VariablesState.VariableState;
 import mil.arl.gift.common.ta.state.VariablesState.WeaponState;
 import mil.arl.gift.common.ta.state.Triage;
+import mil.arl.gift.common.ta.state.triage.ActionsPerformed;
 import mil.arl.gift.common.util.CollectionUtils;
 import mil.arl.gift.common.util.StringUtils;
 import mil.arl.gift.domain.knowledge.condition.SessionConditionsBlackboardMgr.ConditionEntityState;
@@ -127,9 +128,6 @@ public class SteelarttCondition extends AbstractCondition {
     public SteelarttCondition (generated.dkf.SteelarttConditionInput input){
         
         this.steelarttInput = input;
-        if(steelarttInput.getWoundIdentified()==null){
-            throw new IllegalArgumentException("There are no wound-identification inputs");
-        }
 
         //for this conition rn -lets assume real time assessment rules, hence not commenting.
         if(steelarttInput.getRealTimeAssessmentRules() != null){
@@ -168,11 +166,54 @@ public class SteelarttCondition extends AbstractCondition {
             return false;
 
         }else if(message.getMessageType()==MessageTypeEnum.TRIAGE){
-           Triage triage = (Triage) message.getPayload();
-            boolean identified = triage.getActionsPerformed().isWoundAreaIdentified();
-            boolean shouldBe = BooleanEnum.TRUE.equals(steelarttInput.getWoundIdentified());
+            Triage triage = (Triage) message.getPayload();
+            ActionsPerformed ap = triage.getActionsPerformed();
 
-            level = (identified == shouldBe)
+            boolean exitWound    = ap.isExitWoundIdentified();
+            boolean airwayObst   = ap.isAirwayObstructionIdentified();
+            boolean shock        = ap.isShockIdentified();
+            boolean hypothermia  = ap.isHypothermiaIdentified();
+            boolean bleeding     = ap.isBleedingIdentified();
+            boolean respDistress = ap.isRespiratoryDistressIdentified();
+            boolean severePain   = ap.isSeverePainIdentified();
+            boolean woundArea    = ap.isWoundAreaIdentified();
+
+            boolean allMatch = true;
+
+            if (steelarttInput.getExitWoundIdentified() != null) {
+                boolean want = BooleanEnum.TRUE.equals(steelarttInput.getExitWoundIdentified());
+                allMatch &= (exitWound == want);
+            }
+            if (steelarttInput.getAirwayObstructionIdentified() != null) {
+                boolean want = BooleanEnum.TRUE.equals(steelarttInput.getAirwayObstructionIdentified());
+                allMatch &= (airwayObst == want);
+            }
+            if (steelarttInput.getShockIdentified() != null) {
+                boolean want = BooleanEnum.TRUE.equals(steelarttInput.getShockIdentified());
+                allMatch &= (shock == want);
+            }
+            if (steelarttInput.getHypothermiaIdentified() != null) {
+                boolean want = BooleanEnum.TRUE.equals(steelarttInput.getHypothermiaIdentified());
+                allMatch &= (hypothermia == want);
+            }
+            if (steelarttInput.getBleedingIdentified() != null) {
+                boolean want = BooleanEnum.TRUE.equals(steelarttInput.getBleedingIdentified());
+                allMatch &= (bleeding == want);
+            }
+            if (steelarttInput.getRespiratoryDistressIdentified() != null) {
+                boolean want = BooleanEnum.TRUE.equals(steelarttInput.getRespiratoryDistressIdentified());
+                allMatch &= (respDistress == want);
+            }
+            if (steelarttInput.getSeverePainIdentified() != null) {
+                boolean want = BooleanEnum.TRUE.equals(steelarttInput.getSeverePainIdentified());
+                allMatch &= (severePain == want);
+            }
+            if (steelarttInput.getWoundAreaIdentified() != null) {
+                boolean want = BooleanEnum.TRUE.equals(steelarttInput.getWoundAreaIdentified());
+                allMatch &= (woundArea == want);
+            }
+
+            level = allMatch
                 ? AssessmentLevelEnum.AT_EXPECTATION
                 : AssessmentLevelEnum.BELOW_EXPECTATION;
 
@@ -180,7 +221,6 @@ public class SteelarttCondition extends AbstractCondition {
             scoringEventEnded();
 
             updateAssessment(level);
-
             return true;
         } 
                 

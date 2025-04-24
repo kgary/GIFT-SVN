@@ -2469,15 +2469,15 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
     </xs:annotation>
     <xs:complexType>
         <xs:sequence>
-            <xs:element name="woundIdentified" type="common:booleanEnum" minOccurs="0">
-                <xs:annotation>
-                    <xs:appinfo>
-                        <fg:node-info exposed="true">
-                            <fg:message>Whether the exit wound was identified or not.</fg:message>
-                        </fg:node-info>
-                    </xs:appinfo>
-                </xs:annotation>
-            </xs:element>
+            <xs:element name="woundAreaIdentified"        type="common:booleanEnum" minOccurs="0"/>
+            <xs:element name="exitWoundIdentified"       type="common:booleanEnum" minOccurs="0"/>
+            <xs:element name="airwayObstructionIdentified" type="common:booleanEnum" minOccurs="0"/>
+            <xs:element name="shockIdentified"            type="common:booleanEnum" minOccurs="0"/>
+            <xs:element name="hypothermiaIdentified"      type="common:booleanEnum" minOccurs="0"/>
+            <xs:element name="bleedingIdentified"         type="common:booleanEnum" minOccurs="0"/>
+            <xs:element name="respiratoryDistressIdentified" type="common:booleanEnum" minOccurs="0"/>
+            <xs:element name="severePainIdentified"       type="common:booleanEnum" minOccurs="0"/>
+            
             <xs:element ref="teamMemberRefs" minOccurs="0"/> 
             <xs:element ref="RealTimeAssessmentRules" minOccurs="0"/>
         </xs:sequence>
