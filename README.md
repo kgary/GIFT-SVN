@@ -45,7 +45,7 @@ P.S. - If you don't see the GIFT loading screen, then launch GIFT again, by re-r
    chmod +x chmod_scripts.sh
    ./chmod_scripts.sh
    ```
-3. If you dont already have Kafka, To install:
+3. If you dont already have Kafka, To install (Kafka will be installed in `C:\Users\UserName\kafka`):
    ```bash
    ./install_kafka.sh
    ```
@@ -60,6 +60,24 @@ P.S. - If you don't see the GIFT loading screen, then launch GIFT again, by re-r
 6. If you want to stop both the Kafka-server and Zookeeper:
    ```bash
    ./stop_kafka.sh
+   ```
+
+## Note for Kafka
+
+If Unity is running on a different machine than GIFT and Kafka, you will need to update the `server.properties` file inside the Kafka folder to allow the Unity machine to produce messages to the Kafka server.
+
+1. Open the `server.properties` file, which should be located at: `C:\Users\UserName\kafka\config\server.properties` (Replace `UserName` with the Windows user you are logged in as.)
+
+2. Around **line 35**, replace `localhost` with the IP address of the machine running the Kafka server.
+
+   **Original:**
+   ```bash
+   advertised.listeners=PLAINTEXT://localhost:9092
+   ```
+
+   **Updated:**
+   ```bash
+   advertised.listeners=PLAINTEXT://your-machines-ip:9092
    ```
 
 ### Note
