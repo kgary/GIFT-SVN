@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<conversation xmlns="http://GIFT.com/conversationTree" name="Default Conversation Tree" version="11.0.8">
+    <authorsDescription>A conversation to tutor learners about a concept.</authorsDescription>
+    <learnersDescription>This conversation will help you learn about a concept.</learnersDescription>
+    <startNodeId>1</startNodeId>
+    <messages>
+        <message nodeId="292">
+            <text>&lt;span id="docs-internal-guid-afb65db5-7fff-7da4-094a-b40678ad3f0a"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;That was not correct. You have underestimated the actual percentage. Almost 90% of combat fatalities happen before reaching a medical facility. So, injured soldiers reaching a medical facility can normally still be saved if efficiently given the correct treatment by the team.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>274</childNodeId>
+        </message>
+        <message nodeId="290">
+            <text>&lt;span id="docs-internal-guid-8db5259d-7fff-aace-d846-35a92988a55b"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;That was not correct. The actual percentage is even higher. Almost 90% of combat fatalities happen before reaching a medical facility. So, injured soldiers reaching a medical facility can normally still be saved if efficiently given the correct treatment by the team.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>274</childNodeId>
+        </message>
+        <message nodeId="288">
+            <text>&lt;span id="docs-internal-guid-93856bbe-7fff-ceec-d992-e1e9430d2d1a"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;That was not correct. This is close but still not the most accurate. Almost 90% of combat fatalities happen before reaching a medical facility. So, injured soldiers reaching a medical facility can normally still be saved if efficiently given the correct treatment by the team.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>274</childNodeId>
+        </message>
+        <message nodeId="286">
+            <text>&lt;span id="docs-internal-guid-2ab6e747-7fff-e4c9-a5cd-65bb90bbce01"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;You are correct! Research from the TC3 handbook confirms that almost 90% of combat fatalities happen before reaching a medical facility. So, injured soldiers reaching a medical facility can normally still be saved if efficiently given the correct treatment by the team.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>282</childNodeId>
+        </message>
+        <message nodeId="265">
+            <text>Some TC3 General Knowledge questions.</text>
+            <childNodeId>274</childNodeId>
+        </message>
+        <message nodeId="373">
+            <text>&lt;span id="docs-internal-guid-4423e998-7fff-1a38-ac80-d0496c3c6872"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;You are correct. Stabilizer focuses on the critical stabilization of casualties by overseeing vital signs and maintaining basic life support. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>265</childNodeId>
+        </message>
+        <message nodeId="375">
+            <text>&lt;span id="docs-internal-guid-5d2c05ba-7fff-f931-3458-987c48b01fca"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. The Prioritizer categorizes patients but does not provide direct medical care. Stabilizer focuses on the critical stabilization of casualties by overseeing vital signs and maintaining basic life support. &lt;/span&gt;&lt;/span&gt;Wrong Answer, Try Again.</text>
+            <childNodeId>253</childNodeId>
+        </message>
+        <message nodeId="377">
+            <text>&lt;span id="docs-internal-guid-4c6fcf95-7fff-30b4-33f0-da9a758c5d01"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. The Medical supplier handles logistics, not direct patient care. Stabilizer focuses on the critical stabilization of casualties by overseeing vital signs and maintaining basic life support. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>253</childNodeId>
+        </message>
+        <message nodeId="379">
+            <text>&lt;span id="docs-internal-guid-54973211-7fff-4b5d-1881-010279d3fbca"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Transporters move casualties but do not provide ongoing medical support. Stabilizer focuses on the critical stabilization of casualties by overseeing vital signs and maintaining basic life support. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>253</childNodeId>
+        </message>
+        <message nodeId="350">
+            <text>&lt;span id="docs-internal-guid-80162eb2-7fff-b202-49fe-102ac8dac433"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;You are correct. A Medical Supplier manages the supply chain of critical medical resources, ensuring that Stabilizers and Prioritizers have access to the essential items.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>253</childNodeId>
+        </message>
+        <message nodeId="363">
+            <text>&lt;span id="docs-internal-guid-820e7df7-7fff-71a2-328b-fae93755e20b"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Assessing patient prioritization is the responsibility of the Prioritizer. A Medical Supplier manages the supply chain of critical medical resources, ensuring that Stabilizers and Prioritizers have access to the essential items.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>234</childNodeId>
+        </message>
+        <message nodeId="365">
+            <text>&lt;span id="docs-internal-guid-50b4a049-7fff-d928-5a5b-0d62ea13d16f"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Patient transport is generally handled by the Prioritizer and other assisting personnel. A Medical Supplier manages the supply chain of critical medical resources, ensuring that Stabilizers and Prioritizers have access to the essential items.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>234</childNodeId>
+        </message>
+        <message nodeId="357">
+            <text>&lt;span id="docs-internal-guid-634b53bd-7fff-8fb8-2870-ecd84b99fc13"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Maintaining basic life support functions is handled by the stabilizer. A Medical Supplier manages the supply chain of critical medical resources, ensuring that Stabilizers and Prioritizers have access to the essential items.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>234</childNodeId>
+        </message>
+        <message nodeId="221">
+            <text>&lt;span id="docs-internal-guid-049d6b49-7fff-161f-8282-8dd252db16a0"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;You are correct! The Prioritizer would assess incoming casualties and determine their treatment priority. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>234</childNodeId>
+        </message>
+        <message nodeId="219">
+            <text>&lt;span id="docs-internal-guid-61d0aedb-7fff-fe49-1b4a-7097de44ff32"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;That is not correct. The Stabilizer focuses on patient care, not triage. The Prioritizer would assess incoming casualties and determine their treatment priority.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>207</childNodeId>
+        </message>
+        <message nodeId="223">
+            <text>&lt;span id="docs-internal-guid-0667ff07-7fff-2f06-a310-3da5a9919846"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;That is not correct. This role manages medical supplies rather than assessing casualties. The Prioritizer would assess incoming casualties and determine their treatment priority.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>207</childNodeId>
+        </message>
+        <message nodeId="225">
+            <text>&lt;span id="docs-internal-guid-80379621-7fff-49e6-6960-d6e0587c049e"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;That is not correct. The Team Leader is not a role discussed for this simulation. A team leader guides and supports a group of individuals to achieve a goal. The Prioritizer would assess incoming casualties and determine their treatment priority.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>207</childNodeId>
+        </message>
+        <message nodeId="198">
+            <text>Next topic is CLS Roles.</text>
+            <childNodeId>207</childNodeId>
+        </message>
+        <message nodeId="192">
+            <text>&lt;span id="docs-internal-guid-0bfa1c20-7fff-9ed9-ce09-aae033a099c6"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;You are correct! Gunshot wounds with no exit wound could indicate internal bleeding and critical damage, making the casualty a Priority/ Urgent injury. A Priority/ Urgent casualty has the most critical injuries, which need immediate intervention, but the casualty has a chance of survival.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>198</childNodeId>
+        </message>
+        <message nodeId="194">
+            <text>&lt;span id="docs-internal-guid-a72bc819-7fff-864d-a541-6763dd8525dd"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. While burns are serious, if they are non-life threatening, the casualty would be in the delayed category. A Priority/ Urgent casualty has the most critical injuries, which need immediate intervention, but the casualty has a chance of survival.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>178</childNodeId>
+        </message>
+        <message nodeId="190">
+            <text>&lt;span id="docs-internal-guid-a90d3510-7fff-6b08-159c-4333be41ff84"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Slight Discomfort would be classified as a Minimal casualty. A Priority/ Urgent casualty has the most critical injuries, which need immediate intervention, but the casualty has a chance of survival.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>178</childNodeId>
+        </message>
+        <message nodeId="196">
+            <text>&lt;span id="docs-internal-guid-d7504db9-7fff-b946-7fed-cf99751b6da1"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. If the vital signs are stable, the casualty is likely in the Delayed category. A Priority/ Urgent casualty has the most critical injuries, which need immediate intervention, but the casualty has a chance of survival.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>178</childNodeId>
+        </message>
+        <message nodeId="165">
+            <text>&lt;span id="docs-internal-guid-eede3f31-7fff-fe46-0054-fce8dc165d54"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;&amp;nbsp;You are correct! Priority/ Delayed casualties require medical care, but can wait as their condition is stable. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>178</childNodeId>
+        </message>
+        <message nodeId="163">
+            <text>&lt;span id="docs-internal-guid-a1b18b62-7fff-e186-9797-45f4bb3226c0"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Priority/ Urgent casualty type involves life-threatening injuries needing immediate attention, while the casualties that require medical care but can wait as their condition is stable are Priority/ Delayed.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>151</childNodeId>
+        </message>
+        <message nodeId="167">
+            <text>&lt;span id="docs-internal-guid-c3bd7e31-7fff-23d0-3fd2-9fdbd7f44d83"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Minimal casualties have minor injuries and can function independently, while the casualties who require medical care but can wait as their condition is stable are Priority/ Delayed.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>151</childNodeId>
+        </message>
+        <message nodeId="169">
+            <text>&lt;span id="docs-internal-guid-3be4fee9-7fff-40f0-8495-a6c5d678cdf3"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Expectant casualties have life-threatening injuries that make survival unlikely, while the casualties who require medical care but can wait as their condition is stable are Priority/ Delayed.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>151</childNodeId>
+        </message>
+        <message nodeId="142">
+            <text>Next topic will be Casualty Types.</text>
+            <childNodeId>151</childNodeId>
+        </message>
+        <message nodeId="136">
+            <text>&lt;span id="docs-internal-guid-bf229575-7fff-9b55-b4ca-6805ad6896f9"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;You are correct! The Priority/Urgent Care is where the most critical casualties who need immediate intervention but have a chance of survival are treated. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>142</childNodeId>
+        </message>
+        <message nodeId="138">
+            <text>&lt;span id="docs-internal-guid-8ee9ca18-7fff-7f95-9289-49733d71b4c3"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Expectant casualties are those unlikely to survive, and they are provided with comfort care. The Priority/Urgent Care Area is where the most critical patients are treated.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>122</childNodeId>
+        </message>
+        <message nodeId="134">
+            <text>&lt;span id="docs-internal-guid-94813f85-7fff-61ed-a9ab-dec946823aac"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. The Minimal Treatment Area is for minor injuries requiring little to no intervention. The Priority/Urgent Care Area is where the most critical patients are treated.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>122</childNodeId>
+        </message>
+        <message nodeId="140">
+            <text>&lt;span id="docs-internal-guid-6fcf6e81-7fff-b50e-726d-2bb5e21b07d5"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. This area is for casualties who need medical care but can safely wait. The Priority/Urgent Care Area is where the most critical patients are treated.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>122</childNodeId>
+        </message>
+        <message nodeId="109">
+            <text>&lt;span id="docs-internal-guid-90b8e060-7fff-f3cc-28fc-b080b02fe323"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;You are correct! Triage ensures the most critical patients receive treatment first, making the best use of medical resources. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>122</childNodeId>
+        </message>
+        <message nodeId="107">
+            <text>&lt;span id="docs-internal-guid-602b218a-7fff-37ec-b1c3-ce0fb45beff0"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Not all casualties can be treated at once, hence triage helps prioritize cases based on the severity of the injury. Triage is defined as the preliminary assessment of casualties to determine the urgency and the nature of the treatment needed.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>95</childNodeId>
+        </message>
+        <message nodeId="111">
+            <text>&lt;span id="docs-internal-guid-82d11e39-7fff-20f5-1c38-11d321eecaba"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Evacuation is a part of casualty management but not the primary function of triage. Triage is defined as the preliminary assessment of casualties to determine the urgency and the nature of the treatment needed.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>95</childNodeId>
+        </message>
+        <message nodeId="113">
+            <text>&lt;span id="docs-internal-guid-c0ca0c48-7fff-3d14-6c59-64b34aeba056"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Most battlefield treatments focus on stabilization and rapid evacuation rather than surgery. Triage is defined as the preliminary assessment of casualties to determine the urgency and the nature of the treatment needed.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>95</childNodeId>
+        </message>
+        <message nodeId="86">
+            <text>Next topic is CCP/Nature of CCP</text>
+            <childNodeId>95</childNodeId>
+        </message>
+        <message nodeId="72">
+            <text>&lt;span id="docs-internal-guid-d510c2f4-7fff-b78b-0c5c-d8b62ea62405"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;You are correct! Massive hemorrhage is addressed first, because the number one potentially survivable cause of death is hemorrhage from a compressible wound or any life-threatening extremity bleed.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>86</childNodeId>
+        </message>
+        <message nodeId="70">
+            <text>&lt;span id="docs-internal-guid-a46bf397-7fff-89fe-8ca5-228cde138ed3"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Airway management is important, but massive hemorrhage is addressed first because the number one potentially survivable cause of death is hemorrhage from a compressible wound or any life-threatening extremity bleed. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>33</childNodeId>
+        </message>
+        <message nodeId="74">
+            <text>&lt;span id="docs-internal-guid-10747a97-7fff-d97b-15e5-64915b241927"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Circulation check comes third, because the number one potentially survivable cause of death is hemorrhage from a compressible wound or any life-threatening extremity bleed. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>33</childNodeId>
+        </message>
+        <message nodeId="76">
+            <text>&lt;span id="docs-internal-guid-eab76dee-7fff-f787-2ad9-2434b4872da3"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. Head Injury assessment comes last, because the number one potentially survivable cause of death is hemorrhage from a compressible wound or any life-threatening extremity bleed.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>33</childNodeId>
+        </message>
+        <message nodeId="19">
+            <text>&lt;span id="docs-internal-guid-63d2c251-7fff-e4d5-1ffc-c38791da2a30"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;You are correct! Massive hemorrhage, Airway, Respirations, Circulation, Head injury/hypothermia (MARCH) is the correct treatment order in Tactical Combat Casualty Care (TC3), prioritizing the most immediate life threats first.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>33</childNodeId>
+        </message>
+        <message nodeId="54">
+            <text>&lt;span id="docs-internal-guid-b3e5878f-7fff-0552-a7bd-d51882ffe1a3"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. This sequence does not align with the TC3 treatment process. MARCH is the correct treatment order in Tactical Combat Casualty Care (TC3), which stands for Massive hemorrhage, Airway, Respirations, Circulation, Head Injury/ Hypothermia. &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>17</childNodeId>
+        </message>
+        <message nodeId="56">
+            <text>&lt;span id="docs-internal-guid-cf9b884f-7fff-2da6-f805-bf1bef6d4636"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. This sequence does not align with the TC3 treatment process. MARCH is the correct treatment order in Tactical Combat Casualty Care (TC3), which stands for Massive hemorrhage, Airway, Respirations, Circulation, Head Injury/ Hypothermia.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>17</childNodeId>
+        </message>
+        <message nodeId="58">
+            <text>&lt;span id="docs-internal-guid-fecaebe5-7fff-aa26-7171-1e410d560d98"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;This is not correct. The acronym "MARCH" does not include "Medical" or "Respiratory." The correct terms are "Massive Hemorrhage" and "Respiration", which refer to assessing for hemorrhage and breathing, respectively.&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>17</childNodeId>
+        </message>
+        <message nodeId="84">
+            <text>First topic is MARCH</text>
+            <childNodeId>17</childNodeId>
+        </message>
+        <message nodeId="1">
+            <text>So we will be starting with the Knowledge Check Quiz.</text>
+            <childNodeId>84</childNodeId>
+        </message>
+    </messages>
+    <questions>
+        <question nodeId="274">
+            <text>&lt;span id="docs-internal-guid-40528404-7fff-267f-4491-b44a35b1f407"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;According to the TC3 handbook, what percentage of combat fatalities occur before a casualty reaches a medical facility?&lt;/span&gt;&lt;/span&gt;</text>
+            <choices>
+                <choiceId>273</choiceId>
+                <choiceId>270</choiceId>
+                <choiceId>279</choiceId>
+                <choiceId>284</choiceId>
+            </choices>
+        </question>
+        <question nodeId="253">
+            <text>&lt;span id="docs-internal-guid-7ac3ad0d-7fff-be8f-6cb2-4e8ec96dd1db"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Which CLS role is responsible for overseeing vital signs and maintaining basic life support?&lt;/span&gt;&lt;/span&gt;</text>
+            <choices>
+                <choiceId>252</choiceId>
+                <choiceId>249</choiceId>
+                <choiceId>258</choiceId>
+                <choiceId>263</choiceId>
+            </choices>
+        </question>
+        <question nodeId="234">
+            <text>&lt;span id="docs-internal-guid-97b78f0c-7fff-f4a6-b5cd-fd035655fc18"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;What is the primary responsibility of the Medical Supplier in a CLS team?&lt;/span&gt;&lt;/span&gt;</text>
+            <choices>
+                <choiceId>233</choiceId>
+                <choiceId>239</choiceId>
+                <choiceId>244</choiceId>
+                <choiceId>355</choiceId>
+            </choices>
+        </question>
+        <question nodeId="207">
+            <text>&lt;span id="docs-internal-guid-7bf37d9d-7fff-2784-bb80-aa90bf90d435"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Which CLS role is responsible for the initial triage of incoming casualties?&lt;/span&gt;&lt;/span&gt;</text>
+            <choices>
+                <choiceId>206</choiceId>
+                <choiceId>203</choiceId>
+                <choiceId>212</choiceId>
+                <choiceId>217</choiceId>
+            </choices>
+        </question>
+        <question nodeId="178">
+            <text>&lt;span id="docs-internal-guid-96eea014-7fff-dc0c-aa25-a4e8783afe50"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;What type of injury might classify a casualty as Priority/Urgent?&lt;/span&gt;&lt;/span&gt;</text>
+            <choices>
+                <choiceId>177</choiceId>
+                <choiceId>174</choiceId>
+                <choiceId>183</choiceId>
+                <choiceId>188</choiceId>
+            </choices>
+        </question>
+        <question nodeId="151">
+            <text>&lt;span id="docs-internal-guid-5e3a3c6f-7fff-c73d-d8df-c7aa6b0e5da2"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Which casualty type is characterized by stable vital signs and non-life-threatening injuries?&lt;/span&gt;&lt;/span&gt;</text>
+            <choices>
+                <choiceId>150</choiceId>
+                <choiceId>147</choiceId>
+                <choiceId>156</choiceId>
+                <choiceId>161</choiceId>
+            </choices>
+        </question>
+        <question nodeId="122">
+            <text>&lt;span id="docs-internal-guid-2bb49f0f-7fff-0f99-1bf0-cd37a4ff0d14"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;In a CCP, where are the most critical patients treated?&lt;/span&gt;&lt;/span&gt;</text>
+            <choices>
+                <choiceId>121</choiceId>
+                <choiceId>118</choiceId>
+                <choiceId>127</choiceId>
+                <choiceId>132</choiceId>
+            </choices>
+        </question>
+        <question nodeId="95">
+            <text>&lt;p&gt;&lt;span id="docs-internal-guid-368a6cbc-7fff-8772-49c2-e0b74115caf1"&gt;&lt;/span&gt;&lt;/p&gt;&lt;div&gt;&lt;span style="background-color: transparent; font-family: Arial, sans-serif; font-size: 11pt; white-space-collapse: preserve;"&gt;What is the purpose of triage in a CCP?&lt;/span&gt;&lt;/div&gt;</text>
+            <choices>
+                <choiceId>94</choiceId>
+                <choiceId>91</choiceId>
+                <choiceId>100</choiceId>
+                <choiceId>105</choiceId>
+            </choices>
+        </question>
+        <question nodeId="33">
+            <text>&lt;span id="docs-internal-guid-152adb2b-7fff-aa26-152d-55030b35f03d"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;What is the priority in the MARCH assessment?&lt;/span&gt;&lt;/span&gt;</text>
+            <choices>
+                <choiceId>32</choiceId>
+                <choiceId>29</choiceId>
+                <choiceId>63</choiceId>
+                <choiceId>68</choiceId>
+            </choices>
+        </question>
+        <question nodeId="17">
+            <text>&lt;span id="docs-internal-guid-895727b2-7fff-11c0-4d78-5609375e2f57"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;What does the acronym MARCH stand for in TC3?&lt;/span&gt;&lt;/span&gt;</text>
+            <choices>
+                <choiceId>16</choiceId>
+                <choiceId>42</choiceId>
+                <choiceId>47</choiceId>
+                <choiceId>52</choiceId>
+            </choices>
+        </question>
+    </questions>
+    <choices>
+        <choice nodeId="273">
+            <text>&lt;span id="docs-internal-guid-bd552872-7fff-4591-d1b2-308cef41d717"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;50% &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>292</childNodeId>
+        </choice>
+        <choice nodeId="270">
+            <text>&lt;span id="docs-internal-guid-4f11dee3-7fff-5d12-6e83-f43b7c95241e"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;70%&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>290</childNodeId>
+        </choice>
+        <choice nodeId="279">
+            <text>&lt;span id="docs-internal-guid-a6ee9a16-7fff-74eb-086c-5abb60984c0a"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;80%&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>288</childNodeId>
+        </choice>
+        <choice nodeId="284">
+            <text>&lt;span id="docs-internal-guid-4d43e0a4-7fff-ab01-a4dc-452b57fe032a"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Nearly 90%&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>286</childNodeId>
+        </choice>
+        <choice nodeId="252">
+            <text>&lt;span id="docs-internal-guid-a99e36fa-7fff-f29a-57e6-8eee03477d85"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Stabilizer&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>373</childNodeId>
+        </choice>
+        <choice nodeId="249">
+            <text>Priotitizer</text>
+            <childNodeId>375</childNodeId>
+        </choice>
+        <choice nodeId="258">
+            <text>&lt;span id="docs-internal-guid-656884f9-7fff-3c82-41e6-2176069594c4"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Medical Supplier &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>377</childNodeId>
+        </choice>
+        <choice nodeId="263">
+            <text>&lt;span id="docs-internal-guid-b8ac3b80-7fff-502b-1b6d-15837544d973"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Transporter&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>379</childNodeId>
+        </choice>
+        <choice nodeId="233">
+            <text>&lt;span id="docs-internal-guid-e3531474-7fff-5d40-3089-6aa587bb2de4"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Managing the inventory of medical resources &lt;br&gt;&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>350</childNodeId>
+        </choice>
+        <choice nodeId="239">
+            <text>&lt;span style="font-family: Arial, sans-serif; font-size: 14.6667px; white-space-collapse: preserve;"&gt;Assessing patient prioritization &lt;/span&gt;</text>
+            <childNodeId>363</childNodeId>
+        </choice>
+        <choice nodeId="244">
+            <text>&lt;span id="docs-internal-guid-63f6e8c9-7fff-a11c-e5bf-c0af438f4a39"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Transporting patients within the CCP&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>365</childNodeId>
+        </choice>
+        <choice nodeId="355">
+            <text>Maintaining basic life support</text>
+            <childNodeId>357</childNodeId>
+        </choice>
+        <choice nodeId="206">
+            <text>&lt;span id="docs-internal-guid-86066cbe-7fff-438c-ca48-e46163c2471c"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Prioritizer &lt;br&gt;&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>221</childNodeId>
+        </choice>
+        <choice nodeId="203">
+            <text>&lt;span style="font-family: Arial, sans-serif; font-size: 14.6667px; white-space-collapse: preserve;"&gt;Stabilizer &lt;/span&gt;</text>
+            <childNodeId>219</childNodeId>
+        </choice>
+        <choice nodeId="212">
+            <text>&lt;span id="docs-internal-guid-2907c328-7fff-74d8-4b0d-1b8cc565ae64"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Medical Supplier &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>223</childNodeId>
+        </choice>
+        <choice nodeId="217">
+            <text>&lt;span id="docs-internal-guid-0daa671b-7fff-8d05-81da-e9c7afc35265"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Team Leader&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>225</childNodeId>
+        </choice>
+        <choice nodeId="177">
+            <text>&lt;span id="docs-internal-guid-b7064a83-7fff-3184-4189-29779e7efd4c"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Gunshot wound with no exit wound &lt;br&gt;&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>192</childNodeId>
+        </choice>
+        <choice nodeId="174">
+            <text>&lt;span id="docs-internal-guid-d82367e8-7fff-4ae9-9d33-38015b09ef1b"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Non-life-threatening burns&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>194</childNodeId>
+        </choice>
+        <choice nodeId="183">
+            <text>&lt;span style="font-family: Arial, sans-serif; font-size: 14.6667px; white-space-collapse: preserve;"&gt;Slight discomfort &lt;/span&gt;</text>
+            <childNodeId>190</childNodeId>
+        </choice>
+        <choice nodeId="188">
+            <text>&lt;span id="docs-internal-guid-15d822a1-7fff-7a10-6a3d-a1b10a069c20"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Stable vital signs&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>196</childNodeId>
+        </choice>
+        <choice nodeId="150">
+            <text>&lt;span id="docs-internal-guid-1f88ee29-7fff-eeda-1309-a528e5d2390d"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Priority/Delayed&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>165</childNodeId>
+        </choice>
+        <choice nodeId="147">
+            <text>&lt;span id="docs-internal-guid-c5b38f11-7fff-057c-1e71-77788f7dedf8"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Priority/Urgent&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>163</childNodeId>
+        </choice>
+        <choice nodeId="156">
+            <text>&lt;span id="docs-internal-guid-74bf6fda-7fff-3343-243a-6759a42522db"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Minimal &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>167</childNodeId>
+        </choice>
+        <choice nodeId="161">
+            <text>&lt;span id="docs-internal-guid-ea0534fa-7fff-4a8b-d810-b5f17162f3cc"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Expectant&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>169</childNodeId>
+        </choice>
+        <choice nodeId="121">
+            <text>&lt;span id="docs-internal-guid-2b14964d-7fff-5275-8497-e4b29535fb89"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Priority/Urgent Care Area.&lt;/span&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>136</childNodeId>
+        </choice>
+        <choice nodeId="118">
+            <text>&lt;span id="docs-internal-guid-48649555-7fff-75f7-7c7f-a708a77e3827"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Expectant Treatment Area &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>138</childNodeId>
+        </choice>
+        <choice nodeId="127">
+            <text>&lt;span style="font-family: Arial, sans-serif; font-size: 14.6667px; white-space-collapse: preserve;"&gt;Minimal Treatment Area&amp;nbsp;&lt;/span&gt;</text>
+            <childNodeId>134</childNodeId>
+        </choice>
+        <choice nodeId="132">
+            <text>&lt;span id="docs-internal-guid-7a5e1453-7fff-aa7a-8e7f-ec0e2e4ec66a"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Priority/Delayed Treatment Area&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>140</childNodeId>
+        </choice>
+        <choice nodeId="94">
+            <text>&lt;span id="docs-internal-guid-c28af387-7fff-cbc9-076b-94a88183c354"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;To determine the urgency and nature of treatment needed&lt;br&gt;&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>109</childNodeId>
+        </choice>
+        <choice nodeId="91">
+            <text>&lt;span style="font-family: Arial, sans-serif; font-size: 14.6667px; white-space-collapse: preserve;"&gt;To treat all patients immediately &lt;/span&gt;</text>
+            <childNodeId>107</childNodeId>
+        </choice>
+        <choice nodeId="100">
+            <text>&lt;span id="docs-internal-guid-920ca14f-7fff-0f19-6b82-3b774007a875"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;To evacuate all patients &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>111</childNodeId>
+        </choice>
+        <choice nodeId="105">
+            <text>&lt;span id="docs-internal-guid-d150b7e9-7fff-28f2-e41c-9d9133da1b4f"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;To perform surgery on-site&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>113</childNodeId>
+        </choice>
+        <choice nodeId="32">
+            <text>&lt;span id="docs-internal-guid-d9dda6ed-7fff-f0d0-3f0a-7069111d29e9"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Massive hemorrhage control &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>72</childNodeId>
+        </choice>
+        <choice nodeId="29">
+            <text>&lt;div&gt;&lt;span style="font-family: Arial, sans-serif; font-size: 14.6667px; white-space-collapse: preserve;"&gt;Airway management &lt;/span&gt;&lt;/div&gt;</text>
+            <childNodeId>70</childNodeId>
+        </choice>
+        <choice nodeId="63">
+            <text>&lt;span id="docs-internal-guid-b4720e2c-7fff-2ecd-1efa-1374c3e5b602"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Circulation check &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>74</childNodeId>
+        </choice>
+        <choice nodeId="68">
+            <text>&lt;span id="docs-internal-guid-cd3a7c87-7fff-6981-9ac0-2fb64950a4e8"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Head injury assessment&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>76</childNodeId>
+        </choice>
+        <choice nodeId="16">
+            <text>&lt;span id="docs-internal-guid-204e48f0-7fff-500f-b212-8e589e99c5b1"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Massive hemorrhage, Airway, Respirations, Circulation, Head injury/hypothermia &lt;br&gt;&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>19</childNodeId>
+        </choice>
+        <choice nodeId="42">
+            <text>&lt;span id="docs-internal-guid-2bd63dfc-7fff-9816-e76f-1d4c0829fcd6"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Movement, Assessment, Rescue, Care, Hospital &lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>54</childNodeId>
+        </choice>
+        <choice nodeId="47">
+            <text>&lt;span id="docs-internal-guid-068f6fa9-7fff-b800-51ef-b553bc5353af"&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;Medication, Assessment, Resuscitation, Compression, Hypothermia&lt;/span&gt;&lt;span style="font-size: 11pt; font-family: Arial, sans-serif; background-color: transparent; font-variant-numeric: normal; font-variant-east-asian: normal; font-variant-alternates: normal; font-variant-position: normal; font-variant-emoji: normal; vertical-align: baseline; white-space-collapse: preserve;"&gt;&lt;br&gt;&lt;/span&gt;&lt;/span&gt;</text>
+            <childNodeId>56</childNodeId>
+        </choice>
+        <choice nodeId="52">
+            <text>&lt;span style="font-family: Arial, sans-serif; font-size: 14.6667px; white-space-collapse: preserve;"&gt;Medical, Airway, Respiratory, Circulation, Head injury&lt;/span&gt;</text>
+            <childNodeId>58</childNodeId>
+        </choice>
+    </choices>
+    <ends>
+        <end nodeId="282"/>
+    </ends>
+</conversation>

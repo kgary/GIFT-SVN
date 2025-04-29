@@ -31,7 +31,7 @@ public class SteelarttInputEditorImpl extends ConditionInputPanel<SteelarttCondi
             @Override
             public void onValueChange(ValueChangeEvent<Boolean> event) {
                 // Convert the boolean value from the CheckBox into BooleanEnum
-                getInput().setWoundIdentified(event.getValue() ? BooleanEnum.TRUE : BooleanEnum.FALSE);
+                getInput().setWoundAreaIdentified(event.getValue() ? BooleanEnum.TRUE : BooleanEnum.FALSE);
                 setDirty();
             }
         });
@@ -60,8 +60,8 @@ public class SteelarttInputEditorImpl extends ConditionInputPanel<SteelarttCondi
         }
         
         // Initialize the woundIdentified CheckBox using the BooleanEnum value
-        BooleanEnum woundIdentified = getInput().getWoundIdentified();
-        woundIdentifiedCheck.setValue(woundIdentified != null && woundIdentified == BooleanEnum.TRUE);
+        BooleanEnum isWoundAreaIdentified = getInput().getWoundAreaIdentified();
+        woundIdentifiedCheck.setValue(isWoundAreaIdentified != null && isWoundAreaIdentified == BooleanEnum.TRUE);
     }
     
     @Override

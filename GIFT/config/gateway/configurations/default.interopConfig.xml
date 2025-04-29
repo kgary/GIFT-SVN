@@ -171,7 +171,7 @@
             <Unity>
                 <dataNetworkPort>5050</dataNetworkPort>
                 <networkPort>5000</networkPort>
-                <networkAddress>0.0.0.0</networkAddress>
+                <networkAddress>10.173.163.233</networkAddress>
             </Unity>
         </InteropInterfaceConfig>
     </interfaceConfigurations>
