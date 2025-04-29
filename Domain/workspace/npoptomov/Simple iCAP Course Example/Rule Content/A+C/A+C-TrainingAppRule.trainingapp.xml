@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrainingApplicationWrapper xmlns:ns2="http://GIFT.com/common" version="11.0.1">
+    <TrainingApplication>
+        <transitionName>A+C-TrainingAppRule.trainingapp.xml</transitionName>
+        <dkfRef>
+            <file>Rule Content\A+C\a.c.trainingAppRule.dkf.xml</file>
+        </dkfRef>
+        <interops>
+            <interop>
+                <InteropImpl>gateway.interop.simple.SimpleExampleTAPluginInterface</InteropImpl>
+                <InteropInputs>
+                    <SimpleExampleTAInteropInputs>
+                        <loadArgs>
+                            <ScenarioName>Rules of 'A' and 'C'</ScenarioName>
+                        </loadArgs>
+                    </SimpleExampleTAInteropInputs>
+                </InteropInputs>
+            </interop>
+        </interops>
+        <finishedWhen>Stopped</finishedWhen>
+    </TrainingApplication>
+</TrainingApplicationWrapper>

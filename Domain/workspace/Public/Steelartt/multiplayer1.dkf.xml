@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="multiplayer1" version="11.0.7">
+    <description>This is the STEEL-ARTT course for first scenario that allows multiple players to join and participate together.</description>
+    <resources>
+        <ns2:surveyContext>37</ns2:surveyContext>
+        <AvailableLearnerActions/>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="Steelartt Task 1" nodeId="1">
+                <startTriggers>
+                    <trigger>
+                        <scenarioStarted/>
+                        <triggerMessage>
+                            <strategy name="FirstScenarioStartStrategy">
+                                <ns4:instructionalIntervention>
+                                    <ns4:strategyHandler>
+                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                                    </ns4:strategyHandler>
+                                    <ns4:delayAfterStrategy>
+                                        <ns4:duration>5</ns4:duration>
+                                    </ns4:delayAfterStrategy>
+                                    <ns4:feedback>
+                                        <ns4:message>
+                                            <ns4:content>--SCENARIO 1: Host, please create a new session. Team members, please wait for the host to create the session before joining.</ns4:content>
+                                            <ns4:Delivery>
+                                                <ns4:InTutor>
+                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                                </ns4:InTutor>
+                                            </ns4:Delivery>
+                                        </ns4:message>
+                                    </ns4:feedback>
+                                </ns4:instructionalIntervention>
+                            </strategy>
+                        </triggerMessage>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <childConceptEnded nodeId="3"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Steelartt concept 1" nodeId="2">
+                        <conditions>
+                            <condition>
+                                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                                    <input>
+                                        <SteelarttConditionInput>
+                                            <woundIdentified>false</woundIdentified>
+                                        </SteelarttConditionInput>
+                                    </input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Application Completed" nodeId="3">
+                        <conditions>
+                            <condition>
+                                <conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
+                                <input>
+                                    <ApplicationCompletedCondition/>
+                                </input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects>
+            <PlacesOfInterest/>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="Session Complete">
+                <LogicalExpression>
+                    <performanceNode name="Application Completed" nodeId="1">
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Complete First Scenario"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="Complete First Scenario">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>--SCENARIO 1 COMPLETE: This scenario is now ending. IMPORTANT: All users should COMPLETELY EXIT the VR application before continuing.</ns4:content>
+                            <ns4:Delivery>
+                                <ns4:InTutor>
+                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                                </ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <shouldResetScenario>true</shouldResetScenario>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+    <teamOrganization>
+        <team name="Everyone">
+            <teamMember name="Prioritizer" playable="true">
+                <learnerId>
+                    <entityMarking>104</entityMarking>
+                </learnerId>
+            </teamMember>
+            <teamMember name="Stabilizer" playable="true">
+                <learnerId>
+                    <entityMarking>105</entityMarking>
+                </learnerId>
+            </teamMember>
+            <teamMember name="Medical Supplier" playable="true">
+                <learnerId>
+                    <entityMarking>106</entityMarking>
+                </learnerId>
+            </teamMember>
+        </team>
+    </teamOrganization>
+</Scenario>

@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="TSP 07-GFT-0137 ClearBldg.jtc_shakarat" version="11.0.3">
+    <description></description>
+    <resources>
+        <ns2:surveyContext>27</ns2:surveyContext>
+        <AvailableLearnerActions>
+            <ns3:LearnerActionsList>
+                <ns3:learnerAction>
+                    <ns3:type>Nine Line Report</ns3:type>
+                    <ns3:displayName>Nine Line Report</ns3:displayName>
+                </ns3:learnerAction>
+                <ns3:learnerAction>
+                    <ns3:type>Spot Report</ns3:type>
+                    <ns3:displayName>SPOT Report</ns3:displayName>
+                </ns3:learnerAction>
+            </ns3:LearnerActionsList>
+        </AvailableLearnerActions>
+    </resources>
+    <assessment>
+        <tasks>
+            <task name="Enter Building (HIDDEN)" nodeId="100" scenarioSupport="true">
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="101" result="AtExpectation"/>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Team Entered Building (HIDDEN)" nodeId="101" scenarioSupport="true">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.EnterAreaCondition</conditionImpl>
+<input>
+    <EnterAreaCondition>
+        <entrance assessment="AtExpectation" name="Front Entrance to Building">
+            <outside proximity="4" point="front entrance 1"/>
+            <inside proximity="4" point="front entrance 2  "/>
+        </entrance>
+        <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+    </EnterAreaCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Enter and Clear 1st Room" nodeId="23">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="100"/>
+                        <triggerMessage>
+                            <strategy name="TaskTriggerStrategy">
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>Mission initializing...</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Squad_Leader"/>
+        <ns4:teamRef value="Alpha_Leader(L)2"/>
+        <ns4:teamRef value="Alpha_Rifleman(R)1"/>
+        <ns4:teamRef value="Alpha_Rifleman(AR)4"/>
+        <ns4:teamRef value="Alpha_Rifleman(G)3"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be playing as BLUFOR actor named '1-1-A-2 &gt; 1: Leader - M4 RCO - IOTV, group leader'.  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Alpha_Leader(L)2"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be playing as BLUFOR actor named '1-1-A-2 &gt; 4: Rifleman - M4 RCO - IOTV'.  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Alpha_Rifleman(R)1"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be playing as BLUFOR actor named '1-1-A-2 &gt; 3: Automatic Rifleman - M249 MGO - IOTV'.  Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Alpha_Rifleman(AR)4"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be playing as BLUFOR actor named '1-1-A-2 &gt; 2: Grenadier- M4 CCO / M320 - IOTV (slender)'. Click 'OK' on the right hand side (in VBS) to continue. </ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Alpha_Rifleman(G)3"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+<ns4:instructionalIntervention>
+    <ns4:strategyHandler>
+        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+    </ns4:strategyHandler>
+    <ns4:feedback>
+        <ns4:message>
+            <ns4:content>You will be playing as BLUFOR actor named '1-1-A-6 &gt; 1: Leader - M4 RCO - IOTV, group leader'. Click 'OK' on the right hand side (in VBS) to continue.</ns4:content>
+            <ns4:Delivery>
+                <ns4:InTutor>
+                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                </ns4:InTutor>
+            </ns4:Delivery>
+        </ns4:message>
+        <ns4:teamRef value="Squad_Leader"/>
+    </ns4:feedback>
+</ns4:instructionalIntervention>
+                            </strategy>
+                        </triggerMessage>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="49" result="AtExpectation"/>
+                        <triggerDelay>20</triggerDelay>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Neutralize OPFOR" nodeId="49">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.EliminateHostilesCondition</conditionImpl>
+<input>
+    <EliminateHostilesCondition>
+        <entities>
+            <teamMemberRef>Insurgent 1</teamMemberRef>
+            <teamMemberRef>Insurgent 2</teamMemberRef>
+        </entities>
+        <teamMemberRefs>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+        </teamMemberRefs>
+    </EliminateHostilesCondition>
+</input>
+<scoring>
+    <completion_time name="Completion Time" units="hh:mm:ss">
+        <evaluators>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="00:00:15"/>
+            <evaluator assessment="AtExpectation" operator="LessThanEquals" value="00:00:12"/>
+            <evaluator assessment="AboveExpectation" operator="LessThan" value="00:00:08"/>
+        </evaluators>
+    </completion_time>
+</scoring>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Minimize BLUFOR casualties" nodeId="51">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.HealthCondition</conditionImpl>
+<input>
+    <HealthConditionInput>
+        <teamMemberRefs>
+            <teamMemberRef>Squad_Leader</teamMemberRef>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+        </teamMemberRefs>
+    </HealthConditionInput>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Minimize non-combatant casualties" nodeId="52">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Squad_Leader</teamMemberRef>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+            <teamMemberRef>Bravo_Leader</teamMemberRef>
+            <teamMemberRef>Bravo_Rifleman</teamMemberRef>
+            <teamMemberRef>Bravo_Automatic Rifleman</teamMemberRef>
+            <teamMemberRef>Bravo_Grenadier</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Minimize collateral damage" nodeId="112">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Squad_Leader</teamMemberRef>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+            <teamMemberRef>Bravo_Leader</teamMemberRef>
+            <teamMemberRef>Bravo_Rifleman</teamMemberRef>
+            <teamMemberRef>Bravo_Automatic Rifleman</teamMemberRef>
+            <teamMemberRef>Bravo_Grenadier</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Establish security between engagements" nodeId="114">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Squad_Leader</teamMemberRef>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+            <teamMemberRef>Bravo_Leader</teamMemberRef>
+            <teamMemberRef>Bravo_Rifleman</teamMemberRef>
+            <teamMemberRef>Bravo_Automatic Rifleman</teamMemberRef>
+            <teamMemberRef>Bravo_Grenadier</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+                <assessments/>
+            </task>
+            <task name="Practicing Muzzle Awareness" nodeId="110">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="100"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="49" result="AtExpectation"/>
+                        <triggerDelay>20</triggerDelay>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Prevent Weapon Safety Violation" nodeId="2">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.MuzzleFlaggingCondition</conditionImpl>
+<input>
+    <MuzzleFlaggingCondition>
+        <maxDistance>3</maxDistance>
+        <maxAngle>20</maxAngle>
+        <teamMemberRefs>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+        </teamMemberRefs>
+    </MuzzleFlaggingCondition>
+</input>
+<scoring>
+    <count name="Violation Count" units="count">
+        <evaluators>
+            <evaluator assessment="BelowExpectation" operator="GreaterThanEquals" value="1"/>
+            <evaluator assessment="AboveExpectation" operator="Equals" value="0"/>
+        </evaluators>
+    </count>
+</scoring>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                </concepts>
+            </task>
+            <task name="Engage Targets with an M4" nodeId="107">
+                <startTriggers>
+                    <trigger>
+                        <taskEnded nodeId="100"/>
+                    </trigger>
+                </startTriggers>
+                <endTriggers>
+                    <trigger>
+                        <conceptAssessment concept="49" result="AtExpectation"/>
+                        <triggerDelay>20</triggerDelay>
+                    </trigger>
+                </endTriggers>
+                <concepts>
+                    <concept name="Detect all threat targets in assigned sector" nodeId="7">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                        <assessments/>
+                    </concept>
+                    <concept name="Select a hasty/optimum fighting position" nodeId="31">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Neutralize opfor with well aimed fire" nodeId="109">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                    <concept name="Interleave weapon fire with team fires" nodeId="33">
+                        <conditions>
+                            <condition>
+<conditionImpl>domain.knowledge.condition.ObservedAssessmentCondition</conditionImpl>
+<input>
+    <ObservedAssessmentCondition>
+        <teamMemberRefs>
+            <teamMemberRef>Alpha_Leader(L)2</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(R)1</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(AR)4</teamMemberRef>
+            <teamMemberRef>Alpha_Rifleman(G)3</teamMemberRef>
+        </teamMemberRefs>
+    </ObservedAssessmentCondition>
+</input>
+                            </condition>
+                        </conditions>
+                    </concept>
+                </concepts>
+            </task>
+        </tasks>
+        <objects>
+            <PlacesOfInterest>
+                <point name="bldg exterior front door">
+                    <ns2:coordinate>
+                        <ns2:AGL>
+                            <ns2:x>48492.58</ns2:x>
+                            <ns2:y>51169.78</ns2:y>
+                            <ns2:elevation>1.2</ns2:elevation>
+                        </ns2:AGL>
+                    </ns2:coordinate>
+                </point>
+                <point name="first room interior 1">
+                    <ns2:coordinate>
+                        <ns2:AGL>
+                            <ns2:x>48519.79</ns2:x>
+                            <ns2:y>51141.18</ns2:y>
+                            <ns2:elevation>2.01</ns2:elevation>
+                        </ns2:AGL>
+                    </ns2:coordinate>
+                </point>
+                <point name="first room interior 2">
+                    <ns2:coordinate>
+                        <ns2:AGL>
+                            <ns2:x>48517.00</ns2:x>
+                            <ns2:y>51137.50</ns2:y>
+                            <ns2:elevation>2.01</ns2:elevation>
+                        </ns2:AGL>
+                    </ns2:coordinate>
+                </point>
+                <point name="first room interior 3">
+                    <ns2:coordinate>
+                        <ns2:AGL>
+                            <ns2:x>48523.75</ns2:x>
+                            <ns2:y>51138.08</ns2:y>
+                            <ns2:elevation>2.01</ns2:elevation>
+                        </ns2:AGL>
+                    </ns2:coordinate>
+                </point>
+                <point name="first room interior 4">
+                    <ns2:coordinate>
+                        <ns2:AGL>
+                            <ns2:x>48520.61</ns2:x>
+                            <ns2:y>51133.98</ns2:y>
+                            <ns2:elevation>2.01</ns2:elevation>
+                        </ns2:AGL>
+                    </ns2:coordinate>
+                </point>
+                <point name="front entrance 1">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282555.3207404874</ns2:x>
+                            <ns2:y>-5458816.618051806</ns2:y>
+                            <ns2:z>3275834.4928274266</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="front entrance 2  ">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282556.5726672904</ns2:x>
+                            <ns2:y>-5458817.055379386</ns2:y>
+                            <ns2:z>3275833.6616859986</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="second room interior 1">
+                    <ns2:coordinate>
+                        <ns2:AGL>
+                            <ns2:x>48513.49</ns2:x>
+                            <ns2:y>51146.65</ns2:y>
+                            <ns2:elevation>2.01</ns2:elevation>
+                        </ns2:AGL>
+                    </ns2:coordinate>
+                </point>
+                <point name="second room interior 2">
+                    <ns2:coordinate>
+                        <ns2:AGL>
+                            <ns2:x>48509.01</ns2:x>
+                            <ns2:y>51141.48</ns2:y>
+                            <ns2:elevation>2.01</ns2:elevation>
+                        </ns2:AGL>
+                    </ns2:coordinate>
+                </point>
+                <point name="second room interior 3">
+                    <ns2:coordinate>
+                        <ns2:AGL>
+                            <ns2:x>48513.53</ns2:x>
+                            <ns2:y>51135.98</ns2:y>
+                            <ns2:elevation>2.01</ns2:elevation>
+                        </ns2:AGL>
+                    </ns2:coordinate>
+                </point>
+                <point name="second room interior 4">
+                    <ns2:coordinate>
+                        <ns2:AGL>
+                            <ns2:x>48519.36</ns2:x>
+                            <ns2:y>51141.8</ns2:y>
+                            <ns2:elevation>2.01</ns2:elevation>
+                        </ns2:AGL>
+                    </ns2:coordinate>
+                </point>
+                <point name="Room 1 Position 1">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282554.8353</ns2:x>
+                            <ns2:y>-5458818.044</ns2:y>
+                            <ns2:z>3275832.175</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Room 1 Position 2">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282557.9772</ns2:x>
+                            <ns2:y>-5458816.28</ns2:y>
+                            <ns2:z>3275834.824</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Room 1 Position 3">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282558.1493</ns2:x>
+                            <ns2:y>-5458819.586</ns2:y>
+                            <ns2:z>3275829.338</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Room 1 Position 4">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282561.2133</ns2:x>
+                            <ns2:y>-5458817.931</ns2:y>
+                            <ns2:z>3275831.814</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Room 2 Position 1">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282564.7193</ns2:x>
+                            <ns2:y>-5458818.271</ns2:y>
+                            <ns2:z>3275830.952</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Room 2 Position 2">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282559.0869</ns2:x>
+                            <ns2:y>-5458815.727</ns2:y>
+                            <ns2:z>3275835.646</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Room 2 Position 3">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282569.673</ns2:x>
+                            <ns2:y>-5458815.285</ns2:y>
+                            <ns2:z>3275835.469</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+                <point name="Room 2 Position 4">
+                    <ns2:coordinate>
+                        <ns2:GCC>
+                            <ns2:x>-282564.5146</ns2:x>
+                            <ns2:y>-5458812.706</ns2:y>
+                            <ns2:z>3275840.181</ns2:z>
+                        </ns2:GCC>
+                    </ns2:coordinate>
+                </point>
+            </PlacesOfInterest>
+        </objects>
+    </assessment>
+    <actions>
+        <stateTransitions>
+            <stateTransition name="a team members shot missed their target">
+                <LogicalExpression>
+                    <performanceNode name="Detect all threat targets in assigned sector" nodeId="7">
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="Missed target - Stage 1"/>
+                    <strategyRef name="Missed target - Stage 2"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="a team member violated muzzle flagging">
+                <LogicalExpression>
+                    <performanceNode name="Prevent Weapon Safety Violation" nodeId="2">
+                        <previous>AtExpectation</previous>
+                        <current>BelowExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="muzzle flagging violation - alpha team"/>
+                    <strategyRef name="do nothing"/>
+                </strategyChoices>
+            </stateTransition>
+            <stateTransition name="muzzle flagging performance poor to good">
+                <LogicalExpression>
+                    <performanceNode name="Interleave weapon fire with team fires" nodeId="33">
+                        <previous>BelowExpectation</previous>
+                        <current>AtExpectation</current>
+                    </performanceNode>
+                </LogicalExpression>
+                <strategyChoices>
+                    <strategyRef name="remove muzzle flagging indicator"/>
+                </strategyChoices>
+            </stateTransition>
+        </stateTransitions>
+        <instructionalStrategies>
+            <strategy name="selected wrong report">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Please fill out the correct report</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Leader(L)2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="completed SPOTREP">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Think about the information you want to relay back to your Commander: Who, what, when, where and why. Remember to keep it brief!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Leader(L)2"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Missed target - Stage 1">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Target Missed! Remember to make center of mass your point of aim and always Double Tap!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+<ns4:InTrainingApplication>
+    <ns4:enabled>true</ns4:enabled>
+</ns4:InTrainingApplication>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Leader(L)2"/>
+                        <ns4:teamRef value="Alpha_Rifleman(R)1"/>
+                        <ns4:teamRef value="Alpha_Rifleman(AR)4"/>
+                        <ns4:teamRef value="Alpha_Rifleman(G)3"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="Missed target - Stage 2">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Tell your company SGT you need range time!</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>AvatarOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Leader(L)2"/>
+                        <ns4:teamRef value="Alpha_Rifleman(R)1"/>
+                        <ns4:teamRef value="Alpha_Rifleman(AR)4"/>
+                        <ns4:teamRef value="Alpha_Rifleman(G)3"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="muzzle flagging violation - alpha team">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>You're flagging a team member! Check the position of your muzzle and adjust. </ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>BeepAndFlash</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Leader(L)2"/>
+                        <ns4:teamRef value="Alpha_Rifleman(R)1"/>
+                        <ns4:teamRef value="Alpha_Rifleman(AR)4"/>
+                        <ns4:teamRef value="Alpha_Rifleman(G)3"/>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>_waypoint = createVehicle ["vbs2_editor_waypoint_blue", getPos player, [], 0, "NONE"];
+_waypoint attachTo [alpha_leader,[0,0,3]];</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Insert Visual Indicator Above Team Leader</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>_waypoint = createVehicle ["vbs2_editor_waypoint_blue", getPos player, [], 0, "NONE"];
+_waypoint attachTo [alpha_rifle,[0,0,3]];</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Insert Visual Indicator Above Rifleman 1</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>_waypoint = createVehicle ["vbs2_editor_waypoint_blue", getPos player, [], 0, "NONE"];
+_waypoint attachTo [alpha_autorifle,[0,0,3]];</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Insert Visual Indicator Above Rifleman 2</ns4:description>
+                </ns4:scenarioAdaptation>
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>_waypoint = createVehicle ["vbs2_editor_waypoint_blue", getPos player, [], 0, "NONE"];
+_waypoint attachTo [alpha_grenadier,[0,0,3]];</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Insert Visual Indicator Above Rifleman 3</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="increase difficulty in second room">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:teleport>
+                            <ns2:coordinate>
+<ns2:AGL>
+    <ns2:x>48508.76</ns2:x>
+    <ns2:y>51140.58</ns2:y>
+    <ns2:elevation>0.12</ns2:elevation>
+</ns2:AGL>
+                            </ns2:coordinate>
+                            <ns4:heading value="111"/>
+                            <ns4:teamMemberRef value="Insurgent 4">
+<ns4:entityMarking>enemy4</ns4:entityMarking>
+                            </ns4:teamMemberRef>
+                        </ns4:teleport>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>add additional enemy in second room</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="prompt to O/C before second room">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Based on the squads performance in the first room,the system recommends increasing the difficulty of the second room by adding a second enemy to eliminate. To do so, apply the "increase difficulty in second room" strategy now. </ns4:content>
+                            <ns4:Delivery>
+<ns4:ToObserverController value="controller"/>
+<ns4:InTutor>
+    <ns4:TextEnhancement>NoEffect</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                    </ns4:feedback>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="remove muzzle flagging indicator">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>detach vbs2_editor_waypoint_blue</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Remove Visual Indicator from Above Head</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="show team score cards - first room">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Let's review your performance during the first room clearing exercise: 
+Sector of Fire Control - At Expectation
+Visual Room Scan - Above Expectation
+Shot Accuracy - At Expectation
+Target Elimination - Above Expectation
+</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Leader(L)2"/>
+                    </ns4:feedback>
+                    <ns4:mandatory>true</ns4:mandatory>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Let's review your performance during the first room clearing exercise: 
+Sector of Fire Control - Below Expectation
+Visual Room Scan - Below Expectation
+Shot Accuracy - Above Expectation
+Target Elimination - Above Expectation
+</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Rifleman(R)1"/>
+                    </ns4:feedback>
+                    <ns4:mandatory>true</ns4:mandatory>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Let's review your performance during the first room clearing exercise: 
+Sector of Fire Control - At Expectation
+Visual Room Scan - At Expectation
+Shot Accuracy - Below Expectation
+Target Elimination - At Expectation
+</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Rifleman(AR)4"/>
+                    </ns4:feedback>
+                    <ns4:mandatory>true</ns4:mandatory>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Let's review your performance during the first room clearing exercise: 
+Sector of Fire Control - At Expectation
+Visual Room Scan - Above Expectation
+Shot Accuracy - At Expectation
+Target Elimination - At Expectation
+</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Rifleman(G)3"/>
+                    </ns4:feedback>
+                    <ns4:mandatory>true</ns4:mandatory>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="show team score cards - second room">
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Let's review your performance during the second room clearing exercise: 
+Sector of Fire Control - 
+Visual Room Scan - 
+Shot Accuracy - 
+Target Elimination - 
+</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Leader(L)2"/>
+                    </ns4:feedback>
+                    <ns4:mandatory>true</ns4:mandatory>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Let's review your performance during the second room clearing exercise: 
+Sector of Fire Control - 
+Visual Room Scan - 
+Shot Accuracy - 
+Target Elimination - 
+</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Rifleman(R)1"/>
+                    </ns4:feedback>
+                    <ns4:mandatory>true</ns4:mandatory>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Let's review your performance during the second room clearing exercise: 
+Sector of Fire Control - 
+Visual Room Scan - 
+Shot Accuracy - 
+Target Elimination - 
+</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Rifleman(AR)4"/>
+                    </ns4:feedback>
+                    <ns4:mandatory>true</ns4:mandatory>
+                </ns4:instructionalIntervention>
+                <ns4:instructionalIntervention>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:feedback>
+                        <ns4:message>
+                            <ns4:content>Let's review your performance during the second room clearing exercise: 
+Sector of Fire Control - 
+Visual Room Scan - 
+Shot Accuracy - 
+Target Elimination - 
+</ns4:content>
+                            <ns4:Delivery>
+<ns4:InTutor>
+    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+</ns4:InTutor>
+                            </ns4:Delivery>
+                        </ns4:message>
+                        <ns4:teamRef value="Alpha_Rifleman(G)3"/>
+                    </ns4:feedback>
+                    <ns4:mandatory>true</ns4:mandatory>
+                </ns4:instructionalIntervention>
+            </strategy>
+            <strategy name="reset all player health">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>alpha_gren setDamage 0; </ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Heal Injured Player</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+            <strategy name="do nothing"/>
+            <strategy name="Enemy 2 fire at alpha_gren">
+                <ns4:scenarioAdaptation>
+                    <ns4:strategyHandler>
+                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                    </ns4:strategyHandler>
+                    <ns4:environmentAdaptation>
+                        <ns4:script>
+                            <ns4:value>enemy2 doFire alpha_gren; alpha_gren setDamage 0.5;</ns4:value>
+                        </ns4:script>
+                    </ns4:environmentAdaptation>
+                    <ns4:description>Enemy 2 fire at Alpha Grenadier</ns4:description>
+                </ns4:scenarioAdaptation>
+            </strategy>
+        </instructionalStrategies>
+    </actions>
+    <teamOrganization>
+        <team name="Everyone" echelon="Squad">
+            <team name="BLUFOR" echelon="Platoon">
+                <team name="Infantry Platoon" echelon="Platoon">
+                    <team name="Infantry Squad" echelon="Squad">
+                        <teamMember name="Squad_Leader" playable="true">
+                            <learnerId>
+<entityMarking>squad_l</entityMarking>
+                            </learnerId>
+                        </teamMember>
+                        <team name="Fireteam Alpha" echelon="Squad">
+                            <teamMember name="Alpha_Leader(L)2" playable="true">
+<learnerId>
+    <entityMarking>alpha_lead</entityMarking>
+</learnerId>
+                            </teamMember>
+                            <teamMember name="Alpha_Rifleman(R)1" playable="true">
+<learnerId>
+    <entityMarking>alpha_rifl</entityMarking>
+</learnerId>
+                            </teamMember>
+                            <teamMember name="Alpha_Rifleman(AR)4" playable="true">
+<learnerId>
+    <entityMarking>alpha_auto</entityMarking>
+</learnerId>
+                            </teamMember>
+                            <teamMember name="Alpha_Rifleman(G)3" playable="true">
+<learnerId>
+    <entityMarking>alpha_gren</entityMarking>
+</learnerId>
+                            </teamMember>
+                        </team>
+                        <team name="Fireteam Bravo" echelon="Squad">
+                            <teamMember name="Bravo_Leader" playable="false">
+<learnerId>
+    <entityMarking>bravo_leader</entityMarking>
+</learnerId>
+                            </teamMember>
+                            <teamMember name="Bravo_Rifleman" playable="false">
+<learnerId>
+    <entityMarking>bravo_rifle</entityMarking>
+</learnerId>
+                            </teamMember>
+                            <teamMember name="Bravo_Automatic Rifleman" playable="false">
+<learnerId>
+    <entityMarking>bravo_autorifle</entityMarking>
+</learnerId>
+                            </teamMember>
+                            <teamMember name="Bravo_Grenadier" playable="false">
+<learnerId>
+    <entityMarking>bravo_gren</entityMarking>
+</learnerId>
+                            </teamMember>
+                        </team>
+                    </team>
+                </team>
+            </team>
+            <team name="OPFOR">
+                <teamMember name="Insurgent 1" playable="false">
+                    <learnerId>
+                        <entityMarking>enemy1</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Insurgent 2" playable="false">
+                    <learnerId>
+                        <entityMarking>enemy2</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Insurgent 3" playable="false">
+                    <learnerId>
+                        <entityMarking>enemy3</entityMarking>
+                    </learnerId>
+                </teamMember>
+                <teamMember name="Insurgent 4" playable="false">
+                    <learnerId>
+                        <entityMarking>enemy4</entityMarking>
+                    </learnerId>
+                </teamMember>
+            </team>
+        </team>
+    </teamOrganization>
+</Scenario>

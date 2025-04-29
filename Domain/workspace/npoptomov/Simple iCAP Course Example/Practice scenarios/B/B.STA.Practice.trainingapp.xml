@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrainingApplicationWrapper xmlns:ns2="http://GIFT.com/common" version="11.0.1">
+    <TrainingApplication>
+        <transitionName>B.STA.Practice.trainingapp.xml</transitionName>
+        <dkfRef>
+            <file>Practice scenarios\B\B.STA.Practice.dkf.xml</file>
+        </dkfRef>
+        <interops>
+            <interop>
+                <InteropImpl>gateway.interop.simple.SimpleExampleTAPluginInterface</InteropImpl>
+                <InteropInputs>
+                    <SimpleExampleTAInteropInputs>
+                        <loadArgs>
+                            <ScenarioName>Practice 'some concept B' Scenario</ScenarioName>
+                        </loadArgs>
+                    </SimpleExampleTAInteropInputs>
+                </InteropInputs>
+            </interop>
+        </interops>
+        <finishedWhen>Stopped</finishedWhen>
+    </TrainingApplication>
+</TrainingApplicationWrapper>

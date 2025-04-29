@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Hello World" version="11.0.1">
+    <ns2:surveyContext>27</ns2:surveyContext>
+    <transitions>
+        <Guidance>
+            <transitionName>Example Guidance</transitionName>
+            <message>
+                <content>&lt;p style="text-align: center; font-family: Arial; font-size: 20px;"&gt;Welcome to GIFT!&lt;br&gt;&lt;br&gt;This is an example of a "Guidance" transition authored using the GIFT Authoring Tool (GAT)&lt;br&gt;&lt;br&gt;Transitions can be used to present lesson material, elicit surveys, provide feedback during training applications, and so much more.&lt;p style="text-align: center; font-family: Arial; font-size: 20px;"&gt;The "Hello World" course is supposed to be a simple test for course creation, course running and to serve as an example for courses that you may create.&lt;/p&gt;</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

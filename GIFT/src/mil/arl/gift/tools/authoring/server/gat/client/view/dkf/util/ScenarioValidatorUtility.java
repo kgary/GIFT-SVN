@@ -155,6 +155,7 @@ import generated.dkf.ViolationTime;
 import generated.dkf.WebpageProperties;
 import generated.dkf.YoutubeVideoProperties;
 import generated.dkf.VideoProperties;
+import generated.dkf.SteelarttConditionInput;
 import mil.arl.gift.common.enums.LearnerStateAttributeNameEnum;
 import mil.arl.gift.common.enums.TrainingApplicationEnum;
 import mil.arl.gift.common.gwt.client.coordinate.CoordinateType;
@@ -396,6 +397,9 @@ public class ScenarioValidatorUtility {
         } else if (validationObject instanceof UseRadioCondition) {
             UseRadioCondition condition = (UseRadioCondition) validationObject;
             return validateUseRadioCondition(condition);
+        } else if(validationObject instanceof SteelarttConditionInput){
+            SteelarttConditionInput condition = (SteelarttConditionInput) validationObject;
+            return validateSteelarttCondition(condition);
         }
 
         // check if validationObject is a scenario property object
@@ -3370,6 +3374,13 @@ public class ScenarioValidatorUtility {
         return null;
     }
 
+
+    private String validateSteelarttCondition(SteelarttConditionInput input){
+        if (input == null) {
+            throw new IllegalArgumentException("The steelartt condition input can't be null.");
+        }
+        return null;
+    }
     /**
      * Validates a {@link UseRadioCondition} condition.
      *

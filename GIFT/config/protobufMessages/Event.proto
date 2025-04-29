@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "EventProto";
+
+message Event {
+  string sessionID       = 1;
+  string scenarioEvent   = 2;
+  string timestamp       = 3;
+  string event           = 4;
+  string subtype         = 5;
+  string subtypeId       = 6;
+}

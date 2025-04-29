@@ -11,6 +11,7 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import org.jdis.PDUReader;
 import org.jdis.pdu.EntityStatePDU;
@@ -32,6 +33,21 @@ import mil.arl.gift.common.ta.state.GenericJSONState;
 import mil.arl.gift.common.ta.state.Geolocation;
 import mil.arl.gift.common.ta.state.SimpleExampleState;
 import mil.arl.gift.common.ta.state.StopFreeze;
+import mil.arl.gift.common.ta.state.Timer;
+import mil.arl.gift.common.ta.state.TimerBatch;
+import mil.arl.gift.common.ta.state.ScenarioDefinition;
+import mil.arl.gift.common.ta.state.Triage;
+import mil.arl.gift.common.ta.state.Event;
+import mil.arl.gift.common.ta.state.timer.CasualtyLayer;
+import mil.arl.gift.common.ta.state.timer.TraineeLayer;
+import mil.arl.gift.common.ta.state.triage.ActionsPerformed;
+import mil.arl.gift.common.ta.state.scenarioDefinition.Scenario;
+import mil.arl.gift.common.ta.state.scenarioDefinition.Casualty;
+import mil.arl.gift.common.ta.state.scenarioDefinition.Trainee;
+import mil.arl.gift.common.ta.state.scenarioDefinition.NPC;
+import mil.arl.gift.common.ta.state.scenarioDefinition.ObjectOfInterest;
+import mil.arl.gift.common.ta.state.scenarioDefinition.RegionOfInterest;
+import mil.arl.gift.common.ta.state.scenarioDefinition.AreaOfInterest;
 import mil.arl.gift.net.api.message.ACK;
 import mil.arl.gift.net.api.message.Message;
 import mil.arl.gift.net.dis.DISToGIFTConverter;
@@ -42,6 +58,11 @@ import mil.arl.gift.net.embedded.message.EmbeddedGeolocation;
 import mil.arl.gift.net.embedded.message.EmbeddedSiman;
 import mil.arl.gift.net.embedded.message.EmbeddedSimpleExampleState;
 import mil.arl.gift.net.embedded.message.EmbeddedStopFreeze;
+import mil.arl.gift.net.embedded.message.EmbeddedTimer;
+import mil.arl.gift.net.embedded.message.EmbeddedTimerBatch;
+import mil.arl.gift.net.embedded.message.EmbeddedScenarioDefinition;
+import mil.arl.gift.net.embedded.message.EmbeddedTriage;
+import mil.arl.gift.net.embedded.message.EmbeddedEvent;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedBinaryDataJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGenericJSONStateJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedGeolocationJSON;
@@ -50,6 +71,11 @@ import mil.arl.gift.net.embedded.message.codec.json.EmbeddedSimpleExampleStateJS
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStopFreezeJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedStringPayloadJSON;
 import mil.arl.gift.net.embedded.message.codec.json.EmbeddedVibrateDeviceJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedTimerJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedTimerBatchJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedScenarioDefinitionJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedTriageJSON;
+import mil.arl.gift.net.embedded.message.codec.json.EmbeddedEventJSON;
 import mil.arl.gift.net.json.JSONCodec;
 
 /**
@@ -98,6 +124,17 @@ public class EmbeddedAppMessageEncoder {
     /** The codec used for {@link BinaryData} messages. */
 	private static EmbeddedBinaryDataJSON BINARY_DATA_JSON_CODEC = new EmbeddedBinaryDataJSON();
 
+
+    // The below codecs are used for Timer mesages for Steelartt
+    private static EmbeddedTimerJSON TIMER_JSON_CODEC = new EmbeddedTimerJSON();
+    
+    private static EmbeddedTimerBatchJSON TIMER_BATCH_JSON_CODEC = new EmbeddedTimerBatchJSON();
+
+    private static EmbeddedScenarioDefinitionJSON SCENARIO_DEFINITION_JSON_CODEC = new EmbeddedScenarioDefinitionJSON();
+    private static EmbeddedTriageJSON TRIAGE_JSON_CODEC = new EmbeddedTriageJSON();
+    private static EmbeddedEventJSON EVENT_JSON_CODEC = new EmbeddedEventJSON();
+
+
 	/**
 	 * An enumeration of object types that are supported for encoding/decoding. The name of an object's type will be added to its
 	 * JSON encoding upon invoking {@link EmbeddedAppMessageEncoder#encodeForEmbeddedApplication(Object)} so that embedded applications
@@ -125,7 +162,17 @@ public class EmbeddedAppMessageEncoder {
         /** A message containing the location of a learner. */
         Geolocation,
         /** A message containing raw binary data. */
-        BinaryData
+        BinaryData,
+        /** A message containing timer data for steel-artt */
+        Timer,
+        /** A message containing an array of timer data json objects, its timestamp of when it was sent from unity and batch size for steel-artt */
+        TimerBatch,
+        /** A message containing scenario definition data for STEEL ARTT . */
+        ScenarioDefinition,
+        /** A message containing triage status data for STEEL ARTT . */
+        Triage,
+        /** A message containing event data like perturbation, triage and scene - start/stop for STEEL ARTT . */
+        Event
 	}
 
 	/**
@@ -145,6 +192,11 @@ public class EmbeddedAppMessageEncoder {
 		messageTypeToCodec.put(EncodedMessageType.Geolocation, GEOLOCATION_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.GenericJSONState, GENERIC_JSON_STATE_JSON_CODEC);
 		messageTypeToCodec.put(EncodedMessageType.BinaryData, BINARY_DATA_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.Timer,TIMER_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.TimerBatch,TIMER_BATCH_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.ScenarioDefinition,SCENARIO_DEFINITION_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.Triage,TRIAGE_JSON_CODEC );
+        messageTypeToCodec.put(EncodedMessageType.Event,EVENT_JSON_CODEC );
 	}
 
 	/**
@@ -159,6 +211,11 @@ public class EmbeddedAppMessageEncoder {
         decodedPayloadClassToMessageType.put(StopFreeze.class, MessageTypeEnum.STOP_FREEZE);
         decodedPayloadClassToMessageType.put(Geolocation.class, MessageTypeEnum.GEOLOCATION);
         decodedPayloadClassToMessageType.put(EntityState.class, MessageTypeEnum.ENTITY_STATE);
+        decodedPayloadClassToMessageType.put(Timer.class, MessageTypeEnum.TIMER);
+        decodedPayloadClassToMessageType.put(TimerBatch.class, MessageTypeEnum.TIMER_BATCH);
+        decodedPayloadClassToMessageType.put(ScenarioDefinition.class, MessageTypeEnum.SCENARIO_DEFINITION);
+        decodedPayloadClassToMessageType.put(Triage.class, MessageTypeEnum.TRIAGE);
+        decodedPayloadClassToMessageType.put(Event.class, MessageTypeEnum.EVENT);
 	}
 
     /**
@@ -316,7 +373,6 @@ public class EmbeddedAppMessageEncoder {
             Object embeddedPayload = codec.decode(payload);
             return embeddedPayloadToGiftPayload(embeddedPayload);
 		} else {
-
 			//default to a generic JSON message
 			return GENERIC_JSON_STATE_JSON_CODEC.decode(payload);
 		}
@@ -458,9 +514,170 @@ public class EmbeddedAppMessageEncoder {
             Double heading = embeddedGeolocation.getHeading();
             Double speed = embeddedGeolocation.getSpeed();
             return new Geolocation(coordinates, accuracy, altitudeAccuracy, heading, speed);
-        } else {
+        }else if (embeddedPayload instanceof EmbeddedTimer) {
+            EmbeddedTimer embeddedTimer = (EmbeddedTimer) embeddedPayload;
+
+            CasualtyLayer casualtyLayer = new CasualtyLayer();
+            for (mil.arl.gift.net.embedded.message.timer.CasualtyLayer.Casualty c :
+                    embeddedTimer.getCasualtyLayer().getCasualties()) {
+                casualtyLayer.addCasualty(c.getId(), c.getStatus());
+            }
+
+            TraineeLayer traineeLayer = new TraineeLayer();
+            for (mil.arl.gift.net.embedded.message.timer.TraineeLayer.Trainee t :
+                    embeddedTimer.getTraineeLayer().getTrainees()) {
+                traineeLayer.addTrainee(
+                    t.getId(),
+                    t.isCommunication(),
+                    t.getOOIWatched(),
+                    t.getROIWatched(),
+                    t.getHeadRotation(),
+                    t.getHead(),
+                    t.getLeftHand(),
+                    t.getRightHand(),
+                    t.getLeftFoot(),
+                    t.getRightFoot()
+                );
+            }
+
+            return new Timer(
+                embeddedTimer.getSessionID(),
+                embeddedTimer.getScenarioEvent(),
+                embeddedTimer.getTimestamp(),
+                casualtyLayer,
+                traineeLayer
+            );
+        } else if (embeddedPayload instanceof EmbeddedTimerBatch) {
+            EmbeddedTimerBatch embeddedTimerBatch = (EmbeddedTimerBatch) embeddedPayload;
+
+                ArrayList<Timer> convertedTimers = new ArrayList<>();
+                for (EmbeddedTimer et : embeddedTimerBatch.getMessages()) {
+                    CasualtyLayer casualtyLayer = new CasualtyLayer();
+                    for (mil.arl.gift.net.embedded.message.timer.CasualtyLayer.Casualty c :
+                            et.getCasualtyLayer().getCasualties()) {
+                        casualtyLayer.addCasualty(c.getId(), c.getStatus());
+                    }
+
+                    TraineeLayer traineeLayer = new TraineeLayer();
+                    for (mil.arl.gift.net.embedded.message.timer.TraineeLayer.Trainee t :
+                            et.getTraineeLayer().getTrainees()) {
+                        traineeLayer.addTrainee(
+                            t.getId(),
+                            t.isCommunication(),
+                            t.getOOIWatched(),
+                            t.getROIWatched(),
+                            t.getHeadRotation(),
+                            t.getHead(),
+                            t.getLeftHand(),
+                            t.getRightHand(),
+                            t.getLeftFoot(),
+                            t.getRightFoot()
+                        );
+                    }
+
+                    convertedTimers.add(new Timer(
+                        et.getSessionID(),
+                        et.getScenarioEvent(),
+                        et.getTimestamp(),
+                        casualtyLayer,
+                        traineeLayer
+                    ));
+                }
+
+                return new TimerBatch(
+                    embeddedTimerBatch.getTimestamp(),
+                    embeddedTimerBatch.getDataSize(),
+                    convertedTimers
+                );
+        }else if (embeddedPayload instanceof EmbeddedScenarioDefinition) {
+            EmbeddedScenarioDefinition embeddedScenario = (EmbeddedScenarioDefinition) embeddedPayload;
+            mil.arl.gift.net.embedded.message.scenarioDefinition.Scenario es = embeddedScenario.getScenario();
+
+            List<Casualty> casualties = new ArrayList<>();
+            for (mil.arl.gift.net.embedded.message.scenarioDefinition.Casualty c : es.getCasualties()) {
+                casualties.add(new Casualty(c.getId(), c.getDescription(), c.getLocation(), convertAOIs(c.getAreasOfInterest())));
+            }
+
+            List<Trainee> trainees = new ArrayList<>();
+            for (mil.arl.gift.net.embedded.message.scenarioDefinition.Trainee t : es.getTrainees()) {
+                trainees.add(new Trainee(t.getId(), t.getDescription(), t.getRole(), t.getLocation(), convertAOIs(t.getAreasOfInterest())));
+            }
+
+            List<NPC> npcs = new ArrayList<>();
+            for (mil.arl.gift.net.embedded.message.scenarioDefinition.NPC n : es.getNPCs()) {
+                npcs.add(new NPC(n.getId(), n.getDescription(), n.getRole(), n.getLocation(), convertAOIs(n.getAreasOfInterest())));
+            }
+
+            List<ObjectOfInterest> objects = new ArrayList<>();
+            for (mil.arl.gift.net.embedded.message.scenarioDefinition.ObjectOfInterest o : es.getObjectsOfInterest()) {
+                objects.add(new ObjectOfInterest(o.getId(), o.getDescription(), o.getType(), o.getLocation(), convertAOIs(o.getAreasOfInterest())));
+            }
+
+            List<RegionOfInterest> regions = new ArrayList<>();
+            for (mil.arl.gift.net.embedded.message.scenarioDefinition.RegionOfInterest r : es.getRegionsOfInterest()) {
+                regions.add(new RegionOfInterest(r.getId(), r.getDescription(), r.getType(), r.getLocation(), convertAOIs(r.getAreasOfInterest())));
+            }
+
+            Scenario convertedScenario = new Scenario(
+                es.getId(),
+                es.getTitle(),
+                es.getDescription(),
+                es.getTimestamp(),
+                casualties,
+                trainees,
+                objects,
+                regions,
+                npcs
+            );
+
+            return new ScenarioDefinition(embeddedScenario.getScenarioEvent(), convertedScenario);
+        } else if (embeddedPayload instanceof EmbeddedTriage) {
+            EmbeddedTriage embeddedTriage = (EmbeddedTriage) embeddedPayload;
+            mil.arl.gift.net.embedded.message.triage.ActionsPerformed ap = embeddedTriage.getActionsPerformed();
+
+            ActionsPerformed convertedAP = new ActionsPerformed(
+                ap.isExitWoundIdentified(),
+                ap.isAirwayObstructionIdentified(),
+                ap.isShockIdentified(),
+                ap.isHypothermiaIdentified(),
+                ap.isBleedingIdentified(),
+                ap.isRespiratoryDistressIdentified(),
+                ap.isSeverePainIdentified(),
+                ap.isWoundAreaIdentified()
+            );
+
+            return new Triage(
+                embeddedTriage.getSessionID(),
+                embeddedTriage.getScenarioEvent(),
+                embeddedTriage.getTimestamp(),
+                embeddedTriage.getTraineeId(),
+                embeddedTriage.getCasualtyId(),
+                embeddedTriage.getSubtypeId(),
+                convertedAP
+            );
+        } else if (embeddedPayload instanceof EmbeddedEvent) {
+            EmbeddedEvent embeddedEvent = (EmbeddedEvent) embeddedPayload;
+            return new Event(
+                embeddedEvent.getSessionID(),
+                embeddedEvent.getScenarioEvent(),
+                embeddedEvent.getTimestamp(),
+                embeddedEvent.getEvent(),
+                embeddedEvent.getSubtype(),
+                embeddedEvent.getSubtypeId()
+            );
+        }
+
+        else {
             throw new IllegalArgumentException("The class of the GIFT payload was an unsupported type '" + embeddedPayload.getClass().getName() + "'");
         }
+    }
+
+    private static List<AreaOfInterest> convertAOIs(List<mil.arl.gift.net.embedded.message.scenarioDefinition.AreaOfInterest> input) {
+        List<AreaOfInterest> output = new ArrayList<>();
+        for (mil.arl.gift.net.embedded.message.scenarioDefinition.AreaOfInterest a : input) {
+            output.add(new AreaOfInterest(a.getLabel(), a.getAreaType(), a.getInterestType(), a.getDescription()));
+        }
+        return output;
     }
 
     /**

@@ -1,0 +1,39 @@
+This is a summary of a GIFT Domain Content only import using the GIFT import domain content tool.  
+It contains one or more successfully imported domains (listed at the bottom of this README).
+
+GIFT Resources
+
+For more information on GIFT or to collaborate with the GIFT
+community, visit gifttutoring.org
+
+
+
+Import file: RIDE_Exemplar_Courses.11.18.22.zip
+
+Domain content: 
+Set Up Your Machine for STEEL-R RIDE
+STEEL-R RIDE Individual Exemplar
+STEEL-R RIDE Team Exemplar
+
+
+Import Issues:
+
+Survey Import Summary:
+[ExternalSurveyMapper:
+Survey Context Id changes: {37 -> 38}, {38 -> 39},
+Survey Question Id changes:
+Survey Question Option List Id changes:
+Survey Question List Option Id changes:]
+
+Original Imported Files Backedup:
+
+Copied original DKF of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Team Exemplar\RIDE Team Scenario.dkf.xml] to D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Team Exemplar\RIDE Team Scenario.dkf.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the DKF of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Team Exemplar\RIDE Team Scenario.dkf.xml]
+Copied original Course file of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\Set Up Your Machine for STEEL-R RIDE\Set Up Your Machine for STEEL-R RIDE.course.xml] to D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\Set Up Your Machine for STEEL-R RIDE\Set Up Your Machine for STEEL-R RIDE.course.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the course file of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\Set Up Your Machine for STEEL-R RIDE\Set Up Your Machine for STEEL-R RIDE.course.xml]
+Copied original Course file of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Team Exemplar\STEEL-R RIDE Team Exemplar.course.xml] to D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Team Exemplar\STEEL-R RIDE Team Exemplar.course.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the course file of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Team Exemplar\STEEL-R RIDE Team Exemplar.course.xml]
+Copied original DKF of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Individual Exemplar\RIDE Individual Scenario.dkf.xml] to D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Individual Exemplar\RIDE Individual Scenario.dkf.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the DKF of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Individual Exemplar\RIDE Individual Scenario.dkf.xml]
+Copied original Course file of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Individual Exemplar\STEEL-R RIDE Individual Exemplar.course.xml] to D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Individual Exemplar\STEEL-R RIDE Individual Exemplar.course.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the course file of [FileProxy: id = D:\ArizonaState\GIFT\temp\GIFT58680831811732868286445521086944200\Domain\STEEL-R RIDE Individual Exemplar\STEEL-R RIDE Individual Exemplar.course.xml]

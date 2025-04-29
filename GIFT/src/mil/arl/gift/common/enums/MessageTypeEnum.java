@@ -237,11 +237,20 @@ public class MessageTypeEnum extends AbstractEnum {
     public static final MessageTypeEnum DOMAIN_SESSION_START_TIME_REQUEST = new MessageTypeEnum("DomainSessionStartTimeRequest", "Domain Session Start Time Request", "Request for the starting time of a particular active domain session.");
     public static final MessageTypeEnum DOMAIN_SESSION_START_TIME_REPLY = new MessageTypeEnum("DomainSessionStartTimeReply", "Domain Session Start Time Reply", "Response to a domain session start time request that contains the starting time in question.");
 
+
+    public static final MessageTypeEnum TIMER = new MessageTypeEnum("Timer", "Timer Message", "Contains timer message data");
+    public static final MessageTypeEnum TIMER_BATCH = new MessageTypeEnum("TimerBatch", "Timer Message Batch", "Contains an array of timer messages json objects, timestamp when data was sent by unity and batch size");
+    
+    public static final MessageTypeEnum SCENARIO_DEFINITION = new MessageTypeEnum("Scenario Definition", "Scenario Definition Message", "Contains Scenario Definition message data");
+    public static final MessageTypeEnum TRIAGE = new MessageTypeEnum("Triage", "Triage Message", "Contains Triage message data");
+    public static final MessageTypeEnum EVENT = new MessageTypeEnum("Event", "Event Message", "Contains Event message data");
+
+    
     /**
      * Collection of Training Application Game state message types
      */
     public static final List<MessageTypeEnum> TRAINING_APP_STATE_MESSAGE_TYPES = Arrays.asList(ENTITY_STATE, COLLISION, DETONATION,
-            WEAPON_FIRE, POWERPOINT_STATE, SIMPLE_EXAMPLE_STATE, GENERIC_JSON_STATE, RIFLE_SHOT_MESSAGE, GEOLOCATION);
+            WEAPON_FIRE, POWERPOINT_STATE, SIMPLE_EXAMPLE_STATE, GENERIC_JSON_STATE, RIFLE_SHOT_MESSAGE, GEOLOCATION,TIMER,TIMER_BATCH,SCENARIO_DEFINITION,TRIAGE,EVENT);
 
     /** (optional) information about the message type and its use in GIFT */
     private String description = null;

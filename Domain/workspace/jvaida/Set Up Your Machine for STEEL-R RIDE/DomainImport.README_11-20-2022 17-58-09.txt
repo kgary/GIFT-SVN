@@ -1,0 +1,39 @@
+This is a summary of a GIFT Domain Content only import using the GIFT import domain content tool.  
+It contains one or more successfully imported domains (listed at the bottom of this README).
+
+GIFT Resources
+
+For more information on GIFT or to collaborate with the GIFT
+community, visit gifttutoring.org
+
+
+
+Import file: RIDE_Exemplar_Courses.11.16.22.zip
+
+Domain content: 
+Set Up Your Machine for STEEL-R RIDE
+STEEL-R RIDE Individual Exemplar
+STEEL-R RIDE Team Exemplar
+
+
+Import Issues:
+
+Survey Import Summary:
+[ExternalSurveyMapper:
+Survey Context Id changes: {87 -> 38}, {88 -> 37},
+Survey Question Id changes:
+Survey Question Option List Id changes:
+Survey Question List Option Id changes:]
+
+Original Imported Files Backedup:
+
+Copied original Course file of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Team Exemplar\STEEL-R RIDE Team Exemplar.course.xml] to G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Team Exemplar\STEEL-R RIDE Team Exemplar.course.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the course file of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Team Exemplar\STEEL-R RIDE Team Exemplar.course.xml]
+Copied original Course file of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Individual Exemplar\STEEL-R RIDE Individual Exemplar.course.xml] to G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Individual Exemplar\STEEL-R RIDE Individual Exemplar.course.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the course file of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Individual Exemplar\STEEL-R RIDE Individual Exemplar.course.xml]
+Copied original Course file of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\Set Up Your Machine for STEEL-R RIDE\Set Up Your Machine for STEEL-R RIDE.course.xml] to G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\Set Up Your Machine for STEEL-R RIDE\Set Up Your Machine for STEEL-R RIDE.course.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the course file of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\Set Up Your Machine for STEEL-R RIDE\Set Up Your Machine for STEEL-R RIDE.course.xml]
+Copied original DKF of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Team Exemplar\RIDE Team Scenario.dkf.xml] to G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Team Exemplar\RIDE Team Scenario.dkf.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the DKF of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Team Exemplar\RIDE Team Scenario.dkf.xml]
+Copied original DKF of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Individual Exemplar\RIDE Individual Scenario.dkf.xml] to G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Individual Exemplar\RIDE Individual Scenario.dkf.xml.IMPORTED.BACKUP.
+Successfully updated survey references for the DKF of [FileProxy: id = G:\GIFT_2022-1\release_2022-1\GIFT\temp\GIFT38643360514016085131986979800440300\Domain\STEEL-R RIDE Individual Exemplar\RIDE Individual Scenario.dkf.xml]

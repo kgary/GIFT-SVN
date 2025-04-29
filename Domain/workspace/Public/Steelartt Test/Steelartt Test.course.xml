@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Course xmlns:ns2="http://GIFT.com/common" name="Steelartt Test" version="11.0.97">
+    <description>This course will test my new training application interop plugin.</description>
+    <ns2:surveyContext>37</ns2:surveyContext>
+    <concepts>
+        <hierarchy>
+            <conceptNode name="all concepts"/>
+        </hierarchy>
+    </concepts>
+    <transitions>
+        <Guidance>
+            <transitionName>Start of course</transitionName>
+            <message>
+                <content>You are about to start with the course.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Jump to VR scenario 1st half</transitionName>
+            <message>
+                <content>Now click next and jump into your VR headset right away.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>VR Scenario - 1st half</transitionName>
+            <trainingAppTypeEnum>RIDE</trainingAppTypeEnum>
+            <dkfRef>
+                <file>multiplayer1.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.Steelartt.SteelArttKafka</InteropImpl>
+                    <InteropInputs>
+                        <UnityInteropInputs>
+                            <loadArgs/>
+                        </UnityInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>End of Scenario 1st half</transitionName>
+            <message>
+                <content>The first half of the scenario has successfully ended.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <Guidance>
+            <transitionName>Jump to VR scenario 2nd half</transitionName>
+            <message>
+                <content>Now click next and jump into your VR headset right away.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <TrainingApplication>
+            <transitionName>VR Scenario - 2nd half</transitionName>
+            <trainingAppTypeEnum>RIDE</trainingAppTypeEnum>
+            <dkfRef>
+                <file>multiplayer2.dkf.xml</file>
+            </dkfRef>
+            <interops>
+                <interop>
+                    <InteropImpl>gateway.interop.Steelartt.SteelArttKafka</InteropImpl>
+                    <InteropInputs>
+                        <UnityInteropInputs>
+                            <loadArgs/>
+                        </UnityInteropInputs>
+                    </InteropInputs>
+                </interop>
+            </interops>
+            <finishedWhen>Stopped</finishedWhen>
+        </TrainingApplication>
+        <Guidance>
+            <transitionName>End of Scenario (2nd half)</transitionName>
+            <message>
+                <content>Enter your message here!</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+        <PresentSurvey>
+            <transitionName>Survey 1</transitionName>
+            <ns2:GIFTSurveyKey>Survey 1_20250212_190155</ns2:GIFTSurveyKey>
+            <fullScreen>true</fullScreen>
+            <showInAAR>true</showInAAR>
+            <disabled>false</disabled>
+            <sharedSurvey>false</sharedSurvey>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
+        </PresentSurvey>
+        <AAR>
+            <transitionName>Review 1</transitionName>
+            <fullScreen>true</fullScreen>
+            <disabled>false</disabled>
+        </AAR>
+        <Guidance>
+            <transitionName>Thankyou</transitionName>
+            <message>
+                <content>The course has ended. Thankyou.</content>
+            </message>
+            <fullScreen>true</fullScreen>
+        </Guidance>
+    </transitions>
+</Course>

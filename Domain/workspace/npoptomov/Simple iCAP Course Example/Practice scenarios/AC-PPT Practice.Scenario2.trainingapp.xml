@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<TrainingApplicationWrapper xmlns:ns2="http://GIFT.com/common" version="11.0.1">
+    <TrainingApplication>
+        <transitionName>AC Practice Scenario 2 PowerPoint</transitionName>
+        <dkfRef>
+            <file>Practice scenarios\AC-PPT Practice.Scenario2.dkf.xml</file>
+        </dkfRef>
+        <interops>
+            <interop>
+                <InteropImpl>gateway.interop.ppt.PPTInterface</InteropImpl>
+                <InteropInputs>
+                    <PowerPointInteropInputs>
+                        <loadArgs>
+                            <ShowFile>Practice scenarios\AC-Practice.Scenario2.pps</ShowFile>
+                        </loadArgs>
+                    </PowerPointInteropInputs>
+                </InteropInputs>
+            </interop>
+        </interops>
+        <finishedWhen>Stopped</finishedWhen>
+    </TrainingApplication>
+</TrainingApplicationWrapper>

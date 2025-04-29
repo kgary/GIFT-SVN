@@ -111,6 +111,10 @@ import generated.proto.common.survey.QuestionResponseProto;
 import generated.proto.common.survey.SubmitSurveyResultsProto;
 import generated.proto.common.survey.SurveyGiftDataProto;
 import generated.proto.common.survey.SurveyResponseProto;
+import generated.proto.common.EventProto;
+import generated.proto.common.TriageProto;
+import mil.arl.gift.net.api.message.codec.proto.TriageProtoCodec;
+import mil.arl.gift.net.api.message.codec.proto.EventProtoCodec;
 import mil.arl.gift.common.enums.MessageTypeEnum;
 import mil.arl.gift.net.api.message.codec.proto.survey.QuestionResponseProtoCodec;
 import mil.arl.gift.net.api.message.codec.proto.survey.SubmitSurveyResultsProtoCodec;
@@ -410,6 +414,8 @@ public class ProtoMapper {
                 VariablesStateRequestProto.VariablesStateRequest.class, VariablesStateRequestProtoCodec.class));
         messageWrapper.put(MessageTypeEnum.WEAPON_STATE_RESULT, new ProtoClassContainer(
                 VariablesStateResultProto.VariablesStateResult.class, VariablesStateResultProtoCodec.class));
+        messageWrapper.put(MessageTypeEnum.EVENT, new ProtoClassContainer(EventProto.Event.class, EventProtoCodec.class));
+        messageWrapper.put(MessageTypeEnum.TRIAGE, new ProtoClassContainer(TriageProto.Triage.class, TriageProtoCodec.class));
     }
 
     /** the singleton instance of this class */
