@@ -61,6 +61,10 @@ P.S. - If you don't see the GIFT loading screen, then launch GIFT again, by re-r
    ```bash
    ./stop_kafka.sh
    ```
+7. To check if Kafka is running, run the following command:
+   ```
+   netstat ano | findstr 9092
+   ```
 
 ## Note for Kafka
 
