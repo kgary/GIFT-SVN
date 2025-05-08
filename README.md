@@ -94,3 +94,28 @@ Due to the large folder/file size of GIFT, we're currently tracking changes in t
 - GIFT/src.py
 - GIFT/src
 
+
+## Notable errors & their fixes:
+1) If the error says "UMS/LMS module failed to startup....". 
+##### NOTE: This error has been fixed.
+Then the issue is that the derby DB didn't startup as expected. 
+This issue has been fixed by changing the GIFT\scripts\install\launchDerbyServer.vbs script. The change made in here was to run the below mentioned startNetworkServer.bat script inside a cmd.exe shell to prevent any UAC (User account control) prompts showing up. So, now onwards(5/8/2025), you should not see this error anymore.
+
+But, even after this, if you still see the error, follow the steps below:
+1.1) First you need to check the log file for either the UMS or the lMS module. In this log file, if it reads - Derby DB isn't running. First try manually running the derby db server - 
+```
+external\db-derby-10.15.2.0-bin\bin\startNetworkServer.bat
+```
+1.2) If it works, then there is no port blocking on port 1527(for derby db). The issue could be something else(unkown).
+1.3) If it doesn't work, then you need to remove port blocking on port 1527 by adding a corresponding rule on your windows firewall.
+
+
+2) If during GIFT startup, you get an error that says
+```
+The following configuration check failed:
+Unable to find Powerpoint installed on your computer.....
+```
+This means that MS Powerpoint does not exist in the machine. So you can follow either of the 2 options:
+1) Click on the Disable Gateway Interop Plugin button, this will just disable the Powerpoint Gateway Interop plugin. But this i NOT RECOMMENDED, because in our Steelartt course, we are using this interop plugin to show our powerpoints.
+2) Go to the GIFT\config\gateway\configurations\default.interopConfig.xml & remove the InteropInterfaceConfig element(whose refId="3) & all its children. You are essentially preventing initializing of this interop plugin - this option is also NOT RECOMMENDED- as we're using this interop plugin in out Steelartt course.
+3) RECOMMENDED: Just download MS Powerpoint on your machine.
