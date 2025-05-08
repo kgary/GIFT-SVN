@@ -763,6 +763,10 @@
             overwrite="true"/>
     </target>   
 
+    <target name="cleanupSteelarttSources" description="Remove temporary Steelartt source file">
+        <delete file="${root.path}/src/mil/arl/gift/tools/authoring/server/gat/client/view/dkf/task/condition/SteelarttInputEditorImpl.java"/>
+    </target>
+
     <target name="compileDashboardClient" depends="prepareSteelarttSources, compileDashboardServer" unless="client.uptodate" description="Compile the client side gwt code and creates the war file">
          <echo message="Dashboard: Compile dashboard client."/>
         <mkdir dir="${war.path}"/>
@@ -993,7 +997,7 @@
         <jar basedir="${war.path}" destfile="${root.path}/bin/${warfile.name}"/>
     </target>
     
-    <target name="compile" depends="checkForChanges,compileCore"/>
+    <target name="compile" depends="checkForChanges,compileCore, cleanupSteelarttSources"/>
 		
     <target name="clean">
         <delete file="${root.path}/bin/${warfile.name}"/>
