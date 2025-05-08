@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+import "CommonEntities.proto";
+
+package common;
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "TimerBatchProto";
+
+message TimerBatch {
+  string timestamp = 1;
+  int32 dataSize  = 2;
+  repeated Timer messages = 3;
+}
+
+message Timer {
+  string sessionID     = 1;
+  string scenarioEvent = 2;
+  string timestamp     = 3;
+  CasualtyLayer casualtyLayer  = 4;
+  TraineeLayer  traineeLayer   = 5;
+}
+
+message CasualtyLayer {
+  repeated Casualty casualties = 1;
+}
+
+message TraineeLayer {
+  repeated Trainee trainees = 1;
+  message Trainee {
+    string id             = 1;
+    bool   communication  = 2;
+    repeated string ooiWatched      = 3;
+    repeated string roiWatched      = 4;
+    repeated string headRotation    = 5;
+    repeated string head            = 6;
+    repeated string leftHand        = 7;
+    repeated string rightHand       = 8;
+    repeated string leftFoot        = 9;
+    repeated string rightFoot       = 10;
+  }
+}

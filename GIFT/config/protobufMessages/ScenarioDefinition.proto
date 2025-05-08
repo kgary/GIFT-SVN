@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package common;
+
+import "CommonEntities.proto";
+
+option java_package = "generated.proto.common";
+option java_outer_classname = "ScenarioDefinitionProto";
+
+message ScenarioDefinition {
+  string scenarioEvent = 1;
+  Scenario scenario = 2;
+}
+
+message Scenario {
+  string id= 1;
+  string title= 2;
+  string description= 3;
+  string timestamp= 4;
+  repeated Casualty casualties= 5;
+  repeated Trainee trainees = 6;
+  repeated ObjectOfInterest objectsOfInterest= 7;
+  repeated RegionOfInterest regionsOfInterest = 8;
+  repeated NPC npcs= 9;
+}
+
+message AreaOfInterest {
+  string label = 1;
+  string areaType= 2;
+  string interestType= 3;
+  string description= 4;
+}
+
+message Trainee {
+  string id = 1;
+  string description  = 2;
+  repeated double location  = 3;
+  repeated AreaOfInterest areasOfInterest = 4;
+  string role = 5;
+}
+
+message ObjectOfInterest {
+  string id = 1;
+  string description = 2;
+  repeated double location= 3;
+  repeated AreaOfInterest areasOfInterest = 4;
+  string type= 5;
+}
+
+message RegionOfInterest {
+  string id = 1;
+  string description = 2;
+  repeated double location  = 3;
+  repeated AreaOfInterest areasOfInterest = 4;
+  string type = 5;
+}
+
+message NPC {
+  string id = 1;
+  string description = 2;
+  repeated double location  = 3;
+  repeated AreaOfInterest areasOfInterest = 4;
+  string role  = 5;
+}

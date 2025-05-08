@@ -19,7 +19,16 @@ public class ScenarioDefinition implements TrainingAppState{
         return scenarioEvent;
     }
 
+    public void getScenarioEvent(String scenarioEvent){
+        this.scenarioEvent = scenarioEvent;
+    }
+
     public Scenario getScenario() {
         return scenario;
     }
+
+    public void setScenario(Scenario scenario){
+        this.scenario = scenario;
+    }
+
 }

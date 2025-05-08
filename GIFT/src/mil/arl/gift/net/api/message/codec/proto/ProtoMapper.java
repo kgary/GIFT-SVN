@@ -113,6 +113,10 @@ import generated.proto.common.survey.SurveyGiftDataProto;
 import generated.proto.common.survey.SurveyResponseProto;
 import generated.proto.common.EventProto;
 import generated.proto.common.TriageProto;
+import generated.proto.common.ScenarioDefinitionProto;
+import generated.proto.common.TimerBatchProto;
+import mil.arl.gift.net.api.message.codec.proto.ScenarioDefinitionProtoCodec;
+import mil.arl.gift.net.api.message.codec.proto.TimerBatchProtoCodec;
 import mil.arl.gift.net.api.message.codec.proto.TriageProtoCodec;
 import mil.arl.gift.net.api.message.codec.proto.EventProtoCodec;
 import mil.arl.gift.common.enums.MessageTypeEnum;
@@ -416,6 +420,9 @@ public class ProtoMapper {
                 VariablesStateResultProto.VariablesStateResult.class, VariablesStateResultProtoCodec.class));
         messageWrapper.put(MessageTypeEnum.EVENT, new ProtoClassContainer(EventProto.Event.class, EventProtoCodec.class));
         messageWrapper.put(MessageTypeEnum.TRIAGE, new ProtoClassContainer(TriageProto.Triage.class, TriageProtoCodec.class));
+        messageWrapper.put(MessageTypeEnum.SCENARIO_DEFINITION, new ProtoClassContainer(ScenarioDefinitionProto.ScenarioDefinition.class, ScenarioDefinitionProtoCodec.class));
+        messageWrapper.put(MessageTypeEnum.TIMER_BATCH, new ProtoClassContainer(TimerBatchProto.TimerBatch.class, TimerBatchProtoCodec.class));
+
     }
 
     /** the singleton instance of this class */
