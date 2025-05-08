@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Course xmlns:ns2="http://GIFT.com/common" name="Simple iCAP Course Example" version="11.0.1">
+<Course xmlns:ns2="http://GIFT.com/common" name="Simple iCAP Course Example" version="11.0.2">
     <description>This course is used to demonstrate and test the various aspects of GIFT's iCAP pedagogical model.&lt;br&gt;&lt;br&gt;It will attempt to teach 3 arbitrary concepts: "some concept A", "some concept B" and "some concept C" (where A and C are taught together).&lt;br&gt;&lt;br&gt;After the learner has mastered the knowledge based portion of the course, a practice environment will be presented.  The content delivered throughout the course is based on course authoring decisions, the learner's state at that time and empirically driven Pedagogy (in iCAP).  It will exercise dynamic course flow (i.e. branching) in GIFT based on the available domain content (e.g. PPT shows).&lt;br&gt;&lt;br&gt;
 &lt;b&gt;Intended Audience&lt;/b&gt;: everyone
 &lt;br&gt;
@@ -10,12 +10,13 @@
 	&lt;li&gt;PowerPoint&lt;/li&gt;
 &lt;/ul&gt;
 &lt;b&gt;Peripherals&lt;/b&gt;: none</description>
+    <lastSuccessfulValidation>2025:05:06 11:44:47:875 -0700</lastSuccessfulValidation>
     <image>course.image.png</image>
     <configurations/>
     <ns2:surveyContext>12</ns2:surveyContext>
     <concepts>
         <hierarchy>
-            <conceptNode name="All Concepts">
+            <conceptNode name="all concepts">
                 <conceptNode name="some concept a"/>
                 <conceptNode name="some concept b"/>
                 <conceptNode name="some concept c"/>
@@ -136,7 +137,7 @@
                 </Remediation>
                 <transitions>
                     <Guidance>
-                        <transitionName>some concept B - after recall guidance</transitionName>
+                        <transitionName>some concept B - After Recall Guidance</transitionName>
                         <message>
                             <content>Congratulations you passed the test.  Now let's apply the knowledge you have learned today (or brought with you to this session) with some practice.</content>
                         </message>
@@ -149,6 +150,11 @@
                     </PracticeConcepts>
                 </Practice>
             </Quadrants>
+            <mandatoryOption>
+                <simpleMandatoryBehavior>
+                    <useExistingLearnerStateIfAvailable>true</useExistingLearnerStateIfAvailable>
+                </simpleMandatoryBehavior>
+            </mandatoryOption>
         </MerrillsBranchPoint>
         <Guidance>
             <transitionName>Concept A+C introduction</transitionName>

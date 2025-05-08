@@ -1,158 +1,690 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Scenario xmlns:ns2="http://GIFT.com/common" xmlns:ns3="http://GIFT.com/learnerActions" xmlns:ns4="http://GIFT.com/pedagogicalStrategy" name="multiplayer2" version="11.0.1">
-    <description>This is the STEEL-ARTT course for second scenario that allows multiple players to join and participate together.</description>
-    <resources>
-        <AvailableLearnerActions/>
-    </resources>
-    <endTriggers>
-        <trigger>
-            <conceptAssessment concept="2" result="AtExpectation"/>
-            <triggerDelay>10</triggerDelay>
-            <message>
-                <strategy name="ForceScenarioEnd">
-                    <ns4:instructionalIntervention>
-                        <ns4:strategyHandler>
-                            <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-                        </ns4:strategyHandler>
-                        <ns4:feedback>
-                            <ns4:message>
-                                <ns4:content>--SCENARIO 2 ENDING: The second scenario is now complete.</ns4:content>
-                                <ns4:Delivery>
-                                    <ns4:InTutor>
-                                        <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                                        <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                                    </ns4:InTutor>
-                                </ns4:Delivery>
-                            </ns4:message>
-                        </ns4:feedback>
-                    </ns4:instructionalIntervention>
-                </strategy>
-            </message>
-        </trigger>
-    </endTriggers>
-    <assessment>
-        <tasks>
-            <task name="Second Scenario Task" nodeId="1">
-                <startTriggers>
-                    <trigger>
-                        <scenarioStarted/>
-                        <triggerMessage>
-                            <strategy name="SecondScenarioStartStrategy">
-                                <ns4:instructionalIntervention>
-                                    <ns4:strategyHandler>
-                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-                                    </ns4:strategyHandler>
-                                    <ns4:delayAfterStrategy>
-                                        <ns4:duration>3</ns4:duration>
-                                    </ns4:delayAfterStrategy>
-                                    <ns4:feedback>
-                                        <ns4:message>
-                                            <ns4:content>--SCENARIO 2: This is a NEW SESSION. Host MUST create a new session now.</ns4:content>
-                                            <ns4:Delivery>
-                                                <ns4:InTutor>
-                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                                                </ns4:InTutor>
-                                            </ns4:Delivery>
-                                        </ns4:message>
-                                    </ns4:feedback>
-                                </ns4:instructionalIntervention>
-                                <ns4:instructionalIntervention>
-                                    <ns4:strategyHandler>
-                                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-                                    </ns4:strategyHandler>
-                                    <ns4:delayAfterStrategy>
-                                        <ns4:duration>5</ns4:duration>
-                                    </ns4:delayAfterStrategy>
-                                    <ns4:feedback>
-                                        <ns4:message>
-                                            <ns4:content>--TEAM MEMBERS: Please wait for host to create the new session before joining.</ns4:content>
-                                            <ns4:Delivery>
-                                                <ns4:InTutor>
-                                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                                                </ns4:InTutor>
-                                            </ns4:Delivery>
-                                        </ns4:message>
-                                    </ns4:feedback>
-                                </ns4:instructionalIntervention>
-                            </strategy>
-                        </triggerMessage>
-                    </trigger>
-                </startTriggers>
-                <endTriggers>
-                    <trigger>
-                        <childConceptEnded nodeId="2"/>
-                    </trigger>
-                </endTriggers>
-                <concepts>
-                    <concept name="Application Completed" nodeId="2">
-                        <conditions>
-                            <condition>
-                                <conditionImpl>domain.knowledge.condition.ApplicationCompletedCondition</conditionImpl>
-                                <input>
-                                    <ApplicationCompletedCondition/>
-                                </input>
-                            </condition>
-                        </conditions>
-                    </concept>
-                </concepts>
-            </task>
-        </tasks>
-        <objects/>
-    </assessment>
-    <actions>
-        <stateTransitions>
-            <stateTransition name="Session Complete">
-                <LogicalExpression>
-                    <performanceNode name="Application Completed" nodeId="2">
-                        <current>AtExpectation</current>
-                    </performanceNode>
-                </LogicalExpression>
-                <strategyChoices>
-                    <strategyRef name="Complete Second Scenario"/>
-                </strategyChoices>
-            </stateTransition>
-        </stateTransitions>
-        <instructionalStrategies>
-            <strategy name="Complete Second Scenario">
+<Scenario xmlns:ns2="http://GIFT.com/common"
+          xmlns:ns3="http://GIFT.com/learnerActions"
+          xmlns:ns4="http://GIFT.com/pedagogicalStrategy"
+          name="multiplayer1"
+          version="11.0.7">
+
+  <description>
+    This is the STEEL-ARTT course for second scenario that allows multiple players to join and participate together.
+  </description>
+
+  <resources>
+    <ns2:surveyContext>37</ns2:surveyContext>
+    <AvailableLearnerActions/>
+  </resources>
+
+  <assessment>
+    <tasks>
+      <task name="Steelartt Task 1" nodeId="1">
+
+        <startTriggers>
+          <trigger>
+            <scenarioStarted/>
+            <triggerMessage>
+              <strategy name="FirstScenarioStartStrategy">
                 <ns4:instructionalIntervention>
-                    <ns4:strategyHandler>
-                        <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
-                    </ns4:strategyHandler>
-                    <ns4:feedback>
-                        <ns4:message>
-                            <ns4:content>--SCENARIO 2 COMPLETE: The second scenario is now ending. All users should COMPLETELY EXIT the VR application.</ns4:content>
-                            <ns4:Delivery>
-                                <ns4:InTutor>
-                                    <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
-                                    <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
-                                </ns4:InTutor>
-                            </ns4:Delivery>
-                        </ns4:message>
-                    </ns4:feedback>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:delayAfterStrategy>
+                    <ns4:duration>10</ns4:duration>
+                  </ns4:delayAfterStrategy>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Scene 2 started in VR</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:TextEnhancement>FlashOnly</ns4:TextEnhancement>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
                 </ns4:instructionalIntervention>
-                <shouldResetScenario>true</shouldResetScenario>
-            </strategy>
-        </instructionalStrategies>
-    </actions>
-    <teamOrganization>
-        <team name="Everyone">
-            <teamMember name="Prioritizer" playable="true">
-                <learnerId>
-                    <entityMarking>104</entityMarking>
-                </learnerId>
-            </teamMember>
-            <teamMember name="Stabilizer" playable="true">
-                <learnerId>
-                    <entityMarking>105</entityMarking>
-                </learnerId>
-            </teamMember>
-            <teamMember name="Medical Supplier" playable="true">
-                <learnerId>
-                    <entityMarking>106</entityMarking>
-                </learnerId>
-            </teamMember>
-        </team>
-    </teamOrganization>
+              </strategy>
+            </triggerMessage>
+          </trigger>
+        </startTriggers>
+
+        <endTriggers>
+          <!-- 1) Wound Area Identified -->
+          <trigger>
+            <conceptAssessment concept="2" result="AtExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="WoundAreaIdentifiedOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Wound area was correctly identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+          <trigger>
+            <conceptAssessment concept="2" result="BelowExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="WoundAreaIdentifiedNotOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Wound area was NOT identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+
+          <!-- 2) Exit Wound Identified -->
+          <trigger>
+            <conceptAssessment concept="3" result="AtExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="ExitWoundIdentifiedOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Exit wound was correctly identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+          <trigger>
+            <conceptAssessment concept="3" result="BelowExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="ExitWoundIdentifiedNotOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Exit wound was NOT identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+
+          <!-- 3) Airway Obstruction Identified -->
+          <trigger>
+            <conceptAssessment concept="4" result="AtExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="AirwayObstructionIdentifiedOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Airway obstruction was correctly identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+          <trigger>
+            <conceptAssessment concept="4" result="BelowExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="AirwayObstructionIdentifiedNotOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Airway obstruction was NOT identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+
+          <!-- 4) Shock Identified -->
+          <trigger>
+            <conceptAssessment concept="5" result="AtExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="ShockIdentifiedOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Shock was correctly identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+          <trigger>
+            <conceptAssessment concept="5" result="BelowExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="ShockIdentifiedNotOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Shock was NOT identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+
+          <!-- 5) Hypothermia Identified -->
+          <trigger>
+            <conceptAssessment concept="6" result="AtExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="HypothermiaIdentifiedOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Hypothermia was correctly identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+          <trigger>
+            <conceptAssessment concept="6" result="BelowExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="HypothermiaIdentifiedNotOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Hypothermia was NOT identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+
+          <!-- 6) Bleeding Identified -->
+          <trigger>
+            <conceptAssessment concept="7" result="AtExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="BleedingIdentifiedOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Bleeding was correctly identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+          <trigger>
+            <conceptAssessment concept="7" result="BelowExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="BleedingIdentifiedNotOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Bleeding was NOT identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+
+          <!-- 7) Respiratory Distress Identified -->
+          <trigger>
+            <conceptAssessment concept="8" result="AtExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="RespiratoryDistressIdentifiedOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Respiratory distress was correctly identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+          <trigger>
+            <conceptAssessment concept="8" result="BelowExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="RespiratoryDistressIdentifiedNotOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Respiratory distress was NOT identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+
+          <!-- 8) Severe Pain Identified -->
+          <trigger>
+            <conceptAssessment concept="9" result="AtExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="SeverePainIdentifiedOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Severe pain was correctly identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+          <trigger>
+            <conceptAssessment concept="9" result="BelowExpectation"/>
+            <triggerDelay>5</triggerDelay>
+            <message>
+              <strategy name="SeverePainIdentifiedNotOKMsg">
+                <ns4:instructionalIntervention>
+                  <ns4:strategyHandler>
+                    <ns4:impl>domain.knowledge.strategy.DefaultStrategyHandler</ns4:impl>
+                  </ns4:strategyHandler>
+                  <ns4:feedback>
+                    <ns4:message>
+                      <ns4:content>Severe pain was NOT identified.</ns4:content>
+                      <ns4:Delivery>
+                        <ns4:InTutor>
+                          <ns4:MessagePresentation>TextOnly</ns4:MessagePresentation>
+                        </ns4:InTutor>
+                      </ns4:Delivery>
+                    </ns4:message>
+                  </ns4:feedback>
+                </ns4:instructionalIntervention>
+              </strategy>
+            </message>
+          </trigger>
+        </endTriggers>
+
+        <concepts>
+          <concept name="Wound Area Identified" nodeId="2">
+            <conditions>
+              <condition>
+                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                <input>
+                  <SteelarttConditionInput>
+                    <woundAreaIdentified>true</woundAreaIdentified>
+                    <teamMemberRefs>
+                      <teamMemberRef>Prioritizer</teamMemberRef>
+                      <teamMemberRef>Stabilizer</teamMemberRef>
+                      <teamMemberRef>Medical Supplier</teamMemberRef>
+                    </teamMemberRefs>
+                  </SteelarttConditionInput>
+                </input>
+                <scoring>
+                  <count name="Wound Area Count" units="count">
+                    <evaluators>
+                      <evaluator assessment="AtExpectation" operator="Equals" value="1"/>
+                      <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                    </evaluators>
+                  </count>
+                </scoring>
+                <default assessment="BelowExpectation"/>
+                <performanceMetricArguments weight="1.0"/>
+              </condition>
+            </conditions>
+          </concept>
+
+          <concept name="Exit Wound Identified" nodeId="3">
+            <conditions>
+              <condition>
+                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                <input>
+                  <SteelarttConditionInput>
+                    <exitWoundIdentified>true</exitWoundIdentified>
+                    <teamMemberRefs>
+                      <teamMemberRef>Prioritizer</teamMemberRef>
+                      <teamMemberRef>Stabilizer</teamMemberRef>
+                      <teamMemberRef>Medical Supplier</teamMemberRef>
+                    </teamMemberRefs>
+                  </SteelarttConditionInput>
+                </input>
+                <scoring>
+                  <count name="Exit Wound Count" units="count">
+                    <evaluators>
+                      <evaluator assessment="AtExpectation" operator="Equals" value="1"/>
+                      <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                    </evaluators>
+                  </count>
+                </scoring>
+                <default assessment="BelowExpectation"/>
+                <performanceMetricArguments weight="1.0"/>
+              </condition>
+            </conditions>
+          </concept>
+
+          <concept name="Airway Obstruction Identified" nodeId="4">
+            <conditions>
+              <condition>
+                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                <input>
+                  <SteelarttConditionInput>
+                    <airwayObstructionIdentified>true</airwayObstructionIdentified>
+                    <teamMemberRefs>
+                      <teamMemberRef>Prioritizer</teamMemberRef>
+                      <teamMemberRef>Stabilizer</teamMemberRef>
+                      <teamMemberRef>Medical Supplier</teamMemberRef>
+                    </teamMemberRefs>
+                  </SteelarttConditionInput>
+                </input>
+                <scoring>
+                  <count name="Airway Obstruction Count" units="count">
+                    <evaluators>
+                      <evaluator assessment="AtExpectation" operator="Equals" value="1"/>
+                      <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                    </evaluators>
+                  </count>
+                </scoring>
+                <default assessment="BelowExpectation"/>
+                <performanceMetricArguments weight="1.0"/>
+              </condition>
+            </conditions>
+          </concept>
+
+          <concept name="Shock Identified" nodeId="5">
+            <conditions>
+              <condition>
+                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                <input>
+                  <SteelarttConditionInput>
+                    <shockIdentified>true</shockIdentified>
+                    <teamMemberRefs>
+                      <teamMemberRef>Prioritizer</teamMemberRef>
+                      <teamMemberRef>Stabilizer</teamMemberRef>
+                      <teamMemberRef>Medical Supplier</teamMemberRef>
+                    </teamMemberRefs>
+                  </SteelarttConditionInput>
+                </input>
+                <scoring>
+                  <count name="Shock Count" units="count">
+                    <evaluators>
+                      <evaluator assessment="AtExpectation" operator="Equals" value="1"/>
+                      <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                    </evaluators>
+                  </count>
+                </scoring>
+                <default assessment="BelowExpectation"/>
+                <performanceMetricArguments weight="1.0"/>
+              </condition>
+            </conditions>
+          </concept>
+
+          <concept name="Hypothermia Identified" nodeId="6">
+            <conditions>
+              <condition>
+                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                <input>
+                  <SteelarttConditionInput>
+                    <hypothermiaIdentified>true</hypothermiaIdentified>
+                    <teamMemberRefs>
+                      <teamMemberRef>Prioritizer</teamMemberRef>
+                      <teamMemberRef>Stabilizer</teamMemberRef>
+                      <teamMemberRef>Medical Supplier</teamMemberRef>
+                    </teamMemberRefs>
+                  </SteelarttConditionInput>
+                </input>
+                <scoring>
+                  <count name="Hypothermia Count" units="count">
+                    <evaluators>
+                      <evaluator assessment="AtExpectation" operator="Equals" value="1"/>
+                      <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                    </evaluators>
+                  </count>
+                </scoring>
+                <default assessment="BelowExpectation"/>
+                <performanceMetricArguments weight="1.0"/>
+              </condition>
+            </conditions>
+          </concept>
+
+          <concept name="Bleeding Identified" nodeId="7">
+            <conditions>
+              <condition>
+                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                <input>
+                  <SteelarttConditionInput>
+                    <bleedingIdentified>true</bleedingIdentified>
+                    <teamMemberRefs>
+                      <teamMemberRef>Prioritizer</teamMemberRef>
+                      <teamMemberRef>Stabilizer</teamMemberRef>
+                      <teamMemberRef>Medical Supplier</teamMemberRef>
+                    </teamMemberRefs>
+                  </SteelarttConditionInput>
+                </input>
+                <scoring>
+                  <count name="Bleeding Count" units="count">
+                    <evaluators>
+                      <evaluator assessment="AtExpectation" operator="Equals" value="1"/>
+                      <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                    </evaluators>
+                  </count>
+                </scoring>
+                <default assessment="BelowExpectation"/>
+                <performanceMetricArguments weight="1.0"/>
+              </condition>
+            </conditions>
+          </concept>
+
+          <concept name="Respiratory Distress Identified" nodeId="8">
+            <conditions>
+              <condition>
+                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                <input>
+                  <SteelarttConditionInput>
+                    <respiratoryDistressIdentified>true</respiratoryDistressIdentified>
+                    <teamMemberRefs>
+                      <teamMemberRef>Prioritizer</teamMemberRef>
+                      <teamMemberRef>Stabilizer</teamMemberRef>
+                      <teamMemberRef>Medical Supplier</teamMemberRef>
+                    </teamMemberRefs>
+                  </SteelarttConditionInput>
+                </input>
+                <scoring>
+                  <count name="Respiratory Distress Count" units="count">
+                    <evaluators>
+                      <evaluator assessment="AtExpectation" operator="Equals" value="1"/>
+                      <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                    </evaluators>
+                  </count>
+                </scoring>
+                <default assessment="BelowExpectation"/>
+                <performanceMetricArguments weight="1.0"/>
+              </condition>
+            </conditions>
+          </concept>
+
+          <concept name="Severe Pain Identified" nodeId="9">
+            <conditions>
+              <condition>
+                <conditionImpl>domain.knowledge.condition.SteelarttCondition</conditionImpl>
+                <input>
+                  <SteelarttConditionInput>
+                    <severePainIdentified>true</severePainIdentified>
+                    <teamMemberRefs>
+                      <teamMemberRef>Prioritizer</teamMemberRef>
+                      <teamMemberRef>Stabilizer</teamMemberRef>
+                      <teamMemberRef>Medical Supplier</teamMemberRef>
+                    </teamMemberRefs>
+                  </SteelarttConditionInput>
+                </input>
+                <scoring>
+                  <count name="Severe Pain Count" units="count">
+                    <evaluators>
+                      <evaluator assessment="AtExpectation" operator="Equals" value="1"/>
+                      <evaluator assessment="BelowExpectation" operator="Equals" value="0"/>
+                    </evaluators>
+                  </count>
+                </scoring>
+                <default assessment="BelowExpectation"/>
+                <performanceMetricArguments weight="1.0"/>
+              </condition>
+            </conditions>
+          </concept>
+
+        </concepts>
+
+      </task>
+    </tasks>
+
+    <objects>
+      <PlacesOfInterest/>
+    </objects>
+
+  </assessment>
+
+  <actions>
+    <stateTransitions/>
+    <instructionalStrategies/>
+  </actions>
+
+  <teamOrganization>
+    <team name="Everyone">
+      <teamMember name="Prioritizer" playable="true">
+        <learnerId><entityMarking>104</entityMarking></learnerId>
+      </teamMember>
+      <teamMember name="Stabilizer" playable="true">
+        <learnerId><entityMarking>105</entityMarking></learnerId>
+      </teamMember>
+      <teamMember name="Medical Supplier" playable="true">
+        <learnerId><entityMarking>106</entityMarking></learnerId>
+      </teamMember>
+    </team>
+  </teamOrganization>
 </Scenario>
