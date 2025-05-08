@@ -48,6 +48,7 @@
 			<srcfiles dir="../net/socket" includes="${update.includes}" />
 			<srcfiles dir="../net/util" includes="${update.includes}" />
 			<srcfiles dir="../net/xmlrpc" includes="${update.includes}" />
+			<srcfiles dir="../../../../${steelartt.source.path}/net" includes="**/*" excludes="${build.excludes}" />
 			<srcfiles dir="../../../../${steelartt.source.path}/net/embedded" includes="**/*" excludes="${build.excludes}" />
 			<srcfiles dir="../../../../${steelartt.source.path}/common" includes="**/*" excludes="${build.excludes}" />
 		</uptodate>
@@ -366,6 +367,7 @@
             basedir="${root.path}/build/classes" 
             includes="${source.path}/common/**,
 			${steelartt.source.path}/common/**,
+			${steelartt.source.path}/net/**,
         	${source.path}/net/util/**,
         	${source.path}/net/api/**,
 			${source.path}/net/proto/**,
